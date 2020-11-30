@@ -2,9 +2,13 @@
 items:
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   id: FormRecognizerAsyncClient
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer
   children:
+  - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
+  - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions)
+  - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(java.lang.String)
+  - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions)
   - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeContent(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
   - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeContent(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeContentOptions)
   - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeContentFromUrl(java.lang.String)
@@ -13,6 +17,10 @@ items:
   - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeCustomForms(java.lang.String,reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeCustomFormsOptions)
   - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeCustomFormsFromUrl(java.lang.String,java.lang.String)
   - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeCustomFormsFromUrl(java.lang.String,java.lang.String,com.azure.ai.formrecognizer.models.RecognizeCustomFormsOptions)
+  - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
+  - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions)
+  - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(java.lang.String)
+  - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions)
   - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceipts(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
   - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceipts(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeReceiptsOptions)
   - com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl(java.lang.String)
@@ -25,7 +33,7 @@ items:
   type: Class
   package: com.azure.ai.formrecognizer
   summary: >-
-    This class provides an asynchronous client that contains all the operations that apply to Azure Form Recognizer. Operations allowed by the client are recognizing receipt data from documents, extracting layout information and analyzing custom forms for predefined data.
+    This class provides an asynchronous client that contains all the operations that apply to Azure Form Recognizer. Operations allowed by the client are recognizing receipt, business card and invoice data from documents, extracting layout information, analyzing custom forms for predefined data.
 
 
     **Instantiating an asynchronous Form Recognizer Client**
@@ -56,7 +64,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.FormRecognizerAsyncClient(com.azure.ai.formrecognizer.implementation.FormRecognizerClientImpl,com.azure.ai.formrecognizer.FormRecognizerServiceVersion)
   id: FormRecognizerAsyncClient(com.azure.ai.formrecognizer.implementation.FormRecognizerClientImpl,com.azure.ai.formrecognizer.FormRecognizerServiceVersion)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -76,9 +84,417 @@ items:
     - id: serviceVersion
       type: com.azure.ai.formrecognizer.FormRecognizerServiceVersion
       description: The versions of Azure Form Recognizer supported by this client library.
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
+  id: beginRecognizeBusinessCards(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
+  parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
+  langs:
+  - java
+  name: beginRecognizeBusinessCards(Flux<ByteBuffer> businessCard, long length)
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeBusinessCards(Flux<ByteBuffer> businessCard, long length)
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards(Flux<ByteBuffer> businessCard, long length)
+  overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards*
+  type: Method
+  package: com.azure.ai.formrecognizer
+  summary: >-
+    Recognizes business card data using optical character recognition (OCR) and a prebuilt business card trained model.
+
+
+    The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
+
+
+    See [here][] for fields found on a business card. Note that the `businessCard` passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.
+
+
+    **Code sample**
+
+
+    ```java
+
+    File businessCard = new File("{local/file_path/fileName.jpg}");
+     Flux<ByteBuffer> buffer = toFluxByteBuffer(new ByteArrayInputStream(Files.readAllBytes(businessCard.toPath())));
+     // if training polling operation completed, retrieve the final result.
+     formRecognizerAsyncClient.beginRecognizeBusinessCards(buffer, businessCard.length())
+         .flatMap(AsyncPollResponse::getFinalResult)
+         .subscribe(recognizedBusinessCards -> {
+             for (int i = 0; i < recognizedBusinessCards.size(); i++) {
+                 RecognizedForm recognizedForm = recognizedBusinessCards.get(i);
+                 Map<String, FormField> recognizedFields = recognizedForm.getFields();
+                 System.out.printf("----------- Recognized Business Card page %d -----------%n", i);
+                 FormField contactNamesFormField = recognizedFields.get("ContactNames");
+                 if (contactNamesFormField != null) {
+                     if (FieldValueType.LIST == contactNamesFormField.getValue().getValueType()) {
+                         List<FormField> contactNamesList = contactNamesFormField.getValue().asList();
+                         contactNamesList.stream()
+                             .filter(contactName -> FieldValueType.MAP == contactName.getValue().getValueType())
+                             .map(contactName -> {
+                                 System.out.printf("Contact name: %s%n", contactName.getValueData().getText());
+                                 return contactName.getValue().asMap();
+                             })
+                             .forEach(contactNamesMap -> contactNamesMap.forEach((key, contactName) -> {
+                                 if ("FirstName".equals(key)) {
+                                     if (FieldValueType.STRING == contactName.getValue().getValueType()) {
+                                         String firstName = contactName.getValue().asString();
+                                         System.out.printf("\tFirst Name: %s, confidence: %.2f%n",
+                                             firstName, contactName.getConfidence());
+                                     }
+                                 }
+                                 if ("LastName".equals(key)) {
+                                     if (FieldValueType.STRING == contactName.getValue().getValueType()) {
+                                         String lastName = contactName.getValue().asString();
+                                         System.out.printf("\tLast Name: %s, confidence: %.2f%n",
+                                             lastName, contactName.getConfidence());
+                                     }
+                                 }
+                             }));
+                     }
+                 }
+                 FormField jobTitles = recognizedFields.get("JobTitles");
+                 if (jobTitles != null) {
+                     if (FieldValueType.LIST == jobTitles.getValue().getValueType()) {
+                         List<FormField> jobTitlesItems = jobTitles.getValue().asList();
+                         jobTitlesItems.stream().forEach(jobTitlesItem -> {
+                             if (FieldValueType.STRING == jobTitlesItem.getValue().getValueType()) {
+                                 String jobTitle = jobTitlesItem.getValue().asString();
+                                 System.out.printf("Job Title: %s, confidence: %.2f%n",
+                                     jobTitle, jobTitlesItem.getConfidence());
+                             }
+                         });
+                     }
+                 }
+             }
+         });
+    ```
+
+
+
+    [here]: https://aka.ms/formrecognizer/businesscardfields
+  syntax:
+    content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeBusinessCards(Flux<ByteBuffer> businessCard, long length)
+    parameters:
+    - id: businessCard
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+      description: The data of the document to recognize business card information from.
+    - id: length
+      type: long
+      description: The exact length of the data.
+    return:
+      type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
+      description: >-
+        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize business card operation until it has completed, has failed,
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions)
+  id: beginRecognizeBusinessCards(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions)
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
+  parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
+  langs:
+  - java
+  name: beginRecognizeBusinessCards(Flux<ByteBuffer> businessCard, long length, RecognizeBusinessCardsOptions recognizeBusinessCardsOptions)
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeBusinessCards(Flux<ByteBuffer> businessCard, long length, RecognizeBusinessCardsOptions recognizeBusinessCardsOptions)
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards(Flux<ByteBuffer> businessCard, long length, RecognizeBusinessCardsOptions recognizeBusinessCardsOptions)
+  overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards*
+  type: Method
+  package: com.azure.ai.formrecognizer
+  summary: >-
+    Recognizes business card data from documents using optical character recognition (OCR) and a prebuilt business card trained model.
+
+
+    The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
+
+
+    See [here][] for fields found on a business card. Note that the `businessCard` passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.
+
+
+    **Code sample**
+
+
+    ```java
+
+    File businessCard = new File("{local/file_path/fileName.jpg}");
+     boolean includeFieldElements = true;
+     // Utility method to convert input stream to Byte buffer
+     Flux<ByteBuffer> buffer = toFluxByteBuffer(new ByteArrayInputStream(Files.readAllBytes(businessCard.toPath())));
+     // if training polling operation completed, retrieve the final result.
+     formRecognizerAsyncClient.beginRecognizeBusinessCards(buffer, businessCard.length(),
+         new RecognizeBusinessCardsOptions()
+             .setContentType(FormContentType.IMAGE_JPEG)
+             .setFieldElementsIncluded(includeFieldElements)
+             .setPollInterval(Duration.ofSeconds(5)))
+         .flatMap(AsyncPollResponse::getFinalResult)
+         .subscribe(recognizedBusinessCards -> {
+             for (int i = 0; i < recognizedBusinessCards.size(); i++) {
+                 RecognizedForm recognizedForm = recognizedBusinessCards.get(i);
+                 Map<String, FormField> recognizedFields = recognizedForm.getFields();
+                 System.out.printf("----------- Recognized Business Card page %d -----------%n", i);
+                 FormField contactNamesFormField = recognizedFields.get("ContactNames");
+                 if (contactNamesFormField != null) {
+                     if (FieldValueType.LIST == contactNamesFormField.getValue().getValueType()) {
+                         List<FormField> contactNamesList = contactNamesFormField.getValue().asList();
+                         contactNamesList.stream()
+                             .filter(contactName -> FieldValueType.MAP == contactName.getValue().getValueType())
+                             .map(contactName -> {
+                                 System.out.printf("Contact name: %s%n", contactName.getValueData().getText());
+                                 return contactName.getValue().asMap();
+                             })
+                             .forEach(contactNamesMap -> contactNamesMap.forEach((key, contactName) -> {
+                                 if ("FirstName".equals(key)) {
+                                     if (FieldValueType.STRING == contactName.getValue().getValueType()) {
+                                         String firstName = contactName.getValue().asString();
+                                         System.out.printf("\tFirst Name: %s, confidence: %.2f%n",
+                                             firstName, contactName.getConfidence());
+                                     }
+                                 }
+                                 if ("LastName".equals(key)) {
+                                     if (FieldValueType.STRING == contactName.getValue().getValueType()) {
+                                         String lastName = contactName.getValue().asString();
+                                         System.out.printf("\tLast Name: %s, confidence: %.2f%n",
+                                             lastName, contactName.getConfidence());
+                                     }
+                                 }
+                             }));
+                     }
+                 }
+                 FormField jobTitles = recognizedFields.get("JobTitles");
+                 if (jobTitles != null) {
+                     if (FieldValueType.LIST == jobTitles.getValue().getValueType()) {
+                         List<FormField> jobTitlesItems = jobTitles.getValue().asList();
+                         jobTitlesItems.stream().forEach(jobTitlesItem -> {
+                             if (FieldValueType.STRING == jobTitlesItem.getValue().getValueType()) {
+                                 String jobTitle = jobTitlesItem.getValue().asString();
+                                 System.out.printf("Job Title: %s, confidence: %.2f%n",
+                                     jobTitle, jobTitlesItem.getConfidence());
+                             }
+                         });
+                     }
+                 }
+             }
+         });
+    ```
+
+
+
+    [here]: https://aka.ms/formrecognizer/businesscardfields
+  syntax:
+    content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeBusinessCards(Flux<ByteBuffer> businessCard, long length, RecognizeBusinessCardsOptions recognizeBusinessCardsOptions)
+    parameters:
+    - id: businessCard
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+      description: The data of the document to recognize business card information from.
+    - id: length
+      type: long
+      description: The exact length of the data.
+    - id: recognizeBusinessCardsOptions
+      type: com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions
+      description: >-
+        The additional configurable <xref uid="com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions" data-throw-if-not-resolved="false">options</xref>
+         that may be passed when analyzing a business card.
+    return:
+      type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
+      description: >-
+        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize business card operation until it has completed, has failed,
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(java.lang.String)
+  id: beginRecognizeBusinessCardsFromUrl(java.lang.String)
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
+  parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
+  langs:
+  - java
+  name: beginRecognizeBusinessCardsFromUrl(String businessCardUrl)
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(String businessCardUrl)
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(String businessCardUrl)
+  overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl*
+  type: Method
+  package: com.azure.ai.formrecognizer
+  summary: >-
+    Recognizes business card data using optical character recognition (OCR) and a prebuilt business card trained model.
+
+
+    The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
+
+
+    See [here][] for fields found on a business card.
+
+
+    **Code sample**
+
+
+    ```java
+
+    String businessCardUrl = "{business_card_url}";
+     // if training polling operation completed, retrieve the final result.
+     formRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(businessCardUrl)
+         .flatMap(AsyncPollResponse::getFinalResult)
+         .subscribe(recognizedBusinessCards -> {
+             for (int i = 0; i < recognizedBusinessCards.size(); i++) {
+                 RecognizedForm recognizedForm = recognizedBusinessCards.get(i);
+                 Map<String, FormField> recognizedFields = recognizedForm.getFields();
+                 System.out.printf("----------- Recognized Business Card page %d -----------%n", i);
+                 FormField contactNamesFormField = recognizedFields.get("ContactNames");
+                 if (contactNamesFormField != null) {
+                     if (FieldValueType.LIST == contactNamesFormField.getValue().getValueType()) {
+                         List<FormField> contactNamesList = contactNamesFormField.getValue().asList();
+                         contactNamesList.stream()
+                             .filter(contactName -> FieldValueType.MAP == contactName.getValue().getValueType())
+                             .map(contactName -> {
+                                 System.out.printf("Contact name: %s%n", contactName.getValueData().getText());
+                                 return contactName.getValue().asMap();
+                             })
+                             .forEach(contactNamesMap -> contactNamesMap.forEach((key, contactName) -> {
+                                 if ("FirstName".equals(key)) {
+                                     if (FieldValueType.STRING == contactName.getValue().getValueType()) {
+                                         String firstName = contactName.getValue().asString();
+                                         System.out.printf("\tFirst Name: %s, confidence: %.2f%n",
+                                             firstName, contactName.getConfidence());
+                                     }
+                                 }
+                                 if ("LastName".equals(key)) {
+                                     if (FieldValueType.STRING == contactName.getValue().getValueType()) {
+                                         String lastName = contactName.getValue().asString();
+                                         System.out.printf("\tLast Name: %s, confidence: %.2f%n",
+                                             lastName, contactName.getConfidence());
+                                     }
+                                 }
+                             }));
+                     }
+                 }
+                 FormField jobTitles = recognizedFields.get("JobTitles");
+                 if (jobTitles != null) {
+                     if (FieldValueType.LIST == jobTitles.getValue().getValueType()) {
+                         List<FormField> jobTitlesItems = jobTitles.getValue().asList();
+                         jobTitlesItems.stream().forEach(jobTitlesItem -> {
+                             if (FieldValueType.STRING == jobTitlesItem.getValue().getValueType()) {
+                                 String jobTitle = jobTitlesItem.getValue().asString();
+                                 System.out.printf("Job Title: %s, confidence: %.2f%n",
+                                     jobTitle, jobTitlesItem.getConfidence());
+                             }
+                         });
+                     }
+                 }
+             }
+         });
+    ```
+
+
+
+    [here]: https://aka.ms/formrecognizer/businesscardfields
+  syntax:
+    content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeBusinessCardsFromUrl(String businessCardUrl)
+    parameters:
+    - id: businessCardUrl
+      type: java.lang.String
+      description: The source URL to the input business card.
+    return:
+      type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
+      description: >-
+        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize business card operation until it has completed, has failed,
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions)
+  id: beginRecognizeBusinessCardsFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions)
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
+  parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
+  langs:
+  - java
+  name: beginRecognizeBusinessCardsFromUrl(String businessCardUrl, RecognizeBusinessCardsOptions recognizeBusinessCardsOptions)
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(String businessCardUrl, RecognizeBusinessCardsOptions recognizeBusinessCardsOptions)
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(String businessCardUrl, RecognizeBusinessCardsOptions recognizeBusinessCardsOptions)
+  overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl*
+  type: Method
+  package: com.azure.ai.formrecognizer
+  summary: >-
+    Recognizes business card data using optical character recognition (OCR) and a prebuilt business card trained model.
+
+
+    The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
+
+
+    See [here][] for fields found on a business card.
+
+
+    **Code sample**
+
+
+    ```java
+
+    String businessCardUrl = "{business_card_url}";
+     boolean includeFieldElements = true;
+     // if training polling operation completed, retrieve the final result.
+     formRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl(businessCardUrl,
+         new RecognizeBusinessCardsOptions()
+             .setFieldElementsIncluded(includeFieldElements)
+             .setPollInterval(Duration.ofSeconds(5)))
+         .flatMap(AsyncPollResponse::getFinalResult)
+         .subscribe(recognizedBusinessCards -> {
+             for (int i = 0; i < recognizedBusinessCards.size(); i++) {
+                 RecognizedForm recognizedBusinessCard = recognizedBusinessCards.get(i);
+                 Map<String, FormField> recognizedFields = recognizedBusinessCard.getFields();
+                 System.out.printf("----------- Recognized Business Card page %d -----------%n", i);
+                 FormField contactNamesFormField = recognizedFields.get("ContactNames");
+                 if (contactNamesFormField != null) {
+                     if (FieldValueType.LIST == contactNamesFormField.getValue().getValueType()) {
+                         List<FormField> contactNamesList = contactNamesFormField.getValue().asList();
+                         contactNamesList.stream()
+                             .filter(contactName -> FieldValueType.MAP == contactName.getValue().getValueType())
+                             .map(contactName -> {
+                                 System.out.printf("Contact name: %s%n", contactName.getValueData().getText());
+                                 return contactName.getValue().asMap();
+                             })
+                             .forEach(contactNamesMap -> contactNamesMap.forEach((key, contactName) -> {
+                                 if ("FirstName".equals(key)) {
+                                     if (FieldValueType.STRING == contactName.getValue().getValueType()) {
+                                         String firstName = contactName.getValue().asString();
+                                         System.out.printf("\tFirst Name: %s, confidence: %.2f%n",
+                                             firstName, contactName.getConfidence());
+                                     }
+                                 }
+                                 if ("LastName".equals(key)) {
+                                     if (FieldValueType.STRING == contactName.getValue().getValueType()) {
+                                         String lastName = contactName.getValue().asString();
+                                         System.out.printf("\tLast Name: %s, confidence: %.2f%n",
+                                             lastName, contactName.getConfidence());
+                                     }
+                                 }
+                             }));
+                     }
+                 }
+                 FormField jobTitles = recognizedFields.get("JobTitles");
+                 if (jobTitles != null) {
+                     if (FieldValueType.LIST == jobTitles.getValue().getValueType()) {
+                         List<FormField> jobTitlesItems = jobTitles.getValue().asList();
+                         jobTitlesItems.stream().forEach(jobTitlesItem -> {
+                             if (FieldValueType.STRING == jobTitlesItem.getValue().getValueType()) {
+                                 String jobTitle = jobTitlesItem.getValue().asString();
+                                 System.out.printf("Job Title: %s, confidence: %.2f%n",
+                                     jobTitle, jobTitlesItem.getConfidence());
+                             }
+                         });
+                     }
+                 }
+             }
+         });
+    ```
+
+
+
+    [here]: https://aka.ms/formrecognizer/businesscardfields
+  syntax:
+    content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeBusinessCardsFromUrl(String businessCardUrl, RecognizeBusinessCardsOptions recognizeBusinessCardsOptions)
+    parameters:
+    - id: businessCardUrl
+      type: java.lang.String
+      description: The source URL to the input business card.
+    - id: recognizeBusinessCardsOptions
+      type: com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions
+      description: >-
+        The additional configurable <xref uid="com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions" data-throw-if-not-resolved="false">options</xref>
+         that may be passed when analyzing a business card.
+    return:
+      type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
+      description: >-
+        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize business card operation until it has completed, has failed,
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeContent(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
   id: beginRecognizeContent(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -102,10 +518,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.FormPage>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> polls the recognize content operation until it has completed, has failed, or has
-         been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.FormPage" data-throw-if-not-resolved="false">FormPage</xref>.
+         been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.FormPage" data-throw-if-not-resolved="false">FormPage</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeContent(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeContentOptions)
   id: beginRecognizeContent(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeContentOptions)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -123,6 +539,9 @@ items:
 
 
     Note that the `data` passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.
+
+
+    Content recognition supports auto language identification and multilanguage documents, so only provide a language code if you would like to force the documented to be processed as that specific language in the <xref uid="com.azure.ai.formrecognizer.models.RecognizeContentOptions" data-throw-if-not-resolved="false">options</xref>.
 
 
     **Code sample**
@@ -167,10 +586,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.FormPage>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> polls the recognize content operation until it has completed, has failed, or has
-         been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.FormPage" data-throw-if-not-resolved="false">FormPage</xref>.
+         been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.FormPage" data-throw-if-not-resolved="false">FormPage</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeContentFromUrl(java.lang.String)
   id: beginRecognizeContentFromUrl(java.lang.String)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -217,10 +636,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.FormPage>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize content operation until it has completed, has failed, or
-         has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.FormPage" data-throw-if-not-resolved="false">FormPage</xref>.
+         has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.FormPage" data-throw-if-not-resolved="false">FormPage</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeContentFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeContentOptions)
   id: beginRecognizeContentFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeContentOptions)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -235,6 +654,9 @@ items:
 
 
     The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
+
+
+    Content recognition supports auto language identification and multilanguage documents, so only provide a language code if you would like to force the documented to be processed as that specific language in the <xref uid="com.azure.ai.formrecognizer.models.RecognizeContentOptions" data-throw-if-not-resolved="false">options</xref>.
 
 
     **Code sample**
@@ -273,10 +695,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.FormPage>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognized content/layout operation until it has completed,
-         has failed, or has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.FormPage" data-throw-if-not-resolved="false">FormPage</xref>.
+         has failed, or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.FormPage" data-throw-if-not-resolved="false">FormPage</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeCustomForms(java.lang.String,reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
   id: beginRecognizeCustomForms(java.lang.String,reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -303,10 +725,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize custom form operation until it has completed, has failed,
-         or has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeCustomForms(java.lang.String,reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeCustomFormsOptions)
   id: beginRecognizeCustomForms(java.lang.String,reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeCustomFormsOptions)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -338,10 +760,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize custom form operation until it has completed, has failed,
-         or has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeCustomFormsFromUrl(java.lang.String,java.lang.String)
   id: beginRecognizeCustomFormsFromUrl(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -365,10 +787,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize custom form operation until it has completed, has failed,
-         or has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeCustomFormsFromUrl(java.lang.String,java.lang.String,com.azure.ai.formrecognizer.models.RecognizeCustomFormsOptions)
   id: beginRecognizeCustomFormsFromUrl(java.lang.String,java.lang.String,com.azure.ai.formrecognizer.models.RecognizeCustomFormsOptions)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -397,10 +819,302 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize custom form operation until it has completed, has failed,
-         or has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
+  id: beginRecognizeInvoices(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
+  parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
+  langs:
+  - java
+  name: beginRecognizeInvoices(Flux<ByteBuffer> invoice, long length)
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeInvoices(Flux<ByteBuffer> invoice, long length)
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices(Flux<ByteBuffer> invoice, long length)
+  overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices*
+  type: Method
+  package: com.azure.ai.formrecognizer
+  summary: >-
+    Recognizes invoice data using optical character recognition (OCR) and a prebuilt invoice trained model.
+
+
+    The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
+
+
+    See [here][] for fields found on a invoice. Note that the `invoice` passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.
+
+
+    **Code sample**
+
+
+    ```java
+
+    File invoice = new File("local/file_path/invoice.jpg");
+     Flux<ByteBuffer> buffer =
+         toFluxByteBuffer(new ByteArrayInputStream(Files.readAllBytes(invoice.toPath())));
+     // if training polling operation completed, retrieve the final result.
+     formRecognizerAsyncClient.beginRecognizeInvoices(buffer, invoice.length())
+         .flatMap(AsyncPollResponse::getFinalResult)
+         .subscribe(recognizedInvoices -> {
+             for (int i = 0; i < recognizedInvoices.size(); i++) {
+                 RecognizedForm recognizedForm = recognizedInvoices.get(i);
+                 Map<String, FormField> recognizedFields = recognizedForm.getFields();
+                 FormField customAddrFormField = recognizedFields.get("CustomerAddress");
+                 if (customAddrFormField != null) {
+                     if (FieldValueType.STRING == customAddrFormField.getValue().getValueType()) {
+                         System.out.printf("Customer Address: %s%n", customAddrFormField.getValue().asString());
+                     }
+                 }
+                 FormField invoiceDateFormField = recognizedFields.get("InvoiceDate");
+                 if (invoiceDateFormField != null) {
+                     if (FieldValueType.DATE == invoiceDateFormField.getValue().getValueType()) {
+                         LocalDate invoiceDate = invoiceDateFormField.getValue().asDate();
+                         System.out.printf("Invoice Date: %s, confidence: %.2f%n",
+                             invoiceDate, invoiceDateFormField.getConfidence());
+                     }
+                 }
+             }
+         });
+    ```
+
+
+
+    [here]: https://aka.ms/formrecognizer/invoicefields
+  syntax:
+    content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeInvoices(Flux<ByteBuffer> invoice, long length)
+    parameters:
+    - id: invoice
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+      description: The data of the document to recognize invoice information from.
+    - id: length
+      type: long
+      description: The exact length of the data.
+    return:
+      type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
+      description: >-
+        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize invoice operation until it has completed, has failed,
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions)
+  id: beginRecognizeInvoices(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions)
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
+  parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
+  langs:
+  - java
+  name: beginRecognizeInvoices(Flux<ByteBuffer> invoice, long length, RecognizeInvoicesOptions recognizeInvoicesOptions)
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeInvoices(Flux<ByteBuffer> invoice, long length, RecognizeInvoicesOptions recognizeInvoicesOptions)
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices(Flux<ByteBuffer> invoice, long length, RecognizeInvoicesOptions recognizeInvoicesOptions)
+  overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices*
+  type: Method
+  package: com.azure.ai.formrecognizer
+  summary: >-
+    Recognizes invoice data from documents using optical character recognition (OCR) and a prebuilt invoice trained model.
+
+
+    The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
+
+
+    See [here][] for fields found on a invoice. Note that the `invoice` passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.
+
+
+    **Code sample**
+
+
+    ```java
+
+    File invoice = new File("local/file_path/invoice.jpg");
+     boolean includeFieldElements = true;
+     // Utility method to convert input stream to Byte buffer
+     Flux<ByteBuffer> buffer =
+         toFluxByteBuffer(new ByteArrayInputStream(Files.readAllBytes(invoice.toPath())));
+     // if training polling operation completed, retrieve the final result.
+     formRecognizerAsyncClient.beginRecognizeInvoices(buffer,
+         invoice.length(),
+         new RecognizeInvoicesOptions()
+             .setContentType(FormContentType.IMAGE_JPEG)
+             .setFieldElementsIncluded(includeFieldElements)
+             .setPollInterval(Duration.ofSeconds(5)))
+         .flatMap(AsyncPollResponse::getFinalResult)
+         .subscribe(recognizedInvoices -> {
+             for (int i = 0; i < recognizedInvoices.size(); i++) {
+                 RecognizedForm recognizedForm = recognizedInvoices.get(i);
+                 Map<String, FormField> recognizedFields = recognizedForm.getFields();
+                 FormField customAddrFormField = recognizedFields.get("CustomerAddress");
+                 if (customAddrFormField != null) {
+                     if (FieldValueType.STRING == customAddrFormField.getValue().getValueType()) {
+                         System.out.printf("Customer Address: %s%n", customAddrFormField.getValue().asString());
+                     }
+                 }
+                 FormField invoiceDateFormField = recognizedFields.get("InvoiceDate");
+                 if (invoiceDateFormField != null) {
+                     if (FieldValueType.DATE == invoiceDateFormField.getValue().getValueType()) {
+                         LocalDate invoiceDate = invoiceDateFormField.getValue().asDate();
+                         System.out.printf("Invoice Date: %s, confidence: %.2f%n",
+                             invoiceDate, invoiceDateFormField.getConfidence());
+                     }
+                 }
+             }
+         });
+    ```
+
+
+
+    [here]: https://aka.ms/formrecognizer/invoicefields
+  syntax:
+    content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeInvoices(Flux<ByteBuffer> invoice, long length, RecognizeInvoicesOptions recognizeInvoicesOptions)
+    parameters:
+    - id: invoice
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+      description: The data of the document to recognize invoice information from.
+    - id: length
+      type: long
+      description: The exact length of the data.
+    - id: recognizeInvoicesOptions
+      type: com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions
+      description: >-
+        The additional configurable <xref uid="com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions" data-throw-if-not-resolved="false">options</xref>
+         that may be passed when analyzing a invoice.
+    return:
+      type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
+      description: >-
+        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize invoice operation until it has completed, has failed,
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(java.lang.String)
+  id: beginRecognizeInvoicesFromUrl(java.lang.String)
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
+  parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
+  langs:
+  - java
+  name: beginRecognizeInvoicesFromUrl(String invoiceUrl)
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(String invoiceUrl)
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(String invoiceUrl)
+  overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl*
+  type: Method
+  package: com.azure.ai.formrecognizer
+  summary: >-
+    Recognizes invoice data using optical character recognition (OCR) and a prebuilt invoice trained model.
+
+
+    The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
+
+
+    See [here][] for fields found on a invoice.
+
+
+    **Code sample**
+
+
+    ```java
+
+    String invoiceUrl = "invoice_url";
+     // if training polling operation completed, retrieve the final result.
+     formRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(invoiceUrl)
+         .flatMap(AsyncPollResponse::getFinalResult)
+         .subscribe(recognizedInvoices -> {
+             for (int i = 0; i < recognizedInvoices.size(); i++) {
+                 RecognizedForm recognizedForm = recognizedInvoices.get(i);
+                 Map<String, FormField> recognizedFields = recognizedForm.getFields();
+                 FormField customAddrFormField = recognizedFields.get("CustomerAddress");
+                 if (customAddrFormField != null) {
+                     if (FieldValueType.STRING == customAddrFormField.getValue().getValueType()) {
+                         System.out.printf("Customer Address: %s%n", customAddrFormField.getValue().asString());
+                     }
+                 }
+                 FormField invoiceDateFormField = recognizedFields.get("InvoiceDate");
+                 if (invoiceDateFormField != null) {
+                     if (FieldValueType.DATE == invoiceDateFormField.getValue().getValueType()) {
+                         LocalDate invoiceDate = invoiceDateFormField.getValue().asDate();
+                         System.out.printf("Invoice Date: %s, confidence: %.2f%n",
+                             invoiceDate, invoiceDateFormField.getConfidence());
+                     }
+                 }
+             }
+         });
+    ```
+
+
+
+    [here]: https://aka.ms/formrecognizer/invoicefields
+  syntax:
+    content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeInvoicesFromUrl(String invoiceUrl)
+    parameters:
+    - id: invoiceUrl
+      type: java.lang.String
+      description: The URL of the invoice to analyze.
+    return:
+      type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
+      description: >-
+        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize invoice operation until it has completed, has failed,
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions)
+  id: beginRecognizeInvoicesFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions)
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
+  parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
+  langs:
+  - java
+  name: beginRecognizeInvoicesFromUrl(String invoiceUrl, RecognizeInvoicesOptions recognizeInvoicesOptions)
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(String invoiceUrl, RecognizeInvoicesOptions recognizeInvoicesOptions)
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(String invoiceUrl, RecognizeInvoicesOptions recognizeInvoicesOptions)
+  overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl*
+  type: Method
+  package: com.azure.ai.formrecognizer
+  summary: >-
+    Recognizes invoice data using optical character recognition (OCR) and a prebuilt invoice trained model.
+
+
+    The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
+
+
+    **Code sample**
+
+
+    ```java
+
+    String invoiceUrl = "invoice_url";
+     boolean includeFieldElements = true;
+     // if training polling operation completed, retrieve the final result.
+     formRecognizerAsyncClient.beginRecognizeInvoicesFromUrl(invoiceUrl,
+         new RecognizeInvoicesOptions()
+             .setFieldElementsIncluded(includeFieldElements)
+             .setPollInterval(Duration.ofSeconds(5)))
+         .flatMap(AsyncPollResponse::getFinalResult)
+         .subscribe(recognizedInvoices -> {
+             for (int i = 0; i < recognizedInvoices.size(); i++) {
+                 RecognizedForm recognizedForm = recognizedInvoices.get(i);
+                 Map<String, FormField> recognizedFields = recognizedForm.getFields();
+                 FormField customAddrFormField = recognizedFields.get("CustomerAddress");
+                 if (customAddrFormField != null) {
+                     if (FieldValueType.STRING == customAddrFormField.getValue().getValueType()) {
+                         System.out.printf("Customer Address: %s%n", customAddrFormField.getValue().asString());
+                     }
+                 }
+                 FormField invoiceDateFormField = recognizedFields.get("InvoiceDate");
+                 if (invoiceDateFormField != null) {
+                     if (FieldValueType.DATE == invoiceDateFormField.getValue().getValueType()) {
+                         LocalDate invoiceDate = invoiceDateFormField.getValue().asDate();
+                         System.out.printf("Invoice Date: %s, confidence: %.2f%n",
+                             invoiceDate, invoiceDateFormField.getConfidence());
+                     }
+                 }
+             }
+         });
+    ```
+  syntax:
+    content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeInvoicesFromUrl(String invoiceUrl, RecognizeInvoicesOptions recognizeInvoicesOptions)
+    parameters:
+    - id: invoiceUrl
+      type: java.lang.String
+      description: The source URL to the input invoice.
+    - id: recognizeInvoicesOptions
+      type: com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions
+      description: >-
+        The additional configurable <xref uid="com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions" data-throw-if-not-resolved="false">options</xref>
+         that may be passed when analyzing a invoice.
+    return:
+      type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
+      description: >-
+        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize invoice operation until it has completed, has failed,
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceipts(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
   id: beginRecognizeReceipts(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -424,10 +1138,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize receipt operation until it has completed, has failed,
-         or has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceipts(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeReceiptsOptions)
   id: beginRecognizeReceipts(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,com.azure.ai.formrecognizer.models.RecognizeReceiptsOptions)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -437,7 +1151,7 @@ items:
   overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceipts*
   type: Method
   package: com.azure.ai.formrecognizer
-  summary: "Recognizes receipt data from documents using optical character recognition (OCR) and a prebuilt receipt trained model.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\nSee [here][] for fields found on a receipt. Note that the `data` passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code sample**\n\n```java\nFile receipt = new File(\"{local/file_path/fileName.jpg}\");\n boolean includeFieldElements = true;\n // Utility method to convert input stream to Byte buffer\n Flux<ByteBuffer> buffer = toFluxByteBuffer(new ByteArrayInputStream(Files.readAllBytes(receipt.toPath())));\n // if training polling operation completed, retrieve the final result.\n formRecognizerAsyncClient.beginRecognizeReceipts(buffer, receipt.length(),\n     new RecognizeReceiptsOptions()\n         .setContentType(FormContentType.IMAGE_JPEG)\n         .setFieldElementsIncluded(includeFieldElements)\n         .setPollInterval(Duration.ofSeconds(5)))\n     .flatMap(AsyncPollResponse::getFinalResult)\n     .subscribe(recognizedReceipts -> {\n         for (int i = 0; i < recognizedReceipts.size(); i++) {\n             RecognizedForm recognizedForm = recognizedReceipts.get(i);\n             Map<String, FormField> recognizedFields = recognizedForm.getFields();\n             System.out.printf(\"----------- Recognized Receipt page %d -----------%n\", i);\n             FormField merchantNameField = recognizedFields.get(\"MerchantName\");\n             if (merchantNameField != null) {\n                 if (FieldValueType.STRING == merchantNameField.getValue().getValueType()) {\n                     String merchantName = merchantNameField.getValue().asString();\n                     System.out.printf(\"Merchant Name: %s, confidence: %.2f%n\",\n                         merchantName, merchantNameField.getConfidence());\n                 }\n             }\n \n             FormField merchantPhoneNumberField = recognizedFields.get(\"MerchantPhoneNumber\");\n             if (merchantPhoneNumberField != null) {\n                 if (FieldValueType.PHONE_NUMBER == merchantPhoneNumberField.getValue().getValueType()) {\n                     String merchantAddress = merchantPhoneNumberField.getValue().asPhoneNumber();\n                     System.out.printf(\"Merchant Phone number: %s, confidence: %.2f%n\",\n                         merchantAddress, merchantPhoneNumberField.getConfidence());\n                 }\n             }\n \n             FormField transactionDateField = recognizedFields.get(\"TransactionDate\");\n             if (transactionDateField != null) {\n                 if (FieldValueType.DATE == transactionDateField.getValue().getValueType()) {\n                     LocalDate transactionDate = transactionDateField.getValue().asDate();\n                     System.out.printf(\"Transaction Date: %s, confidence: %.2f%n\",\n                         transactionDate, transactionDateField.getConfidence());\n                 }\n             }\n \n             FormField receiptItemsField = recognizedFields.get(\"Items\");\n             if (receiptItemsField != null) {\n                 System.out.printf(\"Receipt Items: %n\");\n                 if (FieldValueType.LIST == receiptItemsField.getValue().getValueType()) {\n                     List<FormField> receiptItems = receiptItemsField.getValue().asList();\n                     receiptItems.stream()\n                         .filter(receiptItem -> FieldValueType.MAP == receiptItem.getValue().getValueType())\n                         .map(formField -> formField.getValue().asMap())\n                         .forEach(formFieldMap -> formFieldMap.forEach((key, formField) -> {\n                             if (\"Quantity\".equals(key)) {\n                                 if (FieldValueType.FLOAT == formField.getValue().getValueType()) {\n                                     Float quantity = formField.getValue().asFloat();\n                                     System.out.printf(\"Quantity: %f, confidence: %.2f%n\",\n                                         quantity, formField.getConfidence());\n                                 }\n                             }\n                         }));\n                 }\n             }\n         }\n     });\n```\n\n\n[here]: https://aka.ms/formrecognizer/receiptfields"
+  summary: "Recognizes receipt data from documents using optical character recognition (OCR) and a prebuilt receipt trained model.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\nSee [here][] for fields found on a receipt. Note that the `receipt` passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code sample**\n\n```java\nFile receipt = new File(\"{local/file_path/fileName.jpg}\");\n boolean includeFieldElements = true;\n // Utility method to convert input stream to Byte buffer\n Flux<ByteBuffer> buffer = toFluxByteBuffer(new ByteArrayInputStream(Files.readAllBytes(receipt.toPath())));\n // if training polling operation completed, retrieve the final result.\n formRecognizerAsyncClient.beginRecognizeReceipts(buffer, receipt.length(),\n     new RecognizeReceiptsOptions()\n         .setContentType(FormContentType.IMAGE_JPEG)\n         .setFieldElementsIncluded(includeFieldElements)\n         .setLocale(\"en-US\")\n         .setPollInterval(Duration.ofSeconds(5)))\n     .flatMap(AsyncPollResponse::getFinalResult)\n     .subscribe(recognizedReceipts -> {\n         for (int i = 0; i < recognizedReceipts.size(); i++) {\n             RecognizedForm recognizedForm = recognizedReceipts.get(i);\n             Map<String, FormField> recognizedFields = recognizedForm.getFields();\n             System.out.printf(\"----------- Recognized Receipt page %d -----------%n\", i);\n             FormField merchantNameField = recognizedFields.get(\"MerchantName\");\n             if (merchantNameField != null) {\n                 if (FieldValueType.STRING == merchantNameField.getValue().getValueType()) {\n                     String merchantName = merchantNameField.getValue().asString();\n                     System.out.printf(\"Merchant Name: %s, confidence: %.2f%n\",\n                         merchantName, merchantNameField.getConfidence());\n                 }\n             }\n \n             FormField merchantPhoneNumberField = recognizedFields.get(\"MerchantPhoneNumber\");\n             if (merchantPhoneNumberField != null) {\n                 if (FieldValueType.PHONE_NUMBER == merchantPhoneNumberField.getValue().getValueType()) {\n                     String merchantAddress = merchantPhoneNumberField.getValue().asPhoneNumber();\n                     System.out.printf(\"Merchant Phone number: %s, confidence: %.2f%n\",\n                         merchantAddress, merchantPhoneNumberField.getConfidence());\n                 }\n             }\n \n             FormField transactionDateField = recognizedFields.get(\"TransactionDate\");\n             if (transactionDateField != null) {\n                 if (FieldValueType.DATE == transactionDateField.getValue().getValueType()) {\n                     LocalDate transactionDate = transactionDateField.getValue().asDate();\n                     System.out.printf(\"Transaction Date: %s, confidence: %.2f%n\",\n                         transactionDate, transactionDateField.getConfidence());\n                 }\n             }\n \n             FormField receiptItemsField = recognizedFields.get(\"Items\");\n             if (receiptItemsField != null) {\n                 System.out.printf(\"Receipt Items: %n\");\n                 if (FieldValueType.LIST == receiptItemsField.getValue().getValueType()) {\n                     List<FormField> receiptItems = receiptItemsField.getValue().asList();\n                     receiptItems.stream()\n                         .filter(receiptItem -> FieldValueType.MAP == receiptItem.getValue().getValueType())\n                         .map(formField -> formField.getValue().asMap())\n                         .forEach(formFieldMap -> formFieldMap.forEach((key, formField) -> {\n                             if (\"Quantity\".equals(key)) {\n                                 if (FieldValueType.FLOAT == formField.getValue().getValueType()) {\n                                     Float quantity = formField.getValue().asFloat();\n                                     System.out.printf(\"Quantity: %f, confidence: %.2f%n\",\n                                         quantity, formField.getConfidence());\n                                 }\n                             }\n                         }));\n                 }\n             }\n         }\n     });\n```\n\n\n[here]: https://aka.ms/formrecognizer/receiptfields"
   syntax:
     content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeReceipts(Flux<ByteBuffer> receipt, long length, RecognizeReceiptsOptions recognizeReceiptsOptions)
     parameters:
@@ -456,10 +1170,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize receipt operation until it has completed, has failed,
-         or has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl(java.lang.String)
   id: beginRecognizeReceiptsFromUrl(java.lang.String)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -480,10 +1194,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize receipt operation until it has completed, has failed,
-         or has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
 - uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeReceiptsOptions)
   id: beginRecognizeReceiptsFromUrl(java.lang.String,com.azure.ai.formrecognizer.models.RecognizeReceiptsOptions)
-  artifact: com.azure:azure-ai-formrecognizer:3.0.0-beta.1
+  artifact: com.azure:azure-ai-formrecognizer:3.1.0-beta.1
   parent: com.azure.ai.formrecognizer.FormRecognizerAsyncClient
   langs:
   - java
@@ -493,7 +1207,7 @@ items:
   overload: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl*
   type: Method
   package: com.azure.ai.formrecognizer
-  summary: "Recognizes receipt data using optical character recognition (OCR) and a prebuilt receipt trained model.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\n**Code sample**\n\n```java\nString receiptUrl = \"{receiptUrl}\";\n boolean includeFieldElements = true;\n // if training polling operation completed, retrieve the final result.\n formRecognizerAsyncClient.beginRecognizeReceiptsFromUrl(receiptUrl,\n     new RecognizeReceiptsOptions()\n         .setFieldElementsIncluded(includeFieldElements)\n         .setPollInterval(Duration.ofSeconds(5)))\n     .flatMap(AsyncPollResponse::getFinalResult)\n     .subscribe(recognizedReceipts -> {\n         for (int i = 0; i < recognizedReceipts.size(); i++) {\n             RecognizedForm recognizedReceipt = recognizedReceipts.get(i);\n             Map<String, FormField> recognizedFields = recognizedReceipt.getFields();\n             System.out.printf(\"----------- Recognized Receipt page %d -----------%n\", i);\n             FormField merchantNameField = recognizedFields.get(\"MerchantName\");\n             if (merchantNameField != null) {\n                 if (FieldValueType.STRING == merchantNameField.getValue().getValueType()) {\n                     String merchantName = merchantNameField.getValue().asString();\n                     System.out.printf(\"Merchant Name: %s, confidence: %.2f%n\",\n                         merchantName, merchantNameField.getConfidence());\n                 }\n             }\n \n             FormField merchantPhoneNumberField = recognizedFields.get(\"MerchantPhoneNumber\");\n             if (merchantPhoneNumberField != null) {\n                 if (FieldValueType.PHONE_NUMBER == merchantPhoneNumberField.getValue().getValueType()) {\n                     String merchantAddress = merchantPhoneNumberField.getValue().asPhoneNumber();\n                     System.out.printf(\"Merchant Phone number: %s, confidence: %.2f%n\",\n                         merchantAddress, merchantPhoneNumberField.getConfidence());\n                 }\n             }\n \n             FormField transactionDateField = recognizedFields.get(\"TransactionDate\");\n             if (transactionDateField != null) {\n                 if (FieldValueType.DATE == transactionDateField.getValue().getValueType()) {\n                     LocalDate transactionDate = transactionDateField.getValue().asDate();\n                     System.out.printf(\"Transaction Date: %s, confidence: %.2f%n\",\n                         transactionDate, transactionDateField.getConfidence());\n                 }\n             }\n \n             FormField receiptItemsField = recognizedFields.get(\"Items\");\n             if (receiptItemsField != null) {\n                 System.out.printf(\"Receipt Items: %n\");\n                 if (FieldValueType.LIST == receiptItemsField.getValue().getValueType()) {\n                     List<FormField> receiptItems = receiptItemsField.getValue().asList();\n                     receiptItems.stream()\n                         .filter(receiptItem -> FieldValueType.MAP == receiptItem.getValue().getValueType())\n                         .map(formField -> formField.getValue().asMap())\n                         .forEach(formFieldMap -> formFieldMap.forEach((key, formField) -> {\n                             if (\"Quantity\".equals(key)) {\n                                 if (FieldValueType.FLOAT == formField.getValue().getValueType()) {\n                                     Float quantity = formField.getValue().asFloat();\n                                     System.out.printf(\"Quantity: %f, confidence: %.2f%n\",\n                                         quantity, formField.getConfidence());\n                                 }\n                             }\n                         }));\n                 }\n             }\n         }\n     });\n```"
+  summary: "Recognizes receipt data using optical character recognition (OCR) and a prebuilt receipt trained model.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\n**Code sample**\n\n```java\nString receiptUrl = \"{receiptUrl}\";\n boolean includeFieldElements = true;\n // if training polling operation completed, retrieve the final result.\n formRecognizerAsyncClient.beginRecognizeReceiptsFromUrl(receiptUrl,\n     new RecognizeReceiptsOptions()\n         .setFieldElementsIncluded(includeFieldElements)\n         .setLocale(\"en-US\")\n         .setPollInterval(Duration.ofSeconds(5)))\n     .flatMap(AsyncPollResponse::getFinalResult)\n     .subscribe(recognizedReceipts -> {\n         for (int i = 0; i < recognizedReceipts.size(); i++) {\n             RecognizedForm recognizedReceipt = recognizedReceipts.get(i);\n             Map<String, FormField> recognizedFields = recognizedReceipt.getFields();\n             System.out.printf(\"----------- Recognized Receipt page %d -----------%n\", i);\n             FormField merchantNameField = recognizedFields.get(\"MerchantName\");\n             if (merchantNameField != null) {\n                 if (FieldValueType.STRING == merchantNameField.getValue().getValueType()) {\n                     String merchantName = merchantNameField.getValue().asString();\n                     System.out.printf(\"Merchant Name: %s, confidence: %.2f%n\",\n                         merchantName, merchantNameField.getConfidence());\n                 }\n             }\n \n             FormField merchantPhoneNumberField = recognizedFields.get(\"MerchantPhoneNumber\");\n             if (merchantPhoneNumberField != null) {\n                 if (FieldValueType.PHONE_NUMBER == merchantPhoneNumberField.getValue().getValueType()) {\n                     String merchantAddress = merchantPhoneNumberField.getValue().asPhoneNumber();\n                     System.out.printf(\"Merchant Phone number: %s, confidence: %.2f%n\",\n                         merchantAddress, merchantPhoneNumberField.getConfidence());\n                 }\n             }\n \n             FormField transactionDateField = recognizedFields.get(\"TransactionDate\");\n             if (transactionDateField != null) {\n                 if (FieldValueType.DATE == transactionDateField.getValue().getValueType()) {\n                     LocalDate transactionDate = transactionDateField.getValue().asDate();\n                     System.out.printf(\"Transaction Date: %s, confidence: %.2f%n\",\n                         transactionDate, transactionDateField.getConfidence());\n                 }\n             }\n \n             FormField receiptItemsField = recognizedFields.get(\"Items\");\n             if (receiptItemsField != null) {\n                 System.out.printf(\"Receipt Items: %n\");\n                 if (FieldValueType.LIST == receiptItemsField.getValue().getValueType()) {\n                     List<FormField> receiptItems = receiptItemsField.getValue().asList();\n                     receiptItems.stream()\n                         .filter(receiptItem -> FieldValueType.MAP == receiptItem.getValue().getValueType())\n                         .map(formField -> formField.getValue().asMap())\n                         .forEach(formFieldMap -> formFieldMap.forEach((key, formField) -> {\n                             if (\"Quantity\".equals(key)) {\n                                 if (FieldValueType.FLOAT == formField.getValue().getValueType()) {\n                                     Float quantity = formField.getValue().asFloat();\n                                     System.out.printf(\"Quantity: %f, confidence: %.2f%n\",\n                                         quantity, formField.getConfidence());\n                                 }\n                             }\n                         }));\n                 }\n             }\n         }\n     });\n```"
   syntax:
     content: public PollerFlux<FormRecognizerOperationResult,List<RecognizedForm>> beginRecognizeReceiptsFromUrl(String receiptUrl, RecognizeReceiptsOptions recognizeReceiptsOptions)
     parameters:
@@ -509,7 +1223,7 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.FormRecognizerOperationResult,java.util.List<com.azure.ai.formrecognizer.models.RecognizedForm>>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the recognize receipt operation until it has completed, has failed,
-         or has been cancelled. The completed operation returns a List of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
+         or has been cancelled. The completed operation returns a list of <xref uid="com.azure.ai.formrecognizer.models.RecognizedForm" data-throw-if-not-resolved="false">RecognizedForm</xref>.
 references:
 - uid: com.azure.ai.formrecognizer.implementation.FormRecognizerClientImpl
   name: FormRecognizerClientImpl
@@ -635,6 +1349,34 @@ references:
   name: beginRecognizeReceipts
   nameWithType: FormRecognizerAsyncClient.beginRecognizeReceipts
   fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceipts
+  package: com.azure.ai.formrecognizer
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl*
+  name: beginRecognizeBusinessCardsFromUrl
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCardsFromUrl
+  package: com.azure.ai.formrecognizer
+- uid: com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions
+  name: RecognizeBusinessCardsOptions
+  nameWithType: RecognizeBusinessCardsOptions
+  fullName: com.azure.ai.formrecognizer.models.RecognizeBusinessCardsOptions
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards*
+  name: beginRecognizeBusinessCards
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeBusinessCards
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeBusinessCards
+  package: com.azure.ai.formrecognizer
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl*
+  name: beginRecognizeInvoicesFromUrl
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoicesFromUrl
+  package: com.azure.ai.formrecognizer
+- uid: com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions
+  name: RecognizeInvoicesOptions
+  nameWithType: RecognizeInvoicesOptions
+  fullName: com.azure.ai.formrecognizer.models.RecognizeInvoicesOptions
+- uid: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices*
+  name: beginRecognizeInvoices
+  nameWithType: FormRecognizerAsyncClient.beginRecognizeInvoices
+  fullName: com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeInvoices
   package: com.azure.ai.formrecognizer
 - uid: java.lang.Object.notify()
   name: Object.notify()
