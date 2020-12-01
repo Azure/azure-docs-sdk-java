@@ -1,0 +1,290 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient
+  id: ServiceBusProcessorClient
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus
+  children:
+  - com.azure.messaging.servicebus.ServiceBusProcessorClient.close()
+  - com.azure.messaging.servicebus.ServiceBusProcessorClient.isRunning()
+  - com.azure.messaging.servicebus.ServiceBusProcessorClient.start()
+  - com.azure.messaging.servicebus.ServiceBusProcessorClient.stop()
+  langs:
+  - java
+  name: ServiceBusProcessorClient
+  nameWithType: ServiceBusProcessorClient
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient
+  type: Class
+  package: com.azure.messaging.servicebus
+  summary: "The processor client for processing Service Bus messages. <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\">ServiceBusProcessorClient</xref> provides a push-based mechanism that invokes the message processing callback when a message is received or the error handler when an error occurs when receiving messages. A <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\">ServiceBusProcessorClient</xref> can be created to process messages for a session-enabled or non session-enabled Service Bus entity. It supports auto-settlement of messages by default.\n\n**Create and run a processor**\n\n```java\nConsumer<ServiceBusReceivedMessageContext> onMessage = context -> {\n     ServiceBusReceivedMessage message = context.getMessage();\n     System.out.printf(\"Processing message. Sequence #: %s. Contents: %s%n\",\n         message.getSequenceNumber(), message.getBody());\n };\n \n Consumer<ServiceBusErrorContext> onError = context -> {\n     System.out.printf(\"Error when receiving messages from namespace: '%s'. Entity: '%s'%n\",\n         context.getFullyQualifiedNamespace(), context.getEntityPath());\n \n     if (context.getException() instanceof ServiceBusException) {\n         ServiceBusException exception = (ServiceBusException) context.getException();\n         System.out.printf(\"Error source: %s, reason %s%n\", context.getErrorSource(),\n             exception.getReason());\n     } else {\n         System.out.printf(\"Error occurred: %s%n\", context.getException());\n     }\n };\n \n ServiceBusProcessorClient processor = new ServiceBusClientBuilder()\n     .connectionString(\"<< connection-string >>\")\n     .processor()\n     .queueName(\"<< queue name >>\")\n     .processMessage(onMessage)\n     .processError(onError)\n     .buildProcessorClient();\n \n // Start the processor in the background\n processor.start();\n```\n\n**Create and run a session-enabled processor**\n\n```java\nConsumer<ServiceBusReceivedMessageContext> onMessage = context -> {\n     ServiceBusReceivedMessage message = context.getMessage();\n     System.out.printf(\"Processing message. Session: %s, Sequence #: %s. Contents: %s%n\",\n         message.getSessionId(), message.getSequenceNumber(), message.getBody());\n };\n \n Consumer<ServiceBusErrorContext> onError = context -> {\n     System.out.printf(\"Error when receiving messages from namespace: '%s'. Entity: '%s'%n\",\n         context.getFullyQualifiedNamespace(), context.getEntityPath());\n \n     if (context.getException() instanceof ServiceBusException) {\n         ServiceBusException exception = (ServiceBusException) context.getException();\n         System.out.printf(\"Error source: %s, reason %s%n\", context.getErrorSource(),\n             exception.getReason());\n     } else {\n         System.out.printf(\"Error occurred: %s%n\", context.getException());\n     }\n };\n \n ServiceBusProcessorClient sessionProcessor = new ServiceBusClientBuilder()\n     .connectionString(\"<< connection-string >>\")\n     .sessionProcessor()\n     .queueName(\"<< session-enabled queue name >>\")\n     .maxConcurrentSessions(2)\n     .processMessage(onMessage)\n     .processError(onError)\n     .buildProcessorClient();\n \n // Start the processor in the background\n sessionProcessor.start();\n```"
+  syntax:
+    content: public final class ServiceBusProcessorClient implements AutoCloseable
+  inheritance:
+  - java.lang.Object
+  implements:
+  - java.lang.AutoCloseable
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.ServiceBusProcessorClient(com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusReceiverClientBuilder,java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusReceivedMessageContext>,java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusErrorContext>,com.azure.messaging.servicebus.implementation.models.ServiceBusProcessorClientOptions)
+  id: ServiceBusProcessorClient(com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusReceiverClientBuilder,java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusReceivedMessageContext>,java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusErrorContext>,com.azure.messaging.servicebus.implementation.models.ServiceBusProcessorClientOptions)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusProcessorClient
+  langs:
+  - java
+  name: ServiceBusProcessorClient(ServiceBusClientBuilder.ServiceBusReceiverClientBuilder receiverBuilder, Consumer<ServiceBusReceivedMessageContext> processMessage, Consumer<ServiceBusErrorContext> processError, ServiceBusProcessorClientOptions processorOptions)
+  nameWithType: ServiceBusProcessorClient.ServiceBusProcessorClient(ServiceBusClientBuilder.ServiceBusReceiverClientBuilder receiverBuilder, Consumer<ServiceBusReceivedMessageContext> processMessage, Consumer<ServiceBusErrorContext> processError, ServiceBusProcessorClientOptions processorOptions)
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.ServiceBusProcessorClient(ServiceBusClientBuilder.ServiceBusReceiverClientBuilder receiverBuilder, Consumer<ServiceBusReceivedMessageContext> processMessage, Consumer<ServiceBusErrorContext> processError, ServiceBusProcessorClientOptions processorOptions)
+  overload: com.azure.messaging.servicebus.ServiceBusProcessorClient.ServiceBusProcessorClient*
+  type: Constructor
+  package: com.azure.messaging.servicebus
+  summary: Constructor to create a processor.
+  syntax:
+    content: " ServiceBusProcessorClient(ServiceBusClientBuilder.ServiceBusReceiverClientBuilder receiverBuilder, Consumer<ServiceBusReceivedMessageContext> processMessage, Consumer<ServiceBusErrorContext> processError, ServiceBusProcessorClientOptions processorOptions)"
+    parameters:
+    - id: receiverBuilder
+      type: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusReceiverClientBuilder
+      description: The processor builder to create new instances of async clients.
+    - id: processMessage
+      type: java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusReceivedMessageContext>
+      description: The message processing callback.
+    - id: processError
+      type: java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusErrorContext>
+      description: The error handler.
+    - id: processorOptions
+      type: com.azure.messaging.servicebus.implementation.models.ServiceBusProcessorClientOptions
+      description: Options to configure this instance of the processor.
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.ServiceBusProcessorClient(com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder,java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusReceivedMessageContext>,java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusErrorContext>,com.azure.messaging.servicebus.implementation.models.ServiceBusProcessorClientOptions)
+  id: ServiceBusProcessorClient(com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder,java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusReceivedMessageContext>,java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusErrorContext>,com.azure.messaging.servicebus.implementation.models.ServiceBusProcessorClientOptions)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusProcessorClient
+  langs:
+  - java
+  name: ServiceBusProcessorClient(ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder sessionReceiverBuilder, Consumer<ServiceBusReceivedMessageContext> processMessage, Consumer<ServiceBusErrorContext> processError, ServiceBusProcessorClientOptions processorOptions)
+  nameWithType: ServiceBusProcessorClient.ServiceBusProcessorClient(ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder sessionReceiverBuilder, Consumer<ServiceBusReceivedMessageContext> processMessage, Consumer<ServiceBusErrorContext> processError, ServiceBusProcessorClientOptions processorOptions)
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.ServiceBusProcessorClient(ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder sessionReceiverBuilder, Consumer<ServiceBusReceivedMessageContext> processMessage, Consumer<ServiceBusErrorContext> processError, ServiceBusProcessorClientOptions processorOptions)
+  overload: com.azure.messaging.servicebus.ServiceBusProcessorClient.ServiceBusProcessorClient*
+  type: Constructor
+  package: com.azure.messaging.servicebus
+  summary: Constructor to create a sessions-enabled processor.
+  syntax:
+    content: " ServiceBusProcessorClient(ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder sessionReceiverBuilder, Consumer<ServiceBusReceivedMessageContext> processMessage, Consumer<ServiceBusErrorContext> processError, ServiceBusProcessorClientOptions processorOptions)"
+    parameters:
+    - id: sessionReceiverBuilder
+      type: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+      description: The session processor builder to create new instances of async clients.
+    - id: processMessage
+      type: java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusReceivedMessageContext>
+      description: The message processing callback.
+    - id: processError
+      type: java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusErrorContext>
+      description: The error handler.
+    - id: processorOptions
+      type: com.azure.messaging.servicebus.implementation.models.ServiceBusProcessorClientOptions
+      description: Options to configure this instance of the processor.
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.close()
+  id: close()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusProcessorClient
+  langs:
+  - java
+  name: close()
+  nameWithType: ServiceBusProcessorClient.close()
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.close()
+  overload: com.azure.messaging.servicebus.ServiceBusProcessorClient.close*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Stops message processing and closes the processor. The receiving links and sessions are closed and calling <xref uid="com.azure.messaging.servicebus.ServiceBusProcessorClient.start()" data-throw-if-not-resolved="false">#start()</xref> will create a new processing cycle with new links and new sessions.
+  syntax:
+    content: public synchronized void close()
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.isRunning()
+  id: isRunning()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusProcessorClient
+  langs:
+  - java
+  name: isRunning()
+  nameWithType: ServiceBusProcessorClient.isRunning()
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.isRunning()
+  overload: com.azure.messaging.servicebus.ServiceBusProcessorClient.isRunning*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Returns `true` if the processor is running. If the processor is stopped or closed, this method returns `false`.
+  syntax:
+    content: public synchronized boolean isRunning()
+    return:
+      type: boolean
+      description: <code>true</code> if the processor is running; <code>false</code> otherwise.
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.start()
+  id: start()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusProcessorClient
+  langs:
+  - java
+  name: start()
+  nameWithType: ServiceBusProcessorClient.start()
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.start()
+  overload: com.azure.messaging.servicebus.ServiceBusProcessorClient.start*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: >-
+    Starts the processor in the background. When this method is called, the processor will initiate a message receiver that will invoke the message handler when new messages are available. This method is idempotent (ie. calling `start()` again after the processor is already running is a no-op).
+
+
+    Calling `start()` after calling <xref uid="com.azure.messaging.servicebus.ServiceBusProcessorClient.stop()" data-throw-if-not-resolved="false">stop()</xref> will resume processing messages using the same underlying connection.
+
+
+    Calling `start()` after calling <xref uid="com.azure.messaging.servicebus.ServiceBusProcessorClient.close()" data-throw-if-not-resolved="false">close()</xref> will start the processor with a new connection.
+  syntax:
+    content: public synchronized void start()
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.stop()
+  id: stop()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusProcessorClient
+  langs:
+  - java
+  name: stop()
+  nameWithType: ServiceBusProcessorClient.stop()
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.stop()
+  overload: com.azure.messaging.servicebus.ServiceBusProcessorClient.stop*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Stops the message processing for this processor. The receiving links and sessions are kept active and this processor can resume processing messages by calling <xref uid="com.azure.messaging.servicebus.ServiceBusProcessorClient.start()" data-throw-if-not-resolved="false">#start()</xref> again.
+  syntax:
+    content: public synchronized void stop()
+references:
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+  name: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+- uid: java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusReceivedMessageContext>
+  spec.java:
+  - uid: java.util.function.Consumer
+    name: Consumer
+    fullName: java.util.function.Consumer
+  - name: <
+    fullName: <
+  - uid: com.azure.messaging.servicebus.ServiceBusReceivedMessageContext
+    name: ServiceBusReceivedMessageContext
+    fullName: com.azure.messaging.servicebus.ServiceBusReceivedMessageContext
+  - name: '>'
+    fullName: '>'
+- uid: java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusErrorContext>
+  spec.java:
+  - uid: java.util.function.Consumer
+    name: Consumer
+    fullName: java.util.function.Consumer
+  - name: <
+    fullName: <
+  - uid: com.azure.messaging.servicebus.ServiceBusErrorContext
+    name: ServiceBusErrorContext
+    fullName: com.azure.messaging.servicebus.ServiceBusErrorContext
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.servicebus.implementation.models.ServiceBusProcessorClientOptions
+  name: ServiceBusProcessorClientOptions
+  nameWithType: ServiceBusProcessorClientOptions
+  fullName: com.azure.messaging.servicebus.implementation.models.ServiceBusProcessorClientOptions
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.ServiceBusProcessorClient*
+  name: ServiceBusProcessorClient
+  nameWithType: ServiceBusProcessorClient.ServiceBusProcessorClient
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.ServiceBusProcessorClient
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusReceiverClientBuilder
+  name: ServiceBusClientBuilder.ServiceBusReceiverClientBuilder
+  nameWithType: ServiceBusClientBuilder.ServiceBusReceiverClientBuilder
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusReceiverClientBuilder
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.start*
+  name: start
+  nameWithType: ServiceBusProcessorClient.start
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.start
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.stop*
+  name: stop
+  nameWithType: ServiceBusProcessorClient.stop
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.stop
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.close*
+  name: close
+  nameWithType: ServiceBusProcessorClient.close
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.close
+  package: com.azure.messaging.servicebus
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.azure.messaging.servicebus.ServiceBusProcessorClient.isRunning*
+  name: isRunning
+  nameWithType: ServiceBusProcessorClient.isRunning
+  fullName: com.azure.messaging.servicebus.ServiceBusProcessorClient.isRunning
+  package: com.azure.messaging.servicebus
+- uid: java.lang.AutoCloseable
+  name: AutoCloseable
+  nameWithType: AutoCloseable
+  fullName: java.lang.AutoCloseable
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: java.util.function.Consumer
+  name: Consumer
+  nameWithType: Consumer
+  fullName: java.util.function.Consumer
+- uid: com.azure.messaging.servicebus.ServiceBusReceivedMessageContext
+  name: ServiceBusReceivedMessageContext
+  nameWithType: ServiceBusReceivedMessageContext
+  fullName: com.azure.messaging.servicebus.ServiceBusReceivedMessageContext
+- uid: com.azure.messaging.servicebus.ServiceBusErrorContext
+  name: ServiceBusErrorContext
+  nameWithType: ServiceBusErrorContext
+  fullName: com.azure.messaging.servicebus.ServiceBusErrorContext
