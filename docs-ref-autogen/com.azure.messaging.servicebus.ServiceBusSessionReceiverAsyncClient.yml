@@ -1,0 +1,243 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient
+  id: ServiceBusSessionReceiverAsyncClient
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus
+  children:
+  - com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptNextSession()
+  - com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptSession(java.lang.String)
+  - com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.close()
+  langs:
+  - java
+  name: ServiceBusSessionReceiverAsyncClient
+  nameWithType: ServiceBusSessionReceiverAsyncClient
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient
+  type: Class
+  package: com.azure.messaging.servicebus
+  summary: "This session receiver client is used to acquire session locks from a queue or topic and create <xref uid=\"com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient\" data-throw-if-not-resolved=\"false\">ServiceBusReceiverAsyncClient</xref> instances that are tied to the locked sessions.\n\n**Receive messages from a specific session**\n\nUse <xref uid=\"com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptSession(java.lang.String)\" data-throw-if-not-resolved=\"false\">#acceptSession(String)</xref> to acquire the lock of a session if you know the session id.\n\n```java\nServiceBusSessionReceiverAsyncClient sessionReceiver = new ServiceBusClientBuilder()\n     .connectionString(\"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};\"\n         + \"SharedAccessKey={key}\")\n     .sessionReceiver()\n     .queueName(\"<< QUEUE NAME >>\")\n     .buildAsyncClient();\n \n // acceptSession(String) completes successfully with a receiver when \"<< my-session-id >>\" session is\n // successfully locked.\n // `Flux.usingWhen` is used so we dispose of the receiver resource after `receiveMessages()` completes.\n // `Mono.usingWhen` can also be used if the resource closure only returns a single item.\n Flux<ServiceBusReceivedMessage> sessionMessages = Flux.usingWhen(\n     sessionReceiver.acceptSession(\"<< my-session-id >>\"),\n     receiver -> receiver.receiveMessages(),\n     receiver -> Mono.fromRunnable(() -> receiver.close()));\n \n // When program ends, or you're done receiving all messages, the `subscription` can be disposed of. This code\n // is non-blocking and kicks off the operation.\n Disposable subscription = sessionMessages.subscribe(\n     message -> System.out.printf(\"Received Sequence #: %s. Contents: %s%n\",\n         message.getSequenceNumber(), message.getBody()),\n     error -> System.err.print(error));\n```\n\n**Receive messages from the first available session**\n\nUse <xref uid=\"com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptNextSession()\" data-throw-if-not-resolved=\"false\">#acceptNextSession()</xref> to acquire the lock of the next available session without specifying the session id.\n\n```java\nServiceBusSessionReceiverAsyncClient sessionReceiver = new ServiceBusClientBuilder()\n     .connectionString(\"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};\"\n         + \"SharedAccessKey={key}\")\n     .sessionReceiver()\n     .queueName(\"<< QUEUE NAME >>\")\n     .buildAsyncClient();\n \n // acceptSession(String) completes successfully with a receiver when it acquires the next available session.\n // `Flux.usingWhen` is used so we dispose of the receiver resource after `receiveMessages()` completes.\n // `Mono.usingWhen` can also be used if the resource closure only returns a single item.\n Flux<ServiceBusReceivedMessage> sessionMessages = Flux.usingWhen(\n     sessionReceiver.acceptSession(\"<< my-session-id >>\"),\n     receiver -> receiver.receiveMessages(),\n     receiver -> Mono.fromRunnable(() -> receiver.close()));\n \n // When program ends, or you're done receiving all messages, the `subscription` can be disposed of. This code\n // is non-blocking and kicks off the operation.\n Disposable subscription = sessionMessages.subscribe(\n     message -> System.out.printf(\"Received Sequence #: %s. Contents: %s%n\",\n         message.getSequenceNumber(), message.getBody()),\n     error -> System.err.print(error));\n```"
+  syntax:
+    content: public final class ServiceBusSessionReceiverAsyncClient implements AutoCloseable
+  inheritance:
+  - java.lang.Object
+  implements:
+  - java.lang.AutoCloseable
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.ServiceBusSessionReceiverAsyncClient(java.lang.String,java.lang.String,com.azure.messaging.servicebus.implementation.MessagingEntityType,com.azure.messaging.servicebus.ReceiverOptions,com.azure.messaging.servicebus.implementation.ServiceBusConnectionProcessor,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.amqp.implementation.MessageSerializer,java.lang.Runnable)
+  id: ServiceBusSessionReceiverAsyncClient(java.lang.String,java.lang.String,com.azure.messaging.servicebus.implementation.MessagingEntityType,com.azure.messaging.servicebus.ReceiverOptions,com.azure.messaging.servicebus.implementation.ServiceBusConnectionProcessor,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.amqp.implementation.MessageSerializer,java.lang.Runnable)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient
+  langs:
+  - java
+  name: ServiceBusSessionReceiverAsyncClient(String fullyQualifiedNamespace, String entityPath, MessagingEntityType entityType, ReceiverOptions receiverOptions, ServiceBusConnectionProcessor connectionProcessor, TracerProvider tracerProvider, MessageSerializer messageSerializer, Runnable onClientClose)
+  nameWithType: ServiceBusSessionReceiverAsyncClient.ServiceBusSessionReceiverAsyncClient(String fullyQualifiedNamespace, String entityPath, MessagingEntityType entityType, ReceiverOptions receiverOptions, ServiceBusConnectionProcessor connectionProcessor, TracerProvider tracerProvider, MessageSerializer messageSerializer, Runnable onClientClose)
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.ServiceBusSessionReceiverAsyncClient(String fullyQualifiedNamespace, String entityPath, MessagingEntityType entityType, ReceiverOptions receiverOptions, ServiceBusConnectionProcessor connectionProcessor, TracerProvider tracerProvider, MessageSerializer messageSerializer, Runnable onClientClose)
+  overload: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.ServiceBusSessionReceiverAsyncClient*
+  type: Constructor
+  package: com.azure.messaging.servicebus
+  syntax:
+    content: " ServiceBusSessionReceiverAsyncClient(String fullyQualifiedNamespace, String entityPath, MessagingEntityType entityType, ReceiverOptions receiverOptions, ServiceBusConnectionProcessor connectionProcessor, TracerProvider tracerProvider, MessageSerializer messageSerializer, Runnable onClientClose)"
+    parameters:
+    - id: fullyQualifiedNamespace
+      type: java.lang.String
+    - id: entityPath
+      type: java.lang.String
+    - id: entityType
+      type: com.azure.messaging.servicebus.implementation.MessagingEntityType
+    - id: receiverOptions
+      type: com.azure.messaging.servicebus.ReceiverOptions
+    - id: connectionProcessor
+      type: com.azure.messaging.servicebus.implementation.ServiceBusConnectionProcessor
+    - id: tracerProvider
+      type: com.azure.core.amqp.implementation.TracerProvider
+    - id: messageSerializer
+      type: com.azure.core.amqp.implementation.MessageSerializer
+    - id: onClientClose
+      type: java.lang.Runnable
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptNextSession()
+  id: acceptNextSession()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient
+  langs:
+  - java
+  name: acceptNextSession()
+  nameWithType: ServiceBusSessionReceiverAsyncClient.acceptNextSession()
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptNextSession()
+  overload: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptNextSession*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Acquires a session lock for the next available session and creates a <xref uid="com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient" data-throw-if-not-resolved="false">ServiceBusReceiverAsyncClient</xref> to receive messages from the session. It will wait until a session is available if none is immediately available.
+  syntax:
+    content: public Mono<ServiceBusReceiverAsyncClient> acceptNextSession()
+    return:
+      type: reactor.core.publisher.Mono<com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient>
+      description: A <xref uid="com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient" data-throw-if-not-resolved="false">ServiceBusReceiverAsyncClient</xref> that is tied to the available session.
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptSession(java.lang.String)
+  id: acceptSession(java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient
+  langs:
+  - java
+  name: acceptSession(String sessionId)
+  nameWithType: ServiceBusSessionReceiverAsyncClient.acceptSession(String sessionId)
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptSession(String sessionId)
+  overload: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptSession*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Acquires a session lock for `sessionId` and create a <xref uid="com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient" data-throw-if-not-resolved="false">ServiceBusReceiverAsyncClient</xref> to receive messages from the session. If the session is already locked by another client, an <xref uid="" data-throw-if-not-resolved="false">AmqpException</xref> is thrown.
+  syntax:
+    content: public Mono<ServiceBusReceiverAsyncClient> acceptSession(String sessionId)
+    parameters:
+    - id: sessionId
+      type: java.lang.String
+      description: The session id.
+    return:
+      type: reactor.core.publisher.Mono<com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient>
+      description: A <xref uid="com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient" data-throw-if-not-resolved="false">ServiceBusReceiverAsyncClient</xref> that is tied to the specified session.
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.close()
+  id: close()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0
+  parent: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient
+  langs:
+  - java
+  name: close()
+  nameWithType: ServiceBusSessionReceiverAsyncClient.close()
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.close()
+  overload: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.close*
+  type: Method
+  package: com.azure.messaging.servicebus
+  syntax:
+    content: public void close()
+references:
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.MessagingEntityType
+  name: MessagingEntityType
+  nameWithType: MessagingEntityType
+  fullName: com.azure.messaging.servicebus.implementation.MessagingEntityType
+- uid: com.azure.messaging.servicebus.ReceiverOptions
+  spec.java:
+  - uid: com.azure.messaging.servicebus.ReceiverOptions
+    name: ReceiverOptions
+    fullName: com.azure.messaging.servicebus.ReceiverOptions
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusConnectionProcessor
+  name: ServiceBusConnectionProcessor
+  nameWithType: ServiceBusConnectionProcessor
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusConnectionProcessor
+- uid: com.azure.core.amqp.implementation.TracerProvider
+  spec.java:
+  - uid: com.azure.core.amqp.implementation.TracerProvider
+    name: TracerProvider
+    fullName: com.azure.core.amqp.implementation.TracerProvider
+- uid: com.azure.core.amqp.implementation.MessageSerializer
+  spec.java:
+  - uid: com.azure.core.amqp.implementation.MessageSerializer
+    name: MessageSerializer
+    fullName: com.azure.core.amqp.implementation.MessageSerializer
+- uid: java.lang.Runnable
+  spec.java:
+  - uid: java.lang.Runnable
+    name: Runnable
+    fullName: java.lang.Runnable
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.ServiceBusSessionReceiverAsyncClient*
+  name: ServiceBusSessionReceiverAsyncClient
+  nameWithType: ServiceBusSessionReceiverAsyncClient.ServiceBusSessionReceiverAsyncClient
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.ServiceBusSessionReceiverAsyncClient
+  package: com.azure.messaging.servicebus
+- uid: reactor.core.publisher.Mono<com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient
+    name: ServiceBusReceiverAsyncClient
+    fullName: com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptNextSession*
+  name: acceptNextSession
+  nameWithType: ServiceBusSessionReceiverAsyncClient.acceptNextSession
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptNextSession
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptSession*
+  name: acceptSession
+  nameWithType: ServiceBusSessionReceiverAsyncClient.acceptSession
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.acceptSession
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.close*
+  name: close
+  nameWithType: ServiceBusSessionReceiverAsyncClient.close
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient.close
+  package: com.azure.messaging.servicebus
+- uid: java.lang.AutoCloseable
+  name: AutoCloseable
+  nameWithType: AutoCloseable
+  fullName: java.lang.AutoCloseable
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient
+  name: ServiceBusReceiverAsyncClient
+  nameWithType: ServiceBusReceiverAsyncClient
+  fullName: com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient
+- uid: reactor.core.publisher.Mono
+  name: Mono
+  nameWithType: Mono
+  fullName: reactor.core.publisher.Mono
