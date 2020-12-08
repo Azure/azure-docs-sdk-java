@@ -83,6 +83,6 @@ SqlServer sqlServer = azure.sqlServers().define(sqlDbName)
 
 ## Samples
 
-[!INCLUDE [java-sql-samples](../docs-ref-conceptual/includes/sql.md)]
+[!INCLUDE [java-sql-samples](../../docs-ref-conceptual/includes/sql.md)]
 
 Explore more [sample Java code for Azure SQL Database](https://azure.microsoft.com/resources/samples/?platform=java&term=SQL) you can use in your apps.
