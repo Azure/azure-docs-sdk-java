@@ -3,7 +3,7 @@ title: Azure File Data Lake client library for Java
 keywords: Azure, java, SDK, API, azure-storage-file-datalake, storage
 author: maggiepint
 ms.author: magpint
-ms.date: 10/01/2020
+ms.date: 12/08/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure File Data Lake client library for Java - Version 12.3.0-beta.1 
+# Azure File Data Lake client library for Java - Version 12.4.0-beta.1 
 
 
 Azure Data Lake Storage is Microsoft's optimized storage solution for for big
@@ -39,7 +39,7 @@ Add a dependency on Azure Storage File Datalake
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-file-datalake</artifactId>
-    <version>12.3.0-beta.1</version>
+    <version>12.4.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -179,17 +179,35 @@ Note that the above URIs may not hold for more advanced scenarios such as custom
 
 The following sections provide several code snippets covering some of the most common Azure Storage Blob tasks, including:
 
-- [Create a `DataLakeServiceClient`](#create-a-datalakeserviceclient)
-- [Create a `DataLakeFileSystemClient`](#create-a-datalakefilesystemclient)
-- [Create a `DataLakeFileClient`](#create-a-datalakefileclient)
-- [Create a `DataLakeDirectoryClient`](#create-a-datalakedirectoryclient)
-- [Create a file system](#create-a-file-system)
-- [Enumerate paths](#enumerate-paths)
-- [Rename a file](#rename-a-file)
-- [Rename a directory](#rename-a-directory)
-- [Get file properties](#get-file-properties)
-- [Get directory properties](#get-directory-properties)
-- [Authenticate with Azure Identity](#authenticate-with-azure-identity)
+- [Azure File Data Lake client library for Java - Version 12.4.0-beta.1](#azure-file-data-lake-client-library-for-java---version-1240-beta1)
+  - [Getting started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Include the package](#include-the-package)
+    - [Create a Storage Account](#create-a-storage-account)
+    - [Authenticate the client](#authenticate-the-client)
+      - [Get credentials](#get-credentials)
+        - [SAS Token](#sas-token)
+        - [**Shared Key Credential**](#shared-key-credential)
+  - [Key concepts](#key-concepts)
+    - [URL format](#url-format)
+      - [Resource URI Syntax](#resource-uri-syntax)
+  - [Examples](#examples)
+    - [Create a `DataLakeServiceClient`](#create-a-datalakeserviceclient)
+    - [Create a `DataLakeFileSystemClient`](#create-a-datalakefilesystemclient)
+    - [Create a `DataLakeFileClient`](#create-a-datalakefileclient)
+    - [Create a `DataLakeDirectoryClient`](#create-a-datalakedirectoryclient)
+    - [Create a file system](#create-a-file-system)
+    - [Enumerate paths](#enumerate-paths)
+    - [Rename a file](#rename-a-file)
+    - [Rename a directory](#rename-a-directory)
+    - [Get file properties](#get-file-properties)
+    - [Get directory properties](#get-directory-properties)
+    - [Authenticate with Azure Identity](#authenticate-with-azure-identity)
+  - [Troubleshooting](#troubleshooting)
+    - [Default HTTP Client](#default-http-client)
+    - [Default SSL library](#default-ssl-library)
+  - [Next steps](#next-steps)
+  - [Contributing](#contributing)
 
 ### Create a `DataLakeServiceClient`
 
@@ -428,9 +446,9 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.3.0-beta.1/sdk/storage/azure-storage-file-datalake/src
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-file-datalake/src
 [samples_readme]: src/samples/README.md
-[docs]: http://azure.github.io/azure-sdk-for-java/
+[docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/data-lake-storage-gen2
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/data-lake-storage-introduction
 [sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
@@ -439,8 +457,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.3.0-beta.1/sdk/identity/azure-identity/README.md
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.3.0-beta.1/sdk/storage/azure-storage-file-datalake/src/samples
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-file-datalake/src/samples
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/data-lake-storage-gen2
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
@@ -449,4 +467,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-file-datalake%2FREADME.png)
-

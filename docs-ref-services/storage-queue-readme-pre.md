@@ -3,7 +3,7 @@ title: Azure Storage Queue client library for Java
 keywords: Azure, java, SDK, API, azure-storage-queue, storage
 author: maggiepint
 ms.author: magpint
-ms.date: 10/01/2020
+ms.date: 12/08/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage Queue client library for Java - Version 12.7.0-beta.1 
+# Azure Storage Queue client library for Java - Version 12.8.0-beta.1 
 
 Azure Queue storage is a service for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls using HTTP or HTTPS.
 A single queue message can be up to 64 KB in size, and a queue can contain millions of messages, up to the total capacity limit of a storage account.
@@ -34,7 +34,7 @@ A single queue message can be up to 64 KB in size, and a queue can contain milli
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-queue</artifactId>
-  <version>12.7.0-beta.1</version>
+  <version>12.8.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -206,20 +206,44 @@ queueAsyncClient.createWithResponse(metadata).subscribe(result -> {
 ## Examples
 
 The following sections provide several code snippets covering some of the most common Configuration Service tasks, including:
-- [Build a client](#build-a-client)
-- [Create a Queue](#create-a-queue)
-- [Delete a queue](#delete-a-queue)
-- [List the queues in account](#list-queues-in-account)
-- [Get properties in Queue account](#get-properties-in-queue-account)
-- [Set properties in Queue account](#set-properties-in-queue-account)
-- [Get statistics of queue](#get-queue-service-statistics)
-- [Enqueue message into a queue](#enqueue-message-into-a-queue)
-- [Update a message in a queue](#update-a-message-in-a-queue)
-- [Peek at messages in a queue](#peek-at-messages-in-a-queue)
-- [Dequeue messages from a queue](#dequeue-messages-from-a-queue)
-- [Delete message from a queue](#delete-message-from-a-queue)
-- [Get a Queue properties](#get-a-queue-properties)
-- [Set/Update a Queue metadata](#set-a-queue-metadata)
+- [Azure Storage Queue client library for Java - Version 12.8.0-beta.1](#azure-storage-queue-client-library-for-java---version-1280-beta1)
+  - [Getting started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Include the package](#include-the-package)
+    - [Create a Storage Account](#create-a-storage-account)
+    - [Authenticate the client](#authenticate-the-client)
+      - [Get Credentials](#get-credentials)
+  - [Key concepts](#key-concepts)
+    - [URL format](#url-format)
+      - [Resource URI Syntax](#resource-uri-syntax)
+    - [Handling Exceptions](#handling-exceptions)
+    - [Queue Names](#queue-names)
+    - [Queue Services](#queue-services)
+    - [Queue Service Client](#queue-service-client)
+    - [Queue](#queue)
+    - [QueueClient](#queueclient)
+  - [Examples](#examples)
+    - [Build a client](#build-a-client)
+    - [Create a queue](#create-a-queue)
+    - [Delete a queue](#delete-a-queue)
+    - [List queues in account](#list-queues-in-account)
+    - [Get properties in queue account](#get-properties-in-queue-account)
+    - [Set properties in queue account](#set-properties-in-queue-account)
+    - [Get queue service statistics](#get-queue-service-statistics)
+    - [Enqueue message into a queue](#enqueue-message-into-a-queue)
+    - [Update a message in a queue](#update-a-message-in-a-queue)
+    - [Peek at messages in a queue](#peek-at-messages-in-a-queue)
+    - [Receive messages from a queue](#receive-messages-from-a-queue)
+    - [Delete message from a queue](#delete-message-from-a-queue)
+    - [Get a queue properties](#get-a-queue-properties)
+    - [Set a queue metadata](#set-a-queue-metadata)
+  - [Troubleshooting](#troubleshooting)
+  - [General](#general)
+    - [Default HTTP Client](#default-http-client)
+    - [Default SSL library](#default-ssl-library)
+  - [Next steps](#next-steps)
+  - [Next steps Samples](#next-steps-samples)
+  - [Contributing](#contributing)
 
 ### Build a client
 We have two ways of building QueueService or Queue Client. Here will take queueServiceClient as an example. Same things apply to queueClient.
@@ -478,7 +502,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-If you would like to become an active contributor to this project please follow the instructions provided in [Microsoft Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/master/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -487,8 +511,8 @@ If you would like to become an active contributor to this project please follow 
 5. Create new Pull Request
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.7.0-beta.1/sdk/storage/azure-storage-queue/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.7.0-beta.1/sdk/storage/azure-storage-queue/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-queue/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-queue/src/samples/README.md
 [api_documentation]: https://docs.microsoft.com/rest/api/storageservices/queue-service-rest-api
 [storage_docs]: https://docs.microsoft.com/azure/storage/queues/storage-queues-introduction
 [jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
@@ -498,8 +522,7 @@ If you would like to become an active contributor to this project please follow 
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
 [storage_rest]: https://docs.microsoft.com/rest/api/storageservices/queue-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.7.0-beta.1/sdk/storage/azure-storage-queue/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-queue/src/samples
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-queue%2FREADME.png)
-
