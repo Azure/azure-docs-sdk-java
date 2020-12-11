@@ -3,7 +3,7 @@ title: Azure Storage Blobs Cryptography client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob-cryptography, storage
 author: maggiepint
 ms.author: magpint
-ms.date: 10/01/2020
+ms.date: 12/08/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,8 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage Blobs Cryptography client library for Java - Version 12.9.0-beta.1 
-
+# Azure Storage Blobs Cryptography client library for Java - Version 12.10.0-beta.1 
 
 Azure Blob storage is Microsoft's object storage solution for the cloud. Blob
 storage is optimized for storing massive amounts of unstructured data.
@@ -35,7 +34,7 @@ This package supports client side encryption for blob storage.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-blob-cryptography</artifactId>
-  <version>12.9.0-beta.1</version>
+  <version>12.10.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -120,6 +119,80 @@ Blob storage is designed for:
 
 ## Examples
 
+Note: The usage of the `EncryptedBlobClient` is the same as the equivalent `BlobClient`, the only difference being client construction. 
+Please refer to `azure-storage-blob` for common use cases of the `BlobClient`
+
+The following sections provide several code snippets covering some of the most common Azure Storage Blob cryptography creation tasks, including:
+
+- [Create an `EncryptedBlobClient` from a `BlobClient`](#create-blobclient)
+- [Create an `EncryptedBlobClient`](#create)
+- [Use a `LocalKeyEncryptionKey`](#localkeyencryptionkey)
+- [Use a `KeyVaultKey`](#keyvaultkey)
+
+### Create an `EncryptedBlobClient` from a `BlobClient`
+
+Create an `EncryptedBlobClient` using a `BlobClient`. `BlobClient` construction is explained in the `azure-storage-blob` README.
+
+<!-- embedme ./src/samples/java/com/azure/storage/blob/specialized/cryptography/ReadmeSamples.java#L43-L47 -->
+```java
+EncryptedBlobClient client = new EncryptedBlobClientBuilder()
+    .key(key, keyWrapAlgorithm)
+    .keyResolver(keyResolver)
+    .blobClient(blobClient)
+    .buildEncryptedBlobClient();
+```
+
+### Create an `EncryptedBlobClient`
+
+Create a `BlobServiceClient` using a connection string.
+
+<!-- embedme ./src/samples/java/com/azure/storage/blob/specialized/cryptography/ReadmeSamples.java#L51-L55 -->
+```java
+EncryptedBlobClient client = new EncryptedBlobClientBuilder()
+    .key(key, keyWrapAlgorithm)
+    .keyResolver(keyResolver)
+    .connectionString(connectionString)
+    .buildEncryptedBlobClient();
+```
+
+### Use a `LocalKeyEncryptionKey`
+
+<!-- embedme ./src/samples/java/com/azure/storage/blob/specialized/cryptography/ReadmeSamples.java#L59-L68 -->
+```java
+JsonWebKey localKey = JsonWebKey.fromAes(new SecretKeySpec(keyBytes, secretKeyAlgorithm),
+    Arrays.asList(KeyOperation.WRAP_KEY, KeyOperation.UNWRAP_KEY))
+    .setId("my-id");
+AsyncKeyEncryptionKey akek = new LocalKeyEncryptionKeyClientBuilder()
+    .buildAsyncKeyEncryptionKey(localKey).block();
+
+EncryptedBlobClient client = new EncryptedBlobClientBuilder()
+    .key(akek, keyWrapAlgorithm)
+    .connectionString(connectionString)
+    .buildEncryptedBlobClient();
+```
+
+### Use a `KeyVaultKey`
+
+<!-- embedme ./src/samples/java/com/azure/storage/blob/specialized/cryptography/ReadmeSamples.java#L72-L87 -->
+```java
+KeyClient keyClient = new KeyClientBuilder()
+    .vaultUrl(keyVaultUrl)
+    .credential(tokenCredential)
+    .buildClient();
+KeyVaultKey rsaKey = keyClient.createRsaKey(new CreateRsaKeyOptions(keyName)
+    .setExpiresOn(OffsetDateTime.now().plusYears(1))
+    .setKeySize(2048));
+AsyncKeyEncryptionKey akek = new KeyEncryptionKeyClientBuilder()
+    .credential(tokenCredential)
+    .buildAsyncKeyEncryptionKey(rsaKey.getId())
+    .block();
+
+EncryptedBlobClient client = new EncryptedBlobClientBuilder()
+    .key(akek, keyWrapAlgorithm)
+    .connectionString(connectionString)
+    .buildEncryptedBlobClient();
+```
+
 ## Troubleshooting
 
 When interacting with blobs using this Java client library, errors returned by the service correspond to the same HTTP
@@ -154,4 +227,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-
