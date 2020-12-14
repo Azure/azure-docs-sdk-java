@@ -73,13 +73,14 @@ For detailed information on how to use the Java resource management libraries, p
 Create a SQL Database resource and restrict access to a range of IP addresses using a firewall rule.
 
 ```java
-SqlServer sqlServer = azure.sqlServers().define(sqlDbName)
-                    .withRegion(Region.US_EAST)
-                    .withNewResourceGroup(resourceGroupName)
-                    .withAdministratorLogin(administratorLogin)
-                    .withAdministratorPassword(administratorPassword)
-                    .withNewFirewallRule("172.16.0.0", "172.31.255.255")
-                    .create();
+SqlServer server = azureResourceManager.sqlServers().define(sqlDbName)
+        .withRegion(Region.US_EAST)
+        .withNewResourceGroup(resourceGroupName)
+         .withAdministratorLogin(adminLogin)
+         .withAdministratorPassword(adminPass)
+         .defineFirewallRule(firewallRuleName)
+         .withIpAddressRange("172.16.0.0", "172.31.255.255").attach()
+         .create();
 ```
 
 ## Samples
