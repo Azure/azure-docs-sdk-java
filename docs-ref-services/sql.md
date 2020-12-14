@@ -63,7 +63,7 @@ Create and manage Azure SQL Database resources in your subscription with the Jav
 </dependency>
 ```
 
-For detailed information on how to use the Java resource management libraries, please refer to [this link](https://aka.ms/azsdk/java/mgmt)
+For detailed information on how to use the Java resource management libraries, please refer to [this doc](https://aka.ms/azsdk/java/mgmt)
 
 > [!div class="nextstepaction"]
 > [Explore the Management APIs](/java/api/overview/azure/sql/management)
