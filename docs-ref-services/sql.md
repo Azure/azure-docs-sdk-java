@@ -79,7 +79,8 @@ SqlServer server = azureResourceManager.sqlServers().define(sqlDbName)
         .withAdministratorLogin(adminLogin)
         .withAdministratorPassword(adminPass)
         .defineFirewallRule(firewallRuleName)
-        .withIpAddressRange("172.16.0.0", "172.31.255.255").attach()
+        .withIpAddressRange("172.16.0.0", "172.31.255.255")
+        .attach()
         .create();
 ```
 
