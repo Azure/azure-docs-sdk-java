@@ -76,11 +76,11 @@ Create a SQL Database resource and restrict access to a range of IP addresses us
 SqlServer server = azureResourceManager.sqlServers().define(sqlDbName)
         .withRegion(Region.US_EAST)
         .withNewResourceGroup(resourceGroupName)
-         .withAdministratorLogin(adminLogin)
-         .withAdministratorPassword(adminPass)
-         .defineFirewallRule(firewallRuleName)
-         .withIpAddressRange("172.16.0.0", "172.31.255.255").attach()
-         .create();
+        .withAdministratorLogin(adminLogin)
+        .withAdministratorPassword(adminPass)
+        .defineFirewallRule(firewallRuleName)
+        .withIpAddressRange("172.16.0.0", "172.31.255.255").attach()
+        .create();
 ```
 
 ## Samples
