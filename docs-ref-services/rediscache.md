@@ -49,20 +49,23 @@ JedisShardInfo shardInfo = new JedisShardInfo("<name>.redis.cache.windows.net", 
 
 Create and scale Azure Redis resources and manage access keys to with the management API.
 
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the resource management libraries in your project.
+
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-redis</artifactId>
-    <version>1.3.0</version>
+   <groupId>com.azure.resourcemanager</groupId>
+   <artifactId>azure-resourcemanager</artifactId>
+   <version>2.1.0</version>
 </dependency>
 ```
+For detailed information on how to use the Java resource management libraries, please refer to [this doc](https://aka.ms/azsdk/java/mgmt)
 
 ## Example
 
 Create a new Azure Redis Cache in the [two-node standard tier](https://azure.microsoft.com/services/cache/). 
 
 ```java
-RedisCache cache = azure.redisCaches().define(redisCacheName1)
+RedisCache cache = azure.redisCaches().define(redisCacheName)
     .withRegion(Region.US_CENTRAL)
     .withNewResourceGroup(rgName)
     .withStandardSku();
