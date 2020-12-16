@@ -1,18 +1,16 @@
 ---
 title: Azure Event Grid client library for Java
+description: This Java client library provides client tools or utilities in Java that make it easy to interact with Azure Event Grid.
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
 author: maggiepint
 ms.author: magpint
 ms.date: 10/06/2020
-ms.topic: article
-ms.prod: azure
-ms.technology: azure
+ms.topic: reference
 ms.devlang: java
-ms.service: eventgrid
+ms.service: event-grid
 ---
 
 # Azure Event Grid client library for Java - Version 2.0.0-beta.3 
-
 
 This project provides client tools or utilities in Java that make it easy to interact with [Azure Event Grid][eventgrid].
 
@@ -24,10 +22,7 @@ The client library can be used to:
 - Decode and process events and event data at the event destination
 - Generate shared access signatures that connect to an event topic
 
-[Sources][sources] |
-[API Reference Documentation][javadocs] |
-[Product Documentation][service_docs] | 
-[Samples][samples]
+[Sources][sources] | [API Reference Documentation][javadocs] | [Product Documentation][service_docs] |  [Samples][samples]
 
 
 ## Getting started
@@ -285,12 +280,12 @@ Reference documentation for the SDK can be found [here][javadocs]. This is a goo
 to understanding the purpose of each method called, as well as possible reasons for errors
 or unexpected behavior.
 
-If you encounter any bugs with these SDKs, please file issues via [Issues](https://github.com/Azure/azure-sdk-for-java/issues) or checkout [StackOverflow for Azure Java SDK](http://stackoverflow.com/questions/tagged/azure-java-sdk).
+If you encounter any bugs with these SDKs, please file issues via [Issues](https://github.com/Azure/azure-sdk-for-java/issues) or checkout [StackOverflow for Azure Java SDK](https://stackoverflow.com/questions/tagged/azure-java-sdk).
 
 ## Next steps
 
-- [Azure Java SDKs](https://docs.microsoft.com/java/azure/)
-- If you don't have a Microsoft Azure subscription you can get a FREE trial account [here](http://go.microsoft.com/fwlink/?LinkId=330212)
+- [Azure Java SDKs](/java/azure/)
+- If you don't have a Microsoft Azure subscription you can get a FREE trial account [here](https://go.microsoft.com/fwlink/?LinkId=330212)
 - Some additional sample code can be found [here][samples]
 - Additional Event Grid tutorials can be found [here][service_docs]
 
@@ -309,18 +304,18 @@ If you would like to become an active contributor to this project please follow 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 <!-- LINKS -->
-[jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk/
 [javadocs]: https://azure.github.io/azure-sdk-for-java/eventgrid.html
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
 [HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_2.0.0-beta.3/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
 [samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_2.0.0-beta.3/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
 [eventgrid]: https://azure.com/eventgrid
-[portal]: https://ms.portal.azure.com/
-[cli]: https://docs.microsoft.com/cli/azure
-[service_docs]: https://docs.microsoft.com/azure/event-grid/
+[portal]: https://portal.azure.com/
+[cli]: /cli/azure
+[service_docs]: /azure/event-grid/
 [sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_2.0.0-beta.3/sdk/eventgrid/azure-messaging-eventgrid/src
-[EventGridEvent]: https://docs.microsoft.com/azure/event-grid/event-schema
+[EventGridEvent]: /azure/event-grid/event-schema
 [CloudEvent]: https://github.com/cloudevents/spec/blob/master/spec.md
 
 
