@@ -5,7 +5,7 @@ keywords: Azure, Java, SDK, API, event hub, IoT, stream processing
 author: rloutlaw
 ms.author: routlaw
 ms.date: 06/21/2017
-ms.topic: article
+ms.topic: reference
 ms.devlang: java
 ms.service: event-hubs
 ---
