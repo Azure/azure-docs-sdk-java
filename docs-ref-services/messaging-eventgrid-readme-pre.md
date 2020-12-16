@@ -4,9 +4,7 @@ keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
 author: maggiepint
 ms.author: magpint
 ms.date: 10/06/2020
-ms.topic: article
-ms.prod: azure
-ms.technology: azure
+ms.topic: reference
 ms.devlang: java
 ms.service: event-grid
 ---
