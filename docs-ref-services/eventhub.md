@@ -4,11 +4,8 @@ description: Reference documentation for the Java Event Hub libraries
 keywords: Azure, Java, SDK, API, event hub, IoT, stream processing
 author: rloutlaw
 ms.author: routlaw
-manager: douge
 ms.date: 06/21/2017
 ms.topic: article
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: event-hubs
 ---
