@@ -50,6 +50,11 @@ binaries and packaged sources [are available on Maven Central](http://search.mav
 
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project. Specify the version as desired.
 
+| Maven Package | Reference | Samples |
+|--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|
+|    [azure-messaging-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22)    |    [API Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-messaging-servicebus/7.0.0/index.html)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus/src/samples/java/com/azure/messaging/servicebus)    |
+
+
 ```XML
 <dependency>
     <groupId>com.azure</groupId>
@@ -206,6 +211,10 @@ Create and manage namespaces, topics, queues, and subscriptions with the managem
 \
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.  
 
+| Maven Package | Reference |
+|--------------------------------------|---------------------------------------------------------------|
+|    [azure-messaging-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22)    |    [API Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-messaging-servicebus/7.0.0/index.html)    |
+
 ```XML
 <dependency>
     <groupId>com.azure</groupId>
@@ -213,6 +222,7 @@ Create and manage namespaces, topics, queues, and subscriptions with the managem
     <version>7.0.0</version>
 </dependency>
 ```
+You can perform all the management function with following clients.
 
 'ServiceBusAdministrationClientBuilder' provides a fluent builder API to help aid the configuration and instantiation of 'ServiceBusAdministrationClient' and 'ServiceBusAdministrationAsyncClient'. You can use these clients to manage Service Bus resources.
 
