@@ -4,7 +4,6 @@ description: Reference documentation for the Java client and management librarie
 keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, message broker
 author: rloutlaw
 ms.author: routlaw
-manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
 ms.devlang: java
