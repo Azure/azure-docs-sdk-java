@@ -132,8 +132,10 @@ String schemaContent = "{\n"
     + "        }\n"
     + "    ]\n"
     + "}";
+Schema.Parser schemaParser = new Schema.Parser();
+Schema schema = schemaParser.parse(schemaContent);
 SchemaProperties schemaProperties = schemaRegistryClient.registerSchema("{schema-group}", "{schema-name}",
-    schemaContent, SerializationType.AVRO);
+    schema.toString, SerializationType.AVRO);
 System.out.println("Registered schema: " + schemaProperties.getSchemaId());
 ```
 
