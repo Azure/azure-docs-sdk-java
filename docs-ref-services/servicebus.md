@@ -35,7 +35,7 @@ Create and manage namespaces, topics, queues, subscriptions and rules using Azur
 
 | Maven Package | Reference | Samples |
 |--------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------|
-|    [azure-mgmt-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-mgmt-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.management.servicebus?view=azure-java-stable)    |    [Manage Service Bus queues](https://github.com/Azure-Samples/service-bus-java-manage-queue-with-basic-features), [Create and subscribe to Service Bus topics](https://github.com/Azure-Samples/service-bus-java-manage-publish-subscribe-with-basic-features)    | 
+|    [azure-mgmt-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-mgmt-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.management.servicebus?view=azure-java-stable&preserve-view=true)    |    [Manage Service Bus queues](https://github.com/Azure-Samples/service-bus-java-manage-queue-with-basic-features), [Create and subscribe to Service Bus topics](https://github.com/Azure-Samples/service-bus-java-manage-publish-subscribe-with-basic-features)    | 
 
 ```XML
 <dependency>
@@ -57,7 +57,7 @@ Use data access libraries to send and receive messages from Service Bus queues, 
 | Maven Package | Reference | Samples |
 |--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|
 |    [azure-messaging-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22)    |    [API Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-messaging-servicebus/7.0.0/index.html)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus/src/samples/java/com/azure/messaging/servicebus)    |
-|    [microsoft-azure-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus/client?view=azure-java-stable)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    |
+|    [microsoft-azure-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus/client?view=azure-java-stable&preserve-view=true)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    |
 
 ### azure-messaging-servicebus
 
