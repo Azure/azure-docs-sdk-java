@@ -5,7 +5,7 @@ keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, me
 author: rloutlaw
 ms.author: routlaw
 manager: douge
-ms.date: 12/11/2020
+ms.date: 07/11/2017
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -66,7 +66,7 @@ binaries and packaged sources [are available on Maven Central](http://search.mav
 | Maven Package | Reference | Samples |
 |--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|
 |    [azure-messaging-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22)    |    [API Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-messaging-servicebus/7.0.0/index.html)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus/src/samples/java/com/azure/messaging/servicebus)    |
-|    [microsoft-azure-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](https://docs.microsoft.com/en-us/java/api/overview/azure/servicebus/client?view=azure-java-stable)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    |
+|    [microsoft-azure-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus/client?view=azure-java-stable)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    |
 
 **azure-messaging-servicebus**
 ```XML
