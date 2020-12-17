@@ -7,8 +7,6 @@ ms.author: routlaw
 manager: douge
 ms.date: 11/21/2019
 ms.topic: article
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: key-vault
 ---
