@@ -60,8 +60,10 @@ Use data access libraries to send and receive messages from Service Bus queues, 
 |    [microsoft-azure-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus/client?view=azure-java-stable)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    |
 
 ### azure-messaging-servicebus
-> [Source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus)
-> Add dependency
+
+[Source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus)
+
+Add dependency
 ```XML
 <dependency>
     <groupId>com.azure</groupId>
@@ -71,8 +73,10 @@ Use data access libraries to send and receive messages from Service Bus queues, 
 ```
 
 ### microsoft-azure-servicebus
-> [Source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/microsoft-azure-servicebus)
-> Add dependency
+
+[Source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/microsoft-azure-servicebus)
+
+Add dependency
 ```XML
 <dependency>
   <groupId>com.microsoft.azure</groupId>
