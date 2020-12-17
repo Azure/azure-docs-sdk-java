@@ -5,7 +5,7 @@ keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, me
 author: rloutlaw
 ms.author: routlaw
 manager: douge
-ms.date: 07/11/2017
+ms.date: 12/11/2020
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -20,7 +20,7 @@ ms.service: service-bus
 Service Bus provides highly reliable queues and publish/subscribe topics with deep feature capabilities such as 
 ordered delivery, sessions, partitioning, scheduling, complex subscriptions, as well as workflow and transaction handling.
 
-Learn more about Service Bus concepts [in the messaging documentation section](https://docs.microsoft.com/azure/service-bus-messaging/) 
+Learn more about Service Bus concepts [in the messaging documentation section](https://docs.microsoft.com/azure/service-bus-messaging/). 
 
 For Java developers, Service Bus provides a Microsoft supported native API and Service Bus can also be used with
 AMQP 1.0 compliant libraries such as Apache Qpid Proton's JMS provider.
@@ -38,7 +38,7 @@ Create and manage namespaces, topics, queues, and subscriptions with the managem
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.  
 
 | Maven Package | Reference |
-|--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|
+|--------------------------------------|---------------------------------------------------------------|
 |    [azure-mgmt-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-mgmt-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.management.servicebus?view=azure-java-stable)    |
 
 ```XML
