@@ -27,19 +27,15 @@ AMQP 1.0 compliant libraries such as Apache Qpid Proton's JMS provider.
 
 ## Libraries for resource management
 
-Create and manage namespaces, topics, queues, and subscriptions with the management API.
-
-**Please find some examples here:**
-* [Manage Service Bus queues](https://github.com/Azure-Samples/service-bus-java-manage-queue-with-basic-features)
-* [Create and subscribe to Service Bus topics](https://github.com/Azure-Samples/service-bus-java-manage-publish-subscribe-with-basic-features)
+Create and manage namespaces, topics, queues, subscriptions and rules using Azure Resource Manager.
 
 **Use the Management API in your project:**
 \
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.  
 
-| Maven Package | Reference |
-|--------------------------------------|---------------------------------------------------------------|
-|    [azure-mgmt-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-mgmt-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.management.servicebus?view=azure-java-stable)    |
+| Maven Package | Reference | Samples |
+|--------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------|
+|    [azure-mgmt-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-mgmt-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.management.servicebus?view=azure-java-stable)    |    [Manage Service Bus queues](https://github.com/Azure-Samples/service-bus-java-manage-queue-with-basic-features), [Create and subscribe to Service Bus topics](https://github.com/Azure-Samples/service-bus-java-manage-publish-subscribe-with-basic-features)    | 
 
 ```XML
 <dependency>
@@ -54,12 +50,7 @@ Create and manage namespaces, topics, queues, and subscriptions with the managem
 
 ## Libraries for data access
 
-The official Service Bus client is available in [source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/) and
-binaries and packaged sources [are available on Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22).
-
-**The [sample code repository](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus/src/samples/java/com/azure/messaging/servicebus) contains samples for:**
-* How to use the [SendMessage](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/servicebus/azure-messaging-servicebus/src/samples/java/com/azure/messaging/servicebus/SendMessageAsyncSample.java)
-* How to use the [Processor to receive](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/servicebus/azure-messaging-servicebus/src/samples/java/com/azure/messaging/servicebus/ServiceBusProcessorSample.java)
+Use data access libraries to send and receive messages from Service Bus queues, topics and subscriptions. There are two libraries available that provide these features at the moment.
 
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project. Specify the version as desired.
 
@@ -68,7 +59,9 @@ binaries and packaged sources [are available on Maven Central](http://search.mav
 |    [azure-messaging-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22)    |    [API Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-messaging-servicebus/7.0.0/index.html)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus/src/samples/java/com/azure/messaging/servicebus)    |
 |    [microsoft-azure-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus/client?view=azure-java-stable)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    |
 
-**azure-messaging-servicebus**
+### azure-messaging-servicebus
+> [Source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus)
+> Add dependency
 ```XML
 <dependency>
     <groupId>com.azure</groupId>
@@ -77,7 +70,9 @@ binaries and packaged sources [are available on Maven Central](http://search.mav
 </dependency>
 ```
 
-**microsoft-azure-servicebus**
+### microsoft-azure-servicebus
+> [Source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/microsoft-azure-servicebus)
+> Add dependency
 ```XML
 <dependency>
   <groupId>com.microsoft.azure</groupId>
