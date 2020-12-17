@@ -61,9 +61,10 @@ Use data access libraries to send and receive messages from Service Bus queues, 
 
 ### azure-messaging-servicebus
 
-[Source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus)
+The source code on GitHub is located [here](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus).
 
-Add dependency
+Add dependency in your `pom.xml`.
+
 ```XML
 <dependency>
     <groupId>com.azure</groupId>
@@ -74,9 +75,10 @@ Add dependency
 
 ### microsoft-azure-servicebus
 
-[Source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/microsoft-azure-servicebus)
+The source code on GitHub is located [here](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/microsoft-azure-servicebus).
 
-Add dependency
+Add dependency in your `pom.xml`.
+
 ```XML
 <dependency>
   <groupId>com.microsoft.azure</groupId>
@@ -84,9 +86,5 @@ Add dependency
   <version>3.5.1</version>
 </dependency>
 ```
-
-> [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/servicebus/client)
-> [Find more examples here (See also above for more details)](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/)
 
 Explore more [sample Java code for Azure Service Bus](https://azure.microsoft.com/resources/samples/?platform=java&term=bus) you can use in your apps.
