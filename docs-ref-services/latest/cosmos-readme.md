@@ -1,17 +1,17 @@
 ---
 title: Azure CosmosDB Client Library for Java
-keywords: Azure, java, SDK, API, azure-cosmos, cosmoscosmosdb
+keywords: Azure, java, SDK, API, azure-cosmos, cosmosdbcosmosdb
 author: maggiepint
 ms.author: magpint
-ms.date: 12/11/2020
+ms.date: 12/15/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: cosmoscosmosdb
+ms.service: cosmosdbcosmosdb
 ---
 
-# Azure CosmosDB Client Library for Java - Version 4.9.0
+# Azure CosmosDB Client Library for Java - Version 4.10.0 
 
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.
@@ -28,7 +28,7 @@ This project provides SDK library in Java for interacting with [SQL API][sql_api
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos</artifactId>
-  <version>4.8.0</version>
+  <version>4.10.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -233,12 +233,12 @@ Also add a log4j config.
 ```properties
 # this is a sample log4j configuration
 
-# Set root logger level to DEBUG and its only appender to A1.
+# Set root logger level to INFO and its only appender to A1.
 log4j.rootLogger=INFO, A1
 
-log4j.category.com.azure.cosmos=DEBUG
-#log4j.category.io.netty=INFO
-#log4j.category.io.reactivex=INFO
+log4j.category.com.azure.cosmos=INFO
+#log4j.category.io.netty=OFF
+#log4j.category.io.projectreactor=OFF
 # A1 is set to be a ConsoleAppender.
 log4j.appender.A1=org.apache.log4j.ConsoleAppender
 
@@ -267,7 +267,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.8.0/sdk/cosmos/azure-cosmos/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.10.0/sdk/cosmos/azure-cosmos/src
 [cosmos_introduction]: https://docs.microsoft.com/azure/cosmos-db/
 [api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [cosmos_docs]: https://docs.microsoft.com/azure/cosmos-db/introduction
