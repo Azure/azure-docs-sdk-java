@@ -49,20 +49,21 @@ try {
 }  
 ```
 
-## Management API
+## Resource Management
 
-Create and manage Azure SQL Database resources in your subscription with the management API.   
+Create and manage Azure SQL Database resources in your subscription with the Java resource management libraries.   
 
-[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.
-
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the resource management libraries in your project.
 
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-sql</artifactId>
-    <version>1.3.0</version>
+   <groupId>com.azure.resourcemanager</groupId>
+   <artifactId>azure-resourcemanager</artifactId>
+   <version>2.1.0</version>
 </dependency>
 ```
+
+For detailed information on how to use the Java resource management libraries, please refer to [this doc](https://aka.ms/azsdk/java/mgmt)
 
 > [!div class="nextstepaction"]
 > [Explore the Management APIs](/java/api/overview/azure/sql/management)
@@ -72,13 +73,15 @@ Create and manage Azure SQL Database resources in your subscription with the man
 Create a SQL Database resource and restrict access to a range of IP addresses using a firewall rule.
 
 ```java
-SqlServer sqlServer = azure.sqlServers().define(sqlDbName)
-                    .withRegion(Region.US_EAST)
-                    .withNewResourceGroup(resourceGroupName)
-                    .withAdministratorLogin(administratorLogin)
-                    .withAdministratorPassword(administratorPassword)
-                    .withNewFirewallRule("172.16.0.0", "172.31.255.255")
-                    .create();
+SqlServer server = azureResourceManager.sqlServers().define(sqlDbName)
+        .withRegion(Region.US_EAST)
+        .withNewResourceGroup(resourceGroupName)
+        .withAdministratorLogin(adminLogin)
+        .withAdministratorPassword(adminPass)
+        .defineFirewallRule(firewallRuleName)
+        .withIpAddressRange("172.16.0.0", "172.31.255.255")
+        .attach()
+        .create();
 ```
 
 ## Samples
