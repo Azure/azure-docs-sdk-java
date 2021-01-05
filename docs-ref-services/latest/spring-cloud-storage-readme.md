@@ -1,9 +1,9 @@
 ---
-title: Azure Spring cloud azure Storage client library for Java 
-keywords: Azure, java, SDK, API, spring-cloud-azure-storage, springcloud
+title: Azure Spring cloud azure Storage client library for Java
+keywords: Azure, java, SDK, API, azure-spring-cloud-storage, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 09/15/2020
+ms.date: 12/31/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,25 +11,25 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Spring cloud azure Storage client library for Java - Version 1.2.8 
+# Azure Spring cloud azure Storage client library for Java - Version 2.0.0 
 
 This package helps developers to finish the auto-configuration of Azure Storage.
 
-[Source code][src] | [Package (Maven)][package] | [API reference documentation][refdocs] | [Samples][sample]
+[Source code][src] | [Package (Maven)][package] | [API reference documentation][refdocs]
 
 ## Getting started
 ### Prerequisites
-- Java Development Kit (JDK) with version 8 or above
+- [Java Development Kit (JDK)][jdk_link] with version 8 or above
 - [Azure Subscription][azure_subscription]
 - [Maven][maven] 3.0 and above
 
 ### Include the package
-[//]: # ({x-version-update-start;com.microsoft.azure:spring-cloud-azure-storage;current})
+[//]: # ({x-version-update-start;com.azure.spring:azure-spring-cloud-storage;current})
 ```xml
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>spring-cloud-azure-storage</artifactId>
-    <version>1.2.8</version>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>azure-spring-cloud-storage</artifactId>
+    <version>2.0.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -68,13 +68,13 @@ This project welcomes contributions and suggestions.  Most contributions require
 Please follow [instructions here][contributing_md] to build from source or contribute.
 
 <!-- Link -->
-[src]: https://github.com/Azure/azure-sdk-for-java/tree/spring-cloud-azure-storage_1.2.8/sdk/spring/azure-spring-cloud-storage
+[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-storage_2.0.0/sdk/spring/azure-spring-cloud-storage
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-storage
-[refdocs]: https://azure.github.io/azure-sdk-for-java/spring.html#spring-cloud-azure-storage
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/spring-cloud-azure-storage_1.2.8/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-storage-resource-sample
+[refdocs]: https://azure.github.io/azure-sdk-for-java/springcloud.html#azure-spring-cloud-storage
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [azure_subscription]: https://azure.microsoft.com/free
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/spring-cloud-azure-storage_1.2.8/sdk/spring/CONTRIBUTING.md
-[maven]: http://maven.apache.org/
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-storage_2.0.0/sdk/spring/CONTRIBUTING.md
+[maven]: https://maven.apache.org/
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 

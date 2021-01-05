@@ -1,6 +1,6 @@
 ---
 title: Azure Spring Boot client library for Java
-keywords: Azure, java, SDK, API, azure-spring-boot, springbootspringboot
+keywords: Azure, java, SDK, API, azure-spring-boot, springboot
 author: maggiepint
 ms.author: magpint
 ms.date: 12/31/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: springbootspringboot
+ms.service: springboot
 ---
 
 # Azure Spring Boot client library for Java - Version 3.0.0 
