@@ -3,7 +3,7 @@ title: Azure CosmosDB Client Library for Java
 keywords: Azure, java, SDK, API, azure-cosmos, cosmoscosmosdb
 author: maggiepint
 ms.author: magpint
-ms.date: 12/11/2020
+ms.date: 10/28/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: cosmoscosmosdb
 ---
 
-# Azure CosmosDB Client Library for Java - Version 4.9.0
+# Azure CosmosDB Client Library for Java - Version 4.8.0 
 
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.
