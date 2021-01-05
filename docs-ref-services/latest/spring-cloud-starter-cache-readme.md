@@ -1,6 +1,6 @@
 ---
-title: Azure Event Hubs Kafka Spring cloud starter client library for Java
-keywords: Azure, java, SDK, API, azure-spring-cloud-starter-eventhubs-kafka, springcloud
+title: Azure Spring Cloud Starter Cache client library for Java
+keywords: Azure, java, SDK, API, azure-spring-cloud-starter-cache, springcloud
 author: maggiepint
 ms.author: magpint
 ms.date: 12/31/2020
@@ -11,11 +11,11 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Event Hubs Kafka Spring cloud starter client library for Java - Version 2.0.0 
+# Azure Spring Cloud Starter Cache client library for Java - Version 2.0.0 
 
-The Spring Cloud Stream Kafka binder for Azure Event Hubs helps developers to finish the auto-configuration of Event Hubs.  
+This starter provides auto-configuration of Azure Cache for Redis. Azure Cache for Redis provides an in-memory data store based on the open-source software Redis. 
 
-[Package (Maven)][package] | [API reference documentation][refdocs] | [Product documentation][docs] | [Samples][sample]
+[Package (Maven)][package] | [API reference documentation][refdocs] | [Samples][sample]
 
 ## Getting started
 ### Prerequisites
@@ -24,22 +24,23 @@ The Spring Cloud Stream Kafka binder for Azure Event Hubs helps developers to fi
 - [Maven][maven] 3.0 and above
 
 ### Include the package
-[//]: # ({x-version-update-start;com.azure.spring:azure-spring-cloud-starter-eventhubs-kafka;current})
+[//]: # ({x-version-update-start;com.azure.spring:azure-spring-cloud-starter-cache;current})
 ```xml
 <dependency>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-cloud-starter-eventhubs-kafka</artifactId>
+    <artifactId>azure-spring-cloud-starter-cache</artifactId>
     <version>2.0.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 ## Key concepts
-Event Hubs provides a Kafka endpoint that can be used by your existing Kafka based applications as an alternative to running your own Kafka cluster. Event Hubs supports Apache Kafka protocol 1.0 and later, and works with your existing Kafka applications, including MirrorMaker.
+Redis improves the performance and scalability of an application that uses on backend data stores heavily. It is able to process large volumes of application request by keeping frequently accessed data in the server memory that can be written to and read from quickly.
+
+Azure Cache for Redis offers Redis as a managed service. It provides secure and dedicated Redis server instances and full Redis API compatibility. The service is operated by Microsoft, hosted on Azure, and accessible to any application within or outside of Azure.
 
 ## Examples
 Please refer to this [sample project][sample] illustrating how to use this starter.
-
 ## Troubleshooting
 ### Enable client logging
 Azure SDKs for Java offers a consistent logging story to help aid in troubleshooting application errors and expedite their resolution. The logs produced will capture the flow of an application before reaching the terminal state to help locate the root issue. View the [logging][logging] wiki for guidance about enabling logging.
@@ -59,10 +60,9 @@ For more information about setting logging in spring, please refer to the [offic
  
 
 ## Next steps
-
 The following section provide a sample project illustrating how to use the starter.
 ### More sample code
-- [Eventhubs Kafka Sample][sample]
+- [Azure Cache for Redis][sample]
 
 ## Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
@@ -70,14 +70,13 @@ This project welcomes contributions and suggestions.  Most contributions require
 Please follow [instructions here][contributing_md] to build from source or contribute.
 
 <!-- Link -->
-[package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-starter-azure-eventhubs-kafka
+[package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-starter-azure-cache
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springcloud.html#azure-spring-cloud-autoconfigure
-[docs]: https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-cloud-stream-binder-java-app-kafka-azure-event-hub
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-eventhubs-kafka_2.0.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-eventhubs-kafka
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-cache_2.0.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-cache
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [azure_subscription]: https://azure.microsoft.com/free
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-eventhubs-kafka_2.0.0/sdk/spring/CONTRIBUTING.md
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-cache_2.0.0/sdk/spring/CONTRIBUTING.md
 [maven]: https://maven.apache.org/
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 
