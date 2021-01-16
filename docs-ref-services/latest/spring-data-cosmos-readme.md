@@ -1,17 +1,17 @@
 ---
 title: Azure Spring Data Cosmos client library for Java
-keywords: Azure, java, SDK, API, azure-spring-data-cosmos, 
+keywords: Azure, java, SDK, API, azure-spring-data-cosmos, cosmosdb
 author: maggiepint
 ms.author: magpint
-ms.date: 12/11/2020
+ms.date: 01/16/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: cosmos
+ms.service: cosmosdb
 ---
 
-# Azure Spring Data Cosmos client library for Java - Version 3.2.0
+# Azure Spring Data Cosmos client library for Java - Version 3.3.0 
 
 
 **Azure Spring Data Cosmos** provides Spring Data support for Azure Cosmos DB using the [SQL API][sql_api_query], based on Spring Data framework.
@@ -82,7 +82,7 @@ If you are using Maven, add the following dependency.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-spring-data-cosmos</artifactId>
-    <version>3.1.0</version>
+    <version>3.3.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -92,10 +92,10 @@ If you are using Maven, add the following dependency.
 - Java Development Kit 8
 - An active Azure account. If you don't have one, you can sign up for a [free account][azure_subscription]. Alternatively, you can use the [Azure Cosmos DB Emulator][local_emulator] for development and testing. As emulator https certificate is self signed, you need to import its certificate to java trusted cert store, [explained here][local_emulator_export_ssl_certificates]
 - (Optional) SLF4J is a logging facade.
-- (Optional) [SLF4J binding](http://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
+- (Optional) [SLF4J binding](https://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
 - (Optional) Maven
 
-SLF4J is only needed if you plan to use logging, please also download an SLF4J binding which will link the SLF4J API with the logging implementation of your choice. See the [SLF4J user manual](http://www.slf4j.org/manual.html) for more information.
+SLF4J is only needed if you plan to use logging, please also download an SLF4J binding which will link the SLF4J API with the logging implementation of your choice. See the [SLF4J user manual](https://www.slf4j.org/manual.html) for more information.
 
 ### Setup Configuration Class
 - In order to set up configuration class, you'll need to extend `AbstractCosmosConfiguration`
@@ -311,7 +311,7 @@ Azure spring data cosmos supports specifying annotated queries in the repositori
 ```java
 public interface AnnotatedQueriesUserRepositoryCodeSnippet extends CosmosRepository<User, String> {
     @Query(value = "select * from c where c.firstName = @firstName and c.lastName = @lastName")
-    List<User> getUsersByTitleAndValue(@Param("firstName") int firstName, @Param("lastName") String lastName);
+    List<User> getUsersByFirstNameAndLastName(@Param("firstName") String firstName, @Param("lastName") String lastName);
 
     @Query(value = "select * from c offset @offset limit @limit")
     List<User> getUsersWithOffsetLimit(@Param("offset") int offset, @Param("limit") int limit);
@@ -524,12 +524,12 @@ azure.cosmos.secondary.database=your-secondary-cosmosDb-dbName
 azure.cosmos.secondary.populateQueryMetrics=if-populate-query-metrics
 ```
 
-- The [Entity](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.1.0/sdk/cosmos/azure-spring-data-cosmos#define-an-entity) and [Repository](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.1.0/sdk/cosmos/azure-spring-data-cosmos#create-repositories) definition is similar as above. You can put different database entities into different packages.
+- The [Entity](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.3.0/sdk/cosmos/azure-spring-data-cosmos#define-an-entity) and [Repository](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.3.0/sdk/cosmos/azure-spring-data-cosmos#create-repositories) definition is similar as above. You can put different database entities into different packages.
 
 - The `@EnableReactiveCosmosRepositories` or `@EnableCosmosRepositories` support user-define the cosmos template, use `reactiveCosmosTemplateRef` or `cosmosTemplateRef` to config the name of the `ReactiveCosmosTemplate` or `CosmosTemplate` bean to be used with the repositories detected.
 - If you have multiple cosmos database accounts, you can define multiple `CosmosAsyncClient`. If the single cosmos account has multiple databases, you can use the same `CosmosAsyncClient` to initialize the cosmos template.
 
-<!-- embedme src/samples/java/com/azure/spring/data/cosmos/multidatasource/PrimaryDatabaseConfiguration.java#L23-L62 -->
+<!-- embedme src/samples/java/com/azure/spring/data/cosmos/multidatasource/PrimaryDatasourceConfiguration.java#L23-L62 -->
 ```java
 @Configuration
 public class PrimaryDatasourceConfiguration {
@@ -573,7 +573,7 @@ public class PrimaryDatasourceConfiguration {
 }
 ```
 
-<!-- embedme src/samples/java/com/azure/spring/data/cosmos/multidatasource/SecondaryDatabaseConfiguration.java#L28-L84 -->
+<!-- embedme src/samples/java/com/azure/spring/data/cosmos/multidatasource/SecondaryDatasourceConfiguration.java#L28-L84 -->
 ```java
 @Configuration
 public class SecondaryDatasourceConfiguration {
@@ -636,7 +636,7 @@ public class SecondaryDatasourceConfiguration {
 
 - In the above example, we have two cosmos account, each account has two databases. For each account, we can use the same Cosmos Client. You can create the `CosmosAsyncClient` like this:
 
-<!-- embedme src/samples/java/com/azure/spring/data/cosmos/multidatasource/SecondaryDatabaseConfiguration.java#L41-L56 -->
+<!-- embedme src/samples/java/com/azure/spring/data/cosmos/multidatasource/SecondaryDatasourceConfiguration.java#L41-L56 -->
 ```java
 @Bean("secondaryCosmosClient")
 public CosmosAsyncClient getCosmosAsyncClient(@Qualifier("secondary") CosmosProperties secondaryProperties) {
@@ -644,11 +644,21 @@ public CosmosAsyncClient getCosmosAsyncClient(@Qualifier("secondary") CosmosProp
         .key(secondaryProperties.getKey())
         .endpoint(secondaryProperties.getUri()));
 }
+
+@Bean("secondaryCosmosConfig")
+public CosmosConfig getCosmosConfig() {
+    return CosmosConfig.builder()
+        .enableQueryMetrics(true)
+        .responseDiagnosticsProcessor(new ResponseDiagnosticsProcessorImplementation())
+        .build();
+}
+
+@EnableCosmosRepositories(basePackages = "com.azure.cosmos.multidatasource.secondary.database3",
 ```
 
 - Besides, if you want to define `queryMetricsEnabled` or `ResponseDiagnosticsProcessor` , you can create the `CosmosConfig` for your cosmos template.
 
-<!-- embedme src/samples/java/com/azure/spring/data/cosmos/multidatasource/SecondaryDatabaseConfiguration.java#L48-L54-->
+<!-- embedme src/samples/java/com/azure/spring/data/cosmos/multidatasource/SecondaryDatasourceConfiguration.java#L48-L54-->
 ```java
 @Bean("secondaryCosmosConfig")
 public CosmosConfig getCosmosConfig() {
@@ -703,7 +713,7 @@ public class MultiDatasourceApplication implements CommandLineRunner {
 
 ## Beta version package
 
-Beta version built from `master` branch are available, you can refer to the [instruction](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-data-cosmos_3.1.0/CONTRIBUTING.md#nightly-package-builds) to use beta version packages.
+Beta version built from `master` branch are available, you can refer to the [instruction](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-data-cosmos_3.3.0/CONTRIBUTING.md#nightly-package-builds) to use beta version packages.
 
 ## Troubleshooting
 
@@ -766,13 +776,13 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 [azure_subscription]: https://azure.microsoft.com/free/
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.1.0/sdk/cosmos/azure-spring-data-cosmos/src/samples/java/com/azure/spring/data/cosmos
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.3.0/sdk/cosmos/azure-spring-data-cosmos/src/samples/java/com/azure/spring/data/cosmos
 [sql_api_query]: https://docs.microsoft.com/azure/cosmos-db/sql-api-sql-query
 [local_emulator]: https://docs.microsoft.com/azure/cosmos-db/local-emulator
 [local_emulator_export_ssl_certificates]: https://docs.microsoft.com/azure/cosmos-db/local-emulator-export-ssl-certificates
 [spring_data_commons_id_annotation]: https://github.com/spring-projects/spring-data-commons/blob/master/src/main/java/org/springframework/data/annotation/Id.java
 [azure_cosmos_db_partition]: https://docs.microsoft.com/azure/cosmos-db/partition-data
-[address_repository_it_test]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-data-cosmos_3.1.0/sdk/cosmos/azure-spring-data-cosmos-test/src/test/java/com/azure/spring/data/cosmos/repository/integration/AddressRepositoryIT.java
+[address_repository_it_test]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-data-cosmos_3.3.0/sdk/cosmos/azure-spring-data-cosmos-test/src/test/java/com/azure/spring/data/cosmos/repository/integration/AddressRepositoryIT.java
 [azure_spring_data_cosmos_docs]: https://docs.microsoft.com/azure/cosmos-db/sql-api-sdk-java-spring-v3
 [spring_data_custom_query]: https://docs.spring.io/spring-data/commons/docs/current/reference/html/#repositories.query-methods.details
 [sql_queries_in_cosmos]: https://docs.microsoft.com/azure/cosmos-db/tutorial-query-sql-api
