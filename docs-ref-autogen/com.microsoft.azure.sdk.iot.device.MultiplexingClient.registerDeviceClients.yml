@@ -1,0 +1,100 @@
+### YamlMime:JavaMember
+nameWithType: MultiplexingClient.registerDeviceClients
+type: method
+members:
+- fullName: com.microsoft.azure.sdk.iot.device.MultiplexingClient.registerDeviceClients(Iterable<DeviceClient> deviceClients)
+  name: registerDeviceClients(Iterable<DeviceClient> deviceClients)
+  nameWithType: MultiplexingClient.registerDeviceClients(Iterable<DeviceClient> deviceClients)
+  parameters:
+  - description: <p>The device clients to associate with this multiplexing client. </p>
+    name: deviceClients
+    type: Iterable&lt;<xref href="com.microsoft.azure.sdk.iot.device.DeviceClient?alt=com.microsoft.azure.sdk.iot.device.DeviceClient&text=DeviceClient" data-throw-if-not-resolved="False"/>&gt;
+  exceptions:
+  - type: <xref href="InterruptedException?alt=InterruptedException&text=InterruptedException" data-throw-if-not-resolved="False"/>
+    description: <p>If the thread gets interrupted while waiting for the registration to succeed. This will never be thrown if the multiplexing client is not open yet. </p>
+  - type: <xref href="MultiplexingClientDeviceRegistrationAuthenticationException?alt=MultiplexingClientDeviceRegistrationAuthenticationException&text=MultiplexingClientDeviceRegistrationAuthenticationException" data-throw-if-not-resolved="False"/>
+    description: <p>If one or more devices failed to register. Details for each failure can be found in this exception. Any devices not found in the map of registration exceptions provided by this exception have registered successfully. </p>
+  - type: <xref href="com.microsoft.azure.sdk.iot.device.exceptions.MultiplexingClientDeviceRegistrationTimeoutException?alt=com.microsoft.azure.sdk.iot.device.exceptions.MultiplexingClientDeviceRegistrationTimeoutException&text=com.microsoft.azure.sdk.iot.device.exceptions.MultiplexingClientDeviceRegistrationTimeoutException" data-throw-if-not-resolved="False"/>
+    description: <p>If this operation takes longer than the default timeout allows. </p>
+  - type: <xref href="MultiplexingClientException?alt=MultiplexingClientException&text=MultiplexingClientException" data-throw-if-not-resolved="False"/>
+    description: <p>If any other Exception is thrown, it will be nested into this exception. </p>
+  summary: >-
+    <p>Register multiple device clients to this multiplexing client. This method may be called before or after opening the multiplexed connection. </p>
+
+    <p>Up to <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.MAX_MULTIPLEX_DEVICE_COUNT_AMQPS" data-throw-if-not-resolved="false" data-raw-source="MAX_MULTIPLEX_DEVICE_COUNT_AMQPS"></xref> devices can be registered on a multiplexed AMQPS connection, and up to <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.MAX_MULTIPLEX_DEVICE_COUNT_AMQPS_WS" data-throw-if-not-resolved="false" data-raw-source="MAX_MULTIPLEX_DEVICE_COUNT_AMQPS_WS"></xref> devices can be registered on a multiplexed AMQPS_WS connection. </p>
+
+    <p>A device client can be unregistered using <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.unregisterDeviceClient(DeviceClient)" data-throw-if-not-resolved="false" data-raw-source="unregisterDeviceClient(DeviceClient)"></xref>, <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.unregisterDeviceClient(DeviceClient,long)" data-throw-if-not-resolved="false" data-raw-source="unregisterDeviceClient(DeviceClient, long)"></xref>, <xref uid="" data-throw-if-not-resolved="false" data-raw-source="unregisterDeviceClients(Iterable)"></xref>, or <xref uid="" data-throw-if-not-resolved="false" data-raw-source="unregisterDeviceClients(Iterable, long)"></xref>. A device client will not be unregistered automatically if it encounters a non-retryable exception, so users are responsible for unregistering a device client when they no longer want it in this multiplexing client. </p>
+
+    <p>If the multiplexing client is already open, then these device clients will automatically be opened, too. If the multiplexing client is not open yet, then these device clients will not be opened until <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.open()" data-throw-if-not-resolved="false" data-raw-source="MultiplexingClient#open()"></xref> is called. </p>
+
+    <p>If the multiplexed connection is already open, then this call will asynchronously add each device client to the multiplexed connection, and then will block until all registrations have been completed. </p>
+
+    <p>Any proxy settings set to the provided device clients will be overwritten by the proxy settings of this multiplexing client. </p>
+
+    <p>The registered device clients must use the same transport protocol (AMQPS or AMQPS_WS) that this multiplexing client uses. </p>
+
+    <p>Each registered device client may have its own retry policy and its own SAS token expiry time, separate from every other registered device client. </p>
+
+    <p>The registered device clients must use symmetric key based authentication. </p>
+
+    <p>The registered device clients must belong to the same IoT Hub as all previously registered device clients. </p>
+
+    <p>If any of these device clients are already registered to this multiplexing client, then then this method will not do anything to that particular device client. All other provided device clients will still be registered though. </p>
+
+    <p>Any subscriptions (twin, methods, cloud to device messages) set on these device clients from when it was previously registered to any multiplexing client will need to be set again as subscriptions and their callbacks are not preserved. </p>
+
+    <p></p>
+  syntax: public void registerDeviceClients(Iterable<DeviceClient> deviceClients)
+  uid: com.microsoft.azure.sdk.iot.device.MultiplexingClient.registerDeviceClients(Iterable<DeviceClient>)
+- fullName: com.microsoft.azure.sdk.iot.device.MultiplexingClient.registerDeviceClients(Iterable<DeviceClient> deviceClients, long timeoutMilliseconds)
+  name: registerDeviceClients(Iterable<DeviceClient> deviceClients, long timeoutMilliseconds)
+  nameWithType: MultiplexingClient.registerDeviceClients(Iterable<DeviceClient> deviceClients, long timeoutMilliseconds)
+  parameters:
+  - description: <p>The device clients to associate with this multiplexing client. </p>
+    name: deviceClients
+    type: Iterable&lt;<xref href="com.microsoft.azure.sdk.iot.device.DeviceClient?alt=com.microsoft.azure.sdk.iot.device.DeviceClient&text=DeviceClient" data-throw-if-not-resolved="False"/>&gt;
+  - description: <p>How long (in milliseconds) to let this operation wait for all registrations to complete. If this threshold is passed, a <xref uid="com.microsoft.azure.sdk.iot.device.exceptions.MultiplexingClientDeviceRegistrationTimeoutException" data-throw-if-not-resolved="false" data-raw-source="com.microsoft.azure.sdk.iot.device.exceptions.MultiplexingClientDeviceRegistrationTimeoutException"></xref> is thrown. </p>
+    name: timeoutMilliseconds
+    type: <xref href="long?alt=long&text=long" data-throw-if-not-resolved="False"/>
+  exceptions:
+  - type: <xref href="InterruptedException?alt=InterruptedException&text=InterruptedException" data-throw-if-not-resolved="False"/>
+    description: <p>If the thread gets interrupted while waiting for the registration to succeed. This will never be thrown if the multiplexing client is not open yet. </p>
+  - type: <xref href="MultiplexingClientDeviceRegistrationAuthenticationException?alt=MultiplexingClientDeviceRegistrationAuthenticationException&text=MultiplexingClientDeviceRegistrationAuthenticationException" data-throw-if-not-resolved="False"/>
+    description: <p>If one or more devices failed to register. Details for each failure can be found in this exception. Any devices not found in the map of registration exceptions provided by this exception have registered successfully. </p>
+  - type: <xref href="com.microsoft.azure.sdk.iot.device.exceptions.MultiplexingClientDeviceRegistrationTimeoutException?alt=com.microsoft.azure.sdk.iot.device.exceptions.MultiplexingClientDeviceRegistrationTimeoutException&text=com.microsoft.azure.sdk.iot.device.exceptions.MultiplexingClientDeviceRegistrationTimeoutException" data-throw-if-not-resolved="False"/>
+    description: <p>If this operation takes longer than the provided timeout allows. </p>
+  - type: <xref href="MultiplexingClientException?alt=MultiplexingClientException&text=MultiplexingClientException" data-throw-if-not-resolved="False"/>
+    description: <p>If any other Exception is thrown, it will be nested into this exception. </p>
+  summary: >-
+    <p>Register multiple device clients to this multiplexing client. This method may be called before or after opening the multiplexed connection. </p>
+
+    <p>Up to <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.MAX_MULTIPLEX_DEVICE_COUNT_AMQPS" data-throw-if-not-resolved="false" data-raw-source="MAX_MULTIPLEX_DEVICE_COUNT_AMQPS"></xref> devices can be registered on a multiplexed AMQPS connection, and up to <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.MAX_MULTIPLEX_DEVICE_COUNT_AMQPS_WS" data-throw-if-not-resolved="false" data-raw-source="MAX_MULTIPLEX_DEVICE_COUNT_AMQPS_WS"></xref> devices can be registered on a multiplexed AMQPS_WS connection. </p>
+
+    <p>A device client can be unregistered using <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.unregisterDeviceClient(DeviceClient)" data-throw-if-not-resolved="false" data-raw-source="unregisterDeviceClient(DeviceClient)"></xref>, <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.unregisterDeviceClient(DeviceClient,long)" data-throw-if-not-resolved="false" data-raw-source="unregisterDeviceClient(DeviceClient, long)"></xref>, <xref uid="" data-throw-if-not-resolved="false" data-raw-source="unregisterDeviceClients(Iterable)"></xref>, or <xref uid="" data-throw-if-not-resolved="false" data-raw-source="unregisterDeviceClients(Iterable, long)"></xref>. A device client will not be unregistered automatically if it encounters a non-retryable exception, so users are responsible for unregistering a device client when they no longer want it in this multiplexing client. </p>
+
+    <p>If the multiplexing client is already open, then these device clients will automatically be opened, too. If the multiplexing client is not open yet, then these device clients will not be opened until <xref uid="com.microsoft.azure.sdk.iot.device.MultiplexingClient.open()" data-throw-if-not-resolved="false" data-raw-source="MultiplexingClient#open()"></xref> is called. </p>
+
+    <p>If the multiplexed connection is already open, then this call will asynchronously add each device client to the multiplexed connection, and then will block until all registrations have been completed. </p>
+
+    <p>Any proxy settings set to the provided device clients will be overwritten by the proxy settings of this multiplexing client. </p>
+
+    <p>The registered device clients must use the same transport protocol (AMQPS or AMQPS_WS) that this multiplexing client uses. </p>
+
+    <p>Each registered device client may have its own retry policy and its own SAS token expiry time, separate from every other registered device client. </p>
+
+    <p>The registered device clients must use symmetric key based authentication. </p>
+
+    <p>The registered device clients must belong to the same IoT Hub as all previously registered device clients. </p>
+
+    <p>If any of these device clients are already registered to this multiplexing client, then then this method will not do anything to that particular device client. All other provided device clients will still be registered though. </p>
+
+    <p>Any subscriptions (twin, methods, cloud to device messages) set on these device clients from when it was previously registered to any multiplexing client will need to be set again as subscriptions and their callbacks are not preserved. </p>
+
+    <p></p>
+  syntax: public void registerDeviceClients(Iterable<DeviceClient> deviceClients, long timeoutMilliseconds)
+  uid: com.microsoft.azure.sdk.iot.device.MultiplexingClient.registerDeviceClients(Iterable<DeviceClient>,long)
+uid: com.microsoft.azure.sdk.iot.device.MultiplexingClient.registerDeviceClients*
+fullName: com.microsoft.azure.sdk.iot.device.MultiplexingClient.registerDeviceClients
+name: registerDeviceClients(Iterable<DeviceClient> deviceClients)
+package: com.microsoft.azure.sdk.iot.device
+metadata: {}

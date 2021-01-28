@@ -1,0 +1,79 @@
+### YamlMime:JavaMember
+nameWithType: PartitionReceiver.receive
+type: method
+members:
+- fullName: com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int maxEventCount)
+  name: receive(final int maxEventCount)
+  nameWithType: PartitionReceiver.receive(final int maxEventCount)
+  parameters:
+  - description: <p>maximum number of <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false" data-raw-source="EventData"></xref>'s that this call should return </p>
+    name: maxEventCount
+    type: <xref href="final+int?alt=final+int&text=final+int" data-throw-if-not-resolved="False"/>
+  returns:
+    description: <p>A completableFuture that will yield a batch of <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false" data-raw-source="EventData"></xref>'s from the partition on which this receiver is created. Returns 'null' if no <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false" data-raw-source="EventData"></xref> is present. </p>
+    type: CompletableFuture&lt;Iterable&lt;<xref href="com.microsoft.azure.eventhubs.EventData?alt=com.microsoft.azure.eventhubs.EventData&text=EventData" data-throw-if-not-resolved="False"/>&gt;&gt;
+  summary: >-
+    <p>Receive a batch of <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false" data-raw-source="EventData"></xref>'s from an EventHub partition </p>
+
+    <p>Sample code (sample uses sync version of the api but concept are identical): <pre>
+
+    EventHubClient client = EventHubClient.createSync("__connection__");
+
+    PartitionReceiver receiver = client.createPartitionReceiverSync("ConsumerGroup1", "1");
+
+    Iterable{&lt;}EventData{&gt;} receivedEvents = receiver.receiveSync();</pre></p>
+
+    <p>
+
+      <pre>while (true)
+
+    {
+
+        int batchSize = 0;
+
+        if (receivedEvents != null)
+
+        {
+
+            for(EventData receivedEvent: receivedEvents)
+
+            {
+
+                System.out.println(String.format("Message Payload: %s", new String(receivedEvent.getBytes(), Charset.defaultCharset())));
+
+                System.out.println(String.format("Offset: %s, SeqNo: %s, EnqueueTime: %s",
+
+                    receivedEvent.getSystemProperties().getOffset(),
+
+                    receivedEvent.getSystemProperties().getSequenceNumber(),
+
+                    receivedEvent.getSystemProperties().getEnqueuedTime()));
+
+                batchSize++;
+
+            }
+
+        }</pre>
+
+    </p>
+
+    <p>
+
+      <pre>    System.out.println(String.format("ReceivedBatch Size: %s", batchSize));
+
+        receivedEvents = receiver.receiveSync();
+
+    }
+
+    </pre>
+
+    </p>
+
+    <p></p>
+  syntax: public CompletableFuture<Iterable<EventData>> receive(final int maxEventCount)
+  uid: com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int)
+uid: com.microsoft.azure.eventhubs.PartitionReceiver.receive*
+fullName: com.microsoft.azure.eventhubs.PartitionReceiver.receive
+name: receive(final int maxEventCount)
+package: com.microsoft.azure.eventhubs
+metadata: {}
