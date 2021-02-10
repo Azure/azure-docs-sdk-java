@@ -1,6 +1,6 @@
 ---
-title: Azure Synapse Monitoring client library for Java
-keywords: Azure, java, SDK, API, azure-analytics-synapse-monitoring, synapseanalytics
+title: Azure Synapse Access Control client library for Java
+keywords: Azure, java, SDK, API, azure-analytics-synapse-accesscontrol, synapseanalytics
 author: maggiepint
 ms.author: magpint
 ms.date: 02/09/2021
@@ -11,23 +11,23 @@ ms.devlang: java
 ms.service: synapseanalytics
 ---
 
-# Azure Synapse Monitoring client library for Java - Version 1.0.0-beta.2 
+# Azure Synapse Access Control client library for Java - Version 1.0.0-beta.2 
 
 Azure Synapse is a limitless analytics service that brings together enterprise data warehousing and Big Data analytics. It gives you the freedom to query data on your terms, using either serverless on-demand or provisioned resources—at scale. Azure Synapse brings these two worlds together with a unified experience to ingest, prepare, manage, and serve data for immediate BI and machine learning needs.
 
-The Azure Synapse Analytics monitoring client library enables programmatically monitoring your Synapse workspace.
+The Azure Synapse Analytics access control client library enables programmatically managing role assignments.
 
 [Source code][source_code] | [API reference documentation][api_documentation] | [Product documentation][azsynapse_docs]
 
 ## Getting started
 ### Adding the package to your project
-Maven dependency for the Azure Synapse monitoring client library. Add it to your project's POM file.
+Maven dependency for the Azure Synapse Access Control client library. Add it to your project's POM file.
 
-[//]: # ({x-version-update-start;com.azure:azure-analytics-synapse-monitoring;current})
+[//]: # ({x-version-update-start;com.azure:azure-analytics-synapse-accesscontrol;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
-    <artifactId>azure-analytics-synapse-monitoring</artifactId>
+    <artifactId>azure-analytics-synapse-accesscontrol</artifactId>
     <version>1.0.0-beta.2</version>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Maven dependency for the Azure Synapse monitoring client library. Add it to your
     ```
 
 ### Authenticate the client
-In order to interact with the Azure Synapse service, you'll need to create an instance of the `MonitoringClient` class. You would need a **workspace endpoint** and **client secret credentials (client id, client secret, tenant id)** to instantiate a client object using the default `DefaultAzureCredential` examples shown in this document.
+In order to interact with the Azure Synapse service, you'll need to create an instance of the `RoleDefinitionsClient` or `RoleAssignmentsClient` class. You would need a **workspace endpoint** and **client secret credentials (client id, client secret, tenant id)** to instantiate a client object using the default `DefaultAzureCredential` examples shown in this document.
 
 The `DefaultAzureCredential` way of authentication by providing client secret credentials is being used in this getting started section but you can find more ways to authenticate with [azure-identity][azure_identity].
 
@@ -107,10 +107,10 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-monitoring_1.0.0-beta.2/sdk/synapse/azure-analytics-synapse-accesscontrol/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-accesscontrol_1.0.0-beta.2/sdk/synapse/azure-analytics-synapse-accesscontrol/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azsynapse_docs]: https://docs.microsoft.com/azure/synapse-analytics/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-synapse-monitoring_1.0.0-beta.2/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-synapse-accesscontrol_1.0.0-beta.2/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [azure_synapse]: https://docs.microsoft.com/en-us/azure/synapse-analytics/quickstart-create-workspace
