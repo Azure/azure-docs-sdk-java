@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: storagestorage
+ms.service: storage
 ---
 
 # Azure Storage Blob client library for Java - Version 12.11.0-beta.1 
