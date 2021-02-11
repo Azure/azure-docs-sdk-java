@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Queue client library for Java
-keywords: Azure, java, SDK, API, azure-storage-queue, storagestorage
+keywords: Azure, java, SDK, API, azure-storage-queue, storage
 author: maggiepint
 ms.author: magpint
 ms.date: 02/11/2021
@@ -502,4 +502,3 @@ For details on contributing to this repository, see the [contributing guide](htt
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-queue%2FREADME.png)
-
