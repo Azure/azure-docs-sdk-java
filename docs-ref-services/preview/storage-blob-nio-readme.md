@@ -1,9 +1,9 @@
 ---
-title: Azure Storage Blob NIO FileSystemProvider
-keywords: Azure, java, SDK, API, storage, azure-storage-blob-nio, 
+title: 
+keywords: Azure, java, SDK, API, azure-storage-blob-nio, storage
 author: maggiepint
 ms.author: magpint
-ms.date: 08/13/2020
+ms.date: 02/11/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage Blob NIO FileSystemProvider - Version 12.0.0-beta.2
+# Azure Storage Blob NIO FileSystemProvider
 
 This package allows you to interact with Azure Blob Storage through the standard Java NIO Filesystem APIs.
 
@@ -32,7 +32,7 @@ This package allows you to interact with Azure Blob Storage through the standard
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob-nio</artifactId>
-    <version>12.0.0-beta.2</version>
+    <version>12.0.0-beta.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -162,7 +162,7 @@ Please see the docs for `AzureFileSystemProvider` for a full explanation of init
 <!-- embedme ./src/samples/java/com/azure/storage/blob/nio/ReadmeSamples.java#L39-L43 -->
 ```java
 Map<String, Object> config = new HashMap<>();
-String[] stores = {"<your_container_name", "another_container_name"}; // Any iterable is acceptable
+String stores = "<your_container_name>,<another_container_name>"; // A comma separated list of container names
 config.put(AzureFileSystem.AZURE_STORAGE_ACCOUNT_KEY, "<your_account_key>");
 config.put(AzureFileSystem.AZURE_STORAGE_FILE_STORES, stores);
 FileSystem myFs = FileSystems.newFileSystem(new URI("azb://?account=<your_account_name"), config);
@@ -316,19 +316,19 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-blob-nio/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-blob-nio/src/samples/README.md
-[docs]: http://azure.github.io/azure-sdk-for-java/
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.3/sdk/storage/azure-storage-blob-nio/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.3/sdk/storage/azure-storage-blob-nio/src/samples/README.md
+[docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
 [sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[shared_key]: https://docs.microsoft.com/en-us/rest/api/storageservices/authorize-with-shared-key
+[shared_key]: https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.3/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
 [samples]: https://docs.oracle.com/javase/tutorial/essential/io/fileio.html
 [cla]: https://cla.microsoft.com
@@ -340,3 +340,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [file_systems]: https://docs.oracle.com/javase/7/docs/api/java/nio/file/FileSystems.html
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-blob%2FREADME.png)
+
