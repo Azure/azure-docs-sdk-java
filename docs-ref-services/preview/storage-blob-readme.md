@@ -1,17 +1,18 @@
 ---
 title: Azure Storage Blob client library for Java
-keywords: Azure, java, SDK, API, azure-storage-blob, storage
+keywords: Azure, java, SDK, API, azure-storage-blob, storagestorage
 author: maggiepint
 ms.author: magpint
-ms.date: 12/08/2020
+ms.date: 02/11/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: storage
+ms.service: storagestorage
 ---
 
-# Azure Storage Blob client library for Java - Version 12.10.0-beta.1 
+# Azure Storage Blob client library for Java - Version 12.11.0-beta.1 
+
 
 Azure Blob Storage is Microsoft's object storage solution for the cloud. Blob
 Storage is optimized for storing massive amounts of unstructured data.
@@ -35,7 +36,7 @@ definition, such as text or binary data.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob</artifactId>
-    <version>12.10.0-beta.1</version>
+    <version>12.10.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -153,36 +154,17 @@ Note that the above URIs may not hold for more advanced scenarios such as custom
 
 The following sections provide several code snippets covering some of the most common Azure Storage Blob tasks, including:
 
-- [Azure Storage Blob client library for Java - Version 12.10.0-beta.1](#azure-storage-blob-client-library-for-java---version-12100-beta1)
-  - [Getting started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Include the package](#include-the-package)
-    - [Create a Storage Account](#create-a-storage-account)
-    - [Authenticate the client](#authenticate-the-client)
-      - [Get credentials](#get-credentials)
-        - [SAS Token](#sas-token)
-        - [**Shared Key Credential**](#shared-key-credential)
-  - [Key concepts](#key-concepts)
-    - [URL format](#url-format)
-      - [Resource URI Syntax](#resource-uri-syntax)
-  - [Examples](#examples)
-    - [Create a `BlobServiceClient`](#create-a-blobserviceclient)
-    - [Create a `BlobContainerClient`](#create-a-blobcontainerclient)
-    - [Create a `BlobClient`](#create-a-blobclient)
-    - [Create a container](#create-a-container)
-    - [Upload a blob from a stream](#upload-a-blob-from-a-stream)
-    - [Upload a blob from local path](#upload-a-blob-from-local-path)
-    - [Download a blob to a stream](#download-a-blob-to-a-stream)
-    - [Download a blob to local path](#download-a-blob-to-local-path)
-    - [Enumerate blobs](#enumerate-blobs)
-    - [Copy a blob](#copy-a-blob)
-    - [Authenticate with Azure Identity](#authenticate-with-azure-identity)
-  - [Troubleshooting](#troubleshooting)
-    - [Default HTTP Client](#default-http-client)
-    - [Default SSL library](#default-ssl-library)
-  - [Next steps](#next-steps)
-  - [Next steps Samples](#next-steps-samples)
-  - [Contributing](#contributing)
+- [Create a `BlobServiceClient`](#create-a-blobserviceclient)
+- [Create a `BlobContainerClient`](#create-a-blobcontainerclient)
+- [Create a `BlobClient`](#create-a-blobclient)
+- [Create a container](#create-a-container)
+- [Upload a blob from a stream](#upload-a-blob-from-a-stream)
+- [Upload a blob from local path](#upload-a-blob-from-local-path)
+- [Download a blob to a stream](#download-a-blob-to-a-stream)
+- [Download a blob to local path](#download-a-blob-to-local-path)
+- [Enumerate blobs](#enumerate-blobs)
+- [Copy a blob](#copy-a-blob)
+- [Authenticate with Azure Identity](#authenticate-with-azure-identity)
 
 ### Create a `BlobServiceClient`
 
@@ -408,8 +390,8 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-blob/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-blob/src/samples/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.11.0-beta.1/sdk/storage/azure-storage-blob/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.11.0-beta.1/sdk/storage/azure-storage-blob/src/samples/README.md
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
@@ -419,9 +401,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.11.0-beta.1/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-blob/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.11.0-beta.1/sdk/storage/azure-storage-blob/src/samples
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
@@ -429,3 +411,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-blob%2FREADME.png)
+
