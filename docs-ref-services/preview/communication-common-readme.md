@@ -3,7 +3,7 @@ title: Azure Communication Service Common client library for Java
 keywords: Azure, java, SDK, API, azure-communication-common, communication
 author: maggiepint
 ms.author: magpint
-ms.date: 11/17/2020
+ms.date: 02/10/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: communication
 ---
 
-# Azure Communication Service Common client library for Java - Version 1.0.0-beta.3 
+# Azure Communication Service Common client library for Java - Version 1.0.0-beta.4 
 
 
 Azure Communication Common contains data structures commonly used for communicating with Azure Communication Services. 
@@ -33,7 +33,7 @@ It is intended to provide cross cutting concerns, e.g. authentication.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-common</artifactId>
-    <version>1.0.0-beta.3</version>
+    <version>1.0.0-beta.4</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -46,11 +46,11 @@ Azure Communication Service supports HMAC authentication with resource access ke
 apply HMAC authentication, construct CommunicationClientCredential with the access key and instantiate
 a CommunicationIdentityClient to manage users and tokens.
 
-### CommunicationUserCredential
+### CommunicationTokenCredential
 
-It is up to you the developer to first create valid user tokens with the Communication Administration SDK. Then you use these tokens with the `CommunicationUserCredential`.
+It is up to you the developer to first create valid user tokens with the Communication Administration SDK. Then you use these tokens with the `CommunicationTokenCredential`.
 
-`CommunicationUserCredential` authenticates a user with Communication Services, such as Chat or Calling. It optionally provides an auto-refresh mechanism to ensure a continuously stable authentication state during communications.
+`CommunicationTokenCredential` authenticates a user with Communication Services, such as Chat or Calling. It optionally provides an auto-refresh mechanism to ensure a continuously stable authentication state during communications.
 
 ## Contributing
 
