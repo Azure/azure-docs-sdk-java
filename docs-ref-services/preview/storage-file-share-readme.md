@@ -3,7 +3,7 @@ title: Azure File Share client library for Java
 keywords: Azure, java, SDK, API, azure-storage-file-share, storage
 author: maggiepint
 ms.author: magpint
-ms.date: 12/08/2020
+ms.date: 02/11/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure File Share client library for Java - Version 12.8.0-beta.1 
+# Azure File Share client library for Java - Version 12.9.0-beta.1 
 
 
 The Server Message Block (SMB) protocol is the preferred file share protocol used on-premises today.
@@ -39,7 +39,7 @@ Shares provide a way to organize sets of files and also can be mounted as an SMB
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-file-share</artifactId>
-  <version>12.8.0-beta.1</version>
+  <version>12.8.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -217,59 +217,33 @@ ShareFileClient fileClient = new ShareFileClientBuilder().connectionString(CONNE
 ## Examples
 
 The following sections provide several code snippets covering some of the most common Configuration Service tasks, including:
-- [Azure File Share client library for Java - Version 12.8.0-beta.1](#azure-file-share-client-library-for-java---version-1280-beta1)
-  - [Getting started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Include the package](#include-the-package)
-    - [Create a Storage Account](#create-a-storage-account)
-    - [Authenticate the client](#authenticate-the-client)
-      - [Get Credentials](#get-credentials)
-  - [Key concepts](#key-concepts)
-    - [URL format](#url-format)
-      - [Resource URI Syntax](#resource-uri-syntax)
-    - [Handling Exceptions](#handling-exceptions)
-    - [Resource Names](#resource-names)
-    - [Share Names](#share-names)
-    - [Directory and File Names](#directory-and-file-names)
-    - [Metadata Names](#metadata-names)
-    - [Share Services](#share-services)
-    - [Share](#share)
-    - [Directory](#directory)
-    - [File](#file)
-  - [Examples](#examples)
-    - [Create a share](#create-a-share)
-    - [Create a snapshot on Share](#create-a-snapshot-on-share)
-    - [Create a directory](#create-a-directory)
-    - [Create a subdirectory](#create-a-subdirectory)
-    - [Create a File](#create-a-file)
-    - [List all Shares](#list-all-shares)
-    - [List all subdirectories and files](#list-all-subdirectories-and-files)
-    - [List all ranges on file](#list-all-ranges-on-file)
-    - [Delete a share](#delete-a-share)
-    - [Delete a directory](#delete-a-directory)
-    - [Delete a subdirectory](#delete-a-subdirectory)
-    - [Delete a file](#delete-a-file)
-    - [Copy a file](#copy-a-file)
-    - [Abort copy a file](#abort-copy-a-file)
-    - [Upload data to storage](#upload-data-to-storage)
-    - [Upload file to storage](#upload-file-to-storage)
-    - [Download data from file range](#download-data-from-file-range)
-    - [Download file from storage](#download-file-from-storage)
-    - [Get a share service properties](#get-a-share-service-properties)
-    - [Set a share service properties](#set-a-share-service-properties)
-    - [Set a share metadata](#set-a-share-metadata)
-    - [Get a share access policy](#get-a-share-access-policy)
-    - [Set a share access policy](#set-a-share-access-policy)
-    - [Get handles on directory file](#get-handles-on-directory-file)
-    - [Force close handles on handle id](#force-close-handles-on-handle-id)
-    - [Set quota on share](#set-quota-on-share)
-    - [Set file httpheaders](#set-file-httpheaders)
-  - [Troubleshooting](#troubleshooting)
-  - [General](#general)
-    - [Default HTTP Client](#default-http-client)
-    - [Default SSL library](#default-ssl-library)
-  - [Next steps](#next-steps)
-  - [Contributing](#contributing)
+- [Create a Share](#create-a-share)
+- [Create a snapshot on Share](#create-a-snapshot-on-share)
+- [Create a Directory](#create-a-directory)
+- [Create a Subdirectory](#create-a-subdirectory)
+- [Create a File](#create-a-file)
+- [List all Shares](#list-all-shares)
+- [List all Subdirectories and Files](#list-all-subdirectories-and-files)
+- [List all ranges on file](#list-all-ranges-on-file)
+- [Delete a Share](#delete-a-share)
+- [Delete a Directory](#delete-a-directory)
+- [Delete a Subdirectory](#delete-a-subdirectory)
+- [Delete a File](#delete-a-file)
+- [Copy a File](#copy-a-file)
+- [Abort copy a File](#abort-copy-a-file)
+- [Upload data to Storage File](#upload-data-to-storage)
+- [Upload file to Storage File](#upload-file-to-storage)
+- [Download data from file range](#download-data-from-file-range)
+- [Download file from Storage File](#download-file-from-storage)
+- [Get a share service properties](#get-a-share-service-properties)
+- [Set a share service properties](#set-a-share-service-properties)
+- [Set a Share metadata](#set-a-share-metadata)
+- [Get a Share access policy](#get-a-share-access-policy)
+- [Set a Share access policy](#set-a-share-access-policy)
+- [Get handles on Directory and File](#get-handles-on-directory-file)
+- [Force close handles on handle id](#force-close-handles-on-handle-id)
+- [Set quota on Share](#set-quota-on-share)
+- [Set file httpHeaders](#set-file-httpheaders)
 
 ### Create a share
 Create a share in the Storage Account. Throws StorageException If the share fails to be created.
@@ -551,7 +525,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/master/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.9.0-beta.1/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -560,7 +534,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 5. Create new Pull Request
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-file-share/src/
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.9.0-beta.1/sdk/storage/azure-storage-file-share/src/
 [reference_docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_api_documentation]: https://docs.microsoft.com/rest/api/storageservices/file-service-rest-api
 [storage_docs]: https://docs.microsoft.com/azure/storage/files/storage-files-introduction
@@ -574,7 +548,8 @@ For details on contributing to this repository, see the [contributing guide](htt
 [RFL_URL_2]: https://www.ietf.org/rfc/rfc3987.txt
 [csharp_identifiers]: https://docs.microsoft.com/dotnet/csharp/language-reference/
 [storage_file_rest]: https://docs.microsoft.com/rest/api/storageservices/file-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-file-share/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.9.0-beta.1/sdk/storage/azure-storage-file-share/src/samples
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-file-share%2FREADME.png)
+
