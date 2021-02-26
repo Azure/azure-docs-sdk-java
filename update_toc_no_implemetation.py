@@ -41,9 +41,9 @@ if __name__ == "__main__":
 	try:
 		with open(os.path.join(root_dir, TARGET_SOURCE_FOLDER, "toc.yml"), "r") as latest_reference_yml:
 			origin_latest_toc = yaml.safe_load(latest_reference_yml)
-		with open(os.path.join(root_dir, PREVIEW_SOURCE_FOLDER, "toc.yml"), "r")) as preview_reference_yml:
+		with open(os.path.join(root_dir, PREVIEW_SOURCE_FOLDER, "toc.yml"), "r") as preview_reference_yml:
 			origin_preview_toc = yaml.safe_load(preview_reference_yml)
-		with open(os.path.join(root_dir, LEGACY_SOURCE_FOLDER, "toc.yml"), "r")) as legacy_reference_yml:
+		with open(os.path.join(root_dir, LEGACY_SOURCE_FOLDER, "toc.yml"), "r") as legacy_reference_yml:
 			origin_legacy_toc = yaml.safe_load(legacy_reference_yml)
 	except Exception as f:
 		print(
