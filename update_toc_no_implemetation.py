@@ -11,13 +11,6 @@ import yaml
 import glob
 import shutil
 
-
-# by default, yaml does not maintain insertion order of the dicts
-# given that this is intended to generate TABLE OF CONTENTS values,
-# maintaining this order is important.
-# The drop-in replacement oyaml is a handy solution for us.
-import oyaml as yaml
-
 TARGET_SOURCE_FOLDER = "docs-ref-autogen"
 PREVIEW_SOURCE_FOLDER = "preview/docs-ref-autogen"
 LEGACY_SOURCE_FOLDER = "legacy/docs-ref-autogen"
