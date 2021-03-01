@@ -4,6 +4,7 @@
 
 import argparse
 import os
+import yaml
 
 # by default, yaml does not maintain insertion order of the dicts
 # given that this is intended to generate TABLE OF CONTENTS values,
