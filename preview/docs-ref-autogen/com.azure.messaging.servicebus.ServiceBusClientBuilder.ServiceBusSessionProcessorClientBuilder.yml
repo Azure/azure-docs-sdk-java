@@ -1,0 +1,37 @@
+### YamlMime:JavaType
+uid: "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder"
+fullName: "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder"
+name: "ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder"
+nameWithType: "ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder"
+summary: "Builder for creating <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref> to consume messages from a session-based Service Bus entity. <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClients\"></xref> provides a push-based mechanism that invokes the message processing callback when a message is received or the error handler when an error occurs when receiving messages. To create an instance, therefore, configuring the two callbacks - <xref uid=\"com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.processMessage(java.util.function.Consumer&lt;com.azure.messaging.servicebus.ServiceBusReceivedMessageContext&gt;)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#processMessage(Consumer)\"></xref> and <xref uid=\"com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.processError(java.util.function.Consumer&lt;java.lang.Throwable&gt;)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#processError(Consumer)\"></xref> are necessary. By default, a <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref> is configured with auto-completion and auto-lock renewal capabilities. <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClients\"></xref> created by this builder can be configured to consume messages from <xref uid=\"com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.maxConcurrentSessions(int)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"multiple sessions concurrently\"></xref>. By default, the processor will receive messages from a single session with rollover.\n\n**Sample code to instantiate a session-enabled processor client**\n\n```java\nConsumer<ServiceBusReceivedMessageContext> messageProcessor = context -> {\n     ServiceBusReceivedMessage message = context.getMessage();\n     System.out.println(\"Received message \" + message.getBody().toString()\n         + \" session: \" + message.getSessionId());\n };\n \n Consumer<Throwable> errorHandler = throwable -> {\n     System.out.println(\"Error when receiving messages \" + throwable.getMessage());\n     if (throwable instanceof ServiceBusReceiverException) {\n         ServiceBusReceiverException serviceBusReceiverException = (ServiceBusReceiverException) throwable;\n         System.out.println(\"Error source \" + serviceBusReceiverException.getErrorSource());\n     }\n };\n \n ServiceBusProcessorClient sessionProcessorClient = new ServiceBusClientBuilder()\n     .connectionString(\"<< connection-string >>\")\n     .sessionProcessor()\n     .queueName(\"<< session-enabled queue name >>\")\n     .maxConcurrentSessions(2)\n     .processMessage(messageProcessor)\n     .processError(errorHandler)\n     .buildProcessorClient();\n```"
+inheritances:
+- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
+inheritedMembers:
+- "java.lang.Object.clone()"
+- "java.lang.Object.equals(java.lang.Object)"
+- "java.lang.Object.finalize()"
+- "java.lang.Object.getClass()"
+- "java.lang.Object.hashCode()"
+- "java.lang.Object.notify()"
+- "java.lang.Object.notifyAll()"
+- "java.lang.Object.toString()"
+- "java.lang.Object.wait()"
+- "java.lang.Object.wait(long)"
+- "java.lang.Object.wait(long,int)"
+syntax: "public final class ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder"
+methods:
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.buildProcessorClient()"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.disableAutoComplete()"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.maxConcurrentCalls(int)"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.maxConcurrentSessions(int)"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.prefetchCount(int)"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.processError(java.util.function.Consumer<java.lang.Throwable>)"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.processMessage(java.util.function.Consumer<com.azure.messaging.servicebus.ServiceBusReceivedMessageContext>)"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.queueName(java.lang.String)"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.receiveMode(com.azure.messaging.servicebus.models.ReceiveMode)"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.subscriptionName(java.lang.String)"
+- "com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionProcessorClientBuilder.topicName(java.lang.String)"
+type: "class"
+metadata: {}
+package: "com.azure.messaging.servicebus"
+artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
