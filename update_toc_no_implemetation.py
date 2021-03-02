@@ -4,6 +4,7 @@
 
 import argparse
 import os
+import yaml
 
 TARGET_SOURCE_FOLDER = "docs-ref-autogen"
 PREVIEW_SOURCE_FOLDER = "preview/docs-ref-autogen"
