@@ -4,12 +4,6 @@
 
 import argparse
 import os
-import json
-import fnmatch
-import re
-import yaml
-import glob
-import shutil
 
 TARGET_SOURCE_FOLDER = "docs-ref-autogen"
 PREVIEW_SOURCE_FOLDER = "preview/docs-ref-autogen"
