@@ -47,6 +47,7 @@ if __name__ == "__main__":
 		with open(os.path.join(root_dir, PREVIEW_SOURCE_FOLDER, "toc.yml"), "r") as preview_reference_yml:
 			origin_preview_toc = yaml.safe_load(preview_reference_yml)
 	except Exception as f:
+		print(f)
 		print(
 			"Execution requires that both the known namespaces and preview reference yml be defined."
 		)	
