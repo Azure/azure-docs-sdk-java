@@ -3,7 +3,7 @@ title: Azure Communication Service Common client library for Java
 keywords: Azure, java, SDK, API, azure-communication-common, communication
 author: maggiepint
 ms.author: magpint
-ms.date: 02/10/2021
+ms.date: 03/02/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: communication
 ---
 
-# Azure Communication Service Common client library for Java - Version 1.0.0-beta.4 
+# Azure Communication Service Common client library for Java - Version 1.0.0-beta.5 
 
 
 Azure Communication Common contains data structures commonly used for communicating with Azure Communication Services. 
@@ -48,7 +48,7 @@ a CommunicationIdentityClient to manage users and tokens.
 
 ### CommunicationTokenCredential
 
-It is up to you the developer to first create valid user tokens with the Communication Administration SDK. Then you use these tokens with the `CommunicationTokenCredential`.
+It is up to you the developer to first create valid user tokens with the Communication Identity SDK. Then you use these tokens with the `CommunicationTokenCredential`.
 
 `CommunicationTokenCredential` authenticates a user with Communication Services, such as Chat or Calling. It optionally provides an auto-refresh mechanism to ensure a continuously stable authentication state during communications.
 
