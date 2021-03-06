@@ -1,17 +1,17 @@
 ---
 title: Azure Communication Identity client library for Java
-keywords: Azure, java, SDK, API, azure-communication-identity, communication
+keywords: Azure, java, SDK, API, azure-communication-identity, 
 author: maggiepint
 ms.author: magpint
-ms.date: 03/02/2021
+ms.date: 02/10/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: communication
+ms.service: 
 ---
 
-# Azure Communication Identity client library for Java - Version 1.0.0-beta.5 
+# Azure Communication Identity client library for Java - Version 1.0.0-beta.4 
 
 
 The identity package is used for managing users and tokens for Azure Communication Services.
@@ -50,9 +50,8 @@ A `DefaultAzureCredential` object must be passed to the `CommunicationIdentityCl
 `AZURE_CLIENT_SECRET`, `AZURE_CLIENT_ID` and `AZURE_TENANT_ID` environment variables 
 are needed to create a DefaultAzureCredential object.
 
-<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L67-L77 -->
+<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L67-L76 -->
 ```java
-// You can find your endpoint and access key from your resource in the Azure Portal
 String endpoint = "https://<RESOURCE_NAME>.communication.azure.com";
 
 // Create an HttpClient builder of your choice and customize it
@@ -69,24 +68,24 @@ CommunicationIdentityClient communicationIdentityClient = new CommunicationIdent
 Identity uses HMAC authentication with the resource access key.
 The access key must be provided to the `CommunicationIdentityClientBuilder` via the accessKey() function. Endpoint and httpClient must also be set via the endpoint() and httpClient() functions respectively.
 
-<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L25-L36 -->
+<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L24-L35 -->
 ```java
 // You can find your endpoint and access key from your resource in the Azure Portal
 String endpoint = "https://<RESOURCE_NAME>.communication.azure.com";
-AzureKeyCredential keyCredential = new AzureKeyCredential("SECRET");
+String accessKey = "SECRET";
 
 // Create an HttpClient builder of your choice and customize it
 HttpClient httpClient = new NettyAsyncHttpClientBuilder().build();
 
 CommunicationIdentityClient communicationIdentityClient = new CommunicationIdentityClientBuilder()
     .endpoint(endpoint)
-    .credential(keyCredential)
+    .accessKey(accessKey)
     .httpClient(httpClient)
     .buildClient();
 ```
 
 Alternatively, you can provide the entire connection string using the connectionString() function instead of providing the endpoint and access key. 
-<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L50-L56 -->
+<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L49-L55 -->
 ```java
 // Your can find your connection string from your resource in the Azure Portal
 String connectionString = "<connection_string>";
@@ -106,7 +105,7 @@ CommunicationIdentityClient communicationIdentityClient = new CommunicationIdent
 Use the `createUser` function to create a new user. `user.getId()` gets the
 unique ID of the user that was created.
 
-<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L89-L90 -->
+<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L88-L89 -->
 ```java
 CommunicationUserIdentifier user = communicationIdentityClient.createUser();
 System.out.println("User id: " + user.getId());
@@ -114,10 +113,10 @@ System.out.println("User id: " + user.getId());
 
 Alternatively, use the `createUserWithToken` function to create a new user and issue a token for it. 
 For this option, a list of communication tokens scopes must be defined. 
-<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L101-L107 -->
+<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L100-L106 -->
 ```java
 // Define a list of communication token scopes
-List<CommunicationTokenScope> scopes =
+List<CommunicationTokenScope> scopes = 
     new ArrayList<>(Arrays.asList(CommunicationTokenScope.CHAT));
 
 CommunicationUserIdentifierWithTokenResult result = communicationIdentityClient.createUserWithToken(scopes);
@@ -125,18 +124,18 @@ System.out.println("User id: " + result.getUser().getId());
 System.out.println("User token value: " + result.getUserToken().getToken());
 ```
 
-### Getting a token for an existing user
-Use the `getToken` function to get a token for an existing user. The function
+### Issuing or Refreshing a token for an existing user
+Use the `issueToken` function to issue or refresh a token for an existing user. The function
 also takes in a list of `CommunicationIdentityTokenScope`. Scope options include:
 - `chat` (Chat)
 - `voip` (Voice over IP)
 
-<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L120-L125 -->
+<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L119-L124 -->
 ```java
-List<CommunicationTokenScope> scopes =
+List<CommunicationTokenScope> scopes = 
     new ArrayList<>(Arrays.asList(CommunicationTokenScope.CHAT));
 
-AccessToken userToken = communicationIdentityClient.getToken(user, scopes);
+AccessToken userToken = communicationIdentityClient.issueToken(user, scopes);
 System.out.println("User token value: " + userToken.getToken());
 System.out.println("Expires at: " + userToken.getExpiresAt());
 ```
@@ -144,7 +143,7 @@ System.out.println("Expires at: " + userToken.getExpiresAt());
 ### Revoking all tokens for an existing user
 Use the `revokeTokens` function to revoke all the issued tokens of a user.
 
-<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L138-L139 -->
+<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L137-L138 -->
 ```java
 // revoke tokens issued for the specified user
 communicationIdentityClient.revokeTokens(user);
@@ -153,7 +152,7 @@ communicationIdentityClient.revokeTokens(user);
 ### Deleting a user
 Use the `deleteUser` function to delete a user.
 
-<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L148-L149 -->
+<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L147-L148 -->
 ```java
 // delete a previously created user
 communicationIdentityClient.deleteUser(user);
@@ -162,7 +161,7 @@ communicationIdentityClient.deleteUser(user);
 ## Troubleshooting
 
 All user token service operations will throw an exception on failure.
-<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L157-L161 -->
+<!-- embedme ./src/samples/java/com/azure/communication/identity/ReadmeSamples.java#L156-L160 -->
 ```java
 try {
     CommunicationUserIdentifier user = communicationIdentityClient.createUser();
@@ -191,7 +190,6 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [product_docs]: https://docs.microsoft.com/azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-identity
 [api_documentation]: https://aka.ms/java-docs
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-identity_1.0.0-beta.5/sdk/communication/azure-communication-identity/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-identity_1.0.0-beta.4/sdk/communication/azure-communication-identity/src
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcommunication%2Fazure-communication-identity%2FREADME.png)
-
