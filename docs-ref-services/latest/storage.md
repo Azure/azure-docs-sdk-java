@@ -91,21 +91,21 @@ Refer to the [Azure SDK Releases page](https://azure.github.io/azure-sdk/) for d
 
 ## Client library for resource management
 
-Use the Azure Storage resource provider to manage storage accounts, account keys, access tiers, and more. To use the resource provider library, [add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file. The latest version of the resource provider library is available on [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-mgmt-storage).  
+Use the Azure Storage resource provider to manage storage accounts, account keys, access tiers, and more. To use the resource provider library, [add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file. The latest version of the resource provider library is available on [Maven](https://mvnrepository.com/artifact/com.azure.resourcemanager/azure-resourcemanager-storage).
 
-For more information about the resource provider library, see the [Management](/java/api/overview/azure/storage/management) reference. The source code for the resource provider library is available in the [Azure Java SDK repository](https://github.com/Azure/azure-sdk-for-java/tree/master/storage/resource-manager).
+For more information about the resource provider library, see the [Management](/java/api/overview/azure/storage/management) reference. The source code for the resource provider library is available in the [Azure Java SDK repository](https://aka.ms/azsdk/java/mgmt).
 
 The following example creates a new storage account in your subscription and retrieves its access keys.
 
 ```java
 StorageAccount storageAccount = azure.storageAccounts().define(storageAccountName)
-        .withRegion(Region.US_EAST)
-        .withNewResourceGroup(rgName)
-        .create();
+    .withRegion(Region.US_EAST)
+    .withNewResourceGroup(rgName)
+    .create();
 
 // get a list of storage account keys related to the account
 List<StorageAccountKey> storageAccountKeys = storageAccount.getKeys();
-for(StorageAccountKey key : storageAccountKeys)    {
+for (StorageAccountKey key : storageAccountKeys) {
     System.out.println("Key name: " + key.keyName() + " with value "+ key.value());
 }
 ```
