@@ -3,7 +3,7 @@ title: Azure OpenTelemetry Tracing plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-tracing-opentelemetry, plugin
 author: maggiepint
 ms.author: magpint
-ms.date: 02/06/2021
+ms.date: 03/09/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: plugin
 ---
 
-# Azure OpenTelemetry Tracing plugin library for Java - Version 1.0.0-beta.7 
+# Azure OpenTelemetry Tracing plugin library for Java - Version 1.0.0-beta.8 
 
 
 This package enables distributed tracing across Azure SDK Java libraries through [OpenTelemetry][OpenTelemetry]. OpenTelemetry is an open source, vendor-agnostic, single distribution of libraries to provide metrics collection and distributed tracing for services.
@@ -36,7 +36,7 @@ documentation][api_documentation] | [Samples][samples]
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-core-tracing-opentelemetry</artifactId>
-  <version>1.0.0-beta.7</version>
+  <version>1.0.0-beta.8</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -168,19 +168,19 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_data_app_configuration]: https://mvnrepository.com/artifact/com.azure/azure-data-appconfiguration/
 [azure_keyvault_secrets]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-secrets
 [azure_messaging_eventhubs_mvn]: https://mvnrepository.com/artifact/com.azure/azure-messaging-eventhubs/
-[azure-messaging-eventhubs]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.7/sdk/eventhubs/azure-messaging-eventhubs
-[azure-security-keyvault-secrets]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.7/sdk/keyvault/azure-security-keyvault-secrets
-[context]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.7/sdk/core/azure-core/src/main/java/com/azure/core/util/Context.java
+[azure-messaging-eventhubs]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.8/sdk/eventhubs/azure-messaging-eventhubs
+[azure-security-keyvault-secrets]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.8/sdk/keyvault/azure-security-keyvault-secrets
+[context]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.8/sdk/core/azure-core/src/main/java/com/azure/core/util/Context.java
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [OpenTelemetry-quickstart]: https://github.com/open-telemetry/opentelemetry-java
 [OpenTelemetry]: https://github.com/open-telemetry/opentelemetry-java
-[sample_app_config]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.7/sdk/core/azure-core-tracing-opentelemetry/src/samples/CreateConfigurationSettingTracingSample.md
-[sample_async_key_vault]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.7/sdk/core/azure-core-tracing-opentelemetry/src/samples/AsyncListKeyVaultSecretsSample.md
-[sample_eventhubs]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.7/sdk/core/azure-core-tracing-opentelemetry/src/samples/PublishEventsTracingSample.md
-[sample_key_vault]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.7/sdk/core/azure-core-tracing-opentelemetry/src/samples/ListKeyVaultSecretsTracingSample.md
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.7/sdk/core/azure-core-tracing-opentelemetry/src/samples/
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.7/sdk/core/azure-core-tracing-opentelemetry/src
+[sample_app_config]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.8/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/CreateConfigurationSettingLoggingExporterSample.java
+[sample_async_key_vault]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.8/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/AsyncListKeyVaultSecretsLoggingExporterSample.java
+[sample_eventhubs]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.8/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/PublishEventsJaegerExporterSample.java
+[sample_key_vault]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.8/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/ListKeyVaultSecretsJaegerExporterSample.java
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.8/sdk/core/azure-core-tracing-opentelemetry/src/samples/
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.8/sdk/core/azure-core-tracing-opentelemetry/src
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-tracing-opentelemetry%2FREADME.png)
 
