@@ -1,0 +1,33 @@
+### YamlMime:JavaType
+uid: "com.azure.messaging.eventgrid.EventGridPublisherAsyncClient"
+fullName: "com.azure.messaging.eventgrid.EventGridPublisherAsyncClient<T>"
+name: "EventGridPublisherAsyncClient<T>"
+nameWithType: "EventGridPublisherAsyncClient<T>"
+summary: "A service client that publishes events to an EventGrid topic or domain asynchronously. Use <xref uid=\"com.azure.messaging.eventgrid.EventGridPublisherClientBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventGridPublisherClientBuilder\"></xref> to create an instance of this client.\n\n**Create EventGridPublisherAsyncClient for CloudEvent Samples**\n\n```java\n// Create a client to send events of CloudEvent schema (com.azure.core.models.CloudEvent)\n EventGridPublisherAsyncClient<CloudEvent> cloudEventPublisherClient = new EventGridPublisherClientBuilder()\n     .endpoint(System.getenv(\"AZURE_EVENTGRID_CLOUDEVENT_ENDPOINT\"))  // make sure it accepts CloudEvent\n     .credential(new AzureKeyCredential(System.getenv(\"AZURE_EVENTGRID_CLOUDEVENT_KEY\")))\n     .buildCloudEventPublisherAsyncClient();\n```\n\n**Send CloudEvent Samples**\n\n```java\n// Create a com.azure.models.CloudEvent.\n User user = new User(\"Stephen\", \"James\");\n CloudEvent cloudEventDataObject = new CloudEvent(\"/cloudevents/example/source\", \"Example.EventType\",\n     BinaryData.fromObject(user), CloudEventDataFormat.JSON, \"application/json\");\n \n // Send a single CloudEvent\n cloudEventPublisherClient.sendEvent(cloudEventDataObject).block();\n \n // Send a list of CloudEvents to the EventGrid service altogether.\n // This has better performance than sending one by one.\n cloudEventPublisherClient.sendEvents(Arrays.asList(\n     cloudEventDataObject\n     // add more CloudEvents objects\n )).block();\n```\n\n**Create EventGridPublisherAsyncClient for EventGridEvent Samples**\n\n```java\n// Create a client to send events of EventGridEvent schema\n EventGridPublisherAsyncClient<EventGridEvent> eventGridEventPublisherClient = new EventGridPublisherClientBuilder()\n     .endpoint(System.getenv(\"AZURE_EVENTGRID_EVENT_ENDPOINT\"))  // make sure it accepts EventGridEvent\n     .credential(new AzureKeyCredential(System.getenv(\"AZURE_EVENTGRID_EVENT_KEY\")))\n     .buildEventGridEventPublisherAsyncClient();\n```\n\n**Send EventGridEvent Samples**\n\n```java\n// Create an EventGridEvent\n User user = new User(\"John\", \"James\");\n EventGridEvent eventGridEvent = new EventGridEvent(\"/EventGridEvents/example/source\",\n     \"Example.EventType\", BinaryData.fromObject(user), \"0.1\");\n \n // Send a single EventGridEvent\n eventGridEventPublisherClient.sendEvent(eventGridEvent).block();\n \n // Send a list of EventGridEvents to the EventGrid service altogether.\n // This has better performance than sending one by one.\n eventGridEventPublisherClient.sendEvents(Arrays.asList(\n     eventGridEvent\n     // add more EventGridEvents objects\n )).block();\n```\n\n**Create EventGridPublisherAsyncClient for Custom Event Schema Samples**\n\n```java\n// Create a client to send events of custom event\n EventGridPublisherAsyncClient<BinaryData> customEventPublisherClient = new EventGridPublisherClientBuilder()\n     .endpoint(System.getenv(\"AZURE_CUSTOM_EVENT_ENDPOINT\"))  // make sure it accepts custom events\n     .credential(new AzureKeyCredential(System.getenv(\"AZURE_CUSTOM_EVENT_KEY\")))\n     .buildCustomEventPublisherAsyncClient();\n```\n\n**Send Custom Event Schema Samples**\n\n```java\n// Create an custom event object (both POJO and Map work)\n Map<String, Object> customEvent = new HashMap<String, Object>() {\n     {\n         put(\"id\", UUID.randomUUID().toString());\n         put(\"subject\", \"Test\");\n         put(\"foo\", \"bar\");\n         put(\"type\", \"Microsoft.MockPublisher.TestEvent\");\n         put(\"data\", 100.0);\n         put(\"dataVersion\", \"0.1\");\n     }\n };\n \n // Send a single custom event\n customEventPublisherClient.sendEvent(BinaryData.fromObject(customEvent)).block();\n \n // Send a list of EventGridEvents to the EventGrid service altogether.\n // This has better performance than sending one by one.\n customEventPublisherClient.sendEvents(Arrays.asList(\n     BinaryData.fromObject(customEvent)\n     // add more custom events in BinaryData\n )).block();\n```"
+inheritances:
+- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
+inheritedMembers:
+- "java.lang.Object.clone()"
+- "java.lang.Object.equals(java.lang.Object)"
+- "java.lang.Object.finalize()"
+- "java.lang.Object.getClass()"
+- "java.lang.Object.hashCode()"
+- "java.lang.Object.notify()"
+- "java.lang.Object.notifyAll()"
+- "java.lang.Object.toString()"
+- "java.lang.Object.wait()"
+- "java.lang.Object.wait(long)"
+- "java.lang.Object.wait(long,int)"
+syntax: "public final class EventGridPublisherAsyncClient<T>"
+methods:
+- "com.azure.messaging.eventgrid.EventGridPublisherAsyncClient.generateSas(java.lang.String,com.azure.core.credential.AzureKeyCredential,java.time.OffsetDateTime)"
+- "com.azure.messaging.eventgrid.EventGridPublisherAsyncClient.generateSas(java.lang.String,com.azure.core.credential.AzureKeyCredential,java.time.OffsetDateTime,com.azure.messaging.eventgrid.EventGridServiceVersion)"
+- "com.azure.messaging.eventgrid.EventGridPublisherAsyncClient.sendEvent(T)"
+- "com.azure.messaging.eventgrid.EventGridPublisherAsyncClient.sendEvents(java.lang.Iterable<T>)"
+- "com.azure.messaging.eventgrid.EventGridPublisherAsyncClient.sendEventsWithResponse(java.lang.Iterable<T>)"
+type: "class"
+typeParameters:
+- name: "T"
+metadata: {}
+package: "com.azure.messaging.eventgrid"
+artifact: com.azure:azure-messaging-eventgrid:4.0.0
