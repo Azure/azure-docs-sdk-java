@@ -12,4 +12,3 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 3. Run Code2Yaml.exe to generate YAML files.
 
 Or you can run `powershell Scripts/build.ps1`, it would update the YAML files in api folder.
-1c057cb5ccb3d89445da345096cd21d575db4b35
