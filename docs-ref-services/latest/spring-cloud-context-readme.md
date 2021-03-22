@@ -3,7 +3,7 @@ title: Azure Spring cloud azure context client library for Java
 keywords: Azure, java, SDK, API, azure-spring-cloud-context, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 03/05/2021
+ms.date: 03/22/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,17 +11,16 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Spring cloud azure context client library for Java - Version 2.2.0 
+# Azure Spring cloud azure context client library for Java - Version 2.3.0 
 
 This package helps developers to finish the auto-configuration of Azure Context.
 
 [Source code][src] | [Package (Maven)][package] | [API reference documentation][refdocs]
 
 ## Getting started
+
 ### Prerequisites
-- [Java Development Kit (JDK)][jdk_link] with version 8 or above
-- [Azure Subscription][azure_subscription]
-- [Maven][maven] 3.0 and above
+- [Environment checklist][environment_checklist]
 
 ### Include the package
 [//]: # ({x-version-update-start;com.azure.spring:azure-spring-cloud-context;current})
@@ -29,7 +28,7 @@ This package helps developers to finish the auto-configuration of Azure Context.
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-cloud-context</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -65,13 +64,11 @@ This project welcomes contributions and suggestions.  Most contributions require
 Please follow [instructions here][contributing_md] to build from source or contribute.
 
 <!-- Link -->
-[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-context_2.2.0/sdk/spring/azure-spring-cloud-context/src
+[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-context_2.3.0/sdk/spring/azure-spring-cloud-context/src
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-context
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springcloud.html#azure-spring-cloud-context
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
-[azure_subscription]: https://azure.microsoft.com/free
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-context_2.2.0/sdk/spring/CONTRIBUTING.md
-[maven]: https://maven.apache.org/
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-context_2.3.0/sdk/spring/CONTRIBUTING.md
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-context_2.3.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 
