@@ -3,7 +3,7 @@ title: Azure Key Vault Certificates Spring Boot starter client library for Java
 keywords: Azure, java, SDK, API, azure-spring-boot-starter-keyvault-certificates, springboot
 author: maggiepint
 ms.author: magpint
-ms.date: 03/05/2021
+ms.date: 03/23/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,18 +11,16 @@ ms.devlang: java
 ms.service: springboot
 ---
 
-# Azure Key Vault Certificates Spring Boot starter client library for Java - Version 3.0.0-beta.4 
+# Azure Key Vault Certificates Spring Boot starter client library for Java - Version 3.0.0-beta.5 
 
 Azure Key Vault Certificates Spring Boot Starter is Spring starter for [Azure Key Vault Certificates](https://docs.microsoft.com/rest/api/keyvault/about-keys--secrets-and-certificates#BKMK_WorkingWithSecrets), it allows you to securely manage and tightly control your certificates.
 
 [Package (Maven)][package] | [API reference documentation][refdocs] | [Samples][sample]
 
 ## Getting started
+
 ### Prerequisites
-- [Java Development Kit (JDK)][jdk_link] with version 8 or above
-- [Azure Subscription][azure_subscription]
-- [Maven](https://maven.apache.org/) 3.0 and above
-- [Build developing version artifacts if needed][build-developing-version-artifacts-if-needed]
+- [Environment checklist][environment_checklist]
 
 ### Include the package
 [//]: # ({x-version-update-start;com.azure.spring:azure-spring-boot-starter-keyvault-certificates;current})
@@ -30,7 +28,7 @@ Azure Key Vault Certificates Spring Boot Starter is Spring starter for [Azure Ke
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
-    <version>3.0.0-beta.4</version>
+    <version>3.0.0-beta.5</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -369,7 +367,7 @@ side-loaded certificates.
 
 If you want to test the current version under development you will have to
 
-1. Build and install the [Azure Key Vault JCA client library for Java](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-keyvault-certificates_3.0.0-beta.4/sdk/keyvault/azure-security-keyvault-jca/README.md)
+1. Build and install the [Azure Key Vault JCA client library for Java](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-keyvault-certificates_3.0.0-beta.5/sdk/keyvault/azure-security-keyvault-jca/README.md)
 1. Build and install this starter.
 
 To build and install the starter use the following command line:
@@ -406,15 +404,13 @@ The following section provide a sample project illustrating how to use the start
 ## Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
-Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-keyvault-certificates_3.0.0-beta.4/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
+Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-keyvault-certificates_3.0.0-beta.5/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
 
 <!-- LINKS -->
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springboot.html#azure-spring-boot
 [package]: https://mvnrepository.com/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-keyvault-certificates_3.0.0-beta.4/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-keyvault-certificates
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-keyvault-certificates_3.0.0-beta.5/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-keyvault-certificates
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
-[azure_subscription]: https://azure.microsoft.com/free
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
-[build-developing-version-artifacts-if-needed]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-keyvault-certificates_3.0.0-beta.4/sdk/spring/build-developing-version-artifacts-if-needed.md
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-keyvault-certificates_3.0.0-beta.5/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 
 
