@@ -3,7 +3,7 @@ title: Azure Event Hubs Spring Integration client library for Java
 keywords: Azure, java, SDK, API, azure-spring-integration-eventhubs, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 03/05/2021
+ms.date: 03/22/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Event Hubs Spring Integration client library for Java - Version 2.2.0 
+# Azure Event Hubs Spring Integration client library for Java - Version 2.3.0 
 
 
 The *Spring Integration for Event Hubs* extension project provides inbound and outbound channel adapters and gateways for Azure Event Hubs.
@@ -20,10 +20,9 @@ Event Hubs is a fully managed, real-time data ingestion service that’s simple,
 [Source code][src] | [Package (Maven)][package] | [API reference documentation][refdocs] | [Samples][sample]
 
 ## Getting started
+
 ### Prerequisites
-- [Java Development Kit (JDK)][jdk_link] with version 8 or above
-- [Azure Subscription][azure_subscription]
-- [Maven][maven] 3.0 and above
+- [Environment checklist][environment_checklist]
 
 ### Include the package
 [//]: # ({x-version-update-start;com.azure.spring:azure-spring-integration-eventhubs;current})
@@ -31,7 +30,7 @@ Event Hubs is a fully managed, real-time data ingestion service that’s simple,
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-integration-eventhubs</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -72,15 +71,13 @@ This project welcomes contributions and suggestions.  Most contributions require
 Please follow [instructions here][contributing_md] to build from source or contribute.
 
 <!-- Link -->
-[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-eventhubs_2.2.0/sdk/spring/azure-spring-integration-eventhubs/src
+[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-eventhubs_2.3.0/sdk/spring/azure-spring-integration-eventhubs/src
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-integration-eventhubs
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springcloud.html#spring-integration-eventhubs
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-eventhubs_2.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-eventhubs
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-eventhubs_2.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-eventhubs
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
-[azure_subscription]: https://azure.microsoft.com/free
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-eventhubs_2.2.0/sdk/spring/CONTRIBUTING.md
-[maven]: https://maven.apache.org/
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-eventhubs_2.2.0/sdk/spring/azure-spring-integration-eventhubs
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-eventhubs_2.3.0/sdk/spring/CONTRIBUTING.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-eventhubs_2.3.0/sdk/spring/azure-spring-integration-eventhubs
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-integration-eventhubs_2.3.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 

@@ -3,7 +3,7 @@ title: Azure Spring Boot Starter Storage client library for Java
 keywords: Azure, java, SDK, API, azure-spring-boot-starter-storage, springboot
 author: maggiepint
 ms.author: magpint
-ms.date: 03/05/2021
+ms.date: 03/22/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springboot
 ---
 
-# Azure Spring Boot Starter Storage client library for Java - Version 3.2.0 
+# Azure Spring Boot Starter Storage client library for Java - Version 3.3.0 
 
 
 The project provides a Spring Boot Starter `azure-spring-boot-starter-storage` to auto-configure [Azure Blob storage][azure_blob_storage] in your Spring projects. It implements Spring Resource abstraction for Azure Storage service which allows you to interact with Azure Blob storage using Spring programming model.
@@ -19,11 +19,9 @@ The project provides a Spring Boot Starter `azure-spring-boot-starter-storage` t
 [Package (Maven)][package] | [API reference documentation][refdocs] | [Product documentation][docs] | [Samples][sample]
 
 ## Getting started
+
 ### Prerequisites
-- [Java Development Kit (JDK)][jdk_link] with version 8 or above
-- [Azure Subscription][azure_subscription]
-- [Maven][maven] 3.0 and above
-- [Build developing version artifacts if needed][build-developing-version-artifacts-if-needed]
+- [Environment checklist][environment_checklist]
 
 ### Include the package
 [//]: # ({x-version-update-start;com.azure.spring:azure-spring-boot-starter-storage;current})
@@ -31,7 +29,7 @@ The project provides a Spring Boot Starter `azure-spring-boot-starter-storage` t
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-starter-storage</artifactId>
-    <version>3.2.0</version>
+    <version>3.3.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -133,16 +131,14 @@ Please follow [instructions here][contributing_md] to build from source or contr
 [docs]: https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-azure-storage
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-starter-azure-storage
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springboot.html#azure-spring-boot
-[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.2.0/sdk/spring/azure-spring-boot-starter-storage
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-storage-resource
+[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.3.0/sdk/spring/azure-spring-boot-starter-storage
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-storage-resource
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
-[azure_subscription]: https://azure.microsoft.com/free
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.2.0/sdk/spring/CONTRIBUTING.md
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.3.0/sdk/spring/CONTRIBUTING.md
 [maven]: https://maven.apache.org/
 [azure_blob_storage]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-introduction
 [azure_storage]: https://azure.microsoft.com/services/storage/blobs/
 [other_operation]: https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#resources
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
-[build-developing-version-artifacts-if-needed]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.2.0/sdk/spring/build-developing-version-artifacts-if-needed.md
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-storage_3.3.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 

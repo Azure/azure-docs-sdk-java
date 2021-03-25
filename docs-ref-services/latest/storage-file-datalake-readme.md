@@ -1,17 +1,17 @@
 ---
 title: Azure File Data Lake client library for Java
-keywords: Azure, java, SDK, API, azure-storage-file-datalake, storage
+keywords: Azure, java, SDK, API, azure-storage-file-datalake, datalakestorage(gen2)
 author: maggiepint
 ms.author: magpint
-ms.date: 01/15/2021
+ms.date: 03/19/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: storage
+ms.service: datalakestorage(gen2)
 ---
 
-# Azure File Data Lake client library for Java - Version 12.4.0 
+# Azure File Data Lake client library for Java - Version 12.4.1 
 
 
 Azure Data Lake Storage is Microsoft's optimized storage solution for for big
@@ -428,7 +428,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.4.0/sdk/storage/azure-storage-file-datalake/src
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.4.1/sdk/storage/azure-storage-file-datalake/src
 [samples_readme]: src/samples/README.md
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/data-lake-storage-gen2
@@ -439,8 +439,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.4.0/sdk/identity/azure-identity/README.md
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.4.0/sdk/storage/azure-storage-file-datalake/src/samples
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.4.1/sdk/identity/azure-identity/README.md
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.4.1/sdk/storage/azure-storage-file-datalake/src/samples
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/data-lake-storage-gen2
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/

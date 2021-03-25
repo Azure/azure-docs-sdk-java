@@ -3,7 +3,7 @@ title: Azure AD B2C Spring Boot Starter client library for Java
 keywords: Azure, java, SDK, API, azure-spring-boot-starter-active-directory-b2c, springboot
 author: maggiepint
 ms.author: magpint
-ms.date: 03/05/2021
+ms.date: 03/22/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springboot
 ---
 
-# Azure AD B2C Spring Boot Starter client library for Java - Version 3.2.0 
+# Azure AD B2C Spring Boot Starter client library for Java - Version 3.3.0 
 
 
 Azure Active Directory (Azure AD) B2C is an identity management service that enables you to customize and control how
@@ -23,10 +23,7 @@ while protecting the identities of your customers at the same time.
 ## Getting started
 
 ### Prerequisites
-- [Java Development Kit (JDK)][jdk_link] with version 8 or above
-- [Azure Subscription][azure_subscription]
-- [Maven](https://maven.apache.org/) 3.0 and above
-- [Build developing version artifacts if needed][build-developing-version-artifacts-if-needed]
+- [Environment checklist][environment_checklist]
 
 ### Include the package
 [//]: # "{x-version-update-start;com.azure.spring:azure-spring-boot-starter-active-directory-b2c;current}"
@@ -34,7 +31,7 @@ while protecting the identities of your customers at the same time.
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-starter-active-directory-b2c</artifactId>
-    <version>3.2.0</version>
+    <version>3.3.0</version>
 </dependency>
 ```
 [//]: # "{x-version-update-end}"
@@ -193,7 +190,7 @@ public class AADB2COidcLoginConfigSample extends WebSecurityConfigurerAdapter {
     }
 }
 ```
-14. Copy the `home.html` from [Azure AD B2C Spring Boot Sample](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-active-directory-b2c_3.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc/src/main/resources/templates), and replace the
+14. Copy the `home.html` from [Azure AD B2C Spring Boot Sample](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-active-directory-b2c_3.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc/src/main/resources/templates), and replace the
 `${your-profile-edit-user-flow}` and `${your-password-reset-user-flow}` with your user flow name
 respectively that completed earlier.
 
@@ -235,21 +232,19 @@ For more information about setting logging in spring, please refer to the [offic
 ## Next steps
 The following section provide a sample project illustrating how to use the starter.
 ### More sample code
-- [Azure Active Directory B2C](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-active-directory-b2c_3.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc)
+- [Azure Active Directory B2C](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-active-directory-b2c_3.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc)
 
 ## Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
-Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-active-directory-b2c_3.2.0/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
+Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-active-directory-b2c_3.3.0/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
 
 <!-- LINKS -->
 [docs]: https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springboot.html#azure-spring-boot
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/azure-active-directory-b2c-spring-boot-starter
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-active-directory-b2c_3.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-active-directory-b2c_3.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
-[azure_subscription]: https://azure.microsoft.com/free
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
-[build-developing-version-artifacts-if-needed]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-active-directory-b2c_3.2.0/sdk/spring/build-developing-version-artifacts-if-needed.md
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-active-directory-b2c_3.3.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 
 
