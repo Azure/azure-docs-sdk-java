@@ -3,7 +3,7 @@ title: Azure Spring cloud AutoConfigure client library for Java
 keywords: Azure, java, SDK, API, azure-spring-cloud-autoconfigure, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 03/05/2021
+ms.date: 03/22/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Spring cloud AutoConfigure client library for Java - Version 2.2.0 
+# Azure Spring cloud AutoConfigure client library for Java - Version 2.3.0 
 
 This package is for Spring Cloud Starters of Azure services. It helps Spring Cloud developers to adopt Azure services.
 
@@ -20,9 +20,9 @@ This package is for Spring Cloud Starters of Azure services. It helps Spring Clo
 ## Getting started
 
 ### Prerequisites
-- [Java Development Kit (JDK)][jdk_link] with version 8 or above
-- [Azure Subscription][azure_subscription]
-- [Maven][maven] 3.0 and above
+
+### Prerequisites
+- [Environment checklist][environment_checklist]
 
 ### Include the Package
 To start a new project using Azure, go on [start.spring.io][spring_io] and select "Azure
@@ -36,7 +36,7 @@ dependency to your project and the Spring Cloud auto-configuration will kick-in:
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-cloud-starter-eventhubs</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -103,28 +103,27 @@ This project welcomes contributions and suggestions.  Most contributions require
 Please follow [instructions here][contributing_md] to build from source or contribute.
 
 <!-- Link -->
-[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-cloud-autoconfigure/src/
+[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-cloud-autoconfigure/src/
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-autoconfigure
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springcloud.html#azure-spring-cloud-autoconfigure
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
-[azure_subscription]: https://azure.microsoft.com/free
 [spring_io]: https://start.spring.io
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/CONTRIBUTING.md
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/CONTRIBUTING.md
 [maven]: https://maven.apache.org/
-[app_configuration]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/appconfiguration/spring-cloud-starter-azure-appconfiguration-config
-[cache]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-cloud-starter-cache
-[event_hubs]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-cloud-starter-eventhubs
-[event_hubs_kafka]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-cloud-starter-eventhubs-kafka
-[service_bus]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-cloud-starter-servicebus
-[storage]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-starter-storage
-[storage_queue]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-cloud-starter-storage-queue
-[app_configuration_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-boot-samples/azure-appconfiguration-sample
-[app_configuration_conversation_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-boot-samples/azure-appconfiguration-conversion-sample-complete
-[cache_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-cache
-[event_hubs_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-eventhubs
-[event_hubs_kafka_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-eventhubs-kafka
-[service_bus_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-servicebus
-[storage_queue_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.2.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-storage-queue
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[app_configuration]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/appconfiguration/spring-cloud-starter-azure-appconfiguration-config
+[cache]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-cloud-starter-cache
+[event_hubs]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-cloud-starter-eventhubs
+[event_hubs_kafka]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-cloud-starter-eventhubs-kafka
+[service_bus]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-cloud-starter-servicebus
+[storage]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-starter-storage
+[storage_queue]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-cloud-starter-storage-queue
+[app_configuration_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-boot-samples/azure-appconfiguration-sample
+[app_configuration_conversation_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-boot-samples/azure-appconfiguration-conversion-sample-complete
+[cache_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-cache
+[event_hubs_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-eventhubs
+[event_hubs_kafka_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-eventhubs-kafka
+[service_bus_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-servicebus
+[storage_queue_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-storage-queue
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-autoconfigure_2.3.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 
