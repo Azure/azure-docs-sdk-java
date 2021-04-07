@@ -3,7 +3,7 @@ title: Azure Event Grid client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
 author: maggiepint
 ms.author: magpint
-ms.date: 03/25/2021
+ms.date: 04/07/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: eventgrid
 ---
 
-# Azure Event Grid client library for Java - Version 4.1.0 
+# Azure Event Grid client library for Java - Version 4.2.0 
 
 
 Azure Event Grid allows you to easily build applications with event-based architectures. The Event Grid service fully 
@@ -61,7 +61,7 @@ az eventgrid domain create --location <location> --resource-group <your-resource
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-eventgrid</artifactId>
-    <version>4.1.0</version>
+    <version>4.2.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -139,10 +139,10 @@ EventGridPublisherAsyncClient<EventGridEvent> eventGridEventAsyncClient = new Ev
 <!-- embedme ./src/samples/java/com/azure/messaging/eventgrid/samples/ReadmeSamples.java#L94-L98 -->
 ```java
 // For custom event
-EventGridPublisherClient<BinaryData> customEventAsyncClient = new EventGridPublisherClientBuilder()
+EventGridPublisherAsyncClient<BinaryData> customEventAsyncClient = new EventGridPublisherClientBuilder()
     .endpoint("<endpont of your event grid topic/domain that accepts custom event schema>")
     .credential(new AzureKeyCredential("<key for the endpoint>"))
-    .buildCustomEventPublisherClient();
+    .buildCustomEventPublisherAsyncClient();
 ```
 
 ##### Using endpoint and SAS token to create the client
@@ -180,10 +180,11 @@ String sasToken = EventGridPublisherClient
 ```
 
 ### Use `BinaryData`
-BinaryData supports serializing and deserializing objects through `com.azure.core.util.BinaryData.fromObject(Object object)` and `toObject()` methods. These methods need a default Json serializer in the classpath. Please include [azure-core-serializer-json-jackson](https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_4.1.0/sdk/core/azure-core-serializer-json-jackson)
-in your project `pom.xml` so `BinaryData` has a default json serializer.
-
-You can also provide your own implementation of `ObjectSerializer` and use `fromObject(Object object, ObjectSerializer customSerializer)` or `toObject(Class<T> clazz, ObjectSerializer serializer)`.
+This SDK uses `com.azure.util.BinaryData` to represent the data payload of events.
+`BinaryData` supports serializing and deserializing objects through `com.azure.core.util.BinaryData.fromObject(Object object)` and `toObject()` methods,
+which use a default Jackson Json serializer, or `fromObject(Object object, ObjectSerializer customSerializer)` and `toObject(Class<T> clazz, ObjectSerializer serializer)` methods,
+which accept your customized Json serializer.
+Refer to [BinaryData](https://docs.microsoft.com/java/api/com.azure.core.util.binarydata?view=azure-java-stable) documentation for details.
 
 ## Key concepts
 For information about general Event Grid concepts: [Concepts in Azure Event Grid](https://docs.microsoft.com/azure/event-grid/concepts).
@@ -438,7 +439,7 @@ If you encounter any bugs with these SDKs, please file issues via [Issues](https
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.1.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.2.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -455,13 +456,13 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [javadocs]: https://azure.github.io/azure-sdk-for-java/eventgrid.html
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.1.0/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.1.0/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.2.0/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.2.0/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
 [eventgrid]: https://azure.com/eventgrid
 [portal]: https://ms.portal.azure.com/
 [cli]: https://docs.microsoft.com/cli/azure
 [service_docs]: https://docs.microsoft.com/azure/event-grid/
-[sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_4.1.0/sdk/eventgrid/azure-messaging-eventgrid/src
+[sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_4.2.0/sdk/eventgrid/azure-messaging-eventgrid/src
 [EventGridEvent]: https://docs.microsoft.com/azure/event-grid/event-schema
 [CloudEvent]: https://github.com/cloudevents/spec/blob/master/spec.md
 
