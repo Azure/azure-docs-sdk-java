@@ -3,7 +3,7 @@ title: Azure CosmosDB Client Library for Java
 keywords: Azure, java, SDK, API, azure-cosmos, cosmosdbcosmosdb
 author: maggiepint
 ms.author: magpint
-ms.date: 03/23/2021
+ms.date: 04/07/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: cosmosdbcosmosdb
 ---
 
-# Azure CosmosDB Client Library for Java - Version 4.13.1 
+# Azure CosmosDB Client Library for Java - Version 4.14.0 
 
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.
@@ -28,7 +28,7 @@ This project provides SDK library in Java for interacting with [SQL API][sql_api
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos</artifactId>
-  <version>4.13.1</version>
+  <version>4.14.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -39,11 +39,11 @@ Refer to [javadocs][api_documentation] for more details on the package
 
 ### Prerequisites
 
-- Java Development Kit 8
+- [Java Development Kit (JDK) with version 8 or above][jdk]
 - An active Azure account. If you don't have one, you can sign up for a [free account][azure_subscription]. Alternatively, you can use the [Azure Cosmos DB Emulator](https://azure.microsoft.com/documentation/articles/documentdb-nosql-local-emulator) for development and testing. As emulator https certificate is self signed, you need to import its certificate to java trusted cert store as [explained here](https://docs.microsoft.com/azure/cosmos-db/local-emulator-export-ssl-certificates)
 - (Optional) SLF4J is a logging facade.
 - (Optional) [SLF4J binding](https://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
-- (Optional) Maven
+- (Optional) [Maven][maven]
 
 SLF4J is only needed if you plan to use logging, please also download an SLF4J binding which will link the SLF4J API with the logging implementation of your choice. See the [SLF4J user manual](https://www.slf4j.org/manual.html) for more information.
 
@@ -267,11 +267,12 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.13.1/sdk/cosmos/azure-cosmos/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.14.0/sdk/cosmos/azure-cosmos/src
 [cosmos_introduction]: https://docs.microsoft.com/azure/cosmos-db/
 [api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [cosmos_docs]: https://docs.microsoft.com/azure/cosmos-db/introduction
-[jdk]: https://docs.microsoft.com/java/azure/java-supported-jdk-runtime?view=azure-java-stable
+[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[slf4j]: http://www.slf4j.org/
 [maven]: https://maven.apache.org/
 [cosmos_maven]: https://search.maven.org/artifact/com.azure/azure-cosmos
 [cosmos_maven_svg]: https://img.shields.io/maven-central/v/com.azure/azure-cosmos.svg
