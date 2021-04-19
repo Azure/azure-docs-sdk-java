@@ -3,7 +3,7 @@ title: Azure Key Vault JCA client library for Java
 keywords: Azure, java, SDK, API, azure-security-keyvault-jca, keyvault
 author: maggiepint
 ms.author: magpint
-ms.date: 03/22/2021
+ms.date: 04/19/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: keyvault
 ---
 
-# Azure Key Vault JCA client library for Java - Version 1.0.0-beta.5 
+# Azure Key Vault JCA client library for Java - Version 1.0.0-beta.6 
 
 The JCA Provider for Azure Key Vault is a Java Cryptography Architecture provider for certificates in
 Azure Key Vault. It is built on four principles:
@@ -32,7 +32,7 @@ Maven dependency for the Azure Key Vault JCA client library. Add it to your proj
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-jca</artifactId>
-    <version>1.0.0-beta.5</version>
+    <version>1.0.0-beta.6</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -52,7 +52,7 @@ az keyvault create --resource-group <your-resource-group-name> --name <your-key-
 ### Server side SSL
 If you are looking to integrate the JCA provider to create an SSLServerSocket see the example below.
 
-<!-- embedme ./src/samples/java/com/azure/security/keyvault/jca/ServerSSLSample.java#L18-L37 -->
+<!-- embedme ./src/samples/java/com/azure/security/keyvault/jca/ServerSSLSample.java#L18-L36 -->
 ```java
 KeyVaultJcaProvider provider = new KeyVaultJcaProvider();
 Security.addProvider(provider);
@@ -60,7 +60,6 @@ Security.addProvider(provider);
 KeyStore keyStore = KeyStore.getInstance("AzureKeyVault");
 KeyVaultLoadStoreParameter parameter = new KeyVaultLoadStoreParameter(
     System.getProperty("azure.keyvault.uri"),
-    System.getProperty("azure.keyvault.aad-authentication-url"),
     System.getProperty("azure.keyvault.tenant-id"),
     System.getProperty("azure.keyvault.client-id"),
     System.getProperty("azure.keyvault.client-secret"));
@@ -81,7 +80,7 @@ Note if you want to use Azure Managed Identity, you should set the value of `azu
 ### Client side SSL
 If you are looking to integrate the JCA provider for client side socket connections, see the Apache HTTP client example below.
 
-<!-- embedme ./src/samples/java/com/azure/security/keyvault/jca/ClientSSLSample.java#L28-L71 -->
+<!-- embedme ./src/samples/java/com/azure/security/keyvault/jca/ClientSSLSample.java#L28-L67 -->
 ```java
 KeyVaultJcaProvider provider = new KeyVaultJcaProvider();
 Security.addProvider(provider);
@@ -89,7 +88,6 @@ Security.addProvider(provider);
 KeyStore keyStore = KeyStore.getInstance("AzureKeyVault");
 KeyVaultLoadStoreParameter parameter = new KeyVaultLoadStoreParameter(
     System.getProperty("azure.keyvault.uri"),
-    System.getProperty("azure.keyvault.aad-authentication-url"),
     System.getProperty("azure.keyvault.tenant-id"),
     System.getProperty("azure.keyvault.client-id"),
     System.getProperty("azure.keyvault.client-secret"));
@@ -100,23 +98,20 @@ SSLContext sslContext = SSLContexts
     .loadTrustMaterial(keyStore, new TrustSelfSignedStrategy())
     .build();
 
-SSLConnectionSocketFactory factory = SSLConnectionSocketFactoryBuilder
-    .create()
-    .setSslContext(sslContext)
-    .setHostnameVerifier((hostname, session) -> true)
-    .build();
+SSLConnectionSocketFactory sslConnectionSocketFactory = new SSLConnectionSocketFactory(
+    sslContext, (hostname, session) -> true);
 
-PoolingHttpClientConnectionManager manager = PoolingHttpClientConnectionManagerBuilder
-    .create()
-    .setSSLSocketFactory(factory)
-    .build();
+PoolingHttpClientConnectionManager manager = new PoolingHttpClientConnectionManager(
+    RegistryBuilder.<ConnectionSocketFactory>create()
+        .register("https", sslConnectionSocketFactory)
+        .build());
 
 String result = null;
 
 try (CloseableHttpClient client = HttpClients.custom().setConnectionManager(manager).build()) {
     HttpGet httpGet = new HttpGet("https://localhost:8766");
-    HttpClientResponseHandler<String> responseHandler = (ClassicHttpResponse response) -> {
-        int status = response.getCode();
+    ResponseHandler<String> responseHandler = (HttpResponse response) -> {
+        int status = response.getStatusLine().getStatusCode();
         String result1 = "Not success";
         if (status == 204) {
             result1 = "Success";
@@ -165,15 +160,15 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_code_of_conduct]. For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_1.0.0-beta.5/sdk/keyvault/azure-security-keyvault-jca/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_1.0.0-beta.6/sdk/keyvault/azure-security-keyvault-jca/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
-[jca_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_1.0.0-beta.5/sdk/keyvault/azure-security-keyvault-jca/src/samples/java/com/azure/security/keyvault/jca
+[jca_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_1.0.0-beta.6/sdk/keyvault/azure-security-keyvault-jca/src/samples/java/com/azure/security/keyvault/jca
 [azure_subscription]: https://azure.microsoft.com/
 [azure_keyvault]: https://docs.microsoft.com/azure/key-vault/keys/quick-create-portal
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [azure_cloud_shell]: https://shell.azure.com/bash
-[spring_boot_starter]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_1.0.0-beta.5/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md
+[spring_boot_starter]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_1.0.0-beta.6/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md
 [jca_reference_guide]: https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html
 [microsoft_code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 
