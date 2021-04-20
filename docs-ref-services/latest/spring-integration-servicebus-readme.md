@@ -3,7 +3,7 @@ title: Azure Service Bus Spring Integration client library for Java
 keywords: Azure, java, SDK, API, azure-spring-integration-servicebus, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 03/22/2021
+ms.date: 04/20/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Service Bus Spring Integration client library for Java - Version 2.3.0 
+# Azure Service Bus Spring Integration client library for Java - Version 2.4.0 
 
 
 The Spring Integration for Azure Service Bus extension project provides inbound and outbound channel adapters for Azure Service Bus. 
@@ -31,7 +31,7 @@ Service Bus offers a reliable and secure platform for asynchronous transfer of d
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-integration-servicebus</artifactId>
-    <version>2.3.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -76,13 +76,13 @@ This project welcomes contributions and suggestions.  Most contributions require
 Please follow [instructions here][contributing_md] to build from source or contribute.
 
 <!-- Links -->
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-servicebus_2.3.0/sdk/spring/CONTRIBUTING.md
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-servicebus_2.4.0/sdk/spring/CONTRIBUTING.md
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-integration-servicebus
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springcloud.html#spring-integration-servicebus
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-servicebus_2.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-servicebus
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-servicebus_2.4.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-servicebus
 [spring_boot_logging]: https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging
 [spring_integration]: https://spring.io/projects/spring-integration
-[spring_integration_sample_with_service_bus]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-servicebus_2.3.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-servicebus
-[src_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-servicebus_2.3.0/sdk/spring/azure-spring-integration-servicebus
-[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-integration-servicebus_2.3.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+[spring_integration_sample_with_service_bus]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-servicebus_2.4.0/sdk/spring/azure-spring-boot-samples/azure-spring-integration-sample-servicebus
+[src_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-integration-servicebus_2.4.0/sdk/spring/azure-spring-integration-servicebus
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-integration-servicebus_2.4.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 
