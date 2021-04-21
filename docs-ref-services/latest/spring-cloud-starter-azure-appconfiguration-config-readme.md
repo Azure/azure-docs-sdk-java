@@ -3,7 +3,7 @@ title: Azure Spring cloud starter App Configuration client library for Java
 keywords: Azure, java, SDK, API, spring-cloud-starter-azure-appconfiguration-config, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 03/19/2021
+ms.date: 04/21/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Spring cloud starter App Configuration client library for Java - Version 1.2.9 
+# Azure Spring cloud starter App Configuration client library for Java - Version 1.3.0 
 
 
 This project allows Spring Application to load properties from Azure Configuration Store.
@@ -30,7 +30,7 @@ There are two libraries that can be used spring-cloud-azure-appconfiguration-con
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>spring-cloud-azure-appconfiguration-config</artifactId>
-    <version>1.2.9</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -42,7 +42,7 @@ or
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>spring-cloud-azure-appconfiguration-config</artifactId>
-    <version>1.2.9</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -250,7 +250,7 @@ public class MyClient implements ConfigurationClientBuilderSetup, SecretClientBu
 <!-- LINKS -->
 [azure]: https://azure.microsoft.com
 [azure_active_directory]: https://azure.microsoft.com/services/active-directory/
-[azure_identity_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/spring-cloud-starter-azure-appconfiguration-config_1.2.9/sdk/identity/azure-identity
+[azure_identity_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/spring-cloud-starter-azure-appconfiguration-config_1.3.0/sdk/identity/azure-identity
 [azure_rbac]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [azure_managed_identity]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview
 [enable_managed_identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview#how-can-i-use-managed-identities-for-azure-resources
@@ -258,6 +258,6 @@ public class MyClient implements ConfigurationClientBuilderSetup, SecretClientBu
 [spring_conversion_duration]: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-conversion-duration
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
-[app_configuration_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/spring-cloud-starter-azure-appconfiguration-config_1.2.9/sdk/appconfiguration/azure-data-appconfiguration#key-concepts
-[key_vault_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/spring-cloud-starter-azure-appconfiguration-config_1.2.9/sdk/keyvault/azure-security-keyvault-secrets#key-concepts
+[app_configuration_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/spring-cloud-starter-azure-appconfiguration-config_1.3.0/sdk/appconfiguration/azure-data-appconfiguration#key-concepts
+[key_vault_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/spring-cloud-starter-azure-appconfiguration-config_1.3.0/sdk/keyvault/azure-security-keyvault-secrets#key-concepts
 
