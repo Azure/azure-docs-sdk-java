@@ -3,7 +3,7 @@ title:
 keywords: Azure, java, SDK, API, azure-cosmos-encryption, 
 author: maggiepint
 ms.author: magpint
-ms.date: 04/08/2021
+ms.date: 04/26/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -22,7 +22,7 @@ The encryption plugin is under development and not ready to be consumed yet.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos-encryption</artifactId>
-  <version>1.0.0-beta.1</version>
+  <version>1.0.0-beta.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
