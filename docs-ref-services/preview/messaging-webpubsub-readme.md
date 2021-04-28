@@ -1,24 +1,24 @@
 ---
-title: Azure Web PubSub client library for Java
-keywords: Azure, java, SDK, API, azure-messaging-webpubsub, 
+title: Azure Web PubSub service client library for Java
+keywords: Azure, java, SDK, API, azure-messaging-webpubsub, webpubsub
 author: maggiepint
 ms.author: magpint
-ms.date: 04/22/2021
+ms.date: 04/28/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: webpubsub
 ---
 
-# Azure Web PubSub client library for Java - Version 1.0.0-beta.1 
+# Azure Web PubSub service client library for Java - Version 1.0.0-beta.2 
 
 
-Azure Web PubSub client library for Java allows sending messages to Web PubSub. Azure Web PubSub service enables you to
-build real-time messaging web applications using WebSockets and the publish-subscribe pattern. Any platform  
-supporting WebSocket APIs can connect to the service easily, e.g. web pages, mobile applications, edge devices, etc. The
-service manages the WebSocket connections for you and allows up to 100K concurrent connections. It provides powerful
-APIs for you to manage these clients and deliver real-time messages.
+Azure Web PubSub service client library for Java allows sending messages to Web PubSub. Azure Web PubSub service 
+enables you to build real-time messaging web applications using WebSockets and the publish-subscribe pattern. Any 
+platform supporting WebSocket APIs can connect to the service easily, e.g. web pages, mobile applications, edge devices,
+etc. The service manages the WebSocket connections for you and allows up to 100K concurrent connections. It provides 
+powerful APIs for you to manage these clients and deliver real-time messages.
 
 Any scenario that requires real-time publish-subscribe messaging between server and clients or among clients, can use
 Azure Web PubSub service. Traditional real-time features that often require polling from server or submitting HTTP
@@ -41,7 +41,7 @@ requests, can also use Azure Web PubSub service.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-webpubsub</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 
@@ -180,15 +180,14 @@ comments.
 
 [azure_subscription]: https://azure.microsoft.com/free
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.0.0-beta.1/sdk/webpubsub/azure-messaging-webpubsub/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.0.0-beta.2/sdk/webpubsub/azure-messaging-webpubsub/src
 [product_documentation]: https://aka.ms/awps/doc
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.0.0-beta.1/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md
-[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.0.0-beta.1/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.0.0-beta.2/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md
+[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.0.0-beta.2/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
-
 [coc_contact]: mailto:opencode@microsoft.com
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fwebpubsub%2Fazure-messaging-webpubsub%2FREADME.png)
