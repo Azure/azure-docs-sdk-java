@@ -3,7 +3,7 @@ title: Azure Communication Phone Numbers client library for Java
 keywords: Azure, java, SDK, API, azure-communication-phonenumbers, communication
 author: maggiepint
 ms.author: magpint
-ms.date: 04/26/2021
+ms.date: 04/30/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: communication
 ---
 
-# Azure Communication Phone Numbers client library for Java - Version 1.0.0 
+# Azure Communication Phone Numbers client library for Java - Version 1.0.1 
 
 
 The phone numbers package provides capabilities for phone number management.
@@ -36,7 +36,7 @@ Purchased phone numbers can come with many capabilities, depending on the countr
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-communication-phonenumbers</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
@@ -197,7 +197,7 @@ Check out other client libraries for Azure communication service
 [product_docs]: https://docs.microsoft.com/azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-phonenumbers
 [api_documentation]: https://aka.ms/java-docs
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-phonenumbers_1.0.0/sdk/communication/azure-communication-phonenumbers/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-phonenumbers_1.0.1/sdk/communication/azure-communication-phonenumbers/src
 
 
 

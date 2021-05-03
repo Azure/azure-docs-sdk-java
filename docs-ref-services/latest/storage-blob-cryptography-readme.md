@@ -3,7 +3,7 @@ title: Azure Storage Blobs Cryptography client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob-cryptography, storage
 author: maggiepint
 ms.author: magpint
-ms.date: 11/11/2020
+ms.date: 04/29/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage Blobs Cryptography client library for Java - Version 12.9.0 
+# Azure Storage Blobs Cryptography client library for Java - Version 12.11.0 
 
 
 Azure Blob storage is Microsoft's object storage solution for the cloud. Blob
@@ -35,7 +35,7 @@ This package supports client side encryption for blob storage.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-blob-cryptography</artifactId>
-  <version>12.9.0</version>
+  <version>12.11.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -119,6 +119,80 @@ Blob storage is designed for:
 - Storing data for analysis by an on-premises or Azure-hosted service.
 
 ## Examples
+
+Note: The usage of the `EncryptedBlobClient` is the same as the equivalent `BlobClient`, the only difference being client construction. 
+Please refer to `azure-storage-blob` for common use cases of the `BlobClient`
+
+The following sections provide several code snippets covering some of the most common Azure Storage Blob cryptography creation tasks, including:
+
+- [Create an `EncryptedBlobClient` from a `BlobClient`](#create-an-encryptedblobclient-from-a-blobclient)
+- [Create an `EncryptedBlobClient`](#create-an-encryptedblobclient)
+- [Use a `LocalKeyEncryptionKey`](#use-a-local-keyencryptionkey)
+- [Use a `KeyVaultKey`](#use-a-keyvaultkey)
+
+### Create an `EncryptedBlobClient` from a `BlobClient`
+
+Create an `EncryptedBlobClient` using a `BlobClient`. `BlobClient` construction is explained in the `azure-storage-blob` README.
+
+<!-- embedme ./src/samples/java/com/azure/storage/blob/specialized/cryptography/ReadmeSamples.java#L42-L46 -->
+```java
+EncryptedBlobClient client = new EncryptedBlobClientBuilder()
+    .key(key, keyWrapAlgorithm)
+    .keyResolver(keyResolver)
+    .blobClient(blobClient)
+    .buildEncryptedBlobClient();
+```
+
+### Create an `EncryptedBlobClient`
+
+Create a `BlobServiceClient` using a connection string.
+
+<!-- embedme ./src/samples/java/com/azure/storage/blob/specialized/cryptography/ReadmeSamples.java#L50-L54 -->
+```java
+EncryptedBlobClient client = new EncryptedBlobClientBuilder()
+    .key(key, keyWrapAlgorithm)
+    .keyResolver(keyResolver)
+    .connectionString(connectionString)
+    .buildEncryptedBlobClient();
+```
+
+### Use a local `KeyEncryptionKey`
+
+<!-- embedme ./src/samples/java/com/azure/storage/blob/specialized/cryptography/ReadmeSamples.java#L58-L67 -->
+```java
+JsonWebKey localKey = JsonWebKey.fromAes(new SecretKeySpec(keyBytes, secretKeyAlgorithm),
+    Arrays.asList(KeyOperation.WRAP_KEY, KeyOperation.UNWRAP_KEY))
+    .setId("my-id");
+AsyncKeyEncryptionKey akek = new KeyEncryptionKeyClientBuilder()
+    .buildAsyncKeyEncryptionKey(localKey).block();
+
+EncryptedBlobClient client = new EncryptedBlobClientBuilder()
+    .key(akek, keyWrapAlgorithm)
+    .connectionString(connectionString)
+    .buildEncryptedBlobClient();
+```
+
+### Use a `KeyVaultKey`
+
+<!-- embedme ./src/samples/java/com/azure/storage/blob/specialized/cryptography/ReadmeSamples.java#L71-L86 -->
+```java
+KeyClient keyClient = new KeyClientBuilder()
+    .vaultUrl(keyVaultUrl)
+    .credential(tokenCredential)
+    .buildClient();
+KeyVaultKey rsaKey = keyClient.createRsaKey(new CreateRsaKeyOptions(keyName)
+    .setExpiresOn(OffsetDateTime.now().plusYears(1))
+    .setKeySize(2048));
+AsyncKeyEncryptionKey akek = new KeyEncryptionKeyClientBuilder()
+    .credential(tokenCredential)
+    .buildAsyncKeyEncryptionKey(rsaKey.getId())
+    .block();
+
+EncryptedBlobClient client = new EncryptedBlobClientBuilder()
+    .key(akek, keyWrapAlgorithm)
+    .connectionString(connectionString)
+    .buildEncryptedBlobClient();
+```
 
 ## Troubleshooting
 
