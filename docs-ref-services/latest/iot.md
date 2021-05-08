@@ -32,7 +32,7 @@ Register devices and send messages from the cloud to registered devices using th
 </dependency>
 ```   
 
-## Iot Device library
+## IoT Device library
 
 Send messages to the cloud and receive messages on devices using the IoT Device library.
 
