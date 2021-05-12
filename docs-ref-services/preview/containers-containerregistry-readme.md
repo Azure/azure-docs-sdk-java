@@ -1,17 +1,17 @@
 ---
 title: Azure Container Registry client library for Java
-keywords: Azure, java, SDK, API, azure-containers-containerregistry, 
+keywords: Azure, java, SDK, API, azure-containers-containerregistry, containerregistry
 author: maggiepint
 ms.author: magpint
-ms.date: 04/14/2021
+ms.date: 05/12/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: containerregistry
 ---
 
-# Azure Container Registry client library for Java - Version 1.0.0-beta.1 
+# Azure Container Registry client library for Java - Version 1.0.0-beta.2 
 
 
 Azure Container Registry allows you to store and manage container images and artifacts in a private registry for all types of container deployments.
@@ -100,7 +100,7 @@ ContainerRegistryClient client = new ContainerRegistryClientBuilder()
     .credential(credential)
     .buildClient();
 
-client.listRepositories().forEach(repository -> System.out.println(repository));
+client.listRepositoryNames().forEach(repository -> System.out.println(repository));
 ```
 
 ### List repositories asynchronously
@@ -113,7 +113,7 @@ ContainerRegistryAsyncClient client = new ContainerRegistryClientBuilder()
     .credential(credential)
     .buildAsyncClient();
 
-client.listRepositories().subscribe(repository -> System.out.println(repository));
+client.listRepositoryNames().subscribe(repository -> System.out.println(repository));
 ```
 
 ## Troubleshooting
@@ -124,13 +124,13 @@ All container registry service operations will throw a
 `<!-- embedme ./src/samples/java/com/azure/containers/containerregistry/ReadmeSamples.java#L59-L69 -->
 ```Java
 DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
-ContainerRepositoryClient client = new ContainerRepositoryClientBuilder()
+ContainerRepository containerRepository = new ContainerRegistryClientBuilder()
     .endpoint(endpoint)
-    .repository(repository)
     .credential(credential)
-    .buildClient();
+    .buildClient()
+    .getRepository(repository);
 try {
-    client.getProperties();
+    containerRepository.getProperties();
 } catch (HttpResponseException exception) {
     // Do something with the exception.
 }
@@ -155,7 +155,7 @@ or contact [opencode@microsoft.com][coc_contact] with any
 additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.0-beta.1/sdk/containerregistry/azure-containers-containerregistry/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.0-beta.2/sdk/containerregistry/azure-containers-containerregistry/src
 [jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [package]: https://search.maven.org/artifact/com.azure/azure-containers-containerregisty
 [api_documentation]: https://aka.ms/java-docs
@@ -168,9 +168,9 @@ additional questions or comments.
 [container_registry_concepts]: https://docs.microsoft.com/azure/container-registry/container-registry-concepts
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.0-beta.1/sdk/identity/azure-identity/README.md
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.0-beta.1/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.0-beta.1/sdk/containerregistry/azure-containers-containerregistry/src/samples/
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.0-beta.2/sdk/identity/azure-identity/README.md
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.0-beta.2/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.0-beta.2/sdk/containerregistry/azure-containers-containerregistry/src/samples/
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
