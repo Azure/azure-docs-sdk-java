@@ -3,7 +3,7 @@ title:
 keywords: Azure, java, SDK, API, azure-cosmos-encryption, 
 author: maggiepint
 ms.author: magpint
-ms.date: 04/26/2021
+ms.date: 05/13/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
