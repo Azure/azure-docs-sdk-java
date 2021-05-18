@@ -1,22 +1,22 @@
 ---
-title: Azure Resource Manager Maintenance client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-maintenance, maintenance
+title: Azure Resource Manager AzureMaps client library for Java
+keywords: Azure, java, SDK, API, azure-resourcemanager-maps, 
 author: maggiepint
 ms.author: magpint
-ms.date: 05/13/2021
+ms.date: 05/17/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: maintenance
+ms.service: 
 ---
 
-# Azure Resource Manager Maintenance client library for Java - Version 1.0.0-beta.2 
+# Azure Resource Manager AzureMaps client library for Java - Version 1.0.0-beta.1 
 
 
-Azure Resource Manager Maintenance client library for Java.
+Azure Resource Manager AzureMaps client library for Java.
 
-This package contains Microsoft Azure SDK for Maintenance Management SDK. Azure Maintenance Management Client. Package tag package-2021-05. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for AzureMaps Management SDK. Azure Maps. Package tag package-2021-02. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -41,12 +41,12 @@ Various documentation is available to help you get started
 
 ### Adding the package to your product
 
-[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-maintenance;current})
+[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-maps;current})
 ```xml
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
-    <artifactId>azure-resourcemanager-maintenance</artifactId>
-    <version>1.0.0-beta.2</version>
+    <artifactId>azure-resourcemanager-maps</artifactId>
+    <version>1.0.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -74,7 +74,7 @@ AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-MaintenanceManager manager = MaintenanceManager
+AzureMapsManager manager = AzureMapsManager
     .authenticate(credential, profile);
 ```
 
@@ -94,7 +94,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maintenance_1.0.0-beta.2/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maps_1.0.0-beta.1/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -107,8 +107,8 @@ For details on contributing to this repository, see the [contributing guide](htt
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maintenance_1.0.0-beta.2/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maintenance_1.0.0-beta.2/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maintenance_1.0.0-beta.2/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maintenance_1.0.0-beta.2/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maps_1.0.0-beta.1/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maps_1.0.0-beta.1/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maps_1.0.0-beta.1/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-maps_1.0.0-beta.1/sdk/resourcemanager/docs/DESIGN.md
 
