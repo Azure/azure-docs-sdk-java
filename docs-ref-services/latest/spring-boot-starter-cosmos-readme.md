@@ -3,7 +3,7 @@ title: Azure Cosmos DB Spring Boot Starter client library for Java
 keywords: Azure, java, SDK, API, azure-spring-boot-starter-cosmos, springboot
 author: maggiepint
 ms.author: magpint
-ms.date: 04/20/2021
+ms.date: 05/24/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springboot
 ---
 
-# Azure Cosmos DB Spring Boot Starter client library for Java - Version 3.4.0 
+# Azure Cosmos DB Spring Boot Starter client library for Java - Version 3.5.0 
 
 
 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) is a globally-distributed database service that allows developers to work with data using a variety of standard APIs, such as SQL, MongoDB, Graph, and Azure Table storage. 
@@ -29,7 +29,7 @@ ms.service: springboot
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-starter-cosmos</artifactId>
-    <version>3.4.0</version>
+    <version>3.5.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -49,7 +49,7 @@ ms.service: springboot
     [Note] if both way applied,    
 - Custom collection Name.
    By default, collection name will be class name of user domain class. To customize it, add annotation `@Document(collection="myCustomCollectionName")` to your domain class, that's all.
-- Supports [Azure Cosmos DB partition](https://docs.microsoft.com/azure/cosmos-db/partition-data). To specify a field of your domain class to be partition key field, just annotate it with `@PartitionKey`. When you do CRUD operation, please specify your partition value. For more sample on partition CRUD, please refer to [test here](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.4.0/sdk/cosmos/azure-spring-data-cosmos-test/src/test/java/com/azure/spring/data/cosmos/repository/integration/AddressRepositoryIT.java)
+- Supports [Azure Cosmos DB partition](https://docs.microsoft.com/azure/cosmos-db/partition-data). To specify a field of your domain class to be partition key field, just annotate it with `@PartitionKey`. When you do CRUD operation, please specify your partition value. For more sample on partition CRUD, please refer to [test here](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.5.0/sdk/cosmos/azure-spring-data-cosmos-test/src/test/java/com/azure/spring/data/cosmos/repository/integration/AddressRepositoryIT.java)
 - Supports [Spring Data custom query](https://docs.spring.io/spring-data/commons/docs/current/reference/html/#repositories.query-methods.details) find operation.
 - Supports [spring-boot-starter-data-rest](https://projects.spring.io/spring-data-rest/).
 - Supports List and nested type in domain class.
@@ -287,29 +287,29 @@ logging.level.org.springframework.web=DEBUG
 logging.level.org.hibernate=ERROR
 ```
 
-For more information about setting loging in pring, please refer to the [official doc](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging).
+For more information about setting loging in pring, please refer to the [official doc](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#boot-features-logging).
  
 
 ## Next steps
 
-Besides using this Azure Cosmos DB Spring Boot Starter, you can directly use Spring Data for Azure Cosmos DB package for more complex scenarios. Please refer to [Spring Data for Azure Cosmos DB](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-cosmos_3.4.0/sdk/cosmos/azure-spring-data-cosmos) for more details.
+Besides using this Azure Cosmos DB Spring Boot Starter, you can directly use Spring Data for Azure Cosmos DB package for more complex scenarios. Please refer to [Spring Data for Azure Cosmos DB](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-cosmos_3.5.0/sdk/cosmos/azure-spring-data-cosmos) for more details.
 
 The following section provide a sample project illustrating how to use the starter.
 ### More sample code
-- [Cosmos DB SQL API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.4.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-cosmos)
+- [Cosmos DB SQL API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.5.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-cosmos)
 
 ## Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
-Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.4.0/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
+Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.5.0/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
 
 <!-- LINKS -->
 [docs]: https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-cosmos-db
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springboot.html#azure-spring-boot
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/azure-cosmosdb-spring-boot-starter
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-cosmos_3.4.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-cosmos
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-cosmos_3.5.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-cosmos
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
-[sample_cosmos_switch_key]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.4.0/sdk/cosmos/azure-spring-data-cosmos/src/samples/java/com/azure/spring/data/cosmos/SampleApplication.java
-[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.4.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+[sample_cosmos_switch_key]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.5.0/sdk/cosmos/azure-spring-data-cosmos/src/samples/java/com/azure/spring/data/cosmos/SampleApplication.java
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-cosmos_3.5.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 
 
