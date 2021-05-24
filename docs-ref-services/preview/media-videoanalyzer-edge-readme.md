@@ -3,7 +3,7 @@ title: Azure Video Analyzer Edge client library for Java
 keywords: Azure, java, SDK, API, azure-media-videoanalyzer-edge, 
 author: maggiepint
 ms.author: magpint
-ms.date: 05/21/2021
+ms.date: 05/24/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,15 +11,15 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Video Analyzer Edge client library for Java - Version 1.0.0-beta.1 
+# Azure Video Analyzer Edge client library for Java - Version 1.0.0-beta.2 
 
 
 Azure Video Analyzer on IoT Edge provides a platform to build intelligent video applications that span the edge and the cloud. The platform offers the capability to capture, record, and analyze live video along with publishing the results, video and video analytics, to Azure services in the cloud or the edge. It is designed to be an extensible platform, enabling you to connect different video analysis edge modules (such as Cognitive services containers, custom edge modules built by you with open-source machine learning models or custom models trained with your own data) to it and use them to analyze live video without worrying about the complexity of building and running a live video pipeline.
 
 Use the client library for Video Analyzer on IoT Edge to:
 
-- Simplify interactions with the [Microsoft Azure IoT SDKs](https://github.com/azure/azure-iot-sdks)
-- Programmatically construct pipeline topologies and live pipelines
+-   Simplify interactions with the [Microsoft Azure IoT SDKs](https://github.com/azure/azure-iot-sdks)
+-   Programmatically construct pipeline topologies and live pipelines
 
 [Product documentation][doc_product] | [Direct methods][doc_direct_methods] | [Source code][source]
 
@@ -27,28 +27,34 @@ Use the client library for Video Analyzer on IoT Edge to:
 
 ### Prerequisites
 
-- A Java Development Kit, version 8 or later.
-- You need an active [Azure subscription][azure_sub] and a IoT device connection string to use this package.
-- To interact with Azure IoT Hub you will need to add their dependency to your `pom.xml`
+-   A Java Development Kit, version 8 or later.
+-   You need an active [Azure subscription][azure_sub] and a IoT device connection string to use this package.
+-   To interact with Azure IoT Hub you will need to add their dependency to your `pom.xml`
 
 ### Include the package
 
 Install the Live Video Analyzer client library for Java with Maven:
 
 #<!-- {x-version-update;com.microsoft.azure.sdk.iot:iot-service-client;external_dependency} -->
- ```xml
+
+```xml
 <dependency>
-  <groupId>com.microsoft.azure.sdk.iot</groupId>
-  <artifactId>iot-service-client</artifactId>
-  <version>1.28.0</version> 
+ <groupId>com.microsoft.azure.sdk.iot</groupId>
+ <artifactId>iot-service-client</artifactId>
+ <version>1.28.0</version>
+</dependency>
+<dependency>
+ <groupId>com.azure</groupId>
+ <artifactId>azure-media-videoanalyzer-edge</artifactId>
+ <version>1.0.0-beta.2</version>
 </dependency>
 ```
 
-- You will need to use the version of the SDK that corresponds to the version of the Video Analyzer Edge module you are using.
+-   You will need to use the version of the SDK that corresponds to the version of the Video Analyzer Edge module you are using.
 
-  | SDK     | Video Analyzer Edge Module |
-  | ------- | --------------- |
-  | 1.0.0-beta.1 | 1.0        |
+    | SDK          | Video Analyzer Edge Module |
+    | ------------ | -------------------------- |
+    | 1.0.0-beta.x | 1.0                        |
 
 ### Creating a pipeline topology and making requests
 
@@ -65,7 +71,9 @@ A _pipeline topology_ is a blueprint or template for instantiating live pipeline
 ### Creating a pipeline topology
 
 To create a pipeline topology you need to define parameters, sources, and sinks.
+
 <!-- embedme C:\azure-sdk-for-java\sdk\videoanalyzer\azure-media-videoanalyzer-edge\src\samples\java\com\azure\media\videoanalyzer\edge\LvaInvokeModuleSample.java#L25-L72 -->
+
 ```java
 private static PipelineTopology buildPipeLineTopology() {
     IotHubMessageSource msgSource = new IotHubMessageSource("iotMsgSource")
@@ -122,6 +130,7 @@ private static PipelineTopology buildPipeLineTopology() {
 To create a live pipeline instance, you need to have an existing pipeline topology.
 
 <!-- embedme C:\azure-sdk-for-java\sdk\videoanalyzer\azure-media-videoanalyzer-edge\src\samples\java\com\azure\media\videoanalyzer\edge\LvaInvokeModuleSample.java#L74-L92 -->
+
 ```java
 private static LivePipeline buildLivePipeline() {
     ParameterDefinition hubParam = new ParameterDefinition("hubSinkOutputName")
@@ -145,7 +154,9 @@ private static LivePipeline buildLivePipeline() {
 ```
 
 ### Invoking a pipeline method request
+
 <!-- embedme C:\azure-sdk-for-java\sdk\videoanalyzer\azure-media-videoanalyzer-edge\src\samples\java\com\azure\media\videoanalyzer\edge\LvaInvokeModuleSample.java#L94-L104 -->
+
 ```java
 private static MethodResult invokeDirectMethodHelper(DeviceMethod client, String methodName, String payload) throws IOException, IotHubException {
     MethodResult result = null;
@@ -159,18 +170,21 @@ private static MethodResult invokeDirectMethodHelper(DeviceMethod client, String
     return result;
 }
 ```
+
 <!-- embedme C:\azure-sdk-for-java\sdk\videoanalyzer\azure-media-videoanalyzer-edge\src\samples\java\com\azure\media\videoanalyzer\edge\LvaInvokeModuleSample.java#L111-L112 -->
+
 ```java
 PipelineTopologySetRequest setPipelineTopologyRequest = new PipelineTopologySetRequest(pipelineTopology);
 MethodResult setPipelineResult = invokeDirectMethodHelper(dClient, setPipelineTopologyRequest.getMethodName(), setPipelineTopologyRequest.getPayloadAsJson());
 ```
+
 ## Troubleshooting
 
 ## Next steps
 
-- [Samples][samples]
-- [Azure IoT Device SDK][iot-device-sdk]
-- [Azure IoTHub Service SDK][iot-hub-sdk]
+-   [Samples][samples]
+-   [Azure IoT Device SDK][iot-device-sdk]
+-   [Azure IoTHub Service SDK][iot-hub-sdk]
 
 ## Contributing
 
@@ -199,19 +213,15 @@ additional questions or comments.
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-
 [package]: https://aka.ms/ava/sdk/client/java
 [samples]: https://aka.ms/video-analyzer-sample
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-media-videoanalyzer-edge_1.0.0-beta.1/sdk/videoanalyzer
-
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-media-videoanalyzer-edge_1.0.0-beta.2/sdk/videoanalyzer
 [doc_direct_methods]: https://go.microsoft.com/fwlink/?linkid=2162396
 [doc_pipelines]: https://go.microsoft.com/fwlink/?linkid=2162396
 [doc_product]: https://go.microsoft.com/fwlink/?linkid=2162396
-
 [iot-device-sdk]: https://search.maven.org/search?q=a:iot-service-client
 [iot-hub-sdk]: https://github.com/Azure/azure-iot-sdk-java
 [github-page-issues]: https://github.com/Azure/azure-sdk-for-java/issues
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fvideoanalyzer%2Fazure-media-videoanalyzer-edge%2FREADME.png)
-
 
