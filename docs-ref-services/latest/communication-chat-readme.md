@@ -3,7 +3,7 @@ title: Azure Communication Chat client library for Java
 keywords: Azure, java, SDK, API, azure-communication-chat, communication
 author: maggiepint
 ms.author: magpint
-ms.date: 03/29/2021
+ms.date: 05/27/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: communication
 ---
 
-# # Azure Communication Chat client library for Java - Version 1.0.0 
+# Azure Communication Chat client library for Java - Version 1.0.1 
 
 
 Azure Communication Chat contains the APIs used in chat applications for Azure Communication Services.  
@@ -34,7 +34,7 @@ Azure Communication Chat contains the APIs used in chat applications for Azure C
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-chat</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -75,13 +75,14 @@ Learn how to generate user access tokens from [User Access Tokens](https://docs.
 
 The following sections provide several code snippets covering some of the most common tasks, including:
 
+- [Create the Chat Client](#create-the-chat-client)
 - [Chat Thread Operations](#chat-thread-operations)
 - [Chat Message Operations](#chat-message-operations)
 - [Chat Thread Participant Operations](#chat-thread-participant-operations)
 - [Read Receipt Operations](#read-receipt-operations)
 - [Typing Notification Operations](#typing-notification-operations)
 
-## Create the chat client
+### Create the Chat Client
 
 <!-- embedme ./src/samples/java/com/azure/communication/chat/ReadmeSamples.java#L38-L48 -->
 ```Java
@@ -390,5 +391,5 @@ Check out other client libraries for Azure communication service
 [product_docs]: https://docs.microsoft.com/azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-chat
 [api_documentation]: https://aka.ms/java-docs
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-chat_1.0.0/sdk/communication/azure-communication-chat/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-chat_1.0.1/sdk/communication/azure-communication-chat/src
 
