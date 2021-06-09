@@ -3,7 +3,7 @@ title: Azure Communications SMS Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-sms, communication
 author: maggiepint
 ms.author: magpint
-ms.date: 05/27/2021
+ms.date: 06/09/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: communication
 ---
 
-## Azure Communications SMS Service client library for Java - Version 1.0.2 
+## Azure Communications SMS Service client library for Java - Version 1.0.3 
 
 
 Azure Communication SMS is used to send simple text messages.
@@ -35,7 +35,7 @@ Azure Communication SMS is used to send simple text messages.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-communication-sms</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
@@ -174,7 +174,7 @@ try {
 [product_docs]: https://docs.microsoft.com/azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-sms
 [api_documentation]: https://aka.ms/java-docs
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.0.2/sdk/communication/azure-communication-sms/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.0.3/sdk/communication/azure-communication-sms/src
 [handle_sms_events]: https://docs.microsoft.com/azure/communication-services/quickstarts/telephony-sms/handle-sms-events
 [next_steps]:https://docs.microsoft.com/azure/communication-services/quickstarts/telephony-sms/send?pivots=programming-language-java
 
