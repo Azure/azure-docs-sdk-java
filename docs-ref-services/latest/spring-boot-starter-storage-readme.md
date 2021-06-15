@@ -75,6 +75,21 @@ You can write to a resource in Azure Blob storage by casting the Spring `Resourc
 #### Other operations 
 The Spring Resource abstraction for Azure Storage also supports [other operations][other_operation] defined in Spring's `Resource` and `WritableResource` interface. 
 
+#### The initialization for storage-file resource access
+This is the part about ShareServiceClient initialization:
+```java
+@Autowired
+@Bean
+public AzureStorageResourcePatternResolver getStorageResourcePatternResolver(
+        BlobServiceClientBuilder blobServiceClientBuilder,
+        ShareServiceClientBuilder shareServiceClientBuilder) {
+    BlobServiceClient blobClient = blobServiceClientBuilder.buildClient();
+    ShareServiceClient fileClient = shareServiceClientBuilder.buildClient();
+    return new AzureStorageResourcePatternResolver(blobClient, fileClient);
+}
+
+```
+
 #### Autowire the BlobServiceClientBuilder
 You can autowire the `BlobServiceClientBuilder` and create a client using:
 ```java
