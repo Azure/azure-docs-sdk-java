@@ -1,17 +1,17 @@
 ---
 title: Azure Video Analyzer Edge client library for Java
-keywords: Azure, java, SDK, API, azure-media-videoanalyzer-edge, 
+keywords: Azure, java, SDK, API, azure-media-videoanalyzer-edge, videoanalyzer
 author: maggiepint
 ms.author: magpint
-ms.date: 05/25/2021
+ms.date: 06/11/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: videoanalyzer
 ---
 
-# Azure Video Analyzer Edge client library for Java - Version 1.0.0-beta.3 
+# Azure Video Analyzer Edge client library for Java - Version 1.0.0-beta.4 
 
 
 Azure Video Analyzer provides a platform to build intelligent video applications that span the edge and the cloud. The platform offers the capability to capture, record, and analyze live video along with publishing the results, video and video analytics, to Azure services in the cloud or the edge. It is designed to be an extensible platform, enabling you to connect different video analysis edge modules (such as Cognitive services containers, custom edge modules built by you with open-source machine learning models or custom models trained with your own data) to it and use them to analyze live video without worrying about the complexity of building and running a live video pipeline.
@@ -218,7 +218,7 @@ additional questions or comments.
 [coc_contact]: mailto:opencode@microsoft.com
 [package]: https://aka.ms/ava/sdk/client/java
 [samples]: https://aka.ms/video-analyzer-sample
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-media-videoanalyzer-edge_1.0.0-beta.3/sdk/videoanalyzer
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-media-videoanalyzer-edge_1.0.0-beta.4/sdk/videoanalyzer
 [doc_direct_methods]: https://go.microsoft.com/fwlink/?linkid=2162396
 [doc_pipelines]: https://go.microsoft.com/fwlink/?linkid=2162396
 [doc_product]: https://go.microsoft.com/fwlink/?linkid=2162396
