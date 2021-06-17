@@ -3,13 +3,14 @@ uid: "com.azure.core.http.rest.PagedFluxBase"
 fullName: "com.azure.core.http.rest.PagedFluxBase<T,P>"
 name: "PagedFluxBase<T,P>"
 nameWithType: "PagedFluxBase<T,P>"
-summary: "This class is a flux that can operate on any type that extends <xref uid=\"com.azure.core.http.rest.PagedResponse\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PagedResponse\"></xref> and also provides the ability to operate on individual items. When processing the response by page, each response will contain the items in the page as well as the request details like status code and headers.\n\n**Process each item in Flux**\n\nTo process one item at a time, simply subscribe to this Flux.\n\n```java\npagedFluxBase\n     .log()\n     .subscribe(item -> System.out.println(\"Processing item with value: \" + item),\n         error -> System.err.println(\"An error occurred: \" + error),\n         () -> System.out.println(\"Processing complete.\"));\n```\n\n**Process one page at a time**\n\nTo process one page at a time, starting from the beginning, use <xref uid=\"com.azure.core.http.rest.PagedFluxBase.byPage()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"byPage()\"></xref> method.\n\n```java\npagedFluxBase\n     .byPage()\n     .log()\n     .subscribe(page -> System.out.printf(\"Processing page containing item values: %s%n\",\n         page.getElements().stream().map(String::valueOf).collect(Collectors.joining(\", \"))),\n         error -> System.err.println(\"An error occurred: \" + error),\n         () -> System.out.println(\"Processing complete.\"));\n```\n\n**Process items starting from a continuation token**\n\nTo process items one page at a time starting from any page associated with a continuation token, use\n\n```java\nString continuationToken = getContinuationToken();\n pagedFluxBase\n     .byPage(continuationToken)\n     .log()\n     .doOnSubscribe(ignored -> System.out.println(\n         \"Subscribed to paged flux processing pages starting from: \" + continuationToken))\n     .subscribe(page -> System.out.printf(\"Processing page containing item values: %s%n\",\n         page.getElements().stream().map(String::valueOf).collect(Collectors.joining(\", \"))),\n         error -> System.err.println(\"An error occurred: \" + error),\n         () -> System.out.println(\"Processing complete.\"));\n```"
+summary: "This class is a flux that can operate on any type that extends <xref uid=\"com.azure.core.http.rest.PagedResponse\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PagedResponse\"></xref> and also provides the ability to operate on individual items. When processing the response by page, each response will contain the items in the page as well as the request details like status code and headers.\n\n**Process each item in Flux**\n\nTo process one item at a time, simply subscribe to this Flux.\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.items\\}\n\n**Process one page at a time**\n\nTo process one page at a time, starting from the beginning, use <xref uid=\"com.azure.core.http.rest.PagedFluxBase.byPage()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"byPage()\"></xref> method.\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.pages\\}\n\n**Process items starting from a continuation token**\n\nTo process items one page at a time starting from any page associated with a continuation token, use <xref uid=\"com.azure.core.http.rest.PagedFluxBase.byPage(java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#byPage(String)\"></xref>.\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.pagesWithContinuationToken\\}"
 inheritances:
 - "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
 - "<xref href=\"reactor.core.publisher.Flux\" data-throw-if-not-resolved=\"False\" />"
 - "<xref href=\"com.azure.core.util.paging.ContinuablePagedFlux\" data-throw-if-not-resolved=\"False\" />"
 - "<xref href=\"com.azure.core.util.paging.ContinuablePagedFluxCore\" data-throw-if-not-resolved=\"False\" />"
 inheritedMembers:
+- "com.azure.core.util.paging.ContinuablePagedFlux.getContinuationPredicate()"
 - "com.azure.core.util.paging.ContinuablePagedFluxCore.byPage()"
 - "com.azure.core.util.paging.ContinuablePagedFluxCore.byPage(C)"
 - "com.azure.core.util.paging.ContinuablePagedFluxCore.byPage(C,int)"
@@ -387,6 +388,7 @@ inheritedMembers:
 - "reactor.core.publisher.Flux.take(java.time.Duration)"
 - "reactor.core.publisher.Flux.take(java.time.Duration,reactor.core.scheduler.Scheduler)"
 - "reactor.core.publisher.Flux.take(long)"
+- "reactor.core.publisher.Flux.take(long,boolean)"
 - "reactor.core.publisher.Flux.takeLast(int)"
 - "reactor.core.publisher.Flux.takeUntil(java.util.function.Predicate<? super T>)"
 - "reactor.core.publisher.Flux.takeUntilOther(org.reactivestreams.Publisher<?>)"
@@ -435,4 +437,4 @@ typeParameters:
 - name: "P"
 metadata: {}
 package: "com.azure.core.http.rest"
-artifact: com.azure:azure-core:1.16.0
+artifact: com.azure:azure-core:1.17.0
