@@ -1,12 +1,11 @@
 ---
 title: Azure Event Grid client library for Java
+description: Azure Event Grid client library for Java documentation
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
 author: maggiepint
 ms.author: magpint
 ms.date: 06/09/2021
 ms.topic: article
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: event-grid
 ---
@@ -18,7 +17,7 @@ Azure Event Grid allows you to easily build applications with event-based archit
 manages all routing of events from any source, to any destination, for any application. 
 Azure service events and custom events can be published directly to the service, where the events can then be filtered 
 and sent to various recipients, such as built-in handlers or custom webhooks. 
-To learn more about Azure Event Grid: [What is Event Grid?](https://docs.microsoft.com/azure/event-grid/overview)
+To learn more about Azure Event Grid: [What is Event Grid?](/azure/event-grid/overview)
 
 Use the client library for Azure Event Grid to:
 - Publish events to the Event Grid service using the Event Grid Event, Cloud Event 1.0, or custom schemas
@@ -184,10 +183,10 @@ This SDK uses `com.azure.util.BinaryData` to represent the data payload of event
 `BinaryData` supports serializing and deserializing objects through `com.azure.core.util.BinaryData.fromObject(Object object)` and `toObject()` methods,
 which use a default Jackson Json serializer, or `fromObject(Object object, ObjectSerializer customSerializer)` and `toObject(Class<T> clazz, ObjectSerializer serializer)` methods,
 which accept your customized Json serializer.
-Refer to [BinaryData](https://docs.microsoft.com/java/api/com.azure.core.util.binarydata?view=azure-java-stable) documentation for details.
+Refer to [BinaryData](/java/api/com.azure.core.util.binarydata?view=azure-java-stable) documentation for details.
 
 ## Key concepts
-For information about general Event Grid concepts: [Concepts in Azure Event Grid](https://docs.microsoft.com/azure/event-grid/concepts).
+For information about general Event Grid concepts: [Concepts in Azure Event Grid](/azure/event-grid/concepts).
 
 ### EventGridPublisherClient
     
@@ -198,7 +197,7 @@ For information about general Event Grid concepts: [Concepts in Azure Event Grid
 
 Event Grid supports multiple schemas for encoding events. When an Event Grid Topic or Domain is created, you specify the
 schema that will be used when publishing events. While you may configure your topic to use a _custom schema_ it is
-more common to use the already defined [EventGridEvent schema](https://docs.microsoft.com/azure/event-grid/event-schema) or [CloudEvent schema](https://docs.microsoft.com/azure/event-grid/cloud-event-schema). 
+more common to use the already defined [EventGridEvent schema](/azure/event-grid/event-schema) or [CloudEvent schema](/azure/event-grid/cloud-event-schema). 
 CloudEvent is a Cloud Native Computing Foundation project which produces a specification for describing event data in a common way.
 Event Grid service is compatible with the [CloudEvent specification](https://cloudevents.io/)
 Regardless of what schema your topic or domain is configured to use, 
@@ -220,9 +219,9 @@ az eventgrid topic show --name <your-resource-name> --resource-group <your-resou
 ### Event Handlers and event deserialization.
 
 EventGrid doesn't store any events in the Event Grid Topic or Domain itself. You need to [create subscriptions to the
-EventGrid Topic or Domain](https://docs.microsoft.com/azure/event-grid/subscribe-through-portal). 
+EventGrid Topic or Domain](/azure/event-grid/subscribe-through-portal). 
 The events sent to the topic or domain will be stored into the subscription's endpoint, also known as 
-["Event Handler"](https://docs.microsoft.com/azure/event-grid/event-handlers).
+["Event Handler"](/azure/event-grid/event-handlers).
 
 You may use the event handler's SDK to receive the events in Json String and then use the `EventGridEvent.fromString()` or `CloudEvent.fromString()`
 deserialize the events. The data part of the events can be in binary, String, or JSON data. 
@@ -277,7 +276,7 @@ customEventClient.sendEvents(events);
 ```
 ### Sending Events To Event Grid Domain
 
-An [Event Grid Domain](https://docs.microsoft.com/azure/event-grid/event-domains) can have thousands of topics
+An [Event Grid Domain](/azure/event-grid/event-domains) can have thousands of topics
 but has a single endpoint. You can use a domain to manage a set of related topics. Sending events to the topics of
 an Event Grid Domain is the same as sending events to a regular Event Grid Topic except that you need to 
 specify the `topic` of an `EventGridEvent` if the domain accepts `EventGridEvent` schema.
@@ -343,17 +342,17 @@ byte[] dataInBytes = eventData.toBytes();
 ```  
 
 #### Deserialize system event data from `CloudEvent` or `EventGridEvent`
-An event that is sent to a [System Topic](https://docs.microsoft.com/azure/event-grid/system-topics) is called a
+An event that is sent to a [System Topic](/azure/event-grid/system-topics) is called a
 System Topic Event, or System Event. 
-A system topic in Event Grid represents events published by an [Event Source](https://docs.microsoft.com/azure/event-grid/overview#event-sources) like Azure Storage, Azure Event Hubs, App Configuration and so on.
+A system topic in Event Grid represents events published by an [Event Source](/azure/event-grid/overview#event-sources) like Azure Storage, Azure Event Hubs, App Configuration and so on.
 An example is when a blob is created, a system event with event type "Microsoft.Storage.BlobCreated" is sent to the configured System Topic. 
 The system event class for this event type is `StorageBlobCreatedEventData` defined in package `com.azure.messaging.eventgrid.systemevents`.
 EventGrid has system events for:
-- [Azure App Configuration](https://docs.microsoft.com/azure/event-grid/event-schema-app-configuration)
-- [Azure App Service](https://docs.microsoft.com/azure/event-grid/event-schema-app-service)
-- [Azure Blob Storage](https://docs.microsoft.com/azure/event-grid/event-schema-blob-storage)
+- [Azure App Configuration](/azure/event-grid/event-schema-app-configuration)
+- [Azure App Service](/azure/event-grid/event-schema-app-service)
+- [Azure Blob Storage](/azure/event-grid/event-schema-blob-storage)
 - ...
-- Refer to [Azure services that support system topics](https://docs.microsoft.com/azure/event-grid/system-topics#azure-services-that-support-system-topics) for many other services.
+- Refer to [Azure services that support system topics](/azure/event-grid/system-topics#azure-services-that-support-system-topics) for many other services.
 - Refer to package `com.azure.messaging.eventgrid.systemevents` for the related system event classes
 
 You can't send a System Event to a System Topic by using this SDK.
@@ -419,7 +418,7 @@ good place to start for problems involving configuration of topics/endpoints, as
 problems involving error codes from the service.
 
 ### Distributed Tracing
-The Event Grid library supports distributing tracing out of the box. In order to adhere to the CloudEvents specification's [guidance](https://github.com/cloudevents/spec/blob/master/extensions/distributed-tracing.md) on distributing tracing, the library will set the `traceparent` and `tracestate` on the `extensionAttributes` of a `CloudEvent` when distributed tracing is enabled. To learn more about how to enable distributed tracing in your application, take a look at the Azure SDK Java [distributed tracing documentation](https://docs.microsoft.com/azure/developer/java/sdk/tracing).
+The Event Grid library supports distributing tracing out of the box. In order to adhere to the CloudEvents specification's [guidance](https://github.com/cloudevents/spec/blob/master/extensions/distributed-tracing.md) on distributing tracing, the library will set the `traceparent` and `tracestate` on the `extensionAttributes` of a `CloudEvent` when distributed tracing is enabled. To learn more about how to enable distributed tracing in your application, take a look at the Azure SDK Java [distributed tracing documentation](/azure/developer/java/sdk/tracing).
 
 
 ### Help and Issues
@@ -432,7 +431,7 @@ If you encounter any bugs with these SDKs, please file issues via [Issues](https
 
 ## Next steps
 
-- [Azure Java SDKs](https://docs.microsoft.com/java/azure/)
+- [Azure Java SDKs](/java/azure/)
 - If you don't have a Microsoft Azure subscription you can get a FREE trial account [here](https://go.microsoft.com/fwlink/?LinkId=330212)
 - Some additional sample code can be found [here][samples]
 - Additional Event Grid tutorials can be found [here][service_docs]
@@ -452,7 +451,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 <!-- LINKS -->
-[jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk/?view=azure-java-stable
 [javadocs]: https://azure.github.io/azure-sdk-for-java/eventgrid.html
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
@@ -460,10 +459,10 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.4.0/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
 [eventgrid]: https://azure.com/eventgrid
 [portal]: https://ms.portal.azure.com/
-[cli]: https://docs.microsoft.com/cli/azure
-[service_docs]: https://docs.microsoft.com/azure/event-grid/
+[cli]: /cli/azure
+[service_docs]: /azure/event-grid/
 [sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_4.4.0/sdk/eventgrid/azure-messaging-eventgrid/src
-[EventGridEvent]: https://docs.microsoft.com/azure/event-grid/event-schema
+[EventGridEvent]: /azure/event-grid/event-schema
 [CloudEvent]: https://github.com/cloudevents/spec/blob/master/spec.md
 
 
