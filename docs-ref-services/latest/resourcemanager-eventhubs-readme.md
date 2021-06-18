@@ -1,12 +1,11 @@
 ---
 title: Azure Resource Manager EventHubs client library for Java
+description: Azure Resource Manager EventHubs client library for Java documentation
 keywords: Azure, java, SDK, API, azure-resourcemanager-eventhubs, eventhubs
 author: maggiepint
 ms.author: magpint
 ms.date: 06/18/2021
 ms.topic: article
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: event-hubs
 ---
@@ -92,7 +91,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- LINKS -->
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-eventhubs_2.6.0/sdk/identity/azure-identity
 [azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-eventhubs_2.6.0/sdk/core/azure-core-http-netty
