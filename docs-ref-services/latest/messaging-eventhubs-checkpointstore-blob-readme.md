@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: eventhubs
+ms.service: event-hubs
 ---
 
 # Azure Event Hubs Checkpoint Store client library for Java - Version 1.8.0 
