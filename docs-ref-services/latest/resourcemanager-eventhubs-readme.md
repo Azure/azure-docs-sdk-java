@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: eventhubs
+ms.service: event-hubs
 ---
 
 # Azure Resource Manager EventHubs client library for Java - Version 2.6.0 
