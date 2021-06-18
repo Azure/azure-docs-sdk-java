@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: servicebus
+ms.service: service-bus-messaging
 ---
 
 # Azure Service Bus client library for Java - Version 7.2.3 
