@@ -47,10 +47,10 @@ The `azure-spring-boot-starter-storage` provides the following configuration opt
 
 Name | Description | Required  
 ---|---|---
- azure.storage.accountName | The name of the Azure Storage account. | Yes |
- azure.storage.accountKey | The access key of the Azure Storage account. | Yes |
- azure.storage.blob-endpoint | The blob endpoint URL of the Azure Storage account. | Optional when storage blob resource is used. |
- azure.storage.file-endpoint | The file endpoint URL of the Azure Storage account. | Optional when storage file resource is used |
+ azure.storage.account-name | The name of the Azure Storage account. | Yes |
+ azure.storage.account-key | The access key of the Azure Storage account. | Yes |
+ azure.storage.blob-endpoint | The blob endpoint URL of the Azure Storage account. | Only required when storage blob resource is used |
+ azure.storage.file-endpoint | The file endpoint URL of the Azure Storage account. | Only required when storage file resource is used |
 
 #### Autowire a resource 
 You can use the annotation of `@Value("blob://{containerName}/{blobName}")` to autowire a `Resource` with that in [Azure Blob storage][azure_storage].
@@ -78,7 +78,7 @@ The Spring Resource abstraction for Azure Storage also supports [other operation
 #### Autowire the BlobServiceClientBuilder
 You can autowire the `BlobServiceClientBuilder` and create a client using:
 ```java
-@Autowire
+@Autowired
 private BlobServiceClientBuilder blobServiceClientBuilder;
 
 private final BlobServiceAsyncClient blobServiceAsyncClient = blobServiceClientBuilder.buildAsyncClient();
@@ -132,7 +132,7 @@ Please follow [instructions here][contributing_md] to build from source or contr
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-starter-azure-storage
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springboot.html#azure-spring-boot
 [src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.5.0/sdk/spring/azure-spring-boot-starter-storage
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.5.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-storage-resource
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-storage-resource
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#boot-features-logging
 [contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.5.0/sdk/spring/CONTRIBUTING.md
