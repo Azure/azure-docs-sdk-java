@@ -37,10 +37,6 @@ The project provides a Spring Boot Starter `azure-spring-boot-starter-storage` t
 ## Key concepts
 The Azure Storage platform is Microsoft's cloud storage solution for modern data storage scenarios. Core storage services offer a massively scalable object store for data objects, disk storage for Azure virtual machines (VMs), a file system service for the cloud, a messaging store for reliable messaging, and a NoSQL store.
 
-## Examples
-
-Please use this `sample` as a reference for how to use **Azure Spring Boot Storage Starter** in your projects. 
-
 #### Auto-configuration for Azure Blob storage
 
 The `azure-spring-boot-starter-storage` provides the following configuration options in `application.properties`.
