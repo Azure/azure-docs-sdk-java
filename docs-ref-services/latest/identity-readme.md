@@ -64,7 +64,7 @@ The `DefaultAzureCredential` is appropriate for most scenarios where the applica
 
  The `DefaultAzureCredential` will attempt to authenticate via the following mechanisms in order.
  
-![DefaultAzureCredential authentication flow](https://github.com/Azure/azure-sdk-for-java/raw/master/sdk/identity/azure-identity/images/defaultazurecredential.png)
+![DefaultAzureCredential authentication flow](https://github.com/Azure/azure-sdk-for-java/raw/main/sdk/identity/azure-identity/images/defaultazurecredential.png)
 
  - Environment - The `DefaultAzureCredential` will read account information specified via [environment variables](#environment-variables) and use it to authenticate.
  - Managed Identity - If the application is deployed to an Azure host with Managed Identity enabled, the `DefaultAzureCredential` will authenticate with that account.
