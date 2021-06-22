@@ -33,7 +33,7 @@ The version 4.x.x client libraries for Java are part of the Azure SDK for Java. 
 
 | Maven Package | Reference | Samples |
 |--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|
-|    [azure-messaging-eventgrid](https://mvnrepository.com/artifact/com.azure/azure-messaging-eventgrid)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/eventgrid/client?view=azure-java-stable)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java)    |
+|    [azure-messaging-eventgrid](https://mvnrepository.com/artifact/com.azure/azure-messaging-eventgrid)    |    [API Reference](/java/api/overview/azure/eventgrid/client)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java)    |
 
 
 > [!div class="nextstepaction"]
