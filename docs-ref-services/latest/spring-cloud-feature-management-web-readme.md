@@ -1,6 +1,6 @@
 ---
-title: Azure Spring cloud azure appconfiguration config client library for Java
-keywords: Azure, java, SDK, API, azure-spring-cloud-appconfiguration-config, 
+title: Azure Spring cloud azure feature management web client library for Java
+keywords: Azure, java, SDK, API, azure-spring-cloud-feature-management-web, 
 author: maggiepint
 ms.author: magpint
 ms.date: 06/22/2021
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Spring cloud azure appconfiguration config client library for Java - Version 2.0.0-beta.2 
+# Azure Spring cloud azure feature management web client library for Java - Version 2.0.0 
 
 
 ## Key concepts
