@@ -37,20 +37,16 @@ The project provides a Spring Boot Starter `azure-spring-boot-starter-storage` t
 ## Key concepts
 The Azure Storage platform is Microsoft's cloud storage solution for modern data storage scenarios. Core storage services offer a massively scalable object store for data objects, disk storage for Azure virtual machines (VMs), a file system service for the cloud, a messaging store for reliable messaging, and a NoSQL store.
 
-## Examples
-
-Please use this `sample` as a reference for how to use **Azure Spring Boot Storage Starter** in your projects. 
-
 #### Auto-configuration for Azure Blob storage
 
 The `azure-spring-boot-starter-storage` provides the following configuration options in `application.properties`.
 
 Name | Description | Required  
 ---|---|---
- azure.storage.accountName | The name of the Azure Storage account. | Yes |
- azure.storage.accountKey | The access key of the Azure Storage account. | Yes |
- azure.storage.blob-endpoint | The blob endpoint URL of the Azure Storage account. | Optional when storage blob resource is used. |
- azure.storage.file-endpoint | The file endpoint URL of the Azure Storage account. | Optional when storage file resource is used |
+ azure.storage.account-name | The name of the Azure Storage account. | Yes |
+ azure.storage.account-key | The access key of the Azure Storage account. | Yes |
+ azure.storage.blob-endpoint | The blob endpoint URL of the Azure Storage account. | Only required when storage blob resource is used |
+ azure.storage.file-endpoint | The file endpoint URL of the Azure Storage account. | Only required when storage file resource is used |
 
 #### Autowire a resource 
 You can use the annotation of `@Value("blob://{containerName}/{blobName}")` to autowire a `Resource` with that in [Azure Blob storage][azure_storage].
@@ -78,7 +74,7 @@ The Spring Resource abstraction for Azure Storage also supports [other operation
 #### Autowire the BlobServiceClientBuilder
 You can autowire the `BlobServiceClientBuilder` and create a client using:
 ```java
-@Autowire
+@Autowired
 private BlobServiceClientBuilder blobServiceClientBuilder;
 
 private final BlobServiceAsyncClient blobServiceAsyncClient = blobServiceClientBuilder.buildAsyncClient();
