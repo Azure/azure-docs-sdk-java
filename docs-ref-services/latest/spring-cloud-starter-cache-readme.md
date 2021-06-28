@@ -3,7 +3,7 @@ title: Azure Spring Cloud Starter Cache client library for Java
 keywords: Azure, java, SDK, API, azure-spring-cloud-starter-cache, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 05/24/2021
+ms.date: 06/28/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Spring Cloud Starter Cache client library for Java - Version 2.5.0 
+# Azure Spring Cloud Starter Cache client library for Java - Version 2.6.0 
 
 This starter provides auto-configuration of Azure Cache for Redis. Azure Cache for Redis provides an in-memory data store based on the open-source software Redis. 
 
@@ -28,7 +28,7 @@ This starter provides auto-configuration of Azure Cache for Redis. Azure Cache f
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-cloud-starter-cache</artifactId>
-    <version>2.5.0</version>
+    <version>2.6.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -71,10 +71,10 @@ Please follow [instructions here][contributing_md] to build from source or contr
 <!-- Link -->
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-starter-azure-cache
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springcloud.html#azure-spring-cloud-autoconfigure
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-cache_2.5.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-cache
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-cache_2.6.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-cache
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-cache_2.5.0/sdk/spring/CONTRIBUTING.md
-[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-starter-cache_2.5.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-cache_2.6.0/sdk/spring/CONTRIBUTING.md
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-starter-cache_2.6.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 
 
