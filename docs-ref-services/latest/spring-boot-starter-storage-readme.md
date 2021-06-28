@@ -3,7 +3,7 @@ title: Azure Spring Boot Starter Storage client library for Java
 keywords: Azure, java, SDK, API, azure-spring-boot-starter-storage, springboot
 author: maggiepint
 ms.author: magpint
-ms.date: 05/24/2021
+ms.date: 06/28/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springboot
 ---
 
-# Azure Spring Boot Starter Storage client library for Java - Version 3.5.0 
+# Azure Spring Boot Starter Storage client library for Java - Version 3.6.0 
 
 
 The project provides a Spring Boot Starter `azure-spring-boot-starter-storage` to auto-configure [Azure Blob storage][azure_blob_storage] in your Spring projects. It implements Spring Resource abstraction for Azure Storage service which allows you to interact with Azure Blob storage using Spring programming model.
@@ -29,7 +29,7 @@ The project provides a Spring Boot Starter `azure-spring-boot-starter-storage` t
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-starter-storage</artifactId>
-    <version>3.5.0</version>
+    <version>3.6.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -37,16 +37,20 @@ The project provides a Spring Boot Starter `azure-spring-boot-starter-storage` t
 ## Key concepts
 The Azure Storage platform is Microsoft's cloud storage solution for modern data storage scenarios. Core storage services offer a massively scalable object store for data objects, disk storage for Azure virtual machines (VMs), a file system service for the cloud, a messaging store for reliable messaging, and a NoSQL store.
 
+## Examples
+
+Please use this `sample` as a reference for how to use **Azure Spring Boot Storage Starter** in your projects. 
+
 #### Auto-configuration for Azure Blob storage
 
 The `azure-spring-boot-starter-storage` provides the following configuration options in `application.properties`.
 
 Name | Description | Required  
 ---|---|---
- azure.storage.account-name | The name of the Azure Storage account. | Yes |
- azure.storage.account-key | The access key of the Azure Storage account. | Yes |
- azure.storage.blob-endpoint | The blob endpoint URL of the Azure Storage account. | Only required when storage blob resource is used |
- azure.storage.file-endpoint | The file endpoint URL of the Azure Storage account. | Only required when storage file resource is used |
+ azure.storage.accountName | The name of the Azure Storage account. | Yes |
+ azure.storage.accountKey | The access key of the Azure Storage account. | Yes |
+ azure.storage.blob-endpoint | The blob endpoint URL of the Azure Storage account. | Optional when storage blob resource is used. |
+ azure.storage.file-endpoint | The file endpoint URL of the Azure Storage account. | Optional when storage file resource is used |
 
 #### Autowire a resource 
 You can use the annotation of `@Value("blob://{containerName}/{blobName}")` to autowire a `Resource` with that in [Azure Blob storage][azure_storage].
@@ -74,7 +78,7 @@ The Spring Resource abstraction for Azure Storage also supports [other operation
 #### Autowire the BlobServiceClientBuilder
 You can autowire the `BlobServiceClientBuilder` and create a client using:
 ```java
-@Autowired
+@Autowire
 private BlobServiceClientBuilder blobServiceClientBuilder;
 
 private final BlobServiceAsyncClient blobServiceAsyncClient = blobServiceClientBuilder.buildAsyncClient();
@@ -127,14 +131,14 @@ Please follow [instructions here][contributing_md] to build from source or contr
 [docs]: https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-azure-storage
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-starter-azure-storage
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springboot.html#azure-spring-boot
-[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.5.0/sdk/spring/azure-spring-boot-starter-storage
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.5.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-storage-resource
+[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.6.0/sdk/spring/azure-spring-boot-starter-storage
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.6.0/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-storage-resource
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.5.0/sdk/spring/CONTRIBUTING.md
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot-starter-storage_3.6.0/sdk/spring/CONTRIBUTING.md
 [maven]: https://maven.apache.org/
 [azure_blob_storage]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-introduction
 [azure_storage]: https://azure.microsoft.com/services/storage/blobs/
 [other_operation]: https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#resources
-[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-storage_3.5.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot-starter-storage_3.6.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 
