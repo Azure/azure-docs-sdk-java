@@ -3,7 +3,7 @@ title: Azure Spring Integration Core client library for Java
 keywords: Azure, java, SDK, API, azure-spring-integration-core, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 05/25/2021
+ms.date: 06/28/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Spring Integration Core client library for Java - Version 2.5.0 
+# Azure Spring Integration Core client library for Java - Version 2.6.0 
 
 This package is an internal package providing base classes for Azure Spring integration.
 
@@ -26,5 +26,5 @@ This package is an internal package providing base classes for Azure Spring inte
 ## Next steps
 ## Contributing
 
-[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-integration-core_2.5.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-integration-core_2.6.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 
