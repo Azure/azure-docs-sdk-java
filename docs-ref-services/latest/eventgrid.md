@@ -13,25 +13,37 @@ ms.service: event-grid
 
 # Azure Event Grid libraries for Java
 
+## Overview
+
 Build event-driven applications that listen and react to events from Azure services and custom sources using simple HTTP-based event handling with Azure Event Grid.
 
 [Learn more](/azure/event-grid/overview) about Azure Event Grid and get started with the [Azure Blob storage event tutorial](/azure/storage/blobs/storage-blob-event-quickstart). 
 
-## Client SDK
+## Libraries for data access
 
-Create events, authenticate, and post to topics using the Azure Event Grid Client SDK.
+The latest version of the Azure EventGrid libraries is version 4.x.x. Microsoft recommends using version 4.x.x for new applications.
 
-[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.
+If you cannot update existing applications to version 4.x.x, then Microsoft recommends using version 1.x.x.
 
-```XML
-<dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-eventgrid</artifactId>
-    <version>1.2.0</version>
-</dependency>
-```   
+### Version 4.x.x
 
-### Publish events
+The version 4.x.x client libraries for Java are part of the Azure SDK for Java. The source code for the Azure Key Vault client libraries for Java is available on [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/eventgrid/azure-messaging-eventgrid).
+
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project. Specify the version as desired.
+
+| Maven Package | Reference | Samples |
+|--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|
+|    [azure-messaging-eventgrid](https://mvnrepository.com/artifact/com.azure/azure-messaging-eventgrid)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/eventgrid/client)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java)    |
+
+
+> [!div class="nextstepaction"]
+> [Explore the Event Grid Client APIs](/java/api/overview/azure/eventgrid/client)
+
+### Version 1.x.x
+The Maven package for the EventGrid legacy SDK is [azure-eventgrid](https://mvnrepository.com/artifact/com.microsoft.azure/azure-eventgrid). 
+
+
+The source code for the Azure EventGrid client libraries for Java 1.x.x is available on [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/eventgrid/microsoft-azure-eventgrid).
 
 The following code authenticates with Azure and publishes a `List` of  `EventGridEvent` events of a custom type (in this example, `Contoso.Items.ItemsReceived` ) to a topic. The topic key and endpoint address used in the sample can be retrieved from the Azure CLI:
 
@@ -67,7 +79,7 @@ client.publishEvents(eventGridEndpoint, eventsList);
 > [!div class="nextstepaction"]
 > [Explore the Event Grid Client APIs](/java/api/overview/azure/eventgrid/client)
 
-## Management SDK
+## Libraries for resource management
 
 Create, update, or delete Event Grid instances, topics, and subscriptions with the Event Grid management SDK.
 
