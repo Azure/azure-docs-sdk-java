@@ -62,6 +62,7 @@ Append the following code to the end of the *application.properties* file. Repla
 
 ```yaml
 spring.jms.servicebus.connection-string=<ServiceBusNamespaceConnectionString>
+# Value refers to the Service Bus subscription ID in your azure portal
 spring.jms.servicebus.topic-client-id=<ServiceBusTopicClientId>
 spring.jms.servicebus.idle-timeout=<IdleTimeout>
 # Supported values for pricing-tier are premium and standard.
