@@ -1,17 +1,17 @@
 ---
 title: Azure Monitor query client library for Java
-keywords: Azure, java, SDK, API, azure-monitor-query, 
+keywords: Azure, java, SDK, API, azure-monitor-query, monitor
 author: maggiepint
 ms.author: magpint
-ms.date: 06/09/2021
+ms.date: 07/09/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: monitor
 ---
 
-# Azure Monitor query client library for Java - Version 1.0.0-beta.1 
+# Azure Monitor query client library for Java - Version 1.0.0-beta.2 
 
 
 Azure Monitor helps you maximize the availability and performance of your applications and services. It delivers a
@@ -43,7 +43,7 @@ This client library provides access to query metrics and logs collected by Azure
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-monitor-query</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 
@@ -54,7 +54,7 @@ This client library provides access to query metrics and logs collected by Azure
 <!-- embedme ./src/samples/java/com/azure/monitor/query/ReadmeSamples.java#L41-L43 -->
 ```java
 LogsQueryClient logsQueryClient = new LogsQueryClientBuilder()
-    .credential(tokenCredential)
+    .credential(new DefaultAzureCredentialBuilder().build())
     .buildClient();
 ```
 
@@ -64,7 +64,7 @@ LogsQueryClient logsQueryClient = new LogsQueryClientBuilder()
 <!-- embedme ./src/samples/java/com/azure/monitor/query/ReadmeSamples.java#L45-L47 -->
 ```java
 LogsQueryAsyncClient logsQueryAsyncClient = new LogsQueryClientBuilder()
-    .credential(tokenCredential)
+    .credential(new DefaultAzureCredentialBuilder().build())
     .buildAsyncClient();
 ```
 
@@ -282,7 +282,7 @@ for (LogsTable table : logsQueryResult.getLogsTables()) {
 <!-- embedme ./src/samples/java/com/azure/monitor/query/ReadmeSamples.java#L56-L58 -->
 ```java
 MetricsQueryClient metricsQueryClient = new MetricsQueryClientBuilder()
-    .credential(tokenCredential)
+    .credential(new DefaultAzureCredentialBuilder().build())
     .buildClient();
 ```
 
@@ -291,7 +291,7 @@ MetricsQueryClient metricsQueryClient = new MetricsQueryClientBuilder()
 <!-- embedme ./src/samples/java/com/azure/monitor/query/ReadmeSamples.java#L60-L62 -->
 ```java
 MetricsQueryAsyncClient metricsQueryAsyncClient = new MetricsQueryClientBuilder()
-    .credential(tokenCredential)
+    .credential(new DefaultAzureCredentialBuilder().build())
     .buildAsyncClient();
 ```
 
@@ -429,17 +429,17 @@ comments.
 
 <!-- LINKS -->
 
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.0-beta.1/sdk/monitor/azure-monitor-query/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.0-beta.2/sdk/monitor/azure-monitor-query/src
 
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.0-beta.1/sdk/monitor/azure-monitor-query/src/samples/java/README.md
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.0-beta.2/sdk/monitor/azure-monitor-query/src/samples/java/README.md
 
-[azure_subscription]: https://azure.microsoft.com/free
+[azure_subscription]: https://azure.microsoft.com/free/java
 
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 
-[product_documentation]: https://aka.ms/awps/doc
+[product_documentation]: https://docs.microsoft.com/azure/azure-monitor/overview
 
-[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.0-beta.1/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.0-beta.2/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
