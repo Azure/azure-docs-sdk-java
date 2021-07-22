@@ -3,7 +3,7 @@ title: Azure Event Hubs Spring Cloud Stream Binder client library for Java
 keywords: Azure, java, SDK, API, azure-spring-cloud-stream-binder-eventhubs, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 06/28/2021
+ms.date: 07/21/2021
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springcloud
 ---
 
-# Azure Event Hubs Spring Cloud Stream Binder client library for Java - Version 2.6.0 
+# Azure Event Hubs Spring Cloud Stream Binder client library for Java - Version 2.7.0 
 
 
 The project provides **Spring Cloud Stream Binder for Azure Event Hub** which allows you to build message-driven 
@@ -25,15 +25,14 @@ microservice using **Spring Cloud Stream** based on [Azure Event Hub][azure_even
 - [Environment checklist][environment_checklist]
 
 ### Include the package
-[//]: # ({x-version-update-start;com.azure.spring:azure-spring-cloud-stream-binder-eventhubs;current})
+1. [Add azure-spring-cloud-dependencies].
+1. Add dependency. `<version>` can be skipped because we already add `azure-spring-cloud-dependencies`.
 ```xml
 <dependency>
-    <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-cloud-stream-binder-eventhubs</artifactId>
-    <version>2.6.0</version>
+  <groupId>com.azure.spring</groupId>
+  <artifactId>azure-spring-cloud-stream-binder-eventhubs</artifactId>
 </dependency>
 ```
-[//]: # ({x-version-update-end})
 
 ## Key concepts
 
@@ -224,16 +223,17 @@ This project welcomes contributions and suggestions.  Most contributions require
 Please follow [instructions here][contributing_md] to build from source or contribute.
 
 <!-- Link -->
-[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-stream-binder-eventhubs_2.6.0/sdk/spring/azure-spring-cloud-stream-binder-eventhubs/src
+[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-stream-binder-eventhubs_2.7.0/sdk/spring/azure-spring-cloud-stream-binder-eventhubs/src
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-eventhubs-stream-binder
 [refdocs]: https://azure.github.io/azure-sdk-for-java/springcloud.html#azure-spring-cloud-stream-binder-eventhubs
 [docs]: https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-cloud-stream-binder-java-app-azure-event-hub
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-stream-binder-eventhubs_2.6.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-eventhubs-binder
+[sample]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/tag_azure-spring-boot_3.6.0/eventhubs/azure-spring-cloud-sample-eventhubs-binder
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#boot-features-logging
-[eventhubs_multibinders_sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-stream-binder-eventhubs_2.6.0/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-eventhubs-multibinders
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-stream-binder-eventhubs_2.6.0/sdk/spring/CONTRIBUTING.md
+[eventhubs_multibinders_sample]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/tag_azure-spring-boot_3.6.0/eventhubs/azure-spring-cloud-sample-eventhubs-multibinders
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-stream-binder-eventhubs_2.7.0/sdk/spring/CONTRIBUTING.md
 [azure_event_hub]: https://azure.microsoft.com/services/event-hubs/
-[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-stream-binder-eventhubs_2.6.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+[environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-stream-binder-eventhubs_2.7.0/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 [spring_cloud_stream_current_producer_properties]: https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream.html#_producer_properties
+[Add azure-spring-cloud-dependencies]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-stream-binder-eventhubs_2.7.0/sdk/spring/AZURE_SPRING_BOMS_USAGE.md#add-azure-spring-cloud-dependencies
 
