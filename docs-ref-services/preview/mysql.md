@@ -6,7 +6,7 @@ author: rloutlaw
 ms.author: routlaw
 manager: douge
 ms.date: 05/17/2017
-ms.topic: article
+ms.topic: reference
 ms.devlang: java
 ms.service: mysql
 ---

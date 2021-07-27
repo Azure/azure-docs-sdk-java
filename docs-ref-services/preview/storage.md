@@ -4,7 +4,7 @@ description: The Azure Storage libraries for Java provide classes for working wi
 author: tamram
 ms.author: tamram
 ms.date: 02/13/2020
-ms.topic: conceptual
+ms.topic: reference
 ms.devlang: java
 ms.service: storage
 ---

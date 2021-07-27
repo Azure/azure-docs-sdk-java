@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-core-management, core
 author: maggiepint
 ms.author: magpint
 ms.date: 09/24/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

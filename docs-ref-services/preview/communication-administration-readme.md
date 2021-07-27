@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-communication-administration, communicati
 author: maggiepint
 ms.author: magpint
 ms.date: 11/17/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

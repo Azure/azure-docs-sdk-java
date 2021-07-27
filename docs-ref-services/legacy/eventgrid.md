@@ -6,7 +6,7 @@ author: rloutlaw
 ms.author: routlaw
 manager: angerobe
 ms.date: 07/11/2017
-ms.topic: managed-reference
+ms.topic: reference-reference
 ms.devlang: java
 ms.service: event-grid
 ---

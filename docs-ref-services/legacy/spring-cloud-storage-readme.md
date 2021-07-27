@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, spring-cloud-azure-storage, springcloud
 author: maggiepint
 ms.author: magpint
 ms.date: 09/15/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-spring-cloud-starter-eventhubs, springclo
 author: maggiepint
 ms.author: magpint
 ms.date: 11/19/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
