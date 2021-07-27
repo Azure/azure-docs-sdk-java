@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-spring-integration-servicebus, springclou
 author: maggiepint
 ms.author: magpint
 ms.date: 07/21/2021
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

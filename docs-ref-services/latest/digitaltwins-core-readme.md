@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-digitaltwins-core, iot
 author: maggiepint
 ms.author: magpint
 ms.date: 05/20/2021
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

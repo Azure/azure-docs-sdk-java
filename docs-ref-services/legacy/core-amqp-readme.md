@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-core-amqp, core
 author: maggiepint
 ms.author: magpint
 ms.date: 12/01/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

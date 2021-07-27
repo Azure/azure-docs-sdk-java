@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-resourcemanager-resources, resources
 author: maggiepint
 ms.author: magpint
 ms.date: 09/03/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

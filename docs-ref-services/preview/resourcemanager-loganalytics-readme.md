@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-resourcemanager-loganalytics, loganalytic
 author: maggiepint
 ms.author: magpint
 ms.date: 03/30/2021
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

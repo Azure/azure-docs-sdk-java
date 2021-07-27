@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-resourcemanager-iothub, iothub
 author: maggiepint
 ms.author: magpint
 ms.date: 05/18/2021
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

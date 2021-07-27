@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-identity, identity
 author: maggiepint
 ms.author: magpint
 ms.date: 03/11/2021
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
