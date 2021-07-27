@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-core-serializer-json-jackson,
 author: maggiepint
 ms.author: magpint
 ms.date: 08/12/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

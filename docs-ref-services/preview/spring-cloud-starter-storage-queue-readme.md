@@ -4,7 +4,7 @@ keywords: Azure, , SDK, API, azure-spring-cloud-starter-storage-queue,
 author: maggiepint
 ms.author: magpint
 ms.date: 11/20/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: 

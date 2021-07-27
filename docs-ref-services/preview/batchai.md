@@ -6,7 +6,7 @@ ms.author: garye
 ms.reviewer: routlaw
 manager: douge
 ms.date: 03/28/2019
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

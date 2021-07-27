@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, opentelemetry-exporters-azuremonitor,
 author: maggiepint
 ms.author: magpint
 ms.date: 10/08/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

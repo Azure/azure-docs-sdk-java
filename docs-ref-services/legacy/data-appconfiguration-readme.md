@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-data-appconfiguration, appconfiguration
 author: maggiepint
 ms.author: magpint
 ms.date: 11/12/2020
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

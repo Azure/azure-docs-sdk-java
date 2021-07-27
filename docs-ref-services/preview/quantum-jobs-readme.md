@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-quantum-jobs,
 author: maggiepint
 ms.author: magpint
 ms.date: 02/02/2021
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java

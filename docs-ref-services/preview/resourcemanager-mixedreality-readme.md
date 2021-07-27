@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-resourcemanager-mixedreality,
 author: maggiepint
 ms.author: magpint
 ms.date: 04/27/2021
-ms.topic: article
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
