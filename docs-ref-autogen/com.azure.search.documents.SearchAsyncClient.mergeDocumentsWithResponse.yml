@@ -8,7 +8,7 @@ members:
   fullName: "com.azure.search.documents.SearchAsyncClient.mergeDocumentsWithResponse(Iterable<?> documents, IndexDocumentsOptions options)"
   name: "mergeDocumentsWithResponse(Iterable<?> documents, IndexDocumentsOptions options)"
   nameWithType: "SearchAsyncClient.mergeDocumentsWithResponse(Iterable<?> documents, IndexDocumentsOptions options)"
-  summary: "Merges a collection of documents with existing documents in the target index.\n\nIf the type of the document contains non-nullable primitive-typed properties, these properties may not merge correctly. If you do not set such a property, it will automatically take its default value (for example, `0` for `int` or false for `boolean`), which will override the value of the property currently stored in the index, even if this was not your intent. For this reason, it is strongly recommended that you always declare primitive-typed properties with their class equivalents (for example, an integer property should be of type `Integer` instead of `int`).\n\n**Code Sample**\n\nMerge dynamic SearchDocument.\n\n\\{@codesnippet com.azure.search.documents.SearchAsyncClient.mergeDocumentsWithResponse\\#Iterable-IndexDocumentsOptions\\}"
+  summary: "Merges a collection of documents with existing documents in the target index.\n\nIf the type of the document contains non-nullable primitive-typed properties, these properties may not merge correctly. If you do not set such a property, it will automatically take its default value (for example, `0` for `int` or false for `boolean`), which will override the value of the property currently stored in the index, even if this was not your intent. For this reason, it is strongly recommended that you always declare primitive-typed properties with their class equivalents (for example, an integer property should be of type `Integer` instead of `int`).\n\n**Code Sample**\n\nMerge dynamic SearchDocument.\n\n```java\nSearchDocument searchDocument = new SearchDocument();\n searchDocument.put(\"hotelName\", \"test\");\n searchAsyncClient.mergeDocumentsWithResponse(Collections.singletonList(searchDocument), null)\n     .subscribe(resultResponse -> {\n         System.out.println(\"The status code of the response is \" + resultResponse.getStatusCode());\n         for (IndexingResult indexingResult : resultResponse.getValue().getResults()) {\n             System.out.printf(\"Does document with key %s merge successfully? %b%n\", indexingResult.getKey(),\n                 indexingResult.isSucceeded());\n         }\n     });\n```"
   parameters:
   - description: "collection of documents to be merged"
     name: "documents"
@@ -23,4 +23,4 @@ members:
 type: "method"
 metadata: {}
 package: "com.azure.search.documents"
-artifact: com.azure:azure-search-documents:11.4.0
+artifact: com.azure:azure-search-documents:11.4.1
