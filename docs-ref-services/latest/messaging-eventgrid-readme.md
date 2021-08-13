@@ -3,7 +3,7 @@ title: Azure Event Grid client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
 author: maggiepint
 ms.author: magpint
-ms.date: 07/19/2021
+ms.date: 08/11/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: eventgrid
 ---
 
-# Azure Event Grid client library for Java - Version 4.5.0 
+# Azure Event Grid client library for Java - Version 4.6.0 
 
 
 Azure Event Grid allows you to easily build applications with event-based architectures. The Event Grid service fully 
@@ -56,12 +56,45 @@ az eventgrid domain create --location <location> --resource-group <your-resource
 ```
 
 ### Include the package
+#### Include the BOM file
+
+Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.6.0/sdk/boms/azure-sdk-bom/README.md).
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-sdk-bom</artifactId>
+            <version>{bom_version_to_target}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+and then include the direct dependency in the dependencies section without the version tag.
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-messaging-eventgrid</artifactId>
+  </dependency>
+</dependencies>
+```
+
+#### Include direct dependency
+If you want to take dependency on a particular version of the library that is not present in the BOM,
+add the direct dependency to your project as follows.
+
 [//]: # ({x-version-update-start;com.azure:azure-messaging-eventgrid;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-eventgrid</artifactId>
-    <version>4.5.0</version>
+    <version>4.6.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -231,10 +264,10 @@ Regardless of what schema your topic or domain is configured to use,
 `EventGridPublisherClient` will be used to publish events to it. However, you must use the correct type to instantiate
 it:
 
-| Event Schema       | Publishr Client Generic Instantiation     |
+| Event Schema       | Publisher Client Generic Instantiation    |
 | ------------ | --------------------- |
-| Event Grid Events  | `EventGridPublisherClient<CloudEvent>`       |
-| Cloud Events | `EventGridPublisherClient<EventGridEvent>`  |
+| Event Grid Events  | `EventGridPublisherClient<EventGridEvent>`       |
+| Cloud Events | `EventGridPublisherClient<CloudEvent>`  |
 | Custom Events       | `EventGridPublisherClient<BinaryData>` |
 
 Using the wrong type will result in a BadRequest error from the service and your events will not be published.
@@ -465,7 +498,7 @@ If you encounter any bugs with these SDKs, please file issues via [Issues](https
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.5.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.6.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -482,13 +515,13 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [javadocs]: https://azure.github.io/azure-sdk-for-java/eventgrid.html
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.5.0/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.5.0/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.6.0/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.6.0/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
 [eventgrid]: https://azure.com/eventgrid
 [portal]: https://ms.portal.azure.com/
 [cli]: https://docs.microsoft.com/cli/azure
 [service_docs]: https://docs.microsoft.com/azure/event-grid/
-[sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_4.5.0/sdk/eventgrid/azure-messaging-eventgrid/src
+[sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_4.6.0/sdk/eventgrid/azure-messaging-eventgrid/src
 [EventGridEvent]: https://docs.microsoft.com/azure/event-grid/event-schema
 [CloudEvent]: https://github.com/cloudevents/spec/blob/master/spec.md
 
