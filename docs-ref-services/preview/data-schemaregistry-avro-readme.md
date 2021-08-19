@@ -1,17 +1,17 @@
 ---
 title: Azure Schema Registry Avro Serializer/Deserializer client library for Java
-keywords: Azure, java, SDK, API, azure-data-schemaregistry-avro, dataschemaregistry
+keywords: Azure, java, SDK, API, azure-data-schemaregistry-avro, eventhubs
 author: maggiepint
 ms.author: magpint
-ms.date: 09/21/2020
+ms.date: 08/18/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: dataschemaregistry
+ms.service: eventhubs
 ---
 
-# Azure Schema Registry Avro Serializer/Deserializer client library for Java - Version 1.0.0-beta.4 
+# Azure Schema Registry Avro Serializer/Deserializer client library for Java - Version 1.0.0-beta.5 
 
 
 Azure Schema Registry Avro is a serializer/deserializer library for Avro data format that is integrated with Azure
@@ -26,7 +26,7 @@ and deserialization.
 
 ### Prerequisites
 
-- Java Development Kit (JDK) with version 8 or above
+- A [Java Development Kit (JDK)][jdk_link], version 8 or later.
 - [Azure Subscription][azure_subscription]
 - An [Event Hubs namespace][event_hubs_namespace]
 
@@ -164,18 +164,19 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.4/sdk/schemaregistry/azure-data-schemaregistry-avro/src/samples/java/com/azure/data/schemaregistry/avro
-[generated_types]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.4/sdk/schemaregistry/azure-data-schemaregistry-avro/src/samples/java/com/azure/data/schemaregistry/avro/generatedtestsources
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.4/sdk/schemaregistry/azure-data-schemaregistry-avro/src
-[samples_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.4/sdk/schemaregistry/azure-data-schemaregistry-avro/src/samples/
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.5/sdk/schemaregistry/azure-data-schemaregistry-avro/src/samples/java/com/azure/data/schemaregistry/avro
+[generated_types]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.5/sdk/schemaregistry/azure-data-schemaregistry-avro/src/samples/java/com/azure/data/schemaregistry/avro/generatedtestsources
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.5/sdk/schemaregistry/azure-data-schemaregistry-avro/src
+[samples_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.5/sdk/schemaregistry/azure-data-schemaregistry-avro/src/samples/
 [azure_subscription]: https://azure.microsoft.com/free/
-[apache_avro]: http://avro.apache.org/
+[apache_avro]: https://avro.apache.org/
 [api_reference_doc]: https://aka.ms/schemaregistry
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_portal]: https://portal.azure.com
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry-avro_1.0.0-beta.4/sdk/identity/azure-identity
-[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.4/sdk/identity/azure-identity/README.md#defaultazurecredential
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry-avro_1.0.0-beta.5/sdk/identity/azure-identity
+[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.5/sdk/identity/azure-identity/README.md#defaultazurecredential
 [event_hubs_namespace]: https://docs.microsoft.com/azure/event-hubs/event-hubs-about
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [product_documentation]: https://aka.ms/schemaregistry
 [specific_record]: https://avro.apache.org/docs/1.9.2/api/java/org/apache/avro/specific/SpecificRecord.html
 [generic_record]: https://avro.apache.org/docs/1.9.2/api/java/org/apache/avro/generic/GenericRecord.html
