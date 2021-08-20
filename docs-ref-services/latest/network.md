@@ -29,29 +29,28 @@ Create and manage Azure [virtual networks](/azure/virtual-network/virtual-networ
 
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-network</artifactId>
-    <version>1.3.0</version>
+    <groupId>com.azure.resourcemanager</groupId>
+    <artifactId>azure-resourcemanager-network</artifactId>
+    <version>2.7.0</version>
 </dependency>
 ```   
 
 ### Example
 
-Create a new virtual network with a single subnet.
+Create a new virtual network with two subnets.
 
 ```java
-Network virtualNetwork1 = azure.networks().define(vnetName1)
-        .withRegion(Region.US_EAST)
-        .withExistingResourceGroup("myResourceGroup")
-        .withAddressSpace("192.168.0.0/16")
-        .defineSubnet("myVirtualNetwork")
-            .withAddressPrefix("192.168.2.0/24")
-            .attach()
-        .create();
+Network network = azure.networks().define("mynetwork")
+	.withRegion(Region.US_EAST)
+	.withNewResourceGroup()
+	.withAddressSpace("10.0.0.0/28")
+	.withSubnet("subnet1", "10.0.0.0/29")
+	.withSubnet("subnet2", "10.0.0.8/29")
+	.create();
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/networking/management)
+> [Explore the Management APIs](https://aka.ms/azsdk/java/mgmt)
 
 ## Samples
 
