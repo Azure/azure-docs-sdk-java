@@ -8,7 +8,7 @@ members:
   fullName: "com.azure.ai.textanalytics.TextAnalyticsAsyncClient.detectLanguageBatch(Iterable<String> documents, String countryHint, TextAnalyticsRequestOptions options)"
   name: "detectLanguageBatch(Iterable<String> documents, String countryHint, TextAnalyticsRequestOptions options)"
   nameWithType: "TextAnalyticsAsyncClient.detectLanguageBatch(Iterable<String> documents, String countryHint, TextAnalyticsRequestOptions options)"
-  summary: "Returns the detected language for each of documents with the provided country hint and request option.\n\n**Code sample**\n\nDetects language in a list of documents with a provided country hint and request option for the batch. Subscribes to the call asynchronously and prints out the detected language details when a response is received.\n\n\\{@codesnippet com.azure.ai.textanalytics.TextAnalyticsAsyncClient.detectLanguageBatch\\#Iterable-String-TextAnalyticsRequestOptions\\}"
+  summary: "Returns the detected language for each of documents with the provided country hint and request option.\n\n**Code sample**\n\nDetects language in a list of documents with a provided country hint and request option for the batch. Subscribes to the call asynchronously and prints out the detected language details when a response is received.\n\n```java\nList<String> documents = Arrays.asList(\n     \"This is written in English\",\n     \"Este es un documento  escrito en Español.\"\n );\n textAnalyticsAsyncClient.detectLanguageBatch(documents, \"US\", null).subscribe(\n     batchResult -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = batchResult.getStatistics();\n         System.out.printf(\"Batch statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n         // Batch result of languages\n         for (DetectLanguageResult detectLanguageResult : batchResult) {\n             DetectedLanguage detectedLanguage = detectLanguageResult.getPrimaryLanguage();\n             System.out.printf(\"Detected language name: %s, ISO 6391 Name: %s, confidence score: %f.%n\",\n                 detectedLanguage.getName(), detectedLanguage.getIso6391Name(),\n                 detectedLanguage.getConfidenceScore());\n         }\n     });\n```"
   parameters:
   - description: "The list of documents to detect languages for.\n For text length limits, maximum batch size, and supported text encoding, see\n <a href=\"https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits\">data limits</a>."
     name: "documents"
@@ -26,4 +26,4 @@ members:
 type: "method"
 metadata: {}
 package: "com.azure.ai.textanalytics"
-artifact: com.azure:azure-ai-textanalytics:5.1.0
+artifact: com.azure:azure-ai-textanalytics:5.1.1
