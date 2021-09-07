@@ -3,7 +3,7 @@ title: Azure CosmosDB Client Library for Java
 keywords: Azure, java, SDK, API, azure-cosmos, cosmosdbcosmosdb
 author: maggiepint
 ms.author: magpint
-ms.date: 08/12/2021
+ms.date: 09/02/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: cosmosdbcosmosdb
 ---
 
-# Azure CosmosDB Client Library for Java - Version 4.18.0-beta.1 
+# Azure CosmosDB Client Library for Java - Version 4.19.0-beta.1 
 
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.
@@ -25,7 +25,7 @@ This project provides SDK library in Java for interacting with [SQL API][sql_api
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.18.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.19.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -60,7 +60,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos</artifactId>
-  <version>4.17.0</version>
+  <version>4.18.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -299,7 +299,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.18.0-beta.1/sdk/cosmos/azure-cosmos/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.19.0-beta.1/sdk/cosmos/azure-cosmos/src
 [cosmos_introduction]: https://docs.microsoft.com/azure/cosmos-db/
 [api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [cosmos_docs]: https://docs.microsoft.com/azure/cosmos-db/introduction
