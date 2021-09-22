@@ -3,7 +3,7 @@ title: Azure Storage libraries for Java
 description: The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself.
 author: tamram
 ms.author: tamram
-ms.date: 02/13/2020
+ms.date: 09/22/2020
 ms.topic: conceptual
 ms.devlang: java
 ms.service: storage
@@ -25,25 +25,25 @@ Add the following dependencies to your Maven `pom.xml` file as appropriate:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob</artifactId>
-    <version>12.4.0</version>
+    <version>12.13.0</version>
 </dependency>
 
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-queue</artifactId>
-  <version>12.3.0</version>
+  <version>12.11.0</version>
 </dependency>
 
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-file-share</artifactId>
-  <version>12.2.0</version>
+  <version>12.10.0</version>
 </dependency>
 
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-file-datalake</artifactId>
-  <version>12.0.0-preview.6</version>
+  <version>12.6.0</version>
 </dependency>
 ```
 
