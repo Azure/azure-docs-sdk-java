@@ -8,7 +8,7 @@ members:
   fullName: "com.azure.storage.file.share.ShareServiceAsyncClient.undeleteShareWithResponse(String deletedShareName, String deletedShareVersion)"
   name: "undeleteShareWithResponse(String deletedShareName, String deletedShareVersion)"
   nameWithType: "ShareServiceAsyncClient.undeleteShareWithResponse(String deletedShareName, String deletedShareVersion)"
-  summary: "Restores a previously deleted share.\n\nIf the share associated with provided `deletedShareName` already exists, this call will result in a 409 (conflict).\n\nThis API is only functional if Share Soft Delete is enabled for the storage account associated with the share. For more information, see the Azure Docs.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.share.ShareServiceAsyncClient.undeleteShareWithResponse\\#String-String\\}"
+  summary: "Restores a previously deleted share.\n\nIf the share associated with provided `deletedShareName` already exists, this call will result in a 409 (conflict).\n\nThis API is only functional if Share Soft Delete is enabled for the storage account associated with the share. For more information, see the Azure Docs.\n\n**Code Samples**\n\n```java\nListSharesOptions listSharesOptions = new ListSharesOptions();\n listSharesOptions.setIncludeDeleted(true);\n fileServiceAsyncClient.listShares(listSharesOptions).flatMap(\n     deletedShare -> {\n         Mono<ShareAsyncClient> shareAsyncClient = fileServiceAsyncClient.undeleteShareWithResponse(\n             deletedShare.getName(), deletedShare.getVersion()).map(Response::getValue);\n         return shareAsyncClient;\n     }\n ).blockFirst();\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/restore-share"
   parameters:
   - description: "The name of the previously deleted share."
     name: "deletedShareName"
@@ -23,4 +23,4 @@ members:
 type: "method"
 metadata: {}
 package: "com.azure.storage.file.share"
-artifact: com.azure:azure-storage-file-share:12.10.0
+artifact: com.azure:azure-storage-file-share:12.11.0
