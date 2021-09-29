@@ -3,7 +3,7 @@ title:
 keywords: Azure, java, SDK, API, azure-spring-cloud-appconfiguration-config, springcloud
 author: maggiepint
 ms.author: magpint
-ms.date: 09/06/2021
+ms.date: 09/29/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
