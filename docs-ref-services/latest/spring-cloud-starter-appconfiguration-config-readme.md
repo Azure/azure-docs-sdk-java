@@ -3,7 +3,7 @@ title:
 keywords: Azure, java, SDK, API, azure-spring-cloud-starter-appconfiguration-config, springboot
 author: maggiepint
 ms.author: magpint
-ms.date: 09/06/2021
+ms.date: 09/29/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -34,7 +34,7 @@ There are two libraries that can be used azure-spring-cloud-appconfiguration-con
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -46,7 +46,7 @@ or
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-cloud-appconfiguration-config-web</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -73,7 +73,7 @@ Name | Description | Required | Default
 spring.cloud.azure.appconfiguration.stores[0].enabled | Whether the store will be loaded. | No | true
 spring.cloud.azure.appconfiguration.stores[0].fail-fast | Whether to throw a `RuntimeException` or not when failing to read from App Configuration during application start-up. If an exception does occur during startup when set to false the store is skipped. | No |  true
 spring.cloud.azure.appconfiguration.stores[0].selects[0].key-filter | The key pattern used to indicate which configuration(s) will be loaded.  | No | /application/*
-spring.cloud.azure.appconfiguration.stores[0].selects[0].label-filter | The label used to indicate which configuration(s) will be loaded. | No | `{spring.profiles.active}` or if null `\0`
+spring.cloud.azure.appconfiguration.stores[0].selects[0].label-filter | The label used to indicate which configuration(s) will be loaded. | No | `${spring.profiles.active}` or if null `\0`
 
 Configuration Store Authentication
 
@@ -101,7 +101,7 @@ spring.cloud.azure.appconfiguration.stores[0].monitoring.push-notification.secon
 
 Name | Description | Required | Default
 ---|---|---|---
-spring.cloud.azure.appconfiguration.stores[0].feature-flags.enable | Whether feature flags are loaded from the config store.  | No | false
+spring.cloud.azure.appconfiguration.stores[0].feature-flags.enabled | Whether feature flags are loaded from the config store.  | No | false
 spring.cloud.azure.appconfiguration.stores[0].feature-flags.label-filter | The label used to indicate which feature flags will be loaded. | No | \0
 
 ### Advanced usage
@@ -136,6 +136,28 @@ Spring Profiles are supported by automatically by being set as App Configuration
 
 ```properties
 spring.cloud.azure.appconfiguration.stores[0].selects[0].label-filter=${spring.profiles.active},v1
+```
+
+If you need to use `(No Label)` you need to do the following:
+
+```properties
+spring.cloud.azure.appconfiguration.stores[0].selects[0].label-filter=,${spring.profiles.active}
+```
+
+where the empty value before the comma equals the `\0` value.
+
+and for yaml
+
+```yaml
+spring:
+  cloud:
+    azure:
+      appconfiguration:
+        stores:
+         -
+           selects:
+             -
+              label-filter: ',${spring.profiles.active}'
 ```
 
 #### Configuration Refresh
@@ -338,7 +360,7 @@ Please follow [instructions here][contributing_md] to build from source or contr
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [azure_subscription]: https://azure.microsoft.com/free
 [logging_doc]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.1.0/sdk/spring/CONTRIBUTING.md
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.1.1/sdk/spring/CONTRIBUTING.md
 [maven]: https://maven.apache.org/
 [spring_conversion_duration]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion.durations
 [azure_managed_identity]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview
@@ -346,8 +368,8 @@ Please follow [instructions here][contributing_md] to build from source or contr
 [support_azure_services]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities
 [azure]: https://azure.microsoft.com
 [azure_active_directory]: https://azure.microsoft.com/services/active-directory/
-[azure_identity_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.1.0/sdk/identity/azure-identity
+[azure_identity_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.1.1/sdk/identity/azure-identity
 [azure_rbac]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[app_configuration_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.1.0/sdk/appconfiguration/azure-data-appconfiguration#key-concepts
-[key_vault_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.1.0/sdk/keyvault/azure-security-keyvault-secrets#key-concepts
+[app_configuration_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.1.1/sdk/appconfiguration/azure-data-appconfiguration#key-concepts
+[key_vault_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.1.1/sdk/keyvault/azure-security-keyvault-secrets#key-concepts
 
