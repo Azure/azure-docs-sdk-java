@@ -4,7 +4,7 @@ description: Reference documentation for the Java client and management librarie
 keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, message broker
 author: rloutlaw
 ms.author: routlaw
-ms.date: 07/11/2017
+ms.date: 08/30/2021
 ms.topic: reference
 ms.devlang: java
 ms.service: service-bus
@@ -47,18 +47,20 @@ Create and manage namespaces, topics, queues, subscriptions and rules using Azur
 
 ## Libraries for data access
 
-Use data access libraries to send and receive messages from Service Bus queues, topics and subscriptions. There are two libraries available that provide these features at the moment.
+Use data access libraries to send and receive messages from Service Bus queues, topics and subscriptions. You can also use these libraries to manage queues, topics, subscriptions and rules in a given namespace. There are two libraries available that provide these features at the moment.
 
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project. Specify the version as desired.
 
-| Maven Package | Reference | Samples |
-|--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|
-|    [azure-messaging-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22)    |    [API Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-messaging-servicebus/7.0.0/index.html)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus/src/samples/java/com/azure/messaging/servicebus)    |
-|    [microsoft-azure-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus/client?view=azure-java-stable&preserve-view=true)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    |
+| Maven Package | Reference | Samples | GitHub |
+|--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-------|
+|    [azure-messaging-servicebus (latest)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22)    |    [API Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-messaging-servicebus/7.0.0/index.html)    |    [Samples](https://docs.microsoft.com/samples/azure/azure-sdk-for-java/servicebus-samples/)    | [Source code for azure-messaging-servicebus](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/servicebus/azure-messaging-servicebus) | 
+|    [microsoft-azure-servicebus (legacy)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus/client?view=azure-java-stable&preserve-view=true)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    | [Source code for microsoft-azure-servicebus](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/servicebus/microsoft-azure-servicebus)
 
 ### azure-messaging-servicebus
 
-The source code on GitHub is located [here](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/azure-messaging-servicebus).
+This is the latest SDK for Azure Service Bus for sending and receiving messages available as of December 2020. To manage queues, topics, subscriptions and rules use the `ServiceBusAdministrationClient` in this package. 
+
+If you are using the older `com.microsoft.azure:azure-servicebus` package, please consider upgrading. Read the [migration guide](https://aka.ms/azsdk/java/migrate/sb) at for more details.
 
 Add dependency in your `pom.xml`.
 
@@ -72,7 +74,7 @@ Add dependency in your `pom.xml`.
 
 ### microsoft-azure-servicebus
 
-The source code on GitHub is located [here](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/microsoft-azure-servicebus).
+This is the older SDK for Azure Service Bus. Please note, the newer package `com.azure:azure-messaging-servicebus` is available as of December 2020. While the older `com.microsoft.azure:azure-servicebus` package will continue to receive critical bug fixes, we strongly encourage you to upgrade. Read the [migration guide](https://aka.ms/azsdk/java/migrate/sb) at for more details.
 
 Add dependency in your `pom.xml`.
 
