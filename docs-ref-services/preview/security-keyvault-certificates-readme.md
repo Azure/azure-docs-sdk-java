@@ -3,7 +3,7 @@ title: Azure Key Vault Certificate client library for Java
 keywords: Azure, java, SDK, API, azure-security-keyvault-certificates, keyvault
 author: maggiepint
 ms.author: magpint
-ms.date: 05/14/2021
+ms.date: 10/07/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: keyvault
 ---
 
-# Azure Key Vault Certificate client library for Java - Version 4.2.0-beta.6 
+# Azure Key Vault Certificate client library for Java - Version 4.3.0-beta.2 
 
 Azure Key Vault allows you to securely manage and tightly control your certificates. The Azure Key Vault Certificate client library supports certificates backed by RSA and EC keys.
 
@@ -28,7 +28,7 @@ Maven dependency for the Azure Key Vault Certificate client library. Add it to y
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-certificates</artifactId>
-    <version>4.2.0-beta.6</version>
+    <version>4.2.4</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -86,6 +86,8 @@ Here is an [Azure Cloud Shell][azure_cloud_shell] snippet below to
 
     > --certificate-permissions:
     > Accepted values: backup, create, delete, deleteissuers, get, getissuers, import, list, listissuers, managecontacts, manageissuers, purge, recover, restore, setissuers, update
+
+    If you have enabled role-based access control (RBAC) for Key Vault instead, you can find roles like "Key Vault Certificates Officer" in our [RBAC guide][rbac_guide].
 
 * Use the aforementioned Key Vault name to retrieve details of your Key Vault, which also contain your Key Vault URL:
 
@@ -331,10 +333,10 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_code_of_conduct]. For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.2.0-beta.6/sdk/keyvault/azure-security-keyvault-certificates/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.0-beta.2/sdk/keyvault/azure-security-keyvault-certificates/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-certificates_4.2.0-beta.6/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-certificates_4.3.0-beta.2/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [azure_keyvault]: https://docs.microsoft.com/azure/key-vault/certificates/quick-create-portal
@@ -344,14 +346,15 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
-[certificates_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.2.0-beta.6/sdk/keyvault/azure-security-keyvault-certificates/src/samples/java/com/azure/security/keyvault/certificates
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.2.0-beta.6/sdk/keyvault/azure-security-keyvault-certificates/src/samples/README.md
+[certificates_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.0-beta.2/sdk/keyvault/azure-security-keyvault-certificates/src/samples/java/com/azure/security/keyvault/certificates
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.0-beta.2/sdk/keyvault/azure-security-keyvault-certificates/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [azure_cloud_shell]: https://shell.azure.com/bash
 [jwk_specification]: https://tools.ietf.org/html/rfc7517
 [http_clients_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients
 [microsoft_code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
+[rbac_guide]: https://docs.microsoft.com/azure/key-vault/general/rbac-guide
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-certificates%2FREADME.png)
 
