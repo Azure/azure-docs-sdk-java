@@ -5,7 +5,7 @@ keywords: Azure, Java, SDK, API, web apps , mobile , App Service
 author: rloutlaw
 ms.author: routlaw
 manager: douge
-ms.date: 07/09/2017
+ms.date: 10/09/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -29,14 +29,16 @@ Deploy, scale, and configure applications in Azure App Service with the manageme
 
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-appservice</artifactId>
-    <version>1.3.0</version>
+  <groupId>com.azure.resourcemanager</groupId>
+  <artifactId>azure-resourcemanager-appservice</artifactId>
+  <version>2.8.0</version>
 </dependency>
 ```   
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/appservice/management)
+> [Explore the Management APIs](/java/api/com.azure.resourcemanager.appservice)
+
+For more information of using Azure App Service Management API, please refer [here](https://docs.microsoft.com/java/api/overview/azure/resourcemanager-appservice-readme). 
 
 ### Example
 
@@ -48,20 +50,10 @@ WebApp app = azure.webApps().define("newLinuxWebApp")
     .withExistingResourceGroup("myResourceGroup")
     .withPrivateDockerHubImage("username/my-java-app")
     .withCredentials("dockerHubUser","dockerHubPassword")
-    .withAppSetting("PORT","8080").
+    .withAppSetting("PORT","8080")
     .create();
 ```
 
 ## Samples
 
-[Deploy a web app from FTP or GitHub][1]  
-[Swap between app versions with deployment slots][2]  
-[Configure a custom domain][3]   
-[Scale a web app across multiple regions][4]   
-
-Explore more [sample Java code for Azure App Service](https://azure.microsoft.com/resources/samples/?platform=java&term=appservice) you can use in your apps.
-
-[1]: ../../docs-ref-conceptual/java-sdk-configure-webapp-sources.md
-[2]: https://azure.microsoft.com/resources/samples/app-service-java-manage-staging-and-production-slots-for-web-apps/
-[3]: https://azure.microsoft.com/resources/samples/app-service-java-manage-web-apps-with-custom-domains/
-[4]: https://azure.microsoft.com/resources/samples/app-service-java-scale-web-apps-on-linux/
+Explore more [sample Java code for Azure App Service](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/resourcemanager/docs/SAMPLE.md#application-services) you can use in your apps.
