@@ -38,7 +38,7 @@ Deploy, scale, and configure applications in Azure App Service with the manageme
 > [!div class="nextstepaction"]
 > [Explore the Management APIs](/java/api/com.azure.resourcemanager.appservice)
 
-For more information of using Azure App Service Management API, please refer [here](https://docs.microsoft.com/java/api/overview/azure/resourcemanager-appservice-readme). 
+For more information of using Azure App Service Management API, please refer [here](/java/api/overview/azure/resourcemanager-appservice-readme). 
 
 ### Example
 
