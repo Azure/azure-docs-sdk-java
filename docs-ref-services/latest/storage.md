@@ -93,12 +93,12 @@ Refer to the [Azure SDK Releases page](https://azure.github.io/azure-sdk/) for d
 
 Use the Azure Storage resource provider to manage storage accounts, account keys, access tiers, and more. To use the resource provider library, [add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file. The latest version of the resource provider library is available on [Maven](https://mvnrepository.com/artifact/com.azure.resourcemanager/azure-resourcemanager-storage).
 
-For more information about the resource provider library, see the [Management](/java/api/overview/azure/storage/management) reference. The source code for the resource provider library is available in the [Azure Java SDK repository](https://aka.ms/azsdk/java/mgmt).
+For more information about the resource provider library, see the [Management](/java/api/overview/azure/resourcemanager-storage-readme) reference. The source code for the resource provider library is available in the [Azure Java SDK repository](https://aka.ms/azsdk/java/mgmt).
 
 The following example creates a new storage account in your subscription and retrieves its access keys.
 
 ```java
-StorageAccount storageAccount = azure.storageAccounts().define(storageAccountName)
+StorageAccount storageAccount = azureResourceManager.storageAccounts().define(storageAccountName)
     .withRegion(Region.US_EAST)
     .withNewResourceGroup(rgName)
     .create();
