@@ -3,7 +3,7 @@ title: Azure Communications SMS Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-sms, communication
 author: maggiepint
 ms.author: magpint
-ms.date: 09/22/2021
+ms.date: 10/11/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: communication
 ---
 
-## Azure Communications SMS Service client library for Java - Version 1.0.4 
+## Azure Communications SMS Service client library for Java - Version 1.0.5 
 
 
 Azure Communication SMS is used to send simple text messages.
@@ -32,7 +32,7 @@ Azure Communication SMS is used to send simple text messages.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-sms_1.0.4/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-sms_1.0.5/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -206,7 +206,7 @@ try {
 [product_docs]: https://docs.microsoft.com/azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-sms
 [api_documentation]: https://aka.ms/java-docs
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.0.4/sdk/communication/azure-communication-sms/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.0.5/sdk/communication/azure-communication-sms/src
 [handle_sms_events]: https://docs.microsoft.com/azure/communication-services/quickstarts/telephony-sms/handle-sms-events
 [next_steps]:https://docs.microsoft.com/azure/communication-services/quickstarts/telephony-sms/send?pivots=programming-language-java
 
