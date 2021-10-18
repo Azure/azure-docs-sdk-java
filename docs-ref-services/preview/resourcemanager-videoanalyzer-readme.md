@@ -3,7 +3,7 @@ title: Azure Resource Manager Video Analyzer client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-videoanalyzer, videoanalyzer
 author: maggiepint
 ms.author: magpint
-ms.date: 05/25/2021
+ms.date: 10/18/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,12 +11,12 @@ ms.devlang: java
 ms.service: videoanalyzer
 ---
 
-# Azure Resource Manager Video Analyzer client library for Java - Version 1.0.0-beta.2 
+# Azure Resource Manager Video Analyzer client library for Java - Version 1.0.0-beta.3 
 
 
 Azure Resource Manager Video Analyzer client library for Java.
 
-This package contains Microsoft Azure SDK for Video Analyzer Management SDK. Azure Video Analyzer provides a platform for you to build intelligent video applications that span the edge and the cloud. Package tag package-2021-05-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for Video Analyzer Management SDK. Azure Video Analyzer provides a platform for you to build intelligent video applications that span the edge and the cloud. Package tag package-preview-2021-11. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -46,7 +46,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-videoanalyzer</artifactId>
-    <version>1.0.0-beta.2</version>
+    <version>1.0.0-beta.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -88,6 +88,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.3/sdk/videoanalyzer/azure-resourcemanager-videoanalyzer/SAMPLE.md)
 
 
 ## Troubleshooting
@@ -96,7 +97,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.2/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.3/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -109,8 +110,8 @@ For details on contributing to this repository, see the [contributing guide](htt
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.2/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.2/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.2/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.2/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.3/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.3/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.3/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-videoanalyzer_1.0.0-beta.3/sdk/resourcemanager/docs/DESIGN.md
 
