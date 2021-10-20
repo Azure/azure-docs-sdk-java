@@ -3,7 +3,7 @@ title: Azure Spring Data Cosmos client library for Java
 keywords: Azure, java, SDK, API, azure-spring-data-cosmos, cosmosdb
 author: maggiepint
 ms.author: magpint
-ms.date: 09/27/2021
+ms.date: 10/14/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: cosmosdb
 ---
 
-# Azure Spring Data Cosmos client library for Java - Version 3.12.0 
+# Azure Spring Data Cosmos client library for Java - Version 3.13.0 
 
 
 **Azure Spring Data Cosmos** provides Spring Data support for Azure Cosmos DB using the [SQL API][sql_api_query], based on Spring Data framework.
@@ -193,6 +193,24 @@ public CosmosConfig cosmosConfig() {
 
 By default, `@EnableCosmosRepositories` will scan the current package for any interfaces that extend one of Spring Data's repository interfaces.
 Use it to annotate your Configuration class to scan a different root package by `@EnableCosmosRepositories(basePackageClass=UserRepository.class)` if your project layout has multiple projects.
+
+#### Using database provisioned throughput
+
+Cosmos supports both [container](https://docs.microsoft.com/azure/cosmos-db/sql/how-to-provision-container-throughput)
+and [database](https://docs.microsoft.com/azure/cosmos-db/sql/how-to-provision-database-throughput) provisioned
+throughput.  By default, spring-data-cosmos will provision throughput for each container created.  If you prefer
+to share throughput between containers, you can enable database provisioned throughput via CosmosConfig.
+
+```java
+@Override
+public CosmosConfig cosmosConfig() {
+    int autoscale = false; 
+    int initialRequestUnits = 400;
+    return CosmosConfig.builder()
+                       .enableDatabaseThroughput(autoscale, initialRequestUnits) 
+                       .build();
+}
+```
 
 ### Define an entity
 - Define a simple entity as item in Azure Cosmos DB.
@@ -569,7 +587,7 @@ azure.cosmos.secondary.database=your-secondary-cosmosDb-dbName
 azure.cosmos.secondary.populateQueryMetrics=if-populate-query-metrics
 ```
 
-- The [Entity](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.12.0/sdk/cosmos/azure-spring-data-cosmos#define-an-entity) and [Repository](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.12.0/sdk/cosmos/azure-spring-data-cosmos#create-repositories) definition is similar as above. You can put different database entities into different packages.
+- The [Entity](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.13.0/sdk/cosmos/azure-spring-data-cosmos#define-an-entity) and [Repository](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.13.0/sdk/cosmos/azure-spring-data-cosmos#create-repositories) definition is similar as above. You can put different database entities into different packages.
 
 - The `@EnableReactiveCosmosRepositories` or `@EnableCosmosRepositories` support user-define the cosmos template, use `reactiveCosmosTemplateRef` or `cosmosTemplateRef` to config the name of the `ReactiveCosmosTemplate` or `CosmosTemplate` bean to be used with the repositories detected.
 - If you have multiple cosmos database accounts, you can define multiple `CosmosAsyncClient`. If the single cosmos account has multiple databases, you can use the same `CosmosAsyncClient` to initialize the cosmos template.
@@ -759,7 +777,7 @@ azure.cosmos.database=your-cosmosDb-dbName
 azure.cosmos.populate-query-metrics=if-populate-query-metrics
 ```
 
-- The [Entity](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.12.0/sdk/cosmos/azure-spring-data-cosmos#define-an-entity) and [Repository](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.12.0/sdk/cosmos/azure-spring-data-cosmos#create-repositories) definition is similar as above. You can put different database entities into different packages.
+- The [Entity](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.13.0/sdk/cosmos/azure-spring-data-cosmos#define-an-entity) and [Repository](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.13.0/sdk/cosmos/azure-spring-data-cosmos#create-repositories) definition is similar as above. You can put different database entities into different packages.
 - You can use `EnableReactiveCosmosRepositories` with different `reactiveCosmosTemplateRef` to define multiple databases in single cosmos account.
 
 <!-- embedme ../../spring/azure-spring-boot-samples/azure-spring-boot-sample-cosmos-multi-database-single-account/src/main/java/com/azure/spring/sample/cosmos/multi/database/DatasourceConfiguration.java#L15-L62 -->
@@ -872,7 +890,7 @@ public class MultiDatabaseApplication implements CommandLineRunner {
 
 ## Beta version package
 
-Beta version built from `master` branch are available, you can refer to the [instruction](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-data-cosmos_3.12.0/CONTRIBUTING.md#nightly-package-builds) to use beta version packages.
+Beta version built from `master` branch are available, you can refer to the [instruction](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-data-cosmos_3.13.0/CONTRIBUTING.md#nightly-package-builds) to use beta version packages.
 
 ## Troubleshooting
 
@@ -943,7 +961,7 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 [azure_subscription]: https://azure.microsoft.com/free/
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.12.0/sdk/cosmos/azure-spring-data-cosmos/src/samples/java/com/azure/spring/data/cosmos
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-data-cosmos_3.13.0/sdk/cosmos/azure-spring-data-cosmos/src/samples/java/com/azure/spring/data/cosmos
 [sample-for-multi-database]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/tag_azure-spring-boot_3.6.0/cosmos/azure-spring-boot-sample-cosmos-multi-database-multi-account
 [sample-for-multi-database-single-account]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/tag_azure-spring-boot_3.6.0/cosmos/azure-spring-boot-sample-cosmos-multi-database-single-account
 [sql_api_query]: https://docs.microsoft.com/azure/cosmos-db/sql-api-sql-query
@@ -951,7 +969,7 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [local_emulator_export_ssl_certificates]: https://docs.microsoft.com/azure/cosmos-db/local-emulator-export-ssl-certificates
 [spring_data_commons_id_annotation]: https://github.com/spring-projects/spring-data-commons/blob/master/src/main/java/org/springframework/data/annotation/Id.java
 [azure_cosmos_db_partition]: https://docs.microsoft.com/azure/cosmos-db/partition-data
-[address_repository_it_test]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-data-cosmos_3.12.0/sdk/cosmos/azure-spring-data-cosmos-test/src/test/java/com/azure/spring/data/cosmos/repository/integration/AddressRepositoryIT.java
+[address_repository_it_test]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-data-cosmos_3.13.0/sdk/cosmos/azure-spring-data-cosmos-test/src/test/java/com/azure/spring/data/cosmos/repository/integration/AddressRepositoryIT.java
 [azure_spring_data_cosmos_docs]: https://docs.microsoft.com/azure/cosmos-db/sql-api-sdk-java-spring-v3
 [spring_data_custom_query]: https://docs.spring.io/spring-data/commons/docs/current/reference/html/#repositories.query-methods.details
 [sql_queries_in_cosmos]: https://docs.microsoft.com/azure/cosmos-db/tutorial-query-sql-api
