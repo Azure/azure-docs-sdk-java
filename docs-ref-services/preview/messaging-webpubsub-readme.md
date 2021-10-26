@@ -3,7 +3,7 @@ title: Azure Web PubSub service client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-webpubsub, webpubsub
 author: maggiepint
 ms.author: magpint
-ms.date: 09/09/2021
+ms.date: 10/26/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: webpubsub
 ---
 
-# Azure Web PubSub service client library for Java - Version 1.0.0-beta.4 
+# Azure Web PubSub service client library for Java - Version 1.0.0-beta.5 
 
 
 Azure Web PubSub service client library for Java allows sending messages to Web PubSub. Azure Web PubSub service 
@@ -41,7 +41,7 @@ requests, can also use Azure Web PubSub service.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-webpubsub</artifactId>
-    <version>1.0.0-beta.4</version>
+    <version>1.0.0-beta.5</version>
 </dependency>
 ```
 
@@ -106,27 +106,27 @@ A message is either an UTF-8 encoded string or raw binary data.
 
 <!-- embedme ./src/samples/java/com/azure/messaging/webpubsub/ReadmeSamples.java#L47-L47 -->
 ```java
-webPubSubServiceClient.sendToAll("Hello world!", "text/plain");
+webPubSubServiceClient.sendToAll("Hello world!", WebPubSubContentType.TEXT_PLAIN);
 ```
 
 ### Broadcast message to a group
 
 <!-- embedme ./src/samples/java/com/azure/messaging/webpubsub/ReadmeSamples.java#L59-L59 -->
 ```java
-webPubSubServiceClient.sendToGroup("java", "Hello Java!", "text/plain");
+webPubSubServiceClient.sendToGroup("java", "Hello Java!", WebPubSubContentType.TEXT_PLAIN);
 ```
 
 ### Send message to a connection
 
 <!-- embedme ./src/samples/java/com/azure/messaging/webpubsub/ReadmeSamples.java#L71-L71 -->
 ```java
-webPubSubServiceClient.sendToConnection("myconnectionid", "Hello connection!", "text/plain");
+webPubSubServiceClient.sendToConnection("myconnectionid", "Hello connection!", WebPubSubContentType.TEXT_PLAIN);
 ```
 
 ### Send message to a user
 <!-- embedme ./src/samples/java/com/azure/messaging/webpubsub/ReadmeSamples.java#L83-L83 -->
 ```java
-webPubSubServiceClient.sendToUser("Andy", "Hello Andy!", "text/plain");
+webPubSubServiceClient.sendToUser("Andy", "Hello Andy!", WebPubSubContentType.TEXT_PLAIN);
 ```
 
 ## Troubleshooting
@@ -169,10 +169,10 @@ comments.
 
 [azure_subscription]: https://azure.microsoft.com/free
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.0.0-beta.4/sdk/webpubsub/azure-messaging-webpubsub/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.0.0-beta.5/sdk/webpubsub/azure-messaging-webpubsub/src
 [product_documentation]: https://aka.ms/awps/doc
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.0.0-beta.4/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md
-[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.0.0-beta.4/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.0.0-beta.5/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md
+[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.0.0-beta.5/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
