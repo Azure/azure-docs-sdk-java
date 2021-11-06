@@ -1,8 +1,8 @@
 ---
 title: Azure Core AMQP shared library for Java
 keywords: Azure, java, SDK, API, azure-core-amqp, core
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 05/14/2021
 ms.topic: reference
 ms.prod: azure

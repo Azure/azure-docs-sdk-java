@@ -1,8 +1,8 @@
 ---
 title: Azure Tables client library for Java
 keywords: Azure, java, SDK, API, azure-data-tables, tables
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 10/07/2021
 ms.topic: reference
 ms.prod: azure

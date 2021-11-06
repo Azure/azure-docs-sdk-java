@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager Usage client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-commerce, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 04/13/2021
 ms.topic: reference
 ms.prod: azure

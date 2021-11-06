@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager DevTestLabs client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-devtestlabs, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 04/15/2021
 ms.topic: reference
 ms.prod: azure

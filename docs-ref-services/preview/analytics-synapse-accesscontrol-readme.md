@@ -1,8 +1,8 @@
 ---
 title: Azure Synapse Access Control client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-accesscontrol, synapseanalytics
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 08/11/2021
 ms.topic: reference
 ms.prod: azure

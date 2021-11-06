@@ -1,8 +1,8 @@
 ---
 title: Azure Communication Phone Numbers client library for Java
 keywords: Azure, java, SDK, API, azure-communication-phonenumbers, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 03/10/2021
 ms.topic: reference
 ms.prod: azure

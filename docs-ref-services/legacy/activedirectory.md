@@ -2,8 +2,8 @@
 title: Azure Active Directory libraries for Java
 description: Reference documentation for the Java client and management libraries Azure Active Directory
 keywords: Azure, Java, SDK, API, SQL, authentication, AAD, Active Directory , Graph, OAuth 2.0
-author: rloutlaw
-ms.author: routlaw
+author: ramya-rao-a
+ms.author: ramyar
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference

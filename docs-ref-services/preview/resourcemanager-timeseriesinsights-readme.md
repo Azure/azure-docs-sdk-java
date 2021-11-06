@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager TimeSeriesInsights client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-timeseriesinsights, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 04/21/2021
 ms.topic: reference
 ms.prod: azure

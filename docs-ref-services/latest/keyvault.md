@@ -2,8 +2,8 @@
 title: Azure Key Vault client libraries for Java
 description: Overview of the Azure Key Vault libraries for Java 
 keywords: Azure, Java, SDK, API, keyvault, secure, keys, secrets, vault
-author: rloutlaw
-ms.author: routlaw
+author: ramya-rao-a
+ms.author: ramyar
 manager: douge
 ms.date: 11/21/2019
 ms.topic: reference

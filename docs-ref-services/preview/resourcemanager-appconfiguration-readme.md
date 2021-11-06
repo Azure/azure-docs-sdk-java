@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager AppConfiguration client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-appconfiguration, appconfiguration
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 07/09/2021
 ms.topic: reference
 ms.prod: azure
