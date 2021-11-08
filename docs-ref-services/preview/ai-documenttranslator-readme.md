@@ -1,8 +1,8 @@
 ---
 title: Azure Document Translator client library for Java
 keywords: Azure, java, SDK, API, azure-ai-documenttranslator, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 04/28/2021
 ms.topic: reference
 ms.prod: azure

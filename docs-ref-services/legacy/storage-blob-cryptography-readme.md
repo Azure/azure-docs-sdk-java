@@ -1,8 +1,8 @@
 ---
 title: Azure Storage Blobs Cryptography client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob-cryptography, storage
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 11/11/2020
 ms.topic: reference
 ms.prod: azure

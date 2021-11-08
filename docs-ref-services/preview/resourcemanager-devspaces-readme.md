@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager DevSpaces client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-devspaces, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 04/15/2021
 ms.topic: reference
 ms.prod: azure

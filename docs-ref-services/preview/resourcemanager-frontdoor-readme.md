@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager FrontDoor client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-frontdoor, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 04/09/2021
 ms.topic: reference
 ms.prod: azure

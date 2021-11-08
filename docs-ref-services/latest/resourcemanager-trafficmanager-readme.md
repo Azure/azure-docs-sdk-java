@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager traffic manager client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-trafficmanager, trafficmanager
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 10/21/2021
 ms.topic: reference
 ms.prod: azure

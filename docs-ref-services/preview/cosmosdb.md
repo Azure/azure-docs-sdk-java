@@ -2,8 +2,8 @@
 title: Azure Cosmos DB libraries for Java
 description: Reference documentation for the Java client libraries for Azure Cosmos DB
 keywords: Azure, Java, SDK, API, SQL, database, MongoDB, Cosmos DB, NoSQL 
-author: rloutlaw
-ms.author: routlaw
+author: ramya-rao-a
+ms.author: ramyar
 manager: douge
 ms.date: 07/10/2017
 ms.topic: reference

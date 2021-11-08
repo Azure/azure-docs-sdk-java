@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager NetAppFiles client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-netapp, netappfiles
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 09/22/2021
 ms.topic: reference
 ms.prod: azure

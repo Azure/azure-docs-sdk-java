@@ -1,8 +1,8 @@
 ---
 title: Azure Core Jackson Avro Serializer plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-serializer-avro-jackson, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 07/16/2020
 ms.topic: reference
 ms.prod: azure

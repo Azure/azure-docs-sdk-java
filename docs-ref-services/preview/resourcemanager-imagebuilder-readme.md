@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager ImageBuilder client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-imagebuilder, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 05/17/2021
 ms.topic: reference
 ms.prod: azure

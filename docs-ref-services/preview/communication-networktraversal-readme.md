@@ -1,8 +1,8 @@
 ---
 title: Azure Communication Network Traversal Package client library for Java
 keywords: Azure, java, SDK, API, azure-communication-networktraversal, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 09/09/2021
 ms.topic: reference
 ms.prod: azure

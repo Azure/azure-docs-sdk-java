@@ -1,8 +1,8 @@
 ---
 title: Azure Core Apache Avro Serializer plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-serializer-avro-apache, core
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 11/05/2021
 ms.topic: reference
 ms.prod: azure

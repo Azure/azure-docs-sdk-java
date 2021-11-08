@@ -1,8 +1,8 @@
 ---
 title: Azure Synapse Managed Private Endpoints client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-managedprivateendpoints, synapseanalytics
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 09/08/2021
 ms.topic: reference
 ms.prod: azure

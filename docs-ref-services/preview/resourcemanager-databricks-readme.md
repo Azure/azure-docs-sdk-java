@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager AzureDatabricks client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-databricks, databricks
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 06/21/2021
 ms.topic: reference
 ms.prod: azure

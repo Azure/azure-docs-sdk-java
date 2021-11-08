@@ -1,8 +1,8 @@
 ---
 title: Azure Core Test shared library for Java
 keywords: Azure, java, SDK, API, azure-core-test, core
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 11/05/2021
 ms.topic: reference
 ms.prod: azure

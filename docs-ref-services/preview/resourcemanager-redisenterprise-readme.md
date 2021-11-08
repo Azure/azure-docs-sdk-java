@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager RedisEnterprise client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-redisenterprise, redisenterprise
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 03/02/2021
 ms.topic: reference
 ms.prod: azure

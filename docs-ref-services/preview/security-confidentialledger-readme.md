@@ -1,8 +1,8 @@
 ---
 title: Azure Confidential Ledger client library for Java
 keywords: Azure, java, SDK, API, azure-security-confidentialledger, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 06/08/2021
 ms.topic: reference
 ms.prod: azure

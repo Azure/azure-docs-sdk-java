@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager network client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-network, virtualnetwork
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 10/21/2021
 ms.topic: reference
 ms.prod: azure

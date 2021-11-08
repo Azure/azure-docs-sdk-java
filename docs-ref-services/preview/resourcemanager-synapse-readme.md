@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager Synapse client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-synapse, synapseanalytics
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 10/09/2021
 ms.topic: reference
 ms.prod: azure

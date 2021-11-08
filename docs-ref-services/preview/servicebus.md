@@ -2,8 +2,8 @@
 title: Service Bus libraries for Java
 description: Reference documentation for the Java client and management libraries for Service Bus
 keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, message broker
-author: rloutlaw
-ms.author: routlaw
+author: ramya-rao-a
+ms.author: ramyar
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
