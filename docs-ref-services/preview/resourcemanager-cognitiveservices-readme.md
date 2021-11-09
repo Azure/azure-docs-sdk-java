@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager CognitiveServices client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-cognitiveservices, cognitiveservices
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 05/24/2021
 ms.topic: reference
 ms.prod: azure

@@ -1,8 +1,8 @@
 ---
 title: Azure Quantum Jobs client library for Java
 keywords: Azure, java, SDK, API, azure-quantum-jobs, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 02/02/2021
 ms.topic: reference
 ms.prod: azure

@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager Avs client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-avs, vmwaresolution
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 07/16/2021
 ms.topic: reference
 ms.prod: azure

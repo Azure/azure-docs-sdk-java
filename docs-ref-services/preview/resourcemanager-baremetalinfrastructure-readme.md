@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager BareMetalInfrastructure client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-baremetalinfrastructure, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 09/22/2021
 ms.topic: reference
 ms.prod: azure

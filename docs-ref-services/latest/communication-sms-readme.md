@@ -1,8 +1,8 @@
 ---
 title: Azure Communications SMS Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-sms, communication
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 10/11/2021
 ms.topic: reference
 ms.prod: azure

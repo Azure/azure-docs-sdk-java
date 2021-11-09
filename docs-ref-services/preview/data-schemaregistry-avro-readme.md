@@ -1,8 +1,8 @@
 ---
 title: Azure Schema Registry Avro Serializer/Deserializer client library for Java
 keywords: Azure, java, SDK, API, azure-data-schemaregistry-avro, eventhubs
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 08/18/2021
 ms.topic: reference
 ms.prod: azure

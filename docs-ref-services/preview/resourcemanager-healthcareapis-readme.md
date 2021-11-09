@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager HealthcareApis client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-healthcareapis, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 04/15/2021
 ms.topic: reference
 ms.prod: azure

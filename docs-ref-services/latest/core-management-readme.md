@@ -1,9 +1,9 @@
 ---
 title: Azure Core Management client library for Java
 keywords: Azure, java, SDK, API, azure-core-management, core
-author: maggiepint
-ms.author: magpint
-ms.date: 10/02/2021
+author: ramya-rao-a
+ms.author: ramyar
+ms.date: 11/05/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core Management client library for Java - Version 1.4.2 
+# Azure Core Management client library for Java - Version 1.4.3 
 
 
 Azure Core Management library is a collection of classes common to the [Azure Resource Manager (ARM)][arm] client libraries.
@@ -29,7 +29,7 @@ Azure Core Management library is a collection of classes common to the [Azure Re
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-management</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -60,7 +60,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-management_1.4.2/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-management_1.4.3/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)

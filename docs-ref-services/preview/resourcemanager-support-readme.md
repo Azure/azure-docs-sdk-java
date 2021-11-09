@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager Support client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-support, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 04/19/2021
 ms.topic: reference
 ms.prod: azure

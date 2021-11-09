@@ -1,8 +1,8 @@
 ---
 title: Azure Storage Blobs Batch client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob-batch, storage
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 10/13/2021
 ms.topic: reference
 ms.prod: azure

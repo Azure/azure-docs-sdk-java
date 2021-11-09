@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager Purview client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-purview, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 08/25/2021
 ms.topic: reference
 ms.prod: azure

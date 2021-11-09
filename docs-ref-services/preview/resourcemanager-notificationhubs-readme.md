@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager NotificationHubs client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-notificationhubs, notificationhubs
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 11/03/2021
 ms.topic: reference
 ms.prod: azure

@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager Compute client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-compute, compute
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 11/25/2020
 ms.topic: reference
 ms.prod: azure

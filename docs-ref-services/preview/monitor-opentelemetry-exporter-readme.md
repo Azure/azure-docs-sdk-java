@@ -1,8 +1,8 @@
 ---
 title: Azure Monitor OpenTelemetry Exporter client library for Java
 keywords: Azure, java, SDK, API, azure-monitor-opentelemetry-exporter, monitor
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 03/12/2021
 ms.topic: reference
 ms.prod: azure

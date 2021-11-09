@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager DelegatedNetwork client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-delegatednetwork, 
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 03/26/2021
 ms.topic: reference
 ms.prod: azure

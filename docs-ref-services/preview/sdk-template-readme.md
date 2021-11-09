@@ -1,8 +1,8 @@
 ---
 title: Azure Template client library for Java
 keywords: Azure, java, SDK, API, azure-sdk-template, templatetemplate
-author: maggiepint
-ms.author: magpint
+author: ramya-rao-a
+ms.author: ramyar
 ms.date: 10/26/2021
 ms.topic: reference
 ms.prod: azure
