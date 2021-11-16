@@ -1,17 +1,17 @@
 ---
 title: Azure Storage Queue client library for Java
-keywords: Azure, java, SDK, API, azure-storage-queue, storagestorage
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 10/13/2021
+keywords: Azure, java, SDK, API, azure-storage-queue, storage
+author: maggiepint
+ms.author: magpint
+ms.date: 11/11/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: storagestorage
+ms.service: storage
 ---
 
-# Azure Storage Queue client library for Java - Version 12.11.1 
+# Azure Storage Queue client library for Java - Version 12.11.2 
 
 Azure Queue storage is a service for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls using HTTP or HTTPS.
 A single queue message can be up to 64 KB in size, and a queue can contain millions of messages, up to the total capacity limit of a storage account.
@@ -32,7 +32,7 @@ A single queue message can be up to 64 KB in size, and a queue can contain milli
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-queue_12.11.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-queue_12.11.2/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -511,7 +511,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-queue_12.11.1/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-queue_12.11.2/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -520,8 +520,8 @@ For details on contributing to this repository, see the [contributing guide](htt
 5. Create new Pull Request
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.11.1/sdk/storage/azure-storage-queue/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.11.1/sdk/storage/azure-storage-queue/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.11.2/sdk/storage/azure-storage-queue/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.11.2/sdk/storage/azure-storage-queue/src/samples/README.md
 [api_documentation]: https://docs.microsoft.com/rest/api/storageservices/queue-service-rest-api
 [storage_docs]: https://docs.microsoft.com/azure/storage/queues/storage-queues-introduction
 [jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
@@ -531,7 +531,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
 [storage_rest]: https://docs.microsoft.com/rest/api/storageservices/queue-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.11.1/sdk/storage/azure-storage-queue/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.11.2/sdk/storage/azure-storage-queue/src/samples
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-queue%2FREADME.png)

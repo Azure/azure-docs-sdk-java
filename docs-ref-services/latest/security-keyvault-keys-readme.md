@@ -1,9 +1,9 @@
 ---
 title: Azure Key Vault Key client library for Java
 keywords: Azure, java, SDK, API, azure-security-keyvault-keys, keyvault
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 10/07/2021
+author: maggiepint
+ms.author: magpint
+ms.date: 11/15/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: keyvault
 ---
 
-# Azure Key Vault Key client library for Java - Version 4.3.4 
+# Azure Key Vault Key client library for Java - Version 4.3.5 
 
 Azure Key Vault is a cloud service that provides secure storage of keys for encrypting your data. Multiple keys, and multiple versions of the same key, can be kept in the Azure Key Vault. Cryptographic keys in Azure Key Vault are represented as JSON Web Key (JWK) objects.
 
@@ -30,7 +30,7 @@ Maven dependency for the Azure Key Vault Key client library. Add it to your proj
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-keys</artifactId>
-    <version>4.3.4</version>
+    <version>4.3.5</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -477,10 +477,10 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_code_of_conduct]. For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.3.4/sdk/keyvault/azure-security-keyvault-keys/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.3.5/sdk/keyvault/azure-security-keyvault-keys/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.3.4/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.3.5/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [azure_keyvault]: https://docs.microsoft.com/azure/key-vault/keys/quick-create-portal
@@ -490,8 +490,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
-[keys_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.3.4/sdk/keyvault/azure-security-keyvault-keys/src/samples/java/com/azure/security/keyvault/keys
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.3.4/sdk/keyvault/azure-security-keyvault-keys/src/samples/README.md
+[keys_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.3.5/sdk/keyvault/azure-security-keyvault-keys/src/samples/java/com/azure/security/keyvault/keys
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.3.5/sdk/keyvault/azure-security-keyvault-keys/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [azure_cloud_shell]: https://shell.azure.com/bash

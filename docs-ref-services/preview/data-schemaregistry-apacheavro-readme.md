@@ -1,17 +1,17 @@
 ---
 title: Azure Schema Registry Apache Avro Serializer client library for Java
-keywords: Azure, java, SDK, API, azure-data-schemaregistry-apacheavro, 
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 10/08/2021
+keywords: Azure, java, SDK, API, azure-data-schemaregistry-apacheavro, schemaregistry
+author: maggiepint
+ms.author: magpint
+ms.date: 11/15/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: schemaregistry
 ---
 
-# Azure Schema Registry Apache Avro Serializer client library for Java - Version 1.0.0-beta.6 
+# Azure Schema Registry Apache Avro Serializer client library for Java - Version 1.0.0-beta.7 
 
 
 Azure Schema Registry Apache Avro is a serializer and deserializer library for Avro data format that is integrated with
@@ -20,7 +20,7 @@ provides an Avro serializer capable of serializing and deserializing payloads co
 identifiers and Avro-encoded data. This library uses [Apache Avro][apache_avro] implementation for Avro serialization
 and deserialization.
 
-[Source code][source_code] | Package (Maven) | [API reference documentation][api_reference_doc] | [Product Documentation][product_documentation] | [Samples][sample_readme]
+[Source code][source_code] | [Package (Maven)][package_maven] | [API reference documentation][api_reference_doc] | [Product Documentation][product_documentation] | [Samples][sample_readme]
 
 ## Getting started
 
@@ -37,7 +37,7 @@ and deserialization.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-data-schemaregistry-apacheavro</artifactId>
-  <version>1.0.0-beta.6</version>
+  <version>1.0.0-beta.7</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -66,7 +66,7 @@ with the Azure SDK, please include the `azure-identity` package:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.3.7</version>
+    <version>1.4.1</version>
 </dependency>
 ```
 
@@ -113,8 +113,8 @@ The serializer in this library creates messages in a wire format. The format is 
 
 ## Examples
 
-* [Serialize][schema_serialize]
-* [Deserialize][schema_deserialize]
+* [Serialize](#serialize)
+* [Deserialize](#deserialize)
 
 ### Serialize
 Serialize a strongly-typed object into Schema Registry-compatible avro payload.
@@ -165,22 +165,32 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.6/sdk/schemaregistry/azure-data-schemaregistry-apacheavro/src/samples/java/com/azure/data/schemaregistry/apacheavro
-[generated_types]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.6/sdk/schemaregistry/azure-data-schemaregistry-apacheavro/src/samples/java/com/azure/data/schemaregistry/apacheavro/generatedtestsources
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.6/sdk/schemaregistry/azure-data-schemaregistry-apacheavro/src
-[samples_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.6/sdk/schemaregistry/azure-data-schemaregistry-apacheavro/src/samples/
+[package_maven]: https://search.maven.org/artifact/com.azure/azure-data-schemaregistry-avro
+[sample_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry-apacheavro_1.0.0-beta.7/sdk/schemaregistry/azure-data-schemaregistry-apacheavro/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.7/sdk/schemaregistry/azure-data-schemaregistry-apacheavro/src/samples/java/com/azure/data/schemaregistry/apacheavro
+[generated_types]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.7/sdk/schemaregistry/azure-data-schemaregistry-apacheavro/src/samples/java/com/azure/data/schemaregistry/apacheavro/generatedtestsources
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.7/sdk/schemaregistry/azure-data-schemaregistry-apacheavro/src
+[samples_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.7/sdk/schemaregistry/azure-data-schemaregistry-apacheavro/src/samples/
 [azure_subscription]: https://azure.microsoft.com/free/
 [apache_avro]: https://avro.apache.org/
 [api_reference_doc]: https://aka.ms/schemaregistry
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_portal]: https://portal.azure.com
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry-apacheavro_1.0.0-beta.6/sdk/identity/azure-identity
-[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.6/sdk/identity/azure-identity/README.md#defaultazurecredential
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry-apacheavro_1.0.0-beta.7/sdk/identity/azure-identity
+[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.7/sdk/identity/azure-identity/README.md#defaultazurecredential
 [event_hubs_namespace]: https://docs.microsoft.com/azure/event-hubs/event-hubs-about
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [product_documentation]: https://aka.ms/schemaregistry
 [specific_record]: https://avro.apache.org/docs/1.9.2/api/java/org/apache/avro/specific/SpecificRecord.html
 [generic_record]: https://avro.apache.org/docs/1.9.2/api/java/org/apache/avro/generic/GenericRecord.html
+[custom_subdomain]: https://docs.microsoft.com/azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
+[register_aad_app]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[aad_grant_access]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
+[cla]: https://cla.microsoft.com
+[coc]: https://opensource.microsoft.com/codeofconduct/
+[coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
+[coc_contact]: mailto:opencode@microsoft.com
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fschemaregistry%2Fazure-data-schemaregistry-apacheavro%2FREADME.png)
 

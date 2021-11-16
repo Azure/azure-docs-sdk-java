@@ -1,9 +1,9 @@
 ---
 title: Azure Container Registry client library for Java
 keywords: Azure, java, SDK, API, azure-containers-containerregistry, containerregistry
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 08/24/2021
+author: maggiepint
+ms.author: magpint
+ms.date: 11/11/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: containerregistry
 ---
 
-# Azure Container Registry client library for Java - Version 1.0.0-beta.4 
+# Azure Container Registry client library for Java - Version 1.0.0-beta.5 
 
 
 Azure Container Registry allows you to store and manage container images and artifacts in a private registry for all types of container deployments.
@@ -288,7 +288,7 @@ or contact [opencode@microsoft.com][coc_contact] with any
 additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.0-beta.4/sdk/containerregistry/azure-containers-containerregistry/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.0-beta.5/sdk/containerregistry/azure-containers-containerregistry/src
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [azure_subscription]: https://azure.microsoft.com/free
 [package]: https://search.maven.org/artifact/com.azure/azure-containers-containerregisty
@@ -302,9 +302,9 @@ additional questions or comments.
 [container_registry_concepts]: https://docs.microsoft.com/azure/container-registry/container-registry-concepts
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.0-beta.4/sdk/identity/azure-identity/README.md
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.0-beta.4/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.0-beta.4/sdk/containerregistry/azure-containers-containerregistry/src/samples/
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.0-beta.5/sdk/identity/azure-identity/README.md
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.0-beta.5/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.0-beta.5/sdk/containerregistry/azure-containers-containerregistry/src/samples/
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
