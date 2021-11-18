@@ -15,4 +15,4 @@ ms.service: appinsights
 
 # Azure Monitor Application Insights
 
-Detect, triage, and diagnose issues in your apps and services with [Application Insights Java](/azure/azure-monitor/app/java-in-process-agent).
+Detect, triage, and diagnose issues in your apps and services with [Application Insights for Java](/azure/azure-monitor/app/java-in-process-agent).
