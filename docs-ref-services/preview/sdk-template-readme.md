@@ -21,6 +21,7 @@ It's also used as the package distribution page (NuGet, PyPi, npm, etc.) and as 
 **Title**: The H1 of your README should be in the format: `# [Product Name] client library for [Language]`
 
 * All headings, including the H1, should use **sentence-style capitalization**. Refer to the [Microsoft Style Guide][style-guide-msft].
+
 * Example: `# Azure Batch client library for Java - Version 1.2.1-beta.1206675 
 `
 
