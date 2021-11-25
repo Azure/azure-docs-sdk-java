@@ -1,9 +1,9 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, azure-spring-cloud-appconfiguration-config-web, springcloud
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 09/29/2021
+author: mssfang
+ms.author: mssfang
+ms.date: 11/25/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
