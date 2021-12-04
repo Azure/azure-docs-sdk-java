@@ -914,7 +914,7 @@ For example, if you want to use spring logback as logging framework, add the fol
 
 ## Next steps
 - Read more about azure spring data cosmos [here][azure_spring_data_cosmos_docs].
-- [Read more about Azure CosmosDB Service][cosmos_docs]
+- [Read more about Azure Cosmos DB Service][cosmos_docs]
 
 ## Contributing
 
