@@ -1,9 +1,9 @@
 ---
 title: Azure CosmosDB Client Library for Java
 keywords: Azure, java, SDK, API, azure-cosmos, cosmosdb
-author: maggiepint
-ms.author: magpint
-ms.date: 11/13/2021
+author: moderakh
+ms.author: moderakh
+ms.date: 12/03/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: cosmosdb
 ---
 
-# Azure CosmosDB Client Library for Java - Version 4.21.1 
+# Azure CosmosDB Client Library for Java - Version 4.22.0 
 
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.
@@ -25,7 +25,7 @@ This project provides SDK library in Java for interacting with [SQL API][sql_api
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.21.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.22.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -60,7 +60,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos</artifactId>
-  <version>4.21.1</version>
+  <version>4.22.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -90,19 +90,19 @@ The SDK provides two clients.
 2. `CosmosClient` for operations using synchronous (blocking) APIs.
 
 #### Create CosmosAsyncClient
-```java
+```java readme-sample-createCosmosAsyncClient
 CosmosAsyncClient cosmosAsyncClient = new CosmosClientBuilder()
-.endpoint(serviceEndpoint)
-.key(key)
-.buildAsyncClient();
+    .endpoint(serviceEndpoint)
+    .key(key)
+    .buildAsyncClient();
 ```
 
 #### Create CosmosClient
-```java
+```java readme-sample-createCosmosClient
 CosmosClient cosmosClient = new CosmosClientBuilder()
-.endpoint(serviceEndpoint)
-.key(key)
-.buildClient();
+    .endpoint(serviceEndpoint)
+    .key(key)
+    .buildClient();
 ```
 
 ## Key Concepts
@@ -145,7 +145,7 @@ The following section provides several code snippets covering some of the most c
 * [CRUD operation on Items](#crud-operation-on-items "CRUD operation on Items")
 
 ### Create Cosmos Client
-```java
+```java readme-sample-createCosmosClient2
 // Create a new CosmosAsyncClient via the CosmosClientBuilder
 // It only requires endpoint and key, but other useful settings are available
 CosmosAsyncClient cosmosAsyncClient = new CosmosClientBuilder()
@@ -160,7 +160,7 @@ CosmosClient cosmosClient = new CosmosClientBuilder()
     .buildClient();
 
 // Create a new CosmosClient with customizations
-CosmosClient cosmosClient = new CosmosClientBuilder()
+cosmosClient = new CosmosClientBuilder()
     .endpoint(serviceEndpoint)
     .key(key)
     .directMode(directConnectionConfig, gatewayConnectionConfig)
@@ -168,59 +168,61 @@ CosmosClient cosmosClient = new CosmosClientBuilder()
     .connectionSharingAcrossClientsEnabled(true)
     .contentResponseOnWriteEnabled(true)
     .userAgentSuffix("my-application1-client")
-    .preferredRegions(Collections.singletonList("West US", "East US"))
+    .preferredRegions(Arrays.asList("West US", "East US"))
     .buildClient();
 ```
 
 ### Create Database
 Using any one of the clients created in previous example, you can create a database like this:
 
-```java
+```java readme-sample-createDatabase
 // Get a reference to the container
 // This will create (or read) a database and its container.
-client.createDatabaseIfNotExists(DATABASE_NAME)
+cosmosAsyncClient.createDatabaseIfNotExists("<YOUR DATABASE NAME>")
     // TIP: Our APIs are Reactor Core based, so try to chain your calls
-    .flatMap(response -> client.getDatabase(DATABASE_NAME)
-    .subscribe();
+    .map(databaseResponse -> cosmosAsyncClient.getDatabase(databaseResponse.getProperties().getId()))
+    .subscribe(database -> System.out.printf("Created database '%s'.%n", database.getId()));
 ```
 
 ### Create Container
 Using the above created database, you can chain another operation to it for creating a container like this:
 
-```java
-client.createDatabaseIfNotExists(DATABASE_NAME)
+```java readme-sample-createContainer
+cosmosAsyncClient.createDatabaseIfNotExists("<YOUR DATABASE NAME>")
     // TIP: Our APIs are Reactor Core based, so try to chain your calls
-    .flatMap(response -> client.getDatabase(DATABASE_NAME)
-    // Create Container
-    .createContainerIfNotExists(CONTAINER_NAME, "/id"))
-    .flatMap(response -> Mono.just(client.getDatabase(DATABASE_NAME).getContainer(CONTAINER_NAME)))
-    .subscribe();
+    .flatMap(databaseResponse -> {
+        String databaseId = databaseResponse.getProperties().getId();
+        return cosmosAsyncClient.getDatabase(databaseId)
+            // Create Container
+            .createContainerIfNotExists("<YOUR CONTAINER NAME>", "/id")
+            .map(containerResponse -> cosmosAsyncClient.getDatabase(databaseId)
+                .getContainer(containerResponse.getProperties().getId()));
+    })
+    .subscribe(container -> System.out.printf("Created container '%s' in database '%s'.%n",
+        container.getId(), container.getDatabase().getId()));
 ```
 ### CRUD operation on Items
 
-```java
-
+```java readme-sample-crudOperationOnItems
 // Create an item
-container.createItem(new Passenger("carla.davis@outlook.com", "Carla Davis", "SEA", "IND"))
+cosmosAsyncContainer.createItem(new Passenger("carla.davis@outlook.com", "Carla Davis", "SEA", "IND"))
     .flatMap(response -> {
         System.out.println("Created item: " + response.getItem());
         // Read that item 👓
-        return container.readItem(response.getItem().getId(),
-                                  new PartitionKey(response.getItem().getId()),
-                                  Passenger.class);
+        return cosmosAsyncContainer.readItem(response.getItem().getId(),
+            new PartitionKey(response.getItem().getId()), Passenger.class);
     })
     .flatMap(response -> {
         System.out.println("Read item: " + response.getItem());
         // Replace that item 🔁
         Passenger p = response.getItem();
         p.setDestination("SFO");
-        return container.replaceItem(p,
-                                     response.getItem().getId(),
-                                     new PartitionKey(response.getItem().getId()));
+        return cosmosAsyncContainer.replaceItem(p, response.getItem().getId(),
+            new PartitionKey(response.getItem().getId()));
     })
     // delete that item 💣
-    .flatMap(response -> container.deleteItem(response.getItem().getId(),
-                                              new PartitionKey(response.getItem().getId())))
+    .flatMap(response -> cosmosAsyncContainer.deleteItem(response.getItem().getId(),
+        new PartitionKey(response.getItem().getId())))
     .block(); // Blocking for demo purposes (avoid doing this in production unless you must)
 // ...
 ```
@@ -299,7 +301,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.21.1/sdk/cosmos/azure-cosmos/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.22.0/sdk/cosmos/azure-cosmos/src
 [cosmos_introduction]: https://docs.microsoft.com/azure/cosmos-db/
 [api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [cosmos_docs]: https://docs.microsoft.com/azure/cosmos-db/introduction
