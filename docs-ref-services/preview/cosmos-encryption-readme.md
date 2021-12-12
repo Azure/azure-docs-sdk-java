@@ -198,7 +198,7 @@ log4j.appender.A1.layout.ConversionPattern=%d %5X{pid} [%t] %-5p %c - %m%n
 
 - Cosmos encryption sample program is [here][getting_started_encryption]
 - Quick start of CosmosDB core java sdk [quickstart][quickstart] - Building a java app to manage CosmosDB SQL API data
-- [Read more about Azure CosmosDB Service][cosmos_docs]
+- [Read more about Azure Cosmos DB Service][cosmos_docs]
 
 ## Contributing
 
