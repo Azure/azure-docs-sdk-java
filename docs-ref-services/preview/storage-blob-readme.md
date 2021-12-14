@@ -1,646 +1,464 @@
 ---
-title: Azure Storage Blob client library for Java
-keywords: Azure, java, SDK, API, azure-storage-blob, storage
+title: Azure Storage Blobs client library for Python
+keywords: Azure, python, SDK, API, azure-storage-blob, storage
 author: ramya-rao-a
 ms.author: ramyar
-ms.date: 11/05/2021
+ms.date: 12/14/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
-ms.devlang: java
+ms.devlang: python
 ms.service: storage
 ---
+# Azure Storage Blobs client library for Python - Version 12.10.0b2 
 
-# Azure Storage Blob client library for Java - Version 12.15.0-beta.1 
+Azure Blob storage is Microsoft's object storage solution for the cloud. Blob storage is optimized for storing massive amounts of unstructured data, such as text or binary data.
 
+Blob storage is ideal for:
 
-Azure Blob Storage is Microsoft's object storage solution for the cloud. Blob
-Storage is optimized for storing massive amounts of unstructured data.
-Unstructured data is data that does not adhere to a particular data model or
-definition, such as text or binary data.
+* Serving images or documents directly to a browser
+* Storing files for distributed access
+* Streaming video and audio
+* Storing data for backup and restore, disaster recovery, and archiving
+* Storing data for analysis by an on-premises or Azure-hosted service
 
-[Source code][source] | [API reference documentation][docs] | [REST API documentation][rest_docs] | [Product documentation][product_docs] | [Samples][samples]
+[Source code](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/azure/storage/blob) | [Package (PyPI)](https://pypi.org/project/azure-storage-blob/) | [API reference documentation](https://aka.ms/azsdk-python-storage-blob-ref) | [Product documentation](https://docs.microsoft.com/azure/storage/) | [Samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples)
+
 
 ## Getting started
 
 ### Prerequisites
+* Python 2.7, or 3.5 or later is required to use this package.
+* You must have an [Azure subscription](https://azure.microsoft.com/free/) and an
+[Azure storage account](https://docs.microsoft.com/azure/storage/common/storage-account-overview) to use this package.
 
-- [Java Development Kit (JDK)][jdk] with version 8 or above
-- [Azure Subscription][azure_subscription]
-- [Create Storage Account][storage_account]
-
-### Include the package
-
-#### Include the BOM file
-
-Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
-
-```xml
-<dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>com.azure</groupId>
-            <artifactId>azure-sdk-bom</artifactId>
-            <version>{bom_version_to_target}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
-```
-and then include the direct dependency in the dependencies section without the version tag.
-
-```xml
-<dependencies>
-  <dependency>
-    <groupId>com.azure</groupId>
-    <artifactId>azure-storage-blob</artifactId>
-  </dependency>
-</dependencies>
-```
-
-#### Include direct dependency
-If you want to take dependency on a particular version of the library that is not present in the BOM,
-add the direct dependency to your project as follows.
-
-[//]: # ({x-version-update-start;com.azure:azure-storage-blob;current})
-```xml
-<dependency>
-    <groupId>com.azure</groupId>
-    <artifactId>azure-storage-blob</artifactId>
-    <version>12.14.1</version>
-</dependency>
-```
-[//]: # ({x-version-update-end})
-
-### Create a Storage Account
-To create a Storage Account you can use the [Azure Portal][storage_account_create_portal] or [Azure CLI][storage_account_create_cli].
+### Install the package
+Install the Azure Storage Blobs client library for Python with [pip](https://pypi.org/project/pip/):
 
 ```bash
-az storage account create \
-    --resource-group <resource-group-name> \
-    --name <storage-account-name> \
-    --location <location>
+pip install azure-storage-blob
 ```
 
-Your storage account URL, subsequently identified as <your-storage-account-url>, would be formatted as follows:
-http(s)://<storage-account-name>.blob.core.windows.net
-
-### Authenticate the client
-
-In order to interact with the Storage Service (Blob, Queue, Message, MessageId, File), you'll need to create an instance of the Service Client class.
-To make this possible you'll need the Account SAS (shared access signature) string of the Storage Account. Learn more at [SAS Token][sas_token].
-
-#### Get credentials
-
-##### SAS Token
-
-a. Use the Azure CLI snippet below to get the SAS token from the Storage Account.
+### Create a storage account
+If you wish to create a new storage account, you can use the
+[Azure Portal](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal),
+[Azure PowerShell](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-powershell),
+or [Azure CLI](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli):
 
 ```bash
-az storage blob generate-sas \
-    --account-name {Storage Account name} \
-    --container-name {container name} \
-    --name {blob name} \
-    --permissions {permissions to grant} \
-    --expiry {datetime to expire the SAS token} \
-    --services {storage services the SAS allows} \
-    --resource-types {resource types the SAS allows}
+# Create a new resource group to hold the storage account -
+# if using an existing resource group, skip this step
+az group create --name my-resource-group --location westus2
+
+# Create the storage account
+az storage account create -n my-storage-account-name -g my-resource-group
 ```
 
-Example:
+### Create the client
+The Azure Storage Blobs client library for Python allows you to interact with three types of resources: the storage
+account itself, blob storage containers, and blobs. Interaction with these resources starts with an instance of a
+[client](#clients). To create a client object, you will need the storage account's blob service account URL and a
+credential that allows you to access the storage account:
+
+```python
+from azure.storage.blob import BlobServiceClient
+
+service = BlobServiceClient(account_url="https://<my-storage-account-name>.blob.core.windows.net/", credential=credential)
+```
+
+#### Looking up the account URL
+You can find the storage account's blob service URL using the
+[Azure Portal](https://docs.microsoft.com/azure/storage/common/storage-account-overview#storage-account-endpoints),
+[Azure PowerShell](https://docs.microsoft.com/powershell/module/az.storage/get-azstorageaccount),
+or [Azure CLI](https://docs.microsoft.com/cli/azure/storage/account?view=azure-cli-latest#az-storage-account-show):
 
 ```bash
-CONNECTION_STRING=<connection-string>
-
-az storage blob generate-sas \
-    --account-name MyStorageAccount \
-    --container-name MyContainer \
-    --name MyBlob \
-    --permissions racdw \
-    --expiry 2020-06-15
+# Get the blob service account url for the storage account
+az storage account show -n my-storage-account-name -g my-resource-group --query "primaryEndpoints.blob"
 ```
 
-b. Alternatively, get the Account SAS token from the Azure Portal.
+#### Types of credentials
+The `credential` parameter may be provided in a number of different forms, depending on the type of
+[authorization](https://docs.microsoft.com/azure/storage/common/storage-auth) you wish to use:
+1. To use an [Azure Active Directory (AAD) token credential](https://docs.microsoft.com/azure/storage/common/storage-auth-aad),
+   provide an instance of the desired credential type obtained from the
+   [azure-identity](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/identity/azure-identity#credentials) library.
+   For example, [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/identity/azure-identity#defaultazurecredential)
+   can be used to authenticate the client.
 
-1. Go to your Storage Account
-2. Select `Shared access signature` from the menu on the left
-3. Click on `Generate SAS and connection string` (after setup)
+   This requires some initial setup:
+   * [Install azure-identity](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/identity/azure-identity#install-the-package)
+   * [Register a new AAD application](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) and give permissions to access Azure Storage
+   * [Grant access](https://docs.microsoft.com/azure/storage/common/storage-auth-aad-rbac-portal) to Azure Blob data with RBAC in the Azure Portal
+   * Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables:
+     AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET
 
-##### **Shared Key Credential**
+   Use the returned token credential to authenticate the client:
+    ```python
+        from azure.identity import DefaultAzureCredential
+        from azure.storage.blob import BlobServiceClient
+        token_credential = DefaultAzureCredential()
 
-a. Use Account name and Account key. Account name is your Storage Account name.
+        blob_service_client = BlobServiceClient(
+            account_url="https://<my_account_name>.blob.core.windows.net",
+            credential=token_credential
+        )
+    ```
 
-1. Go to your Storage Account
-2. Select `Access keys` from the menu on the left
-3. Under `key1`/`key2` copy the contents of the `Key` field
+2. To use a [shared access signature (SAS) token](https://docs.microsoft.com/azure/storage/common/storage-sas-overview),
+   provide the token as a string. If your account URL includes the SAS token, omit the credential parameter.
+   You can generate a SAS token from the Azure Portal under "Shared access signature" or use one of the `generate_sas()`
+   functions to create a sas token for the storage account, container, or blob:
 
-or
+    ```python
+    from datetime import datetime, timedelta
+    from azure.storage.blob import BlobServiceClient, generate_account_sas, ResourceTypes, AccountSasPermissions
 
-b. Use the connection string.
+    sas_token = generate_account_sas(
+        account_name="<storage-account-name>",
+        account_key="<account-access-key>",
+        resource_types=ResourceTypes(service=True),
+        permission=AccountSasPermissions(read=True),
+        expiry=datetime.utcnow() + timedelta(hours=1)
+    )
 
-1. Go to your Storage Account
-2. Select `Access keys` from the menu on the left
-3. Under `key1`/`key2` copy the contents of the `Connection string` field
+    blob_service_client = BlobServiceClient(account_url="https://<my_account_name>.blob.core.windows.net", credential=sas_token)
+    ```
+
+3. To use a storage account [shared key](https://docs.microsoft.com/rest/api/storageservices/authenticate-with-shared-key/)
+   (aka account key or access key), provide the key as a string. This can be found in the Azure Portal under the "Access Keys"
+   section or by running the following Azure CLI command:
+
+    ```az storage account keys list -g MyResourceGroup -n MyStorageAccount```
+
+    Use the key as the credential parameter to authenticate the client:
+    ```python
+    from azure.storage.blob import BlobServiceClient
+    service = BlobServiceClient(account_url="https://<my_account_name>.blob.core.windows.net", credential="<account_access_key>")
+    ```
+    
+    If you are using **customized url** (which means the url is not in this format `<my_account_name>.blob.core.windows.net`),
+    please instantiate the client using the credential below:
+    ```python
+    from azure.storage.blob import BlobServiceClient
+    service = BlobServiceClient(account_url="https://<my_account_name>.blob.core.windows.net", 
+       credential={"account_name": "<your_account_name>", "account_key":"<account_access_key>"})
+    ```
+
+4. To use [anonymous public read access](https://docs.microsoft.com/azure/storage/blobs/storage-manage-access-to-resources),
+   simply omit the credential parameter.
+
+#### Creating the client from a connection string
+Depending on your use case and authorization method, you may prefer to initialize a client instance with a storage
+connection string instead of providing the account URL and credential separately. To do this, pass the storage
+connection string to the client's `from_connection_string` class method:
+
+```python
+from azure.storage.blob import BlobServiceClient
+
+connection_string = "DefaultEndpointsProtocol=https;AccountName=xxxx;AccountKey=xxxx;EndpointSuffix=core.windows.net"
+service = BlobServiceClient.from_connection_string(conn_str=connection_string)
+```
+
+The connection string to your storage account can be found in the Azure Portal under the "Access Keys" section or by running the following CLI command:
+
+```bash
+az storage account show-connection-string -g MyResourceGroup -n MyStorageAccount
+```
 
 ## Key concepts
+The following components make up the Azure Blob Service:
+* The storage account itself
+* A container within the storage account
+* A blob within a container
 
-Blob Storage is designed for:
+The Azure Storage Blobs client library for Python allows you to interact with each of these components through the
+use of a dedicated client object.
 
-- Serving images or documents directly to a browser
-- Storing files for distributed access
-- Streaming video and audio
-- Writing to log files
-- Storing data for backup and restore, disaster recovery, and archiving
-- Storing data for analysis by an on-premises or Azure-hosted service
+### Clients
+Four different clients are provided to interact with the various components of the Blob Service:
+1. [BlobServiceClient](https://aka.ms/azsdk-python-storage-blob-blobserviceclient) -
+    this client represents interaction with the Azure storage account itself, and allows you to acquire preconfigured
+    client instances to access the containers and blobs within. It provides operations to retrieve and configure the
+    account properties as well as list, create, and delete containers within the account. To perform operations on a
+    specific container or blob, retrieve a client using the `get_container_client` or `get_blob_client` methods.
+2. [ContainerClient](https://aka.ms/azsdk-python-storage-blob-containerclient) -
+    this client represents interaction with a specific container (which need not exist yet), and allows you to acquire
+    preconfigured client instances to access the blobs within. It provides operations to create, delete, or configure a
+    container and includes operations to list, upload, and delete the blobs within it. To perform operations on a
+    specific blob within the container, retrieve a client using the `get_blob_client` method.
+3. [BlobClient](https://aka.ms/azsdk-python-storage-blob-blobclient) -
+    this client represents interaction with a specific blob (which need not exist yet). It provides operations to
+    upload, download, delete, and create snapshots of a blob, as well as specific operations per blob type.
+4. [BlobLeaseClient](https://aka.ms/azsdk-python-storage-blob-blobleaseclient) -
+    this client represents lease interactions with a `ContainerClient` or `BlobClient`. It provides operations to
+    acquire, renew, release, change, and break a lease on a specified resource.
 
-### URL format
-Blobs are addressable using the following URL format:
-The following URL addresses a blob:
-```
-https://myaccount.blob.core.windows.net/mycontainer/myblob
-```
-
-#### Resource URI Syntax
-For the storage account, the base URI for blob operations includes the name of the account only:
-
-```
-https://myaccount.blob.core.windows.net
-```
-
-For a container, the base URI includes the name of the account and the name of the container:
-
-```
-https://myaccount.blob.core.windows.net/mycontainer
-```
-
-For a blob, the base URI includes the name of the account, the name of the container and the name of the blob:
-
-```
-https://myaccount.blob.core.windows.net/mycontainer/myblob
-```
-
-Note that the above URIs may not hold for more advanced scenarios such as custom domain names.
+### Blob Types
+Once you've initialized a Client, you can choose from the different types of blobs:
+* [Block blobs](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs#about-block-blobs)
+  store text and binary data, up to approximately 4.75 TiB. Block blobs are made up of blocks of data that can be
+  managed individually
+* [Append blobs](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs#about-append-blobs)
+  are made up of blocks like block blobs, but are optimized for append operations. Append blobs are ideal for scenarios
+  such as logging data from virtual machines
+* [Page blobs](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs#about-page-blobs)
+  store random access files up to 8 TiB in size. Page blobs store virtual hard drive (VHD) files and serve as disks for
+  Azure virtual machines
 
 ## Examples
+The following sections provide several code snippets covering some of the most common Storage Blob tasks, including:
 
-The following sections provide several code snippets covering some of the most common Azure Storage Blob tasks, including:
+* [Create a container](#create-a-container "Create a container")
+* [Uploading a blob](#uploading-a-blob "Uploading a blob")
+* [Downloading a blob](#downloading-a-blob "Downloading a blob")
+* [Enumerating blobs](#enumerating-blobs "Enumerating blobs")
 
-- [Create a `BlobServiceClient`](#create-a-blobserviceclient)
-- [Create a `BlobContainerClient`](#create-a-blobcontainerclient)
-- [Create a `BlobClient`](#create-a-blobclient)
-- [Create a container](#create-a-container)
-- [Upload data to a blob](#upload-data-to-a-blob)
-- [Upload a blob from a stream](#upload-a-blob-from-a-stream)
-- [Upload a blob from local path](#upload-a-blob-from-local-path)
-- [Download data from a blob](#download-data-from-a-blob)
-- [Download a blob to a stream](#download-a-blob-to-a-stream)
-- [Download a blob to local path](#download-a-blob-to-local-path)
-- [Enumerate blobs](#enumerate-blobs)
-- [Copy a blob](#copy-a-blob)
-- [Authenticate with Azure Identity](#authenticate-with-azure-identity)
-
-### Create a `BlobServiceClient`
-
-Create a `BlobServiceClient` using the [`sasToken`](#get-credentials) generated above.
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L47-L50 -->
-```java
-BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
-    .endpoint("<your-storage-account-url>")
-    .sasToken("<your-sasToken>")
-    .buildClient();
-```
-
-or
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L54-L57 -->
-```java
-// Only one "?" is needed here. If the sastoken starts with "?", please removing one "?".
-BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
-    .endpoint("<your-storage-account-url>" + "?" + "<your-sasToken>")
-    .buildClient();
-```
-
-### Create a `BlobContainerClient`
-
-Create a `BlobContainerClient` using a `BlobServiceClient`.
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L61-L61 -->
-```java
-BlobContainerClient blobContainerClient = blobServiceClient.getBlobContainerClient("mycontainer");
-```
-
-Create a `BlobContainerClient` from the builder [`sasToken`](#get-credentials) generated above.
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L65-L69 -->
-```java
-BlobContainerClient blobContainerClient = new BlobContainerClientBuilder()
-    .endpoint("<your-storage-account-url>")
-    .sasToken("<your-sasToken>")
-    .containerName("mycontainer")
-    .buildClient();
-```
-
-or
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L73-L76 -->
-```java
-// Only one "?" is needed here. If the sastoken starts with "?", please removing one "?".
-BlobContainerClient blobContainerClient = new BlobContainerClientBuilder()
-    .endpoint("<your-storage-account-url>" + "/" + "mycontainer" + "?" + "<your-sasToken>")
-    .buildClient();
-```
-
-### Create a `BlobClient`
-
-Create a `BlobClient` using a `BlobContainerClient`.
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L80-L80 -->
-```java
-BlobClient blobClient = blobContainerClient.getBlobClient("myblob");
-```
-
-or
-
-Create a `BlobClient` from the builder [`sasToken`](#get-credentials) generated above.
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L84-89 -->
-```java
-BlobClient blobClient = new BlobClientBuilder()
-    .endpoint("<your-storage-account-url>")
-    .sasToken("<your-sasToken>")
-    .containerName("mycontainer")
-    .blobName("myblob")
-    .buildClient();
-```
-
-or
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L93-L96 -->
-```java
-// Only one "?" is needed here. If the sastoken starts with "?", please removing one "?".
-BlobClient blobClient = new BlobClientBuilder()
-    .endpoint("<your-storage-account-url>" + "/" + "mycontainer" + "/" + "myblob" + "?" + "<your-sasToken>")
-    .buildClient();
-```
+Note that a container must be created before to upload or download a blob.
 
 ### Create a container
 
-Create a container using a `BlobServiceClient`.
+Create a container from where you can upload or download blobs.
+```python
+from azure.storage.blob import ContainerClient
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L100-L100 -->
-```java
-blobServiceClient.createBlobContainer("mycontainer");
+container_client = ContainerClient.from_connection_string(conn_str="<connection_string>", container_name="my_container")
+
+container_client.create_container()
 ```
 
-or
+Use the async client to upload a blob
 
-Create a container using a `BlobContainerClient`.
+```python
+from azure.storage.blob.aio import ContainerClient
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L104-L104 -->
-```java
-blobContainerClient.create();
+container_client = ContainerClient.from_connection_string(conn_str="<connection_string>", container_name="my_container")
+
+await container_client.create_container()
 ```
 
-### Upload data to a blob
+### Uploading a blob
+Upload a blob to your container
 
-Upload `BinaryData` to a blob using a `BlobClient` generated from a `BlobContainerClient`.
+```python
+from azure.storage.blob import BlobClient
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L157-L159 -->
-```java
-BlobClient blobClient = blobContainerClient.getBlobClient("myblockblob");
-String dataSample = "samples";
-blobClient.upload(BinaryData.fromString(dataSample));
+blob = BlobClient.from_connection_string(conn_str="<connection_string>", container_name="my_container", blob_name="my_blob")
+
+with open("./SampleSource.txt", "rb") as data:
+    blob.upload_blob(data)
 ```
 
-### Upload a blob from a stream
+Use the async client to upload a blob
 
-Upload from an `InputStream` to a blob using a `BlockBlobClient` generated from a `BlobContainerClient`.
+```python
+from azure.storage.blob.aio import BlobClient
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L108-L114 -->
-```java
-BlockBlobClient blockBlobClient = blobContainerClient.getBlobClient("myblockblob").getBlockBlobClient();
-String dataSample = "samples";
-try (ByteArrayInputStream dataStream = new ByteArrayInputStream(dataSample.getBytes())) {
-    blockBlobClient.upload(dataStream, dataSample.length());
-} catch (IOException e) {
-    e.printStackTrace();
-}
+blob = BlobClient.from_connection_string(conn_str="<connection_string>", container_name="my_container", blob_name="my_blob")
+
+with open("./SampleSource.txt", "rb") as data:
+    await blob.upload_blob(data)
 ```
 
-### Upload a blob from local path
+### Downloading a blob
+Download a blob from your container
 
-Upload a file to a blob using a `BlobClient` generated from a `BlobContainerClient`.
+```python
+from azure.storage.blob import BlobClient
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L118-L119 -->
-```java
-BlobClient blobClient = blobContainerClient.getBlobClient("myblockblob");
-blobClient.uploadFromFile("local-file.jpg");
+blob = BlobClient.from_connection_string(conn_str="my_connection_string", container_name="my_container", blob_name="my_blob")
+
+with open("./BlockDestination.txt", "wb") as my_blob:
+    blob_data = blob.download_blob()
+    blob_data.readinto(my_blob)
 ```
 
-### Upload a blob if one does not already exist
+Download a blob asynchronously
 
-Upload data to a blob and fail if one already exists.
+```python
+from azure.storage.blob.aio import BlobClient
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L179-L1207 -->
-```java
-/*
-Rather than use an if block conditioned on an exists call, there are three ways to upload-if-not-exists using one
-network call instead of two. Equivalent options are present on all upload methods.
- */
-// 1. The minimal upload method defaults to no overwriting
-String dataSample = "samples";
-try (ByteArrayInputStream dataStream = new ByteArrayInputStream(dataSample.getBytes())) {
-    blobClient.upload(dataStream, dataSample.length());
-} catch (IOException e) {
-    e.printStackTrace();
-}
+blob = BlobClient.from_connection_string(conn_str="my_connection_string", container_name="my_container", blob_name="my_blob")
 
-// 2. The overwrite flag can explicitly be set to false to make intention clear
-try (ByteArrayInputStream dataStream = new ByteArrayInputStream(dataSample.getBytes())) {
-    blobClient.upload(dataStream, dataSample.length(), false /* overwrite */);
-} catch (IOException e) {
-    e.printStackTrace();
-}
-
-// 3. If the max overload is needed, access conditions must be used to prevent overwriting
-try (ByteArrayInputStream dataStream = new ByteArrayInputStream(dataSample.getBytes())) {
-    BlobParallelUploadOptions options =
-        new BlobParallelUploadOptions(dataStream, dataSample.length());
-    // Setting IfNoneMatch="*" ensures the upload will fail if there is already a blob at the destination.
-    options.setRequestConditions(new BlobRequestConditions().setIfNoneMatch("*"));
-    blobClient.uploadWithResponse(options, null, Context.NONE);
-} catch (IOException e) {
-    e.printStackTrace();
-}
+with open("./BlockDestination.txt", "wb") as my_blob:
+    stream = await blob.download_blob()
+    data = await stream.readall()
+    my_blob.write(data)
 ```
 
-### Upload a blob and overwrite if one already exists
+### Enumerating blobs
+List the blobs in your container
 
-Upload data to a blob and overwrite any existing data at the destination.
+```python
+from azure.storage.blob import ContainerClient
 
-```java
-/*
-Rather than use an if block conditioned on an exists call, there are three ways to upload-if-exists in one
-network call instead of two. Equivalent options are present on all upload methods.
- */
-String dataSample = "samples";
+container = ContainerClient.from_connection_string(conn_str="my_connection_string", container_name="my_container")
 
-// 1. The overwrite flag can explicitly be set to true. This will succeed as a create and overwrite.
-try (ByteArrayInputStream dataStream = new ByteArrayInputStream(dataSample.getBytes())) {
-    blobClient.upload(dataStream, dataSample.length(), true /* overwrite */);
-} catch (IOException e) {
-    e.printStackTrace();
-}
-
-/*
- 2. If the max overload is needed and no access conditions are passed, the upload will succeed as both a
- create and overwrite.
- */
-try (ByteArrayInputStream dataStream = new ByteArrayInputStream(dataSample.getBytes())) {
-    BlobParallelUploadOptions options =
-        new BlobParallelUploadOptions(dataStream, dataSample.length());
-    blobClient.uploadWithResponse(options, null, Context.NONE);
-} catch (IOException e) {
-    e.printStackTrace();
-}
-
-/*
- 3. If the max overload is needed, access conditions may be used to assert that the upload is an overwrite and
- not simply a create.
- */
-try (ByteArrayInputStream dataStream = new ByteArrayInputStream(dataSample.getBytes())) {
-    BlobParallelUploadOptions options =
-        new BlobParallelUploadOptions(dataStream, dataSample.length());
-    // Setting IfMatch="*" ensures the upload will succeed only if there is already a blob at the destination.
-    options.setRequestConditions(new BlobRequestConditions().setIfMatch("*"));
-    blobClient.uploadWithResponse(options, null, Context.NONE);
-} catch (IOException e) {
-    e.printStackTrace();
-}
+blob_list = container.list_blobs()
+for blob in blob_list:
+    print(blob.name + '\n')
 ```
 
-### Upload a blob via an `OutputStream`
+List the blobs asynchronously
 
-Upload a blob by opening a `BlobOutputStream` and writing to it through standard stream APIs.
+```python
+from azure.storage.blob.aio import ContainerClient
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L271-L281 -->
-```java
-/*
-Opening a blob input stream allows you to write to a blob through a normal stream interface. It will not be
-committed until the stream is closed.
-This option is convenient when the length of the data is unknown.
-This can only be done for block blobs. If the target blob already exists as another type of blob, it will fail.
- */
-try (BlobOutputStream blobOS = blobClient.getBlockBlobClient().getBlobOutputStream()) {
-    blobOS.write(new byte[0]);
-} catch (IOException e) {
-    e.printStackTrace();
-}
+container = ContainerClient.from_connection_string(conn_str="my_connection_string", container_name="my_container")
+
+blob_list = []
+async for blob in container.list_blobs():
+    blob_list.append(blob)
+print(blob_list)
 ```
 
-### Download data from a blob
+## Optional Configuration
 
-Download a blob to an `OutputStream` using a `BlobClient`.
+Optional keyword arguments that can be passed in at the client and per-operation level.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L163-L163 -->
-```java
-BinaryData content = blobClient.downloadContent();
-```
+### Retry Policy configuration
 
-### Download a blob to a stream
+Use the following keyword arguments when instantiating a client to configure the retry policy:
 
-Download a blob to an `OutputStream` using a `BlobClient`.
+* __retry_total__ (int): Total number of retries to allow. Takes precedence over other counts.
+Pass in `retry_total=0` if you do not want to retry on requests. Defaults to 10.
+* __retry_connect__ (int): How many connection-related errors to retry on. Defaults to 3.
+* __retry_read__ (int): How many times to retry on read errors. Defaults to 3.
+* __retry_status__ (int): How many times to retry on bad status codes. Defaults to 3.
+* __retry_to_secondary__ (bool): Whether the request should be retried to secondary, if able.
+This should only be enabled of RA-GRS accounts are used and potentially stale data can be handled.
+Defaults to `False`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L123-L127 -->
-```java
-try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-    blobClient.downloadStream(outputStream);
-} catch (IOException e) {
-    e.printStackTrace();
-}
-```
+### Encryption configuration
 
-### Download a blob to local path
+Use the following keyword arguments when instantiating a client to configure encryption:
 
-Download blob to a local file using a `BlobClient`.
+* __require_encryption__ (bool): If set to True, will enforce that objects are encrypted and decrypt them.
+* __key_encryption_key__ (object): The user-provided key-encryption-key. The instance must implement the following methods:
+    - `wrap_key(key)`--wraps the specified key using an algorithm of the user's choice.
+    - `get_key_wrap_algorithm()`--returns the algorithm used to wrap the specified symmetric key.
+    - `get_kid()`--returns a string key id for this key-encryption-key.
+* __key_resolver_function__ (callable): The user-provided key resolver. Uses the kid string to return a key-encryption-key
+implementing the interface defined above.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L131-L131 -->
-```java
-blobClient.downloadToFile("downloaded-file.jpg");
-```
+### Other client / per-operation configuration
 
-### Read a blob via an `InputStream`
+Other optional configuration keyword arguments that can be specified on the client or per-operation.
 
-Download a blob by opening a `BlobInputStream` and reading from it through standard stream APIs.
+**Client keyword arguments:**
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L259-L267 -->
-```java
-/*
-Opening a blob input stream allows you to read from a blob through a normal stream interface. It is also
-markable.
-*/
-try (BlobInputStream blobIS = blobClient.openInputStream()) {
-    blobIS.read();
-} catch (IOException e) {
-    e.printStackTrace();
-}
-```
+* __connection_timeout__ (int): Optionally sets the connect and read timeout value, in seconds.
+* __transport__ (Any): User-provided transport to send the HTTP request.
 
-### Enumerate blobs
+**Per-operation keyword arguments:**
 
-Enumerating all blobs using a `BlobContainerClient`.
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L135-L137 -->
-```java
-for (BlobItem blobItem : blobContainerClient.listBlobs()) {
-    System.out.println("This is the blob name: " + blobItem.getName());
-}
-```
-
-or 
-
-Enumerate all blobs and create new clients pointing to the items.
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L167-L175 -->
-```java
-for (BlobItem blobItem : blobContainerClient.listBlobs()) {
-    BlobClient blobClient;
-    if (blobItem.getSnapshot() != null) {
-        blobClient = blobContainerClient.getBlobClient(blobItem.getName(), blobItem.getSnapshot());
-    } else {
-        blobClient = blobContainerClient.getBlobClient(blobItem.getName());
-    }
-    System.out.println("This is the new blob uri: " + blobClient.getBlobUrl());
-}
-```
-
-### Copy a blob
-
-Copying a blob. Please refer to the javadocs on each of these methods for more information around requirements on the 
-copy source and its authentication.
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L148-L149 -->
-```java
-SyncPoller<BlobCopyInfo, Void> poller = blobClient.beginCopy("<url-to-blob>", Duration.ofSeconds(1));
-poller.waitForCompletion();
-```
-
-or
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L153-L153 -->
-```java
-blobClient.copyFromUrl("url-to-blob");
-```
-
-### Generate a SAS token
-
-Use an instance of a client to generate a new SAS token.
-
-
-```java
-/*
-Generate an account sas. Other samples in this file will demonstrate how to create a client with the sas token.
- */
-// Configure the sas parameters. This is the minimal set.
-OffsetDateTime expiryTime = OffsetDateTime.now().plusDays(1);
-AccountSasPermission accountSasPermission = new AccountSasPermission().setReadPermission(true);
-AccountSasService services = new AccountSasService().setBlobAccess(true);
-AccountSasResourceType resourceTypes = new AccountSasResourceType().setObject(true);
-
-// Generate the account sas.
-AccountSasSignatureValues accountSasValues =
-    new AccountSasSignatureValues(expiryTime, accountSasPermission, services, resourceTypes);
-String sasToken = blobServiceClient.generateAccountSas(accountSasValues);
-
-// Generate a sas using a container client
-BlobContainerSasPermission containerSasPermission = new BlobContainerSasPermission().setCreatePermission(true);
-BlobServiceSasSignatureValues serviceSasValues =
-    new BlobServiceSasSignatureValues(expiryTime, containerSasPermission);
-blobContainerClient.generateSas(serviceSasValues);
-
-// Generate a sas using a blob client
-BlobSasPermission blobSasPermission =  new BlobSasPermission().setReadPermission(true);
-serviceSasValues = new BlobServiceSasSignatureValues(expiryTime, blobSasPermission);
-blobClient.generateSas(serviceSasValues);
-``` 
-
-### Authenticate with Azure Identity
-
-The [Azure Identity library][identity] provides Azure Active Directory support for authenticating with Azure Storage.
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L141-L144 -->
-```java
-BlobServiceClient blobStorageClient = new BlobServiceClientBuilder()
-    .endpoint("<your-storage-account-url>")
-    .credential(new DefaultAzureCredentialBuilder().build())
-    .buildClient();
-```
-
-### Set a proxy when building a client
-
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L252-L255 -->
-```java
-ProxyOptions options = new ProxyOptions(ProxyOptions.Type.HTTP, new InetSocketAddress("localhost", 888));
-BlobServiceClient client = new BlobServiceClientBuilder()
-    .httpClient(new NettyAsyncHttpClientBuilder().proxy(options).build())
-    .buildClient();
-```
+* __raw_response_hook__ (callable): The given callback uses the response returned from the service.
+* __raw_request_hook__ (callable): The given callback uses the request before being sent to service.
+* __client_request_id__ (str): Optional user specified identification of the request.
+* __user_agent__ (str): Appends the custom value to the user-agent header to be sent with the request.
+* __logging_enable__ (bool): Enables logging at the DEBUG level. Defaults to False. Can also be passed in at
+the client level to enable it for all requests.
+* __logging_body__ (bool): Enables logging the request and response body. Defaults to False. Can also be passed in at
+the client level to enable it for all requests.
+* __headers__ (dict): Pass in custom headers as key, value pairs. E.g. `headers={'CustomValue': value}`
 
 ## Troubleshooting
+### General
+Storage Blob clients raise exceptions defined in [Azure Core](https://github.com/Azure/azure-sdk-for-python/blob/azure-storage-blob_12.10.0b2/sdk/core/azure-core/README.md).
 
-When interacting with blobs using this Java client library, errors returned by the service correspond to the same HTTP
-status codes returned for [REST API][error_codes] requests. For example, if you try to retrieve a container or blob that
-doesn't exist in your Storage Account, a `404` error is returned, indicating `Not Found`.
+This list can be used for reference to catch thrown exceptions. To get the specific error code of the exception, use the `error_code` attribute, i.e, `exception.error_code`.
 
-### Default HTTP Client
-All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure
-the client library to use the Netty HTTP client. Configuring or changing the HTTP client is detailed in the
-[HTTP clients wiki](https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients).
+### Logging
+This library uses the standard
+[logging](https://docs.python.org/3/library/logging.html) library for logging.
+Basic information about HTTP sessions (URLs, headers, etc.) is logged at INFO
+level.
 
-### Default SSL library
-All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL
-operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides
-better performance compared to the default SSL implementation within the JDK. For more information, including how to
-reduce the dependency size, refer to the [performance tuning][performance_tuning] section of the wiki.
+Detailed DEBUG level logging, including request/response bodies and unredacted
+headers, can be enabled on a client with the `logging_enable` argument:
+```python
+import sys
+import logging
+from azure.storage.blob import BlobServiceClient
+
+# Create a logger for the 'azure.storage.blob' SDK
+logger = logging.getLogger('azure.storage.blob')
+logger.setLevel(logging.DEBUG)
+
+# Configure a console output
+handler = logging.StreamHandler(stream=sys.stdout)
+logger.addHandler(handler)
+
+# This client will log detailed information about its HTTP sessions, at DEBUG level
+service_client = BlobServiceClient.from_connection_string("your_connection_string", logging_enable=True)
+```
+
+Similarly, `logging_enable` can enable detailed logging for a single operation,
+even when it isn't enabled for the client:
+```py
+service_client.get_service_stats(logging_enable=True)
+```
 
 ## Next steps
 
-Several Storage blob Java SDK samples are available to you in the SDK's GitHub repository. These samples provide example code for additional scenarios commonly encountered while working with Key Vault:
+### More sample code
 
-## Next steps Samples
-Samples are explained in detail [here][samples_readme].
+Get started with our [Blob samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples).
+
+Several Storage Blobs Python SDK samples are available to you in the SDK's GitHub repository. These samples provide example code for additional scenarios commonly encountered while working with Storage Blobs:
+
+* [blob_samples_container_access_policy.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_container_access_policy.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_container_access_policy_async.py)) - Examples to set Access policies:
+    * Set up Access Policy for container
+
+* [blob_samples_hello_world.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_hello_world.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_hello_world_async.py)) - Examples for common Storage Blob tasks:
+    * Set up a container
+    * Create a block, page, or append blob
+    * Upload blobs
+    * Download blobs
+    * Delete blobs
+
+* [blob_samples_authentication.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_authentication.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_authentication_async.py)) - Examples for authenticating and creating the client:
+    * From a connection string
+    * From a shared access key
+    * From a shared access signature token
+    * From active directory
+
+* [blob_samples_service.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_service.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_service_async.py)) - Examples for interacting with the blob service:
+    * Get account information
+    * Get and set service properties
+    * Get service statistics
+    * Create, list, and delete containers
+    * Get the Blob or Container client
+
+* [blob_samples_containers.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_containers_async.py)) - Examples for interacting with containers:
+    * Create a container and delete containers
+    * Set metadata on containers
+    * Get container properties
+    * Acquire a lease on container
+    * Set an access policy on a container
+    * Upload, list, delete blobs in container
+    * Get the blob client to interact with a specific blob
+
+* [blob_samples_common.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_common.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_common_async.py)) - Examples common to all types of blobs:
+    * Create a snapshot
+    * Delete a blob snapshot
+    * Soft delete a blob
+    * Undelete a blob
+    * Acquire a lease on a blob
+    * Copy a blob from a URL
+
+* [blob_samples_directory_interface.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-blob_12.10.0b2/sdk/storage/azure-storage-blob/samples/blob_samples_directory_interface.py) - Examples for interfacing with Blob storage as if it were a directory on a filesystem:
+    * Copy (upload or download) a single file or directory
+    * List files or directories at a single level or recursively
+    * Delete a single file or recursively delete a directory
+
+### Additional documentation
+For more extensive documentation on Azure Blob storage, see the [Azure Blob storage documentation](https://docs.microsoft.com/azure/storage/blobs/) on docs.microsoft.com.
 
 ## Contributing
-
-This project welcomes contributions and suggestions. Most contributions require you to agree to a [Contributor License Agreement (CLA)][cla] declaring that you have the right to, and actually do, grant us the rights to use your contribution.
+This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
 When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 
-This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
-
-<!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0-beta.1/sdk/storage/azure-storage-blob/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0-beta.1/sdk/storage/azure-storage-blob/src/samples/README.md
-[docs]: https://azure.github.io/azure-sdk-for-java/
-[rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
-[product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
-[sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
-[azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
-[storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0-beta.1/sdk/identity/azure-identity/README.md
-[error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0-beta.1/sdk/storage/azure-storage-blob/src/samples
-[cla]: https://cla.microsoft.com
-[coc]: https://opensource.microsoft.com/codeofconduct/
-[coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
-[coc_contact]: mailto:opencode@microsoft.com
-[performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-blob%2FREADME.png)
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 

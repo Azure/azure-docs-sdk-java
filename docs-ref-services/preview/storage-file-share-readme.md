@@ -1,635 +1,387 @@
 ---
-title: Azure File Share client library for Java
-keywords: Azure, java, SDK, API, azure-storage-file-share, storage
+title: Azure Storage File Share client library for Python
+keywords: Azure, python, SDK, API, azure-storage-file-share, storage
 author: ramya-rao-a
 ms.author: ramyar
-ms.date: 11/05/2021
+ms.date: 12/14/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
-ms.devlang: java
+ms.devlang: python
 ms.service: storage
 ---
+# Azure Storage File Share client library for Python - Version 12.7.0b1 
 
-# Azure File Share client library for Java - Version 12.12.0-beta.1 
+Azure File Share storage offers fully managed file shares in the cloud that are accessible via the industry standard [Server Message Block (SMB) protocol](https://docs.microsoft.com/windows/desktop/FileIO/microsoft-smb-protocol-and-cifs-protocol-overview). Azure file shares can be mounted concurrently by cloud or on-premises deployments of Windows, Linux, and macOS. Additionally, Azure file shares can be cached on Windows Servers with Azure File Sync for fast access near where the data is being used.
 
+Azure file shares can be used to:
 
-The Server Message Block (SMB) protocol is the preferred file share protocol used on-premises today.
-The Microsoft Azure File Share service enables customers to leverage the availability and scalability of Azure's Cloud Infrastructure as a Service (IaaS) SMB without having to rewrite SMB client applications.
+* Replace or supplement on-premises file servers
+* "Lift and shift" applications
+* Simplify cloud development with shared application settings, diagnostic share, and Dev/Test/Debug tools
 
-Files stored in Azure File Share service shares are accessible via the SMB protocol, and also via REST APIs.
-The File Share service offers the following four resources: the storage account, shares, directories, and files.
-Shares provide a way to organize sets of files and also can be mounted as an SMB file share that is hosted in the cloud.
-
-[Source code][source_code] | [API reference documentation][reference_docs] | [REST API documentation][rest_api_documentation] | [Product documentation][storage_docs] |
-[Samples][samples]
+[Source code](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/azure/storage/fileshare) | [Package (PyPI)](https://pypi.org/project/azure-storage-file-share/) | [API reference documentation](https://aka.ms/azsdk-python-storage-fileshare-ref) | [Product documentation](https://docs.microsoft.com/azure/storage/) | [Samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples)
 
 ## Getting started
 
 ### Prerequisites
+* Python 2.7, or 3.5 or later is required to use this package.
+* You must have an [Azure subscription](https://azure.microsoft.com/free/) and an
+[Azure storage account](https://docs.microsoft.com/azure/storage/common/storage-account-overview) to use this package.
 
-- [Java Development Kit (JDK)][jdk] with version 8 or above
-- [Azure Subscription][azure_subscription]
-- [Create Storage Account][storage_account]
-
-### Include the package
-
-#### Include the BOM file
-
-Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.12.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
-
-```xml
-<dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>com.azure</groupId>
-            <artifactId>azure-sdk-bom</artifactId>
-            <version>{bom_version_to_target}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
-```
-and then include the direct dependency in the dependencies section without the version tag.
-
-```xml
-<dependencies>
-  <dependency>
-    <groupId>com.azure</groupId>
-    <artifactId>azure-storage-file-share</artifactId>
-  </dependency>
-</dependencies>
-```
-
-#### Include direct dependency
-If you want to take dependency on a particular version of the library that is not present in the BOM,
-add the direct dependency to your project as follows.
-
-
-[//]: # ({x-version-update-start;com.azure:azure-storage-file-share;current})
-```xml
-<dependency>
-  <groupId>com.azure</groupId>
-  <artifactId>azure-storage-file-share</artifactId>
-  <version>12.11.1</version>
-</dependency>
-```
-[//]: # ({x-version-update-end})
-
-### Create a Storage Account
-To create a Storage Account you can use the Azure Portal or [Azure CLI][azure_cli].
+### Install the package
+Install the Azure Storage File Share client library for Python with [pip](https://pypi.org/project/pip/):
 
 ```bash
-az storage account create \
-    --resource-group <resource-group-name> \
-    --name <storage-account-name> \
-    --location <location>
+pip install azure-storage-file-share
 ```
 
-### Authenticate the client
+### Create a storage account
+If you wish to create a new storage account, you can use the
+[Azure Portal](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal),
+[Azure PowerShell](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-powershell),
+or [Azure CLI](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli):
 
-In order to interact with the Storage service (File Share Service, Share, Directory, MessageId, File) you'll need to create an instance of the Service Client class.
-To make this possible you'll need the Account SAS (shared access signature) string of Storage account. Learn more at [SAS Token][sas_token]
+```bash
+# Create a new resource group to hold the storage account -
+# if using an existing resource group, skip this step
+az group create --name my-resource-group --location westus2
 
-#### Get Credentials
+# Create the storage account
+az storage account create -n my-storage-account-name -g my-resource-group
+```
 
-- **SAS Token**
-    * Use the [Azure CLI][azure_cli] snippet below to get the SAS token from the Storage account.
+### Create the client
+The Azure Storage File Share client library for Python allows you to interact with four types of resources: the storage
+account itself, file shares, directories, and files. Interaction with these resources starts with an instance of a
+[client](#clients). To create a client object, you will need the storage account's file service URL and a
+credential that allows you to access the storage account:
 
-        ```bash
-        az storage file generate-sas
-            --name {account name}
-            --expiry {date/time to expire SAS token}
-            --permission {permission to grant}
-            --connection-string {connection string of the storage account}
-        ```
+```python
+from azure.storage.fileshare import ShareServiceClient
 
-        ```bash
-        CONNECTION_STRING=<connection-string>
+service = ShareServiceClient(account_url="https://<my-storage-account-name>.file.core.windows.net/", credential=credential)
+```
 
-        az storage file generate-sas
-            --name javasdksas
-            --expiry 2019-06-05
-            --permission rpau
-            --connection-string $CONNECTION_STRING
-        ```
+#### Looking up the account URL
+You can find the storage account's file service URL using the
+[Azure Portal](https://docs.microsoft.com/azure/storage/common/storage-account-overview#storage-account-endpoints),
+[Azure PowerShell](https://docs.microsoft.com/powershell/module/az.storage/get-azstorageaccount),
+or [Azure CLI](https://docs.microsoft.com/cli/azure/storage/account?view=azure-cli-latest#az-storage-account-show):
 
-    * Alternatively, get the Account SAS Token from the Azure Portal.
-        1. Go to your storage account.
-        1. Click on "Shared access signature".
-        1. Click on "Generate SAS and connection string".
+```bash
+# Get the file service URL for the storage account
+az storage account show -n my-storage-account-name -g my-resource-group --query "primaryEndpoints.file"
+```
 
-- **Shared Key Credential**
-    * There are two ways to create a shared key credential, the first is using the storage account name and account key. The second is using the storage connection string.
-        1. Use account name and account key.
-            1. The account name is your storage account name.
-            1. Go to your storage account.
-            1. Select "Access keys" tab.
-            1. Copy the "Key" value for either Key 1 or Key 2.
-        1. Use the connection string
-            1. Go to your storage account.
-            1. Select "Access keys" tab.
-            1. Copy the "Connection string" value for either Key 1 or Key 2.
+#### Types of credentials
+The `credential` parameter may be provided in a number of different forms, depending on the type of
+[authorization](https://docs.microsoft.com/azure/storage/common/storage-auth) you wish to use:
+1. To use a [shared access signature (SAS) token](https://docs.microsoft.com/azure/storage/common/storage-sas-overview),
+   provide the token as a string. If your account URL includes the SAS token, omit the credential parameter.
+   You can generate a SAS token from the Azure Portal under "Shared access signature" or use one of the `generate_sas()`
+   functions to create a sas token for the storage account, share, or file:
+
+    ```python
+    from datetime import datetime, timedelta
+    from azure.storage.fileshare import ShareServiceClient, generate_account_sas, ResourceTypes, AccountSasPermissions
+
+    sas_token = generate_account_sas(
+        account_name="<storage-account-name>",
+        account_key="<account-access-key>",
+        resource_types=ResourceTypes(service=True),
+        permission=AccountSasPermissions(read=True),
+        expiry=datetime.utcnow() + timedelta(hours=1)
+    )
+
+    share_service_client = ShareServiceClient(account_url="https://<my_account_name>.file.core.windows.net", credential=sas_token)
+    ```
+
+2. To use a storage account [shared key](https://docs.microsoft.com/rest/api/storageservices/authenticate-with-shared-key/)
+   (aka account key or access key), provide the key as a string. This can be found in the Azure Portal under the "Access Keys"
+   section or by running the following Azure CLI command:
+
+    ```az storage account keys list -g MyResourceGroup -n MyStorageAccount```
+
+    Use the key as the credential parameter to authenticate the client:
+    ```python
+    from azure.storage.fileshare import ShareServiceClient
+    service = ShareServiceClient(account_url="https://<my_account_name>.file.core.windows.net", credential="<account_access_key>")
+    ```
+
+#### Creating the client from a connection string
+Depending on your use case and authorization method, you may prefer to initialize a client instance with a storage
+connection string instead of providing the account URL and credential separately. To do this, pass the storage
+connection string to the client's `from_connection_string` class method:
+
+```python
+from azure.storage.fileshare import ShareServiceClient
+
+connection_string = "DefaultEndpointsProtocol=https;AccountName=xxxx;AccountKey=xxxx;EndpointSuffix=core.windows.net"
+service = ShareServiceClient.from_connection_string(conn_str=connection_string)
+```
+
+The connection string to your storage account can be found in the Azure Portal under the "Access Keys" section or by running the following CLI command:
+
+```bash
+az storage account show-connection-string -g MyResourceGroup -n MyStorageAccount
+```
 
 ## Key concepts
+The following components make up the Azure File Share Service:
+* The storage account itself
+* A file share within the storage account
+* An optional hierarchy of directories within the file share
+* A file within the file share, which may be up to 1 TiB in size
 
-### URL format
-File Shares are addressable using the following URL format:
+The Azure Storage File Share client library for Python allows you to interact with each of these components through the
+use of a dedicated client object.
 
-```
-https://<storage account>.file.core.windows.net/<share>
-```
+### Clients
+Four different clients are provided to interact with the various components of the File Share Service:
+1. [ShareServiceClient](https://aka.ms/azsdk-python-storage-fileshare-shareserviceclient) -
+    this client represents interaction with the Azure storage account itself, and allows you to acquire preconfigured
+    client instances to access the file shares within. It provides operations to retrieve and configure the service
+    properties as well as list, create, and delete shares within the account. To perform operations on a specific share,
+    retrieve a client using the `get_share_client` method.
+2. [ShareClient](https://aka.ms/azsdk-python-storage-fileshare-shareclient) -
+    this client represents interaction with a specific file share (which need not exist yet), and allows you to acquire
+    preconfigured client instances to access the directories and files within. It provides operations to create, delete,
+    configure, or create snapshots of a share and includes operations to create and enumerate the contents of
+    directories within it. To perform operations on a specific directory or file, retrieve a client using the
+    `get_directory_client` or `get_file_client` methods.
+3. [ShareDirectoryClient](https://aka.ms/azsdk-python-storage-fileshare-sharedirectoryclient) -
+    this client represents interaction with a specific directory (which need not exist yet). It provides operations to
+    create, delete, or enumerate the contents of an immediate or nested subdirectory, and includes operations to create
+    and delete files within it. For operations relating to a specific subdirectory or file, a client for that entity can
+    also be retrieved using the `get_subdirectory_client` and `get_file_client` functions.
+4. [ShareFileClient](https://aka.ms/azsdk-python-storage-fileshare-sharefileclient) -
+    this client represents interaction with a specific file (which need not exist yet). It provides operations to
+    upload, download, create, delete, and copy a file.
 
-The following URL addresses a queue in the diagram:
-
-```
-https://myaccount.file.core.windows.net/images-to-download
-```
-
-#### Resource URI Syntax
-For the storage account, the base URI for queue operations includes the name of the account only:
-
-```
-https://myaccount.file.core.windows.net
-```
-
-For file, the base URI includes the name of the account and the name of the directory/file:
-
-```
-https://myaccount.file.core.windows.net/myshare/mydirectorypath/myfile
-```
-
-### Handling Exceptions
-Uses the `shareServiceClient` generated from [shareSeviceClient](#share-service) section below.
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L231-L235 -->
-```java
-try {
-    shareServiceClient.createShare("myShare");
-} catch (ShareStorageException e) {
-    logger.error("Failed to create a share with error code: " + e.getErrorCode());
-}
-```
-
-### Resource Names
-The URI to reference a share, directory or file must be unique. Within a given storage account, every share must have a unique name. Every file within a given share or directory must also have a unique name within that share or directory.
-
-If you attempt to create a share, directory, or file with a name that violates naming rules, the request will fail with status code 400 (Bad Request).
-
-### Share Names
-The rules for File Share service names are more restrictive than what is prescribed by the SMB protocol for SMB share names, so that the Blob and File services can share similar naming conventions for containers and shares. The naming restrictions for shares are as follows:
-
-1. A share name must be a valid DNS name.
-1. Share names must start with a letter or number, and can contain only letters, numbers, and the dash (-) character.
-1. Every dash (-) character must be immediately preceded and followed by a letter or number; consecutive dashes are not permitted in share names.
-1. All letters in a share name must be lowercase.
-1. Share names must be from 3 through 63 characters long.
-
-### Directory and File Names
-The Azure File Share service naming rules for directory and file names are as follows:
-
-1. Share Directory and file names are case-preserving and case-insensitive.
-1. Share Directory and file component names must be no more than 255 characters in length.
-1. Share Directory names cannot end with the forward slash character (/). If provided, it will be automatically removed.
-1. Share File names must not end with the forward slash character (/).
-1. Reserved URL characters must be properly escaped.
-1. The following characters are not allowed: `" \ / : | < > * ?`
-1. Illegal URL path characters not allowed. Code points like \uE000, while valid in NTFS filenames, are not valid Unicode characters. In addition, some ASCII or Unicode characters, like control characters (0x00 to 0x1F, \u0081, etc.), are also not allowed. For rules governing Unicode strings in HTTP/1.1 see [RFC 2616, Section 2.2: Basic Rules][RFC_URL_1] and [RFC 3987][RFL_URL_2].
-1. The following file names are not allowed: LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, LPT9, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8, COM9, PRN, AUX, NUL, CON, CLOCK$, dot character (.), and two dot characters (..).
-
-### Metadata Names
-Metadata for a share or file resource is stored as name-value pairs associated with the resource. Directories do not have metadata. Metadata names must adhere to the naming rules for [C# identifiers][csharp_identifiers].
-
-Note that metadata names preserve the case with which they were created, but are case-insensitive when set or read. If two or more metadata headers with the same name are submitted for a resource, the Azure File service returns status code 400 (Bad Request).
-
-### Share Services
-The File Share Service REST API provides operations on accounts and manage file service properties. It allows the operations of listing and deleting shares, getting and setting file service properties.
-Once you have the SASToken, you can construct the `shareServiceClient` with `${accountName}`, `${sasToken}`
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L54-L56 -->
-```java
-String shareServiceURL = String.format("https://%s.file.core.windows.net", ACCOUNT_NAME);
-ShareServiceClient shareServiceClient = new ShareServiceClientBuilder().endpoint(shareServiceURL)
-    .sasToken(SAS_TOKEN).buildClient();
-```
-
-### Share
-The share resource includes metadata and properties for that share. It allows the opertions of creating, creating snapshot, deleting shares, getting share properties, setting metadata, getting and setting ACL (Access policy). Getting and setting ACL (Access policy) can only be used by ShareClient with ConnectionString. 
-
-#### Share With SASToken
-Once you have the SASToken, you can construct the share client with `${accountName}`, `${shareName}`, `${sasToken}`
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L61-L63 -->
-```java
-String shareURL = String.format("https://%s.file.core.windows.net", ACCOUNT_NAME);
-ShareClient shareClient = new ShareClientBuilder().endpoint(shareURL)
-    .sasToken(SAS_TOKEN).shareName(shareName).buildClient();
-```
-
-#### Share With ConnectionString
-Once you have the ConnectionString, you can construct the share client with `${accountName}`, `${shareName}`, `${connectionString}`
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L68-L70 -->
-```java
-String shareURL = String.format("https://%s.file.core.windows.net", ACCOUNT_NAME);
-ShareClient shareClient = new ShareClientBuilder().endpoint(shareURL)
-    .connectionString(CONNECTION_STRING).shareName(shareName).buildClient();
-```
-
-### Directory
- The directory resource includes the properties for that directory. It allows the operations of creating, listing, deleting directories or subdirectories or files, getting properties, setting metadata, listing and force closing the handles.
- Once you have the SASToken, you can construct the file service client with `${accountName}`, `${shareName}`, `${directoryPath}`, `${sasToken}`
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L76-L78 -->
-```java
-String directoryURL = String.format("https://%s.file.core.windows.net", ACCOUNT_NAME);
-ShareDirectoryClient directoryClient = new ShareFileClientBuilder().endpoint(directoryURL)
-    .sasToken(SAS_TOKEN).shareName(shareName).resourcePath(directoryPath).buildDirectoryClient();
-```
-
-### File
- The file resource includes the properties for that file. It allows the operations of creating, uploading, copying, downloading, deleting files or range of the files, getting properties, setting metadata, listing and force closing the handles.
- Once you have the SASToken, you can construct the file service client with `${accountName}`, `${shareName}`, `${directoryPath}`, `${fileName}`, `${sasToken}`
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L85-L87 -->
-```java
-String fileURL = String.format("https://%s.file.core.windows.net", ACCOUNT_NAME);
-ShareFileClient fileClient = new ShareFileClientBuilder().connectionString(CONNECTION_STRING)
-    .endpoint(fileURL).shareName(shareName).resourcePath(directoryPath + "/" + fileName).buildFileClient();
-```
+For details on path naming restrictions, see [Naming and Referencing Shares, Directories, Files, and Metadata](https://docs.microsoft.com/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata).
 
 ## Examples
+The following sections provide several code snippets covering some of the most common Storage File Share tasks, including:
 
-The following sections provide several code snippets covering some of the most common Configuration Service tasks, including:
-- [Create a Share](#create-a-share)
-- [Create a snapshot on Share](#create-a-snapshot-on-share)
-- [Create a Directory](#create-a-directory)
-- [Create a Subdirectory](#create-a-subdirectory)
-- [Create a File](#create-a-file)
-- [List all Shares](#list-all-shares)
-- [List all Subdirectories and Files](#list-all-subdirectories-and-files)
-- [List all ranges on file](#list-all-ranges-on-file)
-- [Delete a Share](#delete-a-share)
-- [Delete a Directory](#delete-a-directory)
-- [Delete a Subdirectory](#delete-a-subdirectory)
-- [Delete a File](#delete-a-file)
-- [Copy a File](#copy-a-file)
-- [Abort copy a File](#abort-copy-a-file)
-- [Upload data to Storage File](#upload-data-to-storage)
-- [Upload data bigger than 4 MB to Storage File](#upload-data-bigger-than-4-mb-to-storage)
-- [Upload file to Storage File](#upload-file-to-storage)
-- [Download data from file range](#download-data-from-file-range)
-- [Download file from Storage File](#download-file-from-storage)
-- [Get a share service properties](#get-a-share-service-properties)
-- [Set a share service properties](#set-a-share-service-properties)
-- [Set a Share metadata](#set-a-share-metadata)
-- [Get a Share access policy](#get-a-share-access-policy)
-- [Set a Share access policy](#set-a-share-access-policy)
-- [Get handles on Directory and File](#get-handles-on-directory-file)
-- [Force close handles on handle id](#force-close-handles-on-handle-id)
-- [Set quota on Share](#set-quota-on-share)
-- [Set file httpHeaders](#set-file-httpheaders)
+* [Creating a file share](#creating-a-file-share "Creating a file share")
+* [Uploading a file](#uploading-a-file "Uploading a file")
+* [Downloading a file](#downloading-a-file "Downloading a file")
+* [Listing contents of a directory](#listing-contents-of-a-directory "Listing contents of a directory")
 
-### Create a share
-Create a share in the Storage Account. Throws StorageException If the share fails to be created.
-Taking a ShareServiceClient in KeyConcept, [`${shareServiceClient}`](#share-services).
+### Creating a file share
+Create a file share to store your files
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L91-L92 -->
-```Java
-String shareName = "testshare";
-shareServiceClient.createShare(shareName);
+```python
+from azure.storage.fileshare import ShareClient
+
+share = ShareClient.from_connection_string(conn_str="<connection_string>", share_name="my_share")
+share.create_share()
 ```
 
-### Create a snapshot on Share
-Taking a ShareServiceClient in KeyConcept, [`${shareServiceClient}`](#share-services).
+Use the async client to create a file share
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L96-L98 -->
-```Java
-String shareName = "testshare";
-ShareClient shareClient = shareServiceClient.getShareClient(shareName);
-shareClient.createSnapshot();
+```python
+from azure.storage.fileshare.aio import ShareClient
+
+share = ShareClient.from_connection_string(conn_str="<connection_string>", share_name="my_share")
+await share.create_share()
 ```
 
-### Create a directory
-Taking the [`${shareClient}`](#create-a-snapshot-on-share) initialized above, [`${shareClient}`](#share-with-sastoken).
+### Uploading a file
+Upload a file to the share
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L102-L103 -->
-```Java
-String dirName = "testdir";
-shareClient.createDirectory(dirName);
+```python
+from azure.storage.fileshare import ShareFileClient
+
+file_client = ShareFileClient.from_connection_string(conn_str="<connection_string>", share_name="my_share", file_path="my_file")
+
+with open("./SampleSource.txt", "rb") as source_file:
+    file_client.upload_file(source_file)
 ```
 
-### Create a subdirectory
-Taking the directoryClient in KeyConcept, [`${directoryClient}`](#directory).
+Upload a file asynchronously
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L107-L108 -->
-```Java
-String subDirName = "testsubdir";
-directoryClient.createSubdirectory(subDirName);
+```python
+from azure.storage.fileshare.aio import ShareFileClient
+
+file_client = ShareFileClient.from_connection_string(conn_str="<connection_string>", share_name="my_share", file_path="my_file")
+
+with open("./SampleSource.txt", "rb") as source_file:
+    await file_client.upload_file(source_file)
 ```
 
-### Create a File
-Taking the directoryClient in KeyConcept, [`${directoryClient}`](#directory) .
+### Downloading a file
+Download a file from the share
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L112-L114 -->
-```Java
-String fileName = "testfile";
-long maxSize = 1024;
-directoryClient.createFile(fileName, maxSize);
+```python
+from azure.storage.fileshare import ShareFileClient
+
+file_client = ShareFileClient.from_connection_string(conn_str="<connection_string>", share_name="my_share", file_path="my_file")
+
+with open("DEST_FILE", "wb") as file_handle:
+    data = file_client.download_file()
+    data.readinto(file_handle)
 ```
 
-### List all Shares
-Taking the shareServiceClient in KeyConcept, [`${shareServiceClient}`](#share-services)
+Download a file asynchronously
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L118-L118 -->
-```Java
-shareServiceClient.listShares();
+```python
+from azure.storage.fileshare.aio import ShareFileClient
+
+file_client = ShareFileClient.from_connection_string(conn_str="<connection_string>", share_name="my_share", file_path="my_file")
+
+with open("DEST_FILE", "wb") as file_handle:
+    data = await file_client.download_file()
+    await data.readinto(file_handle)
 ```
 
-### List all subdirectories and files
-Taking the directoryClient in KeyConcept, [`${directoryClient}`](#directory)
+### Listing contents of a directory
+List all directories and files under a parent directory
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L122-L122 -->
-```Java
-directoryClient.listFilesAndDirectories();
+```python
+from azure.storage.fileshare import ShareDirectoryClient
+
+parent_dir = ShareDirectoryClient.from_connection_string(conn_str="<connection_string>", share_name="my_share", directory_path="parent_dir")
+
+my_list = list(parent_dir.list_directories_and_files())
+print(my_list)
 ```
 
-### List all ranges on file
-Taking the fileClient in KeyConcept, [`${fileClient}`](#file)
+List contents of a directory asynchronously
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L126-L126 -->
-```Java
-fileClient.listRanges();
+```python
+from azure.storage.fileshare.aio import ShareDirectoryClient
+
+parent_dir = ShareDirectoryClient.from_connection_string(conn_str="<connection_string>", share_name="my_share", directory_path="parent_dir")
+
+my_files = []
+async for item in parent_dir.list_directories_and_files():
+    my_files.append(item)
+print(my_files)
 ```
 
-### Delete a share
-Taking the shareClient in KeyConcept, [`${shareClient}`](#share-with-sastoken)
+## Optional Configuration
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L130-L130 -->
-```Java
-shareClient.delete();
-```
+Optional keyword arguments that can be passed in at the client and per-operation level.
 
-### Delete a directory
-Taking the shareClient in KeyConcept, [`${shareClient}`](#share-with-sastoken) .
+### Retry Policy configuration
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L134-L135 -->
-```Java
-String dirName = "testdir";
-shareClient.deleteDirectory(dirName);
-```
+Use the following keyword arguments when instantiating a client to configure the retry policy:
 
-### Delete a subdirectory
-Taking the directoryClient in KeyConcept, [`${directoryClient}`](#directory) .
+* __retry_total__ (int): Total number of retries to allow. Takes precedence over other counts.
+Pass in `retry_total=0` if you do not want to retry on requests. Defaults to 10.
+* __retry_connect__ (int): How many connection-related errors to retry on. Defaults to 3.
+* __retry_read__ (int): How many times to retry on read errors. Defaults to 3.
+* __retry_status__ (int): How many times to retry on bad status codes. Defaults to 3.
+* __retry_to_secondary__ (bool): Whether the request should be retried to secondary, if able.
+This should only be enabled of RA-GRS accounts are used and potentially stale data can be handled.
+Defaults to `False`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L139-L140 -->
-```Java
-String subDirName = "testsubdir";
-directoryClient.deleteSubdirectory(subDirName);
-```
+### Other client / per-operation configuration
 
-### Delete a file
-Taking the directoryClient in KeyConcept, [`${directoryClient}`](#directory) .
+Other optional configuration keyword arguments that can be specified on the client or per-operation.
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L144-L145 -->
-```Java
-String fileName = "testfile";
-directoryClient.deleteFile(fileName);
-```
+**Client keyword arguments:**
 
-### Copy a file
-Taking the fileClient in KeyConcept, [`${fileClient}`](#file) with string of source URL.
+* __connection_timeout__ (int): Optionally sets the connect and read timeout value, in seconds.
+* __transport__ (Any): User-provided transport to send the HTTP request.
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L149-L151 -->
-```Java
-String sourceURL = "https://myaccount.file.core.windows.net/myshare/myfile";
-Duration pollInterval = Duration.ofSeconds(2);
-SyncPoller<ShareFileCopyInfo, Void> poller = fileClient.beginCopy(sourceURL, null, pollInterval);
-```
+**Per-operation keyword arguments:**
 
-### Abort copy a file
-Taking the fileClient in KeyConcept, [`${fileClient}`](#file) with the copy info response returned above `${copyId}=[copyInfoResponse](#copy-a-file)`.
+* __raw_response_hook__ (callable): The given callback uses the response returned from the service.
+* __raw_request_hook__ (callable): The given callback uses the request before being sent to service.
+* __client_request_id__ (str): Optional user specified identification of the request.
+* __user_agent__ (str): Appends the custom value to the user-agent header to be sent with the request.
+* __logging_enable__ (bool): Enables logging at the DEBUG level. Defaults to False. Can also be passed in at
+the client level to enable it for all requests.
+* __logging_body__ (bool): Enables logging the request and response body. Defaults to False. Can also be passed in at
+the client level to enable it for all requests.
+* __headers__ (dict): Pass in custom headers as key, value pairs. E.g. `headers={'CustomValue': value}`
 
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L155-L155 -->
-```Java
-fileClient.abortCopy("copyId");
-```
-
-### Upload data to storage
-Taking the fileClient in KeyConcept, [`${fileClient}`](#file) with data of "default" .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L159-L161 -->
-```Java
-String uploadText = "default";
-InputStream data = new ByteArrayInputStream(uploadText.getBytes(StandardCharsets.UTF_8));
-fileClient.upload(data, uploadText.length());
-```
-
-### Upload data bigger than 4 MB to storage
-Taking the fileClient in KeyConcept, [`${fileClient}`](#file) with data of "default" .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L239-L263 -->
-```Java
-byte[] data = "Hello, data sample!".getBytes(StandardCharsets.UTF_8);
-
-long chunkSize = ShareFileAsyncClient.FILE_DEFAULT_BLOCK_SIZE;
-if (data.length > chunkSize) {
-    for (int offset = 0; offset < data.length; offset += chunkSize) {
-        try {
-            // the last chunk size is smaller than the others
-            chunkSize = Math.min(data.length - offset, chunkSize);
-
-            // select the chunk in the byte array
-            byte[] subArray = Arrays.copyOfRange(data, offset, (int) (offset + chunkSize));
-
-            // upload the chunk
-            fileClient.uploadWithResponse(new ByteArrayInputStream(subArray), chunkSize, (long) offset, null, Context.NONE);
-        } catch (RuntimeException e) {
-            logger.error("Failed to upload the file", e);
-            if (Boolean.TRUE.equals(fileClient.exists())) {
-                fileClient.delete();
-            }
-            throw e;
-        }
-    }
-} else {
-    fileClient.upload(new ByteArrayInputStream(data), data.length);
-}
-```
-
-### Upload file to storage
-Taking the fileClient in KeyConcept, [`${fileClient}`](#file) .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L165-L166 -->
-```Java
-String filePath = "${myLocalFilePath}";
-fileClient.uploadFromFile(filePath);
-```
-
-### Download data from file range
-Taking the fileClient in KeyConcept, [`${fileClient}`](#file) with the range from 1024 to 2048.
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L170-L172 -->
-```Java
-ShareFileRange fileRange = new ShareFileRange(0L, 2048L);
-OutputStream stream = new ByteArrayOutputStream();
-fileClient.downloadWithResponse(stream, fileRange, false, null, Context.NONE);
-```
-
-### Download file from storage
-Taking the fileClient in KeyConcept, [`${fileClient}`](#file) and download to the file of filePath.
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L176-L177 -->
-
-```Java
-String filePath = "${myLocalFilePath}";
-fileClient.downloadToFile(filePath);
-```
-
-### Get a share service properties
-Taking a ShareServiceClient in KeyConcept, [`${shareServiceClient}`](#share-services) .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L181-L181 -->
-```Java
-shareServiceClient.getProperties();
-```
-
-### Set a share service properties
-Taking a ShareServiceClient in KeyConcept, [`${shareServiceClient}`](#share-services) .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L185-L190 -->
-```Java
-ShareServiceProperties properties = shareServiceClient.getProperties();
-
-properties.getMinuteMetrics().setEnabled(true).setIncludeApis(true); 
-properties.getHourMetrics().setEnabled(true).setIncludeApis(true);
-
-shareServiceClient.setProperties(properties);
-```
-
-### Set a share metadata
-Taking the shareClient in KeyConcept, [`${shareClient}`](#share-with-sastoken) .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L194-L195 -->
-```Java
-Map<String, String> metadata = Collections.singletonMap("directory", "metadata");
-shareClient.setMetadata(metadata);
-```
-
-### Get a share access policy
-Taking the shareClient in KeyConcept, [`${shareClient}`](#share-with-connectionstring) .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L199-L199 -->
-```Java
-shareClient.getAccessPolicy();
-```
-
-### Set a share access policy
-Taking the shareClient in KeyConcept, [`${shareClient}`](#share-with-connectionstring) .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L203-L207 -->
-```java
-ShareAccessPolicy accessPolicy = new ShareAccessPolicy().setPermissions("r")
-    .setStartsOn(OffsetDateTime.now(ZoneOffset.UTC))
-    .setExpiresOn(OffsetDateTime.now(ZoneOffset.UTC).plusDays(10));
-ShareSignedIdentifier permission = new ShareSignedIdentifier().setId("mypolicy").setAccessPolicy(accessPolicy);
-shareClient.setAccessPolicy(Collections.singletonList(permission));
-```
-
-### Get handles on directory file
-Taking the directoryClient in KeyConcept, [`${directoryClient}`](#directory)
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L211-L211 -->
-```Java
-PagedIterable<HandleItem> handleItems = directoryClient.listHandles(null, true, Duration.ofSeconds(30), Context.NONE);
-```
-
-### Force close handles on handle id
-Taking the directoryClient in KeyConcept, [`${directoryClient}`](#directory) and the handle id returned above `${handleId}=[handleItems](#get-handles-on-directory-file)`
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L216-L217 -->
-```Java
-String handleId = handleItems.iterator().next().getHandleId();
-directoryClient.forceCloseHandleWithResponse(handleId, Duration.ofSeconds(30), Context.NONE);
-```
-
-### Set quota on share
-Taking the shareClient in KeyConcept, [`${shareClient}`](#share-with-sastoken) .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L221-L222 -->
-```Java
-int quotaOnGB = 1;
-shareClient.setPropertiesWithResponse(new ShareSetPropertiesOptions().setQuotaInGb(quotaOnGB), null, Context.NONE);
-```
-
-### Set file httpheaders
-Taking the fileClient in KeyConcept, [`${fileClient}`](#file) .
-
-<!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L226-L227 -->
-```Java
-ShareFileHttpHeaders httpHeaders = new ShareFileHttpHeaders().setContentType("text/plain");
-fileClient.setProperties(1024, httpHeaders, null, null);
-```
 
 ## Troubleshooting
+### General
+Storage File clients raise exceptions defined in [Azure Core](https://github.com/Azure/azure-sdk-for-python/blob/azure-storage-file-share_12.7.0b1/sdk/core/azure-core/README.md).
 
-## General
+This list can be used for reference to catch thrown exceptions. To get the specific error code of the exception, use the `error_code` attribute, i.e, `exception.error_code`.
 
-When you interact with file using this Java client library, errors returned by the service correspond to the same HTTP status codes returned for [REST API][storage_file_rest] requests. For example, if you try to retrieve a share that doesn't exist in your Storage Account, a `404` error is returned, indicating `Not Found`.
+### Logging
+This library uses the standard
+[logging](https://docs.python.org/3/library/logging.html) library for logging.
+Basic information about HTTP sessions (URLs, headers, etc.) is logged at INFO
+level.
 
-### Default HTTP Client
-All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure
-the client library to use the Netty HTTP client. Configuring or changing the HTTP client is detailed in the
-[HTTP clients wiki](https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients).
+Detailed DEBUG level logging, including request/response bodies and unredacted
+headers, can be enabled on a client with the `logging_enable` argument:
+```python
+import sys
+import logging
+from azure.storage.fileshare import ShareServiceClient
 
-### Default SSL library
-All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL
-operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides
-better performance compared to the default SSL implementation within the JDK. For more information, including how to
-reduce the dependency size, refer to the [performance tuning][performance_tuning] section of the wiki.
+# Create a logger for the 'azure.storage.fileshare' SDK
+logger = logging.getLogger('azure.storage.fileshare')
+logger.setLevel(logging.DEBUG)
+
+# Configure a console output
+handler = logging.StreamHandler(stream=sys.stdout)
+logger.addHandler(handler)
+
+# This client will log detailed information about its HTTP sessions, at DEBUG level
+service_client = ShareServiceClient.from_connection_string("your_connection_string", logging_enable=True)
+```
+
+Similarly, `logging_enable` can enable detailed logging for a single operation,
+even when it isn't enabled for the client:
+```py
+service_client.get_service_properties(logging_enable=True)
+```
 
 ## Next steps
 
+### More sample code
+
+Get started with our [File Share samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples).
+
+Several Storage File Share Python SDK samples are available to you in the SDK's GitHub repository. These samples provide example code for additional scenarios commonly encountered while working with Storage File Share:
+
+* [file_samples_hello_world.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_hello_world.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_hello_world_async.py)) - Examples found in this article:
+    * Client creation
+    * Create a file share
+    * Upload a file
+
+* [file_samples_authentication.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_authentication.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_authentication_async.py)) - Examples for authenticating and creating the client:
+    * From a connection string
+    * From a shared access key
+    * From a shared access signature token
+
+* [file_samples_service.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_service.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_service_async.py)) - Examples for interacting with the file service:
+    * Get and set service properties
+    * Create, list, and delete shares
+    * Get a share client
+
+* [file_samples_share.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_share.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_share_async.py)) - Examples for interacting with file shares:
+    * Create a share snapshot
+    * Set share quota and metadata
+    * List directories and files
+    * Get the directory or file client to interact with a specific entity
+
+* [file_samples_directory.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_directory.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_directory_async.py)) - Examples for interacting with directories:
+    * Create a directory and add files
+    * Create and delete subdirectories
+    * Get the subdirectory client
+
+* [file_samples_client.py](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_client.py) ([async version](https://github.com/Azure/azure-sdk-for-python/tree/azure-storage-file-share_12.7.0b1/sdk/storage/azure-storage-file-share/samples/file_samples_client_async.py)) - Examples for interacting with files:
+    * Create, upload, download, and delete files
+    * Copy a file from a URL
+
+### Additional documentation
+For more extensive documentation on Azure File Share storage, see the [Azure File Share storage documentation](https://docs.microsoft.com/azure/storage/files/) on docs.microsoft.com.
+
 ## Contributing
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.12.0-beta.1/CONTRIBUTING.md).
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-<!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.12.0-beta.1/sdk/storage/azure-storage-file-share/src/
-[reference_docs]: https://azure.github.io/azure-sdk-for-java/
-[rest_api_documentation]: https://docs.microsoft.com/rest/api/storageservices/file-service-rest-api
-[storage_docs]: https://docs.microsoft.com/azure/storage/files/storage-files-introduction
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
-[maven]: https://maven.apache.org/
-[azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[azure_cli]: https://docs.microsoft.com/cli/azure
-[sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[RFC_URL_1]: https://www.ietf.org/rfc/rfc2616.txt
-[RFL_URL_2]: https://www.ietf.org/rfc/rfc3987.txt
-[csharp_identifiers]: https://docs.microsoft.com/dotnet/csharp/language-reference/
-[storage_file_rest]: https://docs.microsoft.com/rest/api/storageservices/file-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.12.0-beta.1/sdk/storage/azure-storage-file-share/src/samples
-[performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-file-share%2FREADME.png)
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
