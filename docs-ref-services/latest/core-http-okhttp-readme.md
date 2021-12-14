@@ -1,9 +1,9 @@
 ---
 title: Azure Core OkHttp HTTP plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-http-okhttp, core
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 11/05/2021
+author: maggiepint
+ms.author: magpint
+ms.date: 12/07/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core OkHttp HTTP plugin library for Java - Version 1.7.5 
+# Azure Core OkHttp HTTP plugin library for Java - Version 1.7.6 
 
 
 Azure Core OkHttp HTTP client is a plugin for the `azure-core` HTTP client API.
@@ -26,7 +26,7 @@ Azure Core OkHttp HTTP client is a plugin for the `azure-core` HTTP client API.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-okhttp_1.7.5/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-okhttp_1.7.6/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -61,7 +61,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-http-okhttp</artifactId>
-    <version>1.7.5</version>
+    <version>1.7.6</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -79,8 +79,7 @@ The following sections provide several code snippets covering some of the most c
 
 Create an OkHttp client using a connection timeout of 60 seconds and a read timeout of 120 seconds.
 
-<!-- embedme ./src/samples/java/com/azure/core/http/okhttp/ReadmeSamples.java#L23-L23 -->
-```java
+```java readme-sample-createBasicClient
 HttpClient client = new OkHttpAsyncHttpClientBuilder().build();
 ```
 
@@ -88,8 +87,7 @@ HttpClient client = new OkHttpAsyncHttpClientBuilder().build();
 
 Create an OkHttp client that is using a proxy.
 
-<!-- embedme ./src/samples/java/com/azure/core/http/okhttp/ReadmeSamples.java#L30-L32 -->
-```java
+```java readme-sample-createProxyClient
 HttpClient client = new OkHttpAsyncHttpClientBuilder()
     .proxy(new ProxyOptions(ProxyOptions.Type.HTTP, new InetSocketAddress("<proxy-host>", 8888)))
     .build();
@@ -112,7 +110,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-okhttp_1.7.5/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-okhttp_1.7.6/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
