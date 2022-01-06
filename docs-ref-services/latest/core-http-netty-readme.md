@@ -1,17 +1,16 @@
 ---
 title: Azure Core Netty HTTP plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-http-netty, core
-author: maggiepint
-ms.author: magpint
-ms.date: 12/07/2021
+author: alzimmermsft
+ms.author: alzimmermsft
+ms.date: 01/06/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: core
 ---
-
-# Azure Core Netty HTTP plugin library for Java - Version 1.11.4 
+# Azure Core Netty HTTP plugin library for Java - Version 1.11.5 
 
 
 Azure Core Netty HTTP client is a plugin for the `azure-core` HTTP client API.
@@ -26,7 +25,7 @@ Azure Core Netty HTTP client is a plugin for the `azure-core` HTTP client API.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-netty_1.11.4/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-netty_1.11.5/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -61,7 +60,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-http-netty</artifactId>
-    <version>1.11.4</version>
+    <version>1.11.5</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -77,7 +76,7 @@ The following sections provide several code snippets covering some of the most c
 
 ### Create a Simple Client
 
-Create a Netty Http client that uses port 80 and has no proxy.
+Create a Netty HttpClient that uses port 80 and has no proxy.
 
 ```java readme-sample-createBasicClient
 HttpClient client = new NettyAsyncHttpClientBuilder().build();
@@ -85,11 +84,32 @@ HttpClient client = new NettyAsyncHttpClientBuilder().build();
 
 ### Create a Client with Proxy
 
-Create a Netty Http client that is using a proxy.
+Create a Netty HttpClient that is using a proxy.
 
 ```java readme-sample-createProxyClient
 HttpClient client = new NettyAsyncHttpClientBuilder()
     .proxy(new ProxyOptions(ProxyOptions.Type.HTTP, new InetSocketAddress("<proxy-host>", 8888)))
+    .build();
+```
+
+### Create a Client with HTTP/2 Support
+
+Create a Netty HttpClient that supports both the HTTP/1.1 and HTTP/2 protocols, with HTTP/2 being the preferred
+protocol.
+
+```java readme-sample-useHttp2WithConfiguredNettyClient 
+// Constructs an HttpClient that supports both HTTP/1.1 and HTTP/2 with HTTP/2 being the preferred protocol.
+HttpClient client = new NettyAsyncHttpClientBuilder(reactor.netty.http.client.HttpClient.create()
+    .protocol(HttpProtocol.HTTP11, HttpProtocol.H2))
+    .build();
+```
+
+It is also possible to create a Netty HttpClient that only supports HTTP/2.
+
+```java readme-sample-useHttp2OnlyWithConfiguredNettyClient
+// Constructs an HttpClient that only supports HTTP/2.
+HttpClient client = new NettyAsyncHttpClientBuilder(reactor.netty.http.client.HttpClient.create()
+    .protocol(HttpProtocol.H2))
     .build();
 ```
 
@@ -110,7 +130,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-netty_1.11.4/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-netty_1.11.5/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
