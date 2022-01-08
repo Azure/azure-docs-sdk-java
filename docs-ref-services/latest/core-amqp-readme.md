@@ -1,17 +1,16 @@
 ---
 title: Azure Core AMQP shared library for Java
 keywords: Azure, java, SDK, API, azure-core-amqp, core
-author: maggiepint
-ms.author: magpint
-ms.date: 12/07/2021
+author: conniey
+ms.author: conniey
+ms.date: 01/08/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: core
 ---
-
-# Azure Core AMQP shared library for Java - Version 2.3.5 
+# Azure Core AMQP shared library for Java - Version 2.3.6 
 
 
 Azure Core AMQP client library is a collection of classes common to the AMQP protocol. It help developers create their
@@ -27,7 +26,7 @@ own AMQP client library that abstracts from the underlying transport library's i
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-amqp_2.3.5/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-amqp_2.3.6/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -86,7 +85,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-amqp_2.3.5/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-amqp_2.3.6/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
