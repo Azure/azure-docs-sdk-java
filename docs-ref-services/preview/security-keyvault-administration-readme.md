@@ -1,16 +1,15 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, azure-security-keyvault-administration, keyvault
-author: maggiepint
-ms.author: magpint
-ms.date: 11/17/2021
+author: vcolin7
+ms.author: vcolin7
+ms.date: 01/14/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: keyvault
 ---
-
 # Azure Key Vault Administration library for Java
 Azure Key Vault Managed HSM is a fully-managed, highly-available, single-tenant, standards-compliant cloud service that enables you to safeguard cryptographic keys for your cloud applications using FIPS 140-2 Level 3 validated HSMs.
 
@@ -27,7 +26,7 @@ Maven dependency for the Azure Key Vault Administration library. Add it to your 
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-administration</artifactId>
-    <version>4.1.0-beta.3</version>
+    <version>4.1.0-beta.4</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -577,10 +576,10 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_code_of_conduct]. For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-administration_4.1.0-beta.3/sdk/keyvault/azure-security-keyvault-administration/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-administration_4.1.0-beta.4/sdk/keyvault/azure-security-keyvault-administration/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-administration_4.1.0-beta.3/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-administration_4.1.0-beta.4/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [azure_keyvault]: https://docs.microsoft.com/azure/key-vault/quick-create-portal
@@ -591,11 +590,11 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
-[administration_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-administration_4.1.0-beta.3/sdk/keyvault/azure-security-keyvault-administration/src/samples/java/com/azure/security/keyvault/administration
+[administration_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-administration_4.1.0-beta.4/sdk/keyvault/azure-security-keyvault-administration/src/samples/java/com/azure/security/keyvault/administration
 [access_control]: https://docs.microsoft.com/azure/key-vault/managed-hsm/access-control
 [best_practices]: https://docs.microsoft.com/azure/key-vault/managed-hsm/best-practices
 [built_in_roles]: https://docs.microsoft.com/azure/key-vault/managed-hsm/built-in-roles
-[storage_readme_sas_token]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-administration_4.1.0-beta.3/sdk/storage/azure-storage-blob#get-credentials
+[storage_readme_sas_token]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-administration_4.1.0-beta.4/sdk/storage/azure-storage-blob#get-credentials
 [portal_sas_token]: https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows#generate-a-shared-access-signature-in-storage-explorer
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
