@@ -127,14 +127,14 @@ public void createDefaultAzureCredential() {
 }
 ```
 
-See more how to configure the `DefaultAzureCredential` on your workstation or Azure in [Configure DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-java/wiki/Set-up-Your-Environment-for-Authentication#configure-defaultazurecredential).
+See more how to configure the `DefaultAzureCredential` on your workstation or Azure in [Authenticating with DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Examples#authenticating-with-defaultazurecredential).
 
 ### Authenticating a user assigned managed identity with `DefaultAzureCredential`
 To Authenticate using User Assigned Managed Identity, please ensure that configuration instructions for your supported Azure Resource [here](#managed-identity-support) have been successfully completed.
 
 The below example demonstrates authenticating the `SecretClient` from the [azure-security-keyvault-secrets][secrets_client_library] client library using the `DefaultAzureCredential`, deployed to an Azure resource with a user assigned managed identity configured.
 
-See more about how to configure a user assigned managed identity for an Azure resource in [Enable managed identity for Azure resources](https://github.com/Azure/azure-sdk-for-java/wiki/Set-up-Your-Environment-for-Authentication#enable-managed-identity-for-azure-resources).
+See more about how to configure a user assigned managed identity for an Azure resource in [the managed identity documentation](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
 
 <!-- embedme ../../keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets/IdentityReadmeSamples.java#L242-L255 -->
 ```java
@@ -157,11 +157,9 @@ public void createDefaultAzureCredentialForUserAssignedManagedIdentity() {
 In addition to configuring the `managedIdentityClientId` via code, it can also be set using the `AZURE_CLIENT_ID` environment variable. These two approaches are equivalent when using the `DefaultAzureCredential`.
 
 ### Authenticating a user in Azure Toolkit for IntelliJ with `DefaultAzureCredential`
-To Authenticate using IntelliJ, please ensure that configuration instructions [here](https://docs.microsoft.com/azure/developer/java/sdk/identity-dev-env-auth#sign-in-azure-toolkit-for-intellij-for-intellijcredential) have been successfully completed.
+To Authenticate using IntelliJ, please ensure that configuration instructions at [Sign in Azure Toolkit for IntelliJ for IntelliJCredential](https://docs.microsoft.com/azure/developer/java/sdk/identity-dev-env-auth#sign-in-azure-toolkit-for-intellij-for-intellijcredential) have been successfully completed.
 
 The below example demonstrates authenticating the `SecretClient` from the [azure-security-keyvault-secrets][secrets_client_library] client library using the `DefaultAzureCredential`, on a workstation with IntelliJ IDEA installed, and the user has signed in with an Azure account to the Azure Toolkit for IntelliJ.
-
-See more about how to configure your IntelliJ IDEA in [Sign in Azure Toolkit for IntelliJ for IntelliJCredential](https://github.com/Azure/azure-sdk-for-java/wiki/Set-up-Your-Environment-for-Authentication#sign-in-azure-toolkit-for-intellij-for-intellijcredential).
 
 <!-- embedme ../../keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets/IdentityReadmeSamples.java#L257-L271 -->
 ```java
@@ -196,7 +194,7 @@ The [Managed identity authentication](https://docs.microsoft.com/azure/active-di
 ####  Authenticating in Azure with Managed Identity
 This examples demonstrates authenticating the `SecretClient` from the [azure-security-keyvault-secrets][secrets_client_library] client library using the `ManagedIdentityCredential` in a virtual machine, app service, function app, cloud shell, or AKS environment on Azure, with system assigned, or user assigned managed identity enabled.
 
-see more about how to configure your Azure resource for managed identity in [Enable managed identity for Azure resources](https://github.com/Azure/azure-sdk-for-java/wiki/Set-up-Your-Environment-for-Authentication#enable-managed-identity-for-azure-resources)
+see more about how to configure your Azure resource for managed identity in [the managed identity documentation](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
 
 ```java
 /**
@@ -500,7 +498,7 @@ See the [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob
 
 Azure SDK for Java offers a consistent logging story to help aid in troubleshooting application errors and expedite
 their resolution. The logs produced will capture the flow of an application before reaching the terminal state to help
-locate the root issue. View the [logging][logging] wiki for guidance about enabling logging.
+locate the root issue. View the [logging](https://docs.microsoft.com/en-us/azure/developer/java/sdk/logging-overview) docs for guidance about enabling logging.
 
 ## Next steps
 
@@ -522,7 +520,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [aad_doc]: https://docs.microsoft.com/azure/active-directory/
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [keys_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.4.3/sdk/keyvault/azure-security-keyvault-keys
-[logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
+[logging]: https://docs.microsoft.com/en-us/azure/developer/java/sdk/logging-overview
 [secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.4.3/sdk/keyvault/azure-security-keyvault-secrets
 [eventhubs_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.4.3/sdk/eventhubs/azure-messaging-eventhubs
 [azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.4.3/sdk/core
@@ -531,4 +529,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [chaining_credentials]: https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Examples#chaining-credentials
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fidentity%2Fazure-identity%2FREADME.png)
-
