@@ -134,7 +134,7 @@ To Authenticate using User Assigned Managed Identity, please ensure that configu
 
 The below example demonstrates authenticating the `SecretClient` from the [azure-security-keyvault-secrets][secrets_client_library] client library using the `DefaultAzureCredential`, deployed to an Azure resource with a user assigned managed identity configured.
 
-See more about how to configure a user assigned managed identity for an Azure resource in [the managed identity documentation](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
+See more about how to configure a user assigned managed identity for an Azure resource in [the managed identity documentation](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview).
 
 <!-- embedme ../../keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets/IdentityReadmeSamples.java#L242-L255 -->
 ```java
@@ -194,7 +194,7 @@ The [Managed identity authentication](https://docs.microsoft.com/azure/active-di
 ####  Authenticating in Azure with Managed Identity
 This examples demonstrates authenticating the `SecretClient` from the [azure-security-keyvault-secrets][secrets_client_library] client library using the `ManagedIdentityCredential` in a virtual machine, app service, function app, cloud shell, or AKS environment on Azure, with system assigned, or user assigned managed identity enabled.
 
-see more about how to configure your Azure resource for managed identity in [the managed identity documentation](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
+see more about how to configure your Azure resource for managed identity in [the managed identity documentation](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview).
 
 ```java
 /**
@@ -498,7 +498,7 @@ See the [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob
 
 Azure SDK for Java offers a consistent logging story to help aid in troubleshooting application errors and expedite
 their resolution. The logs produced will capture the flow of an application before reaching the terminal state to help
-locate the root issue. View the [logging](https://docs.microsoft.com/en-us/azure/developer/java/sdk/logging-overview) docs for guidance about enabling logging.
+locate the root issue. View the [logging](https://docs.microsoft.com/azure/developer/java/sdk/logging-overview) docs for guidance about enabling logging.
 
 ## Next steps
 
@@ -520,7 +520,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [aad_doc]: https://docs.microsoft.com/azure/active-directory/
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [keys_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.4.3/sdk/keyvault/azure-security-keyvault-keys
-[logging]: https://docs.microsoft.com/en-us/azure/developer/java/sdk/logging-overview
+[logging]: https://docs.microsoft.com/azure/developer/java/sdk/logging-overview
 [secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.4.3/sdk/keyvault/azure-security-keyvault-secrets
 [eventhubs_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.4.3/sdk/eventhubs/azure-messaging-eventhubs
 [azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.4.3/sdk/core
