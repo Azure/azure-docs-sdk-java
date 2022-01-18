@@ -1,17 +1,16 @@
 ---
 title: Azure Schema Registry client library for Java
 keywords: Azure, java, SDK, API, azure-data-schemaregistry, schemaregistry
-author: maggiepint
-ms.author: magpint
-ms.date: 11/15/2021
+author: conniey
+ms.author: conniey
+ms.date: 01/18/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: schemaregistry
 ---
-
-# Azure Schema Registry client library for Java - Version 1.0.0 
+# Azure Schema Registry client library for Java - Version 1.0.1 
 
 
 Azure Schema Registry is a schema repository service hosted by Azure Event Hubs, providing schema storage, versioning,
@@ -35,7 +34,7 @@ schema identifiers rather than full schemas.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-data-schemaregistry</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -66,8 +65,8 @@ You will also need to [register a new AAD application][register_aad_app] and [gr
 Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
 
 ##### Async client
-<!-- embedme ./src/samples/java/com/azure/data/schemaregistry/ReadmeSamples.java#L25-L30 -->
-```java
+
+```java readme-sample-createAsyncClient
 TokenCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
 
 SchemaRegistryAsyncClient schemaRegistryAsyncClient = new SchemaRegistryClientBuilder()
@@ -77,8 +76,8 @@ SchemaRegistryAsyncClient schemaRegistryAsyncClient = new SchemaRegistryClientBu
 ```
 
 ##### Sync client
-<!-- embedme ./src/samples/java/com/azure/data/schemaregistry/ReadmeSamples.java#L37-L42 -->
-```java
+
+```java readme-sample-createSyncClient
 TokenCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
 
 SchemaRegistryClient schemaRegistryClient = new SchemaRegistryClientBuilder()
@@ -111,15 +110,7 @@ SchemaRegistry operations. Those exposed properties are `Content` and `Id`.
 ### Register a schema
 Register a schema to be stored in the Azure Schema Registry.
 
-<!-- embedme ./src/samples/java/com/azure/data/schemaregistry/ReadmeSamples.java#L49-L72 -->
-```java
-TokenCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
-
-SchemaRegistryClient schemaRegistryClient = new SchemaRegistryClientBuilder()
-    .fullyQualifiedNamespace("{schema-registry-endpoint")
-    .credential(tokenCredential)
-    .buildClient();
-
+```java readme-sample-registerSchema
 String schemaContent = "{\n"
     + "    \"type\" : \"record\",  \n"
     + "    \"namespace\" : \"SampleSchemaNameSpace\", \n"
@@ -142,15 +133,7 @@ System.out.println("Registered schema: " + schemaProperties.getId());
 ### Retrieve a schema's properties
 Retrieve a previously registered schema's properties from the Azure Schema Registry.
 
-<!-- embedme ./src/samples/java/com/azure/data/schemaregistry/ReadmeSamples.java#L79-L89 -->
-```java
-TokenCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
-
-SchemaRegistryClient schemaRegistryClient = new SchemaRegistryClientBuilder()
-    .fullyQualifiedNamespace("{schema-registry-endpoint")
-    .credential(tokenCredential)
-    .buildClient();
-
+```java readme-sample-getSchema
 SchemaRegistrySchema schema = schemaRegistryClient.getSchema("{schema-id}");
 
 System.out.printf("Retrieved schema: '%s'. Contents: %s%n", schema.getProperties().getId(),
@@ -160,15 +143,7 @@ System.out.printf("Retrieved schema: '%s'. Contents: %s%n", schema.getProperties
 ### Retrieve a schema
 Retrieve a previously registered schema's content and properties from the Azure Schema Registry.
 
-<!-- embedme ./src/samples/java/com/azure/data/schemaregistry/ReadmeSamples.java#L96-L119 -->
-```java
-TokenCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
-
-SchemaRegistryClient schemaRegistryClient = new SchemaRegistryClientBuilder()
-    .fullyQualifiedNamespace("{schema-registry-endpoint")
-    .credential(tokenCredential)
-    .buildClient();
-
+```java readme-sample-getSchemaId
 String schemaContent = "{\n"
     + "    \"type\" : \"record\",  \n"
     + "    \"namespace\" : \"SampleSchemaNameSpace\", \n"
@@ -209,23 +184,23 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 
 <!-- LINKS -->
 [package_maven]: https://search.maven.org/artifact/com.azure/azure-data-schemaregistry
-[sample_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.0.0/sdk/schemaregistry/azure-data-schemaregistry/src/samples
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.0/sdk/schemaregistry/azure-data-schemaregistry/src/samples/java/com/azure/data/schemaregistry
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.0/sdk/schemaregistry/azure-data-schemaregistry/src
+[sample_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.0.1/sdk/schemaregistry/azure-data-schemaregistry/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.1/sdk/schemaregistry/azure-data-schemaregistry/src/samples/java/com/azure/data/schemaregistry
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.1/sdk/schemaregistry/azure-data-schemaregistry/src
 [samples_code]: src/samples/
 [azure_subscription]: https://azure.microsoft.com/free/
 [api_reference_doc]: https://aka.ms/schemaregistry
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_portal]: https://portal.azure.com
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.0.0/sdk/identity/azure-identity
-[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.0/sdk/identity/azure-identity/README.md#defaultazurecredential
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.0.1/sdk/identity/azure-identity
+[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.1/sdk/identity/azure-identity/README.md#defaultazurecredential
 [event_hubs_namespace]: https://docs.microsoft.com/azure/event-hubs/event-hubs-about
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [product_documentation]: https://aka.ms/schemaregistry
 [custom_subdomain]: https://docs.microsoft.com/azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
 [register_aad_app]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [aad_grant_access]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
-[schema_properties]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.0/sdk/schemaregistry/azure-data-schemaregistry/src/main/java/com/azure/data/schemaregistry/models/SchemaProperties.java
+[schema_properties]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.1/sdk/schemaregistry/azure-data-schemaregistry/src/main/java/com/azure/data/schemaregistry/models/SchemaProperties.java
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
