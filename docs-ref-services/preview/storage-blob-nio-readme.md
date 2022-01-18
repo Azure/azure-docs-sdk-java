@@ -3,7 +3,7 @@ title:
 keywords: Azure, java, SDK, API, azure-storage-blob-nio, storage
 author: amishra-dev
 ms.author: amishra-dev
-ms.date: 12/08/2021
+ms.date: 01/14/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -31,7 +31,7 @@ This package allows you to interact with Azure Blob Storage through the standard
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob-nio</artifactId>
-    <version>12.0.0-beta.12</version>
+    <version>12.0.0-beta.14</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -206,7 +206,6 @@ to guarantee that the data is available to be read.
 try (OutputStream os = Files.newOutputStream(filePath)) {
     os.write(0);
 }
-``` 
 
 ### Copy a file
 
@@ -305,8 +304,8 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.13/sdk/storage/azure-storage-blob-nio/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.13/sdk/storage/azure-storage-blob-nio/src/samples/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.14/sdk/storage/azure-storage-blob-nio/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.14/sdk/storage/azure-storage-blob-nio/src/samples/README.md
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
@@ -317,7 +316,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.13/sdk/identity/azure-identity/README.md
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.14/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
 [samples]: https://docs.oracle.com/javase/tutorial/essential/io/fileio.html
 [cla]: https://cla.microsoft.com

@@ -1,28 +1,28 @@
 ---
 title: Azure Monitor Query client library for Java
 keywords: Azure, java, SDK, API, azure-monitor-query, monitor
-author: maggiepint
-ms.author: magpint
-ms.date: 11/11/2021
+author: srnagar
+ms.author: srnagar
+ms.date: 01/14/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: monitor
 ---
-
-# Azure Monitor Query client library for Java - Version 1.0.1 
+# Azure Monitor Query client library for Java - Version 1.0.2 
 
 
 The Azure Monitor Query client library is used to execute read-only queries against [Azure Monitor][azure_monitor_overview]'s two data platforms:
 
-- [Logs](https://docs.microsoft.com/azure/azure-monitor/logs/data-platform-logs) - Collects and organizes log and performance data from monitored resources. Data from different sources such as platform logs from Azure services, log and performance data from virtual machines agents, and usage and performance data from apps can be consolidated into a single [Azure Log Analytics workspace](https://docs.microsoft.com/azure/azure-monitor/logs/data-platform-logs#log-analytics-workspaces). The various data types can be analyzed together using the [Kusto Query Language][kusto_query_language].
+- [Logs](https://docs.microsoft.com/azure/azure-monitor/logs/data-platform-logs) - Collects and organizes log and performance data from monitored resources. Data from different sources such as platform logs from Azure services, log and performance data from virtual machines agents, and usage and performance data from apps can be consolidated into a single [Azure Log Analytics workspace](https://docs.microsoft.com/azure/azure-monitor/logs/data-platform-logs#log-analytics-and-workspaces). The various data types can be analyzed together using the [Kusto Query Language][kusto_query_language].
 - [Metrics](https://docs.microsoft.com/azure/azure-monitor/essentials/data-platform-metrics) - Collects numeric data from monitored resources into a time series database. Metrics are numerical values that are collected at regular intervals and describe some aspect of a system at a particular time. Metrics are lightweight and capable of supporting near real-time scenarios, making them particularly useful for alerting and fast detection of issues.
 
 **Resources:**
 
 - [Source code][source]
 - [Package (Maven)][package]
+- [API reference documentation][msdocs_apiref]
 - [Service documentation][azure_monitor_overview]
 - [Samples][samples]
 - [Change log][changelog]
@@ -46,7 +46,7 @@ Install the Azure Monitor Query client library for Java by adding the following 
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-monitor-query</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
@@ -55,6 +55,22 @@ Install the Azure Monitor Query client library for Java by adding the following 
 ### Create the client
 
 An authenticated client is required to query Logs or Metrics. The library includes both synchronous and asynchronous forms of the clients. To authenticate, the following examples use `DefaultAzureCredentialBuilder` from the [com.azure:azure-identity](https://search.maven.org/artifact/com.azure/azure-identity) package.
+
+### Authenticating using Azure Active Directory
+
+You can authenticate with Azure Active Directory using the [Azure Identity library][azure_identity]. Note that regional endpoints do not support AAD authentication. Create a [custom subdomain][custom_subdomain] for your resource in order to use this type of authentication.
+
+To use the [DefaultAzureCredential][DefaultAzureCredential] provider shown below, or other credential providers provided with the Azure SDK, please include the `azure-identity` package:
+
+[//]: # ({x-version-update-start;com.azure:azure-identity;dependency})
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-identity</artifactId>
+    <version>1.4.3</version>
+</dependency>
+```
+Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
 
 #### Synchronous clients
 
@@ -92,7 +108,7 @@ For examples of Logs and Metrics queries, see the [Examples](#examples) section.
 
 ### Logs query rate limits and throttling
 
-The Log Analytics service applies throttling when the request rate is too high. Limits, such as the maximum number of rows returned, are also applied on the Kusto queries. For more information, see [Rate and query limits](https://dev.loganalytics.io/documentation/Using-the-API/Limits).
+The Log Analytics service applies throttling when the request rate is too high. Limits, such as the maximum number of rows returned, are also applied on the Kusto queries. For more information, see [Query API](https://docs.microsoft.com/azure/azure-monitor/service-limits#la-query-api).
 
 ### Metrics data structure
 
@@ -384,7 +400,7 @@ Environment variable name: `AZURE_HTTP_LOG_DETAIL_LEVEL`
 
 ### Unable to authenticate requests
 
-Azure Monitor Query supports Azure Active Directory authentication. Both LogsQueryClientBuilder and MetricsQueryClientBuilder have methods to set the `credential`. To provide a valid credential, you can use `azure-identity` dependency. For more details on getting started, refer to the [README](https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.1/sdk/monitor/azure-monitor-query#create-the-client) of Azure Monitor Query library. You can also refer to the [Azure Identity documentation](https://docs.microsoft.com/azure/developer/java/sdk/identity) for more details on the various types of credential supported in `azure-identity`.
+Azure Monitor Query supports Azure Active Directory authentication. Both LogsQueryClientBuilder and MetricsQueryClientBuilder have methods to set the `credential`. To provide a valid credential, you can use `azure-identity` dependency. For more details on getting started, refer to the [README](https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.2/sdk/monitor/azure-monitor-query#create-the-client) of Azure Monitor Query library. You can also refer to the [Azure Identity documentation](https://docs.microsoft.com/azure/developer/java/sdk/identity) for more details on the various types of credential supported in `azure-identity`.
 
 ### No results in logs query
 
@@ -481,13 +497,14 @@ comments.
 [azure_monitor_create_using_portal]: https://docs.microsoft.com/azure/azure-monitor/logs/quick-create-workspace
 [azure_monitor_overview]: https://docs.microsoft.com/azure/azure-monitor/overview
 [azure_subscription]: https://azure.microsoft.com/free/java
-[changelog]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.1/sdk/monitor/azure-monitor-query/CHANGELOG.md
+[changelog]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.2/sdk/monitor/azure-monitor-query/CHANGELOG.md
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [kusto_query_language]: https://docs.microsoft.com/azure/data-explorer/kusto/query/
-[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.1/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.2/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[msdocs_apiref]: https://docs.microsoft.com/java/api/com.azure.monitor.query?view=azure-java-stable
 [package]: https://search.maven.org/artifact/com.azure/azure-monitor-query
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.1/sdk/monitor/azure-monitor-query/src/samples/java/README.md
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.1/sdk/monitor/azure-monitor-query/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.2/sdk/monitor/azure-monitor-query/src/samples/java/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.2/sdk/monitor/azure-monitor-query/src
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 [cla]: https://cla.microsoft.com

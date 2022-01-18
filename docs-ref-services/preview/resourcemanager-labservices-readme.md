@@ -1,22 +1,21 @@
 ---
-title: Azure Resource Manager ManagedLabs client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-labservices, 
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 04/22/2021
+title: Azure Resource Manager LabServices client library for Java
+keywords: Azure, java, SDK, API, azure-resourcemanager-labservices, labservices
+author: joshfree
+ms.author: joshfree
+ms.date: 01/17/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: labservices
 ---
+# Azure Resource Manager LabServices client library for Java - Version 1.0.0-beta.2 
 
-# Azure Resource Manager ManagedLabs client library for Java - Version 1.0.0-beta.1 
 
+Azure Resource Manager LabServices client library for Java.
 
-Azure Resource Manager ManagedLabs client library for Java.
-
-This package contains Microsoft Azure SDK for ManagedLabs Management SDK. The Managed Labs Client. Package tag package-2018-10. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for LabServices Management SDK. REST API for managing Azure Lab Services images. Package tag package-preview-2021-11. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -46,7 +45,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-labservices</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -74,7 +73,7 @@ AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-ManagedLabsManager manager = ManagedLabsManager
+LabServicesManager manager = LabServicesManager
     .authenticate(credential, profile);
 ```
 
@@ -88,13 +87,16 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.2/sdk/labservices/azure-resourcemanager-labservices/SAMPLE.md)
+
+
 ## Troubleshooting
 
 ## Next steps
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.1/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.2/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -107,8 +109,8 @@ For details on contributing to this repository, see the [contributing guide](htt
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.1/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.1/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.1/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.1/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.2/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.2/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.2/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-labservices_1.0.0-beta.2/sdk/resourcemanager/docs/DESIGN.md
 
