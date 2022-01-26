@@ -2,15 +2,15 @@
 title: Azure Template client library for Java
 keywords: Azure, java, SDK, API, azure-sdk-template, template
 author: hallipr
-ms.author: hallipr
-ms.date: 01/14/2022
+ms.author: pahallis
+ms.date: 01/26/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: template
 ---
-# Azure Template client library for Java - Version 1.2.1-beta.1293615 
+# Azure Template client library for Java - Version 1.2.1-beta.1328164 
 
 
 Use the guidelines in each section of this template to ensure consistency and readability of your README. 
@@ -20,7 +20,7 @@ It's also used as the package distribution page (NuGet, PyPi, npm, etc.) and as 
 **Title**: The H1 of your README should be in the format: `# [Product Name] client library for [Language]`
 
 * All headings, including the H1, should use **sentence-style capitalization**. Refer to the [Microsoft Style Guide][style-guide-msft].
-* Example: `# Azure Batch client library for Java - Version 1.2.1-beta.1293615 
+* Example: `# Azure Batch client library for Java - Version 1.2.1-beta.1328164 
 `
 
 **Introduction**: The introduction appears directly under the title (H1) of your README.
@@ -74,8 +74,8 @@ Include code snippets and short descriptions for each task you listed in the [In
 Briefly explain each operation, but include enough clarity to explain complex or otherwise tricky operations.
 
 If possible, use the same example snippets that your in-code documentation uses. For example, use the snippets in your 
-`ReadmeSamples.java` that `embedme` ingests via its [alternate syntax](https://github.com/zakhenry/embedme#alternate-embedding-syntax) 
-directive. The `ReadmeSamples.java` file containing the snippets should reside alongside your package's code, and should be 
+`ReadmeSamples.java` that `codesnippet-maven-plugin` ingests via its [README syntax](https://github.com/Azure/azure-sdk-tools/tree/main/packages/java-packages/codesnippet-maven-plugin#injecting-codesnippets-into-readmes). 
+The `ReadmeSamples.java` file containing the snippets should reside alongside your package's code, and should be 
 validated in an automated fashion.
 
 Each example in the *Examples* section starts with an H3 that describes the example. At the top of this section, just 
@@ -143,8 +143,8 @@ provides more information on configuring or changing the HTTP client.
   they might be looking for.
   
 * After adding the new SDK, you need to include the package in the following locations
-1. version_client.txt - include the package with the version.
-2. parent pom - <enlistmentroot>\pom.xml - Multiple places in the file.
+1. `version_client.txt` - include the package with the version.
+2. parent pom - `<enlistmentroot>\pom.xml` - Multiple places in the file.
 
 ## Contributing
 
