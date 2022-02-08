@@ -2,16 +2,15 @@
 title: Azure Cognitive Search client library for Java
 keywords: Azure, java, SDK, API, azure-search-documents, search
 author: alzimmermsft
-ms.author: alzimmermsft
-ms.date: 11/24/2021
+ms.author: alzimmer
+ms.date: 02/08/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: search
 ---
-
-# Azure Cognitive Search client library for Java - Version 11.5.0-beta.5 
+# Azure Cognitive Search client library for Java - Version 11.5.0-beta.6 
 
 
 This is the Java client library for [Azure Cognitive Search](https://docs.microsoft.com/azure/search/).
@@ -50,7 +49,7 @@ Use the Azure Cognitive Search client library to:
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.5/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.6/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -87,7 +86,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-search-documents</artifactId>
-    <version>11.5.0-beta.5</version>
+    <version>11.5.0-beta.6</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -134,7 +133,7 @@ Always use a query key rather than an admin key for any query originating from a
 The SDK provides three clients.
 
 * `SearchIndexClient` for CRUD operations on indexes and synonym maps.
-* `SearchIndexerClient` for CRUD operations on indexers, date sources, and skillsets.
+* `SearchIndexerClient` for CRUD operations on indexers, data sources, and skillsets.
 * `SearchClient` for all document operations.
 
 #### Create a SearchIndexClient
@@ -494,26 +493,26 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 
 <!-- LINKS -->
 [jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
-[api_documentation]: https://aka.ms/java-docs
+[api_documentation]: https://azure.github.io/azure-sdk-for-java/search.html
 [search]: https://azure.microsoft.com/services/search/
 [search_docs]: https://docs.microsoft.com/azure/search/
-[azure_subscription]: https://azure.microsoft.com/free
+[azure_subscription]: https://azure.microsoft.com/free/java
 [maven]: https://maven.apache.org/
 [package]: https://search.maven.org/artifact/com.azure/azure-search-documents
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.5.0-beta.5/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.5/sdk/search/azure-search-documents/src/samples/README.md
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.5.0-beta.5/sdk/search/azure-search-documents/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.5.0-beta.6/sdk/search/azure-search-documents/src/samples/
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.6/sdk/search/azure-search-documents/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.5.0-beta.6/sdk/search/azure-search-documents/src
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.5/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
+[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.6/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
 [rest_api]: https://docs.microsoft.com/rest/api/searchservice/http-status-codes
 [create_search_service_docs]: https://docs.microsoft.com/azure/search/search-create-service-portal
 [create_search_service_ps]: https://docs.microsoft.com/azure/search/search-manage-powershell#create-or-delete-a-service
 [create_search_service_cli]: https://docs.microsoft.com/cli/azure/search/service?view=azure-cli-latest#az-search-service-create
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.5/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.6/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
 [status_codes]: https://docs.microsoft.com/rest/api/searchservice/http-status-codes
 [search-get-started-portal]: https://docs.microsoft.com/azure/search/search-get-started-portal
 

@@ -2,15 +2,15 @@
 title: Azure Core Apache Avro Serializer plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-serializer-avro-apache, core
 author: alzimmermsft
-ms.author: alzimmermsft
-ms.date: 01/11/2022
+ms.author: alzimmer
+ms.date: 02/04/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Apache Avro Serializer plugin library for Java - Version 1.0.0-beta.19 
+# Azure Core Apache Avro Serializer plugin library for Java - Version 1.0.0-beta.20 
 
 
 Azure Core Apache Avro Serializer is a plugin for the `azure-core` `AvroSerializer` API.
@@ -28,7 +28,7 @@ Azure Core Apache Avro Serializer is a plugin for the `azure-core` `AvroSerializ
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-serializer-avro-apache</artifactId>
-    <version>1.0.0-beta.19</version>
+    <version>1.0.0-beta.20</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -62,7 +62,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-serializer-avro-apache_1.0.0-beta.19/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-serializer-avro-apache_1.0.0-beta.20/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
