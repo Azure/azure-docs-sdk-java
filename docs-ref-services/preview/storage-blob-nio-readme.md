@@ -2,8 +2,8 @@
 title: 
 keywords: Azure, java, SDK, API, azure-storage-blob-nio, storage
 author: amishra-dev
-ms.author: amishra-dev
-ms.date: 01/14/2022
+ms.author: amishra
+ms.date: 02/10/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -141,6 +141,7 @@ committed or available to be read until the write stream is closed.
 
 The following sections provide several code snippets covering some of the most common Azure Storage Blob NIO tasks, including:
 
+- [URI format](#uri-format)
 - [Create a `FileSystem`](#create-a-filesystem)
 - [Create a directory](#create-a-directory)
 - [Iterate over directory contents](#iterate-over-directory-contents)
@@ -150,6 +151,19 @@ The following sections provide several code snippets covering some of the most c
 - [Delete a file](#delete-a-file)
 - [Read attributes on a file](#read-attributes-on-a-file)
 - [Write attributes to a file](#write-attributes-to-a-file)
+
+### URI format
+URIs are the fundamental way of identifying a resource. This package defines its URI format as follows:
+
+The scheme for this provider is `"azb"`, and the format of the URI to identify an `AzureFileSystem` is 
+`"azb://?endpoint=<endpoint>"`. The endpoint of the Storage account is used to uniquely identify the filesystem.
+
+The root component, if it is present, is the first element of the path and is denoted by a `':'` as the last character.
+Hence, only one instance of `':'` may appear in a path string, and it may only be the last character of the first 
+element in the path. The root component is used to identify which container a path belongs to.
+
+All other path elements, including separators, are considered as the blob name. `AzurePath#fromBlobUrl`
+may be used to convert a typical http url pointing to a blob into an `AzurePath` object pointing to the same resource.
 
 ### Create a `FileSystem`
 
@@ -206,6 +220,7 @@ to guarantee that the data is available to be read.
 try (OutputStream os = Files.newOutputStream(filePath)) {
     os.write(0);
 }
+```
 
 ### Copy a file
 
@@ -304,8 +319,8 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.14/sdk/storage/azure-storage-blob-nio/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.14/sdk/storage/azure-storage-blob-nio/src/samples/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.15/sdk/storage/azure-storage-blob-nio/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.15/sdk/storage/azure-storage-blob-nio/src/samples/README.md
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
@@ -316,7 +331,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.14/sdk/identity/azure-identity/README.md
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.15/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
 [samples]: https://docs.oracle.com/javase/tutorial/essential/io/fileio.html
 [cla]: https://cla.microsoft.com

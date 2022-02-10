@@ -2,15 +2,15 @@
 title: Azure File Data Lake client library for Java
 keywords: Azure, java, SDK, API, azure-storage-file-datalake, datalakestorage(gen2)
 author: amishra-dev
-ms.author: amishra-dev
-ms.date: 12/08/2021
+ms.author: amishra
+ms.date: 02/09/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: datalakestorage(gen2)
 ---
-# Azure File Data Lake client library for Java - Version 12.8.0-beta.2 
+# Azure File Data Lake client library for Java - Version 12.8.0-beta.3 
 
 
 Azure Data Lake Storage is Microsoft's optimized storage solution for for big
@@ -34,7 +34,7 @@ efficient data access.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.8.0-beta.2/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.8.0-beta.3/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -69,7 +69,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-file-datalake</artifactId>
-    <version>12.7.2</version>
+    <version>12.7.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -439,7 +439,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.8.0-beta.2/sdk/storage/azure-storage-file-datalake/src
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.8.0-beta.3/sdk/storage/azure-storage-file-datalake/src
 [samples_readme]: src/samples/README.md
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/data-lake-storage-gen2
@@ -450,8 +450,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.8.0-beta.2/sdk/identity/azure-identity/README.md
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.8.0-beta.2/sdk/storage/azure-storage-file-datalake/src/samples
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.8.0-beta.3/sdk/identity/azure-identity/README.md
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-datalake_12.8.0-beta.3/sdk/storage/azure-storage-file-datalake/src/samples
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/data-lake-storage-gen2
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
