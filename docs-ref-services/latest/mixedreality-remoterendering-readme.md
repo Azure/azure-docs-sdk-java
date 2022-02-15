@@ -2,15 +2,15 @@
 title: Azure Remote Rendering client library for Java
 keywords: Azure, java, SDK, API, azure-mixedreality-remoterendering, mixedreality
 author: MalcolmTyrrell
-ms.author: MalcolmTyrrell
-ms.date: 01/25/2022
+ms.author: matyrr
+ms.date: 02/15/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: mixedreality
 ---
-# Azure Remote Rendering client library for Java - Version 1.1.3 
+# Azure Remote Rendering client library for Java - Version 1.1.4 
 
 
 Azure Remote Rendering (ARR) is a service that enables you to render high-quality, interactive 3D content in the cloud and stream it in real time to devices, such as the HoloLens 2.
@@ -385,14 +385,14 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 [azure_subscription]: https://azure.microsoft.com/free
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.3/sdk/remoterendering/azure-mixedreality-remoterendering/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.4/sdk/remoterendering/azure-mixedreality-remoterendering/src
 [remote_rendering_account]: https://docs.microsoft.com/azure/remote-rendering/how-tos/create-an-account
-[LogLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.3/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[LogLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.4/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [product_documentation]: https://docs.microsoft.com/azure/remote-rendering/
 [cpp_api]: https://docs.microsoft.com/cpp/api/remote-rendering/
 [dotnet_api]: https://docs.microsoft.com/dotnet/api/microsoft.azure.remoterendering
 [how_to_authenticate]: https://docs.microsoft.com/azure/remote-rendering/how-tos/authentication
-[sts_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.3/sdk/mixedreality/azure-mixedreality-authentication
+[sts_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.4/sdk/mixedreality/azure-mixedreality-authentication
 [troubleshoot]: https://docs.microsoft.com/azure/remote-rendering/resources/troubleshoot
 [api_reference_doc]: https://docs.microsoft.com/rest/api/mixedreality/
 
