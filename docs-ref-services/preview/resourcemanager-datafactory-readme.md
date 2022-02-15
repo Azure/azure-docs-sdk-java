@@ -1,16 +1,16 @@
 ---
 title: Azure Resource Manager DataFactory client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-datafactory, datafactory
-author: joshfree
-ms.author: joshfree
-ms.date: 01/17/2022
+author: ramya-rao-a
+ms.author: ramyar
+ms.date: 02/15/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: datafactory
 ---
-# Azure Resource Manager DataFactory client library for Java - Version 1.0.0-beta.10 
+# Azure Resource Manager DataFactory client library for Java - Version 1.0.0-beta.11 
 
 
 Azure Resource Manager DataFactory client library for Java.
@@ -45,7 +45,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-datafactory</artifactId>
-    <version>1.0.0-beta.10</version>
+    <version>1.0.0-beta.11</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -91,7 +91,7 @@ See [API design][design] for general introduction on design and key concepts on 
 // storage account
 StorageAccount storageAccount = storageManager.storageAccounts().define(STORAGE_ACCOUNT)
     .withRegion(REGION)
-    .withExistingResourceGroup(RESOURCE_GROUP)
+    .withExistingResourceGroup(resourceGroup)
     .create();
 final String storageAccountKey = storageAccount.getKeys().iterator().next().value();
 final String connectionString = getStorageConnectionString(STORAGE_ACCOUNT, storageAccountKey, storageManager.environment());
@@ -99,7 +99,7 @@ final String connectionString = getStorageConnectionString(STORAGE_ACCOUNT, stor
 // container
 final String containerName = "adf";
 storageManager.blobContainers().defineContainer(containerName)
-    .withExistingBlobService(RESOURCE_GROUP, STORAGE_ACCOUNT)
+    .withExistingStorageAccount(resourceGroup, STORAGE_ACCOUNT)
     .withPublicAccess(PublicAccess.NONE)
     .create();
 
@@ -112,9 +112,9 @@ BlobClient blobClient = new BlobClientBuilder()
 blobClient.upload(BinaryData.fromString("data"));
 
 // data factory
-manager.factories().define(DATA_FACTORY)
+Factory dataFactory = manager.factories().define(DATA_FACTORY)
     .withRegion(REGION)
-    .withExistingResourceGroup(RESOURCE_GROUP)
+    .withExistingResourceGroup(resourceGroup)
     .create();
 
 // linked service
@@ -124,7 +124,7 @@ connectionStringProperty.put("value", connectionString);
 
 final String linkedServiceName = "LinkedService";
 manager.linkedServices().define(linkedServiceName)
-    .withExistingFactory(RESOURCE_GROUP, DATA_FACTORY)
+    .withExistingFactory(resourceGroup, DATA_FACTORY)
     .withProperties(new AzureStorageLinkedService()
         .withConnectionString(connectionStringProperty))
     .create();
@@ -132,7 +132,7 @@ manager.linkedServices().define(linkedServiceName)
 // input dataset
 final String inputDatasetName = "InputDataset";
 manager.datasets().define(inputDatasetName)
-    .withExistingFactory(RESOURCE_GROUP, DATA_FACTORY)
+    .withExistingFactory(resourceGroup, DATA_FACTORY)
     .withProperties(new AzureBlobDataset()
         .withLinkedServiceName(new LinkedServiceReference().withReferenceName(linkedServiceName))
         .withFolderPath(containerName)
@@ -143,7 +143,7 @@ manager.datasets().define(inputDatasetName)
 // output dataset
 final String outputDatasetName = "OutputDataset";
 manager.datasets().define(outputDatasetName)
-    .withExistingFactory(RESOURCE_GROUP, DATA_FACTORY)
+    .withExistingFactory(resourceGroup, DATA_FACTORY)
     .withProperties(new AzureBlobDataset()
         .withLinkedServiceName(new LinkedServiceReference().withReferenceName(linkedServiceName))
         .withFolderPath(containerName)
@@ -153,7 +153,7 @@ manager.datasets().define(outputDatasetName)
 
 // pipeline
 PipelineResource pipeline = manager.pipelines().define("CopyBlobPipeline")
-    .withExistingFactory(RESOURCE_GROUP, DATA_FACTORY)
+    .withExistingFactory(resourceGroup, DATA_FACTORY)
     .withActivities(Collections.singletonList(new CopyActivity()
         .withName("CopyBlob")
         .withSource(new BlobSource())
@@ -166,15 +166,15 @@ PipelineResource pipeline = manager.pipelines().define("CopyBlobPipeline")
 CreateRunResponse createRun = pipeline.createRun();
 
 // wait for completion
-PipelineRun pipelineRun = manager.pipelineRuns().get(RESOURCE_GROUP, DATA_FACTORY, createRun.runId());
+PipelineRun pipelineRun = manager.pipelineRuns().get(resourceGroup, DATA_FACTORY, createRun.runId());
 String runStatus = pipelineRun.status();
 while ("InProgress".equals(runStatus)) {
     sleepIfRunningAgainstService(10 * 1000);    // wait 10 seconds
-    pipelineRun = manager.pipelineRuns().get(RESOURCE_GROUP, DATA_FACTORY, createRun.runId());
+    pipelineRun = manager.pipelineRuns().get(resourceGroup, DATA_FACTORY, createRun.runId());
     runStatus = pipelineRun.status();
 }
 ```
-[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.10/sdk/datafactory/azure-resourcemanager-datafactory/SAMPLE.md)
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.11/sdk/datafactory/azure-resourcemanager-datafactory/SAMPLE.md)
 
 
 ## Troubleshooting
@@ -183,7 +183,7 @@ while ("InProgress".equals(runStatus)) {
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.10/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.11/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -196,8 +196,8 @@ For details on contributing to this repository, see the [contributing guide](htt
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.10/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.10/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.10/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.10/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.11/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.11/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.11/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-datafactory_1.0.0-beta.11/sdk/resourcemanager/docs/DESIGN.md
 
