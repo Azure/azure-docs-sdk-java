@@ -8,7 +8,7 @@ members:
   fullName: "com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl(String receiptUrl)"
   name: "beginRecognizeReceiptsFromUrl(String receiptUrl)"
   nameWithType: "FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl(String receiptUrl)"
-  summary: "Recognizes receipt data using optical character recognition (OCR) and a prebuilt receipt trained model.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\nSee [here][] for fields found on a receipt.\n\n**Code sample**\n\n\\{@codesnippet com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl\\#string\\}\n\n\n[here]: https://aka.ms/formrecognizer/receiptfields"
+  summary: "Recognizes receipt data using optical character recognition (OCR) and a prebuilt receipt trained model.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\nSee [here][] for fields found on a receipt.\n\n**Code sample**\n\n```java\nString formUrl = \"{form_url}\";\n String modelId = \"{custom_trained_model_id}\";\n\n // if training polling operation completed, retrieve the final result.\n formRecognizerAsyncClient.beginRecognizeCustomFormsFromUrl(modelId, formUrl)\n     // if training polling operation completed, retrieve the final result.\n     .flatMap(AsyncPollResponse::getFinalResult)\n     .flatMap(Flux::fromIterable)\n     .subscribe(recognizedForm -> recognizedForm.getFields()\n         .forEach((fieldText, formField) -> {\n             System.out.printf(\"Field text: %s%n\", fieldText);\n             System.out.printf(\"Field value data text: %s%n\", formField.getValueData().getText());\n             System.out.printf(\"Confidence score: %.2f%n\", formField.getConfidence());\n         }));\n```\n\n\n[here]: https://aka.ms/formrecognizer/receiptfields"
   parameters:
   - description: "The URL of the receipt to analyze."
     name: "receiptUrl"
@@ -21,7 +21,7 @@ members:
   fullName: "com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl(String receiptUrl, RecognizeReceiptsOptions recognizeReceiptsOptions)"
   name: "beginRecognizeReceiptsFromUrl(String receiptUrl, RecognizeReceiptsOptions recognizeReceiptsOptions)"
   nameWithType: "FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl(String receiptUrl, RecognizeReceiptsOptions recognizeReceiptsOptions)"
-  summary: "Recognizes receipt data using optical character recognition (OCR) and a prebuilt receipt trained model.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\n**Code sample**\n\n\\{@codesnippet com.azure.ai.formrecognizer.FormRecognizerAsyncClient.beginRecognizeReceiptsFromUrl\\#string-RecognizeReceiptsOptions\\}"
+  summary: "Recognizes receipt data using optical character recognition (OCR) and a prebuilt receipt trained model.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\n**Code sample**\n\n```java\nString formUrl = \"{form_url}\";\n String modelId = \"{custom_trained_model_id}\";\n\n // if training polling operation completed, retrieve the final result.\n formRecognizerAsyncClient.beginRecognizeCustomFormsFromUrl(modelId, formUrl)\n     // if training polling operation completed, retrieve the final result.\n     .flatMap(AsyncPollResponse::getFinalResult)\n     .flatMap(Flux::fromIterable)\n     .subscribe(recognizedForm -> recognizedForm.getFields()\n         .forEach((fieldText, formField) -> {\n             System.out.printf(\"Field text: %s%n\", fieldText);\n             System.out.printf(\"Field value data text: %s%n\", formField.getValueData().getText());\n             System.out.printf(\"Confidence score: %.2f%n\", formField.getConfidence());\n         }));\n```"
   parameters:
   - description: "The source URL to the input receipt."
     name: "receiptUrl"
@@ -36,4 +36,4 @@ members:
 type: "method"
 metadata: {}
 package: "com.azure.ai.formrecognizer"
-artifact: com.azure:azure-ai-formrecognizer:3.1.7
+artifact: com.azure:azure-ai-formrecognizer:3.1.8
