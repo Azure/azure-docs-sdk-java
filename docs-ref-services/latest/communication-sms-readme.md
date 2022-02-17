@@ -2,15 +2,15 @@
 title: Azure Communications SMS Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-sms, communication
 author: RoyHerrod
-ms.author: RoyHerrod
-ms.date: 01/25/2022
+ms.author: royher
+ms.date: 02/16/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communications SMS Service client library for Java - Version 1.0.7 
+# Azure Communications SMS Service client library for Java - Version 1.0.8 
 
 
 Azure Communication SMS is used to send simple text messages.
@@ -31,7 +31,7 @@ Azure Communication SMS is used to send simple text messages.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-sms_1.0.7/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-sms_1.0.8/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -66,7 +66,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-communication-sms</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
 </dependency>
 ```
 
@@ -201,7 +201,7 @@ try {
 [product_docs]: https://docs.microsoft.com/azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-sms
 [api_documentation]: https://aka.ms/java-docs
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.0.7/sdk/communication/azure-communication-sms/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.0.8/sdk/communication/azure-communication-sms/src
 [handle_sms_events]: https://docs.microsoft.com/azure/communication-services/quickstarts/telephony-sms/handle-sms-events
 [next_steps]:https://docs.microsoft.com/azure/communication-services/quickstarts/telephony-sms/send?pivots=programming-language-java
 
