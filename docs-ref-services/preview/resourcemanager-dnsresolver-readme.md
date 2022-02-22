@@ -1,21 +1,21 @@
 ---
-title: Azure Resource Manager AppConfiguration client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-appconfiguration, appconfiguration
-author: mssfang
-ms.author: shafang
-ms.date: 02/17/2022
+title: Azure Resource Manager DnsResolver client library for Java
+keywords: Azure, java, SDK, API, azure-resourcemanager-dnsresolver, dnsresolver
+author: joshfree
+ms.author: jfree
+ms.date: 02/21/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: appconfiguration
+ms.service: dnsresolver
 ---
-# Azure Resource Manager AppConfiguration client library for Java - Version 1.0.0-beta.4 
+# Azure Resource Manager DnsResolver client library for Java - Version 1.0.0-beta.1 
 
 
-Azure Resource Manager AppConfiguration client library for Java.
+Azure Resource Manager DnsResolver client library for Java.
 
-This package contains Microsoft Azure SDK for AppConfiguration Management SDK.  Package tag package-2021-10-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for DnsResolver Management SDK. The DNS Resolver Management Client. Package tag package-2020-04-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -40,12 +40,12 @@ Various documentation is available to help you get started
 
 ### Adding the package to your product
 
-[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-appconfiguration;current})
+[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-dnsresolver;current})
 ```xml
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
-    <artifactId>azure-resourcemanager-appconfiguration</artifactId>
-    <version>1.0.0-beta.4</version>
+    <artifactId>azure-resourcemanager-dnsresolver</artifactId>
+    <version>1.0.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -73,7 +73,7 @@ AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-AppConfigurationManager manager = AppConfigurationManager
+DnsResolverManager manager = DnsResolverManager
     .authenticate(credential, profile);
 ```
 
@@ -87,7 +87,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
-[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-appconfiguration_1.0.0-beta.4/sdk/appconfiguration/azure-resourcemanager-appconfiguration/SAMPLE.md)
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-dnsresolver_1.0.0-beta.1/sdk/dnsresolver/azure-resourcemanager-dnsresolver/SAMPLE.md)
 
 
 ## Troubleshooting
@@ -96,7 +96,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-appconfiguration_1.0.0-beta.4/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-dnsresolver_1.0.0-beta.1/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -109,8 +109,8 @@ For details on contributing to this repository, see the [contributing guide](htt
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-appconfiguration_1.0.0-beta.4/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-appconfiguration_1.0.0-beta.4/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-appconfiguration_1.0.0-beta.4/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-appconfiguration_1.0.0-beta.4/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-dnsresolver_1.0.0-beta.1/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-dnsresolver_1.0.0-beta.1/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-dnsresolver_1.0.0-beta.1/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-dnsresolver_1.0.0-beta.1/sdk/resourcemanager/docs/DESIGN.md
 
