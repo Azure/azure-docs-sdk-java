@@ -3,14 +3,14 @@ title: Azure Communication Service Common client library for Java
 keywords: Azure, java, SDK, API, azure-communication-common, communication
 author: JianpingChen
 ms.author: jiach
-ms.date: 02/09/2022
+ms.date: 02/23/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Service Common client library for Java - Version 1.0.8 
+# Azure Communication Service Common client library for Java - Version 1.1.0 
 
 
 Azure Communication Common contains data structures commonly used for communicating with Azure Communication Services. 
@@ -28,7 +28,7 @@ It is intended to provide cross-cutting concerns, e.g. authentication.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-common_1.0.8/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-common_1.1.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -55,6 +55,7 @@ and then include the direct dependency in the dependencies section without the v
 ```
 
 #### Include direct dependency
+
 If you want to take dependency on a particular version of the library that is not present in the BOM,
 add the direct dependency to your project as follows.
 
@@ -63,36 +64,57 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-common</artifactId>
-    <version>1.0.4</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 ## Key concepts
 
-To work with Azure Communication Services, a resource access key is used for authentication. 
+To work with Azure Communication Services, a resource access key is used for authentication.
 
 Azure Communication Service supports HMAC authentication with resource access key. To
-apply HMAC authentication, construct CommunicationClientCredential with the access key and instantiate
-a CommunicationIdentityClient to manage users and tokens.
+apply HMAC authentication, construct `CommunicationClientCredential` with the access key and instantiate
+a `CommunicationIdentityClient` to manage users and tokens.
 
 ### CommunicationTokenCredential
 
-It is up to you the developer to first create valid user tokens with the Communication Identity SDK. Then you use these tokens with the `CommunicationTokenCredential`.
+The `CommunicationTokenCredential` object is used to authenticate a user with Communication Services, such as Chat or Calling. It optionally provides an auto-refresh mechanism to ensure a continuously stable authentication state during communications.
 
-`CommunicationTokenCredential` authenticates a user with Communication Services, such as Chat or Calling. It optionally provides an auto-refresh mechanism to ensure a continuously stable authentication state during communications.
+Depending on your scenario, you may want to initialize the `CommunicationTokenCredential` with:
 
-## Contributing
+- a static token (suitable for short-lived clients used to e.g. send one-off Chat messages) or
+- a callback function that ensures a continuous authentication state (ideal e.g. for long Calling sessions).
 
-This project welcomes contributions and suggestions. Most contributions require you to agree to a [Contributor License Agreement (CLA)][cla] declaring that you have the right to, and actually do, grant us the rights to use your contribution.
-
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
+The tokens supplied to the `CommunicationTokenCredential` either through the constructor or via the token refresher callback can be obtained using the Azure Communication Identity library.
 
 ## Examples
 
-In progress.
+### Create a credential with a static token
+
+For short-lived clients, refreshing the token upon expiry is not necessary and `CommunicationTokenCredential` may be instantiated with a static token.
+
+```java
+String token = System.getenv("COMMUNICATION_SERVICES_USER_TOKEN");
+CommunicationTokenCredential tokenCredential = new CommunicationTokenCredential(token);
+```
+
+### Create a credential with proactive refreshing with a callback
+
+Alternatively, for long-lived clients, you can create a `CommunicationTokenCredential` with a callback to renew tokens if expired.
+Here we assume that we have a function `fetchTokenFromMyServerForUser` that makes a network request to retrieve a token string for a user.
+It's necessary that the `fetchTokenFromMyServerForUser` function returns a valid token (with an expiration date set in the future) at all times.
+
+Optionally, you can enable proactive token refreshing where a fresh token will be acquired as soon as the
+previous token approaches expiry. Using this method, your requests are less likely to be blocked to acquire a fresh token:
+
+```java
+String token = System.getenv("COMMUNICATION_SERVICES_USER_TOKEN");
+CommunicationTokenRefreshOptions tokenRefreshOptions = new CommunicationTokenRefreshOptions(fetchTokenFromMyServerForUser)
+    .setRefreshProactively(true)
+    .setInitialToken(token);
+CommunicationTokenCredential tokenCredential = new CommunicationTokenCredential(tokenRefreshOptions);     
+```
 
 ## Troubleshooting
 
@@ -101,6 +123,14 @@ In progress.
 ## Next steps
 
 Check out other client libraries for Azure communication service
+
+## Contributing
+
+This project welcomes contributions and suggestions. Most contributions require you to agree to a [Contributor License Agreement (CLA)][cla] declaring that you have the right to, and actually do, grant us the rights to use your contribution.
+
+When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
 [cla]: https://cla.microsoft.com
