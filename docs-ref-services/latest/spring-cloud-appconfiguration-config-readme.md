@@ -2,8 +2,8 @@
 title: 
 keywords: Azure, java, SDK, API, azure-spring-cloud-appconfiguration-config, springcloud
 author: mssfang
-ms.author: mssfang
-ms.date: 01/06/2022
+ms.author: shafang
+ms.date: 03/02/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -12,11 +12,4 @@ ms.service: springcloud
 ---
 # Spring Cloud for Azure appconfiguration config client library for Java
 
-## Key concepts
-## Getting started
-## Key concepts
-## Examples
-## Troubleshooting
-## Next steps
-## Contributing
-
+See: [Spring Cloud for Azure App Configuration Starter](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-appconfiguration-config_2.4.0/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config)
