@@ -3,14 +3,14 @@ title: Azure Storage Blob client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob, storage
 author: amishra-dev
 ms.author: amishra
-ms.date: 02/11/2022
+ms.date: 03/09/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
-# Azure Storage Blob client library for Java - Version 12.14.4 
+# Azure Storage Blob client library for Java - Version 12.15.0 
 
 
 Azure Blob Storage is Microsoft's object storage solution for the cloud. Blob
@@ -33,7 +33,7 @@ definition, such as text or binary data.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.14.4/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -68,7 +68,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob</artifactId>
-    <version>12.14.3</version>
+    <version>12.15.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -610,8 +610,8 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.14.4/sdk/storage/azure-storage-blob/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.14.4/sdk/storage/azure-storage-blob/src/samples/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0/sdk/storage/azure-storage-blob/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0/sdk/storage/azure-storage-blob/src/samples/README.md
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
@@ -621,9 +621,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.14.4/sdk/identity/azure-identity/README.md
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.14.4/sdk/storage/azure-storage-blob/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.15.0/sdk/storage/azure-storage-blob/src/samples
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/

@@ -3,14 +3,14 @@ title: Azure Storage internal avro client library for Java
 keywords: Azure, java, SDK, API, azure-storage-internal-avro, storage
 author: amishra-dev
 ms.author: amishra
-ms.date: 02/11/2022
+ms.date: 03/09/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
-# Azure Storage internal avro client library for Java - Version 12.1.4 
+# Azure Storage internal avro client library for Java - Version 12.2.0 
 
 
 This package supports an internal use only implementation of an Avro Parser.  
