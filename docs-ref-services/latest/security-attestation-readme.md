@@ -3,14 +3,14 @@ title: Azure Attestation client library for Java
 keywords: Azure, java, SDK, API, azure-security-attestation, attestation
 author: larryosterman
 ms.author: larryo
-ms.date: 02/08/2022
+ms.date: 03/12/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: attestation
 ---
-# Azure Attestation client library for Java - Version 1.0.0 
+# Azure Attestation client library for Java - Version 1.1.0 
 
 
 Microsoft Azure Attestation (preview) is a unified solution for remotely verifying the trustworthiness of a platform and integrity of the binaries running inside it. The service supports attestation of the platforms backed by Trusted Platform Modules (TPMs) alongside the ability to attest to the state of Trusted Execution Environments (TEEs) such as Intel® Software Guard Extensions (SGX) enclaves and Virtualization-based Security (VBS) enclaves.
@@ -25,9 +25,40 @@ Azure Attestation receives evidence from compute entities, turns them into a set
 
 ## Getting started
 
-### Adding the package to your project
+### Include the package
 
-Maven dependency for the Azure Attestation  library. Add it to your project's POM file.
+#### Include the BOM file
+
+Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-attestation_1.1.0/sdk/boms/azure-sdk-bom/README.md).
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-sdk-bom</artifactId>
+            <version>{bom_version_to_target}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+and then include the direct dependency in the dependencies section without the version tag as shown below.
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-security-attestation</artifactId>
+  </dependency>
+</dependencies>
+```
+
+#### Include direct dependency
+If you want to take dependency on a particular version of the library that is not present in the BOM,
+add the direct dependency to your project as follows.
 
 [//]: # ({x-version-update-start;com.azure:azure-security-attestation;current})
 
@@ -36,7 +67,7 @@ Maven dependency for the Azure Attestation  library. Add it to your project's PO
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-attestation</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -303,7 +334,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [style-guide-msft]: https://docs.microsoft.com/style-guide/capitalization
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azure_attestation]: https://docs.microsoft.com/azure/attestation
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-attestation_1.0.0/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-attestation_1.1.0/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [azure_cli]: https://docs.microsoft.com/cli/azure
