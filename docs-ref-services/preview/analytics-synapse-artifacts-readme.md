@@ -2,15 +2,15 @@
 title: Azure Synapse Artifacts client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-artifacts, synapseanalytics
 author: joshfree
-ms.author: joshfree
-ms.date: 01/28/2022
+ms.author: jfree
+ms.date: 03/14/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: synapseanalytics
 ---
-# Azure Synapse Artifacts client library for Java - Version 1.0.0-beta.8 
+# Azure Synapse Artifacts client library for Java - Version 1.0.0-beta.9 
 
 Azure Synapse is a limitless analytics service that brings together enterprise data warehousing and Big Data analytics. It gives you the freedom to query data on your terms, using either serverless on-demand or provisioned resources—at scale. Azure Synapse brings these two worlds together with a unified experience to ingest, prepare, manage, and serve data for immediate BI and machine learning needs.
 
@@ -27,7 +27,7 @@ Maven dependency for the Azure Synapse Artifacts client library. Add it to your 
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-analytics-synapse-artifacts</artifactId>
-    <version>1.0.0-beta.5</version>
+    <version>1.0.0-beta.9</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -226,10 +226,10 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-artifacts_1.0.0-beta.8/sdk/synapse/azure-analytics-synapse-artifacts/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-artifacts_1.0.0-beta.9/sdk/synapse/azure-analytics-synapse-artifacts/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azsynapse_docs]: https://docs.microsoft.com/azure/synapse-analytics/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-synapse-artifacts_1.0.0-beta.8/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-synapse-artifacts_1.0.0-beta.9/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [jdk]: https://docs.microsoft.com/azure/developer/java/fundamentals/?view=azure-java-stable
@@ -240,7 +240,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azsynapse_rest]: https://docs.microsoft.com/rest/api/synapse/
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_synapse_cli_full]: https://docs.microsoft.com/cli/azure/synapse?view=azure-cli-latest
-[artifacts_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-artifacts_1.0.0-beta.8/sdk/synapse/azure-analytics-synapse-artifacts/src/samples/java/com/azure/analytics/synapse/artifacts
+[artifacts_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-artifacts_1.0.0-beta.9/sdk/synapse/azure-analytics-synapse-artifacts/src/samples/java/com/azure/analytics/synapse/artifacts
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 
