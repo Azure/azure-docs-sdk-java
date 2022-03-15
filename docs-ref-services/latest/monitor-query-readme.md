@@ -3,14 +3,14 @@ title: Azure Monitor Query client library for Java
 keywords: Azure, java, SDK, API, azure-monitor-query, monitor
 author: srnagar
 ms.author: srnagar
-ms.date: 02/09/2022
+ms.date: 03/11/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: monitor
 ---
-# Azure Monitor Query client library for Java - Version 1.0.3 
+# Azure Monitor Query client library for Java - Version 1.0.4 
 
 
 The Azure Monitor Query client library is used to execute read-only queries against [Azure Monitor][azure_monitor_overview]'s two data platforms:
@@ -36,9 +36,40 @@ The Azure Monitor Query client library is used to execute read-only queries agai
 - To query Logs, you need an [Azure Log Analytics workspace][azure_monitor_create_using_portal].
 - To query Metrics, you need an Azure resource of any kind (Storage Account, Key Vault, Cosmos DB, etc.).
 
-### Install the package
+### Include the package
 
-Install the Azure Monitor Query client library for Java by adding the following to your *pom.xml* file:
+#### Include the BOM file
+
+Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.4/sdk/boms/azure-sdk-bom/README.md).
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-sdk-bom</artifactId>
+            <version>{bom_version_to_target}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+and then include the direct dependency in the dependencies section without the version tag as shown below.
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-monitor-query</artifactId>
+  </dependency>
+</dependencies>
+```
+
+#### Include direct dependency
+If you want to take dependency on a particular version of the library that is not present in the BOM,
+add the direct dependency to your project as follows.
 
 [//]: # ({x-version-update-start;com.azure:azure-monitor-query;current})
 
@@ -46,7 +77,7 @@ Install the Azure Monitor Query client library for Java by adding the following 
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-monitor-query</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.4</version>
 </dependency>
 ```
 
@@ -352,7 +383,7 @@ for (MetricResult metric : metricsQueryResult.getMetrics()) {
 
 ## Troubleshooting
 
-See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.3/sdk/monitor/azure-monitor-query/TROUBLESHOOTING.md)
+See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.4/sdk/monitor/azure-monitor-query/TROUBLESHOOTING.md)
 for details on how to diagnose various failure scenarios.
 
 ## Next steps
@@ -376,14 +407,14 @@ comments.
 [azure_monitor_create_using_portal]: https://docs.microsoft.com/azure/azure-monitor/logs/quick-create-workspace
 [azure_monitor_overview]: https://docs.microsoft.com/azure/azure-monitor/overview
 [azure_subscription]: https://azure.microsoft.com/free/java
-[changelog]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.3/sdk/monitor/azure-monitor-query/CHANGELOG.md
+[changelog]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.4/sdk/monitor/azure-monitor-query/CHANGELOG.md
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [kusto_query_language]: https://docs.microsoft.com/azure/data-explorer/kusto/query/
-[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.3/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.4/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [msdocs_apiref]: https://docs.microsoft.com/java/api/com.azure.monitor.query?view=azure-java-stable
 [package]: https://search.maven.org/artifact/com.azure/azure-monitor-query
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.3/sdk/monitor/azure-monitor-query/src/samples/java/README.md
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.3/sdk/monitor/azure-monitor-query/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.4/sdk/monitor/azure-monitor-query/src/samples/java/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.4/sdk/monitor/azure-monitor-query/src
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 [cla]: https://cla.microsoft.com

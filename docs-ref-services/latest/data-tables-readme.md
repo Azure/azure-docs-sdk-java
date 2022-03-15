@@ -3,14 +3,14 @@ title: Azure Tables client library for Java
 keywords: Azure, java, SDK, API, azure-data-tables, tables
 author: vcolin7
 ms.author: vicolina
-ms.date: 02/11/2022
+ms.date: 03/12/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: tables
 ---
-# Azure Tables client library for Java - Version 12.2.0 
+# Azure Tables client library for Java - Version 12.2.1 
 
 Azure Tables is a service that stores structured NoSQL data in the cloud, providing a key/attribute store with a schemaless design. Azure Tables gives developers flexibility and scalability with all the best parts of Azure cloud.
 
@@ -19,14 +19,47 @@ Azure Tables is a service that stores structured NoSQL data in the cloud, provid
 
 ## Getting started
 
-### Include the Package
+### Include the package
+
+#### Include the BOM file
+
+Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.1/sdk/boms/azure-sdk-bom/README.md).
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-sdk-bom</artifactId>
+            <version>{bom_version_to_target}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+and then include the direct dependency in the dependencies section without the version tag as shown below.
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-data-tables</artifactId>
+    </dependency>
+</dependencies>
+```
+
+#### Include direct dependency
+If you want to take dependency on a particular version of the library that is not present in the BOM,
+add the direct dependency to your project as follows.
 
 [//]: # ({x-version-update-start;com.azure:tables:azure-data-tables;current})
 ```xml
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-data-tables</artifactId>
-  <version>12.2.0</version>
+  <version>12.2.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -127,7 +160,7 @@ Azure Tables provides integration with Azure Active Directory (AAD) for identity
 To access a table resource with a `TokenCredential`, the authenticated identity should have either the "Storage Table Data Contributor" or "Storage Table Data Reader" role.
 
 With the `azure-identity` package, you can seamlessly authorize requests in both development and production environments.
-To learn more about Azure AD integration in Azure Storage, see the [Azure Identity README](https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.0/sdk/identity/azure-identity/README.md).
+To learn more about Azure AD integration in Azure Storage, see the [Azure Identity README](https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.1/sdk/identity/azure-identity/README.md).
 
 ## Key concepts
 
@@ -348,13 +381,13 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [cosmosdb_create_cli]: https://docs.microsoft.com/azure/cosmos-db/scripts/cli/table/create
 [cosmosdb_create_portal]: https://docs.microsoft.com/azure/cosmos-db/create-table-java#create-a-database-account
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
-[log_level]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.0/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/LogLevel.java
+[log_level]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.1/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/LogLevel.java
 [package]: https://search.maven.org/artifact/com.azure/azure-data-tables
 [product_documentation]: https://docs.microsoft.com/azure/cosmos-db/table-storage-overview
 [query_options]: https://docs.microsoft.com/rest/api/storageservices/querying-tables-and-entities#supported-query-options
 [rest_api]: https://docs.microsoft.com/rest/api/storageservices/table-service-rest-api
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.0/sdk/tables/azure-data-tables/src/samples/java/
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.0/sdk/tables/azure-data-tables/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.1/sdk/tables/azure-data-tables/src/samples/java/
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.1/sdk/tables/azure-data-tables/src
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal
 
