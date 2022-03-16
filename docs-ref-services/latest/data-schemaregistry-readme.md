@@ -3,14 +3,14 @@ title: Azure Schema Registry client library for Java
 keywords: Azure, java, SDK, API, azure-data-schemaregistry, schemaregistry
 author: conniey
 ms.author: conniey
-ms.date: 02/15/2022
+ms.date: 03/16/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: schemaregistry
 ---
-# Azure Schema Registry client library for Java - Version 1.0.2 
+# Azure Schema Registry client library for Java - Version 1.1.0 
 
 
 Azure Schema Registry is a schema repository service hosted by Azure Event Hubs, providing schema storage, versioning,
@@ -27,14 +27,47 @@ schema identifiers rather than full schemas.
 - [Azure Subscription][azure_subscription]
 - An [Event Hubs namespace][event_hubs_namespace]
 
-### Include the Package
+### Include the package
+
+#### Include the BOM file
+
+Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.1.0/sdk/boms/azure-sdk-bom/README.md).
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-sdk-bom</artifactId>
+            <version>{bom_version_to_target}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+and then include the direct dependency in the dependencies section without the version tag as shown below.
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-data-schemaregistry</artifactId>
+    </dependency>
+</dependencies>
+```
+
+#### Include direct dependency
+If you want to take dependency on a particular version of the library that is not present in the BOM,
+add the direct dependency to your project as follows.
 
 [//]: # ({x-version-update-start;com.azure:azure-data-schemaregistry;current})
 ```xml
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-data-schemaregistry</artifactId>
-  <version>1.0.2</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -55,7 +88,7 @@ To use the [DefaultAzureCredential][DefaultAzureCredential] provider shown below
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.4.4</version>
+    <version>1.4.6</version>
 </dependency>
 ```
 
@@ -184,23 +217,23 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 
 <!-- LINKS -->
 [package_maven]: https://search.maven.org/artifact/com.azure/azure-data-schemaregistry
-[sample_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.0.2/sdk/schemaregistry/azure-data-schemaregistry/src/samples
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.2/sdk/schemaregistry/azure-data-schemaregistry/src/samples/java/com/azure/data/schemaregistry
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.2/sdk/schemaregistry/azure-data-schemaregistry/src
+[sample_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.1.0/sdk/schemaregistry/azure-data-schemaregistry/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.1.0/sdk/schemaregistry/azure-data-schemaregistry/src/samples/java/com/azure/data/schemaregistry
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.1.0/sdk/schemaregistry/azure-data-schemaregistry/src
 [samples_code]: src/samples/
 [azure_subscription]: https://azure.microsoft.com/free/
 [api_reference_doc]: https://aka.ms/schemaregistry
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_portal]: https://portal.azure.com
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.0.2/sdk/identity/azure-identity
-[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.2/sdk/identity/azure-identity/README.md#defaultazurecredential
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.1.0/sdk/identity/azure-identity
+[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.1.0/sdk/identity/azure-identity/README.md#defaultazurecredential
 [event_hubs_namespace]: https://docs.microsoft.com/azure/event-hubs/event-hubs-about
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [product_documentation]: https://aka.ms/schemaregistry
 [custom_subdomain]: https://docs.microsoft.com/azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
 [register_aad_app]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [aad_grant_access]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
-[schema_properties]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.2/sdk/schemaregistry/azure-data-schemaregistry/src/main/java/com/azure/data/schemaregistry/models/SchemaProperties.java
+[schema_properties]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.1.0/sdk/schemaregistry/azure-data-schemaregistry/src/main/java/com/azure/data/schemaregistry/models/SchemaProperties.java
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
