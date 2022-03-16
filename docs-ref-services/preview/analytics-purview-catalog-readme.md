@@ -1,17 +1,16 @@
 ---
 title: Azure Purview Catalog client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-purview-catalog, purview
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 10/15/2021
+author: joshfree
+ms.author: jfree
+ms.date: 03/16/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: purview
 ---
-
-# Azure Purview Catalog client library for Java - Version 1.0.0-beta.2 
+# Azure Purview Catalog client library for Java - Version 1.0.0-beta.3 
 
 
 Azure Purview Catalog is a fully managed cloud service whose users can discover the data sources they need and understand the data sources they find. At the same time, Data Catalog helps organizations get more value from their existing investments.
@@ -20,7 +19,7 @@ Azure Purview Catalog is a fully managed cloud service whose users can discover 
 - Browse associated technical, business, semantic, and operational metadata
 - Identify the sensitivity level of data.
 
-**Please rely heavily on the [service's documentation][product_documentation] and our [Low-Level client docs][low_level_client] to use this library**
+**Please rely heavily on the [service's documentation][product_documentation] and our [data-plane client docs][protocol_method] to use this library**
 
 [Source code][source_code] | [Package (Maven)][package] | [API reference documentation][api_reference_doc] | [Product Documentation][product_documentation] | [Samples][samples_readme]
 
@@ -32,7 +31,7 @@ Azure Purview Catalog is a fully managed cloud service whose users can discover 
 - [Azure Subscription][azure_subscription]
 - An existing Azure Purview account.
 
-For more information about creating the account see [here][create_azure_purview_account].
+For more information about creating the account, see [here][create_azure_purview_account].
 
 ### Include the Package
 
@@ -71,12 +70,11 @@ To use the [DefaultAzureCredential][DefaultAzureCredential] provider shown below
 Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
 
 ##### Example
-<!-- embedme ./src/samples/java/com/azure/analytics/purview/catalog/ReadmeSamples.java#L20-L23 -->
-```java
-GlossaryClient client = new PurviewCatalogClientBuilder()
-    .endpoint(System.getenv("<account-name>.catalog.purview.azure.com"))
+```java readme-sample-createGlossaryClient
+GlossaryClient client = new GlossaryClientBuilder()
+    .endpoint(System.getenv("<account-name>.purview.azure.com"))
     .credential(new DefaultAzureCredentialBuilder().build())
-    .buildGlossaryClient();
+    .buildClient();
 ```
 
 ## Key concepts
@@ -104,17 +102,23 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 
 <!-- LINKS -->
 [samples]: src/samples/java/com/azure/analytics/purview/catalog
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-purview-catalog_1.0.0-beta.2/sdk/purview/azure-analytics-purview-catalog/src
-[samples_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-purview-catalog_1.0.0-beta.2/sdk/purview/azure-analytics-purview-catalog/src/samples/
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-purview-catalog_1.0.0-beta.3/sdk/purview/azure-analytics-purview-catalog/src
+[samples_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-purview-catalog_1.0.0-beta.3/sdk/purview/azure-analytics-purview-catalog/src/samples/
 [azure_subscription]: https://azure.microsoft.com/free/
 [api_reference_doc]: https://azure.github.io/azure-sdk-for-java
 [product_documentation]: https://azure.microsoft.com/services/purview/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-purview-catalog_1.0.0-beta.2/sdk/identity/azure-identity
-[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-purview-catalog_1.0.0-beta.2/sdk/identity/azure-identity/README.md#defaultazurecredential
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-purview-catalog_1.0.0-beta.3/sdk/identity/azure-identity
+[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-purview-catalog_1.0.0-beta.3/sdk/identity/azure-identity/README.md#defaultazurecredential
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [package]: https://mvnrepository.com/artifact/com.azure/azure-analytics-purview-catalog
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-purview-catalog_1.0.0-beta.2/sdk/purview/azure-analytics-purview-catalog/src/samples/README.md
-[low_level_client]: https://github.com/Azure/azure-sdk-for-java/wiki/Low-Level-Client
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-purview-catalog_1.0.0-beta.3/sdk/purview/azure-analytics-purview-catalog/src/samples/README.md
+[protocol_method]: https://github.com/Azure/azure-sdk-for-java/wiki/Protocol-Methods
+[create_azure_purview_account]: https://docs.microsoft.com/azure/purview/create-catalog-portal
+[logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
+[cla]: https://cla.microsoft.com
+[coc]: https://opensource.microsoft.com/codeofconduct/
+[coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
+[coc_contact]: mailto:opencode@microsoft.com
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fpurview%2Fazure-analytics-purview-catalog%2FREADME.png)
 
