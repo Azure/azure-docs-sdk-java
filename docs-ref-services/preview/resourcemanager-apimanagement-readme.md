@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: api-management
 ---
 
 # Azure Resource Manager ApiManagement client library for Java - Version 1.0.0-beta.1 
