@@ -1,14 +1,14 @@
 ---
 title: 
-keywords: Azure, java, SDK, API, azure-spring-cloud-feature-management, springboot
+keywords: Azure, java, SDK, API, azure-spring-cloud-feature-management, appconfiguration
 author: mssfang
 ms.author: shafang
-ms.date: 03/02/2022
+ms.date: 03/29/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: springboot
+ms.service: appconfiguration
 ---
 # Spring Cloud for Azure feature management client library for Java
 
