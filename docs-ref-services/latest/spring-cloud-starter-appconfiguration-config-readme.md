@@ -1,14 +1,14 @@
 ---
 title: 
-keywords: Azure, java, SDK, API, azure-spring-cloud-starter-appconfiguration-config, springboot
+keywords: Azure, java, SDK, API, azure-spring-cloud-starter-appconfiguration-config, appconfiguration
 author: mssfang
 ms.author: shafang
-ms.date: 03/02/2022
+ms.date: 03/29/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: springboot
+ms.service: appconfiguration
 ---
 # Spring Cloud for Azure starter App Configuration client library for Java
 
@@ -64,6 +64,7 @@ Name | Description | Required | Default
 ---|---|---|---
 spring.cloud.azure.appconfiguration.stores | List of configuration stores from which to load configuration properties | Yes | true
 spring.cloud.azure.appconfiguration.enabled | Whether enable spring-cloud-azure-appconfiguration-config or not | No | true
+spring.cloud.azure.appconfiguration.refresh-interval | Amount of time, of type Duration, configurations are stored before a check can occur. | No | null
 
 `spring.cloud.azure.appconfiguration.stores` is a list of stores, where each store follows the following format:
 
@@ -352,7 +353,7 @@ Please follow [instructions here][contributing_md] to build from source or contr
 [app_configuration_conversation_initail_sample]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/tag_azure-spring-boot_3.6.0/appconfiguration/azure-appconfiguration-conversion-sample-initial
 [azure_subscription]: https://azure.microsoft.com/free
 [spring logging document]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#boot-features-logging
-[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.4.0/sdk/spring/CONTRIBUTING.md
+[contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.5.0/sdk/spring/CONTRIBUTING.md
 [maven]: https://maven.apache.org/
 [spring_conversion_duration]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion.durations
 [azure_managed_identity]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview
@@ -360,9 +361,9 @@ Please follow [instructions here][contributing_md] to build from source or contr
 [support_azure_services]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities
 [azure]: https://azure.microsoft.com
 [azure_active_directory]: https://azure.microsoft.com/services/active-directory/
-[azure_identity_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.4.0/sdk/identity/azure-identity
+[azure_identity_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.5.0/sdk/identity/azure-identity
 [azure_rbac]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[app_configuration_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.4.0/sdk/appconfiguration/azure-data-appconfiguration#key-concepts
-[key_vault_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.4.0/sdk/keyvault/azure-security-keyvault-secrets#key-concepts
+[app_configuration_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.5.0/sdk/appconfiguration/azure-data-appconfiguration#key-concepts
+[key_vault_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.5.0/sdk/keyvault/azure-security-keyvault-secrets#key-concepts
 [reference_docs]: https://microsoft.github.io/spring-cloud-azure/docs/azure-app-configuration/index.html
 
