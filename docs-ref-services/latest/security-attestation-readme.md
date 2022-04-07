@@ -3,14 +3,14 @@ title: Azure Attestation client library for Java
 keywords: Azure, java, SDK, API, azure-security-attestation, attestation
 author: larryosterman
 ms.author: larryo
-ms.date: 03/12/2022
+ms.date: 04/07/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: attestation
 ---
-# Azure Attestation client library for Java - Version 1.1.0 
+# Azure Attestation client library for Java - Version 1.1.1 
 
 
 Microsoft Azure Attestation (preview) is a unified solution for remotely verifying the trustworthiness of a platform and integrity of the binaries running inside it. The service supports attestation of the platforms backed by Trusted Platform Modules (TPMs) alongside the ability to attest to the state of Trusted Execution Environments (TEEs) such as Intel® Software Guard Extensions (SGX) enclaves and Virtualization-based Security (VBS) enclaves.
@@ -30,7 +30,7 @@ Azure Attestation receives evidence from compute entities, turns them into a set
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-attestation_1.1.0/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-attestation_1.1.1/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -334,7 +334,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [style-guide-msft]: https://docs.microsoft.com/style-guide/capitalization
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azure_attestation]: https://docs.microsoft.com/azure/attestation
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-attestation_1.1.0/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-attestation_1.1.1/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [azure_cli]: https://docs.microsoft.com/cli/azure
