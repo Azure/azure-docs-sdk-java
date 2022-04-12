@@ -1,16 +1,16 @@
 ---
 title: Azure Remote Rendering client library for Java
-keywords: Azure, java, SDK, API, azure-mixedreality-remoterendering, mixedreality
+keywords: Azure, java, SDK, API, azure-mixedreality-remoterendering, remoterendering
 author: MalcolmTyrrell
 ms.author: matyrr
-ms.date: 03/10/2022
+ms.date: 04/08/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: mixedreality
+ms.service: remoterendering
 ---
-# Azure Remote Rendering client library for Java - Version 1.1.5 
+# Azure Remote Rendering client library for Java - Version 1.1.6 
 
 
 Azure Remote Rendering (ARR) is a service that enables you to render high-quality, interactive 3D content in the cloud and stream it in real time to devices, such as the HoloLens 2.
@@ -36,7 +36,7 @@ the lifetime of remote rendering sessions.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.5/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.6/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -403,14 +403,14 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 [azure_subscription]: https://azure.microsoft.com/free
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.5/sdk/remoterendering/azure-mixedreality-remoterendering/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.6/sdk/remoterendering/azure-mixedreality-remoterendering/src
 [remote_rendering_account]: https://docs.microsoft.com/azure/remote-rendering/how-tos/create-an-account
-[LogLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.5/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[LogLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.6/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [product_documentation]: https://docs.microsoft.com/azure/remote-rendering/
 [cpp_api]: https://docs.microsoft.com/cpp/api/remote-rendering/
 [dotnet_api]: https://docs.microsoft.com/dotnet/api/microsoft.azure.remoterendering
 [how_to_authenticate]: https://docs.microsoft.com/azure/remote-rendering/how-tos/authentication
-[sts_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.5/sdk/mixedreality/azure-mixedreality-authentication
+[sts_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.6/sdk/mixedreality/azure-mixedreality-authentication
 [troubleshoot]: https://docs.microsoft.com/azure/remote-rendering/resources/troubleshoot
 [api_reference_doc]: https://docs.microsoft.com/rest/api/mixedreality/
 
