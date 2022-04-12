@@ -3,14 +3,14 @@ title: Azure Event Hubs client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventhubs, eventhubs
 author: conniey
 ms.author: conniey
-ms.date: 03/18/2022
+ms.date: 04/12/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: eventhubs
 ---
-# Azure Event Hubs client library for Java - Version 5.11.1 
+# Azure Event Hubs client library for Java - Version 5.11.2 
 
 
 Azure Event Hubs is a highly scalable publish-subscribe service that can ingest millions of events per second and stream
@@ -67,7 +67,7 @@ documentation][event_hubs_product_docs] | [Samples][sample_examples]
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -102,7 +102,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-eventhubs</artifactId>
-    <version>5.11.1</version>
+    <version>5.11.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -142,7 +142,7 @@ platform. First, add the package:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.4.6</version>
+    <version>1.5.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -376,7 +376,7 @@ their resolution. The logs produced will capture the flow of an application befo
 locate the root issue.
 
 View the [Configure logging in the Azure SDK for Java][logging] article for guidance about enabling logging. In
-addition, [TROUBLESHOOTING.md](https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/docs/troubleshooting.md) has instructions to enable VERBOSE logging that helps the
+addition, [TROUBLESHOOTING.md](https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/docs/troubleshooting.md) has instructions to enable VERBOSE logging that helps the
 Azure SDK team diagnose Event Hubs specific problems.
 
 ### Enable AMQP transport logging
@@ -433,32 +433,32 @@ advantage of the full feature set of the Azure Event Hubs service. To explore so
 ## Contributing
 
 If you would like to become an active contributor to this project please refer to our [Contribution
-Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/CONTRIBUTING.md) for more information.
+Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/CONTRIBUTING.md) for more information.
 
 <!-- Links -->
 [aad_authorization]: https://docs.microsoft.com/azure/event-hubs/authorize-access-azure-active-directory
 [amqp_transport_error]: https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#type-amqp-error
-[AmqpErrorCondition]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/core/azure-core-amqp/src/main/java/com/azure/core/amqp/exception/AmqpErrorCondition.java
-[AmqpErrorContext]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/core/azure-core-amqp/src/main/java/com/azure/core/amqp/exception/AmqpErrorContext.java
-[AmqpException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/core/azure-core-amqp/src/main/java/com/azure/core/amqp/exception/AmqpException.java
-[AmqpRetryOptions]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/core/azure-core-amqp/src/main/java/com/azure/core/amqp/AmqpRetryOptions.java
+[AmqpErrorCondition]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/core/azure-core-amqp/src/main/java/com/azure/core/amqp/exception/AmqpErrorCondition.java
+[AmqpErrorContext]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/core/azure-core-amqp/src/main/java/com/azure/core/amqp/exception/AmqpErrorContext.java
+[AmqpException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/core/azure-core-amqp/src/main/java/com/azure/core/amqp/exception/AmqpException.java
+[AmqpRetryOptions]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/core/azure-core-amqp/src/main/java/com/azure/core/amqp/AmqpRetryOptions.java
 [api_documentation]: https://aka.ms/java-docs
 [app_registration_page]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#get-values-for-signing-in
 [application_client_secret]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#create-a-new-application-secret
-[BlobCheckpointStore]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/README.md
-[CreateBatchOptions]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/models/CreateBatchOptions.java
+[BlobCheckpointStore]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/README.md
+[CreateBatchOptions]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/models/CreateBatchOptions.java
 [event_hubs_connection_string]: https://docs.microsoft.com/azure/event-hubs/event-hubs-get-connection-string
 [event_hubs_create]: https://docs.microsoft.com/azure/event-hubs/event-hubs-create
 [event_hubs_features]: https://docs.microsoft.com/azure/event-hubs/event-hubs-features
 [event_hubs_messaging_exceptions]: https://docs.microsoft.com/azure/event-hubs/event-hubs-messaging-exceptions
 [event_hubs_product_docs]: https://docs.microsoft.com/azure/event-hubs/
 [event_hubs_quotas]: https://docs.microsoft.com/azure/event-hubs/event-hubs-quotas
-[EventHubConsumerAsyncClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventHubConsumerAsyncClient.java
-[EventHubConsumerClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventHubConsumerClient.java
-[EventHubProducerAsyncClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventHubProducerAsyncClient.java
-[EventHubProducerClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventHubProducerClient.java
-[EventProcessorClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventProcessorClient.java
-[SampleCheckpointStore]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/src/samples/java/com/azure/messaging/eventhubs/SampleCheckpointStore.java
+[EventHubConsumerAsyncClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventHubConsumerAsyncClient.java
+[EventHubConsumerClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventHubConsumerClient.java
+[EventHubProducerAsyncClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventHubProducerAsyncClient.java
+[EventHubProducerClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventHubProducerClient.java
+[EventProcessorClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventProcessorClient.java
+[SampleCheckpointStore]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/src/samples/java/com/azure/messaging/eventhubs/SampleCheckpointStore.java
 [java_8_sdk_javadocs]: https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [logging]: https://docs.microsoft.com/azure/developer/java/sdk/logging-overview
@@ -467,9 +467,9 @@ Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eve
 [oasis_amqp_v1]: https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-overview-v1.0-os.html
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [qpid_proton_j_apache]: https://qpid.apache.org/proton/
-[sample_examples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/src/samples/java/com/azure/messaging/eventhubs/
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/src/samples/README.md
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.1/sdk/eventhubs/azure-messaging-eventhubs/
+[sample_examples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/src/samples/java/com/azure/messaging/eventhubs/
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.11.2/sdk/eventhubs/azure-messaging-eventhubs/
 [wiki_identity]: https://github.com/Azure/azure-sdk-for-java/wiki/Identity-and-Authentication
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Feventhubs%2Fazure-messaging-eventhubs%2FREADME.png)
