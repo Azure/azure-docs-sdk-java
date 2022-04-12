@@ -3,14 +3,14 @@ title: Azure Event Grid client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
 author: srnagar
 ms.author: srnagar
-ms.date: 03/10/2022
+ms.date: 04/12/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: eventgrid
 ---
-# Azure Event Grid client library for Java - Version 4.10.0 
+# Azure Event Grid client library for Java - Version 4.11.0 
 
 
 Azure Event Grid allows you to easily build applications with event-based architectures. The Event Grid service fully 
@@ -58,7 +58,7 @@ az eventgrid domain create --location <location> --resource-group <your-resource
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.10.0/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.11.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -93,7 +93,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-eventgrid</artifactId>
-    <version>4.10.0</version>
+    <version>4.11.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -296,6 +296,16 @@ the synchronous client is used for samples, however the asynchronous client has 
 Note: figure out what schema (cloud event, event grid event, or custom event) the event grid topic accepts before you start sending.
 #### Sending `EventGridEvent` to a topic that accepts EventGridEvent schema
 
+```java readme-sample-sendEventGridEventsToTopic
+// Make sure that the event grid topic or domain you're sending to is able to accept the EventGridEvent schema.
+List<EventGridEvent> events = new ArrayList<>();
+User user = new User("John", "James");
+events.add(new EventGridEvent("exampleSubject", "Com.Example.ExampleEventType", BinaryData.fromObject(user), "0.1"));
+eventGridEventClient.sendEvents(events);
+```
+
+#### Sending `CloudEvent` to a topic that accepts CloudEvent schema
+
 ```java readme-sample-sendCloudEventsToTopic
 // Make sure that the event grid topic or domain you're sending to is able to accept the CloudEvent schema.
 List<CloudEvent> events = new ArrayList<>();
@@ -303,16 +313,6 @@ User user = new User("John", "James");
 events.add(new CloudEvent("https://source.example.com", "Com.Example.ExampleEventType",
     BinaryData.fromObject(user), CloudEventDataFormat.JSON, "application/json"));
 cloudEventClient.sendEvents(events);
-```
-
-#### Sending `CloudEvent` to a topic that accepts CloudEvent schema
-
-```java readme-sample-sendEventGridEventsToTopic
-// Make sure that the event grid topic or domain you're sending to is able to accept the EventGridEvent schema.
-List<EventGridEvent> events = new ArrayList<>();
-User user = new User("John", "James");
-events.add(new EventGridEvent("exampleSubject", "Com.Example.ExampleEventType", BinaryData.fromObject(user), "0.1"));
-eventGridEventClient.sendEvents(events);
 ```
 
 #### Sending Custom Events to a topic that accepts custom event schema
@@ -497,7 +497,7 @@ If you encounter any bugs with these SDKs, please file issues via [Issues](https
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.10.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.11.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -514,13 +514,13 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [javadocs]: https://azure.github.io/azure-sdk-for-java/eventgrid.html
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.10.0/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.10.0/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.11.0/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.11.0/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
 [eventgrid]: https://azure.com/eventgrid
 [portal]: https://ms.portal.azure.com/
 [cli]: https://docs.microsoft.com/cli/azure
 [service_docs]: https://docs.microsoft.com/azure/event-grid/
-[sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_4.10.0/sdk/eventgrid/azure-messaging-eventgrid/src
+[sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_4.11.0/sdk/eventgrid/azure-messaging-eventgrid/src
 [EventGridEvent]: https://docs.microsoft.com/azure/event-grid/event-schema
 [CloudEvent]: https://github.com/cloudevents/spec/blob/master/spec.md
 
