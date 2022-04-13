@@ -1,5 +1,5 @@
 ---
-title: Azure CosmosDB Client Library for Java
+title: Azure Cosmos DB Client Library for Java
 keywords: Azure, java, SDK, API, azure-cosmos, cosmosdbcosmosdb
 author: maggiepint
 ms.author: magpint
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: cosmosdbcosmosdb
 ---
 
-# Azure CosmosDB Client Library for Java - Version 4.17.0 
+# Azure Cosmos DB Client Library for Java - Version 4.17.0 
 
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.
@@ -51,7 +51,7 @@ The SDK provides Reactor Core based async APIs. You can read more about Reactor 
 
 ### Authenticate the client
 
-In order to interact with the Azure CosmosDB service you'll need to create an instance of the Cosmos Client class. To make this possible you will need an url and key of the Azure CosmosDB service.
+In order to interact with the Azure Cosmos DB service you'll need to create an instance of the Cosmos Client class. To make this possible you will need an url and key of the Azure Cosmos DB service.
 
 The SDK provides two clients.
 1. `CosmosAsyncClient` for operations using asynchronous APIs.
@@ -106,7 +106,7 @@ You may learn more about partitioning [here](https://docs.microsoft.com/azure/co
 
 ## Examples
 
-The following section provides several code snippets covering some of the most common CosmosDB SQL API tasks, including:
+The following section provides several code snippets covering some of the most common Cosmos DB SQL API tasks, including:
 * [Create Cosmos Client](#create-cosmos-client "Create Cosmos Client")
 * [Create Database](#create-database "Create Database")
 * [Create Container](#create-container "Create Container")
@@ -250,8 +250,8 @@ log4j.appender.A1.layout.ConversionPattern=%d %5X{pid} [%t] %-5p %c - %m%n
 ## Next Steps
 
 - Samples are explained in detail [here][samples_readme]
-- Go through [quickstart][quickstart] - Building a java app to manage CosmosDB SQL API data
-- [Read more about Azure CosmosDB Service][cosmos_docs]
+- Go through [quickstart][quickstart] - Building a java app to manage Cosmos DB SQL API data
+- [Read more about Azure Cosmos DB Service][cosmos_docs]
 
 ## Contributing
 
