@@ -1,17 +1,16 @@
 ---
 title: Azure Event Grid client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 02/10/2021
+author: srnagar
+ms.author: srnagar
+ms.date: 04/13/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: eventgrid
 ---
-
-# Azure Event Grid client library for Java - Version 2.0.0-beta.4 
+# Azure Event Grid client library for Java - Version 4.12.0-beta.1 
 
 
 Azure Event Grid allows you to easily build applications with event-based architectures. The Event Grid service fully 
@@ -56,20 +55,53 @@ az eventgrid domain create --location <location> --resource-group <your-resource
 ```
 
 ### Include the package
+#### Include the BOM file
+
+Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.12.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-sdk-bom</artifactId>
+            <version>{bom_version_to_target}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+and then include the direct dependency in the dependencies section without the version tag.
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-messaging-eventgrid</artifactId>
+  </dependency>
+</dependencies>
+```
+
+#### Include direct dependency
+If you want to take dependency on a particular version of the library that is not present in the BOM,
+add the direct dependency to your project as follows.
+
 [//]: # ({x-version-update-start;com.azure:azure-messaging-eventgrid;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-eventgrid</artifactId>
-    <version>2.0.0-beta.4</version>
+    <version>4.12.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 ### Authenticate the Client
 
-In order to send events, we need an endpoint to send to and some authentication for the endpoint, either as a 
-key credential or a shared access signature.
+In order to send events, we need an endpoint to send to and some authentication for the endpoint. The authentication can be 
+a key credential, a shared access signature, or Azure Active Directory token authentication.
 The endpoint and key can both be obtained through [Azure Portal][portal] or [Azure CLI][cli].
 
 #### Endpoint
@@ -89,24 +121,65 @@ using the following command in [Azure CLI][cli]. Anyone of the keys listed will 
 az eventgrid topic key list --name <your-resource-name> --resource-group <your-resource-group-name>
 ```
 
+#### Azure Active Directory (AAD) Token authentication
+Azure Event Grid provides integration with Azure Active Directory (Azure AD) for identity-based authentication of requests. 
+With Azure AD, you can use role-based access control (RBAC) to grant access to your Azure Event Grid resources to users, groups, or applications.
+To send events to a topic or domain with a `TokenCredential`, the authenticated identity should have the "EventGrid Data Sender" role assigned.
+
 #### Creating the Client
 
 ##### Using endpoint and access key to create the client
 Once you have your access key and topic endpoint, you can create the publisher client as follows:
 
 Sync client that works for every Java developer:
-```java
-EventGridPublisherClient egClient = new EventGridPublisherClientBuilder()
-    .endpoint("<your event grid endpoint>")
-    .credential(new AzureKeyCredential("<your event grid access key>"))
-    .buildClient();
+
+```java readme-sample-createCloudEventPublisherClient
+// For CloudEvent
+EventGridPublisherClient<CloudEvent> cloudEventClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts CloudEvent schema>")
+    .credential(new AzureKeyCredential("<key for the endpoint>"))
+    .buildCloudEventPublisherClient();
+```
+
+```java readme-sample-createEventGridEventPublisherClient
+// For EventGridEvent
+EventGridPublisherClient<EventGridEvent> eventGridEventClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts EventGridEvent schema>")
+    .credential(new AzureKeyCredential("<key for the endpoint>"))
+    .buildEventGridEventPublisherClient();
+```
+
+```java readme-sample-createCustomEventPublisherClient
+// For custom event
+EventGridPublisherClient<BinaryData> customEventClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts custom event schema>")
+    .credential(new AzureKeyCredential("<key for the endpoint>"))
+    .buildCustomEventPublisherClient();
 ```
 or async client if your technology stack has reactive programming such as project reactor:
-```java
-EventGridPublisherAsyncClient egAsyncClient = new EventGridPublisherClientBuilder()
-    .endpoint("<your event grid endpoint>")
-    .credential(new AzureKeyCredential("<your event grid access key>"))
-    .buildAsyncClient();
+
+```java readme-sample-createCloudEventPublisherAsyncClient
+// For CloudEvent
+EventGridPublisherAsyncClient<CloudEvent> cloudEventAsyncClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts CloudEvent schema>")
+    .credential(new AzureKeyCredential("<key for the endpoint>"))
+    .buildCloudEventPublisherAsyncClient();
+```
+
+```java readme-sample-createEventGridEventPublisherAsyncClient
+// For EventGridEvent
+EventGridPublisherAsyncClient<EventGridEvent> eventGridEventAsyncClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts EventGridEvent schema>")
+    .credential(new AzureKeyCredential("<key for the endpoint>"))
+    .buildEventGridEventPublisherAsyncClient();
+```
+
+```java readme-sample-createCustomEventPublisherAsyncClient
+// For custom event
+EventGridPublisherAsyncClient<BinaryData> customEventAsyncClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts custom event schema>")
+    .credential(new AzureKeyCredential("<key for the endpoint>"))
+    .buildCustomEventPublisherAsyncClient();
 ```
 
 ##### Using endpoint and SAS token to create the client
@@ -114,18 +187,41 @@ If you have a SAS (**Shared Access Signature**) that can be used to send events 
 limited time, you can use it to create the publisher client:
 
 Sync client:
-```java
-EventGridPublisherClient egClient = new EventGridPublisherClientBuilder()
-    .endpoint("<your event grid endpoint>")
-    .credential(new AzureSasCredential("<your sas token for this event grid point>"))
-    .buildClient();
+
+```java readme-sample-createPublisherClientWithSas
+EventGridPublisherClient<CloudEvent> cloudEventClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts CloudEvent schema>")
+    .credential(new AzureSasCredential("<sas token that can access the endpoint>"))
+    .buildCloudEventPublisherClient();
 ```
 Async client:
-```java
-EventGridPublisherAsyncClient egClient = new EventGridPublisherClientBuilder()
-    .endpoint("<your event grid endpoint>")
-    .credential(new AzureSasCredential("<your sas token for this event grid point>"))
-    .buildAsyncClient();
+
+```java readme-sample-createPublisherClientWithSasAsync
+EventGridPublisherAsyncClient<CloudEvent> cloudEventAsyncClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts CloudEvent schema>")
+    .credential(new AzureSasCredential("<sas token that can access the endpoint>"))
+    .buildCloudEventPublisherAsyncClient();
+```
+
+##### Using endpoint and Azure Active Directory (AAD) token credential to create the client
+To use the AAD token credential, include `azure-identity` artifact as a dependency. Refer to
+[azure-identity README](https://docs.microsoft.com/java/api/overview/azure/identity-readme) for details.
+
+Sync client:
+
+```java readme-sample-createPublisherClientWithTokenCredential
+EventGridPublisherClient<CloudEvent> cloudEventClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts CloudEvent schema>")
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .buildCloudEventPublisherClient();
+```
+Async client:
+
+```java readme-sample-createPublisherAsyncClientWithTokenCredential
+EventGridPublisherAsyncClient<CloudEvent> cloudEventClient = new EventGridPublisherClientBuilder()
+    .endpoint("<endpoint of your event grid topic/domain that accepts CloudEvent schema>")
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .buildCloudEventPublisherAsyncClient();
 ```
 
 #### Create a SAS token for other people to send events for a limited period of time
@@ -134,12 +230,19 @@ a SAS (**Shared Access Signature**) for them so they can create an `EventGridPub
 to create the publisher client.
 
 Here is sample code to create a shared access signature that expires after 20 minutes:
-```java
+
+```java readme-sample-createSharedAccessSignature
 OffsetDateTime expiration = OffsetDateTime.now().plusMinutes(20);
-    
-String sasToken = EventGridSasGenerator
-    .generateSas("<your event grid endpoint>", new AzureKeyCredential("<your event grid access key>"), expiration);
+String sasToken = EventGridPublisherClient
+    .generateSas("<your event grid endpoint>", new AzureKeyCredential("<key for the endpoint>"), expiration);
 ```
+
+### Use `BinaryData`
+This SDK uses `com.azure.util.BinaryData` to represent the data payload of events.
+`BinaryData` supports serializing and deserializing objects through `com.azure.core.util.BinaryData.fromObject(Object object)` and `toObject()` methods,
+which use a default Jackson Json serializer, or `fromObject(Object object, ObjectSerializer customSerializer)` and `toObject(Class<T> clazz, ObjectSerializer serializer)` methods,
+which accept your customized Json serializer.
+Refer to [BinaryData](https://docs.microsoft.com/java/api/com.azure.core.util.binarydata?view=azure-java-stable) documentation for details.
 
 ## Key concepts
 For information about general Event Grid concepts: [Concepts in Azure Event Grid](https://docs.microsoft.com/azure/event-grid/concepts).
@@ -157,16 +260,16 @@ more common to use the already defined [EventGridEvent schema](https://docs.micr
 CloudEvent is a Cloud Native Computing Foundation project which produces a specification for describing event data in a common way.
 Event Grid service is compatible with the [CloudEvent specification](https://cloudevents.io/)
 Regardless of what schema your topic or domain is configured to use, 
-`EventGridPublisherClient` will be used to publish events to it. However, you must use the correct method for 
-publishing:
+`EventGridPublisherClient` will be used to publish events to it. However, you must use the correct type to instantiate
+it:
 
-| Event Schema       | Publishing Method     |
+| Event Schema       | Publisher Client Generic Instantiation    |
 | ------------ | --------------------- |
-| Event Grid Events  | `sendEventGridEvents`       |
-| Cloud Events | `sendCloudEvents`  |
-| Custom Events       | `sendCustomEvents` |
+| Event Grid Events  | `EventGridPublisherClient<EventGridEvent>`       |
+| Cloud Events | `EventGridPublisherClient<CloudEvent>`  |
+| Custom Events       | `EventGridPublisherClient<BinaryData>` |
 
-Using the wrong method will result in a BadRequest error from the service and your events will not be published.
+Using the wrong type will result in a BadRequest error from the service and your events will not be published.
 Use this Azure CLI command to query which schema an Event Grid Topic or Domain accepts:
 ```bash
 az eventgrid topic show --name <your-resource-name> --resource-group <your-resource-group-name> --query inputSchema
@@ -192,46 +295,63 @@ the synchronous client is used for samples, however the asynchronous client has 
 
 Note: figure out what schema (cloud event, event grid event, or custom event) the event grid topic accepts before you start sending.
 #### Sending `EventGridEvent` to a topic that accepts EventGridEvent schema
-```java
-// Make sure that the event grid topic or domain you're sending to accepts EventGridEvent schema.
+
+```java readme-sample-sendEventGridEventsToTopic
+// Make sure that the event grid topic or domain you're sending to is able to accept the EventGridEvent schema.
 List<EventGridEvent> events = new ArrayList<>();
 User user = new User("John", "James");
-events.add(new EventGridEvent("exampleSubject", "Com.Example.ExampleEventType", user, "v1"));
-egClient.sendEventGridEvents(events);
+events.add(new EventGridEvent("exampleSubject", "Com.Example.ExampleEventType", BinaryData.fromObject(user), "0.1"));
+eventGridEventClient.sendEvents(events);
 ```
 
 #### Sending `CloudEvent` to a topic that accepts CloudEvent schema
-```java
-// Make sure that the event grid topic or domain you're sending to accepts CloudEvent schema.
+
+```java readme-sample-sendCloudEventsToTopic
+// Make sure that the event grid topic or domain you're sending to is able to accept the CloudEvent schema.
 List<CloudEvent> events = new ArrayList<>();
 User user = new User("John", "James");
-events.add(new CloudEvent("https://source.example.com", "Com.Example.ExampleEventType", user));
-egClient.sendCloudEvents(events);
+events.add(new CloudEvent("https://source.example.com", "Com.Example.ExampleEventType",
+    BinaryData.fromObject(user), CloudEventDataFormat.JSON, "application/json"));
+cloudEventClient.sendEvents(events);
 ```
 
 #### Sending Custom Events to a topic that accepts custom event schema
 
-To send custom events in any defined schema, use the `sendCustomEvents` method
-on the `PublisherClient`.
-
+```java readme-sample-sendCustomEventsToTopic
+// Make sure that the event grid topic or domain you're sending to is able to accept the custom event schema.
+List<BinaryData> events = new ArrayList<>();
+events.add(BinaryData.fromObject(new HashMap<String, String>() {
+    {
+        put("id", UUID.randomUUID().toString());
+        put("time", OffsetDateTime.now().toString());
+        put("subject", "Test");
+        put("foo", "bar");
+        put("type", "Microsoft.MockPublisher.TestEvent");
+        put("data", "example data");
+        put("dataVersion", "0.1");
+    }
+}));
+customEventClient.sendEvents(events);
+```
 ### Sending Events To Event Grid Domain
 
 An [Event Grid Domain](https://docs.microsoft.com/azure/event-grid/event-domains) can have thousands of topics
 but has a single endpoint. You can use a domain to manage a set of related topics. Sending events to the topics of
 an Event Grid Domain is the same as sending events to a regular Event Grid Topic except that you need to 
 specify the `topic` of an `EventGridEvent` if the domain accepts `EventGridEvent` schema.
-```java
+
+```java readme-sample-sendEventGridEventsToDomain
 List<EventGridEvent> events = new ArrayList<>();
 User user = new User("John", "James");
-events.add(new EventGridEvent("com/example", "Com.Example.ExampleEventType", user, "1")
-    .setTopic("yourtopic"));  // Set it only when you send to an event grid domain.
-egClient.sendEventGridEvents(events);
+events.add(new EventGridEvent("com/example", "Com.Example.ExampleEventType", BinaryData.fromObject(user), "1")
+    .setTopic("yourtopic"));
+eventGridEventClient.sendEvents(events);
 ```
 
 If the domain accepts `CloudEvent` schema, the CloudEvent's attribute that is configured to map the `topic` when the 
 domain is created must be set. The default mapping attribute is `source`.
 
-### Recieving and Consuming Events
+### Receiving and Consuming Events
 The Event Grid service doesn't store events. So this Event Grid SDK doesn't have an event receiver.
 Instead, events are stored in the [Event Handlers](#event-handlers-and-event-deserialization), including ServiceBus, EventHubs, Storage Queue, WebHook endpoint, or many other supported Azure Services.
 However, currently all events will be sent and stored as encoded JSON data. Here is some basic code that details the deserialization 
@@ -240,14 +360,15 @@ from the topic/subscription.
 
 #### Deserialize `EventGridEvent` or `CloudEvent` from a Json String
 The Json String can have a single event or an array of events. The returned result is a list of events.
-```java
+
+```java readme-sample-deserializeEvents
 // Deserialize an EventGridEvent
-String eventGridEventJsonData = "your EventGridEvent json String";
-List<EventGridEvent> events = EventGridEvent.fromString(eventGridEventJsonData);
+String eventGridEventJsonData = "<your EventGridEvent json String>";
+List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(eventGridEventJsonData);
 
 // Deserialize a CloudEvent
-String cloudEventJsonData = "your CloudEvent json String";
-List<CloudEvent> events = CloudEvent.fromString(cloudEventJsonData);
+String cloudEventJsonData = "<your CloudEvent json String>";
+List<CloudEvent> cloudEvents = CloudEvent.fromString(cloudEventJsonData);
 ```
 
 #### Deserialize data from a `CloudEvent` or `EventGridEvent`
@@ -259,17 +380,21 @@ object, which has methods to further deserialize the data into usable types:
 - `BinaryData.toObject()` gets the data as an object of a specific type. It uses Json deserializer by default. It has
   an overload to accept your deserializer if you want to use your own.
 
-```java
+```java readme-sample-deserializeEventData
 BinaryData eventData = eventGridEvent.getData();
 
 //Deserialize data to a model class
-User dataInModelClass = eventData.toObject(TypeReference.createInstance(User.class));
+User dataInModelClass = eventData.toObject(User.class);
 
 //Deserialize data to a Map
-Map<?, ?> dataMap = eventData.toObject(TypeReference.createInstance(Map.class));
+Map<String, Object> dataMap = eventData.toObject(new TypeReference<Map<String, Object>>() {
+});
 
-//Deserialize data to a String
-String dataString = eventData.toString();
+//Deserialize Json String to a String
+String dataString = eventData.toObject(String.class);
+
+//Deserialize String data to a String
+String dataInJsonString = eventData.toString();
 
 //Deserialize data to byte array (byte[])
 byte[] dataInBytes = eventData.toBytes();
@@ -295,43 +420,46 @@ Receiving and consuming system events is the same as other events. Additionally,
 for the various system event data are defined in package `com.azure.messaging.eventgrid.systemevents`. You can do the 
 following after you deserialize an event by using `EventGridEvent.fromString()` or `CloudEvent.fromString()`:
 - look up the system event data model class that the System Event data can be deserialized to;
-```java
-    Class<?> eventDataClazz = SystemEventNames.getSystemEventMappings().get(event.getEventType());
+
+```java readme-sample-lookupSystemEventClass
+// Look up the System Event data class
+Class<?> eventDataClazz = SystemEventNames.getSystemEventMappings().get(event.getEventType());
 ```
 - deserialize a system event's data to a model class instance like deserializing any other event data;
-```java
-    // Deserialize the event data to an instance of a specific System Event data class type
-    BinaryData data = event.getData();
-    if (data != null) {
-        StorageBlobCreatedEventData blobCreatedData = data.toObject(TypeReference.createInstance(StorageBlobCreatedEventData.class));
-        System.out.println(blobCreatedData.getUrl());
-    }
+
+```java readme-sample-deserializeToSystemEventType
+// Deserialize the event data to an instance of a specific System Event data class type
+BinaryData data = event.getData();
+if (data != null) {
+    StorageBlobCreatedEventData blobCreatedData = data.toObject(StorageBlobCreatedEventData.class);
+    System.out.println(blobCreatedData.getUrl());
+}
 ```
 - deal with multiple event types.
-```java
-    List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(eventGridJsonString);
-    for (EventGridEvent eventGridEvent : eventGridEvents) {
-        BinaryData data = eventGridEvent.getData();
-        switch (eventGridEvent.getEventType()) {
-            case SystemEventNames.APP_CONFIGURATION_KEY_VALUE_DELETED:
-                AppConfigurationKeyValueDeletedEventData keyValueDeletedEventData =
-                    data.toObject(TypeReference.createInstance(AppConfigurationKeyValueDeletedEventData.class));
-                System.out.println("Processing the AppConfigurationKeyValueDeletedEventData...");
-                System.out.printf("The key is: %s%n", keyValueDeletedEventData.getKey());
-                break;
-            case SystemEventNames.APP_CONFIGURATION_KEY_VALUE_MODIFIED:
-                AppConfigurationKeyValueModifiedEventData keyValueModifiedEventData =
-                    data.toObject(TypeReference.createInstance(AppConfigurationKeyValueModifiedEventData.class));
-                System.out.println("Processing the AppConfigurationKeyValueModifiedEventData...");
-                System.out.printf("The key is: %s%n", keyValueModifiedEventData.getKey());
-                break;
-            default:
-                System.out.printf("%s isn't an AppConfiguration event data%n", eventGridEvent.getEventType());
-                break;
-        }
-    }
-```
 
+```java readme-sample-systemEventDifferentEventData
+List<EventGridEvent> eventGridEvents = EventGridEvent.fromString("<Your EventGridEvent Json String>");
+for (EventGridEvent eventGridEvent : eventGridEvents) {
+    BinaryData binaryData = eventGridEvent.getData();
+    switch (eventGridEvent.getEventType()) {
+        case SystemEventNames.APP_CONFIGURATION_KEY_VALUE_DELETED:
+            AppConfigurationKeyValueDeletedEventData keyValueDeletedEventData =
+                binaryData.toObject(TypeReference.createInstance(AppConfigurationKeyValueDeletedEventData.class));
+            System.out.println("Processing the AppConfigurationKeyValueDeletedEventData...");
+            System.out.printf("The key is: %s%n", keyValueDeletedEventData.getKey());
+            break;
+        case SystemEventNames.APP_CONFIGURATION_KEY_VALUE_MODIFIED:
+            AppConfigurationKeyValueModifiedEventData keyValueModifiedEventData =
+                binaryData.toObject(TypeReference.createInstance(AppConfigurationKeyValueModifiedEventData.class));
+            System.out.println("Processing the AppConfigurationKeyValueModifiedEventData...");
+            System.out.printf("The key is: %s%n", keyValueModifiedEventData.getKey());
+            break;
+        default:
+            System.out.printf("%s isn't an AppConfiguration event data%n", eventGridEvent.getEventType());
+            break;
+    }
+}
+```
 ### More samples
 Some additional sample code can be found [here][samples].
 
@@ -347,6 +475,10 @@ which wraps the error code.
 Reference documentation for the event grid service can be found [here][service_docs]. This is a
 good place to start for problems involving configuration of topics/endpoints, as well as for
 problems involving error codes from the service.
+
+### Distributed Tracing
+The Event Grid library supports distributing tracing out of the box. In order to adhere to the CloudEvents specification's [guidance](https://github.com/cloudevents/spec/blob/v1.0.1/extensions/distributed-tracing.md) on distributing tracing, the library will set the `traceparent` and `tracestate` on the `extensionAttributes` of a `CloudEvent` when distributed tracing is enabled. To learn more about how to enable distributed tracing in your application, take a look at the Azure SDK Java [distributed tracing documentation](https://docs.microsoft.com/azure/developer/java/sdk/tracing).
+
 
 ### Help and Issues
 
@@ -365,7 +497,7 @@ If you encounter any bugs with these SDKs, please file issues via [Issues](https
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_2.0.0-beta.4/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.12.0-beta.1/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -382,13 +514,13 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [javadocs]: https://azure.github.io/azure-sdk-for-java/eventgrid.html
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_2.0.0-beta.4/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_2.0.0-beta.4/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.12.0-beta.1/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid_4.12.0-beta.1/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java/com/azure/messaging/eventgrid
 [eventgrid]: https://azure.com/eventgrid
 [portal]: https://ms.portal.azure.com/
 [cli]: https://docs.microsoft.com/cli/azure
 [service_docs]: https://docs.microsoft.com/azure/event-grid/
-[sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_2.0.0-beta.4/sdk/eventgrid/azure-messaging-eventgrid/src
+[sources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid_4.12.0-beta.1/sdk/eventgrid/azure-messaging-eventgrid/src
 [EventGridEvent]: https://docs.microsoft.com/azure/event-grid/event-schema
 [CloudEvent]: https://github.com/cloudevents/spec/blob/master/spec.md
 
