@@ -6,9 +6,8 @@ author: pallavit
 ms.author: pallavit
 ms.date: 04/07/2022
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
-ms.service: containerregistry
+ms.service: azure-java
 ---
 # Azure Container Registry client library for Java - Version 1.0.3 
 
@@ -141,25 +140,25 @@ ContainerRegistryAsyncClient client = new ContainerRegistryClientBuilder()
 
 A **registry** stores Docker images and [OCI Artifacts](https://opencontainers.org/).  An image or artifact consists of a **manifest** and **layers**.  An image's manifest describes the layers that make up the image, and is uniquely identified by its **digest**.  An image can also be "tagged" to give it a human-readable alias.  An image or artifact can have zero or more **tags** associated with it, and each tag uniquely identifies the image.  A collection of images that share the same name but have different tags, is referred to as a **repository**.
 
-For more information please see [Container Registry Concepts](https://docs.microsoft.com/azure/container-registry/container-registry-concepts).
+For more information please see [Container Registry Concepts](/azure/container-registry/container-registry-concepts).
 
 ## Examples
 
 ### Sync examples
 
-- [List repository names](#samples)
-- [List tags with anonymous access](#samples)
-- [Set artifact properties](#samples)
-- [Delete images](#samples)
-- [Delete repository with anonymous access throws](#samples)
+- [List repository names](#list-repository-names)
+- [List tags with anonymous access](#list-tags-with-anonymous-access)
+- [Set artifact properties](#set-artifact-properties)
+- [Delete images](#delete-images)
+- [Delete repository with anonymous access throws](#delete-a-repository-with-anonymous-access-throws)
 
-### Async examples
+<!----### Async examples
 
-- [List repository names asynchronously](#samples)
+[List repository names asynchronously](#samples)
 - [List tags with anonymous access asynchronously](#samples)
 - [Set artifact properties asynchronously](#samples)
 - [Delete images asynchronously](#samples)
-- [Delete repository with anonymous access asynchronously throws](#samples)
+- [Delete repository with anonymous access asynchronously throws](#samples)--->
 
 ### List repository names
 
@@ -307,7 +306,7 @@ additional questions or comments.
 
 <!-- LINKS -->
 [source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.3/sdk/containerregistry/azure-containers-containerregistry/src
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free
 [package]: https://search.maven.org/artifact/com.azure/azure-containers-containerregisty
 [api_documentation]: https://aka.ms/java-docs
