@@ -1,7 +1,6 @@
 ---
 description: Learn how to cache static web content at strategically placed locations to provide maximum throughput for users with CDN.
 title: Azure CDN libraries for Java
-description: Reference documentation for the Java CDN management libraries 
 keywords: Azure, Java, SDK, API, content, distribution, network, CDN
 author: ramya-rao-a
 ms.author: sizhu    
