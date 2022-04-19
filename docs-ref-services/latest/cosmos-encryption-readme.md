@@ -3,7 +3,7 @@ title:
 keywords: Azure, java, SDK, API, azure-cosmos-encryption, cosmos
 author: kushagraThapar
 ms.author: kuthapar
-ms.date: 03/19/2022
+ms.date: 04/15/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -219,7 +219,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[encryption_source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos-encryption_1.0.0/sdk/cosmos/azure-cosmos-encryption/src
+[encryption_source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos-encryption_1.0.1/sdk/cosmos/azure-cosmos-encryption/src
 [cosmos_introduction]: https://docs.microsoft.com/azure/cosmos-db/
 [api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [encryption_api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos-encryption/latest/index.html
@@ -235,7 +235,7 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [troubleshooting]: https://docs.microsoft.com/azure/cosmos-db/troubleshoot-java-sdk-v4-sql
 [perf_guide]: https://docs.microsoft.com/azure/cosmos-db/performance-tips-java-sdk-v4-sql?tabs=api-async
 [sql_api_query]: https://docs.microsoft.com/azure/cosmos-db/sql-api-sql-query
-[getting_started_encryption]: https://github.com/Azure/azure-sdk-for-java/tree/azure-cosmos-encryption_1.0.0/sdk/cosmos/azure-cosmos-encryption/src/samples/java/com/azure/cosmos/encryption/
+[getting_started_encryption]: https://github.com/Azure/azure-sdk-for-java/tree/azure-cosmos-encryption_1.0.1/sdk/cosmos/azure-cosmos-encryption/src/samples/java/com/azure/cosmos/encryption/
 [quickstart]: https://docs.microsoft.com/azure/cosmos-db/create-sql-api-java?tabs=sync
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcosmos%2Fazure-cosmos-encryption%2FREADME.png)

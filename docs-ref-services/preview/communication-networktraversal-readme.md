@@ -3,21 +3,21 @@ title: Azure Communication Network Traversal Package client library for Java
 keywords: Azure, java, SDK, API, azure-communication-networktraversal, communication
 author: JianpingChen
 ms.author: jiach
-ms.date: 03/15/2022
+ms.date: 04/14/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Network Traversal Package client library for Java - Version 1.1.0-beta.1 
+# Azure Communication Network Traversal Package client library for Java - Version 1.1.0-beta.2 
 
 
 Azure Communication Network Traversal is managing TURN credentials for Azure Communication Services.
 
 It will provide TURN credentials to a user.
 
-[Source code](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-networktraversal_1.1.0-beta.1/sdk/communication) | [API reference documentation](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-networktraversal_1.1.0-beta.1/sdk/communication)
+[Source code](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-networktraversal_1.1.0-beta.2/sdk/communication) | [API reference documentation](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-networktraversal_1.1.0-beta.2/sdk/communication)
 
 ## Getting started
 
@@ -33,7 +33,7 @@ It will provide TURN credentials to a user.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-networktraversal_1.1.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-networktraversal_1.1.0-beta.2/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -68,7 +68,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-communication-networktraversal</artifactId>
-  <version>1.1.0-beta.1</version>
+  <version>1.1.0-beta.2</version>
 </dependency>
 ```
 
