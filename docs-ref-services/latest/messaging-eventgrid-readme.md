@@ -1,8 +1,7 @@
 ---
 title: Azure Event Grid client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
-description: Azure Event Grid allows you to easily build applications with event-based architectures by fully 
-managing all routing of events from any source, to any destination, for any application.
+description: Azure Event Grid allows you to easily build applications with event-based architectures by fully managing all routing of events from any source, to any destination, for any application.
 author: srnagar
 ms.author: srnagar
 ms.date: 04/12/2022
@@ -10,7 +9,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: event-grid
 ---
-# Azure Event Grid client library for Java - Version 4.11.0 
+# Azure Event Grid client library for Java - Version 4.11.0
 
 
 Azure Event Grid allows you to easily build applications with event-based architectures. The Event Grid service fully 
