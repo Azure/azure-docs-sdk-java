@@ -1,14 +1,14 @@
 ---
+description: Learn how to use the identity package for managing users and tokens for Azure Communication Services.
 title: Azure Communication Identity client library for Java
 keywords: Azure, java, SDK, API, azure-communication-identity, communication
 author: JianpingChen
 ms.author: jiach
 ms.date: 04/08/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: java
-ms.service: communication
+ms.service: azure-java
 ---
 # Azure Communication Identity client library for Java - Version 1.1.8 
 
@@ -212,7 +212,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[product_docs]: https://docs.microsoft.com/azure/communication-services/
+[product_docs]: /azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-identity
 [api_documentation]: https://aka.ms/java-docs
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-identity_1.1.8/sdk/communication/azure-communication-identity/src/samples/java/com/azure/communication/identity/ReadmeSamples.java
