@@ -1,11 +1,11 @@
 ---
+description: Learn how to send simple text messages using Azure Communication SMS Service. 
 title: Azure Communications SMS Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-sms, communication
 author: JianpingChen
 ms.author: jiach
 ms.date: 04/14/2022
 ms.topic: reference
-ms.technology: azure-cli
 ms.devlang: java
 ms.service: azure-java
 ---
@@ -22,7 +22,7 @@ Azure Communication SMS is used to send simple text messages.
 ### Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+- [Java Development Kit (JDK)](/java/azure/jdk/) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
 - A deployed Communication Services resource. You can use the [Azure Portal](/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](/powershell/module/az.communication/new-azcommunicationservice) to set it up.
 
@@ -202,7 +202,7 @@ try {
 [api_documentation]: https://aka.ms/java-docs
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.1.1/sdk/communication/azure-communication-sms/src
 [handle_sms_events]: /azure/communication-services/quickstarts/telephony-sms/handle-sms-events
-[next_steps]:https://docs.microsoft.com/azure/communication-services/quickstarts/telephony-sms/send?pivots=programming-language-java
+[next_steps]:/azure/communication-services/quickstarts/telephony-sms/send?pivots=programming-language-java
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Feng%2Fazure-communications-sms%2FREADME.png)
 
