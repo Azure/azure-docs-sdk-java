@@ -1,12 +1,11 @@
 ---
+description: Learn how to use the phone numbers package to provide capabilities for phone number management.
 title: Azure Communication Phone Numbers client library for Java
 keywords: Azure, java, SDK, API, azure-communication-phonenumbers, communication
 author: JianpingChen
 ms.author: jiach
 ms.date: 04/14/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
 ms.service: azure-java    
 ---
@@ -231,7 +230,7 @@ Check out other client libraries for Azure communication service
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[product_docs]: https://docs.microsoft.com/azure/communication-services/
+[product_docs]: /azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-phonenumbers
 [api_documentation]: https://aka.ms/java-docs
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-phonenumbers_1.0.10/sdk/communication/azure-communication-phonenumbers/src

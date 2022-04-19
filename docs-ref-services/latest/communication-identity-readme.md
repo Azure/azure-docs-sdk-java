@@ -6,7 +6,6 @@ author: JianpingChen
 ms.author: jiach
 ms.date: 04/08/2022
 ms.topic: reference
-ms.technology: azure-cli
 ms.devlang: java
 ms.service: azure-java
 ---
