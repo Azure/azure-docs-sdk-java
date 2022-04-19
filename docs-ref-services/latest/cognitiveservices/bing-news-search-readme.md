@@ -2,6 +2,7 @@
 title: Bing News Search 
 author: PatrickFarley
 ms.author: pafarley
+description: Bing Search APIs are moving from Cognitive Services to Bing Search Services.
 ms.date: 10/26/2020
 ms.topic: reference
 ms.devlang: java

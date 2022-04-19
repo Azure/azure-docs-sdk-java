@@ -1,6 +1,7 @@
 ---
 title: Azure Text Analytics client library for Java
 keywords: Azure, java, SDK, API, azure-ai-textanalytics, textanalytics
+description: Text Analytics is a cloud-based service that provides advanced natural language processing over raw text.
 author: samvaity
 ms.author: savaity
 ms.date: 04/07/2022
@@ -498,7 +499,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [api_reference_doc]: https://aka.ms/azsdk-java-textanalytics-ref-docs
 [authentication]: https://docs.microsoft.com/azure/cognitive-services/authentication
 [azure_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
-[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
+[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show&preserve-view=true
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.1.8/sdk/identity/azure-identity
 [azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.1.8/sdk/identity/azure-identity#credentials
 [azure_key_credential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/core/azure-core/src/main/java/com/azure/core/credential/AzureKeyCredential.java
@@ -512,7 +513,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [custom_subdomain]: https://docs.microsoft.com/azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
 [grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [healthcare]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-for-health?tabs=ner
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
 [key]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
 [key_phrase_extraction]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-keyword-extraction
 [language_detection]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-language-detection

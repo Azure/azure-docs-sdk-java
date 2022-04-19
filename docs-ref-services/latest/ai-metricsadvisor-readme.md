@@ -1,6 +1,7 @@
 ---
 title: Azure Metrics Advisor client library for Java
 keywords: Azure, java, SDK, API, azure-ai-metricsadvisor, metricsadvisor
+description: Azure Metrics Advisor is a new Cognitive  Service that uses time series based decision AI to identify and assist trouble shooting the incidents of online services, and monitor the business health by automating the slice and dice of business dataFeedMetrics.
 author: samvaity
 ms.author: savaity
 ms.date: 04/07/2022
@@ -428,10 +429,10 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 
 <!-- LINKS -->
 [aad_authorization]: /azure/cognitive-services/authentication#authenticate-with-azure-active-directory
-[api_reference_doc]: /java/api/com.azure.ai.metricsadvisor?view=azure-java-preview
+[api_reference_doc]: /java/api/com.azure.ai.metricsadvisor?view=azure-java-preview&preserve-view=true
 [azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.2/sdk/identity/azure-identity#credentials
 [azure_cli]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
-[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
+[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show&preserve-view=true
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.2/sdk/identity/azure-identity#credentials
 [azure_portal]: https://ms.portal.azure.com
 [azure_subscription]: https://azure.microsoft.com/free
@@ -442,7 +443,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [create_new_resource]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
 [grant_access]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [http_clients_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
 [key]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [metrics_advisor_account]: https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesMetricsAdvisor

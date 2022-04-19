@@ -1,6 +1,7 @@
 ---
 title: Azure Form Recognizer client library for Java
 keywords: Azure, java, SDK, API, azure-ai-formrecognizer, formrecognizer
+description: Azure Cognitive Services Form Recognizer is a cloud service that uses machine learning to recognize text and table data from form documents.
 author: samvaity
 ms.author: savaity
 ms.date: 04/09/2022
@@ -549,7 +550,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [github_io_docs]: https://aka.ms/azsdk-java-formrecognizer-ref-docs
 [azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_3.1.10/sdk/identity/azure-identity#credentials
 [azure_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
-[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
+[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show&preserve-view=true
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_3.1.10/sdk/identity/azure-identity#credentials
 [azure_portal]: https://ms.portal.azure.com
 [azure_subscription]: https://azure.microsoft.com/free
@@ -571,7 +572,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [fr_train_without_labels]: /azure/cognitive-services/form-recognizer/overview#train-without-labels
 [fr_train_with_labels]: /azure/cognitive-services/form-recognizer/overview#train-with-labels
 [http_response_exception]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.1.10/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer
 [product_documentation]: /azure/cognitive-services/form-recognizer/overview
