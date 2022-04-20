@@ -7,7 +7,7 @@ ms.author: savaity
 ms.date: 04/07/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: text-analytics
+ms.service: applied-ai-services
 ---
 # Azure Text Analytics client library for Java - Version 5.1.8 
 

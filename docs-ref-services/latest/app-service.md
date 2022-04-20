@@ -8,7 +8,7 @@ manager: douge
 ms.date: 10/09/2021
 ms.topic: reference
 ms.devlang: java
-ms.service: App Service
+ms.service: app-service
 ---
 
 # Azure App Service libraries for Java
