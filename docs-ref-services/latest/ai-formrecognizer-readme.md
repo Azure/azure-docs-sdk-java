@@ -7,7 +7,7 @@ ms.author: savaity
 ms.date: 04/09/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: formrecognizer
+ms.service: form-recognizer
 ---
 # Azure Form Recognizer client library for Java - Version 3.1.10 
 
@@ -561,7 +561,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [create_new_resource]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
 [create_composed_model_async]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.1.5/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/CreateComposedModelAsync.java 
 [differentiate_custom_forms_with_labeled_and_unlabeled_models]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.1.5/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/AdvancedDiffLabeledUnlabeledData.java
-[form_recognizer_account]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
+[form_recognizer_account]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
 [form_recognizer_async_client]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_3.1.5/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/FormRecognizerAsyncClient.java
 [form_recognizer_sync_client]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_3.1.5/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/FormRecognizerClient.java
 [form_training_async_client]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_3.1.5/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/training/FormTrainingAsyncClient.java
