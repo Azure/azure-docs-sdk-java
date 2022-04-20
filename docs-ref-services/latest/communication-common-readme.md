@@ -7,7 +7,7 @@ ms.author: jiach
 ms.date: 04/07/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: Azure Communication Services
+ms.service: Communication Services
 ---
 # Azure Communication Service Common client library for Java - Version 1.1.2 
 

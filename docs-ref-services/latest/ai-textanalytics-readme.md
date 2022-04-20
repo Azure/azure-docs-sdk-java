@@ -7,8 +7,7 @@ ms.author: savaity
 ms.date: 04/07/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: Azure Applied AI Services
-ms.subservice: text-analytics
+ms.service: text-analytics
 ---
 # Azure Text Analytics client library for Java - Version 5.1.8 
 
@@ -515,7 +514,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [healthcare]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-for-health?tabs=ner
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
-[key]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
+[key]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
 [key_phrase_extraction]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-keyword-extraction
 [language_detection]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-language-detection
 [language_regional_support]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/language-support

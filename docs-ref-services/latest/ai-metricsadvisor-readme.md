@@ -7,8 +7,7 @@ ms.author: savaity
 ms.date: 04/07/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: Azure Applied AI Services
-ms.subservice: metrics-advisor
+ms.service: metrics-advisor
 ---
 # Azure Metrics Advisor client library for Java - Version 1.1.2 
 
@@ -442,7 +441,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 [create_new_resource]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
-[grant_access]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [http_clients_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
 [key]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
