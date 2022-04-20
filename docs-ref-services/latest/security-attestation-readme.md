@@ -1,12 +1,11 @@
 ---
 title: Azure Attestation client library for Java
+description: Learn how to remotely verify the trustworthiness of a platform and integrity of the binaries running inside it with Azure Attestation.
 keywords: Azure, java, SDK, API, azure-security-attestation, attestation
 author: larryosterman
 ms.author: larryo
 ms.date: 04/07/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: attestation
 ---
@@ -129,7 +128,7 @@ the certificate issued by the server can be verified using the [oe_verify_attest
 
 Each attestation service instance has a policy applied to it which defines additional criteria which the customer has defined.
 
-For more information on attestation policies, see [Attestation Policy](https://docs.microsoft.com/azure/attestation/author-sign-policy)
+For more information on attestation policies, see [Attestation Policy](/azure/attestation/author-sign-policy)
 
 ### Policy Management certificate management
 
@@ -316,11 +315,11 @@ System.out.printf("Removed certificate thumbprint: %s\n", modificationResult.get
 
 ## Troubleshooting
 
-Troubleshooting information for the MAA service can be found [here](https://docs.microsoft.com/azure/attestation/troubleshoot-guide)
+Troubleshooting information for the MAA service can be found [here](/azure/attestation/troubleshoot-guide)
 
 ## Next steps
 
-For more information about the Microsoft Azure Attestation service, please see our [documentation page](https://docs.microsoft.com/azure/attestation/).
+For more information about the Microsoft Azure Attestation service, please see our [documentation page](/azure/attestation/).
 
 ## Contributing
 
@@ -333,7 +332,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 <!-- LINKS -->
 [style-guide-msft]: https://docs.microsoft.com/style-guide/capitalization
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
-[azure_attestation]: https://docs.microsoft.com/azure/attestation
+[azure_attestation]: /azure/attestation
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-attestation_1.1.1/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
@@ -341,7 +340,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [rest_api]: https://docs.microsoft.com/rest/api/attestation/
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [azure_cloud_shell]: https://shell.azure.com/bash
 [http_clients_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients
 [microsoft_code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
