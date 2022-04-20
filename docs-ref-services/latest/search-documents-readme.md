@@ -472,7 +472,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[jdk]: /java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk/
 [api_documentation]: https://aka.ms/java-docs
 [search]: https://azure.microsoft.com/services/search/
 [search_docs]: /azure/search/
