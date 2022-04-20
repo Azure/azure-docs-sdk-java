@@ -1,6 +1,6 @@
 ---
 title: Azure IoT Digital Twins client library for Java
-description: This library provides access to the Azure Digital Twins service for managing twins, models, relationships, etc.
+description: This library provides access to the Azure Digital Twins service for managing twins, models, relationships, and more.
 keywords: Azure, java, SDK, API, azure-digitaltwins-core, digitaltwins
 author: johngallardo
 ms.author: jgalla
