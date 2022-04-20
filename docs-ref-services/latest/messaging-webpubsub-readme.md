@@ -1,6 +1,7 @@
 ---
 title: Azure Web PubSub service client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-webpubsub, webpubsub
+description: Azure Web PubSub service is an Azure-managed service that helps developers easily build web applications with real-time features and publish-subscribe patter.
 author: joshfree
 ms.author: jfree
 ms.date: 04/14/2022
