@@ -6,8 +6,6 @@ author: alzimmermsft
 ms.author: alzimmer
 ms.date: 04/02/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: azure-java
 ---
