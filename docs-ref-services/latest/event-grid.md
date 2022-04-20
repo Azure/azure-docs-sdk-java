@@ -3,7 +3,7 @@ title: Azure Event Grid libraries for Java
 description: Reference documentation for Azure Event Grid Java libraries 
 keywords: Azure, Java, SDK, API, event grid, messaging, event driven
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 manager: angerobe
 ms.date: 07/11/2017
 ms.topic: reference-reference
@@ -33,7 +33,7 @@ The version 4.x.x client libraries for Java are part of the Azure SDK for Java. 
 
 | Maven Package | Reference | Samples |
 |--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|
-|    [azure-messaging-eventgrid](https://mvnrepository.com/artifact/com.azure/azure-messaging-eventgrid)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/eventgrid/client)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java)    |
+|    [azure-messaging-eventgrid](https://mvnrepository.com/artifact/com.azure/azure-messaging-eventgrid)    |    [API Reference](/java/api/overview/azure/eventgrid/client)    |    [Samples](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/eventgrid/azure-messaging-eventgrid/src/samples/java)    |
 
 
 > [!div class="nextstepaction"]

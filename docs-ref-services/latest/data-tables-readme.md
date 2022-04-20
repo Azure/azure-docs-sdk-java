@@ -5,17 +5,16 @@ author: vcolin7
 ms.author: vicolina
 ms.date: 04/07/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: tables
+ms.service: storage
+ms.subservice: tables
 ---
 # Azure Tables client library for Java - Version 12.2.2 
 
 Azure Tables is a service that stores structured NoSQL data in the cloud, providing a key/attribute store with a schemaless design. Azure Tables gives developers flexibility and scalability with all the best parts of Azure cloud.
 
-[Source code][source_code] | [Package (Maven)][package] | [API reference documentation][api_documentation]
-| [Product documentation][product_documentation] | [Samples][samples]
+[Source code][source_code]  [Package (Maven)][package]  [API reference documentation][api_documentation]
+ [Product documentation][product_documentation] [Samples][samples]
 
 ## Getting started
 
@@ -378,18 +377,18 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_contact]: mailto:opencode@microsoft.com
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc]: https://opensource.microsoft.com/codeofconduct/
-[cosmosdb_create_cli]: https://docs.microsoft.com/azure/cosmos-db/scripts/cli/table/create
-[cosmosdb_create_portal]: https://docs.microsoft.com/azure/cosmos-db/create-table-java#create-a-database-account
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[cosmosdb_create_cli]: /azure/cosmos-db/scripts/cli/table/create
+[cosmosdb_create_portal]: /azure/cosmos-db/create-table-java#create-a-database-account
+[jdk]: /java/azure/jdk/
 [log_level]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.2/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/LogLevel.java
 [package]: https://search.maven.org/artifact/com.azure/azure-data-tables
-[product_documentation]: https://docs.microsoft.com/azure/cosmos-db/table-storage-overview
-[query_options]: https://docs.microsoft.com/rest/api/storageservices/querying-tables-and-entities#supported-query-options
-[rest_api]: https://docs.microsoft.com/rest/api/storageservices/table-service-rest-api
+[product_documentation]: /azure/cosmos-db/table-storage-overview
+[query_options]: /rest/api/storageservices/querying-tables-and-entities#supported-query-options
+[rest_api]: /rest/api/storageservices/table-service-rest-api
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.2/sdk/tables/azure-data-tables/src/samples/java/
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.2.2/sdk/tables/azure-data-tables/src
-[storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-cli
-[storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal
+[storage_account_create_cli]: /azure/storage/common/storage-account-create?tabs=azure-cli
+[storage_account_create_portal]: /azure/storage/common/storage-account-create?tabs=azure-portal
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Ftables%2Fazure-data-tables%2FREADME.png)
 
