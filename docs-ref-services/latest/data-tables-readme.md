@@ -1,5 +1,6 @@
 ---
 title: Azure Tables client library for Java
+description: Azure Tables is a service that stores structured NoSQL data in the cloud, providing a key/attribute store with a schemaless design.
 keywords: Azure, java, SDK, API, azure-data-tables, tables
 author: vcolin7
 ms.author: vicolina

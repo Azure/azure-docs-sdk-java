@@ -1,5 +1,6 @@
 ---
 title: Azure Identity client library for Java
+description: The Azure Identity library provides Azure Active Directory (AAD) token authentication support across the Azure SDK.
 keywords: Azure, java, SDK, API, azure-identity, identity
 author: g2vinay
 ms.author: vigera
@@ -230,7 +231,7 @@ public void createManagedIdentityCredential() {
 Credentials default to authenticating to the Azure Active Directory endpoint for
 Azure Public Cloud. To access resources in other clouds, such as Azure Government
 or a private cloud, configure credentials with the `auhtorityHost` argument.
-[AzureAuthorityHosts](/java/api/com.azure.identity.azureauthorityhosts?view=azure-java-stable)
+[AzureAuthorityHosts](/java/api/com.azure.identity.azureauthorityhosts?view=azure-java-stable&preserve-view=true)
 defines authorities for well-known clouds:
 ```java
 DefaultAzureCredential defaultAzureCredential = new DefaultAzureCredentialBuilder()
@@ -400,7 +401,7 @@ argument but defaults to the authority matching VS Code's "Azure: Cloud" setting
 
 > __Note:__ All credential implementations in the Azure Identity library are threadsafe, and a single credential instance can be used to create multiple service clients.
 
-Credentials can be chained together to be tried in turn until one succeeds using the `ChainedTokenCredential`; see [chaining credentials](#chaining-credentials) for details.
+Credentials can be chained together to be tried in turn until one succeeds using the `ChainedTokenCredential`; see [chaining credentials](https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Examples#chaining-credentials#chaining-credentials) for details.
 
 ## Environment Variables
 `DefaultAzureCredential` and `EnvironmentCredential` can be configured with environment variables. Each type of authentication requires values for specific variables:
@@ -522,7 +523,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [eventhubs_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.5.0/sdk/eventhubs/azure-messaging-eventhubs
 [azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.5.0/sdk/core
 [javadoc]: https://azure.github.io/azure-sdk-for-java
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
 [chaining_credentials]: https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Examples#chaining-credentials
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fidentity%2Fazure-identity%2FREADME.png)

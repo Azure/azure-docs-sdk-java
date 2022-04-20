@@ -1,5 +1,6 @@
 ---
 title: Azure IoT Digital Twins client library for Java
+description: This library provides access to the Azure Digital Twins service for managing twins, models, relationships, etc.
 keywords: Azure, java, SDK, API, azure-digitaltwins-core, digitaltwins
 author: johngallardo
 ms.author: jgalla
@@ -157,11 +158,11 @@ For more information see the Code of Conduct FAQ or contact opencode@microsoft.c
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [nuget]: https://www.nuget.org/
 [azure_portal]: https://portal.azure.com/
-[azure_rest_api]: https://docs.microsoft.com/rest/api/azure/
+[azure_rest_api]: /rest/api/azure/
 [azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.2.1/sdk/core/azure-core
-[token_credential]: /java/api/com.azure.core.credential.tokencredential?view=azure-java-stable
-[digital_twins_documentation]: https://docs.microsoft.com/azure/digital-twins/
+[token_credential]: /java/api/com.azure.core.credential.tokencredential?view=azure-java-stable&preserve-view=true
+[digital_twins_documentation]: /azure/digital-twins/
 [azure_cli]: /cli/azure/install-azure-cli?view=azure-cli-latest
 [iot_cli_extension]: https://github.com/Azure/azure-iot-cli-extension/releases
-[iot_cli_doc]: /cli/azure/ext/azure-iot/dt?view=azure-cli-latest
+[iot_cli_doc]: /cli/azure/ext/azure-iot/dt?view=azure-cli-latest&preserve-view=true
 
