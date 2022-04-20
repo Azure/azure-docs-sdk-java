@@ -1,4 +1,5 @@
 ---
+description: Learn how to use the Azure Core Management library collection of classes. 
 title: Azure Core Management client library for Java
 keywords: Azure, java, SDK, API, azure-core-management, core
 author: alzimmermsft
@@ -8,7 +9,7 @@ ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: core
+ms.service: azure-java
 ---
 # Azure Core Management client library for Java - Version 1.5.4 
 
@@ -68,7 +69,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- Links -->
-[arm]: https://docs.microsoft.com/azure/azure-resource-manager/management/
+[arm]: /azure/azure-resource-manager/management/
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]:/java/azure/jdk/
 
