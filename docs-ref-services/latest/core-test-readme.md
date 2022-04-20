@@ -1,6 +1,6 @@
 ---
-description: Learn how to use the Azure Core Test shared library containing core classes used to test Azure SDK client libraries.
 title: Azure Core Test shared library for Java
+description: Learn how to use the Azure Core Test shared library containing core classes used to test Azure SDK client libraries.
 keywords: Azure, java, SDK, API, azure-core-test, core
 author: alzimmermsft
 ms.author: alzimmer
