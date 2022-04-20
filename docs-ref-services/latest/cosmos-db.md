@@ -1,16 +1,15 @@
 ---
+description: Learn how to Store and query key-value, JSON document, graph, and columnar data in a globally distributed database with Azure Cosmos DB.
 title: Azure Cosmos DB libraries for Java
 description: Reference documentation for the Java client libraries for Azure Cosmos DB
 keywords: Azure, Java, SDK, API, SQL, database, MongoDB, Cosmos DB, NoSQL 
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu 
 manager: douge
 ms.date: 07/10/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: cosmos-db
+ms.service: azure-java
 ---
 
 # Azure Cosmos DB libraries for Java
