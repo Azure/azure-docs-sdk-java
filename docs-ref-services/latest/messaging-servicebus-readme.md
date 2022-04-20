@@ -1,11 +1,11 @@
 ---
 title: Azure Service Bus client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-servicebus, servicebus
+description: Microsoft Azure Service Bus is a fully managed enterprise integration message broker. Service Bus capable of decoupling applications and services.
 author: anuchandy
 ms.author: anuchan
 ms.date: 04/12/2022
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: service-bus
 ---
