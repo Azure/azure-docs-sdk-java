@@ -1,5 +1,6 @@
 ---
 title: Azure App Configuration client library for Java
+description: Learn how to create and manage application configuration settings using the Azure App Configuration client library for Java.
 keywords: Azure, java, SDK, API, azure-data-appconfiguration, appconfiguration
 author: mssfang
 ms.author: shafang
@@ -441,7 +442,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 [default_cred_ref]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-identity/1.0.1/com/azure/identity/DefaultAzureCredential.html
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [maven]: https://maven.apache.org/
 [package]: https://search.maven.org/artifact/com.azure/azure-data-appconfiguration
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning

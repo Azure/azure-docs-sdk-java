@@ -1,5 +1,6 @@
 ---
 title: Azure Cosmos DB OLTP Spark 3 connector
+description: Developer reference for the Azure Cosmos DB OLTP Spark 3 connector.
 keywords: Azure, java, SDK, API, azure-cosmos-spark_3-1_2-12, cosmos
 author: kushagraThapar
 ms.author: kuthapar
@@ -8,7 +9,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: cosmos-db
 ---
-## Azure Cosmos DB OLTP Spark 3 connector
+# Azure Cosmos DB OLTP Spark 3 connector
 
 **Azure Cosmos DB OLTP Spark connector** provides Apache Spark support for Azure Cosmos DB using 
 the [SQL API][sql_api_query].
