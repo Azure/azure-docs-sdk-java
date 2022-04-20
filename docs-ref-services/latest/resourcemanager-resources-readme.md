@@ -5,10 +5,8 @@ author: weidongxu-microsoft
 ms.author: weidxu
 ms.date: 03/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: resources
+ms.service: azure-resource-manager
 ---
 # Azure Resource Manager resources client library for Java - Version 2.13.0 
 
@@ -91,7 +89,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- LINKS -->
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-resources_2.13.0/sdk/identity/azure-identity
 [azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-resources_2.13.0/sdk/core/azure-core-http-netty
