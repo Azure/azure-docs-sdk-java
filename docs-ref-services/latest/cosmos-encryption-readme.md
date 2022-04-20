@@ -1,6 +1,6 @@
 ---
-description: Learn how to encrypt data with a user-provided key before saving into CosmosDB and decrypting it when reading back from the database.
 title: Encryption plugin library for Azure Cosmos DB Java SDK for Java
+description: Learn how to encrypt data with a user-provided key before saving into CosmosDB and decrypting it when reading back from the database.
 keywords: Azure, java, SDK, API, azure-cosmos-encryption, cosmos
 author: kushagraThapar
 ms.author: kuthapar
