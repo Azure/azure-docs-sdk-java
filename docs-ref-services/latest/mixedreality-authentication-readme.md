@@ -1,6 +1,7 @@
 ---
 title: Azure Mixed Reality client library for Java
 keywords: Azure, java, SDK, API, azure-mixedreality-authentication, mixedreality
+description: This package supports exchanging Mixed Reality account credentials for an access token from the STS that can be used to access Mixed Reality services.
 author: craigktreasure
 ms.author: crtreasu
 ms.date: 04/08/2022
