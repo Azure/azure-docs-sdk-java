@@ -36,7 +36,7 @@ Refer to [javadocs][encryption_api_documentation] for more details on the packag
 ### Prerequisites
 
 - [Java Development Kit (JDK) with version 8 or above][jdk]
-- An active Azure account. If you don't have one, you can sign up for a [free account][azure_subscription]. Alternatively, you can use the [Azure Cosmos DB Emulator](https://azure.microsoft.com/documentation/articles/documentdb-nosql-local-emulator) for development and testing. As emulator HTTPS certificate is self-signed, you need to import its certificate to java trusted cert store as [explained here](https://docs.microsoft.com/azure/cosmos-db/local-emulator-export-ssl-certificates)
+- An active Azure account. If you don't have one, you can sign up for a [free account][azure_subscription]. Alternatively, you can use the [Azure Cosmos DB Emulator](https://azure.microsoft.com/documentation/articles/documentdb-nosql-local-emulator) for development and testing. As emulator HTTPS certificate is self-signed, you need to import its certificate to java trusted cert store as [explained here](/azure/cosmos-db/local-emulator-export-ssl-certificates)
 - (Optional) SLF4J is a logging facade.
 - (Optional) [SLF4J binding](https://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
 - (Optional) [Maven][maven]
@@ -49,7 +49,7 @@ The SDK provides Reactor Core-based async APIs. You can read more about Reactor 
 
 The Azure Cosmos Encryption Plugin is used for encrypting data with a user-provided key before saving into CosmosDB and decrypting it when reading back from the database. Underneath it uses Azure Cosmos DB Java SDK which provides client-side logical representation to access the Azure Cosmos DB SQL API.
 A Cosmos DB account contains zero or more databases, a database (DB) contains zero or more containers, and a container contains zero or more items.
-You may read more about databases, containers, and items [here](https://docs.microsoft.com/azure/cosmos-db/databases-containers-items).
+You may read more about databases, containers, and items [here](/azure/cosmos-db/databases-containers-items).
 A few important properties are defined at the level of the container, among them are provisioned throughput and partition key.
 
 ## Examples
