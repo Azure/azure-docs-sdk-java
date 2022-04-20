@@ -1,6 +1,6 @@
 ---
-description: Learn how to use the Azure Core Gson JSON Serializer plugin for the azure-core JsonSerializer API.
 title: Azure Core Gson JSON Serializer plugin library for Java
+description: Learn how to use the Azure Core Gson JSON Serializer plugin for the azure-core JsonSerializer API.
 keywords: Azure, java, SDK, API, azure-core-serializer-json-gson, core
 author: alzimmermsft
 ms.author: alzimmer
