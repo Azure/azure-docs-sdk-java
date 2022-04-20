@@ -7,7 +7,8 @@ ms.author: savaity
 ms.date: 04/07/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: metrics-advisor
+ms.service: Azure Applied AI Services
+ms.subservice: metrics-advisor
 ---
 # Azure Metrics Advisor client library for Java - Version 1.1.2 
 
