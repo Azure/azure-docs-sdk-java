@@ -194,7 +194,7 @@ comments.
 <!-- LINKS -->
 
 [azure_subscription]: https://azure.microsoft.com/free
-[jdk_link]: /azure/developer/java/fundamentals
+[jdk_link]: /java/azure/jdk/
 [source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.1.1/sdk/webpubsub/azure-messaging-webpubsub/src
 [product_documentation]: https://aka.ms/awps/doc
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.1.1/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md
