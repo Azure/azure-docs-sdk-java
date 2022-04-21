@@ -3,7 +3,7 @@ title: Bing Custom Search
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/26/2020
-ms.technology: azure
+ms.topic: reference
 ms.devlang: java
 ms.service: bing-search-services
 ---
