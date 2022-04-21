@@ -1,6 +1,7 @@
 ---
 title: Azure Monitor Query client library for Java
 keywords: Azure, java, SDK, API, azure-monitor-query, monitor
+description: The Azure Monitor Query client library is used to execute read-only queries against Azure Monitor's two data platforms
 author: srnagar
 ms.author: srnagar
 ms.date: 04/08/2022
@@ -406,7 +407,7 @@ comments.
 [azure_monitor_overview]: /azure/azure-monitor/overview
 [azure_subscription]: https://azure.microsoft.com/free/java
 [changelog]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.5/sdk/monitor/azure-monitor-query/CHANGELOG.md
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [kusto_query_language]: /azure/data-explorer/kusto/query/
 [log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.5/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [msdocs_apiref]: /java/api/com.azure.monitor.query
