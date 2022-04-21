@@ -365,7 +365,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [jdk_link]: /java/azure/jdk/
 [key]:/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
-[key_phrase_extraction]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-keyword-extraction
+[key_phrase_extraction]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-keyword-extraction
 [language_detection]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-language-detection
 [language_regional_support]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/language-support
 [named_entity_recognition]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-entity-linking

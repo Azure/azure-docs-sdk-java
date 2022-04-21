@@ -469,7 +469,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [api_reference_doc]: https://aka.ms/azsdk-java-formrecognizer-ref-docs
 [azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_3.0.3/sdk/identity/azure-identity#credentials
 [azure_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
-[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
+[azure_cli_endpoint]: /cli/azure/cognitiveservices/account
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_3.0.3/sdk/identity/azure-identity#credentials
 [azure_portal]: https://ms.portal.azure.com
 [azure_subscription]: https://azure.microsoft.com/free
@@ -479,7 +479,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_contact]: mailto:opencode@microsoft.com
 [create_new_resource]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
 [differentiate_custom_forms_with_labeled_and_unlabeled_models]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/AdvancedDiffLabeledUnlabeledData.java
-[form_recognizer_account]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
+[form_recognizer_account]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
 [form_recognizer_async_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/FormRecognizerAsyncClient.java
 [form_recognizer_sync_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/FormRecognizerClient.java
 [form_training_async_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/training/FormTrainingAsyncClient.java
@@ -490,7 +490,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [fr_train_without_labels]: /azure/cognitive-services/form-recognizer/overview#train-without-labels
 [fr_train_with_labels]: /azure/cognitive-services/form-recognizer/overview#train-with-labels
 [http_response_exception]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer
 [product_documentation]: /azure/cognitive-services/form-recognizer/overview
@@ -505,7 +505,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [recognize_receipts_from_url_async]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/RecognizeReceiptsFromUrlAsync.java
 [recognize_custom_forms]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/RecognizeCustomFormsFromUrl.java
 [recognize_custom_forms_async]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/RecognizeCustomFormsAsync.java
-[register_AAD_application]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[register_AAD_application]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [train_unlabeled_model]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/TrainModelWithoutLabels.java
 [train_unlabeled_model_async]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/TrainModelWithoutLabelsAsync.java
 [train_labeled_model]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/TrainModelWithLabels.java
