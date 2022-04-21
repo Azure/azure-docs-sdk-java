@@ -1,14 +1,13 @@
 ---
 title: Azure Cognitive Search client library for Java
+description: Reference for the Azure Cognitive Search client library for Java.
 keywords: Azure, java, SDK, API, azure-search-documents, search
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/10/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: search
+ms.service: azure-java
 ---
 
 # Azure Cognitive Search client library for Java - Version 11.1.2 
@@ -70,18 +69,18 @@ Here's an example using the Azure CLI to create a free instance for getting star
 az search service create --name <mysearch> --resource-group <mysearch-rg> --sku free --location westus
 ```
 
-See [choosing a pricing tier](https://docs.microsoft.com/azure/search/search-sku-tier) for more information about available options.
+See [choosing a pricing tier](/azure/search/search-sku-tier) for more information about available options.
 
 ### Authenticate the client
 
 In order to interact with the Azure Cognitive Search service you'll need to create an instance of the Search Client class.
 To make this possible you will need,
 
-1. [URL endpoint](https://docs.microsoft.com/azure/search/search-create-service-portal#get-a-key-and-url-endpoint)
-1. [API key](https://docs.microsoft.com/azure/search/search-create-service-portal#get-a-key-and-url-endpoint)
+1. [URL endpoint](/azure/search/search-create-service-portal#get-a-key-and-url-endpoint)
+1. [API key](/azure/search/search-create-service-portal#get-a-key-and-url-endpoint)
 
 for your service. [The api-key is the sole mechanism for authenticating access to
-your search service endpoint.](https://docs.microsoft.com/azure/search/search-security-api-keys)
+your search service endpoint.](/azure/search/search-security-api-keys)
 You can obtain your api-key from the [Azure portal](https://portal.azure.com/) or via the Azure CLI:
 
 ```bash
@@ -215,30 +214,30 @@ the form of JSON documents. _(If you're new to search, you can make a very rough
 tables.)_ The `azure-search-documents` client library exposes operations on these resources through two main client types.
 
 * `SearchClient` helps with:
-  * [Searching](https://docs.microsoft.com/azure/search/search-lucene-query-architecture)
+  * [Searching](/azure/search/search-lucene-query-architecture)
     your indexed documents using
-    [rich queries](https://docs.microsoft.com/azure/search/search-query-overview)
-    and [powerful data shaping](https://docs.microsoft.com/azure/search/search-filters)
-  * [Autocompleting](https://docs.microsoft.com/rest/api/searchservice/autocomplete)
+    [rich queries](/azure/search/search-query-overview)
+    and [powerful data shaping](/azure/search/search-filters)
+  * [Autocompleting](/rest/api/searchservice/autocomplete)
     partially typed search terms based on documents in the index
-  * [Suggesting](https://docs.microsoft.com/rest/api/searchservice/suggestions)
+  * [Suggesting](/rest/api/searchservice/suggestions)
     the most likely matching text in documents as a user types
-  * [Adding, Updating or Deleting Documents](https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents)
+  * [Adding, Updating or Deleting Documents](/rest/api/searchservice/addupdate-or-delete-documents)
     documents from an index
 
 * `SearchIndexClient` allows you to:
-  * [Create, delete, update, or configure a search index](https://docs.microsoft.com/rest/api/searchservice/index-operations)
-  * [Declare custom synonym maps to expand or rewrite queries](https://docs.microsoft.com/rest/api/searchservice/synonym-map-operations)
+  * [Create, delete, update, or configure a search index](/rest/api/searchservice/index-operations)
+  * [Declare custom synonym maps to expand or rewrite queries](/rest/api/searchservice/synonym-map-operations)
   * Most of the `SearchServiceClient` functionality is not yet available in our current preview
 
 * `SearchIndexerClient` allows you to:
-  * [Start indexers to automatically crawl data sources](https://docs.microsoft.com/rest/api/searchservice/indexer-operations)
-  * [Define AI powered Skillsets to transform and enrich your data](https://docs.microsoft.com/rest/api/searchservice/skillset-operations)
+  * [Start indexers to automatically crawl data sources](/rest/api/searchservice/indexer-operations)
+  * [Define AI powered Skillsets to transform and enrich your data](/rest/api/searchservice/skillset-operations)
 
 ## Examples
 
-The following examples all use a simple [Hotel data set](https://docs.microsoft.com/samples/azure-samples/azure-search-sample-data/azure-search-sample-data/)
-that you can [import into your own index from the Azure portal.](https://docs.microsoft.com/azure/search/search-get-started-portal#step-1---start-the-import-data-wizard-and-create-a-data-source)
+The following examples all use a simple [Hotel data set](/samples/azure-samples/azure-search-sample-data/azure-search-sample-data/)
+that you can [import into your own index from the Azure portal.](/azure/search/search-get-started-portal#step-1---start-the-import-data-wizard-and-create-a-data-source)
 These are just a few of the basics - please [check out our Samples][samples_readme] for much more.
 
 * [Querying](#querying)
@@ -510,10 +509,10 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk/?view=azure-java-stable
 [api_documentation]: https://aka.ms/java-docs
 [search]: https://azure.microsoft.com/services/search/
-[search_docs]: https://docs.microsoft.com/azure/search/
+[search_docs]: /azure/search/
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
 [package]: https://search.maven.org/artifact/com.azure/azure-search-documents
@@ -526,12 +525,12 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 [add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.2/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
-[rest_api]: https://docs.microsoft.com/rest/api/searchservice/http-status-codes
-[create_search_service_docs]: https://docs.microsoft.com/azure/search/search-create-service-portal
-[create_search_service_ps]: https://docs.microsoft.com/azure/search/search-manage-powershell#create-or-delete-a-service
-[create_search_service_cli]: https://docs.microsoft.com/cli/azure/search/service?view=azure-cli-latest#az-search-service-create
+[rest_api]: /rest/api/searchservice/http-status-codes
+[create_search_service_docs]: /azure/search/search-create-service-portal
+[create_search_service_ps]: /azure/search/search-manage-powershell#create-or-delete-a-service
+[create_search_service_cli]: /cli/azure/search/service?view=azure-cli-latest#az-search-service-create
 [HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.2/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[status_codes]: https://docs.microsoft.com/rest/api/searchservice/http-status-codes
+[status_codes]: /rest/api/searchservice/http-status-codes
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fsearch%2Fazure-search-documents%2FREADME.png)
 
