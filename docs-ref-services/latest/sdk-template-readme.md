@@ -1,17 +1,18 @@
 ---
 title: Azure Batch client library for Python
+description: Use the guidelines in each section of this template to ensure consistency and readability of your README.
 keywords: Azure, java, SDK, API, azure-sdk-template, 
 author: ramya-rao-a
 ms.author: sizhu
 ms.date: 07/29/2020
 ms.topic: reference
 ms.devlang: java
-ms.service: 
+ms.service:
 ---
 
 # README.md template
 
-Use the guidelines in each section of this template to ensure consistency and readability of your README. The README resides in your package's GitHub repository at the root of its directory within the repo. It's also used as the package distribution page (NuGet, PyPi, npm, etc.) and as a Quickstart on docs.microsoft.com. See [README-EXAMPLE.md](https://review.docs.microsoft.com/en-us/help/contribute/samples/concepts/readme-template?branch=main) for an example following this template.
+Use the guidelines in each section of this template to ensure consistency and readability of your README. The README resides in your package's GitHub repository at the root of its directory within the repo. It's also used as the package distribution page (NuGet, PyPi, npm, etc.) and as a Quickstart on docs.microsoft.com. See [README-EXAMPLE.md](/en-us/help/contribute/samples/concepts/readme-template?branch=main) for an example following this template.
 
 **Title**: The H1 of your README should be in the format: `# [Product Name] client library for [Language]`
 
@@ -25,7 +26,7 @@ Use the guidelines in each section of this template to ensure consistency and re
 * Next, add a **bulleted list** of the **most common tasks** supported by the package or library, prefaced with "Use the client library for [Product Name] to:". Then, provide code snippets for these tasks in the [Examples](#examples) section later in the document. Keep the task list short but include those tasks most developers need to perform with your package.
 * Include this single line of links targeting your product's content at the bottom of the introduction, making any adjustments as necessary (for example, NuGet instead of PyPi):
 
-  [Source code](https://github.com/Azure/azure-sdk-for-python/tree/master/azure-batch) | [Package (PyPi)](https://pypi.org/project/azure-batch/) | [API reference documentation](/python/api/overview/azure/batch?view=azure-python) | [Product documentation](/azure/batch/)
+  [Source code](https://github.com/Azure/azure-sdk-for-python/tree/master/azure-batch) | [Package (PyPi)](https://pypi.org/project/azure-batch/) | [API reference documentation](/python/api/overview/azure/batch?view=azure-python&preserve-view=true) | [Product documentation](/azure/batch/)
 
 > TIP: Your README should be as **brief** as possible but **no more brief** than necessary to get a developer new to Azure, the service, or the package up and running quickly. Keep it brief, but include everything a developer needs to make their first API call successfully.
 

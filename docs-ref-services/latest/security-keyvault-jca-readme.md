@@ -1,5 +1,6 @@
 ---
 title: Azure Key Vault JCA client library for Java
+description: The JCA Provider for Azure Key Vault is a Java Cryptography Architecture provider for certificates in Azure Key Vault.
 keywords: Azure, java, SDK, API, azure-security-keyvault-jca, keyvault
 author: backwind1233
 ms.author: zhihaoguo
@@ -221,7 +222,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [Samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.6.0/sdk/keyvault/azure-security-keyvault-jca/src/samples/java/com/azure/security/keyvault/jca
 [azure_subscription]: https://azure.microsoft.com/
 [azure_keyvault]: /azure/key-vault/keys/quick-create-portal
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
 [azure_cloud_shell]: https://shell.azure.com/bash
 [spring_boot_starter]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md
 [jca_reference_guide]: https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html

@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager keyvault client library for Java
+description: Azure Resource Manager keyvault client library for Java.
 keywords: Azure, java, SDK, API, azure-resourcemanager-keyvault, resourcemanager
 author: weidongxu-microsoft
 ms.author: weidxu

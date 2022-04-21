@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager Private DNS client library for Java
+description: Azure Resource Manager Private DNS client library for Java.
 keywords: Azure, java, SDK, API, azure-resourcemanager-privatedns, resourcemanager
 author: weidongxu-microsoft
 ms.author: weidxu

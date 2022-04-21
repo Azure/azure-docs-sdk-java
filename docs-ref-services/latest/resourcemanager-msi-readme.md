@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager msi client library for Java
+description: Azure Resource Manager msi client library for Java.
 keywords: Azure, java, SDK, API, azure-resourcemanager-msi, resourcemanager
 author: weidongxu-microsoft
 ms.author: weidxu
