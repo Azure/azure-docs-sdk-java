@@ -1,7 +1,8 @@
 ---
 title: Azure Text Analytics client library for Java
+description: Learn how to provide advanced natural language processing over raw text with Text Analytics client library.
 keywords: Azure, java, SDK, API, azure-ai-textanalytics, textanalytics
-author: sima-shu
+author: sima-zhu
 ms.author: sizhu
 ms.date: 11/12/2020
 ms.topic: reference
@@ -349,7 +350,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [api_reference_doc]: https://aka.ms/azsdk-java-textanalytics-ref-docs
 [authentication]: /azure/cognitive-services/authentication
 [azure_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
-[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
+[azure_cli_endpoint]: /cli/azure/cognitiveservices/account
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.0.1/sdk/identity/azure-identity
 [azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.0.1/sdk/identity/azure-identity#credentials
 [azure_key_credential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.0.1/sdk/core/azure-core/src/main/java/com/azure/core/credential/AzureKeyCredential.java
@@ -362,7 +363,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [create_new_resource]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
 [custom_subdomain]: /azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
 [grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [key]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
 [key_phrase_extraction]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-keyword-extraction
 [language_detection]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-language-detection
