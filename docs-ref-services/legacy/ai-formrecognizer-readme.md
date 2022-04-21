@@ -1,14 +1,13 @@
 ---
 title: Azure Form Recognizer client library for Java
+description: Learn how to use machine learning to recognize text and table data from form documents with Azure Cognitive Services Form Recognizer. 
 keywords: Azure, java, SDK, API, azure-ai-formrecognizer, formrecognizer
-author: ramya-rao-a
-ms.author: ramyar
+author: samvaity
+ms.author: savaity
 ms.date: 11/12/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: formrecognizer
+ms.service: azure-java    
 ---
 
 # Azure Form Recognizer client library for Java - Version 3.0.3 
@@ -464,13 +463,13 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[aad_authorization]: https://docs.microsoft.com/azure/cognitive-services/authentication#authenticate-with-azure-active-directory
+[aad_authorization]: /azure/cognitive-services/authentication#authenticate-with-azure-active-directory
 [azure_key_credential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/core/azure-core/src/main/java/com/azure/core/credential/AzureKeyCredential.java
-[key]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
+[key]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
 [api_reference_doc]: https://aka.ms/azsdk-java-formrecognizer-ref-docs
 [azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_3.0.3/sdk/identity/azure-identity#credentials
-[azure_cli]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
-[azure_cli_endpoint]: https://docs.microsoft.com/cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
+[azure_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
+[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_3.0.3/sdk/identity/azure-identity#credentials
 [azure_portal]: https://ms.portal.azure.com
 [azure_subscription]: https://azure.microsoft.com/free
@@ -478,23 +477,23 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[create_new_resource]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
+[create_new_resource]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
 [differentiate_custom_forms_with_labeled_and_unlabeled_models]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/AdvancedDiffLabeledUnlabeledData.java
 [form_recognizer_account]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
 [form_recognizer_async_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/FormRecognizerAsyncClient.java
 [form_recognizer_sync_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/FormRecognizerClient.java
 [form_training_async_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/training/FormTrainingAsyncClient.java
 [form_training_sync_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/main/java/com/azure/ai/formrecognizer/training/FormTrainingClient.java
-[grant_access]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [http_clients_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients
-[fr_labeling_tool]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool
-[fr_train_without_labels]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/overview#train-without-labels
-[fr_train_with_labels]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/overview#train-with-labels
+[fr_labeling_tool]: /azure/cognitive-services/form-recognizer/quickstarts/label-tool
+[fr_train_without_labels]: /azure/cognitive-services/form-recognizer/overview#train-without-labels
+[fr_train_with_labels]: /azure/cognitive-services/form-recognizer/overview#train-with-labels
 [http_response_exception]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer
-[product_documentation]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/overview
+[product_documentation]: /azure/cognitive-services/form-recognizer/overview
 [sample_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/README.md
 [manage_custom_models]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/ManageCustomModels.java
 [manage_custom_models_async]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/ManageCustomModelsAsync.java
@@ -513,11 +512,11 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [train_labeled_model_async]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/TrainModelWithLabelsAsync.java
 [copy_model]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/CopyModel.java
 [copy_model_async]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/CopyModelAsync.java
-[service_access]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
+[service_access]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
 [service_recognize_receipt]: https://aka.ms/formrecognizer/receiptfields
 [strongly_typed_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/StronglyTypedRecognizedForm.java
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src
-[quickstart_training]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/curl-train-extract#train-a-form-recognizer-model
+[quickstart_training]: /azure/cognitive-services/form-recognizer/quickstarts/curl-train-extract#train-a-form-recognizer-model
 [wiki_identity]: https://github.com/Azure/azure-sdk-for-java/wiki/Identity-and-Authentication
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fformrecognizer%2Fazure-ai-formrecognizer%2FREADME.png)
