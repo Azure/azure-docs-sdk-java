@@ -1,5 +1,6 @@
 ---
 title: Bing Autosuggest 
+description: Learn about Bing Search APIs move from Cognitive Services to Bing Search Services.
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/26/2020
