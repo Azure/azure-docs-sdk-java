@@ -1,14 +1,13 @@
 ---
 title: Azure Key Vault Key client library for Java
+description: Reference for the Azure Key Vault Key client library for Java.
 keywords: Azure, java, SDK, API, azure-security-keyvault-keys, keyvault
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/16/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: keyvault
+ms.service: azure-java
 ---
 
 # Azure Key Vault Key client library for Java - Version 4.2.3 
@@ -427,21 +426,21 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 <!-- LINKS -->
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.2.3/sdk/keyvault/azure-security-keyvault-keys/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
-[azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
+[azkeyvault_docs]: /azure/key-vault/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.2.3/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
-[azure_keyvault]: https://docs.microsoft.com/azure/key-vault/quick-create-portal
-[azure_cli]: https://docs.microsoft.com/cli/azure
-[rest_api]: https://docs.microsoft.com/rest/api/keyvault/
-[azkeyvault_rest]: https://docs.microsoft.com/rest/api/keyvault/
-[azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
-[azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
-[azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
+[azure_keyvault]: /azure/key-vault/quick-create-portal
+[azure_cli]: /cli/azure
+[rest_api]: /rest/api/keyvault/
+[azkeyvault_rest]: /rest/api/keyvault/
+[azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
+[azure_keyvault_cli]: /azure/key-vault/quick-create-cli
+[azure_keyvault_cli_full]: /cli/azure/keyvault?view=azure-cli-latest
 [keys_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.2.3/sdk/keyvault/azure-security-keyvault-keys/src/samples/java/com/azure/security/keyvault/keys
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.2.3/sdk/keyvault/azure-security-keyvault-keys/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-keys%2FREADME.png)
 
