@@ -13,7 +13,7 @@ ms.service: azure-java
 # Azure Cognitive Search client library for Java - Version 11.1.2 
 
 
-This is the Java client library for [Azure Cognitive Search](https://docs.microsoft.com/azure/search/).
+This is the Java client library for [Azure Cognitive Search](/azure/search/).
 Azure Cognitive Search service is a search-as-a-service cloud solution that gives developers APIs and tools for adding
 a rich search experience over private, heterogeneous content in web, mobile, and enterprise applications.
 
@@ -420,7 +420,7 @@ System.out.printf("This is hotelId %s, and this is hotel name %s.%n", hotel.getI
 ### Adding documents to your index
 
 You can `Upload`, `Merge`, `MergeOrUpload`, and `Delete` multiple documents from an index in a single batched request.
-There are [a few special rules for merging](https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents#document-actions)
+There are [a few special rules for merging](/rest/api/searchservice/addupdate-or-delete-documents#document-actions)
 to be aware of.
 
 <!-- embedme ./src/samples/java/com/azure/search/documents/ReadmeSamples.java#L214-L217 -->
@@ -493,7 +493,7 @@ provides more information on configuring or changing the HTTP client.
 
 * Samples are explained in detail [here][samples_readme].
 * Watch a [demo or deep dive video](https://azure.microsoft.com/resources/videos/index/?services=search)
-* Read more about the [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-what-is-azure-search)
+* Read more about the [Azure Cognitive Search service](/azure/search/search-what-is-azure-search)
 
 ## Contributing
 
@@ -509,7 +509,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[jdk]: /java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk/
 [api_documentation]: https://aka.ms/java-docs
 [search]: https://azure.microsoft.com/services/search/
 [search_docs]: /azure/search/
@@ -528,7 +528,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [rest_api]: /rest/api/searchservice/http-status-codes
 [create_search_service_docs]: /azure/search/search-create-service-portal
 [create_search_service_ps]: /azure/search/search-manage-powershell#create-or-delete-a-service
-[create_search_service_cli]: /cli/azure/search/service?view=azure-cli-latest#az-search-service-create
+[create_search_service_cli]: /cli/azure/search/service#az-search-service-create
 [HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.2/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
 [status_codes]: /rest/api/searchservice/http-status-codes
 
