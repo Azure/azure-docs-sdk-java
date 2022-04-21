@@ -1,5 +1,6 @@
 ---
 title: Bing Custom Image Search 
+description: Learn about the move of Bing Search APIs from Cognitive Services to Bing Search Services.
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/26/2020
