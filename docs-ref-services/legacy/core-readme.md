@@ -1,10 +1,11 @@
 ---
 title: Azure Core shared library for Java
+description: Learn how to provide shared primitives, abstractions, and helpers for modern Java Azure SDK client libraries.
 keywords: Azure, java, SDK, API, azure-core, corecore
 author: sima-zhu
 ms.author: sizhu
 ms.date: 11/26/2020
-ms.technology: azure
+ms.topic: reference
 ms.devlang: java
 ms.service: azure-java
 ---

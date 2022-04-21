@@ -1,8 +1,9 @@
 ---
 title: Azure Core AMQP shared library for Java
+description: Learn how to create your own AMQP client library that abstracts from the underlying transport library's implementation.
 keywords: Azure, java, SDK, API, azure-core-amqp, core
 author: sima-zhu
-ms.author: shizu
+ms.author: sizhu
 ms.date: 12/01/2020
 ms.topic: reference
 ms.devlang: java

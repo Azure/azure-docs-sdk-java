@@ -1,12 +1,13 @@
 ---
 title: Azure Core Netty HTTP plugin library for Java
+description: Learn how to use the Azure Core Netty HTTP plugin.
 keywords: Azure, java, SDK, API, azure-core-http-netty, core
 author: sima-zhu
 ms.author: sizhu
 ms.date: 10/30/2020
-ms.technology: azure
+ms.topic: reference
 ms.devlang: java
-ms.service: core
+ms.service: azure-java
 ---
 
 # Azure Core Netty HTTP plugin library for Java - Version 1.6.3 
