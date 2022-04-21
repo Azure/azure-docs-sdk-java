@@ -411,7 +411,7 @@ Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-ser
 [api_documentation]: https://aka.ms/java-docs
 [dead-letter-queue]: /azure/service-bus-messaging/service-bus-dead-letter-queues
 [deadletterqueue_docs]: /azure/service-bus-messaging/service-bus-dead-letter-queues
-[java_development_kit]: /azure/developer/java/fundamental
+[java_development_kit]: /azure/developer/java/fundamentals
 [java_8_sdk_javadocs]: https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [maven]: https://maven.apache.org/
