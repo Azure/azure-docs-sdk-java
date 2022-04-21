@@ -2,15 +2,13 @@
 title: Azure Traffic Manager libraries for Java
 description: Reference documentation for the Java Traffic Manager management libraries 
 keywords: Azure, Java, SDK, API, load balancing, load distribution, network, Traffic Manager
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: traffic-manager
+ms.service: azure-java
 ---
 
 # Azure Traffic Manager libraries for Java

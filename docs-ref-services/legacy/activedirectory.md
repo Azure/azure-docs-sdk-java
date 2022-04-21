@@ -2,14 +2,13 @@
 title: Azure Active Directory libraries for Java
 description: Reference documentation for the Java client and management libraries Azure Active Directory
 keywords: Azure, Java, SDK, API, SQL, authentication, AAD, Active Directory , Graph, OAuth 2.0
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
+ms.service: azure-java
 ---
 
 # Azure Active Directory libraries for Java
@@ -22,7 +21,7 @@ To get started with Azure AD, see [Java web app sign-in and sign-out with Azure 
 
 ## Client library
 
-Configure OAuth2, OpenID Connect, or Active Directory Graph authentication and [SAML 2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-protocol-reference) single-sign on with the [Azure Active Directory authentication library (ADAL) for Java](https://github.com/AzureAD/azure-activedirectory-library-for-java).
+Configure OAuth2, OpenID Connect, or Active Directory Graph authentication and [SAML 2.0](/azure/active-directory/develop/active-directory-saml-protocol-reference) single-sign on with the [Azure Active Directory authentication library (ADAL) for Java](https://github.com/AzureAD/azure-activedirectory-library-for-java).
 
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.
 
@@ -36,7 +35,7 @@ Configure OAuth2, OpenID Connect, or Active Directory Graph authentication and [
 
 ### Example
 
-Retrieve a JSON Web Token (JWT) for a user in your an Active Directory tenant using Azure Active Directory's [Graph API](https://docs.microsoft.com/azure/active-directory/develop/active-directory-graph-api). This token can then be used to authenticate the user with an application or API.
+Retrieve a JSON Web Token (JWT) for a user in your an Active Directory tenant using Azure Active Directory's [Graph API](/azure/active-directory/develop/active-directory-graph-api). This token can then be used to authenticate the user with an application or API.
 
 ```java
 ExecutorService service = Executors.newFixedThreadPool(1);
@@ -52,7 +51,7 @@ System.out.println("ID Token - " + result.getIdToken());
 
 ## Management API
 
-Configure [role based access control](/azure/active-directory/role-based-access-control-what-is) and assign identities (such as users and [service principals](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects)) to those roles with the management API. 
+Configure [role based access control](/azure/active-directory/role-based-access-control-what-is) and assign identities (such as users and [service principals](/azure/active-directory/develop/active-directory-application-objects)) to those roles with the management API. 
 
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.
 
@@ -91,4 +90,4 @@ RoleAssignment roleAssignment2 = authenticated.roleAssignments()
 [Access an API with Azure AD using a command line app](https://github.com/Azure-Samples/active-directory-java-native-headless)   
 [Call the Active AD Graph API from your Java web app](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect)  
 
-Explore more [sample Java code for Azure AD](https://azure.microsoft.com/en-us/resources/samples/?term=active+directory&platform=java) you can use in your apps.
+Explore more [sample Java code for Azure AD](https://azure.microsoft.com/resources/samples/?term=active+directory&platform=java) you can use in your apps.
