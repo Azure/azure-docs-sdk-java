@@ -1,6 +1,7 @@
 ---
 title: Azure Resource Manager EventGrid client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-eventgrid, eventgrid
+description: Azure Resource Manager EventGrid client library for Java.
 author: srnagar
 ms.author: srnagar
 ms.date: 01/24/2022
