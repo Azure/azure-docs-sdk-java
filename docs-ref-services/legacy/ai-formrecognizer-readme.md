@@ -7,7 +7,7 @@ ms.author: savaity
 ms.date: 11/12/2020
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-java
+ms.service: applied-ai-services
 ---
 
 # Azure Form Recognizer client library for Java - Version 3.0.3 
