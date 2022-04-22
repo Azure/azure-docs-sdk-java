@@ -2,13 +2,11 @@
 title: Azure Resource Manager App Service client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-appservice, appservice
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 11/25/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: appservice
+ms.service: app=service
 ---
 
 # Azure Resource Manager App Service client library for Java - Version 2.1.0 
@@ -92,7 +90,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- LINKS -->
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-appservice_2.1.0/sdk/identity/azure-identity
 [azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-appservice_2.1.0/sdk/core/azure-core-http-netty

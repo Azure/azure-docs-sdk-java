@@ -7,8 +7,6 @@ ms.author: iswillia
 manager: lesliep
 ms.date: 10/09/2018
 ms.topic: reference
-ms.prod: partnercenter
-ms.technology: partnercenter
 ms.devlang: java
 ---
 
@@ -64,5 +62,5 @@ while ( customersEnumerator.hasValue() )
 
 ## Samples
 
-[Supported scenarios](https://docs.microsoft.com/partner-center/develop/scenarios)
+[Supported scenarios](/partner-center/develop/scenarios)
 [Sample console application](https://github.com/Microsoft/Partner-Center-Java-Samples)  
