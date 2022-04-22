@@ -1,5 +1,6 @@
 ---
 title: Bing Spell Check 
+description: Learn about the move of Bing Search APIs.
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/26/2020
