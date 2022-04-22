@@ -1,6 +1,8 @@
 ---
 title: Azure Service Bus client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-servicebus, servicebus
+description: Microsoft Azure Service Bus is a fully managed enterprise integration message broker. Service Bus can decouple
+applications and services.
 author: sima-zhu
 ms.author: sizhu
 ms.date: 12/01/2020
@@ -353,7 +355,7 @@ Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-ser
 [api_documentation]: https://aka.ms/java-docs
 [dead-letter-queue]: /azure/service-bus-messaging/service-bus-dead-letter-queues
 [deadletterqueue_docs]: /azure/service-bus-messaging/service-bus-dead-letter-queues
-[java_development_kit]: /java/azure/jdk/?view=azure-java-stable
+[java_development_kit]: /java/azure/jdk
 [java_8_sdk_javadocs]: https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [maven]: https://maven.apache.org/

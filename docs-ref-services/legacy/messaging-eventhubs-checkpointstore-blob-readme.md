@@ -1,6 +1,7 @@
 ---
 title: Azure Event Hubs Checkpoint Store client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventhubs-checkpointstore-blob, eventhubs
+description: Azure Event Hubs Checkpoint Store can be used for storing checkpoints while processing events from Azure Event Hubs.
 author: sima-zhu
 ms.author: sizhu
 ms.date: 10/31/2020
@@ -167,7 +168,7 @@ Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eve
 [event_hubs_create]: /azure/event-hubs/event-hubs-create
 [event_hubs_product_docs]: /azure/event-hubs/
 [java_8_sdk_javadocs]: https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [maven]: https://maven.apache.org/
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
@@ -183,7 +184,7 @@ Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eve
 [source_eventprocessorclient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs-checkpointstore-blob_1.3.1/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventProcessorClient.java
 [source_blobcheckpointstore]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs-checkpointstore-blob_1.3.1/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/main/java/com/azure/messaging/eventhubs/checkpointstore/blob/BlobCheckpointStore.java
 [source_loglevels]: .https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs-checkpointstore-blob_1.3.1/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/.https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs-checkpointstore-blob_1.3.1/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
-[storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[storage_account]: /azure/storage/common/storage-quickstart-create-account
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Feventhubs%2Fazure-messaging-eventhubs-checkpointstore-blob%2FREADME.png)
 
