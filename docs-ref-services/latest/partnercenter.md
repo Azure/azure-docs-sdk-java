@@ -8,7 +8,6 @@ manager: lesliep
 ms.date: 10/09/2018
 ms.topic: reference
 ms.prod: partner-center
-ms.technology: partnercenter
 ms.devlang: java
 ---
 
