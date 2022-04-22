@@ -59,7 +59,7 @@ You will also need to add the following dependencies to your pom.xml:
 The SDK first needs to be authenticated with your Azure subscription.  Follow the example below to create a service principal and use it to authenticate. After this is done, you will have an instance of an `HDInsightManagementClientImpl`, which contains many methods (outlined in below sections) that can be used to perform management operations.
 
 > [!NOTE]
-> There are other ways to authenticate besides the below example that could potentially be better suited for your needs. All methods are outlined here: [Authenticate with the Azure management libraries for Java](/java/azure/java-sdk-azure-authenticate?view=azure-java-stable)
+> There are other ways to authenticate besides the below example that could potentially be better suited for your needs. All methods are outlined here: [Authenticate with the Azure management libraries for Java](/java/azure/java-sdk-azure-authenticate)
 
 ### Authentication Example Using a Service Principal
 

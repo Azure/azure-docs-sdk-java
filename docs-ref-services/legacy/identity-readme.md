@@ -1,11 +1,11 @@
 ---
 title: Azure Identity client library for Java
+description: The Azure Identity library provides Azure Active Directory token authentication support across the Azure SDK. It provides a set of TokenCredential implementations.
 keywords: Azure, java, SDK, API, azure-identity, identity
 author: sima-zhu
 ms.author: sizhu
 ms.date: 11/10/2020
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: identity
 ---
@@ -403,7 +403,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0/sdk/identity/azure-identity
-[aad_doc]: https://docs.microsoft.com/azure/active-directory/
+[aad_doc]: /azure/active-directory/
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [keys_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0/sdk/keyvault/azure-security-keyvault-keys
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
@@ -411,7 +411,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [eventhubs_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0/sdk/eventhubs/azure-messaging-eventhubs
 [azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0/sdk/core
 [javadoc]: https://azure.github.io/azure-sdk-for-java
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fidentity%2Fazure-identity%2FREADME.png)
 
