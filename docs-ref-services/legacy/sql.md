@@ -9,7 +9,6 @@ ms.date: 07/05/2017
 ms.topic: reference
 ms.prod: azure
 ms.devlang: java
-ms.service: sql-database
 ---
 
 # Azure SQL Database libraries for Java

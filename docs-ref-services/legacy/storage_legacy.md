@@ -9,7 +9,6 @@ ms.date: 10/29/2018
 ms.topic: reference
 ms.prod: azure
 ms.devlang: java
-ms.service: storage
 ---
 
 # Azure Storage libraries for Java
