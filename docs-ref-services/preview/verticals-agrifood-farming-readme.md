@@ -1,14 +1,14 @@
 ---
 title: Azure FarmBeats client library for Java
+description: FarmBeats allows users to acquire, aggregate, and process agricultural data from various sources without the need to invest in deep data engineering resources.
 keywords: Azure, java, SDK, API, azure-verticals-agrifood-farming, 
-author: ramya-rao-a
-ms.author: ramyar
+author: douge
+ms.author: dougeby
 ms.date: 05/27/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # Azure FarmBeats client library for Java - Version 1.0.0-beta.2 
@@ -127,7 +127,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [azure_subscription]: https://azure.microsoft.com/free/
 [product_documentation]: https://aka.ms/FarmBeatsProductDocumentationPaaS
 [azure_portal]: https://portal.azure.com
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [package]: https://mvnrepository.com/artifact/com.azure/azure-verticals-agrifood-farming
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-verticals-agrifood-farming_1.0.0-beta.2/sdk/farmbeats/azure-verticals-agrifood-farming/src/samples/README.md
 [farm_hierarchy]: https://aka.ms/FarmBeatsFarmHierarchyDocs
