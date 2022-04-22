@@ -342,11 +342,11 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azkeyvault_rest]: /rest/api/keyvault/
 [azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: /azure/key-vault/quick-create-cli
-[azure_keyvault_cli_full]: /cli/azure/keyvault?view=azure-cli-latest
+[azure_keyvault_cli_full]: /cli/azure/keyvault
 [certificates_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.1.3/sdk/keyvault/azure-security-keyvault-certificates/src/samples/java/com/azure/security/keyvault/certificates
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.1.3/sdk/keyvault/azure-security-keyvault-certificates/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-certificates%2FREADME.png)
 
