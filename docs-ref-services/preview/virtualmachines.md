@@ -1,6 +1,6 @@
 ---
 title: Azure Virtual Machine libraries for Java
-description: 
+description: Create, configure, and scale out Windows and Linux virtual machines in Azure from your code with the management API.
 keywords: Azure, Java, SDK, API, Compute , Virtual Machines
 author: douge
 ms.author: dougeby
