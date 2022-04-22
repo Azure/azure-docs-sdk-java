@@ -1,5 +1,6 @@
 ---
 title: Azure Core Management client library for Java
+description: Learn about the Azure Core Management library a collection of classes common to the ARM client libraries.
 keywords: Azure, java, SDK, API, azure-core-management, core
 author: sima-zhu
 ms.author: sizhu
