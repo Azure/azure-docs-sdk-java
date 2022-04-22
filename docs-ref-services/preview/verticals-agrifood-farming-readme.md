@@ -7,7 +7,7 @@ ms.author: dougeby
 ms.date: 05/27/2021
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
+ms.technology: azure-cli
 ms.devlang: java
 ---
 

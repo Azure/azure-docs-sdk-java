@@ -7,9 +7,9 @@ ms.author: dougeby
 manager: douge
 ms.date: 05/17/2017
 ms.topic: reference
-ms.technology: azure
+ms.prod: azure
+ms.technology: azure-cli
 ms.devlang: java
-ms.service: compute
 ---
 
 # Azure virtual machine libraries

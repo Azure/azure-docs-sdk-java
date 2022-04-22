@@ -1,14 +1,14 @@
 ---
 title: Azure Storage Queue client library for Java
+description: Azure Queue storage is a service for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls using HTTP or HTTPS.
 keywords: Azure, java, SDK, API, azure-storage-queue, storage
 author: amishra-dev
 ms.author: amishra
 ms.date: 02/09/2022
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
+ms.technology: azure-cli
 ms.devlang: java
-ms.service: storage
 ---
 # Azure Storage Queue client library for Java - Version 12.12.0-beta.3 
 
@@ -499,15 +499,15 @@ For details on contributing to this repository, see the [contributing guide](htt
 <!-- LINKS -->
 [source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.12.0-beta.3/sdk/storage/azure-storage-queue/src
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.12.0-beta.3/sdk/storage/azure-storage-queue/src/samples/README.md
-[api_documentation]: https://docs.microsoft.com/rest/api/storageservices/queue-service-rest-api
-[storage_docs]: https://docs.microsoft.com/azure/storage/queues/storage-queues-introduction
-[jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[api_documentation]: /rest/api/storageservices/queue-service-rest-api
+[storage_docs]: /azure/storage/queues/storage-queues-introduction
+[jdk]: /java/azure/jdk/?view=azure-java-stable
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[azure_cli]: https://docs.microsoft.com/cli/azure
-[sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[storage_rest]: https://docs.microsoft.com/rest/api/storageservices/queue-service-error-codes
+[storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[azure_cli]: /cli/azure
+[sas_token]: /azure/storage/common/storage-dotnet-shared-access-signature-part-1
+[storage_rest]: /rest/api/storageservices/queue-service-error-codes
 [samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.12.0-beta.3/sdk/storage/azure-storage-queue/src/samples
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
