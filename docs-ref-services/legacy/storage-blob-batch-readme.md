@@ -6,7 +6,7 @@ author: ramya-rao-a
 ms.author: scbedd
 ms.date: 11/11/2020
 ms.topic: reference
-ms.prod: azure
+ms.service: azure
 ms.devlang: java
 ---
 

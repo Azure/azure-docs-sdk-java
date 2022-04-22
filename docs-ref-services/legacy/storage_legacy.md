@@ -7,7 +7,7 @@ ms.author: scbedd
 manager: dineshm
 ms.date: 10/29/2018
 ms.topic: reference
-ms.prod: azure
+ms.service: azure
 ms.devlang: java
 ---
 
