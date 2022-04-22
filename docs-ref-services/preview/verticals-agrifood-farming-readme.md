@@ -6,9 +6,9 @@ author: douge
 ms.author: dougeby
 ms.date: 05/27/2021
 ms.topic: reference
+ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: azure
 ---
 
 # Azure FarmBeats client library for Java - Version 1.0.0-beta.2 

@@ -7,7 +7,7 @@ ms.author: dougeby
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
-ms.service: azure
+ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ---
