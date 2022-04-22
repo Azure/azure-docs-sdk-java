@@ -1,8 +1,8 @@
 ---
 title: Azure HDInsight SDK for Java
 description: Reference for Azure HDInsight SDK for Java. The HDInsight SDK for Java provides classes and methods that allow you to manage your HDInsight clusters.
-author: tylerfox
-ms.author: tyfox
+author: scbedd
+ms.author: scbedd
 ms.reviewer: jasonh
 ms.service: hdinsight
 ms.topic: reference
@@ -59,7 +59,7 @@ You will also need to add the following dependencies to your pom.xml:
 The SDK first needs to be authenticated with your Azure subscription.  Follow the example below to create a service principal and use it to authenticate. After this is done, you will have an instance of an `HDInsightManagementClientImpl`, which contains many methods (outlined in below sections) that can be used to perform management operations.
 
 > [!NOTE]
-> There are other ways to authenticate besides the below example that could potentially be better suited for your needs. All methods are outlined here: [Authenticate with the Azure management libraries for Java](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-authenticate?view=azure-java-stable)
+> There are other ways to authenticate besides the below example that could potentially be better suited for your needs. All methods are outlined here: [Authenticate with the Azure management libraries for Java](/java/azure/java-sdk-azure-authenticate?view=azure-java-stable)
 
 ### Authentication Example Using a Service Principal
 
@@ -353,7 +353,7 @@ The HDInsight Management SDK can also be used to manage monitoring on your clust
 ### Enable OMS Monitoring
 
 > [!NOTE]
-> To enable OMS Monitoring, you must have an existing Log Analytics workspace. If you have not already created one, you can learn how to do that here: [Create a Log Analytics workspace in the Azure portal](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-quick-create-workspace).
+> To enable OMS Monitoring, you must have an existing Log Analytics workspace. If you have not already created one, you can learn how to do that here: [Create a Log Analytics workspace in the Azure portal](/azure/log-analytics/log-analytics-quick-create-workspace).
 
 To enable OMS Monitoring on your cluster:
 
@@ -381,7 +381,7 @@ client.extensions().disableMonitoring("<Resource Group Name>", "<Cluster Name>")
 
 HDInsight provides a configuration method called script actions that invokes custom scripts to customize the cluster.
 > [!NOTE]
-> More information on how to use script actions can be found here: [Customize Linux-based HDInsight clusters using script actions](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux)
+> More information on how to use script actions can be found here: [Customize Linux-based HDInsight clusters using script actions](/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux)
 
 ### Execute Script Actions
 

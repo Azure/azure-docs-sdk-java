@@ -1,11 +1,10 @@
 ---
 title: Azure Identity client library for Java
 keywords: Azure, java, SDK, API, azure-identity, identity
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/10/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: identity
@@ -16,11 +15,11 @@ ms.service: identity
 The Azure Identity library provides Azure Active Directory token authentication support across the Azure SDK. It provides a set of TokenCredential implementations which can be used to construct Azure SDK clients which support AAD token authentication.
 
  This library currently supports:
-  - [Service principal authentication](https://docs.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals)
-  - [Managed identity authentication](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview)
-  - [Device code authentication](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-device-code)
-  - Interactive browser authentication, based on [OAuth2 authentication code](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow)
-  - [Username + password authentication](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth-ropc)
+  - [Service principal authentication](/azure/active-directory/develop/app-objects-and-service-principals)
+  - [Managed identity authentication](/azure/active-directory/managed-identities-azure-resources/overview)
+  - [Device code authentication](/azure/active-directory/develop/v2-oauth2-device-code)
+  - Interactive browser authentication, based on [OAuth2 authentication code](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+  - [Username + password authentication](/azure/active-directory/develop/v2-oauth-ropc)
   - IntelliJ authentication, with the login information saved in Azure Toolkit for IntelliJ
   - Visual Studio Code authentication, with the login information saved in Azure plugin for Visual Studio Code
   - Azure CLI authentication, with the login information saved in Azure CLI
