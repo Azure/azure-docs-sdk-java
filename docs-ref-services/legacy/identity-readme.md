@@ -372,6 +372,9 @@ Credentials can be chained together to be tried in turn until one succeeds using
 Configuration is attempted in the above order. For example, if values for a client secret and certificate are both present, the client secret will be used.
 
 ## Troubleshooting
+
+### Chaining credentials
+
 Credentials raise exceptions either when they fail to authenticate or cannot execute authentication.
 When credentials fail to authenticate, the`ClientAuthenticationException` is raised and it has a `message` attribute which
 describes why authentication failed. When this exception is raised by `ChainedTokenCredential`, the chained execution of underlying list of credentials is stopped.

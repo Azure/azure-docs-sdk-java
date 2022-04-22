@@ -1,8 +1,8 @@
 ---
 title: Azure Service Bus client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-servicebus, servicebus
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 12/01/2020
 ms.topic: reference
 ms.devlang: java
@@ -152,7 +152,7 @@ receiving [`ServiceBusMessage`][ServiceBusMessage] from a specific queue or topi
 ## Examples
 
 - [Send messages](#send-messages)
-- [Receive messages and renew lock](#receive-messages-and-renew-lock)
+- [Receive messages and renew lock](#receive-messages)
 - [Settle messages](#settle-messages)
 - [Send and receive from session enabled queues or topics](#send-and-receive-from-session-enabled-queues-or-topics) 
 - [Create a dead-letter queue Receiver](#create-a-dead-letter-queue-receiver)
