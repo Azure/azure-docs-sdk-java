@@ -1,5 +1,6 @@
 ---
 title: Bing Web Search API 
+description: Learn about the move of Bing Search APIs to Bing Search Services. 
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/26/2020
