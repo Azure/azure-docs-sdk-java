@@ -1,12 +1,13 @@
 ---
 title: Azure Resource Manager App Service client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-appservice, resourcemanager
+description: Azure Resource Manager App Service client library for Java
 author: weidongxu-microsoft
 ms.author: weidxu
 ms.date: 04/11/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: resourcemanager
+ms.service: azure-resource-manager
 ---
 # Azure Resource Manager App Service client library for Java - Version 2.14.0 
 

@@ -1,6 +1,7 @@
 ---
 title: Azure Resource Manager Cosmos client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-cosmos, resourcemanager
+description: Azure Resource Manager Cosmos client library for Java
 author: weidongxu-microsoft
 ms.author: weidxu
 ms.date: 04/11/2022
