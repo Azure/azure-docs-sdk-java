@@ -1,14 +1,12 @@
 ---
 title: Azure IoT Digital Twins client library for Java
 keywords: Azure, java, SDK, API, azure-digitaltwins-core, digitaltwins
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/05/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: digitaltwins
+ms.service: azure-java
 ---
 
 # Azure IoT Digital Twins client library for Java - Version 1.0.1 
