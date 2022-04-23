@@ -1,8 +1,7 @@
 ---
 title: Azure Event Hubs client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventhubs, eventhubs
-descripton: Azure Event Hubs is a highly scalable publish-subscribe service that can ingest millions of events per second and stream
-them to multiple consumers.
+description: Azure Event Hubs is a highly scalable publish-subscribe service that can ingest millions of events per second and stream them to multiple consumers.
 author: sima-zhu
 ms.author: sizhu
 ms.date: 10/31/2020
