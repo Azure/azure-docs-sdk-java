@@ -2,12 +2,10 @@
 title: Azure File Share client library for Java
 description: Learn about Server Message Block protocol the preferred file share protocol used on-premises today.
 keywords: Azure, java, SDK, API, azure-storage-file-share, storage
-author: ramya-rao-a
-ms.author: ramyar
+author: amishra-dev
+ms.author: amishra
 ms.date: 11/11/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
@@ -129,7 +127,7 @@ https://myaccount.file.core.windows.net/myshare/mydirectorypath/myfile
 ```
 
 ### Handling Exceptions
-Uses the `shareServiceClient` generated from [shareSeviceClient](#share-service) section below.
+Uses the `shareServiceClient` generated from [shareSeviceClient](#handling-exceptions) section below.
 
 <!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L222-L226 -->
 ```java
