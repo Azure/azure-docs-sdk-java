@@ -1,12 +1,11 @@
 ---
 title: Azure File Data Lake client library for Java
+description: Learn about Microsoft's optimized storage solution for for big data analytics workloads using Azure Data Lake Storage.
 keywords: Azure, java, SDK, API, azure-storage-file-datalake, storage
-author: ramya-rao-a
-ms.author: ramyar
+author: amishra-dev
+ms.author: amishra
 ms.date: 11/11/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
@@ -55,8 +54,8 @@ az extension add --name storage-preview
 az storage account create -n my-storage-account-name -g my-resource-group --sku Standard_LRS --kind StorageV2 --hierarchical-namespace true
 ```
 
-Your storage account URL, subsequently identified as <your-storage-account-url>, would be formatted as follows
-http(s)://<storage-account-name>.dfs.core.windows.net
+Your storage account URL, subsequently identified as \<your-storage-account-url>, would be formatted as follows
+http(s)://\<storage-account-name>.dfs.core.windows.net
 
 ### Authenticate the client
 
