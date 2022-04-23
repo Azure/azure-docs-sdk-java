@@ -1,14 +1,14 @@
 ---
 title: Azure Attestation client library for Java
+description: Microsoft Azure Attestation (preview) is a unified solution for remotely verifying the trustworthiness of a platform and integrity of the binaries running inside it.
 keywords: Azure, java, SDK, API, azure-security-attestation, 
-author: ramya-rao-a
-ms.author: ramyar
+author: alzimmermsft
+ms.author: alzimmer
 ms.date: 01/30/2021
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
+ms.technology: azure-cli
 ms.devlang: java
-ms.service: 
 ---
 
 # Azure Attestation client library for Java - Version 1.0.0-beta.1 
@@ -91,7 +91,7 @@ the certificate issued by the server can be verified using the [oe_verify_attest
 ### Policy Management
 Each attestation service instance has a policy applied to it which defines additional criteria which the customer has defined.
 
-For more information on attestation policies, see [Attestation Policy](https://docs.microsoft.com/azure/attestation/author-sign-policy)
+For more information on attestation policies, see [Attestation Policy](/azure/attestation/author-sign-policy)
 
 ### Policy Management certificate management.
 When an attestation instance is running in "Isolated" mode, the customer who created the instance will have provided
@@ -176,9 +176,9 @@ JsonWebKeySet certs = attestationBuilder.buildSigningCertificatesClient().get();
 
 ## Troubleshooting
 
-Troubleshooting information for the MAA service can be found [here](https://docs.microsoft.com/azure/attestation/troubleshoot-guide)
+Troubleshooting information for the MAA service can be found [here](/azure/attestation/troubleshoot-guide)
 ## Next steps
-For more information about the Microsoft Azure Attestation service, please see our [documentation page](https://docs.microsoft.com/azure/attestation/). 
+For more information about the Microsoft Azure Attestation service, please see our [documentation page](/azure/attestation/). 
 
 ## Contributing
 This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
@@ -189,7 +189,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 
 
 <!-- LINKS -->
-[style-guide-msft]: https://docs.microsoft.com/style-guide/capitalization
+[style-guide-msft]: /style-guide/capitalization
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fattestation%2Fazure-security-attestation%2FREADME.png)
 
