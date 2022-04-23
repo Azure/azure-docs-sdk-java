@@ -1,19 +1,14 @@
 ---
-title: 
+title: Microsoft Azure Service Bus Client for Java
 keywords: Azure, java, SDK, API, azure-servicebus, servicebus
 author: maggiepint
-ms.author: magpint
+ms.author: azure-sdk
 ms.date: 11/11/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: servicebus
+ms.service: service-bus
 ---
 
-<p align="center">
-  <img src="service-bus.png" alt="Microsoft Azure Service Bus" width="100"/>
-</p>
 
 # Microsoft Azure Service Bus Client for Java
 
@@ -64,7 +59,7 @@ If you send messages from a client any other than the Java client itself in any 
 ## FAQ
 
 ### Where is the API document?
-Click [here](https://docs.microsoft.com/java/api/overview/azure/servicebus?view=azure-java-legacy).
+Click [here](/java/api/overview/azure/servicebus?view=azure-java-legacy).
 
 ### Where can I find examples that use this library?
 

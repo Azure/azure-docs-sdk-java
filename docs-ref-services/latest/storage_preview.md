@@ -2,13 +2,11 @@
 title: Azure Storage libraries for Java
 description: 
 keywords: Azure, Java, SDK, API, Storage
-author: douge
-ms.author: douge
+author: weidongxu-microsoft
+ms.author: weidxu
 manager: douge
 ms.date: 10/19/2018
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---

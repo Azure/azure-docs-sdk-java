@@ -1,14 +1,12 @@
 ---
-title: 
+title: Spring Cloud for Azure starter App Configuration client library for Java
 keywords: Azure, java, SDK, API, azure-spring-cloud-starter-appconfiguration-config, appconfiguration
 author: mssfang
 ms.author: shafang
 ms.date: 03/29/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: appconfiguration
+ms.service: azure-app-configuration
 ---
 # Spring Cloud for Azure starter App Configuration client library for Java
 
@@ -356,13 +354,13 @@ Please follow [instructions here][contributing_md] to build from source or contr
 [contributing_md]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.5.0/sdk/spring/CONTRIBUTING.md
 [maven]: https://maven.apache.org/
 [spring_conversion_duration]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion.durations
-[azure_managed_identity]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview
-[enable_managed_identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview#how-can-i-use-managed-identities-for-azure-resources
-[support_azure_services]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities
+[azure_managed_identity]: /azure/active-directory/managed-identities-azure-resources/overview
+[enable_managed_identities]: /azure/active-directory/managed-identities-azure-resources/overview#how-can-i-use-managed-identities-for-azure-resources
+[support_azure_services]: https:/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities
 [azure]: https://azure.microsoft.com
 [azure_active_directory]: https://azure.microsoft.com/services/active-directory/
 [azure_identity_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.5.0/sdk/identity/azure-identity
-[azure_rbac]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
+[azure_rbac]: /azure/role-based-access-control/role-assignments-portal
 [app_configuration_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.5.0/sdk/appconfiguration/azure-data-appconfiguration#key-concepts
 [key_vault_SDK]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.5.0/sdk/keyvault/azure-security-keyvault-secrets#key-concepts
 [reference_docs]: https://microsoft.github.io/spring-cloud-azure/docs/azure-app-configuration/index.html
