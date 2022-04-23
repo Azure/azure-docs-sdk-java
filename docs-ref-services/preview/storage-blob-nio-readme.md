@@ -1,14 +1,14 @@
 ---
-title: 
+title: Azure Storage Blob NIO FileSystemProvider
+description: This package allows you to interact with Azure Blob Storage through the standard Java NIO Filesystem APIs.
 keywords: Azure, java, SDK, API, azure-storage-blob-nio, storage
 author: amishra-dev
 ms.author: amishra
 ms.date: 04/11/2022
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
+ms.technology: azure-cli
 ms.devlang: java
-ms.service: storage
 ---
 # Azure Storage Blob NIO FileSystemProvider
 
@@ -322,15 +322,15 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.18/sdk/storage/azure-storage-blob-nio/src
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.18/sdk/storage/azure-storage-blob-nio/src/samples/README.md
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
-[product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
-[sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[shared_key]: https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[rest_docs]: /rest/api/storageservices/blob-service-rest-api
+[product_docs]: /azure/storage/blobs/storage-blobs-overview
+[sas_token]: /azure/storage/common/storage-dotnet-shared-access-signature-part-1
+[shared_key]: /rest/api/storageservices/authorize-with-shared-key
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
-[storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[storage_account_create_cli]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
+[storage_account_create_portal]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-nio_12.0.0-beta.18/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
 [samples]: https://docs.oracle.com/javase/tutorial/essential/io/fileio.html
