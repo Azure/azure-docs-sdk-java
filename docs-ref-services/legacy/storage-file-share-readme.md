@@ -1,5 +1,6 @@
 ---
 title: Azure File Share client library for Java
+description: Learn about Server Message Block protocol the preferred file share protocol used on-premises today.
 keywords: Azure, java, SDK, API, azure-storage-file-share, storage
 author: ramya-rao-a
 ms.author: ramyar

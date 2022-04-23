@@ -1,12 +1,11 @@
 ---
 title: Azure Storage Blob client library for Java
+description: Learn about Azure Blob Storage, Microsoft's object storage solution for the cloud.
 keywords: Azure, java, SDK, API, azure-storage-blob, storage
-author: ramya-rao-a
-ms.author: ramyar
+author: amishra-dev
+ms.author: amishra
 ms.date: 11/11/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
@@ -51,8 +50,8 @@ az storage account create \
     --location <location>
 ```
 
-Your storage account URL, subsequently identified as <your-storage-account-url>, would be formatted as follows
-http(s)://<storage-account-name>.blob.core.windows.net
+Your storage account URL, subsequently identified as \<your-storage-account-url>, would be formatted as follows
+http(s)://\<storage-account-name>.blob.core.windows.net
 
 ### Authenticate the client
 
