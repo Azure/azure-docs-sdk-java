@@ -11,7 +11,7 @@ ms.service: azure-app-configuration
 ---
 # Spring Cloud for Azure feature management client library for Java
 
-## Key concepts of the Azure feature management
+## Key concepts of the Azure feature management client library for java
 
 ### Feature Management
 
@@ -278,7 +278,7 @@ Options are available to customize how targeting evaluation is performed across 
 ```
 
 ## Getting started
-## Key concepts of the Azure feature management
+## Key concepts of the Azure feature management client library for Java
 ## Examples
 ## Troubleshooting
 ## Next steps
