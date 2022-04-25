@@ -2,13 +2,11 @@
 title: Azure Mixed Reality client library for Java
 keywords: Azure, java, SDK, API, azure-mixedreality-authentication, 
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 02/23/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # Azure Mixed Reality client library for Java - Version 1.0.0-beta.1 
@@ -21,7 +19,7 @@ token from the STS that can be used to access Mixed Reality services.
 [Source code][source] | [Package (Maven)][package] | [API reference documentation][api_documentation]
 | [Product documentation][product_docs]
 
-![Mixed Reality service authentication diagram](https://docs.microsoft.com/azure/spatial-anchors/concepts/media/spatial-anchors-authentication-overview.png)
+![Mixed Reality service authentication diagram](/spatial-anchors/concepts/media/spatial-anchors-authentication-overview.png)
 
 ## Getting started
 
@@ -29,7 +27,7 @@ token from the STS that can be used to access Mixed Reality services.
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/).
 - You must have an account with an [Azure Mixed Reality service](https://azure.microsoft.com/topic/mixed-reality/):
-  - [Azure Remote Rendering](https://docs.microsoft.com/azure/remote-rendering/)
+  - [Azure Remote Rendering](/azure/remote-rendering/)
   - [Azure Spatial Anchors](https://docs.microsoft.com/azure/spatial-anchors/)
 - [Java Development Kit (JDK)](https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
