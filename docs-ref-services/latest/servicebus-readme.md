@@ -3,7 +3,7 @@ title: Microsoft Azure Service Bus Client for Java
 description: "This is the Java client library for Azure Service Bus that focuses on Queues & Topics. If you are looking for Event Hubs and Relay clients."
 keywords: Azure, java, SDK, API, azure-servicebus, servicebus
 author: maggiepint
-ms.author: sima-zhu
+ms.author: sizhu
 ms.date: 11/11/2021
 ms.topic: reference
 ms.devlang: java
