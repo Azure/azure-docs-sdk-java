@@ -1,11 +1,11 @@
 ---
 title: Azure Communication Administration client library for Java
+description: Describes the Azure Communication Administration client library and provides prerequisites, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-communication-administration, communication
 author: ramya-rao-a
 ms.author: sizhu
 ms.date: 11/17/2020
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: azure
 ---
@@ -24,7 +24,7 @@ Acquired phone numbers can come with many capabilities, depending on the country
 ### Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+- [Java Development Kit (JDK)](/java/azure/jdk) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
 - A deployed Communication Services resource.
 

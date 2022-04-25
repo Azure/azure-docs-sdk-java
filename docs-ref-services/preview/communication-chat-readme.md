@@ -1,11 +1,11 @@
 ---
 title: Azure Communication Chat client library for Java
+description: Describes the Azure Communication Chat client and provides prerequisites, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-communication-chat, communication
 author: ramya-rao-a
 ms.author: sizhu
 ms.date: 08/12/2021
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: azure
 ---
@@ -23,7 +23,7 @@ Azure Communication Chat contains the APIs used in chat applications for Azure C
 ### Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+- [Java Development Kit (JDK)](/java/azure/jdk) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
 - A deployed Communication Services resource. You can use the [Azure Portal](/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](/powershell/module/az.communication/new-azcommunicationservice) to set it up.
 ### Include the package
