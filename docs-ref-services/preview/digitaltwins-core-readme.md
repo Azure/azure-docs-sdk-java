@@ -162,7 +162,7 @@ For more information see the Code of Conduct FAQ or contact opencode@microsoft.c
 [azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.3.0-beta.1/sdk/core/azure-core
 [token_credential]: /java/api/com.azure.core.credential.tokencredential?view=azure-java-stable
 [digital_twins_documentation]: /azure/digital-twins/
-[azure_cli]: /cli/azure/install-azure-cli?view=azure-cli-latest
+[azure_cli]: /cli/azure/install-azure-cli&preserve-view=true
 [iot_cli_extension]: https://github.com/Azure/azure-iot-cli-extension/releases
-[iot_cli_doc]: /cli/azure/ext/azure-iot/dt?view=azure-cli-latest
+[iot_cli_doc]: /cli/azure/ext/azure-iot/dt&preserve-view=true
 
