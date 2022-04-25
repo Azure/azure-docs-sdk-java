@@ -6,9 +6,7 @@ ms.author: jfree
 ms.date: 04/08/2022
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: aot
 ---
 # Azure GraalVM Support client library for Java - Version 1.0.0-beta.1 
 
@@ -23,6 +21,7 @@ a native image of an application that uses Azure client libraries.
 ## Getting started
 
 ### Prerequisites
+
 - A [Java Development Kit (JDK)][jdk_link], version 8 or later.
 - [Azure Subscription][azure_subscription]
 - [GraalVM](https://www.graalvm.org/downloads/) version 22 or later.
@@ -119,7 +118,7 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Faot%2Fazure-aot-graalvm-support%2FREADME.png)

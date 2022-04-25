@@ -2,13 +2,11 @@
 title: Azure Anomaly Detector client library for Java
 keywords: Azure, java, SDK, API, azure-ai-anomalydetector, anomalydetector
 author: joshfree
-ms.author: joshfree
+ms.author: jfree
 ms.date: 01/21/2022
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: anomalydetector
 ---
 # Azure Anomaly Detector client library for Java - Version 3.0.0-beta.4 
 
@@ -139,17 +137,17 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [samples_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-anomalydetector_3.0.0-beta.4/sdk/anomalydetector/azure-ai-anomalydetector/src/samples/
 [azure_subscription]: https://azure.microsoft.com/free/
 [api_reference_doc]: https://aka.ms/azsdk/net/docs/ref/anomalydetector
-[product_documentation]: https://docs.microsoft.com/azure/cognitive-services/anomaly-detector/
-[cognitive_resource_cli]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account-cli
+[product_documentation]: /azure/cognitive-services/anomaly-detector/
+[cognitive_resource_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli
 [anomaly_detector_client_class]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-anomalydetector_3.0.0-beta.4/sdk/anomalydetector/azure-ai-anomalydetector/src/main/java/com/azure/ai/anomalydetector/AnomalyDetectorClient.java
-[azure_cli]: https://docs.microsoft.com/cli/azure
+[azure_cli]: /cli/azure
 [azure_portal]: https://portal.azure.com
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-anomalydetector_3.0.0-beta.4/sdk/identity/azure-identity
 [DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-anomalydetector_3.0.0-beta.4/sdk/identity/azure-identity/README.md#defaultazurecredential
-[custom_subdomain]: https://docs.microsoft.com/azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
-[register_aad_app]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
-[aad_grant_access]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[custom_subdomain]: /azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
+[register_aad_app]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[aad_grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[jdk_link]: /java/azure/jdk/
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-anomalydetector
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-anomalydetector_3.0.0-beta.4/sdk/anomalydetector/azure-ai-anomalydetector/src/samples/README.md
 
