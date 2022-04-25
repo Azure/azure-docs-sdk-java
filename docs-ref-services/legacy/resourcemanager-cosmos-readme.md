@@ -1,12 +1,11 @@
 ---
 title: Azure Resource Manager Cosmos client library for Java
+description: Azure Resource Manager Cosmos client library for Java - Version 2.1.0.
 keywords: Azure, java, SDK, API, azure-resourcemanager-cosmos, cosmosdb
 author: ramya-rao-a
 ms.author: sizhu
 ms.date: 11/25/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: cosmos-db
 ---
