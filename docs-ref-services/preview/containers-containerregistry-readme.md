@@ -146,7 +146,7 @@ For more information please see [Container Registry Concepts](/azure/container-r
 
 ### Sync examples
 
-- [List repository names](list-repository-names)
+- [List repository names](#list-repository-names)
 - [List tags with anonymous access](#list-tags-with-anonymous-access)
 - [Set artifact properties](#set-artifact-properties)
 - [Delete images](#delete-images)
