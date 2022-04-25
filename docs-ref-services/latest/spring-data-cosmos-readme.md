@@ -1,5 +1,6 @@
 ---
 title: Azure Spring Data Cosmos client library for Java
+description: "Azure Spring Data Cosmos provides Data support for Azure Cosmos DB using the SQL API based on Spring Data framework."
 keywords: Azure, java, SDK, API, azure-spring-data-cosmos, cosmos
 author: kushagraThapar
 ms.author: kuthapar

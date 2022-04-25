@@ -1,5 +1,6 @@
 ---
 title: Spring Cloud for Azure feature management web client library for Java
+description: "This section describes the Spring Cloud for Azure feature management web client library for Java."
 keywords: Azure, java, SDK, API, azure-spring-cloud-feature-management-web, appconfiguration
 author: mssfang
 ms.author: shafang

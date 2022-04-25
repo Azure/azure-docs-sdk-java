@@ -1,5 +1,6 @@
 ---
 title: Spring Cloud for Azure feature management client library for Java
+description: "Feature flags provide a way for Spring Boot applications to turn features on or off dynamically."
 keywords: Azure, java, SDK, API, azure-spring-cloud-feature-management, appconfiguration
 author: mssfang
 ms.author: shafang
@@ -10,7 +11,7 @@ ms.service: azure-app-configuration
 ---
 # Spring Cloud for Azure feature management client library for Java
 
-## Key concepts of the feature
+## Key concepts of the Azure feature management
 
 ### Feature Management
 
@@ -277,7 +278,7 @@ Options are available to customize how targeting evaluation is performed across 
 ```
 
 ## Getting started
-## Key concepts of the feature
+## Key concepts of the Azure feature management
 ## Examples
 ## Troubleshooting
 ## Next steps

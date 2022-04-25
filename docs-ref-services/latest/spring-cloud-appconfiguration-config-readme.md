@@ -1,5 +1,6 @@
 ---
 title: Spring Cloud for Azure appconfiguration config client library for Java
+description: "Learn about Spring Cloud for Azure appconfiguration config client library for Java."
 keywords: Azure, java, SDK, API, azure-spring-cloud-appconfiguration-config, appconfiguration
 author: mssfang
 ms.author: shafang

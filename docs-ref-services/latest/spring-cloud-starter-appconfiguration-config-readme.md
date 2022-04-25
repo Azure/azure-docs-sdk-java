@@ -1,5 +1,6 @@
 ---
 title: Spring Cloud for Azure starter App Configuration client library for Java
+description: "Spring Cloud for Azure starter App Configuration client library for Java is a package that helps Spring Application to load properties from Azure Configuration Store."
 keywords: Azure, java, SDK, API, azure-spring-cloud-starter-appconfiguration-config, appconfiguration
 author: mssfang
 ms.author: shafang
@@ -356,7 +357,7 @@ Please follow [instructions here][contributing_md] to build from source or contr
 [spring_conversion_duration]: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion.durations
 [azure_managed_identity]: /azure/active-directory/managed-identities-azure-resources/overview
 [enable_managed_identities]: /azure/active-directory/managed-identities-azure-resources/overview#how-can-i-use-managed-identities-for-azure-resources
-[support_azure_services]: https:/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities
+[support_azure_services]: /azure/active-directory/managed-identities-azure-resources/services-support-managed-identities
 [azure]: https://azure.microsoft.com
 [azure_active_directory]: https://azure.microsoft.com/services/active-directory/
 [azure_identity_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.5.0/sdk/identity/azure-identity
