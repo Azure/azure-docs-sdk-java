@@ -1,14 +1,12 @@
 ---
 title: Azure Web PubSub service client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-webpubsub, webpubsub
-author: maggiepint
-ms.author: magpint
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/11/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: webpubsub
+ms.service: azure-web-pubsub
 ---
 
 # Azure Web PubSub service client library for Java - Version 1.0.0-beta.6 
@@ -97,10 +95,10 @@ When the client is connected, it can send messages to the upstream application, 
 
 ## Examples
 
-* [Broadcast message to entire hub](#broadcast-all "Broadcast message to entire hub")
-* [Broadcast message to a group](#broadcast-group "Broadcast message to a group")
-* [Send message to a connection](#send-to-connection "Send message to a connection")
-* [Send message to a user](#send-to-user "Send message to a user")
+- [Broadcast message to entire hub](#broadcast-message-to-entire-hub)
+- [Broadcast message to a group](#broadcast-message-to-a-group)
+- [Send message to a connection](#send-message-to-a-connection)
+- [Send message to a user](#send-message-to-a-user)
 
 ### Broadcast message to entire hub
 
@@ -168,7 +166,7 @@ comments.
 <!-- LINKS -->
 
 [azure_subscription]: https://azure.microsoft.com/free
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.0.0-beta.6/sdk/webpubsub/azure-messaging-webpubsub/src
 [product_documentation]: https://aka.ms/awps/doc
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.0.0-beta.6/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md

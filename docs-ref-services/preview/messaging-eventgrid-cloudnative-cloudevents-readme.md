@@ -5,10 +5,8 @@ author: srnagar
 ms.author: srnagar
 ms.date: 01/24/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: eventgrid
+ms.service: event-grid
 ---
 # Azure Cloud Native Cloud Event client library for Java - Version 1.0.0-beta.1 
 
@@ -118,7 +116,7 @@ If you encounter any bugs with these SDKs, please file issues via [Issues](https
 
 ## Next steps
 
-- [Azure Java SDKs](https://docs.microsoft.com/java/azure/)
+- [Azure Java SDKs](/java/azure)
 - If you don't have a Microsoft Azure subscription you can get a FREE trial account [here](https://go.microsoft.com/fwlink/?LinkId=330212)
 
 ## Contributing
@@ -128,7 +126,7 @@ Contribution Guidelines for more information.
 
 <!-- LINKS -->
 [eventgridGettingStarted]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid-cloudnative-cloudevents_1.0.0-beta.1/sdk/eventgrid/azure-messaging-eventgrid#getting-started
-[eventgridConcept]: https://docs.microsoft.com/azure/event-grid/concepts
+[eventgridConcept]: /azure/event-grid/concepts
 [eventgridClientConcept]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-eventgrid-cloudnative-cloudevents_1.0.0-beta.1/sdk/eventgrid/azure-messaging-eventgrid#key-concepts
 [javadocs]: https://azure.github.io/azure-sdk-for-java/eventgrid.html
 [CNCFCloudEvents]: https://cloudevents.github.io/sdk-java/
