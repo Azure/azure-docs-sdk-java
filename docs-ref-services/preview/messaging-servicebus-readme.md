@@ -1,6 +1,7 @@
 ---
 title: Azure Service Bus client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-servicebus, servicebus
+description: The Azure Service Bus client library allows for sending and receiving of Azure Service Bus messages.
 author: sima-zhu
 ms.author: sizhu
 ms.date: 05/14/2021
@@ -40,7 +41,7 @@ have to be online at the same time.
 
 To quickly create the needed Service Bus resources in Azure and to receive a connection string for them, you can deploy our sample template by clicking:
 
-[![](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-sdk-for-net%2Fmaster%2Fsdk%2Fservicebus%2FAzure.Messaging.ServiceBus%2Fassets%2Fsamples-azure-deploy.json)
+[![Screenshot of the deploy button that takes you to the Azure custom deployment page.](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-sdk-for-net%2Fmaster%2Fsdk%2Fservicebus%2FAzure.Messaging.ServiceBus%2Fassets%2Fsamples-azure-deploy.json)
 
 ### Include the package
 
@@ -155,11 +156,12 @@ receiving [`ServiceBusMessage`][ServiceBusMessage] from a specific queue or topi
 
 ## Examples
  - [Send messages](#send-messages)
- - [Receive messages and renew lock](#receive-messages-and-renew-lock)
+ - [Receive messages and renew lock](#receive-messages)
  - [Settle messages](#settle-messages)
  - [Send and receive from session enabled queues or topics](#send-and-receive-from-session-enabled-queues-or-topics)
  - [Create a dead-letter queue Receiver](#create-a-dead-letter-queue-receiver)
  - [Sharing a connection between clients](#sharing-of-connection-between-clients)
+
 ### Send messages
 
 You'll need to create an asynchronous [`ServiceBusSenderAsyncClient`][ServiceBusSenderAsyncClient] or a synchronous
@@ -223,6 +225,8 @@ ServiceBusProcessorClient processorClient = new ServiceBusClientBuilder()
 // Starts the processor in the background and returns immediately
 processorClient.start();
 ```
+
+### Settle messages
 
 There are four ways of settling messages using the methods on the message context passed to your callback.
   - Complete - causes the message to be deleted from the queue or topic.
@@ -383,7 +387,7 @@ Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-ser
 [api_documentation]: https://aka.ms/java-docs
 [dead-letter-queue]: /azure/service-bus-messaging/service-bus-dead-letter-queues
 [deadletterqueue_docs]: /azure/service-bus-messaging/service-bus-dead-letter-queues
-[java_development_kit]: /java/azure/jdk/?view=azure-java-stable
+[java_development_kit]: /java/azure/jdk
 [java_8_sdk_javadocs]: https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [maven]: https://maven.apache.org/

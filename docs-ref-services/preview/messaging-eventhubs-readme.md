@@ -1,6 +1,8 @@
 ---
 title: Azure Event Hubs client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventhubs, eventhubs
+description: Azure Event Hubs is a highly scalable publish-subscribe service that can ingest millions of events per second and stream
+them to multiple consumers.
 author: sima-zhu
 ms.author: sizhu
 ms.date: 12/08/2020
@@ -431,7 +433,7 @@ Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eve
 [EventProcessorClient]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.4.0-beta.1/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventProcessorClient.java
 [SampleCheckpointStore]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.4.0-beta.1/sdk/eventhubs/azure-messaging-eventhubs/src/samples/java/com/azure/messaging/eventhubs/SampleCheckpointStore.java
 [java_8_sdk_javadocs]: https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [maven]: https://maven.apache.org/
 [oasis_amqp_v1_error]: https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#type-error
