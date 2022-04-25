@@ -13,7 +13,6 @@ ms.devlang: java
 ---
 # Azure Storage Blobs Cryptography client library for Java - Version 12.15.0-beta.3 
 
-
 Azure Blob storage is Microsoft's object storage solution for the cloud. Blob
 storage is optimized for storing massive amounts of unstructured data.
 Unstructured data is data that does not adhere to a particular data model or

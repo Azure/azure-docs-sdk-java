@@ -1,14 +1,14 @@
 ---
 title: Azure Key Vault JCA client library for Java
+description: 
 keywords: Azure, java, SDK, API, azure-security-keyvault-jca, keyvault
-author: ramya-rao-a
-ms.author: ramyar
+author: vcolin7
+ms.author: vicolina
 ms.date: 05/24/2021
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
+ms.technology: azure-cli
 ms.devlang: java
-ms.service: keyvault
 ---
 
 # Azure Key Vault JCA client library for Java - Version 1.0.0-beta.7 
@@ -162,11 +162,11 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 <!-- LINKS -->
 [Source code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_1.0.0-beta.7/sdk/keyvault/azure-security-keyvault-jca/src
 [API reference documentation]: https://azure.github.io/azure-sdk-for-java/keyvault.html#azure-security-keyvault-jca
-[Product documentation]: https://docs.microsoft.com/azure/key-vault/
+[Product documentation]: /azure/key-vault/
 [Samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_1.0.0-beta.7/sdk/keyvault/azure-security-keyvault-jca/src/samples/java/com/azure/security/keyvault/jca
 [azure_subscription]: https://azure.microsoft.com/
-[azure_keyvault]: https://docs.microsoft.com/azure/key-vault/keys/quick-create-portal
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[azure_keyvault]: /azure/key-vault/keys/quick-create-portal
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [azure_cloud_shell]: https://shell.azure.com/bash
 [spring_boot_starter]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_1.0.0-beta.7/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md
 [jca_reference_guide]: https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html

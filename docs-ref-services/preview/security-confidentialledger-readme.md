@@ -1,14 +1,14 @@
 ---
-title: Azure Confidential Ledger client library for Java
+title: Azure Confidential Ledger client library for Java Version 1.0.0-beta.2
+description: Azure Confidential Ledger provides a service for logging to an immutable, tamper-proof ledger. It runs in SGX enclaves. It is built on Microsoft Research's [Confidential Consortium Framework.
 keywords: Azure, java, SDK, API, azure-security-confidentialledger, 
-author: ramya-rao-a
-ms.author: ramyar
+author: alzimmermsft
+ms.author: alzimmer
 ms.date: 06/08/2021
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
+ms.technology: azure-cli
 ms.devlang: java
-ms.service: 
 ---
 
 # Azure Confidential Ledger client library for Java - Version 1.0.0-beta.2 
@@ -161,7 +161,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [product_documentation]: https://aka.ms/confidentialledger-servicedocs
 [ledger_base_client_class]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-confidentialledger_1.0.0-beta.2/sdk/confidentialledger/azure-security-confidentialledger/src/main/java/com/azure/security/confidentialledger/LedgerBaseClient.java
 [azure_portal]: https://portal.azure.com
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [package]: https://mvnrepository.com/artifact/com.azure/azure-security-confidentialledger
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-confidentialledger_1.0.0-beta.2/sdk/confidentialledger/azure-security-confidentialledger/src/samples/README.md
 

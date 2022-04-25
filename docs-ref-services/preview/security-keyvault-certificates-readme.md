@@ -1,14 +1,14 @@
 ---
-title: Azure Key Vault Certificate client library for Java
+title: Azure Key Vault Certificate client library for Java - Version 4.3.0-beta.5
+description: Azure Key Vault allows you to securely manage and tightly control your certificates. The Azure Key Vault Certificate client library supports certificates backed by RSA and EC keys.
 keywords: Azure, java, SDK, API, azure-security-keyvault-certificates, keyvault
 author: vcolin7
 ms.author: vicolina
 ms.date: 02/12/2022
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
+ms.technology: azure-cli
 ms.devlang: java
-ms.service: keyvault
 ---
 # Azure Key Vault Certificate client library for Java - Version 4.3.0-beta.5 
 
@@ -302,26 +302,26 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 <!-- LINKS -->
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.0-beta.5/sdk/keyvault/azure-security-keyvault-certificates/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
-[azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
+[azkeyvault_docs]: /azure/key-vault/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-certificates_4.3.0-beta.5/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
-[azure_keyvault]: https://docs.microsoft.com/azure/key-vault/certificates/quick-create-portal
-[azure_cli]: https://docs.microsoft.com/cli/azure
-[rest_api]: https://docs.microsoft.com/rest/api/keyvault/
-[azkeyvault_rest]: https://docs.microsoft.com/rest/api/keyvault/
-[azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
-[azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
-[azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
+[azure_keyvault]: /azure/key-vault/certificates/quick-create-portal
+[azure_cli]: /cli/azure
+[rest_api]: /rest/api/keyvault/
+[azkeyvault_rest]: /rest/api/keyvault/
+[azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
+[azure_keyvault_cli]: /azure/key-vault/quick-create-cli
+[azure_keyvault_cli_full]: /cli/azure/keyvault?view=azure-cli-latest
 [certificates_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.0-beta.5/sdk/keyvault/azure-security-keyvault-certificates/src/samples/java/com/azure/security/keyvault/certificates
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.0-beta.5/sdk/keyvault/azure-security-keyvault-certificates/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [azure_cloud_shell]: https://shell.azure.com/bash
 [jwk_specification]: https://tools.ietf.org/html/rfc7517
 [http_clients_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients
 [microsoft_code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
-[rbac_guide]: https://docs.microsoft.com/azure/key-vault/general/rbac-guide
+[rbac_guide]: /azure/key-vault/general/rbac-guide
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-certificates%2FREADME.png)
 

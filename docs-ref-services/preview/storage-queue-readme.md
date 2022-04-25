@@ -501,7 +501,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.12.0-beta.3/sdk/storage/azure-storage-queue/src/samples/README.md
 [api_documentation]: /rest/api/storageservices/queue-service-rest-api
 [storage_docs]: /azure/storage/queues/storage-queues-introduction
-[jdk]: /java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk/
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/free/
 [storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
