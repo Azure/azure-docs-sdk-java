@@ -2,13 +2,12 @@
 title: Azure Communication CallingServer Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-callingserver, 
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 10/07/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # Azure Communication CallingServer Service client library for Java - Version 1.0.0-beta.4 
@@ -24,9 +23,9 @@ This package contains a Java SDK for Azure Communication CallingServer Service.
 ### Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+- [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
-- A deployed Communication Services resource. You can use the [Azure Portal](https://docs.microsoft.com/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](https://docs.microsoft.com/powershell/module/az.communication/new-azcommunicationservice) to set it up.
+- A deployed Communication Services resource. You can use the [Azure Portal](/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](/powershell/module/az.communication/new-azcommunicationservice) to set it up.
 
 ### Include the package
 
@@ -214,11 +213,11 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[product_docs]: https://docs.microsoft.com/azure/communication-services/
+[product_docs]: /azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-callingserver
 [api_documentation]: https://aka.ms/java-docs
-[call_automation_apis_overview]:https://docs.microsoft.com/azure/communication-services/concepts/voice-video-calling/call-automation-apis
-[call_recording_overview]:https://docs.microsoft.com/azure/communication-services/concepts/voice-video-calling/call-recording
-[record_and_download_calls_with_event_grid]:https://docs.microsoft.com/azure/communication-services/quickstarts/voice-video-calling/download-recording-file-sample
+[call_automation_apis_overview]:/azure/communication-services/concepts/voice-video-calling/call-automation-apis
+[call_recording_overview]:/azure/communication-services/concepts/voice-video-calling/call-recording
+[record_and_download_calls_with_event_grid]:/azure/communication-services/quickstarts/voice-video-calling/download-recording-file-sample
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-callingserver_1.0.0-beta.4/sdk/communication/azure-communication-callingserver/src
 
