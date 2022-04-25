@@ -1,11 +1,11 @@
 ---
 title: Azure Communication Identity client library for Java
+description: Describes the identity package used for Azure Communication Services and provides prerequisites, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-communication-identity, communication
 author: ramya-rao-a
 ms.author: sizhu
 ms.date: 10/29/2021
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: azure
 ---
@@ -24,7 +24,7 @@ The identity package is used for managing users and tokens for Azure Communicati
 ### Prerequisites
 
 - An Azure subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+- [Java Development Kit (JDK)](/java/azure/jdk) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
 - A Communication Services resource. You can use the [Azure Portal](/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](/powershell/module/az.communication/new-azcommunicationservice) to set it up.
 

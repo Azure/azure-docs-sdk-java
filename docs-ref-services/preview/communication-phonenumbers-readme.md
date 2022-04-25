@@ -1,11 +1,11 @@
 ---
 title: Azure Communication Phone Numbers client library for Java
+description: Describes Azure Communication Phone Numbers client library for the version 1.1.0-beta.4 iteration of Java.
 keywords: Azure, java, SDK, API, azure-communication-phonenumbers, communication
 author: JianpingChen
 ms.author: jiach
 ms.date: 04/14/2022
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: azure
 ---
@@ -23,7 +23,7 @@ Purchased phone numbers can come with many capabilities, depending on the countr
 ### Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+- [Java Development Kit (JDK)](/java/azure/jdk) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
 - A deployed Communication Services resource. You can use the [Azure Portal](/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](/powershell/module/az.communication/new-azcommunicationservice) to set it up.
 
