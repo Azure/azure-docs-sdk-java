@@ -27,7 +27,7 @@ Use the client library for Azure Container Registry to:
 
 ### Prerequisites
 
-- A [Java Development Kit (JDK)][jdk_link], version 8 or later.
+- A [Java Development Kit (JDK)][jdk_link&preserve-view=true], version 8 or later.
 - [Azure Subscription][azure_subscription]
 - [Container Registry Create][container_registry_create_cli]
 
