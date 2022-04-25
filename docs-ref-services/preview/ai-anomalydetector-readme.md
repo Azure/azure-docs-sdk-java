@@ -1,6 +1,7 @@
 ---
 title: Azure Anomaly Detector client library for Java
 keywords: Azure, java, SDK, API, azure-ai-anomalydetector, anomalydetector
+description: Microsoft Azure Cognitive Services Anomaly Detector API enables you to monitor and detect abnormalities in your time series data with machine learning.
 author: joshfree
 ms.author: jfree
 ms.date: 01/21/2022

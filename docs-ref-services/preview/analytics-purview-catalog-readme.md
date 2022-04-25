@@ -1,6 +1,7 @@
 ---
 title: Azure Purview Catalog client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-purview-catalog, purview
+description: Azure Purview Catalog is a fully managed cloud service whose users can discover the data sources they need and understand the data sources they find.
 author: joshfree
 ms.author: jfree
 ms.date: 03/16/2022

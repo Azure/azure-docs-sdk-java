@@ -1,6 +1,7 @@
 ---
 title: Azure GraalVM Support client library for Java
 keywords: Azure, java, SDK, API, azure-aot-graalvm-support, aot
+description: The Azure GraalVM Support client library provides support for applications using Azure client libraries to be built as GraalVM native images.
 author: joshfree
 ms.author: jfree
 ms.date: 04/08/2022

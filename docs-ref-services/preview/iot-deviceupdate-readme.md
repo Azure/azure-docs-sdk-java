@@ -1,6 +1,7 @@
 ---
 title: Azure Device Update for IoT Hub client library for Java
 keywords: Azure, java, SDK, API, azure-iot-deviceupdate, iotdeviceupdate
+description: The library provides access to the Device Update for IoT Hub service that enables customers to publish updates for their IoT devices to the cloud, and then deploy these updates to their devices (approve updates to groups of devices managed and provisioned in IoT Hub).
 author: joshfree
 ms.author: jfree
 ms.date: 01/19/2022
