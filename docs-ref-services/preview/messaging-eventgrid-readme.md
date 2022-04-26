@@ -400,8 +400,8 @@ byte[] dataInBytes = eventData.toBytes();
 ```  
 
 #### Deserialize system event data from `CloudEvent` or `EventGridEvent`
-An event that is sent to a [System Topic](/azure/event-grid/system-topics) is called a
-System Topic Event, or System Event. 
+
+An event that is sent to a [System Topic](/azure/event-grid/system-topics) is called a System Topic Event, or System Event.
 A system topic in Event Grid represents events published by an [Event Source](/azure/event-grid/overview#event-sources) like Azure Storage, Azure Event Hubs, App Configuration and so on.
 An example is when a blob is created, a system event with event type "Microsoft.Storage.BlobCreated" is sent to the configured System Topic. 
 The system event class for this event type is `StorageBlobCreatedEventData` defined in package `com.azure.messaging.eventgrid.systemevents`.
