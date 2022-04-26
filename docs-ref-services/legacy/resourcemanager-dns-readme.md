@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager dns client library for Java
+description: Azure Resource Manager dns client library for Java.
 keywords: Azure, java, SDK, API, azure-resourcemanager-dns, dns
 author: ramya-rao-a
 ms.author: sizhu

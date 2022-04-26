@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager Containerservice client library for Java
+description: Azure Resource Manager Containerservice client library for Java.
 keywords: Azure, java, SDK, API, azure-resourcemanager-containerservice, containerservice
 author: ramya-rao-a
 ms.author: sizhu

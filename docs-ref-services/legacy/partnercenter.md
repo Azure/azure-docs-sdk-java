@@ -63,5 +63,5 @@ while ( customersEnumerator.hasValue() )
 
 ## Samples
 
-[Supported scenarios](https://docs.microsoft.com/partner-center/develop/scenarios)
+[Supported scenarios](/partner-center/develop/scenarios)
 [Sample console application](https://github.com/Microsoft/Partner-Center-Java-Samples)  
