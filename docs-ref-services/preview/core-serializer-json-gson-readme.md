@@ -1,14 +1,14 @@
 ---
 title: Azure Core Gson JSON Serializer plugin library for Java
+desciption: Azure Core Gson JSON Serializer plugin library for Java - Version 1.0.0-beta.3
 keywords: Azure, java, SDK, API, azure-core-serializer-json-gson, 
-author: ramya-rao-a
-ms.author: ramyar
+author: amishra-dev
+ms.author: amishra
 ms.date: 08/12/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # Azure Core Gson JSON Serializer plugin library for Java - Version 1.0.0-beta.3 
