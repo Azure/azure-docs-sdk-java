@@ -1,5 +1,6 @@
 ---
 title: Azure Document Translator client library for Java
+description: Reference document for Microsoft Azure Cognitive Services Document Translator API.
 keywords: Azure, java, SDK, API, azure-ai-documenttranslator, 
 author: scbedd
 ms.author: scbedd
@@ -92,7 +93,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [cognitive_resource_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli
 [batch_document_translation_client_class]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documenttranslator_1.0.0-beta.1/sdk/translation/azure-ai-documenttranslator/src/main/java/com/azure/ai/documenttranslator/BatchDocumentTranslationRestClient.java
 [azure_portal]: https://portal.azure.com
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-documenttranslator
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documenttranslator_1.0.0-beta.1/sdk/translation/azure-ai-documenttranslator/src/samples/README.md
 
