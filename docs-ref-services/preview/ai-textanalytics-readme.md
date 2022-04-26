@@ -558,7 +558,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [create_new_resource]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
 [custom_subdomain]: https://docs.microsoft.com/azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
 [grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
-[healthcare]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-for-health?tabs=ner
+[healthcare]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/how-tos/text-analytics-for-health?tabs=ner
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [key]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
 [key_phrase_extraction]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-keyword-extraction
@@ -574,7 +574,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [register_AAD_application]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [service_access]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
 [service_input_limitation]: /azure/cognitive-services/text-analytics/overview#data-limits
-[sentiment_analysis]: 
+[sentiment_analysis]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-sentiment-analysis
 [source_code]: https://github.com/Azure/azure/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-sentiment-analysis-sdk-for-java/tree/azure-ai-textanalytics_5.2.0-beta.2/sdk/textanalytics/azure-ai-textanalytics/src
 [supported_languages]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/language-support#language-detection
 [text_analytics_account]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
