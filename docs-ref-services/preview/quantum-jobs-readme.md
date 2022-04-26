@@ -1,14 +1,13 @@
 ---
 title: Azure Quantum Jobs client library for Java
-keywords: Azure, java, SDK, API, azure-quantum-jobs, 
-author: ramya-rao-a
-ms.author: ramyar
+keywords: Azure, java, SDK, API, azure-quantum-jobs
+description: Azure Quantum is a Microsoft Azure service that you can use to run quantum computing programs or solve optimization problems in the cloud.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 02/02/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure-quantum
 ---
 
 # Azure Quantum Jobs client library for Java - Version 1.0.0-beta.1 
@@ -19,7 +18,7 @@ Azure Quantum is a Microsoft Azure service that you can use to run quantum compu
 - Enumerate provider status and quotas
 
 
-[Source code][source] | [API reference documentation](https://docs.microsoft.com/qsharp/api/) | [Product documentation](https://docs.microsoft.com/azure/quantum/)
+[Source code][source] | [API reference documentation](/qsharp/api) | [Product documentation](/azure/quantum)
 
 ## Getting started
 
@@ -122,7 +121,7 @@ String containerUri = storageClient.sasUri(
 ### Upload Input Data
 
 Using the SAS URI, upload the json input data to the blob client.
-This contains the parameters to be used with [Quantum Inspired Optimizations](https://docs.microsoft.com/azure/quantum/optimization-overview-introduction)
+This contains the parameters to be used with [Quantum Inspired Optimizations](/azure/quantum/optimization-overview-introduction)
 
 <!-- embedme ./src/samples/java/com/azure/quantum/jobs/ReadmeSamples.java#L80-L92 -->
 ```java
@@ -186,7 +185,7 @@ All Quantum Jobs service operations will throw a RequestFailedException on failu
 
 ## Next steps
 
-*  Visit our [Product documentation](https://docs.microsoft.com/azure/quantum/) to learn more about Azure Quantum.
+*  Visit our [Product documentation](/azure/quantum) to learn more about Azure Quantum.
 
 ## Contributing
 
@@ -206,20 +205,20 @@ additional questions or comments.
 <!-- LINKS -->
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-quantum-jobs_1.0.0-beta.1/sdk/quantum/azure-quantum-jobs/src
 [style-guide-msft]: https://docs.microsoft.com/style-guide/capitalization
-[token-credential]: https://docs.microsoft.com/dotnet/api/azure.core.tokencredential?view=azure-dotnet
-[resource-groups]: https://docs.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal
-[workspaces]: https://docs.microsoft.com/azure/quantum/how-to-create-quantum-workspaces-with-the-azure-portal
+[token-credential]: /dotnet/api/azure.core.tokencredential
+[resource-groups]: /azure/azure-resource-manager/management/manage-resource-groups-portal
+[workspaces]: /azure/quantum/how-to-create-quantum-workspaces-with-the-azure-portal
 [location]: https://azure.microsoft.com/global-infrastructure/services/?products=quantum
-[blob-storage]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-introduction
+[blob-storage]: /azure/storage/blobs/storage-blobs-introduction
 [contributing]: https://github.com/Azure/azure-sdk-for-net/tree/master/CONTRIBUTING.md
 [subscriptions]: https://ms.portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade
-[credentials]: https://docs.microsoft.com/dotnet/api/overview/azure/identity-readme#credentials
+[credentials]: /dotnet/api/overview/azure/identity-readme#credentials
 [style-guide-msft]: https://docs.microsoft.com/style-guide/capitalization
 [style-guide-cloud]: https://aka.ms/azsdk/cloud-style-guide
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk
 [azure_subscription]: https://azure.microsoft.com/free
 [azure_quantum]: https://azure.microsoft.com/services/quantum/
-[azure_quantum_workspaces]: https://docs.microsoft.com/azure/quantum/how-to-create-quantum-workspaces-with-the-azure-portal
+[azure_quantum_workspaces]: /azure/quantum/how-to-create-quantum-workspaces-with-the-azure-portal
 [azure_storage]: https://azure.microsoft.com/free/storage/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc]: https://opensource.microsoft.com/codeofconduct/

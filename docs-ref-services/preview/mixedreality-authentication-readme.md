@@ -1,27 +1,23 @@
 ---
 title: Azure Mixed Reality client library for Java
-keywords: Azure, java, SDK, API, azure-mixedreality-authentication, 
-author: ramya-rao-a
-ms.author: ramyar
+keywords: Azure, java, SDK, API, azure-mixedreality-authentication.
+description: Mixed Reality services uses the Mixed Reality security token service for authentication.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 02/23/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
-# Azure Mixed Reality client library for Java - Version 1.0.0-beta.1 
+# Azure Mixed Reality client library for Java - Version 1.0.0-beta.1
 
-
-Mixed Reality services, like Azure Spatial Anchors, Azure Remote Rendering, and others, use the Mixed Reality security
-token service (STS) for authentication. This package supports exchanging Mixed Reality account credentials for an access
-token from the STS that can be used to access Mixed Reality services.
+Mixed Reality services, like Azure Spatial Anchors, Azure Remote Rendering, and others, use the Mixed Reality security token service (STS) for authentication. This package supports exchanging Mixed Reality account credentials for an access token from the STS that can be used to access Mixed Reality services.
 
 [Source code][source] | [Package (Maven)][package] | [API reference documentation][api_documentation]
 | [Product documentation][product_docs]
 
-![Mixed Reality service authentication diagram](https://docs.microsoft.com/azure/spatial-anchors/concepts/media/spatial-anchors-authentication-overview.png)
+![Mixed Reality service authentication diagram](/azure/spatial-anchors/concepts/media/spatial-anchors-authentication-overview.png)
 
 ## Getting started
 
@@ -29,9 +25,9 @@ token from the STS that can be used to access Mixed Reality services.
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/).
 - You must have an account with an [Azure Mixed Reality service](https://azure.microsoft.com/topic/mixed-reality/):
-  - [Azure Remote Rendering](https://docs.microsoft.com/azure/remote-rendering/)
-  - [Azure Spatial Anchors](https://docs.microsoft.com/azure/spatial-anchors/)
-- [Java Development Kit (JDK)](https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+  - [Azure Remote Rendering](/azure/remote-rendering/)
+  - [Azure Spatial Anchors](/azure/spatial-anchors/)
+- [Java Development Kit (JDK)](/java/azure/jdk) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
 - Familiarity with the authentication and credential concepts from [Azure.Identity](https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-authentication_1.0.0-beta.1/sdk/identity/azure-identity).
 
@@ -61,7 +57,7 @@ Mixed Reality services support a few different forms of authentication:
     method for production applications because it allows you to avoid embedding the credentials for access to a Mixed
     Reality service in your client application.
 
-See [here](https://docs.microsoft.com/azure/spatial-anchors/concepts/authentication) for detailed instructions and information.
+See [here](/azure/spatial-anchors/concepts/authentication) for detailed instructions and information.
 
 ## Key concepts
 

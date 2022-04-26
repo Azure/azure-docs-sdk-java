@@ -1,14 +1,13 @@
 ---
 title: Azure Monitor OpenTelemetry Exporter client library for Java
-keywords: Azure, java, SDK, API, opentelemetry-exporters-azuremonitor, 
-author: ramya-rao-a
-ms.author: ramyar
+keywords: Azure, java, SDK, API, opentelemetry-exporters-azuremonitor
+description: Azure Monitor OpenTelemetry Exporter client library provides support for exporting OpenTelemetry data to Azure Monitor.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 10/08/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure-monitor
 ---
 
 # Azure Monitor OpenTelemetry Exporter client library for Java - Version 1.0.0-beta.1 
@@ -107,12 +106,12 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/opentelemetry-exporters-azuremonitor_1.0.0-beta.1/sdk/monitor/opentelemetry-exporters-azuremonitor/src/samples/java/
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/opentelemetry-exporters-azuremonitor_1.0.0-beta.1/sdk/monitor/opentelemetry-exporters-azuremonitor/src
 [azure_subscription]: https://azure.microsoft.com/free/
-[api_reference_doc]: https://docs.microsoft.com/azure/azure-monitor/overview
-[product_documentation]: https://docs.microsoft.com/azure/azure-monitor/overview
+[api_reference_doc]: /azure/azure-monitor/overview
+[product_documentation]: /azure/azure-monitor/overview
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_portal]: https://portal.azure.com
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/opentelemetry-exporters-azuremonitor_1.0.0-beta.1/sdk/identity/azure-identity
@@ -121,8 +120,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [opentelemetry_sdk]: https://github.com/open-telemetry/opentelemetry-java/blob/master/QUICKSTART.md
 [opentelemetry_specification]: https://github.com/open-telemetry/opentelemetry-specification
-[application_insights_resource]: https://docs.microsoft.com/azure/azure-monitor/app/create-new-resource
-[application_insights_intro]: https://docs.microsoft.com/azure/azure-monitor/app/app-insights-overview
+[application_insights_resource]: /azure/azure-monitor/app/create-new-resource
+[application_insights_intro]: /azure/azure-monitor/app/app-insights-overview
 [azure_portal]: https://ms.portal.azure.com/#blade/HubsExtension/BrowseResource/resourceType/microsoft.insights%2Fcomponents
 [opentelemetry_io]: https://opentelemetry.io/ 
 [span_data]: https://opentelemetry.lightstep.com/spans

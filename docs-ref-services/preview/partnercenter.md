@@ -1,14 +1,13 @@
 ---
 title: Partner Center Java SDK
 description: Reference documentation for the Partner Center Java SDK
-keywords: API, CSP, Cloud Soltuion Provider, Java, Partner Center, SDK
+keywords: API, CSP, Cloud Solution Provider, Java, Partner Center, SDK
 author: iswillia
 ms.author: iswillia
 manager: lesliep
 ms.date: 10/09/2018
 ms.topic: reference
-ms.prod: partnercenter
-ms.technology: partnercenter
+ms.service: azure-java
 ms.devlang: java
 ---
 
@@ -64,5 +63,5 @@ while ( customersEnumerator.hasValue() )
 
 ## Samples
 
-[Supported scenarios](https://docs.microsoft.com/partner-center/develop/scenarios)
+[Supported scenarios](/partner-center/develop/scenarios)
 [Sample console application](https://github.com/Microsoft/Partner-Center-Java-Samples)  

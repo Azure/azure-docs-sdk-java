@@ -1,26 +1,20 @@
 ---
 title: Azure Monitor query client library for Java
 keywords: Azure, java, SDK, API, azure-monitor-query, monitor
-author: ramya-rao-a
-ms.author: ramyar
+description: Azure Monitor delivers a comprehensive solution for collecting, analyzing, and acting on telemetry from your cloud and on-premises environments.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 09/10/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: monitor
 ---
 
 # Azure Monitor query client library for Java - Version 1.0.0-beta.4 
 
+Azure Monitor helps you maximize the availability and performance of your applications and services. It delivers a comprehensive solution for collecting, analyzing, and acting on telemetry from your cloud and on-premises environments.
 
-Azure Monitor helps you maximize the availability and performance of your applications and services. It delivers a
-comprehensive solution for collecting, analyzing, and acting on telemetry from your cloud and on-premises environments.
-
-All data collected by Azure Monitor fits into one of two fundamental types, metrics and logs. Metrics are numerical
-values that describe some aspect of a system at a particular point in time. They are lightweight and capable of
-supporting near real-time scenarios. Logs contain different kinds of data organized into records with different sets of
-properties for each type. Telemetry such as events and traces are stored as logs in addition to performance data so that
+All data collected by Azure Monitor fits into one of two fundamental types, metrics and logs. Metrics are numerical values that describe some aspect of a system at a particular point in time. They are lightweight and capable of supporting near real-time scenarios. Logs contain different kinds of data organized into records with different sets of properties for each type. Telemetry such as events and traces are stored as logs in addition to performance data so that
 it can all be combined for analysis.
 
 This client library provides access to query metrics and logs collected by Azure Monitor.
@@ -109,7 +103,7 @@ one workspace for your production data and another for testing.
 
 Data is retrieved from a Log Analytics workspace using a log query which is a read-only request to process data and
 return results. Log queries are written
-in [Kusto Query Language (KQL)](https://docs.microsoft.com/azure/data-explorer/kusto/query/), which is the same query
+in [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query), which is the same query
 language used by Azure Data Explorer. You can write log queries in Log Analytics to interactively analyze their results,
 use them in alert rules to be proactively notified of issues, or include their results in workbooks or dashboards.
 Insights include prebuilt queries to support their views and workbooks.
@@ -117,9 +111,7 @@ Insights include prebuilt queries to support their views and workbooks.
 #### Logs query rate limits and throttling
 
 Each AAD user is able to make up to 200 requests per 30 seconds, with no cap on the total calls per day.If requests are 
-being made at a rate higher than this, then these requests will receive HTTP status code 429 
-(Too Many Requests) along with the Retry-After: <delta-seconds> header which indicates the number of seconds until 
-requests to this application are likely to be accepted.
+being made at a rate higher than this, then these requests will receive HTTP status code 429 (Too Many Requests) along with the Retry-After: \<delta-seconds\> header which indicates the number of seconds until requests to this application are likely to be accepted.
 
 As well as call rate limits and daily quota caps, there are also limits on queries themselves:
 
@@ -151,13 +143,13 @@ time-stamped data. Each set of metric values is a time series with the following
 
 ## Examples
 
-* [Get logs for a query](#get-query "Get logs for a query")
-* [Get logs for a query and read the response as a model type](#get-query-model "Get logs for a query and read the response as a model type")
-* [Get logs for a batch for queries](#get-batch-query "Get logs for a batch of queries")
-* [Get logs for a query with server timeout](#get-query-server-timeout "Get logs for a query with server timeout")
-* [Get logs from multiple workspaces](#get-query-multiple-workspaces "Get logs from multiple workspaces")
-* [Get metrics](#get-metrics "Get metrics")
-* [Get average and count metrics ](#get-aggregation-metrics "Get average and count metrics")
+* [Get logs for a query](#get-logs-for-a-query)
+* [Get logs for a query and read the response as a model type](#get-logs-for-a-query-and-read-the-response-as-a-model-type)
+* [Get logs for a batch for queries](#get-logs-for-a-batch-of-queries)
+* [Get logs for a query with server timeout](#get-logs-for-a-query-with-server-timeout)
+* [Get logs from multiple workspaces](#get-logs-from-multiple-workspaces)
+* [Get metrics](#get-metrics)
+* [Get average and count metrics ](#get-average-and-count-metrics)
 
 
 ### Get logs for a query
@@ -431,9 +423,9 @@ comments.
 
 [azure_subscription]: https://azure.microsoft.com/free/java
 
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk
 
-[product_documentation]: https://docs.microsoft.com/azure/azure-monitor/overview
+[product_documentation]: /azure/azure-monitor/overview
 
 [log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.0-beta.4/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 
