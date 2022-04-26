@@ -1,5 +1,6 @@
 ---
 title: Azure Key Vault Administration library for Java
+description: Azure Key Vault Managed HSM is a fully-managed, highly-available, single-tenant, standards-compliant cloud service.
 keywords: Azure, java, SDK, API, azure-security-keyvault-administration, keyvault
 author: vcolin7
 ms.author: vicolina
@@ -589,7 +590,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [azkeyvault_rest]: /rest/api/keyvault/
 [azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: /azure/key-vault/quick-create-cli
-[azure_keyvault_cli_full]: /cli/azure/keyvault?view=azure-cli-latest
+[azure_keyvault_cli_full]: /cli/azure/keyvault?view=azure-java-stable&preserve-view=true
 [administration_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-administration_4.1.0-beta.5/sdk/keyvault/azure-security-keyvault-administration/src/samples/java/com/azure/security/keyvault/administration
 [access_control]: /azure/key-vault/managed-hsm/access-control
 [best_practices]: /azure/key-vault/managed-hsm/best-practices

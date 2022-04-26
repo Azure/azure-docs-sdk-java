@@ -2,15 +2,14 @@
 title: Service Bus libraries for Java
 description: Reference documentation for the Java client and management libraries for Service Bus
 keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, message broker
-author: ramya-rao-a
-ms.author: ramyar
+author: vcolin7
+ms.author: vicolina
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
+ms.technology: azure-cli
 ms.devlang: java
-ms.service: service-bus
 ---
 
 # Service Bus libraries for Java
@@ -34,7 +33,7 @@ predictable performance with a simple, capacity-oriented pricing model and at ex
 commercial on-premises brokers. For many customers, Service Bus Premium can replace dedicated on-premises messaging 
 clusters today, even if the attached workloads do not run in the cloud. 
 
-Learn more about Service Bus concepts [in the messaging documentation section](https://docs.microsoft.com/azure/service-bus-messaging/) 
+Learn more about Service Bus concepts [in the messaging documentation section](/azure/service-bus-messaging/) 
 
 For Java developers, Service Bus provides a Microsoft supported native API and Service Bus can also be used with
 AMQP 1.0 compliant libraries such as Apache Qpid Proton's JMS provider.
