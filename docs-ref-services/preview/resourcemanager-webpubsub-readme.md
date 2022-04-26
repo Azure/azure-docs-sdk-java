@@ -1,14 +1,13 @@
 ---
-title: Azure Resource Manager WebPubSub client library for Java
+title: Azure Resource Manager WebPubSub client library for Java - Version 1.0.0-beta.2
+description: This package contains Microsoft Azure SDK for WebPubSub Management SDK. REST API for Azure WebPubSub Service.
 keywords: Azure, java, SDK, API, azure-resourcemanager-webpubsub, webpubsub
-author: ramya-rao-a
-ms.author: ramyar
+author: hallipr
+ms.author: pahallis
 ms.date: 10/14/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: webpubsub
+ms.service: azure
 ---
 
 # Azure Resource Manager WebPubSub client library for Java - Version 1.0.0-beta.2 
@@ -108,7 +107,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 <!-- LINKS -->
 [survey]: https://microsoft.qualtrics.com/jfe/form/SV_ehN0lIk2FKEBkwd?Q_CHL=DOCS
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-webpubsub_1.0.0-beta.2/sdk/identity/azure-identity
 [azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-webpubsub_1.0.0-beta.2/sdk/core/azure-core-http-netty
