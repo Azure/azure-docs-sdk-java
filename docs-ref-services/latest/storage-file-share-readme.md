@@ -5,8 +5,6 @@ author: amishra-dev
 ms.author: amishra
 ms.date: 04/08/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
@@ -581,18 +579,18 @@ For details on contributing to this repository, see the [contributing guide](htt
 <!-- LINKS -->
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.12.1/sdk/storage/azure-storage-file-share/src/
 [reference_docs]: https://azure.github.io/azure-sdk-for-java/
-[rest_api_documentation]: https://docs.microsoft.com/rest/api/storageservices/file-service-rest-api
-[storage_docs]: https://docs.microsoft.com/azure/storage/files/storage-files-introduction
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[rest_api_documentation]: /rest/api/storageservices/file-service-rest-api
+[storage_docs]: /azure/storage/files/storage-files-introduction
+[jdk]: /java/azure/jdk/
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[azure_cli]: https://docs.microsoft.com/cli/azure
-[sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
+[storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[azure_cli]: /cli/azure
+[sas_token]: /azure/storage/common/storage-dotnet-shared-access-signature-part-1
 [RFC_URL_1]: https://www.ietf.org/rfc/rfc2616.txt
 [RFL_URL_2]: https://www.ietf.org/rfc/rfc3987.txt
-[csharp_identifiers]: https://docs.microsoft.com/dotnet/csharp/language-reference/
-[storage_file_rest]: https://docs.microsoft.com/rest/api/storageservices/file-service-error-codes
+[csharp_identifiers]: /dotnet/csharp/language-reference/
+[storage_file_rest]: /rest/api/storageservices/file-service-error-codes
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.12.1/sdk/storage/azure-storage-file-share/src/samples
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 

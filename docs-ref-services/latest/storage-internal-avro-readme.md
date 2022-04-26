@@ -5,8 +5,6 @@ author: amishra-dev
 ms.author: amishra
 ms.date: 04/08/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
