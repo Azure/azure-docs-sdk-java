@@ -1,14 +1,14 @@
 ---
 title: Azure Core Apache Avro Serializer plugin library for Java
+description: Azure Core Apache Avro Serializer plugin library for Java - Version 1.0.0-beta.22
 keywords: Azure, java, SDK, API, azure-core-serializer-avro-apache, core
 author: alzimmermsft
 ms.author: alzimmer
 ms.date: 04/02/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: core
+ms.service: azure
 ---
 # Azure Core Apache Avro Serializer plugin library for Java - Version 1.0.0-beta.22 
 
@@ -49,7 +49,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 Get started with Azure libraries that are [built using Azure Core](https://azure.github.io/azure-sdk/releases/latest/#java).
 
-## Troubleshooting
+### Troubleshooting
 
 If you encounter any bugs, please file issues via [GitHub Issues](https://github.com/Azure/azure-sdk-for-java/issues/new/choose)
 or checkout [StackOverflow for Azure Java SDK](https://stackoverflow.com/questions/tagged/azure-java-sdk).
@@ -72,7 +72,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 
 <!-- links -->
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-serializer-avro-apache%2FREADME.png)
 
