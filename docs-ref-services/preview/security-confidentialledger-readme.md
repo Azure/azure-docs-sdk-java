@@ -6,9 +6,8 @@ author: alzimmermsft
 ms.author: alzimmer
 ms.date: 06/08/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
+ms.service: azure
 ---
 
 # Azure Confidential Ledger client library for Java - Version 1.0.0-beta.2 

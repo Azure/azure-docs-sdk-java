@@ -7,9 +7,8 @@ ms.author: vicolina
 manager: douge
 ms.date: 07/05/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
+ms.service: azure
 ---
 
 # Azure SQL Database libraries for Java

@@ -6,9 +6,8 @@ author: vcolin7
 ms.author: vicolina
 ms.date: 02/12/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
+ms.service: azure
 ---
 # Azure Key Vault Administration library for Java
 Azure Key Vault Managed HSM is a fully-managed, highly-available, single-tenant, standards-compliant cloud service that enables you to safeguard cryptographic keys for your cloud applications using FIPS 140-2 Level 3 validated HSMs.

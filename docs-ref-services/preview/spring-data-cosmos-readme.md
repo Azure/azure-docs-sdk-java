@@ -6,9 +6,8 @@ author: vcolin7
 ms.author: vicolina
 ms.date: 09/02/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
+ms.service: azure
 ---
 
 # Azure Spring Data Cosmos client library for Java - Version 3.11.0-beta.1 

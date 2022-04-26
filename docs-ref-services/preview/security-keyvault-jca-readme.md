@@ -6,9 +6,8 @@ author: vcolin7
 ms.author: vicolina
 ms.date: 05/24/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
+ms.service: azure
 ---
 
 # Azure Key Vault JCA client library for Java - Version 1.0.0-beta.7 

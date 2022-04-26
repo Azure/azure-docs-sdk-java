@@ -6,9 +6,8 @@ author: alzimmermsft
 ms.author: alzimmer
 ms.date: 01/30/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
+ms.service: azure
 ---
 
 # Azure Attestation client library for Java - Version 1.0.0-beta.1 

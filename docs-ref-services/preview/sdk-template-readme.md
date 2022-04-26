@@ -6,9 +6,8 @@ author: hallipr
 ms.author: pahallis
 ms.date: 04/21/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
+ms.service: azure
 ---
 # Azure Template client library for Java - Version 1.2.1-beta.1522967 
 

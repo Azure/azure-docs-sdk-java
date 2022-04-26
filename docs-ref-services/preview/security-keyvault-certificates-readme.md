@@ -6,9 +6,8 @@ author: vcolin7
 ms.author: vicolina
 ms.date: 02/12/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
+ms.service: azure
 ---
 # Azure Key Vault Certificate client library for Java - Version 4.3.0-beta.5 
 

@@ -7,9 +7,8 @@ author: amishra-dev
 ms.author: amishra
 ms.date: 02/09/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure-cli
 ms.devlang: java
+ms.service: azure
 ---
 # Azure Storage Blobs Cryptography client library for Java - Version 12.15.0-beta.3 
 
