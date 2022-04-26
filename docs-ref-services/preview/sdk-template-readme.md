@@ -21,7 +21,7 @@ It's also used as the package distribution page (NuGet, PyPi, npm, etc.) and as 
 * All headings, including the H1, should use **sentence-style capitalization**. Refer to the [Microsoft Style Guide][style-guide-msft].
 * Example: `# Azure Batch client library for Java - Version 1.2.1-beta.1522967 
 `
-
+<a id="introduction"></a>
 **Introduction**: The introduction appears directly under the title (H1) of your README.
 
 * **DO NOT** use an "Introduction" or "Overview" heading (H2) for this section.

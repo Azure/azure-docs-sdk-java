@@ -160,7 +160,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [product_documentation]: https://aka.ms/confidentialledger-servicedocs
 [ledger_base_client_class]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-confidentialledger_1.0.0-beta.2/sdk/confidentialledger/azure-security-confidentialledger/src/main/java/com/azure/security/confidentialledger/LedgerBaseClient.java
 [azure_portal]: https://portal.azure.com
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
 [package]: https://mvnrepository.com/artifact/com.azure/azure-security-confidentialledger
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-confidentialledger_1.0.0-beta.2/sdk/confidentialledger/azure-security-confidentialledger/src/samples/README.md
 

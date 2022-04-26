@@ -1,6 +1,6 @@
 ---
 title: Azure Blob Storage change feed client library for Java - Version 12.0.0-beta.17
-description: 
+description: The purpose of the change feed is to provide transaction logs of all the changes that occur to the blobs and the blob metadata in your storage account.
 keywords: Azure, java, SDK, API, azure-storage-blob-changefeed, storage
 author: amishra-dev
 ms.author: amishra
