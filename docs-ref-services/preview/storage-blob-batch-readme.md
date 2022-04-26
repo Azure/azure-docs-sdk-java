@@ -1,6 +1,7 @@
 ---
 title: Azure Storage Blobs Batch client library for Java
-description: 
+description: Azure Blob storage is Microsoft's object storage solution for the cloud. Blob
+storage is optimized for storing massive amounts of unstructured data.
 keywords: Azure, java, SDK, API, azure-storage-blob-batch, storage
 author: amishra-dev
 ms.author: amishra
@@ -207,16 +208,16 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 <!-- LINKS -->
 [source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-batch_12.12.0-beta.3/sdk/storage/azure-storage-blob-batch/src/main/java
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
-[product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
+[rest_docs]: /rest/api/storageservices/blob-service-rest-api
+[product_docs]: /azure/storage/blobs/storage-blobs-overview
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-batch_12.12.0-beta.3/sdk/storage/azure-storage-blob-batch/src/samples
-[jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
 [azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[azure_portal]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal
-[storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
+[storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[azure_portal]: /azure/storage/common/storage-account-create?tabs=azure-portal
+[storage_account_create_cli]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [blob_service_client]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob-batch_12.12.0-beta.3/sdk/storage/azure-storage-blob#create-a-storage-account
-[error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
+[error_codes]: /rest/api/storageservices/blob-service-error-codes
 [blob_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-batch_12.12.0-beta.3/sdk/storage/azure-storage-blob-batch/src/samples/README.md
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
