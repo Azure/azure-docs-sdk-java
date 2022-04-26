@@ -1,5 +1,6 @@
 ---
 title: Azure Storage Blobs Batch client library for Java
+description: "Azure Blob storage is Microsoft's object storage solution for the cloud. Blob storage is optimized for storing massive amounts of unstructured data."
 keywords: Azure, java, SDK, API, azure-storage-blob-batch, storage
 author: amishra-dev
 ms.author: amishra
@@ -209,7 +210,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [rest_docs]: /rest/api/storageservices/blob-service-rest-api
 [product_docs]: /azure/storage/blobs/storage-blobs-overview
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-batch_12.12.1/sdk/storage/azure-storage-blob-batch/src/samples
-[jdk]: /java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk
 [azure_subscription]: https://azure.microsoft.com/free/
 [storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [azure_portal]: /azure/storage/common/storage-account-create?tabs=azure-portal

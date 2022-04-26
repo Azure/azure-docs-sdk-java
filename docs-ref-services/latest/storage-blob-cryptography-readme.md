@@ -1,5 +1,7 @@
 ---
 title: Azure Storage Blobs Cryptography client library for Java
+description: "Azure Storage Blobs Cryptography is Microsoft's object storage solution for the cloud. Blob
+storage is optimized for storing massive amounts of unstructured data."
 keywords: Azure, java, SDK, API, azure-storage-blob-cryptography, storage
 author: amishra-dev
 ms.author: amishra
@@ -261,7 +263,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-cryptography_12.15.1/sdk/storage/azure-storage-blob-cryptography/src
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_docs]: /rest/api/storageservices/blob-service-rest-api
-[product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
+[product_docs]: /azure/storage/blobs/storage-blobs-overview
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-cryptography_12.15.1/sdk/storage/azure-storage-blob-cryptography/src/samples
 [azure_subscription]: https://azure.microsoft.com/free/
 [storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
