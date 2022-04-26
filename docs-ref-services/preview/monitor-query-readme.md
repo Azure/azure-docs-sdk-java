@@ -7,7 +7,7 @@ ms.author: sizhu
 ms.date: 09/10/2021
 ms.topic: reference
 ms.devlang: java
-ms.service: monitor
+ms.service: azure-monitor
 ---
 
 # Azure Monitor query client library for Java - Version 1.0.0-beta.4 
