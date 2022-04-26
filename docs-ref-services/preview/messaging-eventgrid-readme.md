@@ -1,6 +1,7 @@
 ---
 title: Azure Event Grid client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
+description: Azure Event Grid allows you to easily build applications with event-based architectures.
 author: srnagar
 ms.author: srnagar
 ms.date: 04/13/2022
@@ -240,7 +241,7 @@ This SDK uses `com.azure.util.BinaryData` to represent the data payload of event
 `BinaryData` supports serializing and deserializing objects through `com.azure.core.util.BinaryData.fromObject(Object object)` and `toObject()` methods,
 which use a default Jackson Json serializer, or `fromObject(Object object, ObjectSerializer customSerializer)` and `toObject(Class<T> clazz, ObjectSerializer serializer)` methods,
 which accept your customized Json serializer.
-Refer to [BinaryData](/java/api/com.azure.core.util.binarydata?view=azure-java-stable) documentation for details.
+Refer to [BinaryData](/java/api/com.azure.core.util.binarydata) documentation for details.
 
 ## Key concepts
 For information about general Event Grid concepts: [Concepts in Azure Event Grid](/azure/event-grid/concepts).
@@ -509,7 +510,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 <!-- LINKS -->
-[jdk]: /java/azure/jdk/?view=azure-java-stable
+[jdk]: /java/azure/jdk
 [javadocs]: https://azure.github.io/azure-sdk-for-java/eventgrid.html
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
