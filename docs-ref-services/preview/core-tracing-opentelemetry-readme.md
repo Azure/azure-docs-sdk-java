@@ -5,10 +5,9 @@ author: samvaity
 ms.author: savaity
 ms.date: 04/02/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: core
+ms.service: azure
 ---
 # Azure OpenTelemetry Tracing plugin library for Java - Version 1.0.0-beta.22 
 
@@ -175,7 +174,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure-messaging-eventhubs]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.22/sdk/eventhubs/azure-messaging-eventhubs
 [azure-security-keyvault-secrets]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.22/sdk/keyvault/azure-security-keyvault-secrets
 [context]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.22/sdk/core/azure-core/src/main/java/com/azure/core/util/Context.java
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [OpenTelemetry-quickstart]: https://github.com/open-telemetry/opentelemetry-java/blob/main/QUICKSTART.md
 [OpenTelemetry]: https://github.com/open-telemetry/opentelemetry-java#opentelemetry-for-java
