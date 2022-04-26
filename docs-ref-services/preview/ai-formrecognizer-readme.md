@@ -1,5 +1,6 @@
 ---
 title: Azure Form Recognizer client library for Java
+description: Reference for Azure Form Recognizer client library for Java.
 keywords: Azure, java, SDK, API, azure-ai-formrecognizer, formrecognizer
 author: samvaity
 ms.author: savaity
@@ -601,20 +602,20 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [api_reference_doc]: https://aka.ms/azsdk-java-formrecognizer-ref-docs
 [azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_4.0.0-beta.4/sdk/identity/azure-identity#credentials
 [azure_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
-[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
+[azure_cli_endpoint]: /cli/azure/cognitiveservices/account&preserve-view=true#az-cognitiveservices-account-show
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-formrecognizer_4.0.0-beta.4/sdk/identity/azure-identity#credentials
 [azure_portal]: https://ms.portal.azure.com
 [azure_subscription]: https://azure.microsoft.com/free
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
-[coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
+[coc_faq]: https://opensource.microsoft.com/codeofconduct/faq
 [coc_contact]: mailto:opencode@microsoft.com
 [create_new_resource]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
 [form_recognizer_account]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
 [grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [http_clients_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients
 [http_response_exception]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_4.0.0-beta.4/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/&preserve-view=true
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer
 [product_documentation]: /azure/cognitive-services/form-recognizer/overview
