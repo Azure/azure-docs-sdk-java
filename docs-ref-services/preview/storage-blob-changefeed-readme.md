@@ -1,5 +1,5 @@
 ---
-title: Azure Blob Storage change feed client library for Java - Version 12.0.0-beta.17
+title: Azure Blob Storage change feed client library for Java, Version 12.0.0-beta.17
 description: The purpose of the change feed is to provide transaction logs of all the changes that occur to the blobs and the blob metadata in your storage account.
 keywords: Azure, java, SDK, API, azure-storage-blob-changefeed, storage
 author: amishra-dev
@@ -134,20 +134,23 @@ tasks, including:
 
 ### Create a `BlobChangefeedClient`
 
-```java readme-sample-getClient
+```
+java readme-sample-getClient
 client = new BlobChangefeedClientBuilder(blobServiceClient).buildClient();
 ```
 
 ### Get events
 
-```java readme-sample-changefeed
+```
+java readme-sample-changefeed
 client.getEvents().forEach(event ->
     System.out.printf("Topic: %s, Subject: %s%n", event.getTopic(), event.getSubject()));
 ```
 
 ### Get events between a start and end time
 
-```java readme-sample-changefeedBetweenDates
+```
+java readme-sample-changefeedBetweenDates
 OffsetDateTime startTime = OffsetDateTime.MIN;
 OffsetDateTime endTime = OffsetDateTime.now();
 
@@ -157,7 +160,8 @@ client.getEvents(startTime, endTime).forEach(event ->
 
 ### Resume with a cursor
 
-```java readme-sample-changefeedResumeWithCursor
+```
+java readme-sample-changefeedResumeWithCursor
 BlobChangefeedPagedIterable iterable = client.getEvents();
 Iterable<BlobChangefeedPagedResponse> pages = iterable.iterableByPage();
 
@@ -179,7 +183,8 @@ client.getEvents(cursor).forEach(event ->
 
 ### Poll for events with a cursor
 
-```java readme-sample-changefeedPollForEventsWithCursor
+```
+java readme-sample-changefeedPollForEventsWithCursor
 List<BlobChangefeedEvent> changefeedEvents = new ArrayList<>();
 
 /* Get the start time.  The change feed client will round start time down to the nearest hour if you provide
@@ -217,28 +222,34 @@ while (true) {
 ```
 
 ## Troubleshooting
+
 When interacting with blobs using this Java client library, errors returned by the service correspond to the same HTTP
 status codes returned for [REST API][error_codes] requests. For example, if you try to retrieve a container or blob that
 doesn't exist in your Storage Account, a `404` error is returned, indicating `Not Found`.
 
 ### Default HTTP Client
+
 All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure
 the client library to use the Netty HTTP client. Configuring or changing the HTTP client is detailed in the
 [HTTP clients wiki](https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients).
 
 ### Default SSL library
+
 All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL
 operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides
 better performance compared to the default SSL implementation within the JDK. For more information, including how to
 reduce the dependency size, refer to the [performance tuning][performance_tuning] section of the wiki.
 
 ## Next steps
+
 Several Storage blob changefeed Java SDK samples are available to you in the SDK's GitHub repository.
 
 ## Next steps Samples
+
 Samples are explained in detail [here][samples_readme].
 
 ## Contributing
+
 This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
 When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.

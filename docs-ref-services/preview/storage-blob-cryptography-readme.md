@@ -1,7 +1,6 @@
 ---
 title: Azure Storage Blobs Cryptography client library for Java
-description: Azure Blob storage is Microsoft's object storage solution for the cloud. Blob
-storage is optimized for storing massive amounts of unstructured data.
+description: Azure Blob storage is Microsoft's object storage solution for the cloud. Blob storage is optimized for storing massive amounts of unstructured data.
 keywords: Azure, java, SDK, API, azure-storage-blob-cryptography, storage
 author: amishra-dev
 ms.author: amishra
@@ -168,7 +167,8 @@ The following sections provide several code snippets covering some of the most c
 
 Create an `EncryptedBlobClient` using a `BlobClient`. `BlobClient` construction is explained in the `azure-storage-blob` README.
 
-```java readme-sample-getEncryptedBlobClientBlobClient
+```
+java readme-sample-getEncryptedBlobClientBlobClient
 EncryptedBlobClient client = new EncryptedBlobClientBuilder()
     .key(key, keyWrapAlgorithm)
     .keyResolver(keyResolver)
@@ -180,7 +180,8 @@ EncryptedBlobClient client = new EncryptedBlobClientBuilder()
 
 Create a `BlobServiceClient` using a connection string.
 
-```java readme-sample-getEncryptedBlobClient
+```
+java readme-sample-getEncryptedBlobClient
 EncryptedBlobClient client = new EncryptedBlobClientBuilder()
     .key(key, keyWrapAlgorithm)
     .keyResolver(keyResolver)
@@ -192,7 +193,8 @@ EncryptedBlobClient client = new EncryptedBlobClientBuilder()
 
 ### Use a local `KeyEncryptionKey`
 
-```java readme-sample-getClientLocalKey
+```
+java readme-sample-getClientLocalKey
 JsonWebKey localKey = JsonWebKey.fromAes(new SecretKeySpec(keyBytes, secretKeyAlgorithm),
     Arrays.asList(KeyOperation.WRAP_KEY, KeyOperation.UNWRAP_KEY))
     .setId("my-id");
@@ -209,7 +211,8 @@ EncryptedBlobClient client = new EncryptedBlobClientBuilder()
 
 ### Use a `KeyVaultKey`
 
-```java readme-sample-getClientKeyVaultKey
+```
+java readme-sample-getClientKeyVaultKey
 KeyClient keyClient = new KeyClientBuilder()
     .vaultUrl(keyVaultUrl)
     .credential(tokenCredential)
