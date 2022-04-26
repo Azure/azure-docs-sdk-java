@@ -2,8 +2,8 @@
 title: Azure Database for PostgreSQL libraries for Java
 description: Reference documentation for the Java client libraries for Azure Database for PostgreSQL
 keywords: Azure, Java, SDK, API, SQL, database, PostGres, PostgreSQL 
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 manager: douge
 ms.date: 05/17/2017
 ms.topic: reference
@@ -50,6 +50,6 @@ try {
 
 ## Samples
 
-[Design a PostgreSQL database using the Azure CLI](https://docs.microsoft.com/azure/postgresql/tutorial-design-database-using-azure-cli) 
+[Design a PostgreSQL database using the Azure CLI](/azure/postgresql/tutorial-design-database-using-azure-cli) 
 
 Explore more [sample Java code for Azure Database for PostgreSQL](https://azure.microsoft.com/resources/samples/?platform=java&term=postgres) you can use in your apps.
