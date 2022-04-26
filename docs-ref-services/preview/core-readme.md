@@ -6,7 +6,6 @@ author: amishra-dev
 ms.author: amishra
 ms.date: 10/14/2021
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: azure
 ---
