@@ -401,7 +401,7 @@ argument but defaults to the authority matching VS Code's "Azure: Cloud" setting
 
 > __Note:__ All credential implementations in the Azure Identity library are threadsafe, and a single credential instance can be used to create multiple service clients.
 
-Credentials can be chained together to be tried in turn until one succeeds using the `ChainedTokenCredential`; see [chaining credentials](chaining_credentials) for details.
+Credentials can be chained together to be tried in turn until one succeeds using the `ChainedTokenCredential`; see [chaining credentials][chaining_credentials] for details.
 
 ## Environment Variables
 `DefaultAzureCredential` and `EnvironmentCredential` can be configured with environment variables. Each type of authentication requires values for specific variables:
