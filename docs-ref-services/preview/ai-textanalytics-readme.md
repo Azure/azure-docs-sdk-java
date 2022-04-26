@@ -2,13 +2,11 @@
 title: Azure Text Analytics client library for Java 
 keywords: Azure, java, SDK, API, azure-ai-textanalytics, textanalytics
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: scbedd
 ms.date: 11/02/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: textanalytics
+ms.service: azure-java
 ---
 
 # Azure Text Analytics client library for Java - Version 5.2.0-beta.2 
