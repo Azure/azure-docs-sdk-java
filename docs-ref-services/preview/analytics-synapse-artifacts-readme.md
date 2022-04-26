@@ -227,20 +227,20 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-artifacts_1.0.0-beta.10/sdk/synapse/azure-analytics-synapse-artifacts/src
-[api_documentation]: https://azure.github.io/azure-sdk-for-java
-[azsynapse_docs]: https://docs.microsoft.com/azure/synapse-analytics/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-synapse-artifacts_1.0.0-beta.10/sdk/identity/azure-identity
+[source_code]: Azure/azure-sdk-for-java/blob/azure-analytics-synapse-artifacts_1.0.0-beta.10/sdk/synapse/azure-analytics-synapse-artifacts/src
+[api_documentation]: /azure-sdk-for-java
+[azsynapse_docs]: /azure/synapse-analytics/
+[azure_identity]: /Azure/azure-sdk-for-java/tree/azure-analytics-synapse-artifacts_1.0.0-beta.10/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
-[jdk]: https://docs.microsoft.com/azure/developer/java/fundamentals/?view=azure-java-stable
+[jdk]: /azure/developer/java/fundamentals/?view=azure-java-stable
 [azure_sub]: https://azure.microsoft.com/free/
-[azure_synapse]: https://docs.microsoft.com/azure/synapse-analytics/quickstart-create-workspace
-[azure_cli]: https://docs.microsoft.com/cli/azure
+[azure_synapse]: /azure/synapse-analytics/quickstart-create-workspace
+[azure_cli]: /cli/azure
 [rest_api]: https://docs.microsoft.com/rest/api/synapse/
-[azsynapse_rest]: https://docs.microsoft.com/rest/api/synapse/
-[azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
-[azure_synapse_cli_full]: https://docs.microsoft.com/cli/azure/synapse?view=azure-cli-latest
+[azsynapse_rest]: /rest/api/synapse/
+[azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
+[azure_synapse_cli_full]: /cli/azure/synapse?view=azure-cli-latest
 [artifacts_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-artifacts_1.0.0-beta.10/sdk/synapse/azure-analytics-synapse-artifacts/src/samples/java/com/azure/analytics/synapse/artifacts
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
