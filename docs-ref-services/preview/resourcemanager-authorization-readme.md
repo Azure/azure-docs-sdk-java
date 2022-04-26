@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager Authorization client library for Java
+description: Describes the Azure Resource Manager Authorization client library and provides prerequisites and contribution steps.
 keywords: Azure, java, SDK, API, azure-resourcemanager-authorization, authorization
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 09/03/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: authorization
+ms.service: azure
 ---
 
 # Azure Resource Manager Authorization client library for Java - Version 2.0.0-beta.4 
