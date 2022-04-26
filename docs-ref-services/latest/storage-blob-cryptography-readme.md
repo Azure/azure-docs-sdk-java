@@ -7,7 +7,7 @@ ms.author: amishra
 ms.date: 04/11/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: Azure storage
+ms.service: storage
 ---
 # Azure Storage Blobs Cryptography client library for Java - Version 12.15.1 
 
