@@ -303,11 +303,11 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [azkeyvault_rest]: /rest/api/keyvault/
 [azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: /azure/key-vault/quick-create-cli
-[azure_keyvault_cli_full]: /cli/azure/keyvault?view=azure-cli-latest
+[azure_keyvault_cli_full]: /cli/azure/keyvault?view=azure-cli-latest&preserve-view=true
 [secrets_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.4.0-beta.5/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.4.0-beta.5/sdk/keyvault/azure-security-keyvault-secrets/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable&preserve-view=true
 [azure_cloud_shell]: https://shell.azure.com/bash
 [http_clients_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients
 [microsoft_code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
