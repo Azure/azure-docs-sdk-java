@@ -1,6 +1,7 @@
 ---
 title: Azure File Data Lake client library for Java
 keywords: Azure, java, SDK, API, azure-storage-file-datalake, datalakestorage(gen2)
+description: Azure Data Lake Storage is Microsoft's optimized storage solution for for big data analytics workloads.
 author: amishra-dev
 ms.author: amishra
 ms.date: 02/09/2022

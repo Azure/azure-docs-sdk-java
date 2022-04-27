@@ -1,6 +1,7 @@
 ---
 title: Azure Storage Common shared library for Java
 keywords: Azure, java, SDK, API, azure-storage-common, storage
+description: Azure Storage Common is a library that has common dependencies for all Azure Storage packages.
 author: amishra-dev
 ms.author: amishra
 ms.date: 02/09/2022
