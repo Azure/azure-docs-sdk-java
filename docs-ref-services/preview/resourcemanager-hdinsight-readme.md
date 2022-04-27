@@ -1,11 +1,12 @@
 ---
 title: Azure Resource Manager HDInsight client library for Java
+description: Azure Resource Manager HDInsight client library for Java - Version 1.0.0-beta.5
 keywords: Azure, java, SDK, API, azure-resourcemanager-hdinsight, hdinsight
 author: amishra-dev
 ms.author: amishra
 ms.date: 10/09/2021
 ms.topic: reference
-ms.prod: azure
+ms.service: azure
 ms.devlang: java
 ---
 
