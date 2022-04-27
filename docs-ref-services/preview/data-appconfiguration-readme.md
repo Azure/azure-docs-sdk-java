@@ -1,5 +1,6 @@
 ---
 title: Azure App Configuration client library for Java
+description: Learn how to centralize your application configurations simply and securely using Azure App Configuration.
 keywords: Azure, java, SDK, API, azure-data-appconfiguration, appconfiguration
 author: ramya-rao-a
 ms.author: shafang
@@ -432,7 +433,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 [default_cred_ref]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-identity/1.0.1/com/azure/identity/DefaultAzureCredential.html
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [maven]: https://maven.apache.org/
 [package]: https://search.maven.org/artifact/com.azure/azure-data-appconfiguration
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
@@ -440,6 +441,6 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.2.0-beta.1/sdk/appconfiguration/azure-data-appconfiguration/src/samples/java/com/azure/data/appconfiguration
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.2.0-beta.1/sdk/appconfiguration/azure-data-appconfiguration/src/samples/README.md
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.2.0-beta.1/sdk/appconfiguration/azure-data-appconfiguration/src
-[spring_quickstart]: https://docs.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
+[spring_quickstart]: /azure/azure-app-configuration/quickstart-java-spring-app
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fappconfiguration%2Fazure-data-appconfiguration%2FREADME.png)
 

@@ -1,5 +1,6 @@
 ---
 title: Azure CosmosDB Client Library for Java
+description: Learn how to use Azure CosmosDB client library, a multi-model database service for operational and analytics workloads.
 keywords: Azure, java, SDK, API, azure-cosmos, cosmosdb
 author: moderakh
 ms.author: kuthapar
@@ -68,7 +69,7 @@ Refer to [javadocs][api_documentation] for more details on the package
 ### Prerequisites
 
 - [Java Development Kit (JDK) with version 8 or above][jdk]
-- An active Azure account. If you don't have one, you can sign up for a [free account][azure_subscription]. Alternatively, you can use the [Azure Cosmos DB Emulator](https://azure.microsoft.com/documentation/articles/documentdb-nosql-local-emulator) for development and testing. As emulator https certificate is self signed, you need to import its certificate to java trusted cert store as [explained here](https://docs.microsoft.com/azure/cosmos-db/local-emulator-export-ssl-certificates)
+- An active Azure account. If you don't have one, you can sign up for a [free account][azure_subscription]. Alternatively, you can use the [Azure Cosmos DB Emulator](https://azure.microsoft.com/documentation/articles/documentdb-nosql-local-emulator) for development and testing. As emulator https certificate is self signed, you need to import its certificate to java trusted cert store as [explained here](/azure/cosmos-db/local-emulator-export-ssl-certificates)
 - (Optional) SLF4J is a logging facade.
 - (Optional) [SLF4J binding](https://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
 - (Optional) [Maven][maven]
@@ -313,7 +314,7 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [azure_subscription]: https://azure.microsoft.com/free/
 [samples]: https://github.com/Azure-Samples/azure-cosmos-java-sql-api-samples
 [samples_readme]: https://github.com/Azure-Samples/azure-cosmos-java-sql-api-samples/blob/master/README.md
-[troubleshooting]: https://docs.microsoft.com/azure/cosmos-db/troubleshoot-java-sdk-v4-sql
+[troubleshooting]: /azure/cosmos-db/troubleshoot-java-sdk-v4-sql
 [perf_guide]: /azure/cosmos-db/performance-tips-java-sdk-v4-sql?tabs=api-async
 [sql_api_query]: /azure/cosmos-db/sql-api-sql-query
 [getting_started]: https://github.com/Azure-Samples/azure-cosmos-java-getting-started
