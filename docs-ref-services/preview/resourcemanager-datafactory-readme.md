@@ -5,8 +5,6 @@ author: joshfree
 ms.author: jfree
 ms.date: 04/19/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: datafactory
 ---
