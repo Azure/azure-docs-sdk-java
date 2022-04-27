@@ -1,5 +1,6 @@
 ---
 title: Azure Schema Registry Apache Avro Serializer client library for Java
+description: Learn how to provide schema storage, versioning, and management with Azure Schema Registry Apache Avro.
 keywords: Azure, java, SDK, API, azure-data-schemaregistry-apacheavro, schemaregistry
 author: conniey
 ms.author: sizhu
@@ -162,7 +163,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry-apacheavro_1.0.0-beta.11/sdk/identity/azure-identity
 [DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-apacheavro_1.0.0-beta.11/sdk/identity/azure-identity/README.md#defaultazurecredential
 [event_hubs_namespace]: /azure/event-hubs/event-hubs-about
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [product_documentation]: https://aka.ms/schemaregistry
 [specific_record]: https://avro.apache.org/docs/current/api/java/org/apache/avro/specific/SpecificRecord.html
 [generic_record]: https://avro.apache.org/docs/current/api/java/org/apache/avro/generic/GenericRecord.html
