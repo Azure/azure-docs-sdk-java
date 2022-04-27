@@ -3,23 +3,27 @@ title: Azure GraalVM Netty Support client library for Java
 keywords: Azure, java, SDK, API, azure-aot-graalvm-support-netty, aot
 author: joshfree
 ms.author: jfree
-ms.date: 04/08/2022
+ms.date: 04/25/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: aot
 ---
-# Azure GraalVM Netty Support client library for Java - Version 1.0.0-beta.1 
+# Azure GraalVM Netty Support client library for Java - Version 1.0.0-beta.2 
 
 
 The Azure GraalVM Netty Support client library provides support for applications using 
 [Azure client libraries](https://azure.github.io/azure-sdk/releases/latest/java.html) that take a dependency on 
-[azure-core-http-netty](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.1/sdk/core/azure-core-http-netty) to be 
-built as [GraalVM nativeimages](https://www.graalvm.org/22.0/reference-manual/native-image/). The library contains all the necessary
+[azure-core-http-netty](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.2/sdk/core/azure-core-http-netty) to be 
+built as [GraalVM native images](https://www.graalvm.org/22.0/reference-manual/native-image/). The library contains all the necessary
 [configuration files](https://www.graalvm.org/22.0/reference-manual/native-image/BuildConfiguration/) and [GraalVM
 features](https://www.graalvm.org/sdk/javadoc/index.html?org/graalvm/nativeimage/hosted/Feature.html) required to build
 a native image of an application that uses Azure client libraries.
+
+**NOTE:**: This library is a preview and is intended to enable applications using Azure client libraries to quickly
+build and validate native images. However, this is not a stable, GA version and is not officially supported to use in production
+environments.
 
 ## Getting started
 
@@ -28,35 +32,42 @@ a native image of an application that uses Azure client libraries.
 - [Azure Subscription][azure_subscription]
 - [GraalVM](https://www.graalvm.org/downloads/) version 22 or later.
 - [GraalVM Native Image](https://www.graalvm.org/22.0/reference-manual/native-image/)
-- 
+
 ### Include the package
 
-This package should be included in addition to `azure-aot-graalvm-support` library when using Azure client libraries 
-that take a dependency on `azure-core-http-netty`.
+Include both the packages below:
 
+[//]: # ({x-version-update-start;com.azure:azure-aot-graalvm-support;current})
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-aot-graalvm-support</artifactId>
+    <version>1.0.0-beta.2</version>
+</dependency>
+```
 [//]: # ({x-version-update-start;com.azure:azure-aot-graalvm-support-netty;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-aot-graalvm-support-netty</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 ## Key concepts
 
-Please refer to the [Key Concepts](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-support#key-concepts) section of the azure-aot-graalvm-support library.
+Please refer to the [Key Concepts](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-support#key-concepts) section of the azure-aot-graalvm-support library.
 
 ## Examples
 
-Please refer to the [Examples](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-support#examples) section of the 
+Please refer to the [Examples](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-support#examples) section of the 
 `azure-aot-graalvm-support` library.
 
 ## Troubleshooting
-Please refer to the [Troubleshooting](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-support#troubleshooting) section of the
+Please refer to the [Troubleshooting](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-support#troubleshooting) section of the
 `azure-aot-graalvm-support` library.
 
 ## Next steps
-Please refer to the [Next Steps](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-support#next-steps) section of the
+Please refer to the [Next Steps](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support-netty_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-support#next-steps) section of the
 `azure-aot-graalvm-support` library.
 
 ## Contributing

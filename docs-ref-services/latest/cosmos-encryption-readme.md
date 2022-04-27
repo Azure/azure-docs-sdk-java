@@ -3,7 +3,7 @@ title:
 keywords: Azure, java, SDK, API, azure-cosmos-encryption, cosmos
 author: kushagraThapar
 ms.author: kuthapar
-ms.date: 04/15/2022
+ms.date: 04/25/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
@@ -24,7 +24,7 @@ The Azure Cosmos Encryption Plugin is used for encrypting data with a user-provi
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos-encryption</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -37,7 +37,7 @@ Refer to [javadocs][encryption_api_documentation] for more details on the packag
 ### Prerequisites
 
 - [Java Development Kit (JDK) with version 8 or above][jdk]
-- An active Azure account. If you don't have one, you can sign up for a [free account][azure_subscription]. Alternatively, you can use the [Azure Cosmos DB Emulator](https://azure.microsoft.com/documentation/articles/documentdb-nosql-local-emulator) for development and testing. As emulator HTTPS certificate is self-signed, you need to import its certificate to java trusted cert store as [explained here](https://docs.microsoft.com/azure/cosmos-db/local-emulator-export-ssl-certificates)
+- An active Azure account. If you don't have one, you can sign up for a [free account][azure_subscription]. Alternatively, you can use the [Azure Cosmos DB Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator) for development and testing. As emulator HTTPS certificate is self-signed, you need to import its certificate to java trusted cert store as [explained here](https://docs.microsoft.com/azure/cosmos-db/local-emulator-export-ssl-certificates)
 - (Optional) SLF4J is a logging facade.
 - (Optional) [SLF4J binding](https://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
 - (Optional) [Maven][maven]
@@ -219,7 +219,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[encryption_source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos-encryption_1.0.1/sdk/cosmos/azure-cosmos-encryption/src
+[encryption_source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos-encryption_1.1.0/sdk/cosmos/azure-cosmos-encryption/src
 [cosmos_introduction]: https://docs.microsoft.com/azure/cosmos-db/
 [api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [encryption_api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos-encryption/latest/index.html
@@ -235,7 +235,7 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [troubleshooting]: https://docs.microsoft.com/azure/cosmos-db/troubleshoot-java-sdk-v4-sql
 [perf_guide]: https://docs.microsoft.com/azure/cosmos-db/performance-tips-java-sdk-v4-sql?tabs=api-async
 [sql_api_query]: https://docs.microsoft.com/azure/cosmos-db/sql-api-sql-query
-[getting_started_encryption]: https://github.com/Azure/azure-sdk-for-java/tree/azure-cosmos-encryption_1.0.1/sdk/cosmos/azure-cosmos-encryption/src/samples/java/com/azure/cosmos/encryption/
+[getting_started_encryption]: https://github.com/Azure/azure-sdk-for-java/tree/azure-cosmos-encryption_1.1.0/sdk/cosmos/azure-cosmos-encryption/src/samples/java/com/azure/cosmos/encryption/
 [quickstart]: https://docs.microsoft.com/azure/cosmos-db/create-sql-api-java?tabs=sync
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcosmos%2Fazure-cosmos-encryption%2FREADME.png)
