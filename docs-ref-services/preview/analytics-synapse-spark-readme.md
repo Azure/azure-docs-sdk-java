@@ -7,7 +7,7 @@ ms.author: jfree
 ms.date: 10/15/2021
 ms.topic: reference
 ms.devlang: java
-ms.service: synapseanalytics
+ms.service: azure
 ---
 
 # Azure Synapse Spark client library for Java - Version 1.0.0-beta.5 
@@ -107,7 +107,7 @@ The following sections provide several code snippets covering some of the most c
 ### Spark batch job examples
 * [Create a Spark batch job](#create-a-spark-batch-job)
 * [List role Spark batch jobs](#list-spark-batch-jobs)
-* [Cancel a Spark batch job](#delete-a-spark-batch-job)
+* [Cancel a Spark batch job](#cancel-a-spark-batch-job)
 
 ### Create a Spark batch job
 
@@ -152,10 +152,9 @@ batchClient.cancelSparkBatchJob(jobId);
 ### Async API
 The following sections provide several code snippets covering some of the most common asynchronous Azure Synapse Spark service tasks, including:
 
-* [Create a Spark job asynchronously](#create-a-spark-batch-job-asynchronously)
-* [Retrieve a Spark job asynchronously](#retrieve-a-spark-batch-job-asynchronously)
+* [Cancel a Spark job asynchronously](#cancel-a-spark-batch-job-asynchronously)
 * [List Spark jobs asynchronously](#list-spark-batch-jobs-asynchronously)
-* [Delete a Spark job asynchronously](#delete-a-spark-batch-job-asynchronously)
+* [Create a Spark job asynchronously](#create-a-spark-batch-job-asynchronously)
 
 > Note : You should add `System.in.read()` or `Thread.sleep()` after the function calls in the main class/thread to allow async functions/operations to execute and finish before the main application/thread exits.
 

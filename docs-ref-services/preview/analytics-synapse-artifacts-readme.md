@@ -7,7 +7,7 @@ ms.author: jfree
 ms.date: 04/14/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: synapse
+ms.service: azure
 ---
 # Azure Synapse Artifacts client library for Java - Version 1.0.0-beta.10 
 
