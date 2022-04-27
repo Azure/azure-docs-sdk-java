@@ -6,8 +6,6 @@ author: joshfree
 ms.author: jfree
 ms.date: 08/11/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: synapseanalytics
 ---
