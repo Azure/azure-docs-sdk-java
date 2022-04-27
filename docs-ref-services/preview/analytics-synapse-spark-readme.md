@@ -7,6 +7,7 @@ ms.author: jfree
 ms.date: 10/15/2021
 ms.topic: reference
 ms.devlang: java
+ms.service: synapseanalytics
 ---
 
 # Azure Synapse Spark client library for Java - Version 1.0.0-beta.5 
@@ -235,9 +236,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_synapse]: /azure/synapse-analytics/quickstart-create-workspace
 [azure_cli]: /azure/synapse-analytics/quickstart-create-workspace-cli
 [rest_api]: /rest/api/synapse/
-[azsynapse_rest]: https://docs.microsoft.com/rest/api/synapse/
+[azsynapse_rest]: /rest/api/synapse/
 [azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
-[azure_synapse_cli_full]: /cli/azure/synapse?view=azure-cli-latest
+[azure_synapse_cli_full]: /cli/azure/synapse
 [spark_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-spark_1.0.0-beta.5/sdk/synapse/azure-analytics-synapse-spark/src/samples/java/com/azure/analytics/synapse/spark
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [jdk]: /java/azure/jdk/

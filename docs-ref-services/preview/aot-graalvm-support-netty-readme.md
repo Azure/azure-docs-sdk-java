@@ -7,6 +7,7 @@ ms.author: jfree
 ms.date: 04/08/2022
 ms.topic: reference
 ms.devlang: java
+ms.service: azure-supportability
 ---
 # Azure GraalVM Netty Support client library for Java - Version 1.0.0-beta.1 
 
@@ -76,7 +77,7 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Faot%2Fazure-aot-graalvm-support-netty%2FREADME.png)

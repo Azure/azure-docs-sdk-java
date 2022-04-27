@@ -115,9 +115,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_synapse]: /azure/synapse-analytics/quickstart-create-workspace
 [azure_cli]: /cli/azure
 [rest_api]: /rest/api/synapse/
-[azsynapse_rest]: https://docs.microsoft.com/rest/api/synapse/
+[azsynapse_rest]: /rest/api/synapse/
 [azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
-[azure_synapse_cli_full]: https://docs.microsoft.com/cli/azure/synapse?view=azure-cli-latest
+[azure_synapse_cli_full]: /cli/azure/synapse
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 

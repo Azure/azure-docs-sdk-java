@@ -7,6 +7,7 @@ ms.author: jfree
 ms.date: 04/14/2022
 ms.topic: reference
 ms.devlang: java
+ms.service: synapse
 ---
 # Azure Synapse Artifacts client library for Java - Version 1.0.0-beta.10 
 
@@ -230,14 +231,14 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_identity]: /Azure/azure-sdk-for-java/tree/azure-analytics-synapse-artifacts_1.0.0-beta.10/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
-[jdk]: /azure/developer/java/fundamentals/?view=azure-java-stable
+[jdk]: /azure/developer/java/fundamentals/
 [azure_sub]: https://azure.microsoft.com/free/
 [azure_synapse]: /azure/synapse-analytics/quickstart-create-workspace
 [azure_cli]: /cli/azure
 [rest_api]: https://docs.microsoft.com/rest/api/synapse/
 [azsynapse_rest]: /rest/api/synapse/
 [azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
-[azure_synapse_cli_full]: /cli/azure/synapse?view=azure-cli-latest
+[azure_synapse_cli_full]: /cli/azure/synapse
 [artifacts_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-artifacts_1.0.0-beta.10/sdk/synapse/azure-analytics-synapse-artifacts/src/samples/java/com/azure/analytics/synapse/artifacts
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 

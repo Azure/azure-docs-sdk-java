@@ -7,6 +7,7 @@ ms.author: jfree
 ms.date: 09/08/2021
 ms.topic: reference
 ms.devlang: java
+ms.service: synapseanalytics
 ---
 
 # Azure Synapse Managed Private Endpoints client library for Java - Version 1.0.0-beta.5 
@@ -116,7 +117,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [rest_api]: https://docs.microsoft.com/rest/api/synapse/
 [azsynapse_rest]: /rest/api/synapse/
 [azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
-[azure_synapse_cli_full]: /cli/azure/synapse?view=azure-cli-latest
+[azure_synapse_cli_full]: /cli/azure/synapse
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 
