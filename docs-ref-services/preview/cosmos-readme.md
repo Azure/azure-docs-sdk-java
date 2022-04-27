@@ -308,7 +308,7 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [cosmos_maven]: https://search.maven.org/artifact/com.azure/azure-cosmos
 [cosmos_maven_svg]: https://img.shields.io/maven-central/v/com.azure/azure-cosmos.svg
 [cla]: https://cla.microsoft.com
-[coc]: /codeofconduct/
+[coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 [azure_subscription]: https://azure.microsoft.com/free/
