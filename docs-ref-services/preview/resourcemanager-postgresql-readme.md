@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager PostgreSql client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-postgresql, 
-author: ramya-rao-a
-ms.author: ramyar
+keywords: Azure, java, SDK, API, azure-resourcemanager-postgresql
+description: Reference documentation for Azure Resource Manager PostgreSql client library for Java.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 12/17/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: postgresql
 ---
 
 # Azure Resource Manager PostgreSql client library for Java - Version 1.0.0-beta.1 
@@ -89,7 +88,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- LINKS -->
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[jdk]: /java/azure/jdk
 [azure_subscription]: https://azure.microsoft.com/free/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresql_1.0.0-beta.1/sdk/identity/azure-identity
 [azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresql_1.0.0-beta.1/sdk/core/azure-core-http-netty
