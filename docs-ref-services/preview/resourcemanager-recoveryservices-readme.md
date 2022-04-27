@@ -5,7 +5,6 @@ keywords: Azure, java, SDK, API, azure-resourcemanager-recoveryservices,
 author: ramya-rao-a
 ms.author: pahallis
 ms.date: 12/18/2020
-ms.technology: azure
 ms.devlang: java
 ms.service: azure
 ---
