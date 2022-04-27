@@ -5,10 +5,9 @@ author: joshfree
 ms.author: jfree
 ms.date: 04/11/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: healthcareapis
+ms.service: azure
 ---
 # Azure Resource Manager HealthcareApis client library for Java - Version 1.0.0-beta.2 
 
