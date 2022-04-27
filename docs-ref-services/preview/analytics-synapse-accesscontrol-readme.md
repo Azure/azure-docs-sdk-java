@@ -7,7 +7,6 @@ ms.author: jfree
 ms.date: 08/11/2021
 ms.topic: reference
 ms.devlang: java
-ms.service: synapseanalytics
 ---
 
 # Azure Synapse Access Control client library for Java - Version 1.0.0-beta.4 

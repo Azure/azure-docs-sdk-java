@@ -7,7 +7,6 @@ ms.author: jfree
 ms.date: 10/15/2021
 ms.topic: reference
 ms.devlang: java
-ms.service: synapseanalytics
 ---
 
 # Azure Synapse Spark client library for Java - Version 1.0.0-beta.5 
@@ -229,7 +228,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 <!-- LINKS -->
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-spark_1.0.0-beta.5/sdk/synapse/azure-analytics-synapse-spark/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
-[azsynapse_docs]: https://docs.microsoft.com/azure/synapse-analytics/
+[azsynapse_docs]: /azure/synapse-analytics/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-synapse-spark_1.0.0-beta.5/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/

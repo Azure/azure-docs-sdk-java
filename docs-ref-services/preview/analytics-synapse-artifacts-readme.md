@@ -7,7 +7,6 @@ ms.author: jfree
 ms.date: 04/14/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: synapse
 ---
 # Azure Synapse Artifacts client library for Java - Version 1.0.0-beta.10 
 
@@ -231,10 +230,10 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_identity]: /Azure/azure-sdk-for-java/tree/azure-analytics-synapse-artifacts_1.0.0-beta.10/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
-[jdk]: https://docs.microsoft.com/azure/developer/java/fundamentals/?view=azure-java-stable
+[jdk]: /azure/developer/java/fundamentals/?view=azure-java-stable
 [azure_sub]: https://azure.microsoft.com/free/
 [azure_synapse]: /azure/synapse-analytics/quickstart-create-workspace
-[azure_cli]: https://docs.microsoft.com/cli/azure
+[azure_cli]: /cli/azure
 [rest_api]: https://docs.microsoft.com/rest/api/synapse/
 [azsynapse_rest]: /rest/api/synapse/
 [azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
