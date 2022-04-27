@@ -33,7 +33,6 @@ Create, configure, and scale out Windows and Linux virtual machines in Azure fro
 </dependency>
 ```   
 
-
 ## Example
 
 Create a new Linux virtual machine in a new Azure resource group.
