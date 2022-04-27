@@ -1,11 +1,11 @@
 ---
 title: Encryption plugin library for Azure Cosmos DB Java SDK for Java
+description: Encryption plugin library for Azure Cosmos DB Java SDK for Java
 keywords: Azure, java, SDK, API, azure-cosmos-encryption, cosmosdb
 author: kushagraThapar
 ms.author: kuthapar
 ms.date: 03/11/2022
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: azure
 ---
