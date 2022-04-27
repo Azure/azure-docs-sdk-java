@@ -105,32 +105,32 @@ CosmosClient cosmosClient = new CosmosClientBuilder()
 
 Azure Cosmos DB Java SDK provides client-side logical representation to access the Azure Cosmos DB SQL API.
 A Cosmos DB account contains zero or more databases, a database (DB) contains zero or more containers, and a container contains zero or more items.
-You may read more about databases, containers and items [here](https://docs.microsoft.com/azure/cosmos-db/databases-containers-items).
+You may read more about databases, containers and items [here](/azure/cosmos-db/databases-containers-items).
 A few important properties defined at the level of the container, among them are provisioned throughput and partition key.
 
 ### Global Distribution
 - Azure Cosmos DB is a globally distributed database service that's designed to provide low latency, elastic scalability of throughput, well-defined semantics for data consistency, and high availability.
 In short, if your application needs guaranteed fast response time anywhere in the world, if it's required to be always online, and needs unlimited and elastic scalability of throughput and storage, you should build your application on Azure Cosmos DB.
-You may read more about global distribution [here](https://docs.microsoft.com/azure/cosmos-db/distribute-data-globally).
+You may read more about global distribution [here](/azure/cosmos-db/distribute-data-globally).
 
 ### Throughput Provisioning
 - Azure Cosmos DB allows you to set provisioned throughput on your databases and containers.
 There are two types of provisioned throughput, standard (manual) or autoscale. Provisioned throughput can be selected at per-container granularity or per-database granularity, however container-level throughput specification is typically preferred.
-You may read more about throughput provisioning [here](https://docs.microsoft.com/azure/cosmos-db/set-throughput).
+You may read more about throughput provisioning [here](/azure/cosmos-db/set-throughput).
 
 ### Request Units (RUs)
 - Azure Cosmos DB supports many APIs, such as SQL, MongoDB, Cassandra, Gremlin, and Table.
 Each API has its own set of database operations. These operations range from simple point reads and writes to complex queries.
 Each database operation consumes system resources based on the complexity of the operation. The cost of all database operations is normalized by Azure Cosmos DB and is expressed by Request Units (or RUs, for short).
 You can think of RUs per second as the currency for throughput. RUs per second is a rate-based currency. It abstracts the system resources such as CPU, IOPS, and memory that are required to perform the database operations supported by Azure Cosmos DB.
-You may read more about request units [here](https://docs.microsoft.com/azure/cosmos-db/request-units).
+You may read more about request units [here](/azure/cosmos-db/request-units).
 
 ### Partitioning
 - As items are inserted into a Cosmos DB container, the database grows horizontally by adding more storage and compute to handle requests.
 Storage and compute capacity are added in discrete units known as partitions, and you must choose one field in your documents to be the partition key which maps each document to a partition.
 The way partitions are managed is that each partition is assigned a roughly equal slice out of the range of partition key values; therefore you are advised to choose a partition key which is relatively random or evenly-distributed.
 Otherwise, some partitions will see substantially more requests (hot partition) while other partitions see substantially fewer requests (cold partition), and this is to be avoided.
-You may learn more about partitioning [here](https://docs.microsoft.com/azure/cosmos-db/partitioning-overview).
+You may learn more about partitioning [here](/azure/cosmos-db/partitioning-overview).
 
 ## Examples
 
