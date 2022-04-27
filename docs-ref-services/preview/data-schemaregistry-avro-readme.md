@@ -2,13 +2,11 @@
 title: Azure Schema Registry Avro Serializer/Deserializer client library for Java
 keywords: Azure, java, SDK, API, azure-data-schemaregistry-avro, eventhubs
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 08/18/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: eventhubs
+ms.service: event-hubs
 ---
 
 # Azure Schema Registry Avro Serializer/Deserializer client library for Java - Version 1.0.0-beta.5 
@@ -175,8 +173,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [azure_portal]: https://portal.azure.com
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry-avro_1.0.0-beta.5/sdk/identity/azure-identity
 [DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry-avro_1.0.0-beta.5/sdk/identity/azure-identity/README.md#defaultazurecredential
-[event_hubs_namespace]: https://docs.microsoft.com/azure/event-hubs/event-hubs-about
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[event_hubs_namespace]: /azure/event-hubs/event-hubs-about
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [product_documentation]: https://aka.ms/schemaregistry
 [specific_record]: https://avro.apache.org/docs/1.9.2/api/java/org/apache/avro/specific/SpecificRecord.html
 [generic_record]: https://avro.apache.org/docs/1.9.2/api/java/org/apache/avro/generic/GenericRecord.html
