@@ -6,7 +6,6 @@ author: joshfree
 ms.author: jfree
 ms.date: 12/22/2021
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: azure
 ---
