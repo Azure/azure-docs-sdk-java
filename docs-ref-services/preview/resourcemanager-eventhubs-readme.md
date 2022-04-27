@@ -1,8 +1,8 @@
 ---
 title: Azure Resource Manager EventHubs client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-eventhubs, eventhubs
-author: ramya-rao-a
-ms.author: ramyar
+author: amishra-dev
+ms.author: amishra
 ms.date: 10/19/2020
 ms.topic: reference
 ms.prod: azure
