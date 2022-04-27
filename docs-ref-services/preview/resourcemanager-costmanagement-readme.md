@@ -1,12 +1,13 @@
 ---
 title: Azure Resource Manager CostManagement client library for Java
+description: "Azure Resource Manager CostManagement client library for Java is a package that contains Microsoft Azure SDK for CostManagement Management SDK.  Package tag package-2019-11."
 keywords: Azure, java, SDK, API, azure-resourcemanager-costmanagement, costmanagement
 author: sima-zhu
 ms.author: sizhu
 ms.date: 07/29/2021
 ms.topic: reference
 ms.devlang: java
-ms.service: zure
+ms.service: azure
 ---
 
 # Azure Resource Manager CostManagement client library for Java - Version 1.0.0-beta.3 

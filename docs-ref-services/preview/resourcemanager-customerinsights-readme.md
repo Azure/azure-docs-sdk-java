@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager CustomerInsights client library for Java
+description: "The Azure Customer Insights management API provides a RESTful set of web services that interact with Azure Customer Insights service to manage your resources."
 keywords: Azure, java, SDK, API, azure-resourcemanager-customerinsights, 
 author: sima-zhu
 ms.author: sizhu
 ms.date: 04/14/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # Azure Resource Manager CustomerInsights client library for Java - Version 1.0.0-beta.1 

@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager Consumption client library for Java
+description: "Consumption management client provides access to consumption resources for Azure Enterprise Subscriptions. Package tag package-2021-10."
 keywords: Azure, java, SDK, API, azure-resourcemanager-consumption, consumption
 author: joshfree
 ms.author: jfree

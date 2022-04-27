@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager Container Instance client library for Java
+description: "This section describes how to add Azure Resource Manager Container Instance client library for Java - Version 2.0.0-beta.5 package to your product."
 keywords: Azure, java, SDK, API, azure-resourcemanager-containerinstance, containerinstance
 author: sima-zhu
 ms.author: sizhu

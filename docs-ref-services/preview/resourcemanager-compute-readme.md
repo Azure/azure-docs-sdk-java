@@ -1,7 +1,8 @@
 ---
 title: Azure Resource Manager Compute client library for Java
+description: "This section describes how to add Azure Resource Manager Compute client library for Java - Version 2.0.0-beta.4 package to your product."
 keywords: Azure, java, SDK, API, azure-resourcemanager-compute, compute
-author: Sima Zhu
+author: sima-zhu
 ms.author: sizhu
 ms.date: 09/03/2020
 ms.topic: reference
