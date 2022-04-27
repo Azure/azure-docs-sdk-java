@@ -1,16 +1,15 @@
 ---
 title: Azure Resource Manager ResourceHealth client library for Java
+description: Reference for the Azure Resource Manager ResourceHealth client library for Java - Version 1.0.0-beta.2.
 keywords: Azure, java, SDK, API, azure-resourcemanager-resourcehealth, resourcehealth
 author: joshfree
 ms.author: jfree
 ms.date: 03/29/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: resourcehealth
+ms.service: azure
 ---
-# Azure Resource Manager ResourceHealth client library for Java - Version 1.0.0-beta.2 
+# Azure Resource Manager ResourceHealth client library for Java - Version 1.0.0-beta.2
 
 
 Azure Resource Manager ResourceHealth client library for Java.
@@ -107,7 +106,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 <!-- LINKS -->
 [survey]: https://microsoft.qualtrics.com/jfe/form/SV_ehN0lIk2FKEBkwd?Q_CHL=DOCS
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-resourcehealth_1.0.0-beta.2/sdk/identity/azure-identity
 [azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-resourcehealth_1.0.0-beta.2/sdk/core/azure-core-http-netty
