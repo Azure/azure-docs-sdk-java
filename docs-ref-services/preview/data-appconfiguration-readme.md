@@ -20,7 +20,7 @@ Modern programs, especially programs running in a cloud, generally have many com
 
 Use the client library for App Configuration to create and manage application configuration settings.
 
--[Source code][source_code] | [Package (Maven)][package] | [API reference documentation][api_documentation]
+- [Source code][source_code] | [Package (Maven)][package] | [API reference documentation][api_documentation]
 | [Product documentation][azconfig_docs] | [Samples][samples]
 
 ## Getting started
