@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager DataProtection client library for Java
+description: "Azure Resource Manager DataProtection client library for Java contains Microsoft Azure SDK for DataProtection Management SDK. Open API 2.0 Specs for Azure Data Protection service."
 keywords: Azure, java, SDK, API, azure-resourcemanager-dataprotection, dataprotection
 author: sima-zhu
 ms.author: sizhu

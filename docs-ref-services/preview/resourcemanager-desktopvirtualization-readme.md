@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager DesktopVirtualization client library for Java
+description: "Azure Resource Manager DesktopVirtualization client library for Java is a package that contains Microsoft Azure SDK for DesktopVirtualization Management SDK." 
 keywords: Azure, java, SDK, API, azure-resourcemanager-desktopvirtualization, desktopvirtualization
 author: sima-zhu
 ms.author: sizhu

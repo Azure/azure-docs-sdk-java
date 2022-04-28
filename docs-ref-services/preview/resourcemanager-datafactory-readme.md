@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager DataFactory client library for Java
+description: "The Azure Data Factory V2 management API provides a RESTful set of web services that interact with Azure Data Factory V2 services." 
 keywords: Azure, java, SDK, API, azure-resourcemanager-datafactory, datafactory
 author: joshfree
 ms.author: jfree

@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager DataLakeAnalytics client library for Java
+description: "Azure Resource Manager DataLakeAnalytics client library for Java is a package that contains Microsoft Azure SDK for DataLakeAnalytics Management SDK. Creates an Azure Data Lake Analytics account management client." 
 keywords: Azure, java, SDK, API, azure-resourcemanager-datalakeanalytics, 
 author: sima-zhu
 ms.author: sizhu

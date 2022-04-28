@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager Deployment client library for Java
+description: "This package contains Microsoft Azure SDK for Deployment Management SDK. REST APIs for orchestrating deployments using the Azure Deployment Manager (ADM)."
 keywords: Azure, java, SDK, API, azure-resourcemanager-deploymentmanager, 
 author: sima-zhu
 ms.author: sizhu
 ms.date: 04/20/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager Deployment client library for Java - Version 1.0.0-beta.1 
