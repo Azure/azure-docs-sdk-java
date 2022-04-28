@@ -231,7 +231,7 @@ tables.)_ The `azure-search-documents` client library exposes operations on thes
   * Most of the `SearchServiceClient` functionality is not yet available in our current preview
 
 * `SearchIndexerClient` allows you to:
-  * [Start indexers to automatically crawl data sources](/https://docs.microsoft.com/rest/api/searchservice/indexer-operations)
+  * [Start indexers to automatically crawl data sources](https://docs.microsoft.com/rest/api/searchservice/indexer-operations)
   * [Define AI powered Skillsets to transform and enrich your data](https://docs.microsoft.com/rest/api/searchservice/skillset-operations)
 
 ## Examples
