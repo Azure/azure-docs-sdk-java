@@ -158,7 +158,7 @@ The following sections provide several code snippets covering some of the most c
 
 > Note : You should add `System.in.read()` or `Thread.sleep()` after the function calls in the main class/thread to allow async functions/operations to execute and finish before the main application/thread exits.
 
-### Create a Spark job asynchronously
+### Create a Spark batch job asynchronously
 
 `createSparkBatchJob` creates a Spark batch job.
 
