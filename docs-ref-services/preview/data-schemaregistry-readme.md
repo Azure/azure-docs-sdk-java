@@ -212,12 +212,12 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [samples_code]: src/samples/
 [azure_subscription]: https://azure.microsoft.com/free/
 [api_reference_doc]: https://aka.ms/schemaregistry
-[azure_cli]: /cli/azure
+[azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_portal]: https://portal.azure.com
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.0.0-beta.6/sdk/identity/azure-identity
 [DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.0-beta.6/sdk/identity/azure-identity/README.md#defaultazurecredential
-[event_hubs_namespace]: /azure/event-hubs/event-hubs-about
-[jdk_link]: /java/azure/jdk/
+[event_hubs_namespace]: https://docs.microsoft.com/azure/event-hubs/event-hubs-about
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk/
 [product_documentation]: https://aka.ms/schemaregistry
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fschemaregistry%2Fazure-data-schemaregistry%2FREADME.png)

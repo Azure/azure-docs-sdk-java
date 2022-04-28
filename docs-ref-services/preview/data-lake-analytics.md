@@ -64,6 +64,6 @@ JobInformation jobInfo = adlaJobClient.getJobOperations().create(accountName, jo
 
 [Azure Data Lake Analytics using Java SDK][1] 
 
-[1]: /azure/data-lake-analytics/data-lake-analytics-get-started-java-sdk
+[1]: https://docs.microsoft.com/azure/data-lake-analytics/data-lake-analytics-get-started-java-sdk
 
 View the [complete list](https://azure.microsoft.com/resources/samples/?platform=java&term=analytics) of Azure Data Lake Analytics samples.
