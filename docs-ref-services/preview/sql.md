@@ -13,7 +13,7 @@ ms.devlang: java
 ms.service: sql-database
 ---
 
-# Azure SQL Database libraries for Java
+# Azure SQL Database libraries for Java (Preview)
 
 ## Overview
 
