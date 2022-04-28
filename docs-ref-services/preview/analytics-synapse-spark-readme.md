@@ -3,7 +3,7 @@ title: Azure Synapse Spark client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-spark, synapseanalytics
 description: Azure Synapse is a limitless analytics service that brings together enterprise data warehousing and Big Data analytics for immediate BI and machine learning needs..
 author: ramya-rao-a
-ms.author: sima-zhu
+ms.author: sizhu
 ms.date: 10/15/2021
 ms.topic: reference
 ms.devlang: java
@@ -153,7 +153,6 @@ batchClient.cancelSparkBatchJob(jobId);
 The following sections provide several code snippets covering some of the most common asynchronous Azure Synapse Spark service tasks, including:
 
 * [Cancel a Spark job asynchronously](#cancel-a-spark-batch-job-asynchronously)
-* [Retrieve a Spark job asynchronously](#retrieve-a-spark-batch-job-asynchronously)
 * [List Spark jobs asynchronously](#list-spark-batch-jobs-asynchronously)
 * [Create a Spark job asynchronously](#create-a-spark-batch-job-asynchronously)
 
