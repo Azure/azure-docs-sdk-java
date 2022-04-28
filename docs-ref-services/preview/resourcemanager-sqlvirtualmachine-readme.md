@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager SqlVirtualMachine client library for Java
+description: The SQL virtual machine management API provides a RESTful set of web APIs that interact with Azure Compute, Network & Storage services to manage your SQL Server virtual machine.
 keywords: Azure, java, SDK, API, azure-resourcemanager-sqlvirtualmachine, sqlvirtualmachine
 author: joshfree
 ms.author: jfree
 ms.date: 02/24/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: sqlvirtualmachine
+ms.service: azure
 ---
 # Azure Resource Manager SqlVirtualMachine client library for Java - Version 1.0.0-beta.2 
 
@@ -107,7 +106,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 <!-- LINKS -->
 [survey]: https://microsoft.qualtrics.com/jfe/form/SV_ehN0lIk2FKEBkwd?Q_CHL=DOCS
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-sqlvirtualmachine_1.0.0-beta.2/sdk/identity/azure-identity
 [azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-sqlvirtualmachine_1.0.0-beta.2/sdk/core/azure-core-http-netty
