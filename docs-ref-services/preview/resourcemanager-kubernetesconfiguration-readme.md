@@ -1,6 +1,7 @@
 ---
 title: Azure Resource Manager SourceControlConfiguration client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-kubernetesconfiguration, kubernetesconfiguration
+description: This package contains Microsoft Azure SDK for SourceControlConfiguration Management SDK.
 author: joshfree
 ms.author: jfree
 ms.date: 03/24/2022

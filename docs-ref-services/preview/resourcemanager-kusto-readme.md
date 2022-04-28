@@ -1,6 +1,7 @@
 ---
 title: Azure Resource Manager Kusto client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-kusto, dataexplorer
+description: This package contains Microsoft Azure SDK for Kusto Management SDK.
 author: sima-zhu
 ms.author: sizhu
 ms.date: 02/22/2022

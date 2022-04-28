@@ -1,6 +1,7 @@
 ---
 title: Azure Resource Manager IotHub client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-iothub, iothub
+description: This package contains Microsoft Azure SDK for IotHub Management SDK.
 author: joshfree
 ms.author: jfree
 ms.date: 01/24/2022
