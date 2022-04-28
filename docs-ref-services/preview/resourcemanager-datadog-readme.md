@@ -1,5 +1,6 @@
 ---
 title: Azure Resource Manager MicrosoftDatadog client library for Java
+description: "Azure Resource Manager MicrosoftDatadog client library for Java is a package that contains Microsoft Azure SDK for MicrosoftDatadog Management SDK.  Package tag package-2021-03." 
 keywords: Azure, java, SDK, API, azure-resourcemanager-datadog, datadog
 author: sima-zhu
 ms.author: sizhu
