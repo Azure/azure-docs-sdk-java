@@ -1,7 +1,7 @@
 ---
 title: Azure Resource Manager MySql client library for Java - Version 1.0.0-beta.2 
 keywords: Azure, java, SDK, API, azure-resourcemanager-mysqlflexibleserver, mysqlflexibleserver
-description: Reference documentation for Azure Resource Manager MySql client library for Java.
+description: Reference documentation for Azure Resource Manager MySql client library for Java - Version 1.0.0-beta.2.
 author: joshfree
 ms.author: jfree
 ms.date: 03/09/2022
