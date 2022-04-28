@@ -108,16 +108,16 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 <!-- LINKS -->
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-monitoring_1.0.0-beta.3/sdk/synapse/azure-analytics-synapse-accesscontrol/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
-[azsynapse_docs]: /azure/synapse-analytics/
+[azsynapse_docs]: https://docs.microsoft.com/azure/synapse-analytics/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-analytics-synapse-monitoring_1.0.0-beta.3/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
-[azure_synapse]: /azure/synapse-analytics/quickstart-create-workspace
-[azure_cli]: /cli/azure
-[rest_api]: /rest/api/synapse/
-[azsynapse_rest]: /rest/api/synapse/
-[azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
-[azure_synapse_cli_full]: /cli/azure/synapse
+[azure_synapse]: https://docs.microsoft.com/en-us/azure/synapse-analytics/quickstart-create-workspace
+[azure_cli]:https://docs.microsoft.com /cli/azure
+[rest_api]: https://docs.microsoft.com/rest/api/synapse/
+[azsynapse_rest]: https://docs.microsoft.com/rest/api/synapse/
+[azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
+[azure_synapse_cli_full]: https://docs.microsoft.com/cli/azure/synapse
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 
