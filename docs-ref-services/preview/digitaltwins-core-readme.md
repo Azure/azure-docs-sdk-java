@@ -152,17 +152,17 @@ For more information see the Code of Conduct FAQ or contact opencode@microsoft.c
 
 <!-- LINKS -->
 [microsoft_sdk_download]: https://azure.microsoft.com/downloads/?sdk=java
-[azure_cli]: /cli/azure
+[azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.3.0-beta.1/sdk/digitaltwins/azure-digitaltwins-core
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [nuget]: https://www.nuget.org/
 [azure_portal]: https://portal.azure.com/
-[azure_rest_api]: /rest/api/azure/
+[azure_rest_api]: https://docs.microsoft.com/rest/api/azure/
 [azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.3.0-beta.1/sdk/core/azure-core
-[token_credential]: /java/api/com.azure.core.credential.tokencredential&preserve-view=true
-[digital_twins_documentation]: /azure/digital-twins/
-[azure_cli]: /cli/azure/install-azure-cli&preserve-view=true
+[token_credential]: https://docs.microsoft.com/java/api/com.azure.core.credential.tokencredential?view=azure-cli-stable
+[digital_twins_documentation]: https://docs.microsoft.com/azure/digital-twins/
+[azure_cli]: https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
 [iot_cli_extension]: https://github.com/Azure/azure-iot-cli-extension/releases
-[iot_cli_doc]: /cli/azure/ext/azure-iot/dt&preserve-view=true
+[iot_cli_doc]: https://docs.microsoft.com/cli/azure/ext/azure-iot/dt?view=azure-cli-latest
 

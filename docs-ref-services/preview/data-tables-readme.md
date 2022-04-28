@@ -16,11 +16,8 @@ Azure Storage Tables client library is a service that stores structured NoSQL da
 key/attribute store with a schemaless design. Tables storage gives developers flexibility and scalability with all the
 best parts of Azure cloud.
 
-- [Source code][source_code] 
-- [Package (Maven)][package]
-- [API reference documentation][api_documentation]
-- [Product documentation][product_documentation]
-- [Samples][samples]
+[Source code][source_code] | [Package (Maven)][package] | [API reference documentation][api_documentation] 
+| [Product documentation][product_documentation] | [Samples][samples]
 
 ## Getting started
 
@@ -91,7 +88,7 @@ az cosmosdb list-connection-strings \
 ```
 
 #### Shared Key credential
-Shared Key authorization relies on your account access keys and other parameters to produce an encrypted signature string that is passed on the request in the Authorization header. See [Authenticate with a Shared Key credential](#authenticate-with-a-named-key) for an example of how to use Shared Key authorization with a `TableServiceClient`.
+Shared Key authorization relies on your account access keys and other parameters to produce an encrypted signature string that is passed on the request in the Authorization header. See [Authenticate with a Shared Key credential](#authenticate-with-a-shared-key) for an example of how to use Shared Key authorization with a `TableServiceClient`.
 
 To use Shared Key authorization you'll need your account name and URL, as well as an account access key. You can obtain your primary access key from the Azure Portal (click **Access keys** under **Settings** in the Portal Storage account blade, or **Connection String** under **Settings** in the Portal Cosmos DB account blade) or using the Azure CLI:
 
@@ -147,7 +144,7 @@ Common uses of the Tables service include:
 
 - [Authenticate a client](#authenticate-a-client)
   - [Authenticate with a connection string](#authenticate-with-a-connection-string)
-  - [Authenticate with a Shared Key](#authenticate-with-a-named-key)
+  - [Authenticate with a Shared Key](#authenticate-with-a-shared-key)
   - [Authenticate with a Shared Access Signature (SAS)](#authenticate-with-a-shared-access-signature-sas)
 - [Create, List, and Delete Azure tables](#create-list-and-delete-azure-tables)
   - [Construct a `TableServiceClient`](#construct-a-tableserviceclient)
@@ -345,18 +342,18 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_contact]: mailto:opencode@microsoft.com
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc]: https://opensource.microsoft.com/codeofconduct/
-[cosmosdb_create_cli]: /azure/cosmos-db/scripts/cli/table/create
-[cosmosdb_create_portal]: /azure/cosmos-db/create-table-java#create-a-database-account
-[jdk]: /java/azure/jdk/
+[cosmosdb_create_cli]: https://docs.microsoft.com/azure/cosmos-db/scripts/cli/table/create
+[cosmosdb_create_portal]: https://docs.microsoft.com/azure/cosmos-db/create-table-java#create-a-database-account
+[jdk]: https://docs.microsoft.com/java/azure/jdk/
 [log_level]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.0.0-beta.7/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/LogLevel.java
 [package]: https://search.maven.org/artifact/com.azure/azure-data-tables
-[product_documentation]: /azure/cosmos-db/table-storage-overview
-[query_options]: /rest/api/storageservices/querying-tables-and-entities#supported-query-options
-[rest_api]: /rest/api/storageservices/table-service-rest-api
+[product_documentation]: https://docs.microsoft.com/azure/cosmos-db/table-storage-overview
+[query_options]: https://docs.microsoft.com/rest/api/storageservices/querying-tables-and-entities#supported-query-options
+[rest_api]: https://docs.microsoft.com/rest/api/storageservices/table-service-rest-api
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.0.0-beta.7/sdk/tables/azure-data-tables/src/samples/java/
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.0.0-beta.7/sdk/tables/azure-data-tables/src
-[storage_account_create_cli]: /azure/storage/common/storage-account-create?tabs=azure-cli
-[storage_account_create_portal]: /azure/storage/common/storage-account-create?tabs=azure-portal
+[storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-cli
+[storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Ftables%2Fazure-data-tables%2FREADME.png)
 
