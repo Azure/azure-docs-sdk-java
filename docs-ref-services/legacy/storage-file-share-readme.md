@@ -127,7 +127,7 @@ https://myaccount.file.core.windows.net/myshare/mydirectorypath/myfile
 ```
 
 ### Handling Exceptions
-Uses the `shareServiceClient` generated from [shareSeviceClient](#handling-exceptions) section below.
+Uses the `shareServiceClient` generated from [shareSeviceClient](#share-service) section below.
 
 <!-- embedme ./src/samples/java/com/azure/storage/file/share/ReadmeSamples.java#L222-L226 -->
 ```java

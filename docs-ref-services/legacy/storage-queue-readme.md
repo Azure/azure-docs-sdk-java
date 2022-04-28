@@ -215,7 +215,7 @@ The following sections provide several code snippets covering some of the most c
 - [Enqueue message into a queue](#enqueue-message-into-a-queue)
 - [Update a message in a queue](#update-a-message-in-a-queue)
 - [Peek at messages in a queue](#peek-at-messages-in-a-queue)
-- [Receive messages from a queue](#receive-messages-from-a-queue)
+- [Dequeue messages from a queue](#dequeue-messages-from-a-queue)
 - [Delete message from a queue](#delete-message-from-a-queue)
 - [Get a Queue properties](#get-a-queue-properties)
 - [Set/Update a Queue metadata](#set-a-queue-metadata)
