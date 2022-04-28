@@ -2,8 +2,8 @@
 title: Azure Synapse Monitoring client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-monitoring, synapseanalytics
 description: Azure Synapse is a limitless analytics service that brings together enterprise data warehousing and Big Data analytics to ingest, prepare, manage, and serve data.
-author: joshfree
-ms.author: jfree
+author: ramya-rao-a
+ms.author: sima-zhu
 ms.date: 04/07/2021
 ms.topic: reference
 ms.devlang: java

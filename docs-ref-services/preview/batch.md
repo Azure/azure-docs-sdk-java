@@ -2,8 +2,8 @@
 title: Azure Batch libraries for Java
 description: Reference documentation for the Java Batch libraries 
 keywords: Azure, Java, SDK, API, Batch, processing, scheduling, long-running
-author: joshfree
-ms.author: jfree
+author: ramya-rao-a
+ms.author: sima-zhu
 manager: douge
 ms.date: 06/21/2017
 ms.topic: reference

@@ -2,7 +2,7 @@
 title: Azure Synapse Managed Private Endpoints client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-managedprivateendpoints, synapseanalytics
 description: Azure Synapse is a limitless analytics service that brings together enterprise data warehousing and Big Data analytics with a unified experience.
-author: joshfree
+author: ramya-rao-a
 ms.author: jfree
 ms.date: 09/08/2021
 ms.topic: reference

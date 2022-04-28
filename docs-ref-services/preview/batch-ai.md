@@ -1,8 +1,8 @@
 ---
 title: Azure Batch AI libraries for Java
 description: Reference documentation for the Java Batch AI libraries 
-author: joshfree
-ms.author: jfree
+author: garyericson
+ms.author: sima-zhu
 ms.reviewer: routlaw
 manager: douge
 ms.date: 03/28/2019

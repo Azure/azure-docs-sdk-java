@@ -2,8 +2,8 @@
 title: Azure Synapse Access Control client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-accesscontrol, synapseanalytics
 description: Azure Synapse is a limitless analytics service bringing together enterprise data warehousing and Big Data analytics.
-author: joshfree
-ms.author: jfree
+author: ramya-rao-a
+ms.author: sima-zhu
 ms.date: 08/11/2021
 ms.topic: reference
 ms.devlang: java
