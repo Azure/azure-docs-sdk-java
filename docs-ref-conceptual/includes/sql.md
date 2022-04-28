@@ -4,6 +4,7 @@ ms.prod: azure
 description: sql resources
 ---
 
+# SQL resources
 
 [Configure Azure SQL Database with the management API][1]   
 [Deploy WordPress powered by SQL Database][4]   
