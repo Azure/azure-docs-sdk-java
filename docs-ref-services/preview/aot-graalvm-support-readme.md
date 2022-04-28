@@ -3,22 +3,25 @@ title: Azure GraalVM Support client library for Java
 keywords: Azure, java, SDK, API, azure-aot-graalvm-support, aot
 author: joshfree
 ms.author: jfree
-ms.date: 04/08/2022
+ms.date: 04/25/2022
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: aot
 ---
-# Azure GraalVM Support client library for Java - Version 1.0.0-beta.1 
+# Azure GraalVM Support client library for Java - Version 1.0.0-beta.2 
 
 
-The Azure GraalVM Support client library provides support for applications using [Azure client libraries](https://azure.
-github.io/azure-sdk/releases/latest/java.html) to be built as [GraalVM native 
+The Azure GraalVM Support client library provides support for applications using [Azure client libraries](https://azure.github.io/azure-sdk/releases/latest/java.html) to be built as [GraalVM native 
 images](https://www.graalvm.org/22.0/reference-manual/native-image/). The library contains all the necessary 
 [configuration files](https://www.graalvm.org/22.0/reference-manual/native-image/BuildConfiguration/) and [GraalVM 
 features](https://www.graalvm.org/sdk/javadoc/index.html?org/graalvm/nativeimage/hosted/Feature.html) required to build 
 a native image of an application that uses Azure client libraries.
+
+**NOTE:**: This library is a preview and is intended to enable applications using Azure client libraries to quickly 
+build and validate native images. However, this is not a stable, GA version and is not officially supported to use in production
+environments.
 
 ## Getting started
 
@@ -33,18 +36,26 @@ documentation.
 
 ### Include the package
 
+
 [//]: # ({x-version-update-start;com.azure:azure-aot-graalvm-support;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-aot-graalvm-support</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
+Also, include the `azure-aot-graalvm-support-netty` package to bring in the configuration files required for Netty HTTP
+client.  For more details on this library, please refer to [this README](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-support-netty/README.md).
 
-Add the above dependency to your Maven project along with any other Azure client libraries you may want to use. If 
-you are using client libraries that depend on `azure-core-http-netty`, add the `azure-aot-graalvm-support-netty` 
-dependency too. For more details on this library, please refer to [this README](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-support-netty/README.md).
+[//]: # ({x-version-update-start;com.azure:azure-aot-graalvm-support-netty;current})
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-aot-graalvm-support-netty</artifactId>
+    <version>1.0.0-beta.2</version>
+</dependency>
+```
 
 ## Key concepts
 
@@ -70,33 +81,42 @@ This library provides all the necessary configuration files for using Azure clie
 
 ## Examples
 
-#### [App Configuration](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.1/sdk/appconfiguration/azure-data-appconfiguration)
-- [Sample demonstrating the creation and use of App Configuration client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/appconfiguration/AppConfigurationSample.java)
+#### App Configuration
+- [Sample demonstrating the creation and use of App Configuration client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/appconfiguration/AppConfigurationSample.java)
 
-#### [Key Vault](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.1/sdk/keyvault)
-- [Sample demonstrating the creation and use of Key Vault Certificates client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/keyvault/certificates/KeyVaultCertificatesSample.java)
-- [Sample demonstrating the creation and use of Key Vault Keys client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/keyvault/keys/KeyVaultKeysSample.java)
-- [Sample demonstrating the creation and use of Key Vault Secrets client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/keyvault/secrets/KeyVaultSecretsSample.java)
+Please refer to [Application Configuration](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.2/sdk/appconfiguration/azure-data-appconfiguration) client library documentation for more details.
 
-#### [Storage Blob](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.1/sdk/storage/azure-storage-blob)
-- [Sample demonstrating the creation and use of Storage Blob client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/storage/blob/StorageBlobSample.java)
+#### Key Vault
+- [Sample demonstrating the creation and use of Key Vault Certificates client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/keyvault/certificates/KeyVaultCertificatesSample.java)
+- [Sample demonstrating the creation and use of Key Vault Keys client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/keyvault/keys/KeyVaultKeysSample.java)
+- [Sample demonstrating the creation and use of Key Vault Secrets client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/keyvault/secrets/KeyVaultSecretsSample.java)
 
-#### [Cosmos](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.1/sdk/cosmos/azure-cosmos)
-- [Sample demonstrating the creation and use of Cosmos client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/cosmos/CosmosSample.java)
+Please refer to [Key Vault](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.2/sdk/keyvault) client library documentation for more details.
 
-#### [Event Hubs](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.1/sdk/eventhubs/azure-messaging-eventhubs)
-- [Sample demonstrating the creation and use of Event Hubs producer client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/eventhubs/EventHubsSample.java)
+#### Storage Blob
+- [Sample demonstrating the creation and use of Storage Blob client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/storage/blob/StorageBlobSample.java)
 
-#### [Form Recognizer](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.1/sdk/formrecognizer/azure-ai-formrecognizer)
-- [Sample demonstrating the creation and use of Form Recognizer client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/formrecognizer/FormRecognizerSample.java)
+Please refer to [Storage Blob](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.2/sdk/storage/azure-storage-blob) client library documentation for more details.
 
-#### [Text Analytics](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.1/sdk/textanalytics/azure-ai-textanalytics)
-- [Sample demonstrating the creation and use of Text Analytics client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/textanalytics/TextAnalyticsSample.java)
+#### Event Hubs
+- [Sample demonstrating the creation and use of Event Hubs producer client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/eventhubs/EventHubsSample.java)
+
+Please refer to [Event Hubs](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.2/sdk/eventhubs/azure-messaging-eventhubs) client library documentation for more details.
+
+#### Form Recognizer
+- [Sample demonstrating the creation and use of Form Recognizer client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/formrecognizer/FormRecognizerSample.java)
+
+Please refer to [Form Recognizer](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.2/sdk/formrecognizer/azure-ai-formrecognizer) client library documentation for more details.
+
+#### Text Analytics
+- [Sample demonstrating the creation and use of Text Analytics client](https://github.com/Azure/azure-sdk-for-java/blob/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-samples/src/main/java/com/azure/aot/graalvm/samples/textanalytics/TextAnalyticsSample.java)
+
+Please refer to [Text Analytics](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.2/sdk/textanalytics/azure-ai-textanalytics) client library documentation for more details.
 
 ## Troubleshooting
 
 ## Next steps
-The [azure-aot-graalvm-samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.1/sdk/aot/azure-aot-graalvm-samples)
+The [azure-aot-graalvm-samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-aot-graalvm-support_1.0.0-beta.2/sdk/aot/azure-aot-graalvm-samples)
 library consists of all above samples bundled into a single Maven project that can be compiled with `mvn clean 
 install -Pnative` to build the native image and execute all the samples. 
 
