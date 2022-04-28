@@ -1,9 +1,9 @@
 ---
 title: Azure Resource Manager IotDps client library for Java
-desacrption: "Azure Resource Manager IotDps client library for Java - Version 1.1.0-beta.1 is a package that contains Microsoft Azure SDK for IotDps Management SDK. API for using the Azure IoT Hub Device Provisioning Service features."
+description: "This package contains Microsoft Azure SDK for IotDps Management SDK. API for using the Azure IoT Hub Device Provisioning Service features."
 keywords: Azure, java, SDK, API, azure-resourcemanager-deviceprovisioningservices, deviceprovisioningservices
 author: joshfree
-ms.author: joshfree
+ms.author: jfree
 ms.date: 01/26/2022
 ms.topic: reference
 ms.devlang: java

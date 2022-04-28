@@ -10,7 +10,7 @@ ms.devlang: java
 ms.service: azure-resource-manager
 ---
 
-#  
+# Azure Resource Manager DataLakeStore client library for Java - Version 1.0.0-beta.1 
 
 
 Azure Resource Manager DataLakeStore client library for Java.
