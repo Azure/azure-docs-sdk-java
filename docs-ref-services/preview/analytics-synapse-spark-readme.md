@@ -152,7 +152,8 @@ batchClient.cancelSparkBatchJob(jobId);
 ### Async API
 The following sections provide several code snippets covering some of the most common asynchronous Azure Synapse Spark service tasks, including:
 
-* [Cancel a Spark job asynchronously](#cancel-a-spark-batch-job-asynchronously)
+* [Create a Spark job asynchronously](#create-a-spark-batch-job-asynchronously)
+* [Retrieve a Spark job asynchronously](#retrieve-a-spark-batch-job-asynchronously)
 * [List Spark jobs asynchronously](#list-spark-batch-jobs-asynchronously)
 * [Delete a Spark job asynchronously](#delete-a-spark-batch-job-asynchronously)
 
