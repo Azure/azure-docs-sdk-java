@@ -107,7 +107,7 @@ The following sections provide several code snippets covering some of the most c
 ### Spark batch job examples
 * [Create a Spark batch job](#create-a-spark-batch-job)
 * [List role Spark batch jobs](#list-spark-batch-jobs)
-* [Cancel a Spark batch job](#cancel-a-spark-batch-job)
+* [Cancel a Spark batch job](#delete-a-spark-batch-job)
 
 ### Create a Spark batch job
 
@@ -237,7 +237,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [rest_api]: https://docs.microsoft.com/rest/api/synapse/
 [azsynapse_rest]: https://docs.microsoft.com/rest/api/synapse/
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
-[azure_synapse_cli_full]: https://docs.microsoft.com/cli/azure/synapse
+[azure_synapse_cli_full]: https://docs.microsoft.com/cli/azure/synapse?view=azure-cli-latest
 [spark_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-spark_1.0.0-beta.5/sdk/synapse/azure-analytics-synapse-spark/src/samples/java/com/azure/analytics/synapse/spark
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
