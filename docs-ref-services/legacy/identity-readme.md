@@ -1,12 +1,11 @@
 ---
 title: Azure Identity client library for Java
+description: The Azure Identity library provides Azure Active Directory token authentication support across the Azure SDK. It provides a set of TokenCredential implementations.
 keywords: Azure, java, SDK, API, azure-identity, identity
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/10/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: identity
 ---
@@ -16,11 +15,11 @@ ms.service: identity
 The Azure Identity library provides Azure Active Directory token authentication support across the Azure SDK. It provides a set of TokenCredential implementations which can be used to construct Azure SDK clients which support AAD token authentication.
 
  This library currently supports:
-  - [Service principal authentication](https://docs.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals)
-  - [Managed identity authentication](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview)
-  - [Device code authentication](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-device-code)
-  - Interactive browser authentication, based on [OAuth2 authentication code](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow)
-  - [Username + password authentication](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth-ropc)
+  - [Service principal authentication](/azure/active-directory/develop/app-objects-and-service-principals)
+  - [Managed identity authentication](/azure/active-directory/managed-identities-azure-resources/overview)
+  - [Device code authentication](/azure/active-directory/develop/v2-oauth2-device-code)
+  - Interactive browser authentication, based on [OAuth2 authentication code](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+  - [Username + password authentication](/azure/active-directory/develop/v2-oauth-ropc)
   - IntelliJ authentication, with the login information saved in Azure Toolkit for IntelliJ
   - Visual Studio Code authentication, with the login information saved in Azure plugin for Visual Studio Code
   - Azure CLI authentication, with the login information saved in Azure CLI
@@ -373,6 +372,9 @@ Credentials can be chained together to be tried in turn until one succeeds using
 Configuration is attempted in the above order. For example, if values for a client secret and certificate are both present, the client secret will be used.
 
 ## Troubleshooting
+
+### Chaining credentials
+
 Credentials raise exceptions either when they fail to authenticate or cannot execute authentication.
 When credentials fail to authenticate, the`ClientAuthenticationException` is raised and it has a `message` attribute which
 describes why authentication failed. When this exception is raised by `ChainedTokenCredential`, the chained execution of underlying list of credentials is stopped.
@@ -404,7 +406,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0/sdk/identity/azure-identity
-[aad_doc]: https://docs.microsoft.com/azure/active-directory/
+[aad_doc]: /azure/active-directory/
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [keys_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0/sdk/keyvault/azure-security-keyvault-keys
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
@@ -412,7 +414,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [eventhubs_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0/sdk/eventhubs/azure-messaging-eventhubs
 [azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0/sdk/core
 [javadoc]: https://azure.github.io/azure-sdk-for-java
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fidentity%2Fazure-identity%2FREADME.png)
 
