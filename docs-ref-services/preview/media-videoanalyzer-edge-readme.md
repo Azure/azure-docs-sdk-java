@@ -1,14 +1,13 @@
 ---
 title: Azure Video Analyzer Edge client library for Java
 keywords: Azure, java, SDK, API, azure-media-videoanalyzer-edge, videoanalyzer
-author: ramya-rao-a
-ms.author: ramyar
+description: Reference documentation for the Azure Video Analyzer Edge client library for Java.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 10/27/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: videoanalyzer
+ms.service: azure-video-analyzer
 ---
 
 # Azure Video Analyzer Edge client library for Java - Version 1.0.0-beta.5 

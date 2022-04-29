@@ -1,14 +1,13 @@
 ---
 title: Azure Remote Rendering client library for Java
-keywords: Azure, java, SDK, API, azure-mixedreality-remoterendering, 
+keywords: Azure, java, SDK, API, azure-mixedreality-remoterendering
+description: Reference documentation for the Azure Remote Rendering client library for Java.
 author: ramya-rao-a
 ms.author: ramyar
 ms.date: 02/23/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure-remote-rendering
 ---
 
 # Azure Remote Rendering client library for Java - Version 1.0.0-beta.1 

@@ -2,8 +2,8 @@
 title: Azure Database for MySQL libraries for Java
 description: Reference documentation for the Java client libraries for Azure Database for MySQL
 keywords: Azure, Java, SDK, API, SQL, database, PostGres, MySQL 
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 manager: douge
 ms.date: 05/17/2017
 ms.topic: reference

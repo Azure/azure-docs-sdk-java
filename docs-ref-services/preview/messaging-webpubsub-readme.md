@@ -1,14 +1,15 @@
 ---
 title: Azure Web PubSub service client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-webpubsub, webpubsub
-author: maggiepint
-ms.author: magpint
+description: Reference documentation for the Azure Web PubSub service client library for Java.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/11/2021
 ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: webpubsub
+ms.service: azure-web-pubsub
 ---
 
 # Azure Web PubSub service client library for Java - Version 1.0.0-beta.6 
