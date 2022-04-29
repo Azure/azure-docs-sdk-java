@@ -101,9 +101,9 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 
 <!-- LINKS -->
 [source_code]: src
-[cosmos_introduction]: /azure/cosmos-db/
-[cosmos_docs]: /azure/cosmos-db/introduction
-[jdk]: /java/azure/jdk/?view=azure-java-stable
+[cosmos_introduction]: https://docs.microsoft.com/azure/cosmos-db/
+[cosmos_docs]: https://docs.microsoft.com/azure/cosmos-db/introduction
+[jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [maven]: https://maven.apache.org/
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
