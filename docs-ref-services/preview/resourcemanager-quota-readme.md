@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager quota client library for Java
+description: This package contains Microsoft Azure SDK for quota Management SDK. Microsoft Azure Quota Resource Provider. Package tag package-2021-03-15-preview.
 keywords: Azure, java, SDK, API, azure-resourcemanager-quota, quota
 author: maggiepint
-ms.author: magpint
+ms.author: pahallis
 ms.date: 11/11/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: quota
+ms.service: azure
 ---
 
 # Azure Resource Manager quota client library for Java - Version 1.0.0-beta.2 

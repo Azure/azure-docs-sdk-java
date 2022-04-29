@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager RecoveryServices client library for Java
+description: This package contains Microsoft Azure SDK for RecoveryServices Management SDK. Recovery Services Client. Package tag package-2016-06.
 keywords: Azure, java, SDK, API, azure-resourcemanager-recoveryservices, 
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: pahallis
 ms.date: 12/18/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # Azure Resource Manager RecoveryServices client library for Java - Version 1.0.0-beta.1 

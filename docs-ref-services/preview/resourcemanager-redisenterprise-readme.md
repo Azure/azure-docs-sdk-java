@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager RedisEnterprise client library for Java
+description: This package contains Microsoft Azure SDK for RedisEnterprise Management SDK. REST API for managing Redis Enterprise resources in Azure.
 keywords: Azure, java, SDK, API, azure-resourcemanager-redisenterprise, redisenterprise
 author: joshfree
-ms.author: jfree
+ms.author: pahallis
 ms.date: 04/19/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: redisenterprise
+ms.service: azure
 ---
 # Azure Resource Manager RedisEnterprise client library for Java - Version 1.1.0-beta.1 
 
