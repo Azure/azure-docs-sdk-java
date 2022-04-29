@@ -8,7 +8,7 @@ ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: search
+ms.service: cognitive-search
 ---
 # Azure Cognitive Search client library for Java - Version 11.5.0-beta.8 
 
