@@ -8,7 +8,7 @@ ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: resourcemanager
+ms.service: cognitive-search
 ---
 # Azure Resource Manager Cognitive Search client library for Java - Version 2.14.0 
 
