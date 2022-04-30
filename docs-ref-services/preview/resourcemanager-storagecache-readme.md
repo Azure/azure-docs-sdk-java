@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager StorageCache client library for Java
+description: This package contains Microsoft Azure SDK for StorageCache Management SDK.
 keywords: Azure, java, SDK, API, azure-resourcemanager-storagecache, storagecache
 author: amishra-dev
 ms.author: amishra
 ms.date: 03/22/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: storagecache
+ms.service: azure
 ---
 # Azure Resource Manager StorageCache client library for Java - Version 1.0.0-beta.5 
 
