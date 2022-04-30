@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager PolicyInsights client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-policyinsights, policyinsights
+description: Reference documentation for Azure Resource Manager PolicyInsights client library for Java.
 author: joshfree
-ms.author: joshfree
+ms.author: jfree
 ms.date: 12/06/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: policyinsights
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager PolicyInsights client library for Java - Version 1.0.0-beta.2 

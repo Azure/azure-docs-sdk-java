@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager NotificationHubs client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-notificationhubs, notificationhubs
+description: Reference documentation for the Azure Resource Manager NotificationHubs client library for Java.
 author: joshfree
-ms.author: joshfree
+ms.author: jfree
 ms.date: 01/04/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: notificationhubs
+ms.service: notification-hubs
 ---
 # Azure Resource Manager NotificationHubs client library for Java - Version 1.0.0-beta.3 
 

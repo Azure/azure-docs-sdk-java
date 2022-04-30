@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager PowerBIDedicated client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-powerbidedicated, 
-author: ramya-rao-a
-ms.author: ramyar
+keywords: Azure, java, SDK, API, azure-resourcemanager-powerbidedicated
+description: Reference documentation for Azure Resource Manager PowerBIDedicated client library for Java.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 04/20/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager PowerBIDedicated client library for Java - Version 1.0.0-beta.1 
