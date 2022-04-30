@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager ResourceMover client library for Java
+description: Reference page for the Azure Resource Manager ResourceMover client library for Java - Version 1.0.0-beta.1.
 keywords: Azure, java, SDK, API, azure-resourcemanager-resourcemover, 
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: pahallis
 ms.date: 04/12/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
-ms.devlang: java
-ms.service: 
+s.devlang: java
+ms.service: azure
 ---
 
 # Azure Resource Manager ResourceMover client library for Java - Version 1.0.0-beta.1 

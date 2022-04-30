@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager resources client library for Java
+description: Reference page for the Azure Resource Manager Security client library for Java - Version 1.0.0-beta.1.
 keywords: Azure, java, SDK, API, azure-resourcemanager-resources, resources
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: pahallis
 ms.date: 09/03/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: resources
+ms.service: azure
 ---
 
 # Azure Resource Manager resources client library for Java - Version 2.0.0-beta.4 
