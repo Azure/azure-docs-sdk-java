@@ -1,20 +1,19 @@
 ---
 title: Azure Resource Manager keyvault client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-keyvault, keyvault
-author: ramya-rao-a
-ms.author: ramyar
+description: Reference documentation for the Azure Resource Manager keyvault client library for Java - Version 2.0.0-beta.4.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 09/03/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: keyvault
+ms.service: azure-resource-manager
 ---
 
-# Azure Resource Manager keyvault client library for Java - Version 2.0.0-beta.4 
+# Azure Resource Manager keyvault client library for Java - Version 2.0.0-beta.4
 
 
-Azure Resource Manager keyvault client library for Java - Version 2.0.0-beta.4 
+Azure Resource Manager keyvault client library for Java - Version 2.0.0-beta.4
 
 
 For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azure-sdk-java-mgmt).

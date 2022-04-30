@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager IotCentral client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-iotcentral, iotcentral
+description: Reference documentation for the Azure Resource Manager IotCentral client library for Java.
 author: joshfree
 ms.author: jfree
 ms.date: 04/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: iotcentral
+ms.service: azure-resource-manager
 ---
 # Azure Resource Manager IotCentral client library for Java - Version 1.1.0-beta.1 
 
