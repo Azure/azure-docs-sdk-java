@@ -1,6 +1,6 @@
 ---
 title: Azure Resource Manager Relay client library for Java
-description: This package contains Microsoft Azure SDK for Relay Management SDK. Use these API to manage Azure Relay resources through Azure Resource Manager.
+description: This package contains Microsoft Azure SDK for Relay Management SDK. Use these APIs to manage Azure Relay resources through Azure Resource Manager.
 keywords: Azure, java, SDK, API, azure-resourcemanager-relay, 
 author: ramya-rao-a
 ms.author: pahallis
