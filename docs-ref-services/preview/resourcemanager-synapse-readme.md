@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager Synapse client library for Java
+description: This package contains Microsoft Azure SDK for Synapse Management SDK package-composite-v2.
 keywords: Azure, java, SDK, API, azure-resourcemanager-synapse, synapse
 author: joshfree
 ms.author: jfree
 ms.date: 04/26/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: synapse
+ms.service: azure
 ---
 # Azure Resource Manager Synapse client library for Java - Version 1.0.0-beta.6 
 
