@@ -1,14 +1,13 @@
 ---
 title: Azure Confidential Ledger client library for Java
+description: Azure Confidential Ledger provides a service for logging to an immutable, tamper-proof ledger.
 keywords: Azure, java, SDK, API, azure-security-confidentialledger, 
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: pahallis
 ms.date: 06/08/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # Azure Confidential Ledger client library for Java - Version 1.0.0-beta.2 

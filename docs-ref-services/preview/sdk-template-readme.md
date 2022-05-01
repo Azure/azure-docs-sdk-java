@@ -1,12 +1,13 @@
 ---
 title: Azure Template client library for Java
+description: Use the guidelines in each section of this template to ensure consistency and readability of your README.
 keywords: Azure, java, SDK, API, azure-sdk-template, template
 author: hallipr
 ms.author: pahallis
 ms.date: 04/27/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: template
+ms.service: azure
 ---
 # Azure Template client library for Java - Version 1.2.1-beta.1533463 
 

@@ -1,14 +1,13 @@
 ---
 title: Azure Attestation client library for Java
+description: Microsoft Azure Attestation (preview) is a unified solution for remotely verifying the trustworthiness of a platform and integrity of the binaries running inside it.
 keywords: Azure, java, SDK, API, azure-security-attestation, 
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: pahallis
 ms.date: 01/30/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # Azure Attestation client library for Java - Version 1.0.0-beta.1 

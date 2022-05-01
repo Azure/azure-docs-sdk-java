@@ -1,14 +1,13 @@
 ---
 title: Azure Cognitive Search client library for Java
+description: Azure Cognitive Search service is a search-as-a-service cloud solution that gives developers APIs and tools for adding a rich search experience.
 keywords: Azure, java, SDK, API, azure-search-documents, search
 author: alzimmermsft
 ms.author: alzimmer
 ms.date: 04/08/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: search
+ms.service: azure
 ---
 # Azure Cognitive Search client library for Java - Version 11.5.0-beta.8 
 
