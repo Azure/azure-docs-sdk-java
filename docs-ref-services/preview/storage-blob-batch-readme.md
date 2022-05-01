@@ -10,6 +10,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: azure
 ---
+
 # Azure Storage Blobs Batch client library for Java - Version 12.12.0-beta.3 
 
 

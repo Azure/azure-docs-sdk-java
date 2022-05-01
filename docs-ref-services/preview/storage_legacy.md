@@ -1,5 +1,5 @@
 ---
-title: Azure Storage libraries for Java
+title: Azure Storage libraries for Java - Legacy
 description: Read and write blob (object) data, files, and messages from your Java applications with Azure Storage.
 keywords: Azure, Java, SDK, API, Storage
 author: douge
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: azure
 ---
 
-# Azure Storage libraries for Java
+# Azure Storage libraries for Java - Legacy
 
 ## Overview
 
