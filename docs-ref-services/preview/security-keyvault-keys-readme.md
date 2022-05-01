@@ -1,14 +1,13 @@
 ---
 title: Azure Key Vault Key client library for Java
+description: Azure Key Vault is a cloud service that provides secure storage of keys for encrypting your data. Multiple keys, and multiple versions of the same key, can be kept in the Azure Key Vault.
 keywords: Azure, java, SDK, API, azure-security-keyvault-keys, keyvault
 author: vcolin7
 ms.author: vicolina
 ms.date: 02/12/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: keyvault
+ms.service: azure
 ---
 # Azure Key Vault Key client library for Java - Version 4.4.0-beta.7 
 
