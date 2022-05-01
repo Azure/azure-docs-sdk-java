@@ -1,12 +1,11 @@
 ---
 title: Azure Storage Common shared library for Java
 keywords: Azure, java, SDK, API, azure-storage-common, storage
+description: Azure Storage Common is a library that has common dependencies for all Azure Storage packages.
 author: amishra-dev
 ms.author: amishra
 ms.date: 02/09/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
@@ -105,10 +104,10 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-common_12.15.0-beta.3/sdk/storage/azure-storage-common/src
 [samples_readme]: src/samples/README.md
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[sas_token]: /azure/storage/common/storage-dotnet-shared-access-signature-part-1
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
