@@ -1,15 +1,13 @@
 ---
 title: Azure Virtual Machine libraries for Java
-description: 
+description: On-demand, scalable computing resources running Linux or Windows.
 keywords: Azure, Java, SDK, API, Compute , Virtual Machines
 author: douge
 ms.author: dougeby
 manager: douge
 ms.date: 05/17/2017
-ms.topic: reference
-ms.technology: azure
 ms.devlang: java
-ms.service: compute
+ms.service: azure
 ---
 
 # Azure virtual machine libraries
