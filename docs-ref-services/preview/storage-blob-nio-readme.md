@@ -1,14 +1,13 @@
 ---
-title: 
+title: Azure Storage Blob NIO FileSystemProvider
+description: This package allows you to interact with Azure Blob Storage through the standard Java NIO Filesystem APIs.
 keywords: Azure, java, SDK, API, azure-storage-blob-nio, storage
 author: amishra-dev
 ms.author: amishra
 ms.date: 04/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: storage
+ms.service: azure
 ---
 # Azure Storage Blob NIO FileSystemProvider
 
