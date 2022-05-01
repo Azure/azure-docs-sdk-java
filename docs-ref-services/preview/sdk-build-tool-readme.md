@@ -1,14 +1,13 @@
 ---
-title: 
+title: Azure SDK Maven Build Tool
+description: The Azure SDK for Java project ships a Maven build tool that developers can choose to include in their projects.
 keywords: Azure, java, SDK, API, azure-sdk-build-tool, tools
 author: joshfree
 ms.author: jfree
 ms.date: 03/01/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: tools
+ms.service: azure
 ---
 # Azure SDK Maven Build Tool
 
