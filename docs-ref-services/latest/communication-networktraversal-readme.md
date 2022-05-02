@@ -23,9 +23,9 @@ It will provide TURN credentials to a user.
 ### Prerequisites
 
 - An Azure subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](/java/azure/jdk/) version 8 or above.
+- [Java Development Kit (JDK)](https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
-- A Communication Services resource. You can use the [Azure Portal](/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](/powershell/module/az.communication/new-azcommunicationservice) to set it up.
+- A Communication Services resource. You can use the [Azure Portal](https://docs.microsoft.com/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](https://docs.microsoft.com/powershell/module/az.communication/new-azcommunicationservice) to set it up.
 
 ### Include the package
 
