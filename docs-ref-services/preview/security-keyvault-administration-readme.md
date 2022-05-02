@@ -1,5 +1,6 @@
 ---
 title: Azure Key Vault Administration library for Java
+description: Azure Key Vault Managed HSM enables you to safeguard cryptographic keys for your cloud applications using FIPS 140-2 Level 3 validated HSMs.
 keywords: Azure, java, SDK, API, azure-security-keyvault-administration, keyvault
 author: vcolin7
 ms.author: vicolina
