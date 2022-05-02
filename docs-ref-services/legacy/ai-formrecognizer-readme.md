@@ -516,7 +516,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [service_recognize_receipt]: https://aka.ms/formrecognizer/receiptfields
 [strongly_typed_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/StronglyTypedRecognizedForm.java
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-formrecognizer_3.0.3/sdk/formrecognizer/azure-ai-formrecognizer/src
-[quickstart_training]:https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/curl-train-extract#train-a-form-recognizer-model
+[quickstart_training]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/curl-train-extract#train-a-form-recognizer-model
 [wiki_identity]: https://github.com/Azure/azure-sdk-for-java/wiki/Identity-and-Authentication
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fformrecognizer%2Fazure-ai-formrecognizer%2FREADME.png)
