@@ -89,11 +89,11 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documenttranslator_1.0.0-beta.1/sdk/translation/azure-ai-documenttranslator/src
 [samples_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documenttranslator_1.0.0-beta.1/sdk/translation/azure-ai-documenttranslator/src/samples/
 [azure_subscription]: https://azure.microsoft.com/free/
-[product_documentation]: /azure/cognitive-services/translator/document-translation/get-started-with-document-translation
-[cognitive_resource_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli
+[product_documentation]: https://docs.microsoft.com/azure/cognitive-services/translator/document-translation/get-started-with-document-translation
+[cognitive_resource_cli]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account-cli
 [batch_document_translation_client_class]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documenttranslator_1.0.0-beta.1/sdk/translation/azure-ai-documenttranslator/src/main/java/com/azure/ai/documenttranslator/BatchDocumentTranslationRestClient.java
 [azure_portal]: https://portal.azure.com
-[jdk_link]: /java/azure/jdk/
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-documenttranslator
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documenttranslator_1.0.0-beta.1/sdk/translation/azure-ai-documenttranslator/src/samples/README.md
 
