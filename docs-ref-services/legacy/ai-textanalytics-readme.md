@@ -349,7 +349,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [aad_credential]: https://docs.microsoft.com/azure/cognitive-services/authentication#authenticate-with-azure-active-directory
 [api_reference_doc]: https://aka.ms/azsdk-java-textanalytics-ref-docs
 [authentication]: https://docs.microsoft.com/azure/cognitive-services/authentication
-[azure_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
+[azure_cli]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
 [azure_cli_endpoint]: https://docs.microsoft.com/cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.0.1/sdk/identity/azure-identity
 [azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.0.1/sdk/identity/azure-identity#credentials
@@ -373,7 +373,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [named_entities_categories]: https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/named-entity-types
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[product_documentation]:https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview
+[product_documentation]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview
 [register_AAD_application]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [service_access]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
 [service_input_limitation]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits
