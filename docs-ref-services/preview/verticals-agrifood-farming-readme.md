@@ -3,7 +3,7 @@ title: Azure FarmBeats client library for Java
 description: FarmBeats is a B2B PaaS offering from Microsoft that makes it easy for AgriFood companies to build intelligent digital agriculture solutions on Azure.
 keywords: Azure, java, SDK, API, azure-verticals-agrifood-farming, 
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: dougeby
 ms.date: 05/27/2021
 ms.topic: reference
 ms.devlang: java
