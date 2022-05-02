@@ -1,5 +1,6 @@
 ---
 title: Azure Purview Account client library for Java
+description: Reference for the Azure purview account client library for Java.
 keywords: Azure, java, SDK, API, azure-analytics-purview-account, 
 author: sima-zhu
 ms.author: sizhu
