@@ -67,7 +67,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- Links -->
-[arm]: /azure/azure-resource-manager/management/
+[arm]: https://docs.microsoft.com/azure/azure-resource-manager/management/
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-[jdk_link]:/java/azure/jdk/
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 
