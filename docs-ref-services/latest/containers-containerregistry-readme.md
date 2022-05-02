@@ -97,10 +97,10 @@ ContainerRegistryAsyncClient client = new ContainerRegistryClientBuilder()
     .buildAsyncClient();
 ```
 
-For more information on using AAD with Azure Container Registry, please see the service's [Authentication Overview](/azure/container-registry/container-registry-authentication).
+For more information on using AAD with Azure Container Registry, please see the service's [Authentication Overview](https://docs.microsoft.com/azure/container-registry/container-registry-authentication).
 
 #### National Clouds
-To authenticate with a registry in a [National Cloud](/azure/active-directory/develop/authentication-national-cloud), you will need to make the following additions to your client configuration:
+To authenticate with a registry in a [National Cloud](https://docs.microsoft.com/azure/active-directory/develop/authentication-national-cloud), you will need to make the following additions to your client configuration:
 - Set the authorityHost in the credential builder.
 - Set the authenticationScope in ContainerRegistryClientBuilder.
 
@@ -120,7 +120,7 @@ containerRegistryClient
 If the builder is instantiated without any credentials, the SDK creates the service client for the anonymous pull mode.
 The user must use this setting on a registry that has been enabled for anonymous pull.
 In this mode, the user can only call listRepositoryNames method and its overload. All the other calls will fail. 
-For more information please read [Anonymous Pull Access](/azure/container-registry/container-registry-faq#how-do-i-enable-anonymous-pull-access)
+For more information please read [Anonymous Pull Access](https://docs.microsoft.com/azure/container-registry/container-registry-faq#how-do-i-enable-anonymous-pull-access)
 
 ```java readme-sample-createAnonymousAccessClient
 ContainerRegistryClient client = new ContainerRegistryClientBuilder()
@@ -140,26 +140,26 @@ ContainerRegistryAsyncClient client = new ContainerRegistryClientBuilder()
 
 A **registry** stores Docker images and [OCI Artifacts](https://opencontainers.org/).  An image or artifact consists of a **manifest** and **layers**.  An image's manifest describes the layers that make up the image, and is uniquely identified by its **digest**.  An image can also be "tagged" to give it a human-readable alias.  An image or artifact can have zero or more **tags** associated with it, and each tag uniquely identifies the image.  A collection of images that share the same name but have different tags, is referred to as a **repository**.
 
-For more information please see [Container Registry Concepts](/azure/container-registry/container-registry-concepts).
+For more information please see [Container Registry Concepts](https://docs.microsoft.com/azure/container-registry/container-registry-concepts).
 
 ## Examples
 
 ### Sync examples
 
-- [List repository names](#list-repository-names)
-- [List tags with anonymous access](#list-tags-with-anonymous-access)
-- [Set artifact properties](#set-artifact-properties)
-- [Delete images](#delete-images)
-- [Delete repository with anonymous access throws](#delete-a-repository-with-anonymous-access-throws)
+- [List repository names](#samples)
+- [List tags with anonymous access](#samples)
+- [Set artifact properties](#samples)
+- [Delete images](#samples)
+- [Delete repository with anonymous access throws](#samples)
 
-<!----### Async examples
+### Async examples
 
 [List repository names asynchronously](#samples)
 - [List tags with anonymous access asynchronously](#samples)
 - [Set artifact properties asynchronously](#samples)
 - [Delete images asynchronously](#samples)
-- [Delete repository with anonymous access asynchronously throws](#samples)--->
-
+- [Delete repository with anonymous access asynchronously throws](#samples)
+- 
 ### List repository names
 
 Iterate through the collection of repositories in the registry.
@@ -290,7 +290,7 @@ try {
 
 - Go further with azure-containers-containerregistry and our [samples][samples]
 - Watch a [demo or deep dive video](https://azure.microsoft.com/resources/videos/index/?service=container-registry)
-- Read more about the [Azure Container Registry service](/azure/container-registry/container-registry-intro)
+- Read more about the [Azure Container Registry service](https://docs.microsoft.com/azure/container-registry/container-registry-intro)
 
 ## Contributing
 
@@ -306,18 +306,18 @@ additional questions or comments.
 
 <!-- LINKS -->
 [source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-containers-containerregistry_1.0.3/sdk/containerregistry/azure-containers-containerregistry/src
-[jdk_link]: /java/azure/jdk/
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [azure_subscription]: https://azure.microsoft.com/free
 [package]: https://search.maven.org/artifact/com.azure/azure-containers-containerregisty
 [api_documentation]: https://aka.ms/java-docs
-[rest_docs]: /rest/api/containerregistry/
-[product_docs]:  /azure/container-registry
-[container_registry_docs]: /azure/container-registry/container-registry-intro
-[container_registry_create_ps]: /azure/container-registry/container-registry-get-started-powershell
-[container_registry_create_cli]: /azure/container-registry/container-registry-get-started-azure-cli
-[container_registry_create_portal]: /azure/container-registry/container-registry-get-started-portal
-[container_registry_concepts]: /azure/container-registry/container-registry-concepts
-[azure_cli]: /cli/azure
+[rest_docs]: https://docs.microsoft.com/rest/api/containerregistry/
+[product_docs]:  https://docs.microsoft.com/azure/container-registry
+[container_registry_docs]: https://docs.microsoft.com/azure/container-registry/container-registry-intro
+[container_registry_create_ps]: https://docs.microsoft.com/azure/container-registry/container-registry-get-started-powershell
+[container_registry_create_cli]: https://docs.microsoft.com/azure/container-registry/container-registry-get-started-azure-cli
+[container_registry_create_portal]: https://docs.microsoft.com/azure/container-registry/container-registry-get-started-portal
+[container_registry_concepts]: https://docs.microsoft.com/azure/container-registry/container-registry-concepts
+[azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
 [identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.3/sdk/identity/azure-identity/README.md
 [HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-containers-containerregistry_1.0.3/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
