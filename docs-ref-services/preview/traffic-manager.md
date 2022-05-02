@@ -7,10 +7,8 @@ ms.author: ramyar
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: traffic-manager
+ms.service: azure
 ---
 
 # Azure Traffic Manager libraries for Java
