@@ -154,12 +154,12 @@ For more information please see [Container Registry Concepts](https://docs.micro
 
 ### Async examples
 
-[List repository names asynchronously](#samples)
+- [List repository names asynchronously](#samples)
 - [List tags with anonymous access asynchronously](#samples)
 - [Set artifact properties asynchronously](#samples)
 - [Delete images asynchronously](#samples)
 - [Delete repository with anonymous access asynchronously throws](#samples)
-- 
+
 ### List repository names
 
 Iterate through the collection of repositories in the registry.
