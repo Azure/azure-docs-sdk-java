@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager monitor client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-monitor, monitor
-author: ramya-rao-a
-ms.author: ramyar
+description: Documentation for the Azure Resource Manager monitor client library for Java - Version 2.0.0-beta.4.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 09/03/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: monitor
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager monitor client library for Java - Version 2.0.0-beta.4 
