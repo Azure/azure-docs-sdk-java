@@ -5,10 +5,9 @@ author: JianpingChen
 ms.author: jiach
 ms.date: 04/12/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
+description: Azure Communication Chat contains the APIs used in chat applications for Azure Communication Services.
 ms.devlang: java
-ms.service: communication
+ms.service: azure-communication-services
 ---
 # Azure Communication Chat client library for Java - Version 1.2.1 
 

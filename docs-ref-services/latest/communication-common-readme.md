@@ -5,10 +5,9 @@ author: JianpingChen
 ms.author: jiach
 ms.date: 04/07/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
+description: Azure Communication Common contains data structures commonly used for communicating with Azure Communication Services.
 ms.devlang: java
-ms.service: communication
+ms.service: azure-communication-services
 ---
 # Azure Communication Service Common client library for Java - Version 1.1.2 
 

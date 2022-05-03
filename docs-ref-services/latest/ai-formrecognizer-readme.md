@@ -1,14 +1,13 @@
 ---
 title: Azure Form Recognizer client library for Java
+description: Azure Cognitive Services Form Recognizer is a cloud service that uses machine learning to recognize text and table data from form documents.
 keywords: Azure, java, SDK, API, azure-ai-formrecognizer, formrecognizer
 author: samvaity
 ms.author: savaity
 ms.date: 04/09/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: formrecognizer
+ms.service: applied-ai-services
 ---
 # Azure Form Recognizer client library for Java - Version 3.1.10 
 
