@@ -2,7 +2,7 @@
 title: Azure CosmosDB Client Library for Java
 keywords: Azure, java, SDK, API, azure-cosmos, cosmosdb
 author: moderakh
-ms.author: moderakh
+ms.author: kuthapar
 ms.date: 01/26/2022
 ms.topic: reference
 ms.prod: azure
