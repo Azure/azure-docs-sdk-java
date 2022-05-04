@@ -7,7 +7,7 @@ ms.author: kuthapar
 ms.date: 04/25/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: azure
+ms.service: cosmos-db
 ---
 # Azure Spring Data Cosmos client library for Java - Version 3.20.0 
 

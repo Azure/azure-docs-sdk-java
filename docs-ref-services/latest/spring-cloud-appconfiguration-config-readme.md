@@ -7,7 +7,7 @@ ms.author: shafang
 ms.date: 04/29/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: azure
+ms.service: azure-app-configuration
 ---
 # Spring Cloud for Azure appconfiguration config client library for Java
 

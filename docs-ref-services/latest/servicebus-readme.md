@@ -7,7 +7,7 @@ ms.author: sizhu
 ms.date: 11/11/2021
 ms.topic: reference
 ms.devlang: java
-ms.service: azure
+ms.service: service-bus
 ---
 
 <p align="center">
