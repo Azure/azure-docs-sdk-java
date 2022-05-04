@@ -2,8 +2,8 @@
 title: Azure File Share client library for Java
 description: "The Microsoft Azure File Share service enables customers to leverage the availability and scalability of Azure's Cloud Infrastructure as a Service (IaaS) SMB without having to rewrite SMB client applications."
 keywords: Azure, java, SDK, API, azure-storage-file-share, storage
-author: amishra-dev
-ms.author: amishra
+author: sima-zhu
+ms.author: sizhu
 ms.date: 04/08/2022
 ms.topic: reference
 ms.devlang: java
