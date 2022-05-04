@@ -1,12 +1,13 @@
 ---
-title: 
+title: Spring Cloud for Azure starter App Configuration client library for Java
+description: "Spring Cloud for Azure starter App Configuration client library for Java is a package that helps Spring Application to load properties from Azure Configuration Store."
 keywords: Azure, java, SDK, API, azure-spring-cloud-starter-appconfiguration-config, appconfiguration
 author: mssfang
 ms.author: shafang
 ms.date: 04/29/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: appconfiguration
+ms.service: azure
 ---
 # Spring Cloud for Azure starter App Configuration client library for Java
 

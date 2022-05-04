@@ -1,14 +1,13 @@
 ---
-title: 
+title: Microsoft Azure Service Bus Client for Java
+description: "Azure Service Bus is an asynchronous messaging cloud platform that enables you to send and receive messages between decoupled systems."
 keywords: Azure, java, SDK, API, azure-servicebus, servicebus
-author: maggiepint
-ms.author: magpint
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/11/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: servicebus
+ms.service: azure
 ---
 
 <p align="center">

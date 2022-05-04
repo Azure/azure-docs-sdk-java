@@ -1,12 +1,13 @@
 ---
-title: 
+title: Spring Cloud for Azure appconfiguration config client library for Java
+description: "Spring Cloud for Azure appconfiguration config client library for Java is a web version that takes on spring-web as a dependency, and the web version has various methods for refreshing configurations on a watch interval when the application is active."
 keywords: Azure, java, SDK, API, azure-spring-cloud-appconfiguration-config, appconfiguration
 author: mssfang
 ms.author: shafang
 ms.date: 04/29/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: appconfiguration
+ms.service: azure
 ---
 # Spring Cloud for Azure appconfiguration config client library for Java
 

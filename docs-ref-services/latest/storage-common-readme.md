@@ -1,12 +1,11 @@
 ---
 title: Azure Storage Common shared library for Java
+description: "Azure Storage Common shared library for Java - Version 12.15.1 is a library that has common dependencies for all Azure Storage packages."
 keywords: Azure, java, SDK, API, azure-storage-common, storage
 author: amishra-dev
 ms.author: amishra
 ms.date: 04/08/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---

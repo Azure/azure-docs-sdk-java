@@ -1,12 +1,11 @@
 ---
 title: Azure Storage Blob client library for Java
+description: "Azure Storage Blob client library for Java - Version 12.16.0 is Microsoft's object storage solution for the cloud. Blob Storage is optimized for storing massive amounts of unstructured data."
 keywords: Azure, java, SDK, API, azure-storage-blob, storage
 author: amishra-dev
 ms.author: amishra
 ms.date: 04/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
