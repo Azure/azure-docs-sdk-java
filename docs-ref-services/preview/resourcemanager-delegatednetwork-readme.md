@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager DelegatedNetwork client library for Java
+description: "Azure Resource Manager DelegatedNetwork client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DelegatedNetwork Management SDK. DNC web api provides way to create, get and delete dnc controller."
 keywords: Azure, java, SDK, API, azure-resourcemanager-delegatednetwork, 
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 03/26/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager DelegatedNetwork client library for Java - Version 1.0.0-beta.1 

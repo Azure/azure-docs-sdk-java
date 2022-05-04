@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager DataLakeStore client library for Java
+description: "Azure Resource Manager DataLakeStore client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DataLakeStore Management SDK. Creates an Azure Data Lake Store account management client."
 keywords: Azure, java, SDK, API, azure-resourcemanager-datalakestore, 
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 04/22/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: data-lake-store
 ---
 
 # Azure Resource Manager DataLakeStore client library for Java - Version 1.0.0-beta.1 

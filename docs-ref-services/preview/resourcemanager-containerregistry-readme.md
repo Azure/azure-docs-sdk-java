@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager Containerregistry client library for Java
+description: "This section describes how to add Azure Resource Manager Containerregistry client library for Java - Version 2.0.0-beta.5 package to your product."
 keywords: Azure, java, SDK, API, azure-resourcemanager-containerregistry, containerregistry
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 10/19/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: containerregistry
+ms.service: container-registry
 ---
 
 # Azure Resource Manager Containerregistry client library for Java - Version 2.0.0-beta.5 

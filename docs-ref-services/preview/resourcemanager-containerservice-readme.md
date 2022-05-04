@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager Containerservice client library for Java
+description: "Learn about adding Azure Resource Manager Containerservice client library for Java - Version 2.13.0-beta.1 package to your product."
 keywords: Azure, java, SDK, API, azure-resourcemanager-containerservice, containerservice
 author: weidongxu-microsoft
 ms.author: weidxu
 ms.date: 03/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: containerservice
+ms.service: container-service
 ---
 # Azure Resource Manager Containerservice client library for Java - Version 2.13.0-beta.1 
 

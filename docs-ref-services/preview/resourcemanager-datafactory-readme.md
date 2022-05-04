@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager DataFactory client library for Java
+description: "Azure Resource Manager DataFactory client library for Java contains Microsoft Azure SDK for DataFactory Management SDK."
 keywords: Azure, java, SDK, API, azure-resourcemanager-datafactory, datafactory
 author: joshfree
 ms.author: jfree
 ms.date: 04/19/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: datafactory
+ms.service: data-factory
 ---
 # Azure Resource Manager DataFactory client library for Java - Version 1.0.0-beta.14 
 

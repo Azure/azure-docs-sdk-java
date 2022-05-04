@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager DesktopVirtualization client library for Java
+description: "Azure Resource Manager DesktopVirtualization client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DesktopVirtualization Management SDK.  Package tag package-preview-2021-09."
 keywords: Azure, java, SDK, API, azure-resourcemanager-desktopvirtualization, desktopvirtualization
-author: maggiepint
-ms.author: magpint
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/10/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: desktopvirtualization
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager DesktopVirtualization client library for Java - Version 1.0.0-beta.1 

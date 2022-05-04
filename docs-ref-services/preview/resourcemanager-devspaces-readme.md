@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager DevSpaces client library for Java
+description: "Azure Resource Manager DevSpaces client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DevSpaces Management SDK. Dev Spaces Client."
 keywords: Azure, java, SDK, API, azure-resourcemanager-devspaces, 
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 04/15/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure-dev-spaces
 ---
 
 # Azure Resource Manager DevSpaces client library for Java - Version 1.0.0-beta.1 
