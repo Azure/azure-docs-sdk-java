@@ -8,7 +8,7 @@ ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: servicebus
+ms.service: service-bus
 ---
 
 # Azure Service Bus client library for Java - Version 7.3.0-beta.2 
@@ -42,7 +42,7 @@ have to be online at the same time.
 
 To quickly create the needed Service Bus resources in Azure and to receive a connection string for them, you can deploy our sample template by clicking:
 
-[![](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-sdk-for-net%2Fmaster%2Fsdk%2Fservicebus%2FAzure.Messaging.ServiceBus%2Fassets%2Fsamples-azure-deploy.json)
+[![button that contains the words Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-sdk-for-net%2Fmaster%2Fsdk%2Fservicebus%2FAzure.Messaging.ServiceBus%2Fassets%2Fsamples-azure-deploy.json)
 
 ### Include the package
 
@@ -157,8 +157,7 @@ receiving [`ServiceBusMessage`][ServiceBusMessage] from a specific queue or topi
 
 ## Examples
  - [Send messages](#send-messages)
- - [Receive messages and renew lock](#receive-messages-and-renew-lock)
- - [Settle messages](#settle-messages)
+ - [Receive messages and renew lock](#receive-messages)
  - [Send and receive from session enabled queues or topics](#send-and-receive-from-session-enabled-queues-or-topics)
  - [Create a dead-letter queue Receiver](#create-a-dead-letter-queue-receiver)
  - [Sharing a connection between clients](#sharing-of-connection-between-clients)

@@ -118,7 +118,7 @@ Insights include prebuilt queries to support their views and workbooks.
 
 Each AAD user is able to make up to 200 requests per 30 seconds, with no cap on the total calls per day.If requests are 
 being made at a rate higher than this, then these requests will receive HTTP status code 429 
-(Too Many Requests) along with the Retry-After: <delta-seconds> header which indicates the number of seconds until 
+(Too Many Requests) along with the Retry-After: (delta seconds) header which indicates the number of seconds until 
 requests to this application are likely to be accepted.
 
 As well as call rate limits and daily quota caps, there are also limits on queries themselves:

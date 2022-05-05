@@ -6,7 +6,7 @@ ms.author: jfree
 ms.date: 04/30/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: videoanalyzer
+ms.service: azure-video-analyzer
 ---
 # Deprecated. Azure Video Analyzer Edge client library for Java
 

@@ -2,19 +2,18 @@
 title: Azure IoT Hub libraries for Java
 description: Reference documentation for the Java Azure IoT Hub libraries 
 keywords: Azure, Java, SDK, API, event, IoT, streams, devices, iot hub
-author: ramya-rao-a
-ms.author: ramyar
+author: scbedd
+ms.author: scbedd
 manager: douge
 ms.date: 07/20/2017
 ms.topic: reference
-ms.technology: azure
 ms.devlang: java
 ms.service: iot-hub
 ---
 
 # Azure IoT libraries for Java
 
-Connect, monitor, and control Internet of Things assets with [Azure IoT Hub](https://docs.microsoft.com/azure/iot-hub/iot-hub-what-is-iot-hub).
+Connect, monitor, and control Internet of Things assets with [Azure IoT Hub](/azure/iot-hub/iot-hub-what-is-iot-hub).
 
 To get started with Azure IoT Hub, see [Connect your device to your IoT hub using Java](/azure/iot-hub/iot-hub-java-java-getstarted).
 
