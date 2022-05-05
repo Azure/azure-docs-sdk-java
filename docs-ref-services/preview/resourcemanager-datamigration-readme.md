@@ -7,7 +7,7 @@ ms.author: sizhu
 ms.date: 04/14/2021
 ms.topic: reference
 ms.devlang: java
-ms.service: 
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager DataMigration client library for Java - Version 1.0.0-beta.1 

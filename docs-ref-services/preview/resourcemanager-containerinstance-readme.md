@@ -5,7 +5,6 @@ keywords: Azure, java, SDK, API, azure-resourcemanager-containerinstance, contai
 author: sima-zhu
 ms.author: sizhu
 ms.date: 10/19/2020
-ms.technology: azure
 ms.devlang: java
 ms.service: container-instances
 ---
