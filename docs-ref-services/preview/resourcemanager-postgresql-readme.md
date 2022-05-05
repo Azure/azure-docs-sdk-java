@@ -1,5 +1,5 @@
 ---
-title: Azure Resource Manager PostgreSql client library for Java
+title: Azure Resource Manager PostgreSql client library for Java - Version 1.0.0-beta.1
 keywords: Azure, java, SDK, API, azure-resourcemanager-postgresql, 
 author: ramya-rao-a
 ms.author: ramyar

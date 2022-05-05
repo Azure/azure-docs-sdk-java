@@ -8,7 +8,7 @@ ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: network
+ms.service: virtual-network-manager
 ---
 
 # Azure Resource Manager network client library for Java - Version 2.0.0-beta.4 
