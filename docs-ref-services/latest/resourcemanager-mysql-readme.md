@@ -1,12 +1,11 @@
 ---
 title: Azure Resource Manager MySql client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-mysql, mysql
+description: The Microsoft Azure management API provides create, read, update, and delete functionality for Azure MySQL resources including servers, databases, firewall rules, VNET rules, log files and configurations with new business model.
 author: joshfree
-ms.author: joshfree
+ms.author: jfree
 ms.date: 01/24/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: mysql
 ---

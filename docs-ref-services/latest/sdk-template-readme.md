@@ -1,14 +1,13 @@
 ---
 title: Azure Batch client library for Python
 keywords: Azure, java, SDK, API, azure-sdk-template, 
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 07/29/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
+description: Use the guidelines in each section of this template to ensure consistency and readability of your README.
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # README.md template

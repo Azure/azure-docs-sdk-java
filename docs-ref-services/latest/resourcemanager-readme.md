@@ -5,10 +5,9 @@ author: weidongxu-microsoft
 ms.author: weidxu
 ms.date: 04/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
+description: Azure Resource Manager client library for Java.
 ms.devlang: java
-ms.service: resourcemanager
+ms.service: azure-resource-manager
 ---
 # Azure Resource Manager client library for Java - Version 2.14.0 
 

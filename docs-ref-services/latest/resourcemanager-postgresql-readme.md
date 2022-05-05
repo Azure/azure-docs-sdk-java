@@ -2,11 +2,10 @@
 title: Azure Resource Manager PostgreSql client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-postgresql, postgresql
 author: joshfree
-ms.author: joshfree
+ms.author: jfree
 ms.date: 01/24/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
+description: This package contains Microsoft Azure SDK for PostgreSql Management SDK.
 ms.devlang: java
 ms.service: postgresql
 ---
