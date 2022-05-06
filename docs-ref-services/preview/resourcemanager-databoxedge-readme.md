@@ -1,6 +1,6 @@
 ---
 title: Azure Resource Manager DataBoxEdge client library for Java
-description: "Azure Resource Manager DataBoxEdge client library for Java contains Microsoft Azure SDK for DataBoxEdge Management SDK.  Package tag package-2019-08." 
+description: "Azure Resource Manager DataBoxEdge client library for Java contains Microsoft Azure SDK for DataBoxEdge Management SDK."  
 keywords: Azure, java, SDK, API, azure-resourcemanager-databoxedge, 
 author: sima-zhu
 ms.author: sizhu

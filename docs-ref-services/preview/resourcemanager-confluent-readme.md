@@ -1,6 +1,6 @@
 ---
 title: Azure Resource Manager Confluent client library for Java
-description: "Azure Resource Manager Confluent client library for Java contains Microsoft Azure SDK for Confluent Management SDK. Package tag package-preview-2021-09."
+description: "Azure Resource Manager Confluent client library for Java contains Microsoft Azure SDK for Confluent Management SDK."
 keywords: Azure, java, SDK, API, azure-resourcemanager-confluent, confluent
 author: sima-zhu
 ms.author: sizhu

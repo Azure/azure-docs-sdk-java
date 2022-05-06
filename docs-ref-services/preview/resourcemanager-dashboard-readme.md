@@ -1,6 +1,6 @@
 ---
 title: Azure Resource Manager Dashboard client library for Java
-description: "Azure Resource Manager Dashboard client library for Java contains Microsoft Azure SDK for Dashboard Management SDK. The Microsoft.Dashboard Rest API spec. Package tag package-2021-09-01-preview."
+description: "Azure Resource Manager Dashboard client library for Java contains Microsoft Azure SDK for Dashboard Management SDK. The Microsoft.Dashboard Rest API spec."
 keywords: Azure, java, SDK, API, azure-resourcemanager-dashboard, dashboard
 author: joshfree
 ms.author: jfree

@@ -1,6 +1,6 @@
 ---
 title: Azure Resource Manager DataBox client library for Java
-description: "Azure Resource Manager DataBox client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DataBox Management SDK.  Package tag package-2021-03." 
+description: "Azure Resource Manager DataBox client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DataBox Management SDK."
 keywords: Azure, java, SDK, API, azure-resourcemanager-databox, 
 author: sima-zhu
 ms.author: sizhu

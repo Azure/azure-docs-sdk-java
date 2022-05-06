@@ -1,6 +1,6 @@
 ---
 title: Azure Resource Manager DevTestLabs client library for Java
-description: "Azure Resource Manager DevTestLabs client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DevTestLabs Management SDK. The DevTest Labs Client. Package tag package-2018-09."
+description: "Azure Resource Manager DevTestLabs client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DevTestLabs Management SDK. The DevTest Labs Client."
 keywords: Azure, java, SDK, API, azure-resourcemanager-devtestlabs, 
 author: scbedd
 ms.author: scbedd

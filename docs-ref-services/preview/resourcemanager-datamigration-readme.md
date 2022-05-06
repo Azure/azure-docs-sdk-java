@@ -1,6 +1,6 @@
 ---
 title: Azure Resource Manager DataMigration client library for Java
-description: "Azure Resource Manager DataMigration client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DataMigration Management SDK. Data Migration Client. Package tag package-2018-04-19."
+description: "Azure Resource Manager DataMigration client library for Java - Version 1.0.0-beta.1 contains Microsoft Azure SDK for DataMigration Management SDK. Data Migration Client."
 keywords: Azure, java, SDK, API, azure-resourcemanager-datamigration, 
 author: sima-zhu
 ms.author: sizhu
