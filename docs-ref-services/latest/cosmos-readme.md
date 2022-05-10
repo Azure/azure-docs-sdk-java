@@ -1,14 +1,13 @@
 ---
+description: Learn how to use Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads.
 title: Azure CosmosDB Client Library for Java
 keywords: Azure, java, SDK, API, azure-cosmos, cosmos
 author: kushagraThapar
 ms.author: kuthapar
 ms.date: 04/27/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: cosmos
+ms.service: azure-java    
 ---
 # Azure CosmosDB Client Library for Java - Version 4.29.1 
 
