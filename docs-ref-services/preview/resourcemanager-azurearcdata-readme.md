@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager AzureArcData client library for Java
+description: Describes Azure Resource Manager AzureArcData client library and provides documentation, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-resourcemanager-azurearcdata, arcdata
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 09/24/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: arcdata
+ms.service: azure
 ---
 
 # Azure Resource Manager AzureArcData client library for Java - Version 1.0.0-beta.2 
