@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager resources client library for Java
+description: Learn how to get started using the Azure Resource Manager resources client library for Java.
 keywords: Azure, java, SDK, API, azure-resourcemanager-resources, resources
 author: weidongxu-microsoft
 ms.author: weidxu
 ms.date: 03/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: resources
+ms.service: azure-resource-manager
 ---
 # Azure Resource Manager resources client library for Java - Version 2.13.0 
 
