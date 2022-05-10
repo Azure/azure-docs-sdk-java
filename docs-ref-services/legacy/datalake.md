@@ -2,13 +2,11 @@
 title: Azure Data Lake Store libraries for Java
 description: Reference documentation for the Java Data Lake Store libraries 
 keywords: Azure, Java, SDK, API, big data, data lake
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 manager: douge
 ms.date: 06/21/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: data-lake-store
 ---
