@@ -1,14 +1,13 @@
 ---
+description: Learn how to manage TURN credentials for Azure Communication Services. 
 title: Azure Communication Network Traversal Package client library for Java
 keywords: Azure, java, SDK, API, azure-communication-networktraversal, communication
 author: JianpingChen
 ms.author: jiach
 ms.date: 02/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: communication
+ms.service: azure-java    
 ---
 # Azure Communication Network Traversal Package client library for Java - Version 1.0.0 
 
