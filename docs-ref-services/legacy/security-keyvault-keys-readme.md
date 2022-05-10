@@ -1,14 +1,13 @@
 ---
 title: Azure Key Vault Key client library for Java
+description: Reference for the Azure Key Vault Key client library for Java.
 keywords: Azure, java, SDK, API, azure-security-keyvault-keys, keyvault
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/16/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: keyvault
+ms.service: azure-java
 ---
 
 # Azure Key Vault Key client library for Java - Version 4.2.3 
@@ -437,7 +436,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azkeyvault_rest]: https://docs.microsoft.com/rest/api/keyvault/
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
-[azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
+[azure_keyvault_cli_full]: /https://docs.microsoft.comcli/azure/keyvault?view=azure-cli-latest
 [keys_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.2.3/sdk/keyvault/azure-security-keyvault-keys/src/samples/java/com/azure/security/keyvault/keys
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.2.3/sdk/keyvault/azure-security-keyvault-keys/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning

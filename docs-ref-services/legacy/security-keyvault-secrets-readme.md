@@ -1,14 +1,13 @@
 ---
 title: Azure Key Vault Secret client library for Java
+description: Reference for the Azure Key Vault Secret client library for Java.
 keywords: Azure, java, SDK, API, azure-security-keyvault-secrets, keyvault
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/16/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: keyvault
+ms.service: azure-java
 ---
 
 # Azure Key Vault Secret client library for Java - Version 4.2.3 
@@ -330,7 +329,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [secrets_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.2.3/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.2.3/sdk/keyvault/azure-security-keyvault-secrets/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk?view=azure-java-stable
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-secrets%2FREADME.png)
 

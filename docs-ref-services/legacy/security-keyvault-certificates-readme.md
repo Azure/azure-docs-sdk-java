@@ -1,14 +1,13 @@
 ---
 title: Azure Key Vault Certificate client library for Java
+description: Reference for the Azure Key Vault Certificate client library for Java.
 keywords: Azure, java, SDK, API, azure-security-keyvault-certificates, keyvault
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 11/16/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: keyvault
+ms.service: azure-java
 ---
 
 # Azure Key Vault Certificate client library for Java - Version 4.1.3 
@@ -341,7 +340,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [rest_api]: https://docs.microsoft.com/rest/api/keyvault/
 [azkeyvault_rest]: https://docs.microsoft.com/rest/api/keyvault/
-[azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
+[azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
 [certificates_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.1.3/sdk/keyvault/azure-security-keyvault-certificates/src/samples/java/com/azure/security/keyvault/certificates
