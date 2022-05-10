@@ -1,4 +1,5 @@
 ---
+description: Learn how to store and manage container images and artifacts in a private registry for all types of container deployments.
 title: Azure Container Registry client library for Java
 keywords: Azure, java, SDK, API, azure-containers-containerregistry, containerregistry
 author: pallavit
@@ -6,7 +7,7 @@ ms.author: pallavit
 ms.date: 05/10/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: containerregistry
+ms.service: azure-java
 ---
 # Azure Container Registry client library for Java - Version 1.0.4 
 
