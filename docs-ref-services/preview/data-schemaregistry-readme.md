@@ -1,14 +1,13 @@
 ---
 title: Azure Schema Registry client library for Java
+description: Learn how to use Azure Schema Registry, a schema repository service hosted by Azure Event Hubs.
 keywords: Azure, java, SDK, API, azure-data-schemaregistry, schemaregistry
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 10/08/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: schemaregistry
+ms.service: azure-java
 ---
 
 # Azure Schema Registry client library for Java - Version 1.0.0-beta.6 
