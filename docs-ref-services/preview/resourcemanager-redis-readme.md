@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager redis cache client library for Java
+description: Reference document for the Azure Resource Manager redis cache client library for Java, version 2.0.0-beta.5.
 keywords: Azure, java, SDK, API, azure-resourcemanager-redis, redis
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: pahallis
 ms.date: 10/19/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: redis
+ms.service: azure
 ---
 
 # Azure Resource Manager redis cache client library for Java - Version 2.0.0-beta.5 
