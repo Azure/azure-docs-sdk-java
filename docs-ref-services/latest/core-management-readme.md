@@ -1,4 +1,5 @@
 ---
+description: Learn how to use the Azure Core Management library collection of classes. 
 title: Azure Core Management client library for Java
 keywords: Azure, java, SDK, API, azure-core-management, core
 author: alzimmermsft
@@ -6,7 +7,7 @@ ms.author: alzimmer
 ms.date: 05/06/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: core
+ms.service: azure-java
 ---
 # Azure Core Management client library for Java - Version 1.6.0 
 
