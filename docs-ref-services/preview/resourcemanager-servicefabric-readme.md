@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager ServiceFabric client library for Java
+description: Reference page for the Azure Resource Manager ServiceFabric client library for Java - Version 1.0.0-beta.2.
 keywords: Azure, java, SDK, API, azure-resourcemanager-servicefabric, servicefabric
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: pahallis
 ms.date: 08/31/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: servicefabric
+ms.service: azure
 ---
 
 # Azure Resource Manager ServiceFabric client library for Java - Version 1.0.0-beta.2 

@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager sql client library for Java
+description: Reference for the Azure Resource Manager sql client library for Java, version 2.0.0-beta.5. For documentation on how to use this package, please see Azure Management Libraries for Java.
 keywords: Azure, java, SDK, API, azure-resourcemanager-sql, sql
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: pahallis
 ms.date: 10/19/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: sql
+ms.service: azure
 ---
 
 # Azure Resource Manager sql client library for Java - Version 2.0.0-beta.5 

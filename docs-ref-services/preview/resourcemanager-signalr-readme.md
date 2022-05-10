@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager SignalR client library for Java
+description: This package contains Microsoft Azure SDK for SignalR Management SDK. REST API for Azure SignalR Service. Package tag package-2022-02-01.
 keywords: Azure, java, SDK, API, azure-resourcemanager-signalr, signalr
 author: joshfree
 ms.author: jfree
 ms.date: 04/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: signalr
+ms.service: azure
 ---
 # Azure Resource Manager SignalR client library for Java - Version 1.0.0-beta.4 
 
