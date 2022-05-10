@@ -1,14 +1,13 @@
 ---
+description: Learn how to use the identity package for managing users and tokens for Azure Communication Services.
 title: Azure Communication Identity client library for Java
 keywords: Azure, java, SDK, API, azure-communication-identity, communication
 author: JianpingChen
 ms.author: jiach
 ms.date: 04/08/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: communication
+ms.service: azure-java
 ---
 # Azure Communication Identity client library for Java - Version 1.1.8 
 
