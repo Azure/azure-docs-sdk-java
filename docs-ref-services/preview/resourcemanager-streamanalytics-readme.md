@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager StreamAnalytics client library for Java
+description: This package contains Microsoft Azure SDK for StreamAnalytics Management SDK package-pure-2020-03.
 keywords: Azure, java, SDK, API, azure-resourcemanager-streamanalytics, streamanalytics
 author: joshfree
-ms.author: joshfree
+ms.author: jfree
 ms.date: 01/06/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: streamanalytics
+ms.service: azure
 ---
 # Azure Resource Manager StreamAnalytics client library for Java - Version 1.0.0-beta.2 
 
