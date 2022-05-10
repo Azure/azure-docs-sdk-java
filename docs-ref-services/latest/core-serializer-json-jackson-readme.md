@@ -1,12 +1,13 @@
 ---
 title: Azure Core Jackson JSON Serializer plugin library for Java
+description: Learn how to use Azure Core Jackson JSON Serializer plugin for the azure-core JsonSerializer API.
 keywords: Azure, java, SDK, API, azure-core-serializer-json-jackson, core
 author: alzimmermsft
 ms.author: alzimmer
 ms.date: 05/06/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: core
+ms.service: azure-java
 ---
 # Azure Core Jackson JSON Serializer plugin library for Java - Version 1.2.16 
 
