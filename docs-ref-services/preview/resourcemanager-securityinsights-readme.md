@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager SecurityInsights client library for Java
+description: Reference page for the Azure Resource Manager SecurityInsights client library for Java - Version 1.0.0-beta.2.
 keywords: Azure, java, SDK, API, azure-resourcemanager-securityinsights, securityinsights
 author: joshfree
 ms.author: jfree
 ms.date: 03/23/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: securityinsights
+ms.service: azure
 ---
 # Azure Resource Manager SecurityInsights client library for Java - Version 1.0.0-beta.2 
 

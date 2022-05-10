@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager ResourceGraph client library for Java
+description: This package contains Microsoft Azure SDK for ResourceGraph Management SDK. Azure Resource Graph API Reference. Package tag package-2021-03.
 keywords: Azure, java, SDK, API, azure-resourcemanager-resourcegraph, resourcegraph
 author: joshfree
 ms.author: jfree
 ms.date: 04/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: resourcegraph
+ms.service: azure
 ---
 # Azure Resource Manager ResourceGraph client library for Java - Version 1.0.0-beta.3 
 
