@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager IotHub client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-iothub, iothub
+description: Reference documentation for the Azure Resource Manager IotHub client library for Java.
 author: joshfree
-ms.author: joshfree
+ms.author: jfree
 ms.date: 01/24/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: iothub
+ms.service: azure-resource-manager
 ---
 # Azure Resource Manager IotHub client library for Java - Version 1.2.0-beta.1 
 
