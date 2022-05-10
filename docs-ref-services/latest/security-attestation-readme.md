@@ -1,12 +1,11 @@
 ---
 title: Azure Attestation client library for Java
+description: Learn how to remotely verify the trustworthiness of a platform and integrity of the binaries running inside it with Azure Attestation.
 keywords: Azure, java, SDK, API, azure-security-attestation, attestation
 author: larryosterman
 ms.author: larryo
 ms.date: 04/07/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: attestation
 ---
