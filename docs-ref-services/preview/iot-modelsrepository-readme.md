@@ -1,12 +1,12 @@
 ---
 title: Azure IoT Models Repository client library for Java
 keywords: Azure, java, SDK, API, azure-iot-modelsrepository, 
+description: This library provides functionality for interacting with the Azure IoT Models Repository. It also aims to provide a consistent experience working with digital twin model repositories following Azure IoT conventions.
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 03/30/2021
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: 
 ---

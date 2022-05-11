@@ -3,7 +3,7 @@ title: Redis Cache libraries for Java
 description: Reference documentation for the Java client and management libraries for Redis Cache
 keywords: Azure, Java, SDK, API, cache, redis, web cache, key-value, in-memory
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
@@ -34,7 +34,7 @@ Connect to Azure Redis Cache and store and retrieve values from the cache using 
 </dependency>
 ```
 
-## Example
+## Connecting to Azure Redis Example
 
 Connect to Azure Redis and insert a string into the cache.
 
@@ -57,7 +57,7 @@ Create and scale Azure Redis resources and manage access keys to with the manage
 </dependency>
 ```
 
-## Example
+## Creating a new Azure Redis Example
 
 Create a new Azure Redis Cache in the [two-node standard tier](https://azure.microsoft.com/services/cache/). 
 
