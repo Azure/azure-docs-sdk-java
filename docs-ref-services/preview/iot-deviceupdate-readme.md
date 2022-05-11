@@ -1,21 +1,20 @@
 ---
 title: Azure Device Update for IoT Hub client library for Java
 keywords: Azure, java, SDK, API, azure-iot-deviceupdate, iotdeviceupdate
+description: The library provides access to the Device Update for IoT Hub service that enables customers to publish updates for their IoT devices to the cloud, and then deploy these updates to their devices (approve updates to groups of devices managed and provisioned in IoT Hub).
 author: joshfree
-ms.author: joshfree
+ms.author: jfree
 ms.date: 01/19/2022
 ms.topic: reference
 ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: iotdeviceupdate
 ---
 # Azure Device Update for IoT Hub client library for Java - Version 1.0.0-beta.2 
 
 
 The library provides access to the Device Update for IoT Hub service that enables customers to publish updates for their IoT devices to the cloud, and then deploy these updates to their devices (approve updates to groups of devices managed and provisioned in IoT Hub). 
 
-  [Source code](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.0-beta.2/sdk) | [Product documentation](https://docs.microsoft.com/azure/iot-hub-device-update/understand-device-update)
+  [Source code](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.0-beta.2/sdk) | [Product documentation](/azure/iot-hub-device-update/understand-device-update)
 
 ## Getting started
 
@@ -44,9 +43,9 @@ For the best development experience, developers should use the official Microsof
 
 ### Authenticate the client
 
-In order to interact with the Device Update for IoT Hub service, you will need to create an instance of a [TokenCredential class](https://docs.microsoft.com/java/api/com.azure.core.credential.tokencredential?view=azure-java-stable) and pass it to the constructor of your `DeviceUpdateClientBuilder` class.
+In order to interact with the Device Update for IoT Hub service, you will need to create an instance of a [TokenCredential class](/java/api/com.azure.core.credential.tokencredential) and pass it to the constructor of your `DeviceUpdateClientBuilder` class.
 
-Please refer to [Java SDK Get Started document](https://docs.microsoft.com/azure/developer/java/sdk/get-started#set-up-authentication) for more authentication configuration.
+Please refer to [Java SDK Get Started document](/azure/developer/java/sdk/get-started#set-up-authentication) for more authentication configuration.
 
 ## Key concepts
 
@@ -92,7 +91,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 
 <!-- LINKS -->
 [azure_subscription]: https://azure.microsoft.com/free
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
