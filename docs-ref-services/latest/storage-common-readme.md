@@ -1,16 +1,14 @@
 ---
 title: Azure Storage Common shared library for Java
 keywords: Azure, java, SDK, API, azure-storage-common, storage
-author: amishra-dev
-ms.author: amishra
-ms.date: 04/08/2022
+author: rickle-msft
+ms.author: frley
+ms.date: 05/13/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
-# Azure Storage Common shared library for Java - Version 12.15.1 
+# Azure Storage Common shared library for Java - Version 12.15.2 
 
 Azure Storage Common is a library that has common dependencies for all Azure Storage packages.
 
@@ -29,7 +27,7 @@ Azure Storage Common is a library that has common dependencies for all Azure Sto
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-common_12.15.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-common_12.15.2/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -102,13 +100,13 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-common_12.15.1/sdk/storage/azure-storage-common/src
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-common_12.15.2/sdk/storage/azure-storage-common/src
 [samples_readme]: src/samples/README.md
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[sas_token]: /azure/storage/common/storage-dotnet-shared-access-signature-part-1
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
