@@ -2,8 +2,8 @@
 title: Service Bus libraries for Java
 description: Reference documentation for the Java client and management libraries for Service Bus
 keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, message broker
-author: ramya-rao-a
-ms.author: ramyar
+author: sima-zhu
+ms.author: sizhu
 ms.date: 08/30/2021
 ms.topic: reference
 ms.devlang: java
@@ -17,7 +17,7 @@ ms.service: service-bus
 Service Bus provides highly reliable queues and publish/subscribe topics with deep feature capabilities such as 
 ordered delivery, sessions, partitioning, scheduling, complex subscriptions, as well as workflow and transaction handling.
 
-Learn more about Service Bus concepts [in the messaging documentation section](https://docs.microsoft.com/azure/service-bus-messaging/). 
+Learn more about Service Bus concepts [in the messaging documentation section](/azure/service-bus-messaging/). 
 
 For Java developers, Service Bus provides a Microsoft supported native API and Service Bus can also be used with
 AMQP 1.0 compliant libraries such as Apache Qpid Proton's JMS provider.
@@ -32,7 +32,7 @@ Create and manage namespaces, topics, queues, subscriptions and rules using Azur
 
 | Maven Package | Reference | Samples |
 |--------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------|
-|    [azure-mgmt-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-mgmt-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.management.servicebus?view=azure-java-stable&preserve-view=true)    |    [Manage Service Bus queues](https://github.com/Azure-Samples/service-bus-java-manage-queue-with-basic-features), [Create and subscribe to Service Bus topics](https://github.com/Azure-Samples/service-bus-java-manage-publish-subscribe-with-basic-features)    | 
+|    [azure-mgmt-servicebus](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-mgmt-servicebus%22)    |    [API Reference](/java/api/com.microsoft.azure.management.servicebus?view=azure-java-stable&preserve-view=true)    |    [Manage Service Bus queues](https://github.com/Azure-Samples/service-bus-java-manage-queue-with-basic-features), [Create and subscribe to Service Bus topics](https://github.com/Azure-Samples/service-bus-java-manage-publish-subscribe-with-basic-features)    | 
 
 ```XML
 <dependency>
@@ -53,8 +53,8 @@ Use data access libraries to send and receive messages from Service Bus queues, 
 
 | Maven Package | Reference | Samples | GitHub |
 |--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-------|
-|    [azure-messaging-servicebus (latest)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22)    |    [API Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-messaging-servicebus/7.0.0/index.html)    |    [Samples](https://docs.microsoft.com/samples/azure/azure-sdk-for-java/servicebus-samples/)    | [Source code for azure-messaging-servicebus](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/servicebus/azure-messaging-servicebus) | 
-|    [microsoft-azure-servicebus (legacy)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus/client?view=azure-java-stable&preserve-view=true)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    | [Source code for microsoft-azure-servicebus](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/servicebus/microsoft-azure-servicebus)
+|    [azure-messaging-servicebus (latest)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-messaging-servicebus%22)    |    [API Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-messaging-servicebus/7.0.0/index.html)    |    [Samples](/samples/azure/azure-sdk-for-java/servicebus-samples/)    | [Source code for azure-messaging-servicebus](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/servicebus/azure-messaging-servicebus) | 
+|    [microsoft-azure-servicebus (legacy)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22)    |    [API Reference](/java/api/overview/azure/servicebus/client?view=azure-java-stable&preserve-view=true)    |    [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java)    | [Source code for microsoft-azure-servicebus](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/servicebus/microsoft-azure-servicebus)
 
 ### azure-messaging-servicebus
 
