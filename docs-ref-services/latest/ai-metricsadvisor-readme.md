@@ -3,17 +3,15 @@ title: Azure Metrics Advisor client library for Java
 keywords: Azure, java, SDK, API, azure-ai-metricsadvisor, metricsadvisor
 author: samvaity
 ms.author: savaity
-ms.date: 04/07/2022
+ms.date: 05/11/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: metricsadvisor
 ---
-# Azure Metrics Advisor client library for Java - Version 1.1.2 
+# Azure Metrics Advisor client library for Java - Version 1.1.3 
 
 Azure Metrics Advisor is a new Cognitive  Service that uses time series based decision AI to identify and assist
-trouble shooting the incidents of online services, and monitor the business health by automating the slice and dice
+troubleshooting the incidents of online services, and monitor the business health by automating the slice and dice
 of business dataFeedMetrics.
 
 [Source code][source_code] | [Package (Maven)][mvn_package] | [API reference documentation][api_reference_doc] | [Product Documentation][product_documentation] | [Samples][samples]
@@ -30,7 +28,7 @@ of business dataFeedMetrics.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-metricsadvisor_1.1.2/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-metricsadvisor_1.1.3/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -66,7 +64,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-metricsadvisor</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -125,7 +123,7 @@ Authentication with AAD requires some initial setup:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.4.6</version>
+    <version>1.5.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -429,32 +427,32 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[aad_authorization]: https://docs.microsoft.com/azure/cognitive-services/authentication#authenticate-with-azure-active-directory
-[api_reference_doc]: https://docs.microsoft.com/java/api/com.azure.ai.metricsadvisor?view=azure-java-preview
-[azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.2/sdk/identity/azure-identity#credentials
-[azure_cli]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
-[azure_cli_endpoint]: https://docs.microsoft.com/cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.2/sdk/identity/azure-identity#credentials
+[aad_authorization]: /azure/cognitive-services/authentication#authenticate-with-azure-active-directory
+[api_reference_doc]: /java/api/com.azure.ai.metricsadvisor?view=azure-java-preview
+[azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.3/sdk/identity/azure-identity#credentials
+[azure_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
+[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.3/sdk/identity/azure-identity#credentials
 [azure_portal]: https://ms.portal.azure.com
 [azure_subscription]: https://azure.microsoft.com/free
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[create_new_resource]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
-[grant_access]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[create_new_resource]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
+[grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
 [http_clients_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
-[key]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[key]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [metrics_advisor_account]: https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesMetricsAdvisor
-[metrics_advisor_doc]: https://docs.microsoft.com/azure/cognitive-services/Metrics-advisor/glossary
+[metrics_advisor_doc]: /azure/cognitive-services/Metrics-advisor/glossary
 [mvn_package]: https://search.maven.org/search?q=a:azure-ai-metricsadvisor
-[product_documentation]: https://docs.microsoft.com/azure/cognitive-services/metrics-advisor/overview
-[register_AAD_application]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.2/sdk/metricsadvisor/azure-ai-metricsadvisor/src
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.2/sdk/metricsadvisor/azure-ai-metricsadvisor/src/samples
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-metricsadvisor_1.1.2/sdk/metricsadvisor/azure-ai-metricsadvisor/src/samples/README.md
+[product_documentation]: /azure/cognitive-services/metrics-advisor/overview
+[register_AAD_application]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.3/sdk/metricsadvisor/azure-ai-metricsadvisor/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.1.3/sdk/metricsadvisor/azure-ai-metricsadvisor/src/samples
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-metricsadvisor_1.1.3/sdk/metricsadvisor/azure-ai-metricsadvisor/src/samples/README.md
 [wiki_identity]: https://github.com/Azure/azure-sdk-for-java/wiki/Identity-and-Authentication
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%metricsadvisor%2Fazure-ai-metricsadvisor%2FREADME.png)
