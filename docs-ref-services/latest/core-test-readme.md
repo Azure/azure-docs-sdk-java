@@ -3,12 +3,12 @@ title: Azure Core Test shared library for Java
 keywords: Azure, java, SDK, API, azure-core-test, core
 author: alzimmermsft
 ms.author: alzimmer
-ms.date: 05/06/2022
+ms.date: 06/04/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Test shared library for Java - Version 1.8.0 
+# Azure Core Test shared library for Java - Version 1.9.1 
 
 
 Library containing core classes used to test Azure SDK client libraries.
@@ -29,7 +29,7 @@ To use this package, add the following to your _pom.xml_.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-core-test</artifactId>
-  <version>1.8.0</version>
+  <version>1.9.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -124,11 +124,11 @@ If you encounter any bugs with these SDKs, please file issues via
 ## Next steps
 
 Other useful packages are:
-* [azure-core](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.8.0/sdk/core/azure-core): Contains core classes and functionality used by all client libraries.
+* [azure-core](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.9.1/sdk/core/azure-core): Contains core classes and functionality used by all client libraries.
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.8.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.9.1/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -136,11 +136,11 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Push to the branch (`git push origin my-new-feature`)
 1. Create new Pull Request
 
-[InterceptorManager.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.8.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/InterceptorManager.java
-[PlaybackClient.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.8.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/http/PlaybackClient.java
-[RecordedData.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.8.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/models/RecordedData.java
-[RecordNetworkCallPolicy.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.8.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/policy/RecordNetworkCallPolicy.java
-[TestBase.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.8.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/TestBase.java
+[InterceptorManager.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.9.1/sdk/core/azure-core-test/src/main/java/com/azure/core/test/InterceptorManager.java
+[PlaybackClient.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.9.1/sdk/core/azure-core-test/src/main/java/com/azure/core/test/http/PlaybackClient.java
+[RecordedData.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.9.1/sdk/core/azure-core-test/src/main/java/com/azure/core/test/models/RecordedData.java
+[RecordNetworkCallPolicy.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.9.1/sdk/core/azure-core-test/src/main/java/com/azure/core/test/policy/RecordNetworkCallPolicy.java
+[TestBase.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.9.1/sdk/core/azure-core-test/src/main/java/com/azure/core/test/TestBase.java
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-test%2FREADME.png)
 
