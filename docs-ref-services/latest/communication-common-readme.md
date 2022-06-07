@@ -3,14 +3,12 @@ title: Azure Communication Service Common client library for Java
 keywords: Azure, java, SDK, API, azure-communication-common, communication
 author: JianpingChen
 ms.author: jiach
-ms.date: 04/07/2022
+ms.date: 05/10/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Service Common client library for Java - Version 1.1.2 
+# Azure Communication Service Common client library for Java - Version 1.1.3 
 
 
 Azure Communication Common contains data structures commonly used for communicating with Azure Communication Services. 
@@ -21,14 +19,14 @@ It is intended to provide cross-cutting concerns, e.g. authentication.
 ### Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+- [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
 - A deployed Communication Services resource.
 
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-common_1.1.2/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-common_1.1.3/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
