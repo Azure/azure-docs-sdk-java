@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager ApplicationInsights client library for Java
+description: Describes the Azure Resource Manager ApplicationInsights client library and provides documentation and key concepts.
 keywords: Azure, java, SDK, API, azure-resourcemanager-applicationinsights, applicationinsights
 author: joshfree
 ms.author: jfree
 ms.date: 03/24/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: applicationinsights
+ms.service: azure
 ---
 # Azure Resource Manager ApplicationInsights client library for Java - Version 1.0.0-beta.4 
 

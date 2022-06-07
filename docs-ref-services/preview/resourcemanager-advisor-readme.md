@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager Advisor client library for Java
+description: Describes the Azure Resource Manager Advisor client and provides prerequisites, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-resourcemanager-advisor, 
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 04/12/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure
 ---
 
 # Azure Resource Manager Advisor client library for Java - Version 1.0.0-beta.1 
