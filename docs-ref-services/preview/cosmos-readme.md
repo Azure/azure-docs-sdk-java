@@ -1,14 +1,13 @@
 ---
 title: Azure CosmosDB Client Library for Java
+description: Learn how to use Azure CosmosDB client library, a multi-model database service for operational and analytics workloads.
 keywords: Azure, java, SDK, API, azure-cosmos, cosmosdb
 author: moderakh
-ms.author: moderakh
+ms.author: kuthapar
 ms.date: 01/26/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: cosmosdb
+ms.service: cosmos-db
 ---
 # Azure CosmosDB Client Library for Java - Version 4.26.0-beta.1 
 

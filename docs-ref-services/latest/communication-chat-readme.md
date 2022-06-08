@@ -3,14 +3,12 @@ title: Azure Communication Chat client library for Java
 keywords: Azure, java, SDK, API, azure-communication-chat, communication
 author: JianpingChen
 ms.author: jiach
-ms.date: 04/12/2022
+ms.date: 05/13/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Chat client library for Java - Version 1.2.1 
+# Azure Communication Chat client library for Java - Version 1.2.2 
 
 
 Azure Communication Chat contains the APIs used in chat applications for Azure Communication Services.  
@@ -23,14 +21,14 @@ Azure Communication Chat contains the APIs used in chat applications for Azure C
 ### Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+- [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
-- A deployed Communication Services resource. You can use the [Azure Portal](https://docs.microsoft.com/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](https://docs.microsoft.com/powershell/module/az.communication/new-azcommunicationservice) to set it up.
+- A deployed Communication Services resource. You can use the [Azure Portal](/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](/powershell/module/az.communication/new-azcommunicationservice) to set it up.
 ### Include the package
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-chat_1.2.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-chat_1.2.2/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -65,7 +63,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-chat</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
 </dependency>
 ```
 
@@ -100,7 +98,7 @@ endpoint = "https://*Azure-Communication-Resource-Name*.communications.azure.com
 User access tokens enable you to build client applications that directly authenticate to Azure Communication Services. 
 You generate these tokens on your server, pass them back to a client device, and then use them to initialize the Communication Services SDKs. 
 
-Learn how to generate user access tokens from [User Access Tokens](https://docs.microsoft.com/azure/communication-services/quickstarts/access-tokens?pivots=programming-language-java#issue-user-access-tokens)
+Learn how to generate user access tokens from [User Access Tokens](/azure/communication-services/quickstarts/access-tokens?pivots=programming-language-java#issue-user-access-tokens)
 
 ## Examples
 
@@ -269,7 +267,7 @@ listMessages returns different types of messages which can be identified by `cha
 
 - `participantRemoved`: System message that indicates a participant has been removed from the chat thread.
 
-For more details, see [Message Types](https://docs.microsoft.com/azure/communication-services/concepts/chat/concepts#message-types).
+For more details, see [Message Types](/azure/communication-services/concepts/chat/concepts#message-types).
 
 #### Update a chat message
 
@@ -318,7 +316,7 @@ chatParticipantsResponse.iterableByPage().forEach(resp -> {
 Use `addParticipants` method to add participants to the chat thread.
 `participants` list of participants to be added to the thread;
 
-- `communicationIdentifier`, required, is the CommunicationIdentifier you've created by using the CommunicationIdentityClient. More info at: [Create A User](https://docs.microsoft.com/azure/communication-services/quickstarts/access-tokens?pivots=programming-language-java#create-a-user).
+- `communicationIdentifier`, required, is the CommunicationIdentifier you've created by using the CommunicationIdentityClient. More info at: [Create A User](/azure/communication-services/quickstarts/access-tokens?pivots=programming-language-java#create-a-user).
 - `display_name`, optional, is the display name for the thread member.
 - `share_history_time`, optional, is the time from which the chat history is shared with the member. To share history since the inception of the chat thread, set this property to any date equal to, or less than the thread creation time. To share no history previous to when the member was added, set it to the current date. To share partial history, set it to the required date.
 
@@ -402,8 +400,8 @@ Check out other client libraries for Azure communication service
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[product_docs]: https://docs.microsoft.com/azure/communication-services/
+[product_docs]: /azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-chat
 [api_documentation]: https://aka.ms/java-docs
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-chat_1.2.1/sdk/communication/azure-communication-chat/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-chat_1.2.2/sdk/communication/azure-communication-chat/src
 
