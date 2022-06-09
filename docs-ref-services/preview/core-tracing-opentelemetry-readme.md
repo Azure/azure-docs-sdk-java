@@ -4,12 +4,12 @@ description: Azure OpenTelemetry Tracing plugin library for Java - Version 1.0.0
 keywords: Azure, java, SDK, API, azure-core-tracing-opentelemetry, core
 author: samvaity
 ms.author: savaity
-ms.date: 04/02/2022
+ms.date: 06/04/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: azure
 ---
-# Azure OpenTelemetry Tracing plugin library for Java - Version 1.0.0-beta.22 
+# Azure OpenTelemetry Tracing plugin library for Java - Version 1.0.0-beta.25 
 
 
 This package enables distributed tracing across Azure SDK Java libraries through [OpenTelemetry][OpenTelemetry]. OpenTelemetry is an open source, vendor-agnostic, single distribution of libraries to provide metrics collection and distributed tracing for services.
@@ -34,7 +34,7 @@ documentation][OpenTelemetry] | [Samples][samples]
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-core-tracing-opentelemetry</artifactId>
-  <version>1.0.0-beta.22</version>
+  <version>1.0.0-beta.25</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -178,12 +178,12 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [OpenTelemetry-quickstart]: https://github.com/open-telemetry/opentelemetry-java/blob/main/QUICKSTART.md
 [OpenTelemetry]: https://github.com/open-telemetry/opentelemetry-java#opentelemetry-for-java
-[sample_app_config]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.22/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/CreateConfigurationSettingLoggingExporterSample.java
-[sample_async_key_vault]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.22/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/AsyncListKeyVaultSecretsLoggingExporterSample.java
-[sample_eventhubs]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.22/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/PublishEventsJaegerExporterSample.java
-[sample_key_vault]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.22/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/ListKeyVaultSecretsJaegerExporterSample.java
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.22/sdk/core/azure-core-tracing-opentelemetry/src/samples/
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.22/sdk/core/azure-core-tracing-opentelemetry/src
+[sample_app_config]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.25/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/CreateConfigurationSettingLoggingExporterSample.java
+[sample_async_key_vault]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.25/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/AsyncListKeyVaultSecretsLoggingExporterSample.java
+[sample_eventhubs]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.25/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/PublishEventsJaegerExporterSample.java
+[sample_key_vault]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.25/sdk/core/azure-core-tracing-opentelemetry/src/samples/java/com/azure/core/tracing/opentelemetry/ListKeyVaultSecretsJaegerExporterSample.java
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.25/sdk/core/azure-core-tracing-opentelemetry/src/samples/
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-tracing-opentelemetry_1.0.0-beta.25/sdk/core/azure-core-tracing-opentelemetry/src
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-tracing-opentelemetry%2FREADME.png)
 

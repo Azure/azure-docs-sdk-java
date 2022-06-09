@@ -1,14 +1,15 @@
 ---
 title: Azure App Configuration client library for Java
+description: Learn how to centralize your application configurations simply and securely using Azure App Configuration.
 keywords: Azure, java, SDK, API, azure-data-appconfiguration, appconfiguration
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: shafang
 ms.date: 04/09/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
+
+
 ms.devlang: java
-ms.service: appconfiguration
+ms.service: azure-app-configuration
 ---
 
 # Azure App Configuration client library for Java - Version 1.2.0-beta.1 
