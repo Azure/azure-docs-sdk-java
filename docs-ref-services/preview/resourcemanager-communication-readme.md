@@ -1,12 +1,13 @@
 ---
 title: Azure Resource Manager Communication client library for Java
+description: Describes the Azure Resource Manager Communication client and provides documentation, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-resourcemanager-communication, communication
 author: JianpingChen
 ms.author: jiach
 ms.date: 05/26/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: communication
+ms.service: azure
 ---
 # Azure Resource Manager Communication client library for Java - Version 1.1.0-beta.2 
 

@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager Batch client library for Java
+description: Describes the Azure Resource Manager Batch client library and provides documentation, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-resourcemanager-batch, batch
-author: ramya-rao-a
-ms.author: ramyar
+author: gingi
+ms.author: shpaster
 ms.date: 07/29/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: batch
+ms.service: azure
 ---
 
 # Azure Resource Manager Batch client library for Java - Version 1.0.0-beta.2 

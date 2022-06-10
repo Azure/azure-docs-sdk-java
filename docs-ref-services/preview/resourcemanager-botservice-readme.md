@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager BotService client library for Java
+description: Describes the Azure Resource Manager BotService client and provides documentation, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-resourcemanager-botservice, botservice
 author: joshfree
-ms.author: jfree
+ms.author: sizhu
 ms.date: 04/21/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: botservice
+ms.service: azure
 ---
 # Azure Resource Manager BotService client library for Java - Version 1.0.0-beta.4 
 
