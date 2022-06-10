@@ -13,7 +13,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage libraries for Java
+# Azure Storage libraries for Java (Preview)
 
 ## Overview
 
