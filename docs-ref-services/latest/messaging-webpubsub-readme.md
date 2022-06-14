@@ -3,12 +3,12 @@ title: Azure Web PubSub service client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-webpubsub, webpubsub
 author: joshfree
 ms.author: jfree
-ms.date: 05/11/2022
+ms.date: 06/09/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: webpubsub
 ---
-# Azure Web PubSub service client library for Java - Version 1.1.2 
+# Azure Web PubSub service client library for Java - Version 1.1.3 
 
 
 [Azure Web PubSub service](https://aka.ms/awps/doc) is an Azure-managed service that helps developers easily build web applications with real-time features and publish-subscribe pattern. Any scenario that requires real-time publish-subscribe messaging between server and clients or among clients can use Azure Web PubSub service. Traditional real-time features that often require polling from server or submitting HTTP requests can also use Azure Web PubSub service.
@@ -40,7 +40,7 @@ Details about the terms used here are described in [Key concepts](#key-concepts)
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.1.2/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.1.3/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -76,7 +76,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-webpubsub</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 </dependency>
 ```
 
@@ -194,10 +194,10 @@ comments.
 
 [azure_subscription]: https://azure.microsoft.com/free
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.1.2/sdk/webpubsub/azure-messaging-webpubsub/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.1.3/sdk/webpubsub/azure-messaging-webpubsub/src
 [product_documentation]: https://aka.ms/awps/doc
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.1.2/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md
-[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.1.2/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.1.3/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md
+[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.1.3/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
