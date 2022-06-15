@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager logz client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-logz, 
-author: ramya-rao-a
-ms.author: ramyar
+description: Reference documentation for the Azure Resource Manager logz client library for Java.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 10/08/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager logz client library for Java - Version 1.0.0-beta.1 

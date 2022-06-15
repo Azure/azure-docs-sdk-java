@@ -1,14 +1,13 @@
 ---
 title: Azure Resource Manager Maintenance client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-maintenance, maintenance
-author: ramya-rao-a
-ms.author: ramyar
+description: Reference documentation for the Azure Resource Manager Maintenance client library for Java.
+author: sima-zhu
+ms.author: sizhu
 ms.date: 05/13/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: maintenance
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager Maintenance client library for Java - Version 1.0.0-beta.2 
