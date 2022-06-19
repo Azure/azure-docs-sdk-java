@@ -1,14 +1,13 @@
 ---
 title: Azure GraalVM Netty Support client library for Java
 keywords: Azure, java, SDK, API, azure-aot-graalvm-support-netty, aot
+description: The Azure GraalVM Netty Support client library provides support for applications.
 author: joshfree
 ms.author: jfree
 ms.date: 04/25/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: aot
+ms.service: azure-supportability
 ---
 # Azure GraalVM Netty Support client library for Java - Version 1.0.0-beta.2 
 

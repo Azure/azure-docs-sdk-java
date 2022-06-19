@@ -1,12 +1,11 @@
 ---
 title: Azure Purview Scanning client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-purview-scanning, purview
+description: Azure Purview Scanning is a fully managed cloud service whose users can scan your data into your data estate (also known as your **catalog**).
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 10/15/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: purview
 ---

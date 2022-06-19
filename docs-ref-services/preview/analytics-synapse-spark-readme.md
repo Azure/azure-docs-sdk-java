@@ -1,14 +1,13 @@
 ---
 title: Azure Synapse Spark client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-spark, synapseanalytics
+description: Azure Synapse is a limitless analytics service that brings together enterprise data warehousing and Big Data analytics for immediate BI and machine learning needs..
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 10/15/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: synapseanalytics
+ms.service: azure
 ---
 
 # Azure Synapse Spark client library for Java - Version 1.0.0-beta.5 

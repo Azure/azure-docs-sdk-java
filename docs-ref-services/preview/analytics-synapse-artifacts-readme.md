@@ -1,14 +1,13 @@
 ---
 title: Azure Synapse Artifacts client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-artifacts, synapse
+description: Azure Synapse is a limitless analytics service that brings together enterprise data warehousing and Big Data analytics.
 author: joshfree
 ms.author: jfree
 ms.date: 04/14/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: synapse
+ms.service: azure
 ---
 # Azure Synapse Artifacts client library for Java - Version 1.0.0-beta.10 
 
