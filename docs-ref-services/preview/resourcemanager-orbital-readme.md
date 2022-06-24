@@ -1,19 +1,19 @@
 ---
-title: Azure Resource Manager AzureDigitalTwins client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-digitaltwins, digitaltwins
-author: johngallardo
-ms.author: jgalla
-ms.date: 06/24/2022
+title: Azure Resource Manager orbital client library for Java
+keywords: Azure, java, SDK, API, azure-resourcemanager-orbital, orbital
+author: joshfree
+ms.author: jfree
+ms.date: 06/23/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: digitaltwins
+ms.service: orbital
 ---
-# Azure Resource Manager AzureDigitalTwins client library for Java - Version 1.0.0-beta.3 
+# Azure Resource Manager orbital client library for Java - Version 1.0.0-beta.1 
 
 
-Azure Resource Manager AzureDigitalTwins client library for Java.
+Azure Resource Manager orbital client library for Java.
 
-This package contains Microsoft Azure SDK for AzureDigitalTwins Management SDK. Azure Digital Twins Client for managing DigitalTwinsInstance. Package tag package-2022-05. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for orbital Management SDK. Azure Orbital service. Package tag package-2022-03-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -38,12 +38,12 @@ Various documentation is available to help you get started
 
 ### Adding the package to your product
 
-[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-digitaltwins;current})
+[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-orbital;current})
 ```xml
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
-    <artifactId>azure-resourcemanager-digitaltwins</artifactId>
-    <version>1.0.0-beta.3</version>
+    <artifactId>azure-resourcemanager-orbital</artifactId>
+    <version>1.0.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -71,7 +71,7 @@ AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-AzureDigitalTwinsManager manager = AzureDigitalTwinsManager
+OrbitalManager manager = OrbitalManager
     .authenticate(credential, profile);
 ```
 
@@ -85,7 +85,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
-[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-digitaltwins_1.0.0-beta.3/sdk/digitaltwins/azure-resourcemanager-digitaltwins/SAMPLE.md)
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-orbital_1.0.0-beta.1/sdk/orbital/azure-resourcemanager-orbital/SAMPLE.md)
 
 
 ## Troubleshooting
@@ -94,7 +94,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-digitaltwins_1.0.0-beta.3/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-orbital_1.0.0-beta.1/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -107,8 +107,8 @@ For details on contributing to this repository, see the [contributing guide](htt
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-digitaltwins_1.0.0-beta.3/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-digitaltwins_1.0.0-beta.3/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-digitaltwins_1.0.0-beta.3/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-digitaltwins_1.0.0-beta.3/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-orbital_1.0.0-beta.1/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-orbital_1.0.0-beta.1/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-orbital_1.0.0-beta.1/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-orbital_1.0.0-beta.1/sdk/resourcemanager/docs/DESIGN.md
 
