@@ -3,12 +3,12 @@ title: Azure Key Vault Certificate client library for Java
 keywords: Azure, java, SDK, API, azure-security-keyvault-certificates, keyvault
 author: vcolin7
 ms.author: vicolina
-ms.date: 05/10/2022
+ms.date: 07/07/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: keyvault
 ---
-# Azure Key Vault Certificate client library for Java - Version 4.3.2 
+# Azure Key Vault Certificate client library for Java - Version 4.3.4 
 
 Azure Key Vault allows you to securely manage and tightly control your certificates. The Azure Key Vault Certificate client library supports certificates backed by RSA and EC keys.
 
@@ -22,7 +22,7 @@ Multiple certificates and multiple versions of the same certificate can be kept 
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.2/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.4/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -57,7 +57,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-certificates</artifactId>
-    <version>4.3.2</version>
+    <version>4.3.4</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -296,7 +296,7 @@ certificateAsyncClient.listPropertiesOfCertificates()
 ```
 
 ## Troubleshooting
-See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.2/sdk/keyvault/azure-security-keyvault-certificates/TROUBLESHOOTING.md) for details on how to diagnose various failure scenarios.
+See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.4/sdk/keyvault/azure-security-keyvault-certificates/TROUBLESHOOTING.md) for details on how to diagnose various failure scenarios.
 
 ### General
 Azure Key Vault Certificate clients raise exceptions. For example, if you try to retrieve a certificate after it is deleted a `404` error is returned, indicating the resource was not found. In the following snippet, the error is handled gracefully by catching the exception and displaying additional information about the error.
@@ -332,10 +332,10 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_code_of_conduct]. For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.2/sdk/keyvault/azure-security-keyvault-certificates/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.4/sdk/keyvault/azure-security-keyvault-certificates/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azkeyvault_docs]: /azure/key-vault/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-certificates_4.3.2/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-certificates_4.3.4/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [azure_keyvault]: /azure/key-vault/certificates/quick-create-portal
@@ -345,8 +345,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 [azure_create_application_in_portal]: /azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: /azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]: /cli/azure/keyvault?view=azure-cli-latest
-[certificates_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.2/sdk/keyvault/azure-security-keyvault-certificates/src/samples/java/com/azure/security/keyvault/certificates
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.2/sdk/keyvault/azure-security-keyvault-certificates/src/samples/README.md
+[certificates_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.4/sdk/keyvault/azure-security-keyvault-certificates/src/samples/java/com/azure/security/keyvault/certificates
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-certificates_4.3.4/sdk/keyvault/azure-security-keyvault-certificates/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [azure_cloud_shell]: https://shell.azure.com/bash
