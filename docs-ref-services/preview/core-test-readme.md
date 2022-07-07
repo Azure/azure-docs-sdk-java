@@ -1,14 +1,13 @@
 ---
 title: Azure Core Test shared library for Java
+description: Azure Core Test shared library for Java - Version 1.5.1
 keywords: Azure, java, SDK, API, azure-core-test, core
-author: ramya-rao-a
-ms.author: ramyar
+author: amishra-dev
+ms.author: amishra
 ms.date: 10/30/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: core
+ms.service: azure
 ---
 
 # Azure Core Test shared library for Java - Version 1.5.1 

@@ -1,14 +1,13 @@
 ---
 title: Azure Core OkHttp HTTP plugin library for Java
+description: Azure Core OkHttp HTTP plugin library for Java - Version 1.3.3
 keywords: Azure, java, SDK, API, azure-core-http-okhttp, core
-author: ramya-rao-a
-ms.author: ramyar
+author: amishra-dev
+ms.author: amishra
 ms.date: 10/30/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: core
+ms.service: azure
 ---
 
 # Azure Core OkHttp HTTP plugin library for Java - Version 1.3.3 
@@ -91,7 +90,7 @@ Azure Projects Contribution Guidelines](https://azure.github.io/guidelines.html)
 
 <!-- Links -->
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-http-okhttp%2FREADME.png)
 
