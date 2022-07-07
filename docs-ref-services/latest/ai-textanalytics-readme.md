@@ -3,14 +3,12 @@ title: Azure Text Analytics client library for Java
 keywords: Azure, java, SDK, API, azure-ai-textanalytics, textanalytics
 author: samvaity
 ms.author: savaity
-ms.date: 04/07/2022
+ms.date: 07/07/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: textanalytics
 ---
-# Azure Text Analytics client library for Java - Version 5.1.8 
+# Azure Text Analytics client library for Java - Version 5.1.11 
 
 Text Analytics is a cloud-based service that provides advanced natural language processing over raw text, 
 and includes six main functions:
@@ -40,7 +38,7 @@ and includes six main functions:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-textanalytics</artifactId>
-    <version>5.1.8</version>
+    <version>5.1.11</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -139,7 +137,7 @@ Authentication with AAD requires some initial setup:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.5.0</version>
+    <version>1.5.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -495,57 +493,57 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[aad_authorization]: https://docs.microsoft.com/azure/cognitive-services/authentication#authenticate-with-azure-active-directory
-[aad_credential]: https://docs.microsoft.com/azure/cognitive-services/authentication#authenticate-with-azure-active-directory
+[aad_authorization]: /azure/cognitive-services/authentication#authenticate-with-azure-active-directory
+[aad_credential]: /azure/cognitive-services/authentication#authenticate-with-azure-active-directory
 [api_reference_doc]: https://aka.ms/azsdk-java-textanalytics-ref-docs
-[authentication]: https://docs.microsoft.com/azure/cognitive-services/authentication
-[azure_cli]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
-[azure_cli_endpoint]: https://docs.microsoft.com/cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.1.8/sdk/identity/azure-identity
-[azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.1.8/sdk/identity/azure-identity#credentials
-[azure_key_credential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/core/azure-core/src/main/java/com/azure/core/credential/AzureKeyCredential.java
+[authentication]: /azure/cognitive-services/authentication
+[azure_cli]: /azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows
+[azure_cli_endpoint]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.1.11/sdk/identity/azure-identity
+[azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.1.11/sdk/identity/azure-identity#credentials
+[azure_key_credential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/core/azure-core/src/main/java/com/azure/core/credential/AzureKeyCredential.java
 [azure_portal]: https://ms.portal.azure.com
 [azure_subscription]: https://azure.microsoft.com/free
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[create_new_resource]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
-[custom_subdomain]: https://docs.microsoft.com/azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
-[grant_access]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
-[healthcare]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/how-tos/text-analytics-for-health?tabs=ner
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
-[key]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
-[key_phrase_extraction]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-keyword-extraction
-[language_detection]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-language-detection
-[language_regional_support]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/language-support
-[named_entity_recognition]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-entity-linking
-[named_entity_recognition_types]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/named-entity-types?tabs=personal
-[named_entities_categories]: https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/named-entity-types
-[pii_entity_recognition]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/named-entity-types?tabs=personal
+[create_new_resource]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#create-a-new-azure-cognitive-services-resource
+[custom_subdomain]: /azure/cognitive-services/authentication#create-a-resource-with-a-custom-subdomain
+[grant_access]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[healthcare]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-for-health?tabs=ner
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[key]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows#get-the-keys-for-your-resource
+[key_phrase_extraction]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-keyword-extraction
+[language_detection]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-language-detection
+[language_regional_support]: /azure/cognitive-services/text-analytics/language-support
+[named_entity_recognition]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-entity-linking
+[named_entity_recognition_types]: /azure/cognitive-services/text-analytics/named-entity-types?tabs=personal
+[named_entities_categories]: /azure/cognitive-services/Text-Analytics/named-entity-types
+[pii_entity_recognition]: /azure/cognitive-services/text-analytics/named-entity-types?tabs=personal
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[product_documentation]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview
-[register_AAD_application]: https://docs.microsoft.com/azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
-[service_access]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
-[service_input_limitation]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits
-[sentiment_analysis]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-sentiment-analysis
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src
-[supported_languages]: https://docs.microsoft.com/azure/cognitive-services/text-analytics/language-support#language-detection
-[text_analytics_account]: https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
-[text_analytics_async_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/main/java/com/azure/ai/textanalytics/TextAnalyticsAsyncClient.java
-[text_analytics_sync_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/main/java/com/azure/ai/textanalytics/TextAnalyticsClient.java
+[product_documentation]: /azure/cognitive-services/text-analytics/overview
+[register_AAD_application]: /azure/cognitive-services/authentication#assign-a-role-to-a-service-principal
+[service_access]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
+[service_input_limitation]: /azure/cognitive-services/text-analytics/overview#data-limits
+[sentiment_analysis]: /azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-sentiment-analysis
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src
+[supported_languages]: /azure/cognitive-services/text-analytics/language-support#language-detection
+[text_analytics_account]: /azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows
+[text_analytics_async_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/main/java/com/azure/ai/textanalytics/TextAnalyticsAsyncClient.java
+[text_analytics_sync_client]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/main/java/com/azure/ai/textanalytics/TextAnalyticsClient.java
 [wiki_identity]: https://github.com/Azure/azure-sdk-for-java/wiki/Identity-and-Authentication
-[LogLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[LogLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/samples/README.md
-[detect_language_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/DetectLanguageBatchDocuments.java
-[analyze_sentiment_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/AnalyzeSentimentBatchDocuments.java
-[analyze_sentiment_with_opinion_mining_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/AnalyzeSentimentWithOpinionMining.java
-[extract_key_phrases_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/ExtractKeyPhrasesBatchDocuments.java
-[recognize_entities_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/RecognizeEntitiesBatchDocuments.java
-[recognize_pii_entities_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/RecognizePiiEntitiesBatchDocuments.java
-[recognize_linked_entities_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.8/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/RecognizeLinkedEntitiesBatchDocuments.java
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/samples/README.md
+[detect_language_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/DetectLanguageBatchDocuments.java
+[analyze_sentiment_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/AnalyzeSentimentBatchDocuments.java
+[analyze_sentiment_with_opinion_mining_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/AnalyzeSentimentWithOpinionMining.java
+[extract_key_phrases_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/ExtractKeyPhrasesBatchDocuments.java
+[recognize_entities_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/RecognizeEntitiesBatchDocuments.java
+[recognize_pii_entities_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/RecognizePiiEntitiesBatchDocuments.java
+[recognize_linked_entities_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.1.11/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/RecognizeLinkedEntitiesBatchDocuments.java
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Ftextanalytics%2Fazure-ai-textanalytics%2FREADME.png)
 

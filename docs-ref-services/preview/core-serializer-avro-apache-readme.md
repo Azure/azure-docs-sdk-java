@@ -3,14 +3,12 @@ title: Azure Core Apache Avro Serializer plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-serializer-avro-apache, core
 author: alzimmermsft
 ms.author: alzimmer
-ms.date: 04/02/2022
+ms.date: 06/30/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Apache Avro Serializer plugin library for Java - Version 1.0.0-beta.22 
+# Azure Core Apache Avro Serializer plugin library for Java - Version 1.0.0-beta.26 
 
 
 Azure Core Apache Avro Serializer is a plugin for the `azure-core` `AvroSerializer` API.
@@ -28,7 +26,7 @@ Azure Core Apache Avro Serializer is a plugin for the `azure-core` `AvroSerializ
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-serializer-avro-apache</artifactId>
-    <version>1.0.0-beta.22</version>
+    <version>1.0.0-beta.26</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -36,14 +34,6 @@ Azure Core Apache Avro Serializer is a plugin for the `azure-core` `AvroSerializ
 ## Key concepts
 
 ## Examples
-
-## Troubleshooting
-
-### Enabling Logging
-
-Azure SDKs for Java offer a consistent logging story to help aid in troubleshooting application errors and expedite
-their resolution. The logs produced will capture the flow of an application before reaching the terminal state to help
-locate the root issue. View the [logging][logging] wiki for guidance about enabling logging.
 
 ## Next steps
 
@@ -62,7 +52,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-serializer-avro-apache_1.0.0-beta.22/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-serializer-avro-apache_1.0.0-beta.26/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -72,7 +62,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 
 <!-- links -->
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-serializer-avro-apache%2FREADME.png)
 

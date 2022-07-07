@@ -3,10 +3,8 @@ title:
 keywords: Azure, java, SDK, API, azure-spring-cloud-feature-management, appconfiguration
 author: mssfang
 ms.author: shafang
-ms.date: 03/29/2022
+ms.date: 06/30/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: appconfiguration
 ---
@@ -286,5 +284,5 @@ Options are available to customize how targeting evaluation is performed across 
 ## Contributing
 
 <!-- Links -->
-[example_project]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/tag_azure-spring-boot_3.6.0/appconfiguration/feature-management-web-sample
+[example_project]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-cloud-azure_v4.2.0/appconfiguration/feature-management-web-sample
 

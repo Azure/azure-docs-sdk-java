@@ -3,14 +3,12 @@ title: Azure Key Vault JCA client library for Java
 keywords: Azure, java, SDK, API, azure-security-keyvault-jca, keyvault
 author: backwind1233
 ms.author: zhihaoguo
-ms.date: 02/25/2022
+ms.date: 05/25/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: keyvault
 ---
-# Azure Key Vault JCA client library for Java - Version 2.6.0 
+# Azure Key Vault JCA client library for Java - Version 2.7.0 
 
 The JCA Provider for Azure Key Vault is a Java Cryptography Architecture provider for certificates in
 Azure Key Vault. It is built on four principles:
@@ -23,15 +21,47 @@ Azure Key Vault. It is built on four principles:
 [Source code] | [API reference documentation] | [Product documentation] | [Samples]
 
 ## Getting started
-### Adding the package to your project
-Maven dependency for the Azure Key Vault JCA client library. Add it to your project's POM file.
+### Include the package
+
+#### Include the BOM file
+
+Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.0/sdk/boms/azure-sdk-bom/README.md).
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-sdk-bom</artifactId>
+            <version>{bom_version_to_target}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+and then include the direct dependency in the dependencies section without the version tag as shown below.
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-security-keyvault-jca</artifactId>
+    </dependency>
+</dependencies>
+```
+
+#### Include direct dependency
+If you want to take dependency on a particular version of the library that is not present in the BOM,
+add the direct dependency to your project as follows.
 
 [//]: # ({x-version-update-start;com.azure:azure-security-keyvault-jca;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-jca</artifactId>
-    <version>2.6.0</version>
+    <version>2.7.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -139,22 +169,22 @@ Or add permission by cli command:
 Please replace `${KEY_VAULT}` with your key vault name and replace `${MANAGED_IDENTITY}` with your principal's object-id.
 
 ### Supported key type
-Content Type | Key Type | Key Size or Elliptic curve name | Sign algorithm  | Support |
--------------|----------|---------------------------------|---------------- |-------- |
-PKCS #12     | RSA      | 2048                            | RSASSA-PSS      | ✔       |     
-PKCS #12     | RSA      | 3072                            | RSASSA-PSS      | ✔       |
-PKCS #12     | RSA      | 4096                            | RSASSA-PSS      | ✔       |
-PKCS #12     | EC       | P-256                           | SHA256withECDSA | ✔       |
-PKCS #12     | EC       | P-384                           | SHA384withECDSA | ✔       |
-PKCS #12     | EC       | P-521                           | SHA512withECDSA | ✔       |
-PKCS #12     | EC       | P-256K                          |                 | ✘       |
-PEM          | RSA      | 2048                            | RSASSA-PSS      | ✔       |
-PEM          | RSA      | 3072                            | RSASSA-PSS      | ✔       |
-PEM          | RSA      | 4096                            | RSASSA-PSS      | ✔       |
-PEM          | EC       | P-256                           | SHA256withECDSA | ✔       |
-PEM          | EC       | P-384                           | SHA384withECDSA | ✔       |
-PEM          | EC       | P-521                           | SHA512withECDSA | ✔       | 
-PEM          | EC       | P-256K                          |                 | ✘       |
+| Content Type | Key Type | Key Size or Elliptic curve name | Sign algorithm  | Support |
+|--------------|----------|---------------------------------|-----------------|---------|
+| PKCS #12     | RSA      | 2048                            | RSASSA-PSS      | ✔       |     
+| PKCS #12     | RSA      | 3072                            | RSASSA-PSS      | ✔       |
+| PKCS #12     | RSA      | 4096                            | RSASSA-PSS      | ✔       |
+| PKCS #12     | EC       | P-256                           | SHA256withECDSA | ✔       |
+| PKCS #12     | EC       | P-384                           | SHA384withECDSA | ✔       |
+| PKCS #12     | EC       | P-521                           | SHA512withECDSA | ✔       |
+| PKCS #12     | EC       | P-256K                          |                 | ✘       |
+| PEM          | RSA      | 2048                            | RSASSA-PSS      | ✔       |
+| PEM          | RSA      | 3072                            | RSASSA-PSS      | ✔       |
+| PEM          | RSA      | 4096                            | RSASSA-PSS      | ✔       |
+| PEM          | EC       | P-256                           | SHA256withECDSA | ✔       |
+| PEM          | EC       | P-384                           | SHA384withECDSA | ✔       |
+| PEM          | EC       | P-521                           | SHA512withECDSA | ✔       | 
+| PEM          | EC       | P-256K                          |                 | ✘       |
 
 ## Troubleshooting
 
@@ -188,14 +218,18 @@ com.azure.security.keyvault.jca.level = ALL
 Azure Key Vault JCA clients raise exceptions. For example, if you try to check a client's identity with a certificate chain that does not include a trusted certificate, a `CertificateException` will be thrown. In the following snippet, the error is handled gracefully by catching the exception and displaying additional information about the error.
 
 ```java
-try {
-    KeyVaultJcaProvider provider = new KeyVaultJcaProvider();
-    Security.addProvider(provider);
-    ...
-    // Start SSL server socket
-    ...
-} catch (CertificateException e) {
-    System.out.println(e.getMessage());
+class Demo {
+    void demo () {
+        try {
+            KeyVaultJcaProvider provider = new KeyVaultJcaProvider();
+            Security.addProvider(provider);
+            // ...
+            // Start SSL server socket
+            // ...
+        } catch (CertificateException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
 ```
 
@@ -217,18 +251,18 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_code_of_conduct]. For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[Source code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.6.0/sdk/keyvault/azure-security-keyvault-jca/src
+[Source code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.0/sdk/keyvault/azure-security-keyvault-jca/src
 [API reference documentation]: https://azure.github.io/azure-sdk-for-java/keyvault.html#azure-security-keyvault-jca
-[Product documentation]: https://docs.microsoft.com/azure/key-vault/
-[Samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.6.0/sdk/keyvault/azure-security-keyvault-jca/src/samples/java/com/azure/security/keyvault/jca
+[Product documentation]: /azure/key-vault/
+[Samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.0/sdk/keyvault/azure-security-keyvault-jca/src/samples/java/com/azure/security/keyvault/jca
 [azure_subscription]: https://azure.microsoft.com/
-[azure_keyvault]: https://docs.microsoft.com/azure/key-vault/keys/quick-create-portal
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[azure_keyvault]: /azure/key-vault/keys/quick-create-portal
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [azure_cloud_shell]: https://shell.azure.com/bash
-[spring_boot_starter]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md
+[spring_boot_starter]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.0/sdk/spring/spring-cloud-azure-starter-keyvault-certificates
 [jca_reference_guide]: https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html
 [microsoft_code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
-[non-exportable]: https://docs.microsoft.com/azure/key-vault/certificates/about-certificates#exportable-or-non-exportable-key
+[non-exportable]: /azure/key-vault/certificates/about-certificates#exportable-or-non-exportable-key
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-jca%2FREADME.png)
 

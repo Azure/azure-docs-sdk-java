@@ -1,16 +1,14 @@
 ---
 title: Azure Storage Blobs Cryptography client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob-cryptography, storage
-author: amishra-dev
-ms.author: amishra
-ms.date: 02/09/2022
+author: rickle-msft
+ms.author: frley
+ms.date: 06/16/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
-# Azure Storage Blobs Cryptography client library for Java - Version 12.15.0-beta.3 
+# Azure Storage Blobs Cryptography client library for Java - Version 12.17.0-beta.1 
 
 
 Azure Blob storage is Microsoft's object storage solution for the cloud. Blob
@@ -34,7 +32,7 @@ This package supports client side encryption for blob storage.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-cryptography_12.15.0-beta.3/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-cryptography_12.17.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -70,7 +68,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-blob-cryptography</artifactId>
-  <version>12.14.3</version>
+  <version>12.17.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -259,20 +257,22 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-blob-cryptography%2FREADME.png)
 
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
-[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-cryptography_12.15.0-beta.3/sdk/storage/azure-storage-blob-cryptography/src
+[jdk]: /java/azure/jdk/
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-cryptography_12.17.0-beta.1/sdk/storage/azure-storage-blob-cryptography/src
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
-[product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-cryptography_12.15.0-beta.3/sdk/storage/azure-storage-blob-cryptography/src/samples
+[rest_docs]: /rest/api/storageservices/blob-service-rest-api
+[product_docs]: /azure/storage/blobs/storage-blobs-overview
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-cryptography_12.17.0-beta.1/sdk/storage/azure-storage-blob-cryptography/src/samples
 [azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
-[storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob-cryptography_12.15.0-beta.3/sdk/storage/azure-storage-blob-cryptography/src/main/java
+[storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[storage_account_create_cli]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
+[storage_account_create_portal]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[sas_token]: /azure/storage/common/storage-dotnet-shared-access-signature-part-1
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob-cryptography_12.17.0-beta.1/sdk/storage/azure-storage-blob-cryptography/src/main/java
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
-[product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob-cryptography_12.15.0-beta.3/sdk/storage/azure-storage-blob-cryptography/src/samples
+[rest_docs]: /rest/api/storageservices/blob-service-rest-api
+[product_docs]: /azure/storage/blobs/storage-blobs-overview
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob-cryptography_12.17.0-beta.1/sdk/storage/azure-storage-blob-cryptography/src/samples
+[error_codes]: /rest/api/storageservices/blob-service-error-codes
+[performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
