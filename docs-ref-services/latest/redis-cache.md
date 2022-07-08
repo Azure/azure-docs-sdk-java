@@ -1,16 +1,13 @@
 ---
-title: Redis Cache libraries for Java
-description: Reference documentation for the Java client and management libraries for Redis Cache
-keywords: Azure, Java, SDK, API, cache, redis, web cache, key-value, in-memory
-author: ramya-rao-a
-ms.author: ramyar
-manager: douge
-ms.date: 07/11/2017
+title: Azure Redis Cache SDK for Java
+description: Reference for Azure Redis Cache SDK for Java
+author: joshfree
+ms.author: jfree
+ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: cache
+ms.service: redis-cache
 ---
-
 # Redis Cache libraries for Java
 
 ## Overview
