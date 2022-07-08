@@ -1,15 +1,13 @@
 ---
 title: Azure HDInsight SDK for Java
-description: Reference for Azure HDInsight SDK for Java. The HDInsight SDK for Java provides classes and methods that allow you to manage your HDInsight clusters.
-author: tylerfox
-ms.author: tyfox
-ms.reviewer: jasonh
-ms.service: hdinsight
+description: Reference for Azure HDInsight SDK for Java
+author: joshfree
+ms.author: jfree
+ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java
-ms.date: 04/15/2019
+ms.service: hdinsight
 ---
-
 # HDInsight SDK for Java
 
 ## Overview
