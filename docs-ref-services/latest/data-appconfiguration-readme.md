@@ -3,12 +3,12 @@ title: Azure App Configuration client library for Java
 keywords: Azure, java, SDK, API, azure-data-appconfiguration, appconfiguration
 author: mssfang
 ms.author: shafang
-ms.date: 06/08/2022
+ms.date: 07/09/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: appconfiguration
 ---
-# Azure App Configuration client library for Java - Version 1.3.4 
+# Azure App Configuration client library for Java - Version 1.3.5 
 
 Azure App Configuration is a managed service that helps developers centralize their application configurations simply and securely.
 
@@ -31,7 +31,7 @@ Use the client library for App Configuration to create and manage application co
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.4/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.5/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -66,7 +66,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-data-appconfiguration</artifactId>
-  <version>1.3.4</version>
+  <version>1.3.5</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -231,6 +231,7 @@ configurationClient.listConfigurationSettings(new SettingSelector().setLabelFilt
 ## Examples
 
 The following sections provide several code snippets covering some of the most common configuration service tasks, including:
+For "Feature Flag" and "Secret Reference" configuration settings, see [samples][samples_readme] for more detail.
 
 ### Create a Configuration Client
 
@@ -260,6 +261,34 @@ Or
 ConfigurationSetting setting = configurationClient.setConfigurationSetting("some_key", "some_label", "some_value");
 ```
 
+Create a Feature Flag configuration setting or Secrete Reference configuration setting to be stored in the
+configuration store. 
+
+```java readme-sample-addFeatureFlagConfigurationSetting
+String key = "some_key";
+String filterName = "{filter_name}"; // such as "Microsoft.Percentage"
+String filterParameterKey = "{filter_parameter_key}"; // "Value"
+Object filterParameterValue = 30; // Any value. Could be String, primitive value, or Json Object
+FeatureFlagFilter percentageFilter = new FeatureFlagFilter(filterName)
+                                         .addParameter(filterParameterKey, filterParameterValue);
+FeatureFlagConfigurationSetting featureFlagConfigurationSetting =
+    new FeatureFlagConfigurationSetting(key, true)
+        .setClientFilters(Arrays.asList(percentageFilter));
+
+FeatureFlagConfigurationSetting setting = (FeatureFlagConfigurationSetting)
+    configurationClient.addConfigurationSetting(featureFlagConfigurationSetting);
+```
+```java readme-sample-addSecretReferenceConfigurationSetting
+String key = "{some_key}";
+String keyVaultReference = "{key_vault_reference}";
+
+SecretReferenceConfigurationSetting referenceConfigurationSetting =
+    new SecretReferenceConfigurationSetting(key, keyVaultReference);
+
+SecretReferenceConfigurationSetting setting = (SecretReferenceConfigurationSetting)
+    configurationClient.addConfigurationSetting(referenceConfigurationSetting);
+```
+
 ### Retrieve a Configuration Setting
 
 Retrieve a previously stored configuration setting by calling `getConfigurationSetting`.
@@ -277,6 +306,17 @@ If the ETags are not the same, it means the configuration setting is different, 
 ```java readme-sample-getConfigurationSettingConditionally
 ConfigurationSetting setting = configurationClient.setConfigurationSetting("some_key", "some_label", "some_value");
 Response<ConfigurationSetting> settingResponse = configurationClient.getConfigurationSettingWithResponse(setting, null, true, Context.NONE);
+```
+
+Retrieve a Feature Flag configuration setting or Secrete Reference configuration setting in the configuration store.
+
+```java readme-sample-getFeatureFlagConfigurationSetting
+FeatureFlagConfigurationSetting setting = (FeatureFlagConfigurationSetting)
+    configurationClient.getConfigurationSetting(featureFlagConfigurationSetting);
+```
+```java readme-sample-getSecretReferenceConfigurationSetting
+SecretReferenceConfigurationSetting setting = (SecretReferenceConfigurationSetting)
+    configurationClient.getConfigurationSetting(referenceConfigurationSetting);
 ```
 
 ### Update an existing Configuration Setting
@@ -298,6 +338,17 @@ ConfigurationSetting setting = configurationClient.setConfigurationSetting("some
 Response<ConfigurationSetting> settingResponse = configurationClient.setConfigurationSettingWithResponse(setting, true, Context.NONE);
 ```
 
+Update a Feature Flag configuration setting or Secrete Reference configuration setting in the configuration store.
+
+```java readme-sample-updateFeatureFlagConfigurationSetting
+FeatureFlagConfigurationSetting setting = (FeatureFlagConfigurationSetting)
+    configurationClient.setConfigurationSetting(featureFlagConfigurationSetting);
+```
+```java readme-sample-updateSecretReferenceConfigurationSetting
+SecretReferenceConfigurationSetting setting = (SecretReferenceConfigurationSetting)
+    configurationClient.setConfigurationSetting(referenceConfigurationSetting);
+```
+
 ### Delete a Configuration Setting
 
 Delete an existing configuration setting by calling `deleteConfigurationSetting`.
@@ -314,6 +365,17 @@ to see if they are the same or not. If the ETag are same, it means the configura
 ```java readme-sample-deleteConfigurationSettingConditionally
 ConfigurationSetting setting = configurationClient.setConfigurationSetting("some_key", "some_label", "some_value");
 Response<ConfigurationSetting> settingResponse = configurationClient.deleteConfigurationSettingWithResponse(setting, true, Context.NONE);
+```
+
+Delete a Feature Flag configuration setting or Secrete Reference configuration setting in the configuration store.
+
+```java readme-sample-deleteFeatureFlagConfigurationSetting
+FeatureFlagConfigurationSetting setting = (FeatureFlagConfigurationSetting)
+    configurationClient.deleteConfigurationSetting(featureFlagConfigurationSetting);
+```
+```java readme-sample-deleteSecretReferenceConfigurationSetting
+SecretReferenceConfigurationSetting setting = (SecretReferenceConfigurationSetting)
+    configurationClient.deleteConfigurationSetting(referenceConfigurationSetting);
 ```
 
 ### List Configuration Settings with multiple keys
@@ -425,13 +487,13 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.4/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
+[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.5/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
 [api_documentation]: https://aka.ms/java-docs
 [app_config_store]: /azure/azure-app-configuration/quickstart-dotnet-core-app#create-an-app-configuration-store
 [app_config_role]: /azure/azure-app-configuration/rest-api-authorization-azure-ad#roles
 [azconfig_docs]: /azure/azure-app-configuration
 [azure_cli]: /cli/azure
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-appconfiguration_1.3.4/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-appconfiguration_1.3.5/sdk/identity/azure-identity
 [azure_subscription]: https://azure.microsoft.com/free
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
@@ -443,9 +505,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [package]: https://search.maven.org/artifact/com.azure/azure-data-appconfiguration
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [rest_api]: https://github.com/Azure/AppConfiguration#rest-api-reference
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.4/sdk/appconfiguration/azure-data-appconfiguration/src/samples/java/com/azure/data/appconfiguration
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.4/sdk/appconfiguration/azure-data-appconfiguration/src/samples/README.md
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.4/sdk/appconfiguration/azure-data-appconfiguration/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.5/sdk/appconfiguration/azure-data-appconfiguration/src/samples/java/com/azure/data/appconfiguration
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.5/sdk/appconfiguration/azure-data-appconfiguration/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.3.5/sdk/appconfiguration/azure-data-appconfiguration/src
 [spring_quickstart]: /azure/azure-app-configuration/quickstart-java-spring-app
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fappconfiguration%2Fazure-data-appconfiguration%2FREADME.png)
 
