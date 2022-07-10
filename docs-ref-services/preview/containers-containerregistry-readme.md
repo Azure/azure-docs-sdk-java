@@ -1,14 +1,13 @@
 ---
 title: Azure Container Registry client library for Java
+description: Describes the Azure Container Registry client, including the client prerequisites, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-containers-containerregistry, containerregistry
 author: pallavit
 ms.author: pallavit
 ms.date: 04/07/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: containerregistry
+ms.service: azure
 ---
 # Azure Container Registry client library for Java - Version 1.1.0-beta.1 
 
@@ -152,6 +151,7 @@ For more information please see [Container Registry Concepts](https://docs.micro
 - [Set artifact properties](#samples)
 - [Delete images](#samples)
 - [Delete repository with anonymous access throws](#samples)
+
 
 ### Async examples
 

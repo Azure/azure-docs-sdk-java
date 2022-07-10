@@ -1,14 +1,13 @@
 ---
 title: Azure Communications SMS Service client library for Java
+description: Describes the Azure Communication SMS service client library that is used to send simple text messages and provides key concepts and examples.
 keywords: Azure, java, SDK, API, azure-communication-sms, communication
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 03/10/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: communication
+ms.service: azure
 ---
 
 # Azure Communications SMS Service client library for Java - Version 1.0.0-beta.4 
