@@ -1,16 +1,13 @@
 ---
-title: Azure Event Grid libraries for Java
-description: Reference documentation for Azure Event Grid Java libraries 
-keywords: Azure, Java, SDK, API, event grid, messaging, event driven
-author: ramya-rao-a
-ms.author: ramyar
-manager: angerobe
-ms.date: 07/11/2017
-ms.topic: reference-reference
+title: Azure Event Grid SDK for Java
+description: Reference for Azure Event Grid SDK for Java
+author: mssfang
+ms.author: shafang
+ms.date: 07/08/2022
+ms.topic: reference
 ms.devlang: java
-ms.service: event-grid
+ms.service: eventgrid
 ---
-
 # Azure Event Grid libraries for Java
 
 ## Overview

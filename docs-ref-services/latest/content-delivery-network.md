@@ -1,16 +1,13 @@
 ---
-description: Learn how to cache static web content at strategically placed locations to provide maximum throughput for users with CDN.
-title: Azure CDN libraries for Java
-keywords: Azure, Java, SDK, API, content, distribution, network, CDN
-author: ramya-rao-a
-ms.author: sizhu    
-manager: douge
-ms.date: 07/11/2017
+title: Azure Content Delivery Network SDK for Java
+description: Reference for Azure Content Delivery Network SDK for Java
+author: joshfree
+ms.author: jfree
+ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: cdn
+ms.service: contentdeliverynetwork
 ---
-
 # Azure CDN libraries for Java
 
 ## Overview
@@ -62,4 +59,3 @@ for (CdnEndpoint endpoint : profile.endpoints().values()) {
 
 [Manage CDNs with Java](https://github.com/Azure-Samples/cdn-java-manage-cdn)
 
-Explore more [sample Java code for Azure CDN](https://azure.microsoft.com/resources/samples/?platform=java&term=cdn) you can use in your apps.

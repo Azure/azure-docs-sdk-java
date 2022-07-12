@@ -1,21 +1,19 @@
 ---
 title: Azure Device Update for IoT Hub client library for Java
-keywords: Azure, java, SDK, API, azure-iot-deviceupdate, iotdeviceupdate
-author: joshfree
-ms.author: joshfree
-ms.date: 01/19/2022
+keywords: Azure, java, SDK, API, azure-iot-deviceupdate, deviceupdate
+author: dpokluda
+ms.author: dpokluda
+ms.date: 07/12/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: iotdeviceupdate
+ms.service: deviceupdate
 ---
-# Azure Device Update for IoT Hub client library for Java - Version 1.0.0-beta.2 
+# Azure Device Update for IoT Hub client library for Java - Version 1.0.0-beta.3 
 
 
 The library provides access to the Device Update for IoT Hub service that enables customers to publish updates for their IoT devices to the cloud, and then deploy these updates to their devices (approve updates to groups of devices managed and provisioned in IoT Hub). 
 
-  [Source code](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.0-beta.2/sdk) | [Product documentation](https://docs.microsoft.com/azure/iot-hub-device-update/understand-device-update)
+  [Source code](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.0-beta.3/sdk) | [Product documentation](/azure/iot-hub-device-update/understand-device-update)
 
 ## Getting started
 
@@ -37,16 +35,16 @@ For the best development experience, developers should use the official Microsof
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-iot-deviceupdate</artifactId>
-  <version>1.0.0-beta.2</version>
+  <version>1.0.0-beta.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 ### Authenticate the client
 
-In order to interact with the Device Update for IoT Hub service, you will need to create an instance of a [TokenCredential class](https://docs.microsoft.com/java/api/com.azure.core.credential.tokencredential?view=azure-java-stable) and pass it to the constructor of your `DeviceUpdateClientBuilder` class.
+In order to interact with the Device Update for IoT Hub service, you will need to create an instance of a [TokenCredential class](/java/api/com.azure.core.credential.tokencredential?view=azure-java-stable) and pass it to the constructor of your `DeviceUpdateClientBuilder` class.
 
-Please refer to [Java SDK Get Started document](https://docs.microsoft.com/azure/developer/java/sdk/get-started#set-up-authentication) for more authentication configuration.
+Please refer to [Java SDK Get Started document](/azure/developer/java/sdk/get-started#set-up-authentication) for more authentication configuration.
 
 ## Key concepts
 
@@ -59,7 +57,7 @@ You can learn more about Device Update for IoT Hub by visiting [Device Update fo
 
 ## Examples
 
-You can familiarize yourself with different APIs using [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.0-beta.2/sdk/deviceupdate/azure-iot-deviceupdate/src/samples).
+You can familiarize yourself with different APIs using [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.0-beta.3/sdk/deviceupdate/azure-iot-deviceupdate/src/samples).
 
 ## Troubleshooting
 
@@ -67,9 +65,11 @@ All Device Update for IoT Hub service operations will throw a ErrorResponseExcep
 
 For example, if you use the `getUpdateWithResponse` operation and the model you are looking for doesn't exist, you can catch that specific HttpStatusCode to decide the operation that follows in that case.
 
-``` java com.azure.iot.deviceupdate.DeviceUpdateAsyncClient.notfound
+
+``` java com.azure.iot.deviceupdate.DeviceUpdateClient.notfound
 try {
-    client.getUpdateWithResponse("foo", "bar", "0.0.0.1", null).block();
+    Response<BinaryData> response = client.getUpdateWithResponse("foo", "bar", "0.0.0.1",
+            null);
 } catch (HttpResponseException e) {
     if (e.getResponse().getStatusCode() == 404) {
         // update does not exist
@@ -80,7 +80,7 @@ try {
 
 ## Next steps
 
-Get started with our [Device Update for IoT Hub samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.0-beta.2/sdk/deviceupdate/azure-iot-deviceupdate/src/samples)
+Get started with our [Device Update for IoT Hub samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.0-beta.3/sdk/deviceupdate/azure-iot-deviceupdate/src/samples)
 
 ## Contributing
 
@@ -92,7 +92,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 
 <!-- LINKS -->
 [azure_subscription]: https://azure.microsoft.com/free
-[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/

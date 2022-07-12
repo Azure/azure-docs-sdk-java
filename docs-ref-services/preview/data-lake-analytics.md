@@ -1,18 +1,13 @@
 ---
-title: Azure Data Lake Analytics libraries for Java
-description: Reference documentation for the Java Data Lake Analytics libraries 
-keywords: Azure, Java, SDK, API, big data, data lake
-author: ramya-rao-a
-ms.author: ramyar
-manager: douge
-ms.date: 06/21/2017
+title: Azure Data Lake Analytics SDK for Java
+description: Reference for Azure Data Lake Analytics SDK for Java
+author: joshfree
+ms.author: jfree
+ms.date: 07/08/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: data-lake-store
+ms.service: datalakeanalytics
 ---
-
 # Azure Data Lake Analytics libraries for Java
 
 ## Overview

@@ -1,14 +1,13 @@
 ---
-title: Azure Storage libraries for Java
-description: The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself.
-author: tamram
-ms.author: tamram
-ms.date: 02/13/2020
+title: Azure Storage SDK for Java
+description: Reference for Azure Storage SDK for Java
+author: rickle-msft
+ms.author: frley
+ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
 ---
-
 # Azure Storage libraries for Java
 
 The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself. For more information about Azure Storage, see [Introduction to Azure Storage](/azure/storage/storage-introduction).

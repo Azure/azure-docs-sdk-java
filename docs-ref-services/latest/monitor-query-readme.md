@@ -3,12 +3,12 @@ title: Azure Monitor Query client library for Java
 keywords: Azure, java, SDK, API, azure-monitor-query, monitor
 author: srnagar
 ms.author: srnagar
-ms.date: 06/10/2022
+ms.date: 07/07/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: monitor
 ---
-# Azure Monitor Query client library for Java - Version 1.0.7 
+# Azure Monitor Query client library for Java - Version 1.0.8 
 
 
 The Azure Monitor Query client library is used to execute read-only queries against [Azure Monitor][azure_monitor_overview]'s two data platforms:
@@ -39,7 +39,7 @@ The Azure Monitor Query client library is used to execute read-only queries agai
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.7/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.8/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -75,7 +75,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-monitor-query</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 </dependency>
 ```
 
@@ -96,7 +96,7 @@ To use the [DefaultAzureCredential][DefaultAzureCredential] provider shown below
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.5.2</version>
+    <version>1.5.3</version>
 </dependency>
 ```
 Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
@@ -477,7 +477,7 @@ for (MetricResult metric : metricsQueryResult.getMetrics()) {
 
 ## Troubleshooting
 
-See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.7/sdk/monitor/azure-monitor-query/TROUBLESHOOTING.md)
+See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.8/sdk/monitor/azure-monitor-query/TROUBLESHOOTING.md)
 for details on how to diagnose various failure scenarios.
 
 ## Next steps
@@ -501,14 +501,14 @@ comments.
 [azure_monitor_create_using_portal]: /azure/azure-monitor/logs/quick-create-workspace
 [azure_monitor_overview]: /azure/azure-monitor/overview
 [azure_subscription]: https://azure.microsoft.com/free/java
-[changelog]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.7/sdk/monitor/azure-monitor-query/CHANGELOG.md
+[changelog]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.8/sdk/monitor/azure-monitor-query/CHANGELOG.md
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [kusto_query_language]: /azure/data-explorer/kusto/query/
-[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.7/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.8/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [msdocs_apiref]: /java/api/com.azure.monitor.query?view=azure-java-stable
 [package]: https://search.maven.org/artifact/com.azure/azure-monitor-query
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.7/sdk/monitor/azure-monitor-query/src/samples/java/README.md
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.7/sdk/monitor/azure-monitor-query/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.0.8/sdk/monitor/azure-monitor-query/src/samples/java/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.0.8/sdk/monitor/azure-monitor-query/src
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 [cla]: https://cla.microsoft.com

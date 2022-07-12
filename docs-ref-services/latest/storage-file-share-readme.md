@@ -3,12 +3,12 @@ title: Azure File Share client library for Java
 keywords: Azure, java, SDK, API, azure-storage-file-share, storage
 author: rickle-msft
 ms.author: frley
-ms.date: 06/09/2022
+ms.date: 07/07/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
 ---
-# Azure File Share client library for Java - Version 12.13.1 
+# Azure File Share client library for Java - Version 12.14.0 
 
 
 The Server Message Block (SMB) protocol is the preferred file share protocol used on-premises today.
@@ -34,7 +34,7 @@ Shares provide a way to organize sets of files and also can be mounted as an SMB
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.13.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.14.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -70,7 +70,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-file-share</artifactId>
-  <version>12.13.0</version>
+  <version>12.14.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -384,7 +384,7 @@ Taking the fileClient in KeyConcept, [`${fileClient}`](#file) with string of sou
 ```java readme-sample-copyFile
 String sourceURL = "https://myaccount.file.core.windows.net/myshare/myfile";
 Duration pollInterval = Duration.ofSeconds(2);
-SyncPoller<ShareFileCopyInfo, Void> poller = fileClient.beginCopy(sourceURL, null, pollInterval);
+SyncPoller<ShareFileCopyInfo, Void> poller = fileClient.beginCopy(sourceURL, (Map<String, String>) null, pollInterval);
 ```
 
 ### Abort copy a file
@@ -568,7 +568,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.13.1/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.14.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -577,7 +577,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 5. Create new Pull Request
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.13.1/sdk/storage/azure-storage-file-share/src/
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.14.0/sdk/storage/azure-storage-file-share/src/
 [reference_docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_api_documentation]: /rest/api/storageservices/file-service-rest-api
 [storage_docs]: /azure/storage/files/storage-files-introduction
@@ -591,7 +591,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 [RFL_URL_2]: https://www.ietf.org/rfc/rfc3987.txt
 [csharp_identifiers]: /dotnet/csharp/language-reference/
 [storage_file_rest]: /rest/api/storageservices/file-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.13.1/sdk/storage/azure-storage-file-share/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.14.0/sdk/storage/azure-storage-file-share/src/samples
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-file-share%2FREADME.png)
