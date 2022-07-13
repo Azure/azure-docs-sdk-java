@@ -8,7 +8,7 @@ members:
   fullName: "com.azure.iot.deviceupdate.DeviceManagementClient.getDeploymentStatusWithResponse(String groupId, String deploymentId, RequestOptions requestOptions)"
   name: "getDeploymentStatusWithResponse(String groupId, String deploymentId, RequestOptions requestOptions)"
   nameWithType: "DeviceManagementClient.getDeploymentStatusWithResponse(String groupId, String deploymentId, RequestOptions requestOptions)"
-  summary: "Gets the status of a deployment including a breakdown of how many devices in the deployment are in progress, completed, or failed.\n\n**Query Parameters**\n\n    | ---------- | ------ | -------- | ----------- |\n    | Name       | Type   | Required | Description |\n    | apiVersion | String | Yes      | Api Version |\n\n**Response Body Schema**\n\n```java\n{\n     deploymentState: String(Active/Inactive/Canceled)\n     totalDevices: Integer\n     devicesInProgressCount: Integer\n     devicesCompletedFailedCount: Integer\n     devicesCompletedSucceededCount: Integer\n     devicesCanceledCount: Integer\n }\n```"
+  summary: "Gets the status of a deployment including a breakdown of how many devices in the deployment are in progress, completed, or failed.\n\n**Response Body Schema**\n\n```java\n{\n     groupId: String (Required)\n     deploymentState: String(Active/ActiveWithSubgroupFailures/Failed/Inactive/Canceled) (Required)\n     error (Optional): {\n         code: String (Required)\n         message: String (Required)\n         target: String (Optional)\n         details (Optional): [\n             (recursive schema, see above)\n         ]\n         innererror (Optional): {\n             code: String (Required)\n             message: String (Optional)\n             errorDetail: String (Optional)\n             innerError (Optional): (recursive schema, see innerError above)\n         }\n         occurredDateTime: OffsetDateTime (Optional)\n     }\n     subgroupStatus (Required): [\n          (Required){\n             groupId: String (Required)\n             deviceClassId: String (Required)\n             deploymentState: String(Active/Failed/Inactive/Canceled) (Required)\n             error (Optional): (recursive schema, see error above)\n             totalDevices: Integer (Optional)\n             devicesInProgressCount: Integer (Optional)\n             devicesCompletedFailedCount: Integer (Optional)\n             devicesCompletedSucceededCount: Integer (Optional)\n             devicesCanceledCount: Integer (Optional)\n         }\n     ]\n }\n```"
   parameters:
   - description: "Group identity."
     name: "groupId"
@@ -26,4 +26,4 @@ members:
 type: "method"
 metadata: {}
 package: "com.azure.iot.deviceupdate"
-artifact: com.azure:azure-iot-deviceupdate:1.0.0-beta.2
+artifact: com.azure:azure-iot-deviceupdate:1.0.0-beta.3
