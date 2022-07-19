@@ -1,22 +1,33 @@
 ---
 title: Azure Resource Manager Healthbot client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-healthbot, 
-author: ramya-rao-a
-ms.author: ramyar
-ms.date: 01/08/2021
+keywords: Azure, java, SDK, API, azure-resourcemanager-healthbot, healthbot
+author: joshfree
+ms.author: jfree
+ms.date: 07/19/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: healthbot
 ---
-
-# Azure Resource Manager Healthbot client library for Java - Version 1.0.0-beta.1 
+# Azure Resource Manager Healthbot client library for Java - Version 1.0.0-beta.2 
 
 
 Azure Resource Manager Healthbot client library for Java.
 
 This package contains Microsoft Azure SDK for Healthbot Management SDK. Microsoft Healthcare Bot is a cloud platform that empowers developers in Healthcare organizations to build and deploy their compliant, AI-powered virtual health assistants and health bots, that help them improve processes and reduce costs. Package tag package-2020-12-08. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+
+## We'd love to hear your feedback
+
+We're always working on improving our products and the way we communicate with our users. So we'd love to learn what's working and how we can do better.
+
+If you haven't already, please take a few minutes to [complete this short survey][survey] we have put together.
+
+Thank you in advance for your collaboration. We really appreciate your time!
+
+## Documentation
+
+Various documentation is available to help you get started
+
+- [API reference documentation][docs]
 
 ## Getting started
 
@@ -32,7 +43,7 @@ This package contains Microsoft Azure SDK for Healthbot Management SDK. Microsof
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-healthbot</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -74,13 +85,16 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.2/sdk/healthbot/azure-resourcemanager-healthbot/SAMPLE.md)
+
+
 ## Troubleshooting
 
 ## Next steps
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.1/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.2/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -89,10 +103,12 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- LINKS -->
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[survey]: https://microsoft.qualtrics.com/jfe/form/SV_ehN0lIk2FKEBkwd?Q_CHL=DOCS
+[docs]: https://azure.github.io/azure-sdk-for-java/
+[jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.1/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.1/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.1/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.1/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.2/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.2/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.2/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-healthbot_1.0.0-beta.2/sdk/resourcemanager/docs/DESIGN.md
 
