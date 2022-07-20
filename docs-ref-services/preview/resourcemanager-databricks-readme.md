@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: databricks
 ---
 
-# Azure Resource Manager AzureDatabricks client library for Java - Version 1.0.0-beta.2 
+# Azure Resource Manager AzureDatabricks client library for Java - version 1.0.0-beta.2 
 
 
 Azure Resource Manager AzureDatabricks client library for Java.

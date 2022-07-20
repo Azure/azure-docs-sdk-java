@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure OpenTelemetry Tracing plugin library for Java - Version 1.0.0-beta.26 
+# Azure OpenTelemetry Tracing plugin library for Java - version 1.0.0-beta.26 
 
 
 This package enables distributed tracing across Azure SDK Java libraries through [OpenTelemetry][OpenTelemetry]. OpenTelemetry is an open source, vendor-agnostic, single distribution of libraries to provide metrics collection and distributed tracing for services.

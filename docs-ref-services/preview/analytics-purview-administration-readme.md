@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Purview Administration client library for Java - Version 1.0.0-beta.1 
+# Azure Purview Administration client library for Java - version 1.0.0-beta.1 
 
 
 Azure Purview data plane administration. It supports data plane operations. It can manage account, collections, keys, resource set rule, metadata policy, metadata roles.

@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure IoT Models Repository client library for Java - Version 1.0.0-beta.1 
+# Azure IoT Models Repository client library for Java - version 1.0.0-beta.1 
 
 
 This library provides functionality for interacting with the [Azure IoT Models Repository][modelsrepository_iot_endpoint]. It also aims to provide a consistent experience working with digital twin model repositories following Azure IoT conventions.

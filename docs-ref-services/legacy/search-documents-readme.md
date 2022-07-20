@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: search
 ---
 
-# Azure Cognitive Search client library for Java - Version 11.1.2 
+# Azure Cognitive Search client library for Java - version 11.1.2 
 
 
 This is the Java client library for [Azure Cognitive Search](https://docs.microsoft.com/azure/search/).

@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
-# Azure Storage internal avro client library for Java - Version 12.2.0-beta.3 
+# Azure Storage internal avro client library for Java - version 12.2.0-beta.3 
 
 
 This package supports an internal use only implementation of an Avro Parser.  

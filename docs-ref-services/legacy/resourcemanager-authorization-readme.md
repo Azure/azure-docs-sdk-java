@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: authorization
 ---
 
-# Azure Resource Manager Authorization client library for Java - Version 2.1.0 
+# Azure Resource Manager Authorization client library for Java - version 2.1.0 
 
 
 Azure Resource Manager Authorization client library for Java

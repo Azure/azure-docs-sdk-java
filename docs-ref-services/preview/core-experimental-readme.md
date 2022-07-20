@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Experimental shared library for Java - Version 1.0.0-beta.30 
+# Azure Core Experimental shared library for Java - version 1.0.0-beta.30 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)

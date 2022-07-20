@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: monitor
 ---
-# Azure Monitor Query client library for Java - Version 1.0.8 
+# Azure Monitor Query client library for Java - version 1.0.8 
 
 
 The Azure Monitor Query client library is used to execute read-only queries against [Azure Monitor][azure_monitor_overview]'s two data platforms:

@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: keyvault
 ---
 
-# Azure Key Vault JCA client library for Java - Version 1.0.0-beta.7 
+# Azure Key Vault JCA client library for Java - version 1.0.0-beta.7 
 
 The JCA Provider for Azure Key Vault is a Java Cryptography Architecture provider for certificates in
 Azure Key Vault. It is built on four principles:

@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: aot
 ---
-# Azure GraalVM Netty Support client library for Java - Version 1.0.0-beta.2 
+# Azure GraalVM Netty Support client library for Java - version 1.0.0-beta.2 
 
 
 The Azure GraalVM Netty Support client library provides support for applications using 

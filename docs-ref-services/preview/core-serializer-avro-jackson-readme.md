@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Core Jackson Avro Serializer plugin library for Java - Version 1.0.0-beta.1 
+# Azure Core Jackson Avro Serializer plugin library for Java - version 1.0.0-beta.1 
 
 
 Azure Core Jackson Avro Serializer is a plugin for the `azure-core` `AvroSerializer` API.

@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: streamanalytics
 ---
-# Azure Resource Manager StreamAnalytics client library for Java - Version 1.0.0-beta.2 
+# Azure Resource Manager StreamAnalytics client library for Java - version 1.0.0-beta.2 
 
 
 Azure Resource Manager StreamAnalytics client library for Java.

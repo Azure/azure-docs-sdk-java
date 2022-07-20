@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: iotcentral
 ---
-# Azure Resource Manager IotCentral client library for Java - Version 1.1.0-beta.1 
+# Azure Resource Manager IotCentral client library for Java - version 1.1.0-beta.1 
 
 
 Azure Resource Manager IotCentral client library for Java.

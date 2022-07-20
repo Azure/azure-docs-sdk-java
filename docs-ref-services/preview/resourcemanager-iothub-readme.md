@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: iothub
 ---
-# Azure Resource Manager IotHub client library for Java - Version 1.2.0-beta.1 
+# Azure Resource Manager IotHub client library for Java - version 1.2.0-beta.1 
 
 
 Azure Resource Manager IotHub client library for Java.

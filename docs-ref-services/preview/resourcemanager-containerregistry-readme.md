@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: containerregistry
 ---
 
-# Azure Resource Manager Containerregistry client library for Java - Version 2.0.0-beta.5 
+# Azure Resource Manager Containerregistry client library for Java - version 2.0.0-beta.5 
 
 
 Azure Resource Manager Containerregistry client library for Java

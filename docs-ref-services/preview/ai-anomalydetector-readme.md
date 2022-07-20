@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: anomalydetector
 ---
-# Azure Anomaly Detector client library for Java - Version 3.0.0-beta.4 
+# Azure Anomaly Detector client library for Java - version 3.0.0-beta.4 
 
 
 Microsoft Azure Cognitive Services Anomaly Detector API enables you to monitor and detect abnormalities in your time series data with machine learning.

@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: digital-twins
 ---
-# Azure IoT Digital Twins client library for Java - Version 1.3.0 
+# Azure IoT Digital Twins client library for Java - version 1.3.0 
 
 
 This library provides access to the Azure Digital Twins service for managing twins, models, relationships, etc.

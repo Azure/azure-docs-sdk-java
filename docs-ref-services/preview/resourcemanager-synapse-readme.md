@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: synapse
 ---
-# Azure Resource Manager Synapse client library for Java - Version 1.0.0-beta.6 
+# Azure Resource Manager Synapse client library for Java - version 1.0.0-beta.6 
 
 
 Azure Resource Manager Synapse client library for Java.

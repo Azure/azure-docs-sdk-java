@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: metricsadvisor
 ---
-# Azure Metrics Advisor client library for Java - Version 1.1.5 
+# Azure Metrics Advisor client library for Java - version 1.1.5 
 
 Azure Metrics Advisor is a new Cognitive  Service that uses time series based decision AI to identify and assist
 troubleshooting the incidents of online services, and monitor the business health by automating the slice and dice

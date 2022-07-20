@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: monitor
 ---
 
-# Azure Monitor OpenTelemetry Exporter client library for Java - Version 1.0.0-beta.5 
+# Azure Monitor OpenTelemetry Exporter client library for Java - version 1.0.0-beta.5 
 
 
 This client library provides support for exporting OpenTelemetry data to Azure Monitor. This package assumes your

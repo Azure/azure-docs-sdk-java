@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core Jackson JSON Serializer plugin library for Java - Version 1.1.0 
+# Azure Core Jackson JSON Serializer plugin library for Java - version 1.1.0 
 
 
 Azure Core Jackson JSON Serializer is a plugin for the `azure-core` `JsonSerializer` API.

@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: eventgrid
 ---
-# Azure Resource Manager EventGrid client library for Java - Version 1.2.0-beta.3 
+# Azure Resource Manager EventGrid client library for Java - version 1.2.0-beta.3 
 
 
 Azure Resource Manager EventGrid client library for Java.

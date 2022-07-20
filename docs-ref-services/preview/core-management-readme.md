@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core Management client library for Java - Version 1.0.0-beta.3 
+# Azure Core Management client library for Java - version 1.0.0-beta.3 
 
 
 Azure Core Management library is a collection of classes common to the Azure ARM client libraries.

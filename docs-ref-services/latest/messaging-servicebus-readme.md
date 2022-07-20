@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: servicebus
 ---
-# Azure Service Bus client library for Java - Version 7.10.0 
+# Azure Service Bus client library for Java - version 7.10.0 
 
 
 Microsoft Azure Service Bus is a fully managed enterprise integration message broker. Service Bus can decouple

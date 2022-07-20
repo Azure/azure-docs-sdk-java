@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: mixedreality
 ---
-# Azure Mixed Reality client library for Java - Version 1.2.4 
+# Azure Mixed Reality client library for Java - version 1.2.4 
 
 
 Mixed Reality services, like Azure Spatial Anchors, Azure Remote Rendering, and others, use the Mixed Reality security
