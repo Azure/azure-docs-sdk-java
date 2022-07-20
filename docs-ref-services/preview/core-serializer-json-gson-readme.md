@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Core Gson JSON Serializer plugin library for Java - Version 1.0.0-beta.3 
+# Azure Core Gson JSON Serializer plugin library for Java - version 1.0.0-beta.3 
 
 
 Azure Core Gson JSON Serializer is a plugin for the `azure-core` `JsonSerializer` API.

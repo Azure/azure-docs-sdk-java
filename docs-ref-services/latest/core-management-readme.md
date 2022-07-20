@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Management client library for Java - Version 1.7.0 
+# Azure Core Management client library for Java - version 1.7.0 
 
 
 Azure Core Management library is a collection of classes common to the [Azure Resource Manager (ARM)][arm] client libraries.

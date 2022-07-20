@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Phone Numbers client library for Java - Version 1.0.13 
+# Azure Communication Phone Numbers client library for Java - version 1.0.13 
 
 
 The phone numbers package provides capabilities for phone number management.

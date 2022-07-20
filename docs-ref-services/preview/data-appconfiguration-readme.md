@@ -12,7 +12,7 @@ ms.devlang: java
 ms.service: azure-app-configuration
 ---
 
-# Azure App Configuration client library for Java - Version 1.2.0-beta.1 
+# Azure App Configuration client library for Java - version 1.2.0-beta.1 
 
 Azure App Configuration is a managed service that helps developers centralize their application configurations simply and securely.
 

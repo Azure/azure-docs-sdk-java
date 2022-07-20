@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Network Traversal Package client library for Java - Version 1.1.0-beta.2 
+# Azure Communication Network Traversal Package client library for Java - version 1.1.0-beta.2 
 
 
 Azure Communication Network Traversal is managing TURN credentials for Azure Communication Services.

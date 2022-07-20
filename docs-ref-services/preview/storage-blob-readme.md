@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: storage
 ---
-# Azure Storage Blob client library for Java - Version 12.18.0-beta.1 
+# Azure Storage Blob client library for Java - version 12.18.0-beta.1 
 
 
 Azure Blob Storage is Microsoft's object storage solution for the cloud. Blob

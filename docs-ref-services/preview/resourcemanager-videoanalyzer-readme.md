@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
 ---
-# Azure Resource Manager Video Analyzer client library for Java - Version 1.0.0-beta.5 
+# Azure Resource Manager Video Analyzer client library for Java - version 1.0.0-beta.5 
 
 
 We’re retiring the Azure Video Analyzer preview service; you're advised to transition your applications off of Video Analyzer by 01 December 2022. This SDK is no longer maintained and won’t work after the service is retired. To learn how to transition off, please refer to: [Transition from Azure Video Analyzer](https://aka.ms/azsdk/videoanalyzer/transitionoffguidance)

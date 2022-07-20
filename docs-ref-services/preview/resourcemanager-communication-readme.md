@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Resource Manager Communication client library for Java - Version 1.1.0-beta.2 
+# Azure Resource Manager Communication client library for Java - version 1.1.0-beta.2 
 
 
 Azure Resource Manager Communication client library for Java.

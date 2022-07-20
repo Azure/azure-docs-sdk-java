@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
 ---
-# Azure Resource Manager ApplicationInsights client library for Java - Version 1.0.0-beta.5 
+# Azure Resource Manager ApplicationInsights client library for Java - version 1.0.0-beta.5 
 
 
 Azure Resource Manager ApplicationInsights client library for Java.

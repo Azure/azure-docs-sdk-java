@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: redisenterprise
 ---
-# Azure Resource Manager RedisEnterprise client library for Java - Version 1.1.0-beta.1 
+# Azure Resource Manager RedisEnterprise client library for Java - version 1.1.0-beta.1 
 
 
 Azure Resource Manager RedisEnterprise client library for Java.

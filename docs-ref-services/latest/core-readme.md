@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core shared library for Java - Version 1.30.0 
+# Azure Core shared library for Java - version 1.30.0 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)

@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Test shared library for Java - Version 1.10.0 
+# Azure Core Test shared library for Java - version 1.10.0 
 
 
 Library containing core classes used to test Azure SDK client libraries.

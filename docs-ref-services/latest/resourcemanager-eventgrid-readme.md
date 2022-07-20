@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: eventgrid
 ---
-# Azure Resource Manager EventGrid client library for Java - Version 1.1.0 
+# Azure Resource Manager EventGrid client library for Java - version 1.1.0 
 
 
 Azure Resource Manager EventGrid client library for Java.

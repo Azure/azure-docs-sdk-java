@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: eventhubs
 ---
 
-# Azure Resource Manager EventHubs client library for Java - Version 2.1.0 
+# Azure Resource Manager EventHubs client library for Java - version 2.1.0 
 
 
 Azure Resource Manager EventHubs client library for Java

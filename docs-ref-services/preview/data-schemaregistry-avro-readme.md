@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: eventhubs
 ---
 
-# Azure Schema Registry Avro Serializer/Deserializer client library for Java - Version 1.0.0-beta.5 
+# Azure Schema Registry Avro Serializer/Deserializer client library for Java - version 1.0.0-beta.5 
 
 
 Azure Schema Registry Avro is a serializer/deserializer library for Avro data format that is integrated with Azure

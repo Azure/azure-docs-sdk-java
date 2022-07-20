@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: containerservice
 ---
-# Azure Resource Manager Containerservice client library for Java - Version 2.13.0-beta.1 
+# Azure Resource Manager Containerservice client library for Java - version 2.13.0-beta.1 
 
 
 Azure Resource Manager Containerservice client library for Java

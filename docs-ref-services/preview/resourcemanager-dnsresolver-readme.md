@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: dnsresolver
 ---
-# Azure Resource Manager DnsResolver client library for Java - Version 1.0.0-beta.1 
+# Azure Resource Manager DnsResolver client library for Java - version 1.0.0-beta.1 
 
 
 Azure Resource Manager DnsResolver client library for Java.

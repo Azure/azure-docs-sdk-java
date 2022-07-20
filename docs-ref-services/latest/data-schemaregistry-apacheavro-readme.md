@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: schemaregistry
 ---
-# Azure Schema Registry Apache Avro Serializer client library for Java - Version 1.0.2 
+# Azure Schema Registry Apache Avro Serializer client library for Java - version 1.0.2 
 
 
 Azure Schema Registry Apache Avro is a serializer and deserializer library for Avro data format that is integrated with

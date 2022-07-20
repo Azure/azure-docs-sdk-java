@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: mysql
 ---
-# Azure Resource Manager MySql client library for Java - Version 1.0.2 
+# Azure Resource Manager MySql client library for Java - version 1.0.2 
 
 
 Azure Resource Manager MySql client library for Java.

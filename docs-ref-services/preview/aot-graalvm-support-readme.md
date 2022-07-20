@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: aot
 ---
-# Azure GraalVM Support client library for Java - Version 1.0.0-beta.2 
+# Azure GraalVM Support client library for Java - version 1.0.0-beta.2 
 
 
 The Azure GraalVM Support client library provides support for applications using [Azure client libraries](https://azure.github.io/azure-sdk/releases/latest/java.html) to be built as [GraalVM native 

@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: monitor
 ---
 
-# Azure Resource Manager monitor client library for Java - Version 2.1.0 
+# Azure Resource Manager monitor client library for Java - version 2.1.0 
 
 
 Azure Resource Manager monitor client library for Java
