@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: notificationhubs
 ---
-# Azure Resource Manager NotificationHubs client library for Java - Version 1.0.0-beta.3 
+# Azure Resource Manager NotificationHubs client library for Java - version 1.0.0-beta.3 
 
 
 Azure Resource Manager NotificationHubs client library for Java.

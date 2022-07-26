@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: signalr
 ---
-# Azure Resource Manager SignalR client library for Java - Version 1.0.0-beta.4 
+# Azure Resource Manager SignalR client library for Java - version 1.0.0-beta.4 
 
 
 Azure Resource Manager SignalR client library for Java.

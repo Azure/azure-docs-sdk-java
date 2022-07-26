@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: cosmoscosmosdb
 ---
 
-# Azure CosmosDB Client Library for Java - Version 4.8.0 
+# Azure CosmosDB Client Library for Java - version 4.8.0 
 
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.

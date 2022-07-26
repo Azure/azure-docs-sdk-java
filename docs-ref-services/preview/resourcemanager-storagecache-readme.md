@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: storagecache
 ---
-# Azure Resource Manager StorageCache client library for Java - Version 1.0.0-beta.6 
+# Azure Resource Manager StorageCache client library for Java - version 1.0.0-beta.6 
 
 
 Azure Resource Manager StorageCache client library for Java.

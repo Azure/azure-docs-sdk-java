@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Communication CallingServer Service client library for Java - Version 1.0.0-beta.4 
+# Azure Communication CallingServer Service client library for Java - version 1.0.0-beta.4 
 
 
 This package contains a Java SDK for Azure Communication CallingServer Service.

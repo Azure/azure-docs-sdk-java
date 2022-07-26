@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Document Translator client library for Java - Version 1.0.0-beta.1 
+# Azure Document Translator client library for Java - version 1.0.0-beta.1 
 
 
 Microsoft Azure Cognitive Services Document Translator API enables you to translate documents in batch.

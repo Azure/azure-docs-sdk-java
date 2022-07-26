@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: formrecognizer
 ---
 
-# Azure Form Recognizer client library for Java - Version 3.0.3 
+# Azure Form Recognizer client library for Java - version 3.0.3 
 
 Azure Cognitive Services Form Recognizer is a cloud service that uses machine learning to recognize text and table data
 from form documents. It includes the following main functionalities:

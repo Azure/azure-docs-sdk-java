@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: monitor
 ---
-# Azure Monitor Ingestion client library for Java - Version 1.0.0-beta.1 
+# Azure Monitor Ingestion client library for Java - version 1.0.0-beta.1 
 
 
 The Azure Monitor Ingestion client library is used to send custom logs to [Azure Monitor][azure_monitor_overview].

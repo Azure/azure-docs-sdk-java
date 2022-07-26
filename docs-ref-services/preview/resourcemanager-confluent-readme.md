@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: confluent
 ---
 
-# Azure Resource Manager Confluent client library for Java - Version 1.0.0-beta.3 
+# Azure Resource Manager Confluent client library for Java - version 1.0.0-beta.3 
 
 
 Azure Resource Manager Confluent client library for Java.

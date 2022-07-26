@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: digitaltwins
 ---
-# Azure Resource Manager AzureDigitalTwins client library for Java - Version 1.0.0 
+# Azure Resource Manager AzureDigitalTwins client library for Java - version 1.0.0 
 
 
 Azure Resource Manager AzureDigitalTwins client library for Java.

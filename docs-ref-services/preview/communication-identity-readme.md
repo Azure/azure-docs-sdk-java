@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: communication
 ---
 
-# Azure Communication Identity client library for Java - Version 1.2.0-beta.1 
+# Azure Communication Identity client library for Java - version 1.2.0-beta.1 
 
 
 The identity package is used for managing users and tokens for Azure Communication Services.

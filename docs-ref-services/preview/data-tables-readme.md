@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: tables
 ---
 
-# Azure Tables client library for Java - Version 12.0.0-beta.7 
+# Azure Tables client library for Java - version 12.0.0-beta.7 
 
 Azure Storage Tables client library is a service that stores structured NoSQL data in the cloud, providing a
 key/attribute store with a schemaless design. Tables storage gives developers flexibility and scalability with all the

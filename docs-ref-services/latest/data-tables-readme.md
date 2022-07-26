@@ -8,7 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: tables
 ---
-# Azure Tables client library for Java - Version 12.3.2 
+# Azure Tables client library for Java - version 12.3.2 
 
 Azure Tables is a service that stores structured NoSQL data in the cloud, providing a key/attribute store with a schemaless design. Azure Tables gives developers flexibility and scalability with all the best parts of Azure cloud.
 

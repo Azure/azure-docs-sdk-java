@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: keyvault
 ---
 
-# Azure Key Vault Key client library for Java - Version 4.2.3 
+# Azure Key Vault Key client library for Java - version 4.2.3 
 
 Azure Key Vault allows you to create, manage and store keys in the Key Vault. The Azure Key Vault Keys client library supports RSA keys and elliptic curve keys, each with corresponding support in hardware security modules (HSM).
 

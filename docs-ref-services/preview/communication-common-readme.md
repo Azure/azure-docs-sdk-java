@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: communication
 ---
 
-# Azure Communication Service Common client library for Java - Version 1.0.0-beta.6 
+# Azure Communication Service Common client library for Java - version 1.0.0-beta.6 
 
 
 Azure Communication Common contains data structures commonly used for communicating with Azure Communication Services. 

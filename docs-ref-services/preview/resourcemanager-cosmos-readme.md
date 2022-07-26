@@ -11,10 +11,10 @@ ms.devlang: java
 ms.service: cosmos
 ---
 
-# Azure Resource Manager Cosmos client library for Java - Version 2.0.0-beta.4 
+# Azure Resource Manager Cosmos client library for Java - version 2.0.0-beta.4 
 
 
-Azure Resource Manager Cosmos client library for Java - Version 2.0.0-beta.4 
+Azure Resource Manager Cosmos client library for Java - version 2.0.0-beta.4 
 
 
 For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azure-sdk-java-mgmt).

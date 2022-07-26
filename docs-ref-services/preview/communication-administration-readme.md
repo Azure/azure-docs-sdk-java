@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: communication
 ---
 
-# Azure Communication Administration client library for Java - Version 1.0.0-beta.3 
+# Azure Communication Administration client library for Java - version 1.0.0-beta.3 
 
 
 The administration package is used for managing users and tokens for Azure Communication Services. This package also provides capabilities for Phone Number Administration.

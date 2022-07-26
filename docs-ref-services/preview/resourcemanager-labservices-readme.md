@@ -10,7 +10,7 @@ ms.technology: azure
 ms.devlang: java
 ms.service: labservices
 ---
-# Azure Resource Manager LabServices client library for Java - Version 1.0.0-beta.2 
+# Azure Resource Manager LabServices client library for Java - version 1.0.0-beta.2 
 
 
 Azure Resource Manager LabServices client library for Java.

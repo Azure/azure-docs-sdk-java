@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: textanalytics
 ---
 
-# Azure Text Analytics client library for Java - Version 5.0.1 
+# Azure Text Analytics client library for Java - version 5.0.1 
 
 Text Analytics is a cloud-based service that provides advanced natural language processing over raw text, 
 and includes six main functions:

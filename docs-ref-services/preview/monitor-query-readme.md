@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: monitor
 ---
 
-# Azure Monitor query client library for Java - Version 1.0.0-beta.4 
+# Azure Monitor query client library for Java - version 1.0.0-beta.4 
 
 
 Azure Monitor helps you maximize the availability and performance of your applications and services. It delivers a
