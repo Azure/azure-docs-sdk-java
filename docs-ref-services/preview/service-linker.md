@@ -1,11 +1,11 @@
 ---
-ms.service: servicelinker
-description: Reference for Azure Service Linker SDK for Java
-author: joshfree
-title: Azure Service Linker SDK for Java
-ms.author: jfree
 ms.data: 07/29/2022
+ms.author: jfree
+title: Azure Service Linker SDK for Java
 ms.devlang: java
+ms.service: servicelinker
+author: joshfree
+description: Reference for Azure Service Linker SDK for Java
 ms.topic: reference
 ---
 # Azure Service Linker SDK for Java - preview
