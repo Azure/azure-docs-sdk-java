@@ -1,12 +1,12 @@
 ---
-ms.author: jfree
-title: Azure Dev Spaces SDK for Java
-ms.topic: reference
-ms.devlang: java
-ms.data: 07/28/2022
+ms.service: devspaces
 description: Reference for Azure Dev Spaces SDK for Java
 author: joshfree
-ms.service: devspaces
+title: Azure Dev Spaces SDK for Java
+ms.author: jfree
+ms.data: 07/29/2022
+ms.devlang: java
+ms.topic: reference
 ---
 # Azure Dev Spaces SDK for Java - preview
 

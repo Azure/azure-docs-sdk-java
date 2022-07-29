@@ -1,12 +1,12 @@
 ---
-ms.author: jfree
-title: Azure Functions SDK for Java
-ms.topic: reference
-ms.devlang: java
-ms.data: 07/28/2022
+ms.service: functions
 description: Reference for Azure Functions SDK for Java
 author: joshfree
-ms.service: functions
+title: Azure Functions SDK for Java
+ms.author: jfree
+ms.data: 07/29/2022
+ms.devlang: java
+ms.topic: reference
 ---
 # Azure Functions SDK for Java - latest
 
