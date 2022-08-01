@@ -1,12 +1,12 @@
 ---
-ms.data: 07/29/2022
-ms.author: jfree
-title: Azure Notification Hubs SDK for Java
 ms.devlang: java
-ms.service: notificationhubs
-author: joshfree
-description: Reference for Azure Notification Hubs SDK for Java
+title: Azure Notification Hubs SDK for Java
+ms.data: 08/01/2022
 ms.topic: reference
+author: joshfree
+ms.author: jfree
+ms.service: notificationhubs
+description: Reference for Azure Notification Hubs SDK for Java
 ---
 # Azure Notification Hubs SDK for Java - preview
 

@@ -1,12 +1,12 @@
 ---
-ms.data: 07/29/2022
-ms.author: jfree
-title: Azure Logz SDK for Java
 ms.devlang: java
-ms.service: logz
-author: joshfree
-description: Reference for Azure Logz SDK for Java
+title: Azure Logz SDK for Java
+ms.data: 08/01/2022
 ms.topic: reference
+author: joshfree
+ms.author: jfree
+ms.service: logz
+description: Reference for Azure Logz SDK for Java
 ---
 # Azure Logz SDK for Java - preview
 

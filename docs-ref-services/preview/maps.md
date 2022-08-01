@@ -1,12 +1,12 @@
 ---
-ms.data: 07/29/2022
-ms.author: jfree
-title: Azure Maps SDK for Java
 ms.devlang: java
-ms.service: maps
-author: joshfree
-description: Reference for Azure Maps SDK for Java
+title: Azure Maps SDK for Java
+ms.data: 08/01/2022
 ms.topic: reference
+author: joshfree
+ms.author: jfree
+ms.service: maps
+description: Reference for Azure Maps SDK for Java
 ---
 # Azure Maps SDK for Java - preview
 

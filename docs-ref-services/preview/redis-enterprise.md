@@ -1,12 +1,12 @@
 ---
-ms.data: 07/29/2022
-ms.author: jfree
-title: Azure Redis Enterprise SDK for Java
 ms.devlang: java
-ms.service: redisenterprise
-author: joshfree
-description: Reference for Azure Redis Enterprise SDK for Java
+title: Azure Redis Enterprise SDK for Java
+ms.data: 08/01/2022
 ms.topic: reference
+author: joshfree
+ms.author: jfree
+ms.service: redisenterprise
+description: Reference for Azure Redis Enterprise SDK for Java
 ---
 # Azure Redis Enterprise SDK for Java - preview
 
