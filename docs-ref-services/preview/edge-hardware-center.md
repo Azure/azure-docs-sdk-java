@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
 title: Azure Edge Hardware Center SDK for Java
-ms.data: 08/01/2022
-ms.topic: reference
 author: joshfree
-ms.author: jfree
-ms.service: edgehardwarecenter
+ms.data: 08/02/2022
 description: Reference for Azure Edge Hardware Center SDK for Java
+ms.devlang: java
+ms.service: edgehardwarecenter
+ms.topic: reference
+ms.author: jfree
 ---
 # Azure Edge Hardware Center SDK for Java - preview
 
