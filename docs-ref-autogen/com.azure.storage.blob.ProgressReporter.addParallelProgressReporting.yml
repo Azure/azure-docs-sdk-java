@@ -8,7 +8,7 @@ members:
   fullName: "com.azure.storage.blob.ProgressReporter.addParallelProgressReporting(Flux<ByteBuffer> data, ProgressReceiver progressReceiver, Lock lock, AtomicLong totalProgress)"
   name: "addParallelProgressReporting(Flux<ByteBuffer> data, ProgressReceiver progressReceiver, Lock lock, AtomicLong totalProgress)"
   nameWithType: "ProgressReporter.addParallelProgressReporting(Flux<ByteBuffer> data, ProgressReceiver progressReceiver, Lock lock, AtomicLong totalProgress)"
-  summary: "Adds parallel progress reporting functionality to the given `Flux`."
+  summary: "Adds parallel progress reporting functionality to the given `Flux`. Each subscription (and therefore each retry) will rewind the progress reported so as not to over-report. The data reported will be the total amount of data emitted so far, or the \"current position\" of the Flux in parallel."
   parameters:
   - description: "The data whose transfer progress is to be tracked."
     name: "data"
@@ -23,7 +23,6 @@ members:
     name: "totalProgress"
     type: "<xref href=\"java.util.concurrent.atomic.AtomicLong?alt=java.util.concurrent.atomic.AtomicLong&text=AtomicLong\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public static Flux<ByteBuffer> addParallelProgressReporting(Flux<ByteBuffer> data, ProgressReceiver progressReceiver, Lock lock, AtomicLong totalProgress)"
-  desc: "Adds parallel progress reporting functionality to the given `Flux`. Each subscription (and therefore each retry) will rewind the progress reported so as not to over-report. The data reported will be the total amount of data emitted so far, or the \"current position\" of the Flux in parallel."
   returns:
     description: "A <code>Flux</code> that emits the same data as the source but calls a callback to report the total amount of\n data emitted so far."
     type: "<xref href=\"reactor.core.publisher.Flux?alt=reactor.core.publisher.Flux&text=Flux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.nio.ByteBuffer?alt=java.nio.ByteBuffer&text=ByteBuffer\" data-throw-if-not-resolved=\"False\" />&gt;"

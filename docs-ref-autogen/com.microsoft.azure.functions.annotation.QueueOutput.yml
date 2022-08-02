@@ -3,7 +3,7 @@ uid: "com.microsoft.azure.functions.annotation.QueueOutput"
 fullName: "com.microsoft.azure.functions.annotation.QueueOutput"
 name: "QueueOutput"
 nameWithType: "QueueOutput"
-summary: "Place this on a parameter whose value would be written to a storage queue."
+summary: "Place this on a parameter whose value would be written to a storage queue. The parameter type should be OutputBinding<T>, where T could be one of:\n\n *  Any native Java types such as int, String, byte\\[\\]\n *  Any POJO type\n\nThe following example shows a Java function that creates a queue message for each HTTP request received.\n\n```java\n@FunctionName(\"httpToQueue\")\n@QueueOutput(name = \"item\", queueName = \"myqueue-items\", connection = \"AzureWebJobsStorage\")\n public String pushToQueue(\n    @HttpTrigger(name = \"request\", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS)\n     final String message,\n    @HttpOutput(name = \"response\") final OutputBinding<String> result\n ) {\n     result.setValue(message + \" has been added.\");\n     return message;\n }\n```"
 syntax: "public interface QueueOutput implements Annotation"
 methods:
 - "com.microsoft.azure.functions.annotation.QueueOutput.connection()"
@@ -11,7 +11,6 @@ methods:
 - "com.microsoft.azure.functions.annotation.QueueOutput.name()"
 - "com.microsoft.azure.functions.annotation.QueueOutput.queueName()"
 type: "interface"
-desc: "Place this on a parameter whose value would be written to a storage queue. The parameter type should be OutputBinding<T>, where T could be one of:\n\n *  Any native Java types such as int, String, byte\\[\\]\n *  Any POJO type\n\nThe following example shows a Java function that creates a queue message for each HTTP request received.\n\n```java\n@FunctionName(\"httpToQueue\")\n@QueueOutput(name = \"item\", queueName = \"myqueue-items\", connection = \"AzureWebJobsStorage\")\n public String pushToQueue(\n    @HttpTrigger(name = \"request\", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS)\n     final String message,\n    @HttpOutput(name = \"response\") final OutputBinding<String> result\n ) {\n     result.setValue(message + \" has been added.\");\n     return message;\n }\n```"
 implements:
 - "<xref href=\"java.lang.annotation.Annotation?alt=java.lang.annotation.Annotation&text=Annotation\" data-throw-if-not-resolved=\"False\" />"
 metadata: {}
