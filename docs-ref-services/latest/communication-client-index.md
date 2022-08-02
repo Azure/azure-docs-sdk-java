@@ -1,0 +1,8 @@
+| Reference | Package | Source |
+|---|---|---|
+|[Communication Chat](communication-chat-readme.md)|[azure-communication-chat](https://repo1.maven.org/maven2/com/azure/azure-communication-chat)|[Github](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-chat)|
+|[Communication Common](communication-common-readme.md)|[azure-communication-common](https://repo1.maven.org/maven2/com/azure/azure-communication-common)|[Github](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-common)|
+|[Communication Identity](communication-identity-readme.md)|[azure-communication-identity](https://repo1.maven.org/maven2/com/azure/azure-communication-identity)|[Github](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-identity)|
+|[Communication Network Traversal](communication-networktraversal-readme.md)|[azure-communication-networktraversal](https://repo1.maven.org/maven2/com/azure/azure-communication-networktraversal)|[Github](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-networktraversal)|
+|[Communication Phone Numbers](communication-phonenumbers-readme.md)|[azure-communication-phonenumbers](https://repo1.maven.org/maven2/com/azure/azure-communication-phonenumbers)|[Github](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-phonenumbers)|
+|[Communication Sms](communication-sms-readme.md)|[azure-communication-sms](https://repo1.maven.org/maven2/com/azure/azure-communication-sms)|[Github](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-sms)|
