@@ -1,12 +1,12 @@
 ---
-title: Azure Form Recognizer SDK for Java
-author: samvaity
-ms.data: 08/02/2022
-description: Reference for Azure Form Recognizer SDK for Java
 ms.devlang: java
+title: Azure Form Recognizer SDK for Java
 ms.service: formrecognizer
-ms.topic: reference
+ms.data: 08/03/2022
 ms.author: savaity
+author: samvaity
+ms.topic: reference
+description: Reference for Azure Form Recognizer SDK for Java
 ---
 # Azure Form Recognizer SDK for Java - latest
 

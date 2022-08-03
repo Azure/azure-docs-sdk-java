@@ -1,12 +1,12 @@
 ---
-title: Azure Help + support SDK for Java
-author: joshfree
-ms.data: 08/02/2022
-description: Reference for Azure Help + support SDK for Java
 ms.devlang: java
+title: Azure Help + support SDK for Java
 ms.service: help+support
-ms.topic: reference
+ms.data: 08/03/2022
 ms.author: jfree
+author: joshfree
+ms.topic: reference
+description: Reference for Azure Help + support SDK for Java
 ---
 # Azure Help + support SDK for Java - preview
 
