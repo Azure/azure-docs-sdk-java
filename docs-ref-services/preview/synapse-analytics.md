@@ -1,10 +1,10 @@
 ---
-ms.devlang: java
-title: Azure Synapse Analytics SDK for Java
-ms.service: synapseanalytics
-ms.data: 08/03/2022
-ms.author: jfree
 author: joshfree
+title: Azure Synapse Analytics SDK for Java
+ms.devlang: java
+ms.data: 08/04/2022
+ms.service: synapseanalytics
+ms.author: jfree
 ms.topic: reference
 description: Reference for Azure Synapse Analytics SDK for Java
 ---

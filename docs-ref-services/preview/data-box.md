@@ -1,10 +1,10 @@
 ---
-ms.devlang: java
-title: Azure Data Box SDK for Java
-ms.service: databox
-ms.data: 08/03/2022
-ms.author: jfree
 author: joshfree
+title: Azure Data Box SDK for Java
+ms.devlang: java
+ms.data: 08/04/2022
+ms.service: databox
+ms.author: jfree
 ms.topic: reference
 description: Reference for Azure Data Box SDK for Java
 ---

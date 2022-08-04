@@ -1,10 +1,10 @@
 ---
-ms.devlang: java
-title: Azure MySQL SDK for Java
-ms.service: mysql
-ms.data: 08/03/2022
-ms.author: jfree
 author: joshfree
+title: Azure MySQL SDK for Java
+ms.devlang: java
+ms.data: 08/04/2022
+ms.service: mysql
+ms.author: jfree
 ms.topic: reference
 description: Reference for Azure MySQL SDK for Java
 ms.date: 07/08/2022

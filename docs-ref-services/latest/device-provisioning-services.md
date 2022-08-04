@@ -1,10 +1,10 @@
 ---
-ms.devlang: java
-title: Azure Device Provisioning Services SDK for Java
-ms.service: deviceprovisioningservices
-ms.data: 08/03/2022
-ms.author: jfree
 author: joshfree
+title: Azure Device Provisioning Services SDK for Java
+ms.devlang: java
+ms.data: 08/04/2022
+ms.service: deviceprovisioningservices
+ms.author: jfree
 ms.topic: reference
 description: Reference for Azure Device Provisioning Services SDK for Java
 ---
