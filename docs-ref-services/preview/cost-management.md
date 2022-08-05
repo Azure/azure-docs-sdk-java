@@ -1,11 +1,11 @@
 ---
-author: joshfree
 title: Azure Cost Management SDK for Java
-ms.devlang: java
-ms.data: 08/04/2022
-ms.service: costmanagement
 ms.author: jfree
+ms.service: costmanagement
+ms.data: 08/05/2022
 ms.topic: reference
+ms.devlang: java
+author: joshfree
 description: Reference for Azure Cost Management SDK for Java
 ---
 # Azure Cost Management SDK for Java - preview

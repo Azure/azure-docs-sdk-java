@@ -1,11 +1,11 @@
 ---
-author: joshfree
 title: Azure Datadog SDK for Java
-ms.devlang: java
-ms.data: 08/04/2022
-ms.service: datadog
 ms.author: jfree
+ms.service: datadog
+ms.data: 08/05/2022
 ms.topic: reference
+ms.devlang: java
+author: joshfree
 description: Reference for Azure Datadog SDK for Java
 ---
 # Azure Datadog SDK for Java - preview

@@ -1,11 +1,11 @@
 ---
-author: joshfree
 title: Azure SignalR SDK for Java
-ms.devlang: java
-ms.data: 08/04/2022
-ms.service: signalr
 ms.author: jfree
+ms.service: signalr
+ms.data: 08/05/2022
 ms.topic: reference
+ms.devlang: java
+author: joshfree
 description: Reference for Azure SignalR SDK for Java
 ---
 # Azure SignalR SDK for Java - preview

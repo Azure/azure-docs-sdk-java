@@ -1,11 +1,11 @@
 ---
-author: joshfree
 title: Azure Locks SDK for Java
-ms.devlang: java
-ms.data: 08/04/2022
-ms.service: locks
 ms.author: jfree
+ms.service: locks
+ms.data: 08/05/2022
 ms.topic: reference
+ms.devlang: java
+author: joshfree
 description: Reference for Azure Locks SDK for Java
 ---
 # Azure Locks SDK for Java - latest
