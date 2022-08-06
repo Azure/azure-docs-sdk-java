@@ -2,11 +2,11 @@
 title: Azure App Configuration SDK for Java
 ms.author: shafang
 ms.service: appconfiguration
-ms.data: 08/05/2022
-ms.topic: reference
-ms.devlang: java
 author: mssfang
+ms.topic: reference
 description: Reference for Azure App Configuration SDK for Java
+ms.data: 08/06/2022
+ms.devlang: java
 ---
 # Azure App Configuration SDK for Java - preview
 
