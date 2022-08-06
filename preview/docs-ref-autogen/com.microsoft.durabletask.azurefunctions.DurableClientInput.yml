@@ -3,14 +3,13 @@ uid: "com.microsoft.durabletask.azurefunctions.DurableClientInput"
 fullName: "com.microsoft.durabletask.azurefunctions.DurableClientInput"
 name: "DurableClientInput"
 nameWithType: "DurableClientInput"
-summary: "Azure Functions attribute for binding a function parameter to a @DurableClientContext object."
+summary: "Azure Functions attribute for binding a function parameter to a @DurableClientContext object.\n\nThe following is an example of an HTTP-trigger function that uses this input binding to start a new orchestration instance.\n\n```java\n@FunctionName(\"StartHelloCities\")\n public HttpResponseMessage startHelloCities(\n         @HttpTrigger(name = \"request\", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage> request,\n         @DurableClientInput(name = \"durableContext\") DurableClientContext durableContext,\n         final ExecutionContext context) {\n \n     DurableTaskClient client = durableContext.getClient();\n     String instanceId = client.scheduleNewOrchestrationInstance(\"HelloCities\");\n     context.getLogger().info(\"Created new Java orchestration with instance ID = \" + instanceId);\n     return durableContext.createCheckStatusResponse(request, instanceId);\n }\n```"
 syntax: "public interface DurableClientInput implements Annotation"
 methods:
 - "com.microsoft.durabletask.azurefunctions.DurableClientInput.dataType()"
 - "com.microsoft.durabletask.azurefunctions.DurableClientInput.name()"
 - "com.microsoft.durabletask.azurefunctions.DurableClientInput.taskHub()"
 type: "interface"
-desc: "Azure Functions attribute for binding a function parameter to a @DurableClientContext object.\n\nThe following is an example of an HTTP-trigger function that uses this input binding to start a new orchestration instance.\n\n```java\n@FunctionName(\"StartHelloCities\")\n public HttpResponseMessage startHelloCities(\n         @HttpTrigger(name = \"request\", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage> request,\n         @DurableClientInput(name = \"durableContext\") DurableClientContext durableContext,\n         final ExecutionContext context) {\n \n     DurableTaskClient client = durableContext.getClient();\n     String instanceId = client.scheduleNewOrchestrationInstance(\"HelloCities\");\n     context.getLogger().info(\"Created new Java orchestration with instance ID = \" + instanceId);\n     return durableContext.createCheckStatusResponse(request, instanceId);\n }\n```"
 implements:
 - "<xref href=\"java.lang.annotation.Annotation?alt=java.lang.annotation.Annotation&text=Annotation\" data-throw-if-not-resolved=\"False\" />"
 metadata: {}
