@@ -1,11 +1,11 @@
 ---
 title: Azure Mobile Network SDK for Java
-ms.author: jfree
-ms.service: azure-monitor
 author: joshfree
+ms.author: jfree
 ms.topic: reference
+ms.service: azure-monitor
 description: Reference for Azure Mobile Network SDK for Java
-ms.data: 08/06/2022
+ms.data: 08/08/2022
 ms.devlang: java
 ---
 # Azure Mobile Network SDK for Java - preview

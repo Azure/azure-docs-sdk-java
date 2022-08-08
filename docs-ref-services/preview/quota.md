@@ -1,11 +1,11 @@
 ---
 title: Azure Quota SDK for Java
-ms.author: jfree
-ms.service: quota
 author: joshfree
+ms.author: jfree
 ms.topic: reference
+ms.service: quota
 description: Reference for Azure Quota SDK for Java
-ms.data: 08/06/2022
+ms.data: 08/08/2022
 ms.devlang: java
 ---
 # Azure Quota SDK for Java - preview
