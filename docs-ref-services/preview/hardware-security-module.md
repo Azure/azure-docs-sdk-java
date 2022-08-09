@@ -1,12 +1,12 @@
 ---
-title: Azure Hardware Security Module SDK for Java
-author: joshfree
 ms.author: jfree
-ms.topic: reference
-ms.service: hardwaresecuritymodule
-description: Reference for Azure Hardware Security Module SDK for Java
-ms.data: 08/08/2022
+title: Azure Hardware Security Module SDK for Java
 ms.devlang: java
+author: joshfree
+description: Reference for Azure Hardware Security Module SDK for Java
+ms.data: 08/09/2022
+ms.service: hardwaresecuritymodule
+ms.topic: reference
 ---
 # Azure Hardware Security Module SDK for Java - preview
 
