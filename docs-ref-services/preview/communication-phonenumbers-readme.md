@@ -1,12 +1,13 @@
 ---
 title: Azure Communication Phone Numbers client library for Java
+description: Describes Azure Communication Phone Numbers client library for the version 1.1.0-beta.4 iteration of Java.
 keywords: Azure, java, SDK, API, azure-communication-phonenumbers, communication
 author: JianpingChen
 ms.author: jiach
 ms.date: 08/11/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: communication
+ms.service: azure
 ---
 # Azure Communication Phone Numbers client library for Java - version 1.1.0-beta.9 
 
