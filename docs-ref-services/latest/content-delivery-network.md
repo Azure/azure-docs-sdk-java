@@ -1,12 +1,12 @@
 ---
+ms.data: 08/11/2022
+author: joshfree
 title: Azure Content Delivery Network SDK for Java
-ms.data: 08/10/2022
-ms.service: azure-cdn
-ms.topic: reference
+ms.service: contentdeliverynetwork
 description: Reference for Azure Content Delivery Network SDK for Java
 ms.author: jfree
 ms.devlang: java
-author: joshfree
+ms.topic: reference
 ms.date: 07/08/2022
 ---
 # Azure CDN libraries for Java
