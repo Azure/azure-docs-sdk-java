@@ -1,12 +1,12 @@
 ---
-ms.data: 08/11/2022
 author: joshfree
-title: Azure Kubernetes Configuration SDK for Java
-ms.service: kubernetesconfiguration
 description: Reference for Azure Kubernetes Configuration SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.service: kubernetesconfiguration
 ms.topic: reference
+ms.data: 08/13/2022
+ms.devlang: java
+ms.author: jfree
+title: Azure Kubernetes Configuration SDK for Java
 ---
 # Azure Kubernetes Configuration SDK for Java - preview
 

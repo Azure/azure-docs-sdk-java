@@ -1,12 +1,12 @@
 ---
-ms.data: 08/11/2022
 author: joshfree
-title: Azure Monitor SDK for Java
-ms.service: monitor
 description: Reference for Azure Monitor SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.service: monitor
 ms.topic: reference
+ms.data: 08/13/2022
+ms.devlang: java
+ms.author: jfree
+title: Azure Monitor SDK for Java
 ---
 # Azure Monitor SDK for Java - latest
 

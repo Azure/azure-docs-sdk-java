@@ -1,12 +1,12 @@
 ---
-ms.data: 08/11/2022
 author: joshfree
-title: Azure Data Explorer SDK for Java
-ms.service: dataexplorer
 description: Reference for Azure Data Explorer SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.service: dataexplorer
 ms.topic: reference
+ms.data: 08/13/2022
+ms.devlang: java
+ms.author: jfree
+title: Azure Data Explorer SDK for Java
 ---
 # Azure Data Explorer SDK for Java - preview
 

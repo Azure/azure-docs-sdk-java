@@ -1,12 +1,12 @@
 ---
-ms.data: 08/11/2022
 author: joshfree
-title: Azure Customer Insights SDK for Java
-ms.service: customerinsights
 description: Reference for Azure Customer Insights SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.service: customerinsights
 ms.topic: reference
+ms.data: 08/13/2022
+ms.devlang: java
+ms.author: jfree
+title: Azure Customer Insights SDK for Java
 ---
 # Azure Customer Insights SDK for Java - preview
 

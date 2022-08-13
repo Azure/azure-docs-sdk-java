@@ -1,12 +1,12 @@
 ---
-ms.data: 08/12/2022
 author: joshfree
-title: Azure BareMetal Infrastructure SDK for Java
-ms.service: baremetalinfrastructure
 description: Reference for Azure BareMetal Infrastructure SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.service: baremetalinfrastructure
 ms.topic: reference
+ms.data: 08/13/2022
+ms.devlang: java
+ms.author: jfree
+title: Azure BareMetal Infrastructure SDK for Java
 ---
 # Azure BareMetal Infrastructure SDK for Java - preview
 

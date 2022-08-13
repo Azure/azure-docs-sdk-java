@@ -1,12 +1,12 @@
 ---
-ms.data: 08/11/2022
 author: joshfree
-title: Azure Maintenance SDK for Java
-ms.service: maintenance
 description: Reference for Azure Maintenance SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.service: maintenance
 ms.topic: reference
+ms.data: 08/13/2022
+ms.devlang: java
+ms.author: jfree
+title: Azure Maintenance SDK for Java
 ---
 # Azure Maintenance SDK for Java - preview
 

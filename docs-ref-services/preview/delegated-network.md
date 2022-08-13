@@ -1,12 +1,12 @@
 ---
-ms.data: 08/12/2022
 author: joshfree
-title: Azure Delegated Network SDK for Java
-ms.service: delegatednetwork
 description: Reference for Azure Delegated Network SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.service: delegatednetwork
 ms.topic: reference
+ms.data: 08/13/2022
+ms.devlang: java
+ms.author: jfree
+title: Azure Delegated Network SDK for Java
 ---
 # Azure Delegated Network SDK for Java - preview
 
