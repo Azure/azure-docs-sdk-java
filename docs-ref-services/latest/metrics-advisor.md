@@ -1,11 +1,11 @@
 ---
-author: samvaity
+ms.data: 08/15/2022
 description: Reference for Azure Metrics Advisor SDK for Java
-ms.service: metricsadvisor
-ms.topic: reference
-ms.data: 08/13/2022
-ms.devlang: java
+author: samvaity
 ms.author: savaity
+ms.service: metricsadvisor
+ms.devlang: java
+ms.topic: reference
 title: Azure Metrics Advisor SDK for Java
 ---
 # Azure Metrics Advisor SDK for Java - latest

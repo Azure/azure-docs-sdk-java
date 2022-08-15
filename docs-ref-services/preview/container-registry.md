@@ -1,11 +1,11 @@
 ---
-author: lmolkova
+ms.data: 08/15/2022
 description: Reference for Azure Container Registry SDK for Java
-ms.service: containerregistry
-ms.topic: reference
-ms.data: 08/13/2022
-ms.devlang: java
+author: lmolkova
 ms.author: limolkova
+ms.service: containerregistry
+ms.devlang: java
+ms.topic: reference
 title: Azure Container Registry SDK for Java
 ---
 # Azure Container Registry SDK for Java - preview
