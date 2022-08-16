@@ -1,0 +1,21 @@
+### YamlMime:JavaType
+uid: "com.azure.core.util.metrics.Meter"
+fullName: "com.azure.core.util.metrics.Meter"
+name: "Meter"
+nameWithType: "Meter"
+summary: "Meter is generally associated with Azure Service Client instance and allows creating instruments that represent individual metrics such as number of active connections or HTTP call latency."
+syntax: "public interface Meter extends AutoCloseable"
+methods:
+- "com.azure.core.util.metrics.Meter.close()"
+- "com.azure.core.util.metrics.Meter.createAttributes(java.util.Map<java.lang.String,java.lang.Object>)"
+- "com.azure.core.util.metrics.Meter.createDoubleHistogram(java.lang.String,java.lang.String,java.lang.String)"
+- "com.azure.core.util.metrics.Meter.createLongCounter(java.lang.String,java.lang.String,java.lang.String)"
+- "com.azure.core.util.metrics.Meter.createLongUpDownCounter(java.lang.String,java.lang.String,java.lang.String)"
+- "com.azure.core.util.metrics.Meter.isEnabled()"
+type: "interface"
+desc: "Meter is generally associated with Azure Service Client instance and allows creating instruments that represent individual metrics such as number of active connections or HTTP call latency. Choose instrument kind based on OpenTelemetry guidelines: https://opentelemetry.io/docs/reference/specification/metrics/api/\\#counter-creation This class is intended to be used by Azure client libraries and provides abstraction over different metrics implementations. Application developers should use metrics implementations such as OpenTelemetry or Micrometer directly.\n\n```java\n// Meter and instruments should be created along with service client instance and retained for the client\n // lifetime for optimal performance\n Meter meter = meterProvider\n     .createMeter(\"azure-core\", \"1.0.0\", new MetricsOptions());\n\n DoubleHistogram amqpLinkDuration = meter\n     .createDoubleHistogram(\"az.core.amqp.link.duration\", \"AMQP link response time.\", \"ms\");\n\n TelemetryAttributes attributes = defaultMeter.createAttributes(\n     Collections.singletonMap(\"endpoint\", \"http://service-endpoint.azure.com\"));\n\n // when measured operation starts, record the measurement\n Instant start = Instant.now();\n\n doThings();\n\n // optionally check if meter is operational for the best performance\n if (amqpLinkDuration.isEnabled()) {\n     amqpLinkDuration.record(Instant.now().toEpochMilli() - start.toEpochMilli(), attributes, currentContext);\n }\n```"
+implements:
+- "<xref href=\"java.lang.AutoCloseable?alt=java.lang.AutoCloseable&text=AutoCloseable\" data-throw-if-not-resolved=\"False\" />"
+metadata: {}
+package: "com.azure.core.util.metrics"
+artifact: com.azure:azure-core:1.31.0

@@ -1,12 +1,12 @@
 ---
-title: Azure Custom Location SDK for Java
+ms.data: 08/15/2022
+description: Reference for Azure Custom Location SDK for Java
 author: joshfree
 ms.author: jfree
-ms.topic: reference
 ms.service: customlocation
-description: Reference for Azure Custom Location SDK for Java
-ms.data: 08/08/2022
 ms.devlang: java
+ms.topic: reference
+title: Azure Custom Location SDK for Java
 ---
 # Azure Custom Location SDK for Java - preview
 
