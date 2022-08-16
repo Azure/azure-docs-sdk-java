@@ -1,15 +1,17 @@
 ### YamlMime:JavaType
 constructors:
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.IotHubTransport(DeviceClientConfig,IotHubConnectionStatusChangeCallback)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.IotHubTransport(ClientConfiguration,IotHubConnectionStatusChangeCallback,boolean)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.IotHubTransport(String,IotHubClientProtocol,SSLContext,ProxySettings,IotHubConnectionStatusChangeCallback,int)
 inheritances:
 - <xref href="java.lang.Object" data-throw-if-not-resolved="False"/>
 - <xref href="com.microsoft.azure.sdk.iot.device.transport.IotHubListener?alt=com.microsoft.azure.sdk.iot.device.transport.IotHubListener&text=IotHubListener" data-throw-if-not-resolved="False"/>
 methods:
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.addMessage(Message,IotHubEventCallback,Object)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.addMessage(Message,MessageSentCallback,Object,String)
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.close(IotHubConnectionStatusChangeReason,Throwable)
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.getProtocol()
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.getReceiveThreadLock()
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.getSendThreadLock()
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.getReceiveThreadSemaphore()
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.getReconnectThreadSemaphore()
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.getSendThreadSemaphore()
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.handleMessage()
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.hasCallbacksToExecute()
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.hasMessagesToSend()
@@ -17,14 +19,23 @@ methods:
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.invokeCallbacks()
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.isClosed()
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.isEmpty()
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.needsReconnect()
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onConnectionEstablished(String)
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onConnectionLost(Throwable,String)
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onMessageReceived(IotHubTransportMessage,Throwable)
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onMessageSent(Message,Throwable)
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.open(Collection<DeviceClientConfig>)
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.registerConnectionStateCallback(IotHubConnectionStateCallback,Object)
-- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.registerConnectionStatusChangeCallback(IotHubConnectionStatusChangeCallback,Object)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onConnectionLost(TransportException,String)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onMessageReceived(IotHubTransportMessage,TransportException)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onMessageSent(Message,String,TransportException)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onMultiplexedDeviceSessionEstablished(String,String)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onMultiplexedDeviceSessionLost(TransportException,String,String,boolean)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onMultiplexedDeviceSessionRegistrationFailed(String,String,Exception)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.open(boolean)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.reconnect()
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.registerMultiplexedDeviceClient(List<ClientConfiguration>,long)
 - com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.sendMessages()
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.setConnectionStatusChangeCallback(IotHubConnectionStatusChangeCallback,Object,String)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.setMaxNumberOfMessagesSentPerSendThread(int)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.setMultiplexingConnectionStateCallback(IotHubConnectionStatusChangeCallback,Object)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.setMultiplexingRetryPolicy(RetryPolicy)
+- com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.unregisterMultiplexedDeviceClient(List<ClientConfiguration>,long)
 nameWithType: IotHubTransport
 syntax: public class IotHubTransport implements IotHubListener
 type: class
