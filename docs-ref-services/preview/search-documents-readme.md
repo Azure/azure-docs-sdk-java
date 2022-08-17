@@ -3,12 +3,12 @@ title: Azure Cognitive Search client library for Java
 keywords: Azure, java, SDK, API, azure-search-documents, search
 author: alzimmermsft
 ms.author: alzimmer
-ms.date: 07/01/2022
+ms.date: 08/17/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: search
 ---
-# Azure Cognitive Search client library for Java - version 11.5.0-beta.11 
+# Azure Cognitive Search client library for Java - version 11.5.0-beta.12 
 
 
 This is the Java client library for [Azure Cognitive Search](/azure/search/).
@@ -47,7 +47,7 @@ Use the Azure Cognitive Search client library to:
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.11/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.12/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -84,7 +84,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-search-documents</artifactId>
-    <version>11.5.0-beta.11</version>
+    <version>11.5.0-beta.12</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -245,6 +245,7 @@ These are just a few of the basics - please [check out our Samples][samples_read
 * [Adding documents to your index](#adding-documents-to-your-index)
 * [Retrieving a specific document from your index](#retrieving-a-specific-document-from-your-index)
 * [Async APIs](#async-apis)
+- [Create a client that can authenticate in a national cloud](#authenticate-in-a-national-cloud)
 
 ### Querying
 
@@ -431,9 +432,28 @@ SEARCH_ASYNC_CLIENT.search("luxury")
     });
 ```
 
+### Authenticate in a National Cloud
+
+To authenticate in a [National Cloud](/azure/active-directory/develop/authentication-national-cloud), you will need to make the following additions to your client configuration:
+
+- Set the `AuthorityHost` in the credential options or via the `AZURE_AUTHORITY_HOST` environment variable
+- Set the `audience` in `SearchClientBuilder`, `SearchIndexClientBuilder`, or `SearchIndexerClientBuilder`
+
+```java readme-sample-nationalCloud
+// Create a SearchClient that will authenticate through AAD in the China national cloud.
+SearchClient searchClient = new SearchClientBuilder()
+    .endpoint(ENDPOINT)
+    .indexName(INDEX_NAME)
+    .credential(new DefaultAzureCredentialBuilder()
+        .authorityHost(AzureAuthorityHosts.AZURE_CHINA)
+        .build())
+    .audience(SearchAudience.AZURE_CHINA)
+    .buildClient();
+```
+
 ## Troubleshooting
 
-See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.11/sdk/search/azure-search-documents/TROUBLESHOOTING.md) 
+See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.12/sdk/search/azure-search-documents/TROUBLESHOOTING.md) 
 for details on how to diagnose various failure scenarios.
 
 ### General
@@ -500,20 +520,20 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [azure_subscription]: https://azure.microsoft.com/free/java
 [maven]: https://maven.apache.org/
 [package]: https://search.maven.org/artifact/com.azure/azure-search-documents
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.5.0-beta.11/sdk/search/azure-search-documents/src/samples/
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.11/sdk/search/azure-search-documents/src/samples/README.md
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.5.0-beta.11/sdk/search/azure-search-documents/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.5.0-beta.12/sdk/search/azure-search-documents/src/samples/
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.12/sdk/search/azure-search-documents/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.5.0-beta.12/sdk/search/azure-search-documents/src
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.11/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
+[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.12/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
 [rest_api]: /rest/api/searchservice/http-status-codes
 [create_search_service_docs]: /azure/search/search-create-service-portal
 [create_search_service_ps]: /azure/search/search-manage-powershell#create-or-delete-a-service
 [create_search_service_cli]: /cli/azure/search/service?view=azure-cli-latest#az-search-service-create
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.11/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.5.0-beta.12/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
 [status_codes]: /rest/api/searchservice/http-status-codes
 [search-get-started-portal]: /azure/search/search-get-started-portal
 
