@@ -1,12 +1,12 @@
 ---
-ms.author: jfree
-description: Reference for Azure Service Fabric SDK for Java
-author: joshfree
 ms.service: servicefabric
-ms.data: 08/16/2022
-ms.topic: reference
-ms.devlang: java
+description: Reference for Azure Service Fabric SDK for Java
+ms.data: 08/18/2022
 title: Azure Service Fabric SDK for Java
+author: joshfree
+ms.devlang: java
+ms.topic: reference
+ms.author: jfree
 ---
 # Azure Service Fabric SDK for Java - preview
 

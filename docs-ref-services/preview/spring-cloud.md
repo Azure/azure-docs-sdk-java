@@ -1,12 +1,12 @@
 ---
-ms.author: zhihaoguo
-description: Reference for Azure Spring Cloud SDK for Java
-author: backwind1233
 ms.service: springcloud
-ms.data: 08/16/2022
-ms.topic: reference
-ms.devlang: java
+description: Reference for Azure Spring Cloud SDK for Java
+ms.data: 08/18/2022
 title: Azure Spring Cloud SDK for Java
+author: backwind1233
+ms.devlang: java
+ms.topic: reference
+ms.author: zhihaoguo
 ---
 # Azure Spring Cloud SDK for Java - preview
 
