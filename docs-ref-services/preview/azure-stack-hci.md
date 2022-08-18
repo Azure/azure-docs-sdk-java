@@ -1,12 +1,12 @@
 ---
-ms.data: 08/15/2022
-description: Reference for Azure Azure Stack HCI SDK for Java
-author: joshfree
-ms.author: jfree
 ms.service: azure-resource-manager
+description: Reference for Azure Azure Stack HCI SDK for Java
+ms.data: 08/17/2022
+title: Azure Azure Stack HCI SDK for Java
+author: joshfree
 ms.devlang: java
 ms.topic: reference
-title: Azure Azure Stack HCI SDK for Java
+ms.author: jfree
 ---
 # Azure Azure Stack HCI SDK for Java - preview
 

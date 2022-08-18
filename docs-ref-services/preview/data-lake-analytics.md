@@ -1,12 +1,12 @@
 ---
-ms.data: 08/15/2022
-description: Reference for Azure Data Lake Analytics SDK for Java
-author: joshfree
-ms.author: jfree
 ms.service: datalakeanalytics
+description: Reference for Azure Data Lake Analytics SDK for Java
+ms.data: 08/18/2022
+title: Azure Data Lake Analytics SDK for Java
+author: joshfree
 ms.devlang: java
 ms.topic: reference
-title: Azure Data Lake Analytics SDK for Java
+ms.author: jfree
 ms.date: 07/08/2022
 ---
 # Azure Data Lake Analytics libraries for Java

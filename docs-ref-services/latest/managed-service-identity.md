@@ -1,12 +1,12 @@
 ---
-ms.data: 08/15/2022
-description: Reference for Azure Managed Service Identity SDK for Java
-author: joshfree
-ms.author: jfree
 ms.service: azure-arc-data
+description: Reference for Azure Managed Service Identity SDK for Java
+ms.data: 08/17/2022
+title: Azure Managed Service Identity SDK for Java
+author: joshfree
 ms.devlang: java
 ms.topic: reference
-title: Azure Managed Service Identity SDK for Java
+ms.author: jfree
 ---
 # Azure Managed Service Identity SDK for Java - latest
 
