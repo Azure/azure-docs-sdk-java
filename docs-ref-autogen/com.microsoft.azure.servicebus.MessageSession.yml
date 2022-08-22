@@ -86,17 +86,141 @@ inheritedMembers:
 - com.microsoft.azure.servicebus.MessageReceiver.setPrefetchCount(int)
 - com.microsoft.azure.servicebus.primitives.ClientEntity.throwIfClosed(Throwable)
 methods:
-- com.microsoft.azure.servicebus.MessageSession.getLockedUntilUtc()
-- com.microsoft.azure.servicebus.MessageSession.getRequestedSessionId()
-- com.microsoft.azure.servicebus.MessageSession.getSessionId()
-- com.microsoft.azure.servicebus.MessageSession.getState()
-- com.microsoft.azure.servicebus.MessageSession.getStateAsync()
-- com.microsoft.azure.servicebus.MessageSession.isBrowsableSession()
-- com.microsoft.azure.servicebus.MessageSession.isSessionReceiver()
-- com.microsoft.azure.servicebus.MessageSession.renewSessionLock()
-- com.microsoft.azure.servicebus.MessageSession.renewSessionLockAsync()
-- com.microsoft.azure.servicebus.MessageSession.setState(byte [])
-- com.microsoft.azure.servicebus.MessageSession.setStateAsync(byte [])
+- fullName: com.microsoft.azure.servicebus.MessageSession.getLockedUntilUtc()
+  name: getLockedUntilUtc()
+  nameWithType: MessageSession.getLockedUntilUtc()
+  overridden: com.microsoft.azure.servicebus.IMessageSession.getLockedUntilUtc()
+  returns:
+    description: <p>Gets the time that the session identified by <xref uid="com.microsoft.azure.servicebus.IMessageSession.getSessionId()" data-throw-if-not-resolved="false" data-raw-source="IMessageSession#getSessionId()"></xref> is locked until for this client. </p>
+    type: <xref href="Instant?alt=Instant&text=Instant" data-throw-if-not-resolved="False"/>
+  syntax: public Instant getLockedUntilUtc()
+  uid: com.microsoft.azure.servicebus.MessageSession.getLockedUntilUtc()
+- fullName: com.microsoft.azure.servicebus.MessageSession.getRequestedSessionId()
+  name: getRequestedSessionId()
+  nameWithType: MessageSession.getRequestedSessionId()
+  returns:
+    type: <xref href="String?alt=String&text=String" data-throw-if-not-resolved="False"/>
+  syntax: protected String getRequestedSessionId()
+  uid: com.microsoft.azure.servicebus.MessageSession.getRequestedSessionId()
+- fullName: com.microsoft.azure.servicebus.MessageSession.getSessionId()
+  name: getSessionId()
+  nameWithType: MessageSession.getSessionId()
+  overridden: com.microsoft.azure.servicebus.IMessageSession.getSessionId()
+  returns:
+    description: <p>Gets the SessionId. </p>
+    type: <xref href="String?alt=String&text=String" data-throw-if-not-resolved="False"/>
+  syntax: public String getSessionId()
+  uid: com.microsoft.azure.servicebus.MessageSession.getSessionId()
+- fullName: com.microsoft.azure.servicebus.MessageSession.getState()
+  name: getState()
+  nameWithType: MessageSession.getState()
+  overridden: com.microsoft.azure.servicebus.IMessageSession.getState()
+  exceptions:
+  - type: <xref href="InterruptedException?alt=InterruptedException&text=InterruptedException" data-throw-if-not-resolved="False"/>
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: <xref href="ServiceBusException?alt=ServiceBusException&text=ServiceBusException" data-throw-if-not-resolved="False"/>
+    description: <p>if get state failed. </p>
+  returns:
+    description: <p>The session state </p>
+    type: <xref href="byte+%5B%5D?alt=byte+%5B%5D&text=byte+%5B%5D" data-throw-if-not-resolved="False"/>
+  summary: >-
+    <p>Gets the session state.</p>
+
+    <p></p>
+  syntax: public byte [] getState()
+  uid: com.microsoft.azure.servicebus.MessageSession.getState()
+- fullName: com.microsoft.azure.servicebus.MessageSession.getStateAsync()
+  name: getStateAsync()
+  nameWithType: MessageSession.getStateAsync()
+  overridden: com.microsoft.azure.servicebus.IMessageSession.getStateAsync()
+  returns:
+    description: <p>a CompletableFuture representing the pending session state retrieving. </p>
+    type: <xref href="CompletableFuture%3Cbyte%5B%5D%3E?alt=CompletableFuture%3Cbyte%5B%5D%3E&text=CompletableFuture%3Cbyte%5B%5D%3E" data-throw-if-not-resolved="False"/>
+  summary: <p>Asynchronously gets the session state. </p>
+  syntax: public CompletableFuture<byte[]> getStateAsync()
+  uid: com.microsoft.azure.servicebus.MessageSession.getStateAsync()
+- fullName: com.microsoft.azure.servicebus.MessageSession.isBrowsableSession()
+  name: isBrowsableSession()
+  nameWithType: MessageSession.isBrowsableSession()
+  returns:
+    type: <xref href="boolean?alt=boolean&text=boolean" data-throw-if-not-resolved="False"/>
+  syntax: protected boolean isBrowsableSession()
+  uid: com.microsoft.azure.servicebus.MessageSession.isBrowsableSession()
+- fullName: com.microsoft.azure.servicebus.MessageSession.isSessionReceiver()
+  name: isSessionReceiver()
+  nameWithType: MessageSession.isSessionReceiver()
+  returns:
+    type: <xref href="final+boolean?alt=final+boolean&text=final+boolean" data-throw-if-not-resolved="False"/>
+  syntax: protected final boolean isSessionReceiver()
+  uid: com.microsoft.azure.servicebus.MessageSession.isSessionReceiver()
+- fullName: com.microsoft.azure.servicebus.MessageSession.renewSessionLock()
+  name: renewSessionLock()
+  nameWithType: MessageSession.renewSessionLock()
+  overridden: com.microsoft.azure.servicebus.IMessageSession.renewSessionLock()
+  exceptions:
+  - type: <xref href="InterruptedException?alt=InterruptedException&text=InterruptedException" data-throw-if-not-resolved="False"/>
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: <xref href="ServiceBusException?alt=ServiceBusException&text=ServiceBusException" data-throw-if-not-resolved="False"/>
+    description: <p>if the renew failed. </p>
+  summary: >-
+    <p>Renews the lock on the session specified by the <xref uid="com.microsoft.azure.servicebus.IMessageSession.getSessionId()" data-throw-if-not-resolved="false" data-raw-source="IMessageSession#getSessionId()"></xref>. The lock will be renewed based on the setting specified on the entity. </p>
+
+    <p>When you accept a session, the session is locked for this client instance by the service for a duration as specified during the Queue/Subscription creation. If processing of the session requires longer than this duration, the session-lock needs to be renewed. For each renewal, the session-lock is renewed by the entity's LockDuration. </p>
+
+    <p>Renewal of session renews all the messages in the session as well. Each individual message need not be renewed.</p>
+
+    <p></p>
+  syntax: public void renewSessionLock()
+  uid: com.microsoft.azure.servicebus.MessageSession.renewSessionLock()
+- fullName: com.microsoft.azure.servicebus.MessageSession.renewSessionLockAsync()
+  name: renewSessionLockAsync()
+  nameWithType: MessageSession.renewSessionLockAsync()
+  overridden: com.microsoft.azure.servicebus.IMessageSession.renewSessionLockAsync()
+  returns:
+    description: <p>a CompletableFuture representing the pending renew. </p>
+    type: <xref href="CompletableFuture%3CVoid%3E?alt=CompletableFuture%3CVoid%3E&text=CompletableFuture%3CVoid%3E" data-throw-if-not-resolved="False"/>
+  summary: >-
+    <p>Renews the lock on the session specified by the <xref uid="com.microsoft.azure.servicebus.IMessageSession.getSessionId()" data-throw-if-not-resolved="false" data-raw-source="IMessageSession#getSessionId()"></xref>. The lock will be renewed based on the setting specified on the entity.</p>
+
+    <p></p>
+  syntax: public CompletableFuture<Void> renewSessionLockAsync()
+  uid: com.microsoft.azure.servicebus.MessageSession.renewSessionLockAsync()
+- fullName: com.microsoft.azure.servicebus.MessageSession.setState(byte[] sessionState)
+  name: setState(byte[] sessionState)
+  nameWithType: MessageSession.setState(byte[] sessionState)
+  overridden: com.microsoft.azure.servicebus.IMessageSession.setState(byte [])
+  parameters:
+  - description: <p>The session state. </p>
+    name: state
+    type: <xref href="byte+%5B%5D?alt=byte+%5B%5D&text=byte+%5B%5D" data-throw-if-not-resolved="False"/>
+  exceptions:
+  - type: <xref href="InterruptedException?alt=InterruptedException&text=InterruptedException" data-throw-if-not-resolved="False"/>
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: <xref href="ServiceBusException?alt=ServiceBusException&text=ServiceBusException" data-throw-if-not-resolved="False"/>
+    description: <p>if the set state failed. </p>
+  summary: >-
+    <p>Set a custom state on the session which can be later retrieved using <xref uid="com.microsoft.azure.servicebus.IMessageSession.getState()" data-throw-if-not-resolved="false" data-raw-source="IMessageSession#getState()"></xref>.</p>
+
+    <p></p>
+  syntax: public void setState(byte[] sessionState)
+  uid: com.microsoft.azure.servicebus.MessageSession.setState(byte [])
+- fullName: com.microsoft.azure.servicebus.MessageSession.setStateAsync(byte[] sessionState)
+  name: setStateAsync(byte[] sessionState)
+  nameWithType: MessageSession.setStateAsync(byte[] sessionState)
+  overridden: com.microsoft.azure.servicebus.IMessageSession.setStateAsync(byte [])
+  parameters:
+  - description: <p>The session state. </p>
+    name: state
+    type: <xref href="byte+%5B%5D?alt=byte+%5B%5D&text=byte+%5B%5D" data-throw-if-not-resolved="False"/>
+  returns:
+    description: <p>a CompletableFuture representing the pending session state setting. </p>
+    type: <xref href="CompletableFuture%3CVoid%3E?alt=CompletableFuture%3CVoid%3E&text=CompletableFuture%3CVoid%3E" data-throw-if-not-resolved="False"/>
+  summary: >-
+    <p>Asynchronously set a custom state on the session which can be later retrieved using <xref uid="com.microsoft.azure.servicebus.IMessageSession.getState()" data-throw-if-not-resolved="false" data-raw-source="IMessageSession#getState()"></xref>.</p>
+
+    <p></p>
+  syntax: public CompletableFuture<Void> setStateAsync(byte[] sessionState)
+  uid: com.microsoft.azure.servicebus.MessageSession.setStateAsync(byte [])
 nameWithType: MessageSession
 syntax: public class MessageSession implements IMessageSession
 type: class
