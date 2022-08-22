@@ -1,12 +1,12 @@
 ---
-author: joshfree
-description: Reference for Azure Education SDK for Java
-ms.data: 08/19/2022
-ms.devlang: java
-ms.topic: reference
 title: Azure Education SDK for Java
-ms.author: jfree
+description: Reference for Azure Education SDK for Java
+author: joshfree
+ms.devlang: java
 ms.service: education
+ms.author: jfree
+ms.topic: reference
+ms.data: 08/22/2022
 ---
 # Azure Education SDK for Java - preview
 
