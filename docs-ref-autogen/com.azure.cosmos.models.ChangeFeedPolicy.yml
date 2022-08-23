@@ -20,9 +20,44 @@ inheritedMembers:
 - "java.lang.Object.wait(long,int)"
 syntax: "public final class ChangeFeedPolicy"
 methods:
-- "com.azure.cosmos.models.ChangeFeedPolicy.createFullFidelityPolicy(java.time.Duration)"
-- "com.azure.cosmos.models.ChangeFeedPolicy.createIncrementalPolicy()"
-- "com.azure.cosmos.models.ChangeFeedPolicy.getFullFidelityRetentionDuration()"
+- uid: "com.azure.cosmos.models.ChangeFeedPolicy.createFullFidelityPolicy(java.time.Duration)"
+  fullName: "com.azure.cosmos.models.ChangeFeedPolicy.createFullFidelityPolicy(Duration retentionDuration)"
+  name: "createFullFidelityPolicy(Duration retentionDuration)"
+  nameWithType: "ChangeFeedPolicy.createFullFidelityPolicy(Duration retentionDuration)"
+  summary: "Creates a Change<wbr>Feed<wbr>Policy with retention duration for full fidelity processing"
+  modifiers:
+  - "static"
+  parameters:
+  - description: "- the retention duration (max granularity in minutes) in which it\n                             will be possible to process change feed events with full fidelity\n                             mode (meaning intermediary changes and deletes\n                             will be exposed in change feed)."
+    name: "retentionDuration"
+    type: "<xref href=\"java.time.Duration?alt=java.time.Duration&text=Duration\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public static ChangeFeedPolicy createFullFidelityPolicy(Duration retentionDuration)"
+  desc: "Creates a ChangeFeedPolicy with retention duration for full fidelity processing"
+  returns:
+    description: "ChangeFeedPolicy for full fidelity change feed."
+    type: "<xref href=\"com.azure.cosmos.models.ChangeFeedPolicy?alt=com.azure.cosmos.models.ChangeFeedPolicy&text=ChangeFeedPolicy\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.cosmos.models.ChangeFeedPolicy.createIncrementalPolicy()"
+  fullName: "com.azure.cosmos.models.ChangeFeedPolicy.createIncrementalPolicy()"
+  name: "createIncrementalPolicy()"
+  nameWithType: "ChangeFeedPolicy.createIncrementalPolicy()"
+  summary: "Creates a default Change<wbr>Feed<wbr>Policy without retention duration specified."
+  modifiers:
+  - "static"
+  syntax: "public static ChangeFeedPolicy createIncrementalPolicy()"
+  desc: "Creates a default ChangeFeedPolicy without retention duration specified. With the default/incremental change feed it will not be possible to process intermediary changes or deletes.\n\nThis is the default policy being used when not specifying any ChangeFeedPolicy for the Container."
+  returns:
+    description: "ChangeFeedPolicy for default/incremental change feed without full fidelity."
+    type: "<xref href=\"com.azure.cosmos.models.ChangeFeedPolicy?alt=com.azure.cosmos.models.ChangeFeedPolicy&text=ChangeFeedPolicy\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.cosmos.models.ChangeFeedPolicy.getFullFidelityRetentionDuration()"
+  fullName: "com.azure.cosmos.models.ChangeFeedPolicy.getFullFidelityRetentionDuration()"
+  name: "getFullFidelityRetentionDuration()"
+  nameWithType: "ChangeFeedPolicy.getFullFidelityRetentionDuration()"
+  summary: "Gets the retention duration in which it will be possible to process change feed events with full fidelity mode (meaning intermediary changes and deletes will be exposed in change feed)."
+  syntax: "public Duration getFullFidelityRetentionDuration()"
+  desc: "Gets the retention duration in which it will be possible to process change feed events with full fidelity mode (meaning intermediary changes and deletes will be exposed in change feed). By default full fidelity change feed is not enabled - so the retention duration would be Duration.ZERO."
+  returns:
+    description: "full fidelity retention duration."
+    type: "<xref href=\"java.time.Duration?alt=java.time.Duration&text=Duration\" data-throw-if-not-resolved=\"False\" />"
 type: "class"
 desc: "Represents the change feed policy configuration for the container in the Azure Cosmos DB service.\n\nThe example below creates a new container with a change feed policy for full fidelity change feed with a retention window of 8 minutes - so intermediary snapshots of changes as well as deleted documents would be available for processing for 8 minutes before they vanish. Processing the change feed with full fidelity mode will only be able within this retention window - if you attempt to process a change feed after more than the retention window (8 minutes in this sample) an error (Status Code 400) will be returned. It would still be possible to process changes using Incremental mode even when configuring a full fidelity change feed policy with retention window on the container and when using Incremental mode it doesn't matter whether your are out of the retention window or not.\n\n```java\nCosmosContainerProperties containerProperties =\n      new CosmosContainerProperties(\"ContainerName\", \"/somePartitionKeyProperty\");\n containerProperties.setChangeFeedPolicy(ChangeFeedPolicy.createFullFidelityPolicy(8));\n\n CosmosAsyncDatabase database = client.createDatabase(databaseProperties).block().getDatabase();\n CosmosAsyncContainer container = database.createContainer(containerProperties).block().getContainer();\n```\n\nThe example below creates a new container with a change feed policy for incremental change feed. Processing the change feed with full fidelity mode will not be possible for this container. It would still be possible to process changes using Incremental mode. The Incremental change feed policy is also the default that is used when not explicitly specifying a change feed policy.\n\n```java\nCosmosContainerProperties containerProperties =\n      new CosmosContainerProperties(\"ContainerName\", \"/somePartitionKeyProperty\");\n containerProperties.setChangeFeedPolicy(ChangeFeedPolicy.createIncrementalPolicy());\n\n CosmosAsyncDatabase database = client.createDatabase(databaseProperties).block().getDatabase();\n CosmosAsyncContainer container = database.createContainer(containerProperties).block().getContainer();\n```"
 metadata: {}

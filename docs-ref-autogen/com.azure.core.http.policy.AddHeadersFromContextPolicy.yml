@@ -20,12 +20,54 @@ inheritedMembers:
 - "java.lang.Object.wait(long,int)"
 syntax: "public class AddHeadersFromContextPolicy implements HttpPipelinePolicy"
 constructors:
-- "com.azure.core.http.policy.AddHeadersFromContextPolicy.AddHeadersFromContextPolicy()"
+- uid: "com.azure.core.http.policy.AddHeadersFromContextPolicy.AddHeadersFromContextPolicy()"
+  fullName: "com.azure.core.http.policy.AddHeadersFromContextPolicy.AddHeadersFromContextPolicy()"
+  name: "AddHeadersFromContextPolicy()"
+  nameWithType: "AddHeadersFromContextPolicy.AddHeadersFromContextPolicy()"
+  syntax: "public AddHeadersFromContextPolicy()"
 fields:
-- "com.azure.core.http.policy.AddHeadersFromContextPolicy.AZURE_REQUEST_HTTP_HEADERS_KEY"
+- uid: "com.azure.core.http.policy.AddHeadersFromContextPolicy.AZURE_REQUEST_HTTP_HEADERS_KEY"
+  fullName: "com.azure.core.http.policy.AddHeadersFromContextPolicy.AZURE_REQUEST_HTTP_HEADERS_KEY"
+  name: "AZURE_REQUEST_HTTP_HEADERS_KEY"
+  nameWithType: "AddHeadersFromContextPolicy.AZURE_REQUEST_HTTP_HEADERS_KEY"
+  summary: "Key used to override headers in Http<wbr>Request."
+  modifiers:
+  - "static"
+  - "final"
+  field:
+    value: "azure-http-headers-key"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public static final String AZURE_REQUEST_HTTP_HEADERS_KEY"
+  desc: "Key used to override headers in HttpRequest. The Value for this key should be <xref uid=\"com.azure.core.http.HttpHeaders\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpHeaders\"></xref>."
 methods:
-- "com.azure.core.http.policy.AddHeadersFromContextPolicy.process(com.azure.core.http.HttpPipelineCallContext,com.azure.core.http.HttpPipelineNextPolicy)"
-- "com.azure.core.http.policy.AddHeadersFromContextPolicy.processSync(com.azure.core.http.HttpPipelineCallContext,com.azure.core.http.HttpPipelineNextSyncPolicy)"
+- uid: "com.azure.core.http.policy.AddHeadersFromContextPolicy.process(com.azure.core.http.HttpPipelineCallContext,com.azure.core.http.HttpPipelineNextPolicy)"
+  fullName: "com.azure.core.http.policy.AddHeadersFromContextPolicy.process(HttpPipelineCallContext context, HttpPipelineNextPolicy next)"
+  name: "process(HttpPipelineCallContext context, HttpPipelineNextPolicy next)"
+  nameWithType: "AddHeadersFromContextPolicy.process(HttpPipelineCallContext context, HttpPipelineNextPolicy next)"
+  summary: "Processes provided request context and invokes the next policy."
+  parameters:
+  - name: "context"
+    type: "<xref href=\"com.azure.core.http.HttpPipelineCallContext?alt=com.azure.core.http.HttpPipelineCallContext&text=HttpPipelineCallContext\" data-throw-if-not-resolved=\"False\" />"
+  - name: "next"
+    type: "<xref href=\"com.azure.core.http.HttpPipelineNextPolicy?alt=com.azure.core.http.HttpPipelineNextPolicy&text=HttpPipelineNextPolicy\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<HttpResponse> process(HttpPipelineCallContext context, HttpPipelineNextPolicy next)"
+  desc: "Processes provided request context and invokes the next policy."
+  returns:
+    type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.core.http.HttpResponse?alt=com.azure.core.http.HttpResponse&text=HttpResponse\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.core.http.policy.AddHeadersFromContextPolicy.processSync(com.azure.core.http.HttpPipelineCallContext,com.azure.core.http.HttpPipelineNextSyncPolicy)"
+  fullName: "com.azure.core.http.policy.AddHeadersFromContextPolicy.processSync(HttpPipelineCallContext context, HttpPipelineNextSyncPolicy next)"
+  name: "processSync(HttpPipelineCallContext context, HttpPipelineNextSyncPolicy next)"
+  nameWithType: "AddHeadersFromContextPolicy.processSync(HttpPipelineCallContext context, HttpPipelineNextSyncPolicy next)"
+  summary: "Processes provided request context and invokes the next policy synchronously."
+  parameters:
+  - name: "context"
+    type: "<xref href=\"com.azure.core.http.HttpPipelineCallContext?alt=com.azure.core.http.HttpPipelineCallContext&text=HttpPipelineCallContext\" data-throw-if-not-resolved=\"False\" />"
+  - name: "next"
+    type: "<xref href=\"com.azure.core.http.HttpPipelineNextSyncPolicy?alt=com.azure.core.http.HttpPipelineNextSyncPolicy&text=HttpPipelineNextSyncPolicy\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public HttpResponse processSync(HttpPipelineCallContext context, HttpPipelineNextSyncPolicy next)"
+  desc: "Processes provided request context and invokes the next policy synchronously."
+  returns:
+    type: "<xref href=\"com.azure.core.http.HttpResponse?alt=com.azure.core.http.HttpResponse&text=HttpResponse\" data-throw-if-not-resolved=\"False\" />"
 type: "class"
 desc: "The pipeline policy that override or add <xref uid=\"com.azure.core.http.HttpHeaders\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpHeaders\"></xref> in <xref uid=\"com.azure.core.http.HttpRequest\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpRequest\"></xref> by reading values from <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Context\"></xref> with key 'azure-http-headers-key'. The value for this key should be of type <xref uid=\"com.azure.core.http.HttpHeaders\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpHeaders\"></xref> for it to be added in <xref uid=\"com.azure.core.http.HttpRequest\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpRequest\"></xref>.\n\n**Code Sample: Add multiple HttpHeader in Context and call client**\n\n```java\n// Create ConfigurationClient for example\n ConfigurationClient configurationClient = new ConfigurationClientBuilder()\n       .connectionString(\"endpoint={endpoint_value};id={id_value};secret={secret_value}\")\n       .buildClient();\n // Add your headers\n HttpHeaders headers = new HttpHeaders();\n headers.put(\"my-header1\", \"my-header1-value\");\n headers.put(\"my-header2\", \"my-header2-value\");\n headers.put(\"my-header3\", \"my-header3-value\");\n // Call API by passing headers in Context.\n configurationClient.addConfigurationSettingWithResponse(\n       new ConfigurationSetting().setKey(\"key\").setValue(\"value\"),\n       new Context(AddHeadersFromContextPolicy.AZURE_REQUEST_HTTP_HEADERS_KEY, headers));\n // Above three HttpHeader will be added in outgoing HttpRequest.\n```"
 implements:
