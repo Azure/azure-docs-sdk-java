@@ -6,7 +6,8 @@ ms.author: weidxu
 ms.date: 06/24/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-arc-data
+ms.service: active-directory
+ms.subservice: msi
 ---
 # Azure Resource Manager msi client library for Java - version 2.16.0 
 
