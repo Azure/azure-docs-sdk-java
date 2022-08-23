@@ -6,13 +6,107 @@ nameWithType: "SaslHandler"
 summary: "Interface definition for what client events are expected to be handled during Sasl negotiation"
 syntax: "public interface SaslHandler"
 methods:
-- "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.chooseSaslMechanism(java.lang.String[])"
-- "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.getInitPayload(java.lang.String)"
-- "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.getPlainPassword()"
-- "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.getPlainUsername()"
-- "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.handleChallenge(byte[])"
-- "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.handleOutcome(com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.SaslOutcome)"
-- "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.setSasToken(java.lang.String)"
+- uid: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.chooseSaslMechanism(java.lang.String[])"
+  fullName: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.chooseSaslMechanism(String[] mechanisms)"
+  name: "chooseSaslMechanism(String[] mechanisms)"
+  nameWithType: "SaslHandler.chooseSaslMechanism(String[] mechanisms)"
+  summary: "Handle the provided mechanisms and return the mechanism to be used from a provided list"
+  modifiers:
+  - "abstract"
+  parameters:
+  - description: "A list of available Sasl Mechanisms offered by the service"
+    name: "mechanisms"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />[]"
+  syntax: "public abstract String chooseSaslMechanism(String[] mechanisms)"
+  exceptions:
+  - description: "if sasl negotiation fails"
+    type: "<xref href=\"java.lang.Exception?alt=java.lang.Exception&text=Exception\" data-throw-if-not-resolved=\"False\" />"
+  desc: "Handle the provided mechanisms and return the mechanism to be used from a provided list"
+  returns:
+    description: "the mechanism to use"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.getInitPayload(java.lang.String)"
+  fullName: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.getInitPayload(String chosenMechanism)"
+  name: "getInitPayload(String chosenMechanism)"
+  nameWithType: "SaslHandler.getInitPayload(String chosenMechanism)"
+  summary: "Based on the chosen mechanism, builds and returns the bytes to be sent in the payload for the Sasl init message"
+  modifiers:
+  - "abstract"
+  parameters:
+  - description: "the sasl mechanism that was chosen"
+    name: "chosenMechanism"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public abstract byte[] getInitPayload(String chosenMechanism)"
+  exceptions:
+  - description: "if sasl negotiation fails"
+    type: "<xref href=\"java.lang.Exception?alt=java.lang.Exception&text=Exception\" data-throw-if-not-resolved=\"False\" />"
+  desc: "Based on the chosen mechanism, builds and returns the bytes to be sent in the payload for the Sasl init message"
+  returns:
+    description: "the bytes to be used as the paylaod for the Sasl init message"
+    type: "<xref href=\"byte?alt=byte&text=byte\" data-throw-if-not-resolved=\"False\" />[]"
+- uid: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.getPlainPassword()"
+  fullName: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.getPlainPassword()"
+  name: "getPlainPassword()"
+  nameWithType: "SaslHandler.getPlainPassword()"
+  modifiers:
+  - "abstract"
+  syntax: "public abstract String getPlainPassword()"
+  returns:
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.getPlainUsername()"
+  fullName: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.getPlainUsername()"
+  name: "getPlainUsername()"
+  nameWithType: "SaslHandler.getPlainUsername()"
+  modifiers:
+  - "abstract"
+  syntax: "public abstract String getPlainUsername()"
+  returns:
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.handleChallenge(byte[])"
+  fullName: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.handleChallenge(byte[] saslChallenge)"
+  name: "handleChallenge(byte[] saslChallenge)"
+  nameWithType: "SaslHandler.handleChallenge(byte[] saslChallenge)"
+  summary: "Handles a given challenge and returns the bytes to be sent in the payload of the Sasl response message"
+  modifiers:
+  - "abstract"
+  parameters:
+  - description: "The bytes from the Sasl challenge received from the service"
+    name: "saslChallenge"
+    type: "<xref href=\"byte?alt=byte&text=byte\" data-throw-if-not-resolved=\"False\" />[]"
+  syntax: "public abstract byte[] handleChallenge(byte[] saslChallenge)"
+  exceptions:
+  - description: "if sasl negotiation fails"
+    type: "<xref href=\"java.lang.Exception?alt=java.lang.Exception&text=Exception\" data-throw-if-not-resolved=\"False\" />"
+  desc: "Handles a given challenge and returns the bytes to be sent in the payload of the Sasl response message"
+  returns:
+    description: "the bytes to be sent in the payload of the Sasl response to the provided challenge"
+    type: "<xref href=\"byte?alt=byte&text=byte\" data-throw-if-not-resolved=\"False\" />[]"
+- uid: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.handleOutcome(com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.SaslOutcome)"
+  fullName: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.handleOutcome(SaslHandler.SaslOutcome outcome)"
+  name: "handleOutcome(SaslHandler.SaslOutcome outcome)"
+  nameWithType: "SaslHandler.handleOutcome(SaslHandler.SaslOutcome outcome)"
+  summary: "Handles what to do upon the Sasl negotiation finishing."
+  modifiers:
+  - "abstract"
+  parameters:
+  - description: "The outcome of the sasl negotiation"
+    name: "outcome"
+    type: "<xref href=\"com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.SaslOutcome?alt=com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.SaslOutcome&text=SaslOutcome\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public abstract void handleOutcome(SaslHandler.SaslOutcome outcome)"
+  exceptions:
+  - description: "if sasl negotiation fails"
+    type: "<xref href=\"java.lang.Exception?alt=java.lang.Exception&text=Exception\" data-throw-if-not-resolved=\"False\" />"
+  desc: "Handles what to do upon the Sasl negotiation finishing."
+- uid: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.setSasToken(java.lang.String)"
+  fullName: "com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler.setSasToken(String sasToken)"
+  name: "setSasToken(String sasToken)"
+  nameWithType: "SaslHandler.setSasToken(String sasToken)"
+  modifiers:
+  - "abstract"
+  parameters:
+  - name: "sasToken"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public abstract void setSasToken(String sasToken)"
 type: "interface"
 desc: "Interface definition for what client events are expected to be handled during Sasl negotiation"
 metadata: {}
