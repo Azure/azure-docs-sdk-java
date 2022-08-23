@@ -4,13 +4,35 @@ fullName: "com.azure.storage.blob.ProgressReceiver"
 name: "ProgressReceiver"
 nameWithType: "ProgressReceiver"
 summary: "A `ProgressReceiver` is an object that can be used to report progress on network transfers."
-deprecatedTag: "**Deprecated.** Use <xref uid=\"com.azure.core.util.ProgressListener\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ProgressListener\"></xref>."
+deprecatedTag: "Use <xref uid=\"com.azure.core.util.ProgressListener\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ProgressListener\"></xref>."
 syntax: "@Deprecated\npublic interface ProgressReceiver extends ProgressListener"
 methods:
-- "com.azure.storage.blob.ProgressReceiver.handleProgress(long)"
-- "com.azure.storage.blob.ProgressReceiver.reportProgress(long)"
+- uid: "com.azure.storage.blob.ProgressReceiver.handleProgress(long)"
+  fullName: "com.azure.storage.blob.ProgressReceiver.handleProgress(long bytesTransferred)"
+  name: "handleProgress(long bytesTransferred)"
+  nameWithType: "ProgressReceiver.handleProgress(long bytesTransferred)"
+  modifiers:
+  - "default"
+  parameters:
+  - name: "bytesTransferred"
+    type: "<xref href=\"long?alt=long&text=long\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public default void handleProgress(long bytesTransferred)"
+- uid: "com.azure.storage.blob.ProgressReceiver.reportProgress(long)"
+  fullName: "com.azure.storage.blob.ProgressReceiver.reportProgress(long bytesTransferred)"
+  name: "reportProgress(long bytesTransferred)"
+  nameWithType: "ProgressReceiver.reportProgress(long bytesTransferred)"
+  summary: "The callback function invoked as progress is reported."
+  modifiers:
+  - "abstract"
+  parameters:
+  - description: "The total number of bytes transferred during this transaction."
+    name: "bytesTransferred"
+    type: "<xref href=\"long?alt=long&text=long\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public abstract void reportProgress(long bytesTransferred)"
+  desc: "The callback function invoked as progress is reported."
 type: "interface"
 desc: "A `ProgressReceiver` is an object that can be used to report progress on network transfers. When specified on transfer operations, the `reportProgress` method will be called periodically with the total number of bytes transferred. The user may configure this method to report progress in whatever format desired. It is recommended that this type be used in conjunction with <xref uid=\"com.azure.storage.blob.ProgressReporter.addProgressReporting(reactor.core.publisher.Flux<java.nio.ByteBuffer>,com.azure.storage.blob.ProgressReceiver)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ProgressReporter#addProgressReporting(Flux, ProgressReceiver)\"></xref> to enable reporting on sequential transfers. Note that any method accepting a <xref uid=\"com.azure.storage.blob.models.ParallelTransferOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ParallelTransferOptions\"></xref> will use the `ProgressReceiver` specified there and will handle the logic to coordinate the reporting between parallel operations."
+hasDeprecatedTag: true
 implements:
 - "<xref href=\"com.azure.core.util.ProgressListener?alt=com.azure.core.util.ProgressListener&text=ProgressListener\" data-throw-if-not-resolved=\"False\" />"
 metadata: {}
