@@ -3,12 +3,12 @@ title: Azure Monitor Ingestion client library for Java
 keywords: Azure, java, SDK, API, azure-monitor-ingestion, monitor
 author: joshfree
 ms.author: jfree
-ms.date: 06/18/2022
+ms.date: 08/18/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: monitor
 ---
-# Azure Monitor Ingestion client library for Java - version 1.0.0-beta.1 
+# Azure Monitor Ingestion client library for Java - version 1.0.0-beta.2 
 
 
 The Azure Monitor Ingestion client library is used to send custom logs to [Azure Monitor][azure_monitor_overview].
@@ -32,9 +32,10 @@ that you create in Log Analytics workspace. You can even extend the schema of bu
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-monitor-ingestion</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
+[//]: # ({x-version-update-end})
 
 ### Create the client
 
@@ -49,9 +50,11 @@ To use the [DefaultAzureCredential][DefaultAzureCredential] provider shown below
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.5.2</version>
+    <version>1.5.4</version>
 </dependency>
 ```
+[//]: # ({x-version-update-end})
+
 Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
 
 #### Synchronous Logs Ingestion client
@@ -173,7 +176,7 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 <!-- LINKS -->
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-ingestion_1.0.0-beta.1/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-ingestion_1.0.0-beta.2/sdk/identity/azure-identity
 [azure_monitor_overview]: /azure/azure-monitor/overview
 [azure_subscription]: https://azure.microsoft.com/free
 [cla]: https://cla.microsoft.com
@@ -182,11 +185,11 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 [coc_contact]: mailto:opencode@microsoft.com
 [data_collection_endpoint]: //azure/azure-monitor/essentials/data-collection-endpoint-overview
 [data_collection_rule]: /azure/azure-monitor/essentials/data-collection-rule-overview
-[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-ingestion_1.0.0-beta.1/sdk/identity/azure-identity/README.md#defaultazurecredential
+[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-ingestion_1.0.0-beta.2/sdk/identity/azure-identity/README.md#defaultazurecredential
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [log_analytics_workspace]: //azure/azure-monitor/logs/log-analytics-workspace-overview
 [logging]: //azure/developer/java/sdk/logging-overview
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-ingestion_1.0.0-beta.1/sdk/monitor/azure-monitor-ingestion/src/samples/java/com/azure/monitor/ingestion
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-ingestion_1.0.0-beta.2/sdk/monitor/azure-monitor-ingestion/src/samples/java/com/azure/monitor/ingestion
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fmonitor%2Fazure-monitor-ingestion%2FREADME.png)
 
