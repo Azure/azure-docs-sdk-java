@@ -310,6 +310,23 @@ methods:
   returns:
     description: "A reactive response containing the list of blocks."
     type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.blob.models.BlockList?alt=com.azure.storage.blob.models.BlockList&text=BlockList\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
+- uid: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlock(java.lang.String,com.azure.core.util.BinaryData)"
+  fullName: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlock(String base64BlockId, BinaryData data)"
+  name: "stageBlock(String base64BlockId, BinaryData data)"
+  nameWithType: "BlockBlobAsyncClient.stageBlock(String base64BlockId, BinaryData data)"
+  summary: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commit<wbr>Block<wbr>List."
+  parameters:
+  - description: "A Base64 encoded <code>String</code> that specifies the ID for this block. Note that all block\n ids for a given blob must be the same length."
+    name: "base64BlockId"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  - description: "The data to write to the block. Note that this <code>BinaryData</code> must have defined length\n and must be replayable if retries are enabled (the default), see <xref uid=\"com.azure.core.util.BinaryData.isReplayable*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BinaryData#isReplayable()\"></xref>."
+    name: "data"
+    type: "<xref href=\"com.azure.core.util.BinaryData?alt=com.azure.core.util.BinaryData&text=BinaryData\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Void> stageBlock(String base64BlockId, BinaryData data)"
+  desc: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commitBlockList. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default), see <xref uid=\"com.azure.core.util.BinaryData.isReplayable*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BinaryData#isReplayable()\"></xref>.\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block"
+  returns:
+    description: "A reactive response signalling completion.\n\n <p><strong>Code Samples</strong></p>\n\n <!-- src_embed com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlock#String-BinaryData -->\n <pre>\n BinaryData.fromFlux&#40;data, length, false&#41;\n     .flatMap&#40;binaryData -&gt; client.stageBlock&#40;base64BlockID, binaryData&#41;&#41;\n     .subscribe&#40;\n         response -&gt; System.out.println&#40;&quot;Staging block completed&quot;&#41;,\n         error -&gt; System.out.printf&#40;&quot;Error when calling stage Block: %s&quot;, error&#41;&#41;;\n </pre>\n <!-- end com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlock#String-BinaryData -->"
+    type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;"
 - uid: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlock(java.lang.String,reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)"
   fullName: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlock(String base64BlockId, Flux<ByteBuffer> data, long length)"
   name: "stageBlock(String base64BlockId, Flux<ByteBuffer> data, long length)"
@@ -326,7 +343,7 @@ methods:
     name: "length"
     type: "<xref href=\"long?alt=long&text=long\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Void> stageBlock(String base64BlockId, Flux<ByteBuffer> data, long length)"
-  desc: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commitBlockList. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block"
+  desc: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commitBlockList. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block"
   returns:
     description: "A reactive response signalling completion.\n\n <p><strong>Code Samples</strong></p>\n\n <!-- src_embed com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlock#String-Flux-long -->\n <pre>\n client.stageBlock&#40;base64BlockID, data, length&#41;\n     .subscribe&#40;\n         response -&gt; System.out.println&#40;&quot;Staging block completed&quot;&#41;,\n         error -&gt; System.out.printf&#40;&quot;Error when calling stage Block: %s&quot;, error&#41;&#41;;\n </pre>\n <!-- end com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlock#String-Flux-long -->"
     type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -393,6 +410,20 @@ methods:
   returns:
     description: "A reactive response signalling completion."
     type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
+- uid: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlockWithResponse(com.azure.storage.blob.options.BlockBlobStageBlockOptions)"
+  fullName: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlockWithResponse(BlockBlobStageBlockOptions options)"
+  name: "stageBlockWithResponse(BlockBlobStageBlockOptions options)"
+  nameWithType: "BlockBlobAsyncClient.stageBlockWithResponse(BlockBlobStageBlockOptions options)"
+  summary: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commit<wbr>Block<wbr>List."
+  parameters:
+  - description: "<xref uid=\"com.azure.storage.blob.options.BlockBlobStageBlockOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BlockBlobStageBlockOptions\"></xref>"
+    name: "options"
+    type: "<xref href=\"com.azure.storage.blob.options.BlockBlobStageBlockOptions?alt=com.azure.storage.blob.options.BlockBlobStageBlockOptions&text=BlockBlobStageBlockOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Response<Void>> stageBlockWithResponse(BlockBlobStageBlockOptions options)"
+  desc: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commitBlockList. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default), see <xref uid=\"com.azure.core.util.BinaryData.isReplayable*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BinaryData#isReplayable()\"></xref>.\n\n**Code Samples**\n\n```java\nBinaryData.fromFlux(data, length, false)\n     .flatMap(binaryData -> client.stageBlockWithResponse(\n         new BlockBlobStageBlockOptions(base64BlockID, binaryData)\n             .setContentMd5(md5)\n             .setLeaseId(leaseId)))\n     .subscribe(response ->\n         System.out.printf(\"Staging block completed with status %d%n\", response.getStatusCode()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block"
+  returns:
+    description: "A reactive response signalling completion."
+    type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
 - uid: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlockWithResponse(java.lang.String,reactor.core.publisher.Flux<java.nio.ByteBuffer>,long,byte[],java.lang.String)"
   fullName: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.stageBlockWithResponse(String base64BlockId, Flux<ByteBuffer> data, long length, byte[] contentMd5, String leaseId)"
   name: "stageBlockWithResponse(String base64BlockId, Flux<ByteBuffer> data, long length, byte[] contentMd5, String leaseId)"
@@ -419,6 +450,37 @@ methods:
   returns:
     description: "A reactive response signalling completion."
     type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
+- uid: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.upload(com.azure.core.util.BinaryData)"
+  fullName: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.upload(BinaryData data)"
+  name: "upload(BinaryData data)"
+  nameWithType: "BlockBlobAsyncClient.upload(BinaryData data)"
+  summary: "Creates a new block blob."
+  parameters:
+  - description: "The data to write to the block. Note that this <code>BinaryData</code> must have defined length\n and must be replayable if retries are enabled (the default), see <xref uid=\"com.azure.core.util.BinaryData.isReplayable*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BinaryData#isReplayable()\"></xref>."
+    name: "data"
+    type: "<xref href=\"com.azure.core.util.BinaryData?alt=com.azure.core.util.BinaryData&text=BinaryData\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<BlockBlobItem> upload(BinaryData data)"
+  desc: "Creates a new block blob. By default, this method will not overwrite an existing blob. Updating an existing block blob overwrites any existing metadata on the blob. Partial updates are not supported with PutBlob; the content of the existing blob is overwritten with the new content. To perform a partial update of a block blob's, use PutBlock and PutBlockList. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n```java\nBinaryData.fromFlux(data, length, false)\n     .flatMap(binaryData -> client.upload(binaryData))\n     .subscribe(response ->\n         System.out.printf(\"Uploaded BlockBlob MD5 is %s%n\",\n             Base64.getEncoder().encodeToString(response.getContentMd5())));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
+  returns:
+    description: "A reactive response containing the information of the uploaded block blob."
+    type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.blob.models.BlockBlobItem?alt=com.azure.storage.blob.models.BlockBlobItem&text=BlockBlobItem\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.upload(com.azure.core.util.BinaryData,boolean)"
+  fullName: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.upload(BinaryData data, boolean overwrite)"
+  name: "upload(BinaryData data, boolean overwrite)"
+  nameWithType: "BlockBlobAsyncClient.upload(BinaryData data, boolean overwrite)"
+  summary: "Creates a new block blob, or updates the content of an existing block blob."
+  parameters:
+  - description: "The data to write to the block. Note that this <code>BinaryData</code> must have defined length\n and must be replayable if retries are enabled (the default), see <xref uid=\"com.azure.core.util.BinaryData.isReplayable*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BinaryData#isReplayable()\"></xref>."
+    name: "data"
+    type: "<xref href=\"com.azure.core.util.BinaryData?alt=com.azure.core.util.BinaryData&text=BinaryData\" data-throw-if-not-resolved=\"False\" />"
+  - description: "Whether to overwrite, should data exist on the blob."
+    name: "overwrite"
+    type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<BlockBlobItem> upload(BinaryData data, boolean overwrite)"
+  desc: "Creates a new block blob, or updates the content of an existing block blob. Updating an existing block blob overwrites any existing metadata on the blob. Partial updates are not supported with PutBlob; the content of the existing blob is overwritten with the new content. To perform a partial update of a block blob's, use PutBlock and PutBlockList. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n```java\nboolean overwrite = false; // Default behavior\n BinaryData.fromFlux(data, length, false)\n     .flatMap(binaryData -> client.upload(binaryData, overwrite))\n     .subscribe(response ->\n     System.out.printf(\"Uploaded BlockBlob MD5 is %s%n\",\n         Base64.getEncoder().encodeToString(response.getContentMd5())));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
+  returns:
+    description: "A reactive response containing the information of the uploaded block blob."
+    type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.blob.models.BlockBlobItem?alt=com.azure.storage.blob.models.BlockBlobItem&text=BlockBlobItem\" data-throw-if-not-resolved=\"False\" />&gt;"
 - uid: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.upload(reactor.core.publisher.Flux<java.nio.ByteBuffer>,long)"
   fullName: "com.azure.storage.blob.specialized.BlockBlobAsyncClient.upload(Flux<ByteBuffer> data, long length)"
   name: "upload(Flux<ByteBuffer> data, long length)"
@@ -551,4 +613,4 @@ type: "class"
 desc: "Client to a block blob. It may only be instantiated through a <xref uid=\"com.azure.storage.blob.specialized.SpecializedBlobClientBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SpecializedBlobClientBuilder\"></xref> or via the method <xref uid=\"com.azure.storage.blob.BlobAsyncClient.getBlockBlobAsyncClient()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BlobAsyncClient#getBlockBlobAsyncClient()\"></xref>. This class does not hold any state about a particular blob, but is instead a convenient way of sending appropriate requests to the resource on the service.\n\nPlease refer to the [Azure Docs][] for more information.\n\nNote this client is an async client that returns reactive responses from Spring Reactor Core project (https://projectreactor.io/). Calling the methods in this client will **NOT** start the actual network operation, until `.subscribe()` is called on the reactive response. You can simply convert one of these responses to a <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"java.util.concurrent.CompletableFuture\"></xref> object through <xref uid=\"reactor.core.publisher.Mono.toFuture*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Mono#toFuture()\"></xref>.\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs"
 metadata: {}
 package: "com.azure.storage.blob.specialized"
-artifact: com.azure:azure-storage-blob:12.18.0-beta.1
+artifact: com.azure:azure-storage-blob:12.20.0-beta.1
