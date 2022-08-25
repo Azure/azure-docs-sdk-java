@@ -1,12 +1,12 @@
 ---
+title: Azure Bot Service SDK for Java
+ms.service: botservice
+author: joshfree
+ms.devlang: java
+description: Reference for Azure Bot Service SDK for Java
+ms.data: 08/25/2022
 ms.topic: reference
 ms.author: jfree
-ms.devlang: java
-ms.data: 08/23/2022
-title: Azure Bot Service SDK for Java
-description: Reference for Azure Bot Service SDK for Java
-author: joshfree
-ms.service: botservice
 ---
 # Azure Bot Service SDK for Java - preview
 
