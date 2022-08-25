@@ -1,12 +1,12 @@
 ---
-title: Azure Subscription SDK for Java
-ms.service: subscription
 author: joshfree
-ms.devlang: java
 description: Reference for Azure Subscription SDK for Java
-ms.data: 08/25/2022
+title: Azure Subscription SDK for Java
+ms.devlang: java
 ms.topic: reference
+ms.service: subscription
 ms.author: jfree
+ms.data: 08/25/2022
 ---
 # Azure Subscription SDK for Java - preview
 

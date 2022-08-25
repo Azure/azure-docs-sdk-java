@@ -1,12 +1,12 @@
 ---
-title: Azure Logic Apps SDK for Java
-ms.service: logicapps
 author: joshfree
-ms.devlang: java
 description: Reference for Azure Logic Apps SDK for Java
-ms.data: 08/25/2022
+title: Azure Logic Apps SDK for Java
+ms.devlang: java
 ms.topic: reference
+ms.service: logicapps
 ms.author: jfree
+ms.data: 08/25/2022
 ---
 # Azure Logic Apps SDK for Java - preview
 

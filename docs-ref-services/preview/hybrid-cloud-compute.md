@@ -1,12 +1,12 @@
 ---
-title: Azure Hybrid Cloud Compute SDK for Java
-ms.service: hybridcloudcompute
 author: joshfree
-ms.devlang: java
 description: Reference for Azure Hybrid Cloud Compute SDK for Java
-ms.data: 08/25/2022
+title: Azure Hybrid Cloud Compute SDK for Java
+ms.devlang: java
 ms.topic: reference
+ms.service: hybridcloudcompute
 ms.author: jfree
+ms.data: 08/25/2022
 ---
 # Azure Hybrid Cloud Compute SDK for Java - preview
 

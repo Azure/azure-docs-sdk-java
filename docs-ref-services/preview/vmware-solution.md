@@ -1,12 +1,12 @@
 ---
-title: Azure VMware Solution SDK for Java
-ms.service: vmwaresolution
 author: joshfree
-ms.devlang: java
 description: Reference for Azure VMware Solution SDK for Java
-ms.data: 08/25/2022
+title: Azure VMware Solution SDK for Java
+ms.devlang: java
 ms.topic: reference
+ms.service: vmwaresolution
 ms.author: jfree
+ms.data: 08/25/2022
 ---
 # Azure VMware Solution SDK for Java - preview
 

@@ -1,12 +1,12 @@
 ---
-title: Azure DNS Resolver SDK for Java
-ms.service: dnsresolver
 author: joshfree
-ms.devlang: java
 description: Reference for Azure DNS Resolver SDK for Java
-ms.data: 08/24/2022
+title: Azure DNS Resolver SDK for Java
+ms.devlang: java
 ms.topic: reference
+ms.service: dnsresolver
 ms.author: jfree
+ms.data: 08/25/2022
 ---
 # Azure DNS Resolver SDK for Java - preview
 
