@@ -1,12 +1,12 @@
 ---
+ms.data: 08/27/2022
+ms.service: hybridcompute
 author: joshfree
-description: Reference for Azure Hybrid Compute SDK for Java
+ms.topic: reference
 title: Azure Hybrid Compute SDK for Java
 ms.devlang: java
-ms.topic: reference
-ms.service: hybridcompute
 ms.author: jfree
-ms.data: 08/25/2022
+description: Reference for Azure Hybrid Compute SDK for Java
 ---
 # Azure Hybrid Compute SDK for Java - preview
 
