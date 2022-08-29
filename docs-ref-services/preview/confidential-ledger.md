@@ -1,12 +1,12 @@
 ---
-ms.data: 08/27/2022
-ms.service: confidentialledger
-author: joshfree
-ms.topic: reference
-title: Azure Confidential Ledger SDK for Java
 ms.devlang: java
+ms.topic: reference
+author: joshfree
 ms.author: jfree
+title: Azure Confidential Ledger SDK for Java
+ms.data: 08/29/2022
 description: Reference for Azure Confidential Ledger SDK for Java
+ms.service: confidentialledger
 ---
 # Azure Confidential Ledger SDK for Java - preview
 

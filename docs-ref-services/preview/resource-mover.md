@@ -1,12 +1,12 @@
 ---
-ms.data: 08/27/2022
-ms.service: resourcemover
-author: joshfree
-ms.topic: reference
-title: Azure Resource Mover SDK for Java
 ms.devlang: java
+ms.topic: reference
+author: joshfree
 ms.author: jfree
+title: Azure Resource Mover SDK for Java
+ms.data: 08/29/2022
 description: Reference for Azure Resource Mover SDK for Java
+ms.service: resourcemover
 ---
 # Azure Resource Mover SDK for Java - preview
 
