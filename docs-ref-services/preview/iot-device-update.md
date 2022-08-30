@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
 ms.service: iotdeviceupdate
-ms.data: 08/30/2022
-ms.devlang: java
-title: Azure IoT Device Update SDK for Java
-description: Reference for Azure IoT Device Update SDK for Java
-ms.author: jfree
 author: joshfree
+title: Azure IoT Device Update SDK for Java
+ms.data: 08/30/2022
+ms.author: jfree
+ms.devlang: java
+description: Reference for Azure IoT Device Update SDK for Java
+ms.topic: reference
 ---
 # Azure IoT Device Update SDK for Java - preview
 
