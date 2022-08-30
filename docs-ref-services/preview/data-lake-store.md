@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
 ms.topic: reference
-author: joshfree
-ms.author: jfree
-title: Azure Data Lake Store SDK for Java
-ms.data: 08/29/2022
-description: Reference for Azure Data Lake Store SDK for Java
 ms.service: datalakestore
+ms.data: 08/30/2022
+ms.devlang: java
+title: Azure Data Lake Store SDK for Java
+description: Reference for Azure Data Lake Store SDK for Java
+ms.author: jfree
+author: joshfree
 ---
 # Azure Data Lake Store SDK for Java - preview
 
