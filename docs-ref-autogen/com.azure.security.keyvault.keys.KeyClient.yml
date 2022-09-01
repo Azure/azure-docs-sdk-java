@@ -28,7 +28,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public byte[] backupKey(String name)"
   desc: "Requests a backup of the specified <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> be downloaded to the client. The key backup operation exports a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> from Azure Key Vault in a protected form. Note that this operation does not return key material in a form that can be used outside the Azure Key Vault system, the returned key material is either protected to a Azure Key Vault HSM or to Azure Key Vault itself. The intent of this operation is to allow a client to generate a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> in one Azure Key Vault instance, backup the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>, and then restore it into another Azure Key Vault instance. The backup operation may be used to export, in protected form, any <xref uid=\"com.azure.security.keyvault.keys.models.KeyType\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key type\"></xref> from Azure Key Vault. Individual versions of a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> cannot be backed up. `Backup/Restore` can be performed within geographical boundaries only; meaning that a backup from one geographical area cannot be restored to another geographical area. For example, a backup from the US geographical area cannot be restored in an EU geographical area. This operation requires the `key/backup` permission.\n\n**Code Samples**\n\nBacks up the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> from the key vault.\n\n```java\nbyte[] keyBackup = keyClient.backupKey(\"keyName\");\n\n System.out.printf(\"Key backup byte array length: %s%n\", keyBackup.length);\n```"
   returns:
@@ -42,7 +42,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Context\"></xref> that is passed through the <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpPipeline\"></xref> during the service\n call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -59,12 +59,12 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> to be deleted."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public SyncPoller<DeletedKey,Void> beginDeleteKey(String name)"
   desc: "Deletes a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> of any type from the key vault. If soft-delete is enabled on the key vault then the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> is placed in the deleted state and requires to be purged for permanent deletion else the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> is permanently deleted. The delete operation applies to any <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> stored in Azure Key Vault but it cannot be applied to an individual version of a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>. This operation removes the cryptographic material associated with the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>, which means the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> is not usable for `Sign/Verify`, `Wrap/Unwrap` or `Encrypt/Decrypt` operations. This operation requires the `keys/delete` permission.\n\n**Code Samples**\n\nDeletes the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> from the key vault. Prints out the recovery id of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref>.\n\n```java\nSyncPoller<DeletedKey, Void> deleteKeyPoller = keyClient.beginDeleteKey(\"keyName\");\n PollResponse<DeletedKey> deleteKeyPollResponse = deleteKeyPoller.poll();\n\n // Deleted date only works for SoftDelete Enabled Key Vault.\n DeletedKey deletedKey = deleteKeyPollResponse.getValue();\n\n System.out.printf(\"Key delete date: %s%n\" + deletedKey.getDeletedOn());\n System.out.printf(\"Deleted key's recovery id: %s%n\", deletedKey.getRecoveryId());\n\n // Key is being deleted on the server.\n deleteKeyPoller.waitForCompletion();\n // Key is deleted\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.util.polling.SyncPoller\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SyncPoller\"></xref> to poll on and retrieve <xref uid=\"com.azure.security.keyvault.keys.models.DeletedKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref>"
-    type: "<xref href=\"com.azure.core.util.polling.SyncPoller?alt=com.azure.core.util.polling.SyncPoller&text=SyncPoller\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.keys.models.DeletedKey?alt=com.azure.security.keyvault.keys.models.DeletedKey&text=DeletedKey\" data-throw-if-not-resolved=\"False\" />,<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<xref href=\"com.azure.core.util.polling.SyncPoller?alt=com.azure.core.util.polling.SyncPoller&text=SyncPoller\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.keys.models.DeletedKey?alt=com.azure.security.keyvault.keys.models.DeletedKey&text=DeletedKey\" data-throw-if-not-resolved=\"False\" />,<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
 - uid: "com.azure.security.keyvault.keys.KeyClient.beginRecoverDeletedKey(java.lang.String)"
   fullName: "com.azure.security.keyvault.keys.KeyClient.beginRecoverDeletedKey(String name)"
   name: "beginRecoverDeletedKey(String name)"
@@ -73,12 +73,12 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref> to be recovered."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public SyncPoller<KeyVaultKey,Void> beginRecoverDeletedKey(String name)"
   desc: "Recovers the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref> in the key vault to its latest version and can only be performed on a soft-delete enabled vault. An attempt to recover an <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"non-deleted key\"></xref> will return an error. Consider this the inverse of the delete operation on soft-delete enabled vaults. This operation requires the `keys/recover` permission.\n\n**Code Samples**\n\nRecovers the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref> from the key vault enabled for soft-delete.\n\n```java\nSyncPoller<KeyVaultKey, Void> recoverKeyPoller = keyClient.beginRecoverDeletedKey(\"deletedKeyName\");\n\n PollResponse<KeyVaultKey> recoverKeyPollResponse = recoverKeyPoller.poll();\n\n KeyVaultKey recoveredKey = recoverKeyPollResponse.getValue();\n System.out.printf(\"Recovered key name: %s%n\", recoveredKey.getName());\n System.out.printf(\"Recovered key id: %s%n\", recoveredKey.getId());\n\n // Key is being recovered on the server.\n recoverKeyPoller.waitForCompletion();\n // Key is recovered\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.util.polling.SyncPoller\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SyncPoller\"></xref> to poll on and retrieve <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"recovered key\"></xref>."
-    type: "<xref href=\"com.azure.core.util.polling.SyncPoller?alt=com.azure.core.util.polling.SyncPoller&text=SyncPoller\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.keys.models.KeyVaultKey?alt=com.azure.security.keyvault.keys.models.KeyVaultKey&text=KeyVaultKey\" data-throw-if-not-resolved=\"False\" />,<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<xref href=\"com.azure.core.util.polling.SyncPoller?alt=com.azure.core.util.polling.SyncPoller&text=SyncPoller\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.keys.models.KeyVaultKey?alt=com.azure.security.keyvault.keys.models.KeyVaultKey&text=KeyVaultKey\" data-throw-if-not-resolved=\"False\" />,<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
 - uid: "com.azure.security.keyvault.keys.KeyClient.createEcKey(com.azure.security.keyvault.keys.models.CreateEcKeyOptions)"
   fullName: "com.azure.security.keyvault.keys.KeyClient.createEcKey(CreateEcKeyOptions createEcKeyOptions)"
   name: "createEcKey(CreateEcKeyOptions createEcKeyOptions)"
@@ -132,7 +132,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> being created."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The type of <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> to create. For valid values, see <xref uid=\"com.azure.security.keyvault.keys.models.KeyType\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyType\"></xref>."
     name: "keyType"
     type: "<xref href=\"com.azure.security.keyvault.keys.models.KeyType?alt=com.azure.security.keyvault.keys.models.KeyType&text=KeyType\" data-throw-if-not-resolved=\"False\" />"
@@ -228,7 +228,7 @@ methods:
   parameters:
   - description: "The name of the key."
     name: "keyName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public CryptographyClient getCryptographyClient(String keyName)"
   desc: "Creates a <xref uid=\"com.azure.security.keyvault.keys.cryptography.CryptographyClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CryptographyClient\"></xref> for the latest version of a given key.\n\nTo ensure correct behavior when performing operations such as `Decrypt`, `Unwrap` and `Verify`, it is recommended to use a <xref uid=\"com.azure.security.keyvault.keys.cryptography.CryptographyClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CryptographyClient\"></xref> created for the specific key version that was used for the corresponding inverse operation: `Encrypt`, `Wrap`, or `Sign`, respectively.\n\nYou can provide a key version either via <xref uid=\"com.azure.security.keyvault.keys.KeyClient.getCryptographyClient(java.lang.String,java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyClient#getCryptographyClient(String, String)\"></xref> or by ensuring it is included in the `keyIdentifier` passed to <xref uid=\"com.azure.security.keyvault.keys.cryptography.CryptographyClientBuilder.keyIdentifier(java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CryptographyClientBuilder#keyIdentifier(String)\"></xref> before building a client."
   returns:
@@ -242,10 +242,10 @@ methods:
   parameters:
   - description: "The name of the key."
     name: "keyName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The key version."
     name: "keyVersion"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public CryptographyClient getCryptographyClient(String keyName, String keyVersion)"
   desc: "Creates a <xref uid=\"com.azure.security.keyvault.keys.cryptography.CryptographyClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CryptographyClient\"></xref> for a given key version."
   returns:
@@ -259,7 +259,7 @@ methods:
   parameters:
   - description: "The name of the deleted <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public DeletedKey getDeletedKey(String name)"
   desc: "Gets the public part of a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref>. The get deleted Key operation is applicable for soft-delete enabled vaults. This operation requires the `keys/get` permission.\n\n**Code Samples**\n\nGets the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref> from the key vault enabled for soft-delete. Prints out the details of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref>.\n\n```java\nDeletedKey deletedKey = keyClient.getDeletedKey(\"keyName\");\n\n System.out.printf(\"Deleted key's recovery id: %s%n\", deletedKey.getRecoveryId());\n```"
   returns:
@@ -273,7 +273,7 @@ methods:
   parameters:
   - description: "The name of the deleted <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Context\"></xref> that is passed through the <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpPipeline\"></xref> during the service\n call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -290,7 +290,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>, cannot be <code>null</code>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public KeyVaultKey getKey(String name)"
   desc: "Gets the public part of the specified <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> and key version. The get key operation is applicable to all <xref uid=\"com.azure.security.keyvault.keys.models.KeyType\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key types\"></xref> and it requires the `keys/get` permission.\n\n**Code Samples**\n\nGets a specific version of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> in the key vault. Prints out the details of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"retrieved key\"></xref>.\n\n```java\nKeyVaultKey keyWithVersionValue = keyClient.getKey(\"keyName\");\n\n System.out.printf(\"Retrieved key with name: %s and: id %s%n\", keyWithVersionValue.getName(),\n     keyWithVersionValue.getId());\n```"
   returns:
@@ -304,10 +304,10 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>, cannot be <code>null</code>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The version of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>  to retrieve. If this is an empty string or\n <code>null</code>, this call is equivalent to calling <xref uid=\"com.azure.security.keyvault.keys.KeyClient.getKey(java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyClient#getKey(String)\"></xref>, with the latest version\n being retrieved."
     name: "version"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public KeyVaultKey getKey(String name, String version)"
   desc: "Gets the public part of the specified <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> and key version. The get key operation is applicable to all <xref uid=\"com.azure.security.keyvault.keys.models.KeyType\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key types\"></xref> and it requires the `keys/get` permission.\n\n**Code Samples**\n\nGets a specific version of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> in the key vault. Prints out the details of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"retrieved key\"></xref>.\n\n```java\nString keyVersion = \"6A385B124DEF4096AF1361A85B16C204\";\n KeyVaultKey keyWithVersion = keyClient.getKey(\"keyName\", keyVersion);\n\n System.out.printf(\"Retrieved key with name: %s and: id %s%n\", keyWithVersion.getName(),\n     keyWithVersion.getId());\n```"
   returns:
@@ -321,7 +321,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "keyName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public KeyRotationPolicy getKeyRotationPolicy(String keyName)"
   desc: "Gets the <xref uid=\"com.azure.security.keyvault.keys.models.KeyRotationPolicy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyRotationPolicy\"></xref> for the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> with the provided name. This operation requires the `keys/get` permission.\n\n**Code Samples**\n\nRetrieves the <xref uid=\"com.azure.security.keyvault.keys.models.KeyRotationPolicy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"rotation policy\"></xref> of a given <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>. Prints out the <xref uid=\"com.azure.security.keyvault.keys.models.KeyRotationPolicy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"rotation policy key\"></xref> details.\n\n```java\nKeyRotationPolicy keyRotationPolicy = keyClient.getKeyRotationPolicy(\"keyName\");\n\n System.out.printf(\"Retrieved key rotation policy with id: %s%n\", keyRotationPolicy.getId());\n```"
   returns:
@@ -335,7 +335,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "keyName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Context\"></xref> that is passed through the <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpPipeline\"></xref> during the service\n call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -352,10 +352,10 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>, cannot be <code>null</code>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The version of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>  to retrieve. If this is an empty string or\n <code>null</code>, this call is equivalent to calling <xref uid=\"com.azure.security.keyvault.keys.KeyClient.getKey(java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyClient#getKey(String)\"></xref>, with the latest version\n being retrieved."
     name: "version"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Context\"></xref> that is passed through the <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpPipeline\"></xref> during the service\n call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -404,7 +404,7 @@ methods:
   desc: "Get the vault endpoint url to which service requests are sent to."
   returns:
     description: "The vault endpoint url."
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
 - uid: "com.azure.security.keyvault.keys.KeyClient.importKey(com.azure.security.keyvault.keys.models.ImportKeyOptions)"
   fullName: "com.azure.security.keyvault.keys.KeyClient.importKey(ImportKeyOptions importKeyOptions)"
   name: "importKey(ImportKeyOptions importKeyOptions)"
@@ -427,7 +427,7 @@ methods:
   parameters:
   - description: "The name for the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"imported key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The <xref uid=\"com.azure.security.keyvault.keys.models.JsonWebKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonWebKey\"></xref> being imported."
     name: "keyMaterial"
     type: "<xref href=\"com.azure.security.keyvault.keys.models.JsonWebKey?alt=com.azure.security.keyvault.keys.models.JsonWebKey&text=JsonWebKey\" data-throw-if-not-resolved=\"False\" />"
@@ -485,7 +485,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public PagedIterable<KeyProperties> listPropertiesOfKeyVersions(String name)"
   desc: "List all versions of the specified <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"keys\"></xref>. The individual key response in the flux is represented by <xref uid=\"com.azure.security.keyvault.keys.models.KeyProperties\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyProperties\"></xref> as only the key identifier, attributes and tags are provided in the response. The key material values are not provided in the response. This operation requires the `keys/list` permission.\n\nIt is possible to get <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"full keys\"></xref> with key material for each version from this information. Loop over the <xref uid=\"com.azure.security.keyvault.keys.models.KeyProperties\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> and call <xref uid=\"com.azure.security.keyvault.keys.KeyClient.getKey(java.lang.String,java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyClient#getKey(String, String)\"></xref>. This will return the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"keys\"></xref> with key material included of the specified versions.\n\n```java\nfor (KeyProperties keyProperties : keyClient.listPropertiesOfKeyVersions(\"keyName\")) {\n     KeyVaultKey key = keyClient.getKey(keyProperties.getName(), keyProperties.getVersion());\n\n     System.out.printf(\"Retrieved key version: %s with name: %s and type: %s%n\",\n         key.getProperties().getVersion(), key.getName(), key.getKeyType());\n }\n```\n\n**Code Samples to iterate over key versions by page**\n\nIt is possible to get <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"full keys\"></xref> with key material for each version from this information. Iterate over all the <xref uid=\"com.azure.security.keyvault.keys.models.KeyProperties\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> by page and call <xref uid=\"com.azure.security.keyvault.keys.KeyClient.getKey(java.lang.String,java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyClient#getKey(String, String)\"></xref>. This will return the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"keys\"></xref> with key material included of the specified versions.\n\n```java\nkeyClient.listPropertiesOfKeyVersions(\"keyName\").iterableByPage().forEach(pagedResponse -> {\n     System.out.printf(\"Got response details. Url: %s. Status code: %d.%n\",\n         pagedResponse.getRequest().getUrl(), pagedResponse.getStatusCode());\n     pagedResponse.getElements().forEach(keyProperties ->\n         System.out.printf(\"Key name: %s. Key version: %s.%n\", keyProperties.getName(),\n             keyProperties.getVersion()));\n });\n```"
   returns:
@@ -499,7 +499,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Context\"></xref> that is passed through the <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpPipeline\"></xref> during the service\n call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -540,7 +540,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public void purgeDeletedKey(String name)"
   desc: "Permanently deletes the specified <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> without the possibility of recovery. The purge deleted key operation is applicable for soft-delete enabled vaults. This operation requires the `keys/purge` permission.\n\n**Code Samples**\n\nPurges the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref> from the key vault enabled for soft-delete.\n\n```java\nkeyClient.purgeDeletedKey(\"deletedKeyName\");\n```"
 - uid: "com.azure.security.keyvault.keys.KeyClient.purgeDeletedKeyWithResponse(java.lang.String,com.azure.core.util.Context)"
@@ -551,7 +551,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Context\"></xref> that is passed through the <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpPipeline\"></xref> during the service\n call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -559,7 +559,7 @@ methods:
   desc: "Permanently deletes the specified <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> without the possibility of recovery. The purge deleted key operation is applicable for soft-delete enabled vaults. This operation requires the `keys/purge` permission.\n\n**Code Samples**\n\nPurges the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted key\"></xref> from the key vault enabled for soft-delete.\n\n```java\nResponse<Void> purgeDeletedKeyResponse = keyClient.purgeDeletedKeyWithResponse(\"deletedKeyName\",\n     new Context(\"key1\", \"value1\"));\n\n System.out.printf(\"Purge response status code: %d%n\", purgeDeletedKeyResponse.getStatusCode());\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.http.rest.Response\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Response\"></xref> containing status code and HTTP headers."
-    type: "<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
 - uid: "com.azure.security.keyvault.keys.KeyClient.releaseKey(java.lang.String,java.lang.String)"
   fullName: "com.azure.security.keyvault.keys.KeyClient.releaseKey(String name, String targetAttestationToken)"
   name: "releaseKey(String name, String targetAttestationToken)"
@@ -568,10 +568,10 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> to release."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The attestation assertion for the target of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> release."
     name: "targetAttestationToken"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public ReleaseKeyResult releaseKey(String name, String targetAttestationToken)"
   desc: "Releases the latest version of a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>.\n\nThe <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> must be exportable. This operation requires the `keys/release` permission.\n\n**Code Samples**\n\nReleases a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>. Prints out the signed object that contains the release key.\n\n```java\nString targetAttestationToken = \"someAttestationToken\";\n ReleaseKeyResult releaseKeyResult = keyClient.releaseKey(\"keyName\", targetAttestationToken);\n\n System.out.printf(\"Signed object containing released key: %s%n\", releaseKeyResult);\n```"
   returns:
@@ -585,13 +585,13 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> to release."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The version of the key to release. If this is empty or <code>null</code>, this call is equivalent to\n calling <xref uid=\"com.azure.security.keyvault.keys.KeyAsyncClient.releaseKey(java.lang.String,java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyAsyncClient#releaseKey(String, String)\"></xref>, with the latest key version being released."
     name: "version"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The attestation assertion for the target of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> release."
     name: "targetAttestationToken"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public ReleaseKeyResult releaseKey(String name, String version, String targetAttestationToken)"
   desc: "Releases a specific version of a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>.\n\nThe <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> must be exportable. This operation requires the `keys/release` permission.\n\n**Code Samples**\n\nReleases a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>. Prints out the signed object that contains the release key.\n\n```java\nString myKeyVersion = \"6A385B124DEF4096AF1361A85B16C204\";\n String myTargetAttestationToken = \"someAttestationToken\";\n ReleaseKeyResult releaseKeyVersionResult =\n     keyClient.releaseKey(\"keyName\", myKeyVersion, myTargetAttestationToken);\n\n System.out.printf(\"Signed object containing released key: %s%n\", releaseKeyVersionResult);\n```"
   returns:
@@ -605,13 +605,13 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> to release."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The version of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> to release. If this is empty or <code>null</code>, this call\n is equivalent to calling <xref uid=\"com.azure.security.keyvault.keys.KeyAsyncClient.releaseKey(java.lang.String,java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyAsyncClient#releaseKey(String, String)\"></xref>, with the latest key version being\n released."
     name: "version"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The attestation assertion for the target of the key release."
     name: "targetAttestationToken"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional <xref uid=\"com.azure.security.keyvault.keys.models.ReleaseKeyOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"options\"></xref> for releasing a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "releaseKeyOptions"
     type: "<xref href=\"com.azure.security.keyvault.keys.models.ReleaseKeyOptions?alt=com.azure.security.keyvault.keys.models.ReleaseKeyOptions&text=ReleaseKeyOptions\" data-throw-if-not-resolved=\"False\" />"
@@ -662,7 +662,7 @@ methods:
   parameters:
   - description: "The name of <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> to be rotated. The system will generate a new version in the\n specified <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public KeyVaultKey rotateKey(String name)"
   desc: "Rotates a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>. The rotate key operation will do so based on <xref uid=\"com.azure.security.keyvault.keys.models.KeyRotationPolicy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key's rotation policy\"></xref>. This operation requires the `keys/rotate` permission.\n\n**Code Samples**\n\nRotates a <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>. Prints out <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"rotated key\"></xref> details.\n\n```java\nKeyVaultKey key = keyClient.rotateKey(\"keyName\");\n\n System.out.printf(\"Rotated key with name: %s and version:%s%n\", key.getName(),\n     key.getProperties().getVersion());\n```"
   returns:
@@ -676,7 +676,7 @@ methods:
   parameters:
   - description: "The name of <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref> to be rotated. The system will generate a new version in the\n specified <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Context\"></xref> that is passed through the <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpPipeline\"></xref> during the service\n call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -730,7 +730,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "keyName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The <xref uid=\"com.azure.security.keyvault.keys.models.KeyRotationPolicy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyRotationPolicy\"></xref> for the ke<xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>y."
     name: "keyRotationPolicy"
     type: "<xref href=\"com.azure.security.keyvault.keys.models.KeyRotationPolicy?alt=com.azure.security.keyvault.keys.models.KeyRotationPolicy&text=KeyRotationPolicy\" data-throw-if-not-resolved=\"False\" />"
@@ -747,7 +747,7 @@ methods:
   parameters:
   - description: "The name of the <xref uid=\"com.azure.security.keyvault.keys.models.KeyVaultKey\" data-throw-if-not-resolved=\"false\" data-raw-source=\"key\"></xref>."
     name: "keyName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The <xref uid=\"com.azure.security.keyvault.keys.models.KeyRotationPolicy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"KeyRotationPolicy\"></xref> for the key."
     name: "keyRotationPolicy"
     type: "<xref href=\"com.azure.security.keyvault.keys.models.KeyRotationPolicy?alt=com.azure.security.keyvault.keys.models.KeyRotationPolicy&text=KeyRotationPolicy\" data-throw-if-not-resolved=\"False\" />"
