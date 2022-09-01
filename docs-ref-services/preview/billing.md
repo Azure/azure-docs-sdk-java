@@ -1,12 +1,12 @@
 ---
 author: joshfree
+ms.devlang: java
+ms.service: billing
+ms.data: 09/01/2022
+description: Reference for Azure Billing SDK for Java
+ms.topic: reference
 title: Azure Billing SDK for Java
 ms.author: jfree
-ms.service: billing
-ms.topic: reference
-description: Reference for Azure Billing SDK for Java
-ms.data: 08/31/2022
-ms.devlang: java
 ---
 # Azure Billing SDK for Java - preview
 

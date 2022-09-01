@@ -1,12 +1,12 @@
 ---
 author: joshfree
+ms.devlang: java
+ms.service: operationsmanagement
+ms.data: 09/01/2022
+description: Reference for Azure Operations Management SDK for Java
+ms.topic: reference
 title: Azure Operations Management SDK for Java
 ms.author: jfree
-ms.service: operationsmanagement
-ms.topic: reference
-description: Reference for Azure Operations Management SDK for Java
-ms.data: 08/31/2022
-ms.devlang: java
 ---
 # Azure Operations Management SDK for Java - preview
 

@@ -1,12 +1,12 @@
 ---
 author: joshfree
+ms.devlang: java
+ms.service: devtestlabs
+ms.data: 09/01/2022
+description: Reference for Azure DevTest Labs SDK for Java
+ms.topic: reference
 title: Azure DevTest Labs SDK for Java
 ms.author: jfree
-ms.service: devtestlabs
-ms.topic: reference
-description: Reference for Azure DevTest Labs SDK for Java
-ms.data: 08/31/2022
-ms.devlang: java
 ---
 # Azure DevTest Labs SDK for Java - preview
 

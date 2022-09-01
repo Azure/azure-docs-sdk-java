@@ -1,12 +1,12 @@
 ---
 author: g2vinay
+ms.devlang: java
+ms.service: identity
+ms.data: 09/01/2022
+description: Reference for Azure Identity SDK for Java
+ms.topic: reference
 title: Azure Identity SDK for Java
 ms.author: vigera
-ms.service: identity
-ms.topic: reference
-description: Reference for Azure Identity SDK for Java
-ms.data: 08/31/2022
-ms.devlang: java
 ---
 # Azure Identity SDK for Java - preview
 

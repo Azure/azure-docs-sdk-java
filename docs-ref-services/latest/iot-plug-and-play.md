@@ -1,12 +1,12 @@
 ---
 author: joshfree
+ms.devlang: java
+ms.service: iotplugandplay
+ms.data: 09/01/2022
+description: Reference for Azure IoT Plug and Play SDK for Java
+ms.topic: reference
 title: Azure IoT Plug and Play SDK for Java
 ms.author: jfree
-ms.service: iotplugandplay
-ms.topic: reference
-description: Reference for Azure IoT Plug and Play SDK for Java
-ms.data: 08/31/2022
-ms.devlang: java
 ---
 # Azure IoT Plug and Play SDK for Java - latest
 
