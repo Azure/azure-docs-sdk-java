@@ -2,7 +2,7 @@
 author: joshfree
 title: Azure Functions SDK for Java
 ms.author: jfree
-ms.service: functions
+ms.service: azure-functions
 ms.topic: reference
 description: Reference for Azure Functions SDK for Java
 ms.data: 08/31/2022
