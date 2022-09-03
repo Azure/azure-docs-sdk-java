@@ -1,0 +1,55 @@
+### YamlMime:JavaType
+uid: "com.azure.core.metrics.opentelemetry.OpenTelemetryMeterProvider"
+fullName: "com.azure.core.metrics.opentelemetry.OpenTelemetryMeterProvider"
+name: "OpenTelemetryMeterProvider"
+nameWithType: "OpenTelemetryMeterProvider"
+summary: "\\{@inherit<wbr>Doc\\}"
+inheritances:
+- "<xref href=\"java.lang.Object?displayProperty=fullName\" data-throw-if-not-resolved=\"False\" />"
+inheritedMembers:
+- "java.lang.Object.clone()"
+- "java.lang.Object.equals(java.lang.Object)"
+- "java.lang.Object.finalize()"
+- "java.lang.Object.getClass()"
+- "java.lang.Object.hashCode()"
+- "java.lang.Object.notify()"
+- "java.lang.Object.notifyAll()"
+- "java.lang.Object.toString()"
+- "java.lang.Object.wait()"
+- "java.lang.Object.wait(long)"
+- "java.lang.Object.wait(long,int)"
+syntax: "public final class OpenTelemetryMeterProvider implements MeterProvider"
+constructors:
+- uid: "com.azure.core.metrics.opentelemetry.OpenTelemetryMeterProvider.OpenTelemetryMeterProvider()"
+  fullName: "com.azure.core.metrics.opentelemetry.OpenTelemetryMeterProvider.OpenTelemetryMeterProvider()"
+  name: "OpenTelemetryMeterProvider()"
+  nameWithType: "OpenTelemetryMeterProvider.OpenTelemetryMeterProvider()"
+  syntax: "public OpenTelemetryMeterProvider()"
+methods:
+- uid: "com.azure.core.metrics.opentelemetry.OpenTelemetryMeterProvider.createMeter(java.lang.String,java.lang.String,com.azure.core.util.MetricsOptions)"
+  fullName: "com.azure.core.metrics.opentelemetry.OpenTelemetryMeterProvider.createMeter(String libraryName, String libraryVersion, MetricsOptions options)"
+  name: "createMeter(String libraryName, String libraryVersion, MetricsOptions options)"
+  nameWithType: "OpenTelemetryMeterProvider.createMeter(String libraryName, String libraryVersion, MetricsOptions options)"
+  summary: "Creates named and versioned Open<wbr>Telemetry-based implementation of <xref uid=\"com.azure.core.util.metrics.Meter\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Meter\"></xref> Use global Open<wbr>Telemetry SDK configuration:"
+  parameters:
+  - description: "Azure client library package name"
+    name: "libraryName"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  - description: "Azure client library version"
+    name: "libraryVersion"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  - description: "instance of <xref uid=\"com.azure.core.util.MetricsOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"MetricsOptions\"></xref>"
+    name: "options"
+    type: "<xref href=\"com.azure.core.util.MetricsOptions?alt=com.azure.core.util.MetricsOptions&text=MetricsOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Meter createMeter(String libraryName, String libraryVersion, MetricsOptions options)"
+  desc: "Creates named and versioned OpenTelemetry-based implementation of <xref uid=\"com.azure.core.util.metrics.Meter\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Meter\"></xref> Use global OpenTelemetry SDK configuration:\n\n```java\n// configure OpenTelemetry SDK using OpenTelemetry SDK Autoconfigure\n AutoConfiguredOpenTelemetrySdk.initialize();\n\n // configure Azure Client, no metric configuration needed\n AzureClient sampleClient = new AzureClientBuilder()\n     .endpoint(\"https://my-client.azure.com\")\n     .build();\n\n Span span = GlobalOpenTelemetry.getTracer(\"azure-core-samples\")\n     .spanBuilder(\"doWork\")\n     .startSpan();\n\n try (Scope scope = span.makeCurrent()) {\n     // do some work\n\n     // Current context flows to OpenTelemetry metrics and is used to populate exemplars\n     // you can also pass OpenTelemetry context explicitly by passing it under PARENT_TRACE_CONTEXT_KEY\n     String response = sampleClient.methodCall(\"get items\");\n     // do more work\n }\n\n span.end();\n```\n\nIt's also possible to pass custom OpenTelemetry SDK configuration\n\n```java\n// configure OpenTelemetry SDK\n SdkTracerProvider tracerProvider = SdkTracerProvider.builder()\n     .addSpanProcessor(BatchSpanProcessor.builder(OtlpGrpcSpanExporter.builder().build()).build())\n     .build();\n\n SdkMeterProvider meterProvider = SdkMeterProvider.builder()\n     .registerMetricReader(PeriodicMetricReader.builder(OtlpGrpcMetricExporter.builder().build()).build())\n     .build();\n\n OpenTelemetry openTelemetry = OpenTelemetrySdk.builder()\n     .setTracerProvider(tracerProvider)\n     .setMeterProvider(meterProvider)\n     .setPropagators(ContextPropagators.create(W3CTraceContextPropagator.getInstance()))\n     .build();\n\n Tracer tracer = openTelemetry.getTracer(\"azure-core-samples\");\n\n // pass custom OpenTelemetry SdkMeterProvider to MetricsOptions\n MetricsOptions metricsOptions = new OpenTelemetryMetricsOptions()\n     .setProvider(openTelemetry.getMeterProvider());\n\n // configure Azure Client to use customized MetricOptions\n AzureClient sampleClient = new AzureClientBuilder()\n     .endpoint(\"Https://my-client.azure.com\")\n     .clientOptions(new ClientOptions().setMetricsOptions(metricsOptions))\n     .build();\n\n Span span = tracer.spanBuilder(\"doWork\").startSpan();\n io.opentelemetry.context.Context otelContext = io.opentelemetry.context.Context.current().with(span);\n\n // do some work\n\n // Context is used by OpenTelemetry metrics to populate exemplars, Context.current() will be used if no\n // explicit context is provided.\n String response = sampleClient.methodCall(\"get items\",\n     new Context(PARENT_TRACE_CONTEXT_KEY, otelContext));\n\n // do more work\n span.end();\n```"
+  returns:
+    description: "a meter instance."
+    type: "<xref href=\"com.azure.core.util.metrics.Meter?alt=com.azure.core.util.metrics.Meter&text=Meter\" data-throw-if-not-resolved=\"False\" />"
+type: "class"
+desc: "\\{@inheritDoc\\}"
+implements:
+- "<xref href=\"com.azure.core.util.metrics.MeterProvider?alt=com.azure.core.util.metrics.MeterProvider&text=MeterProvider\" data-throw-if-not-resolved=\"False\" />"
+metadata: {}
+package: "com.azure.core.metrics.opentelemetry"
+artifact: com.azure:azure-core-metrics-opentelemetry:1.0.0-beta.1
