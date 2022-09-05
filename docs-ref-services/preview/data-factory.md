@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
-ms.data: 09/03/2022
-author: joshfree
-ms.service: datafactory
-title: Azure Data Factory SDK for Java
 ms.author: jfree
-ms.topic: reference
+ms.devlang: java
+ms.service: datafactory
+author: joshfree
+ms.data: 09/05/2022
 description: Reference for Azure Data Factory SDK for Java
+ms.topic: reference
+title: Azure Data Factory SDK for Java
 ---
 # Azure Data Factory SDK for Java - preview
 

@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
-ms.data: 09/03/2022
-author: joshfree
-ms.service: elastic
-title: Azure Elastic SDK for Java
 ms.author: jfree
-ms.topic: reference
+ms.devlang: java
+ms.service: elastic
+author: joshfree
+ms.data: 09/05/2022
 description: Reference for Azure Elastic SDK for Java
+ms.topic: reference
+title: Azure Elastic SDK for Java
 ---
 # Azure Elastic SDK for Java - preview
 

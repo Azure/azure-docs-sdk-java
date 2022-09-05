@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
-ms.data: 09/02/2022
-author: joshfree
-ms.service: dns
-title: Azure DNS SDK for Java
 ms.author: jfree
-ms.topic: reference
+ms.devlang: java
+ms.service: dns
+author: joshfree
+ms.data: 09/05/2022
 description: Reference for Azure DNS SDK for Java
+ms.topic: reference
+title: Azure DNS SDK for Java
 ms.date: 07/08/2022
 ---
 # Azure DNS libraries for Java

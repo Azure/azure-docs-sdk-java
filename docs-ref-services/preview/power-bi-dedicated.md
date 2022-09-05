@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
-ms.data: 09/03/2022
-author: joshfree
-ms.service: powerbidedicated
-title: Azure Power BI Dedicated SDK for Java
 ms.author: jfree
-ms.topic: reference
+ms.devlang: java
+ms.service: powerbidedicated
+author: joshfree
+ms.data: 09/05/2022
 description: Reference for Azure Power BI Dedicated SDK for Java
+ms.topic: reference
+title: Azure Power BI Dedicated SDK for Java
 ---
 # Azure Power BI Dedicated SDK for Java - preview
 

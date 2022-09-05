@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
-ms.data: 09/03/2022
-author: joshfree
-ms.service: loganalytics
-title: Azure Log Analytics SDK for Java
 ms.author: jfree
-ms.topic: reference
+ms.devlang: java
+ms.service: loganalytics
+author: joshfree
+ms.data: 09/05/2022
 description: Reference for Azure Log Analytics SDK for Java
+ms.topic: reference
+title: Azure Log Analytics SDK for Java
 ---
 # Azure Log Analytics SDK for Java - preview
 
