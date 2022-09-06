@@ -1,12 +1,12 @@
 ---
 ms.author: frley
-ms.devlang: java
-ms.service: storagepool
-author: rickle-msft
-ms.data: 09/05/2022
 description: Reference for Azure Storage Pool SDK for Java
-ms.topic: reference
+ms.devlang: java
+ms.data: 09/06/2022
+author: rickle-msft
 title: Azure Storage Pool SDK for Java
+ms.topic: reference
+ms.service: storagepool
 ---
 # Azure Storage Pool SDK for Java - preview
 

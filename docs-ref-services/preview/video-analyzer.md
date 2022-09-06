@@ -1,12 +1,12 @@
 ---
 ms.author: jfree
-ms.devlang: java
-ms.service: azure-resource-manager
-author: joshfree
-ms.data: 09/05/2022
 description: Reference for Azure Video Analyzer SDK for Java
-ms.topic: reference
+ms.devlang: java
+ms.data: 09/06/2022
+author: joshfree
 title: Azure Video Analyzer SDK for Java
+ms.topic: reference
+ms.service: videoanalyzer
 ---
 # Azure Video Analyzer SDK for Java - preview
 

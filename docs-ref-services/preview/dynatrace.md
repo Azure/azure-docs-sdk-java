@@ -1,12 +1,12 @@
 ---
 ms.author: jfree
-ms.devlang: java
-ms.service: dynatrace
-author: joshfree
-ms.data: 09/05/2022
 description: Reference for Azure Dynatrace SDK for Java
-ms.topic: reference
+ms.devlang: java
+ms.data: 09/06/2022
+author: joshfree
 title: Azure Dynatrace SDK for Java
+ms.topic: reference
+ms.service: dynatrace
 ---
 # Azure Dynatrace SDK for Java - preview
 
