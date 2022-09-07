@@ -3,7 +3,7 @@ title: Azure Maps SDK Render client library for Java
 keywords: Azure, java, SDK, API, azure-maps-render, maps
 author: joshfree
 ms.author: jfree
-ms.date: 09/06/2022
+ms.date: 09/07/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: maps
