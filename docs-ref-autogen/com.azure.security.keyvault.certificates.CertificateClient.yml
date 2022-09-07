@@ -28,7 +28,7 @@ methods:
   parameters:
   - description: "The name of the certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public byte[] backupCertificate(String certificateName)"
   desc: "Requests that a backup of the specified certificate be downloaded to the client. All versions of the certificate will be downloaded. This operation requires the certificates/backup permission.\n\n**Code Samples**\n\nBacks up the certificate from the key vault. Prints out the length of the certificate's backup byte array returned in the response.\n\n```java\nbyte[] certificateBackup = certificateClient.backupCertificate(\"certificateName\");\n System.out.printf(\"Backed up certificate with back up blob length %d%n\", certificateBackup.length);\n```"
   returns:
@@ -42,7 +42,7 @@ methods:
   parameters:
   - description: "The certificateName of the certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -59,7 +59,7 @@ methods:
   parameters:
   - description: "The name of the certificate to be created."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The policy of the certificate to be created."
     name: "policy"
     type: "<xref href=\"com.azure.security.keyvault.certificates.models.CertificatePolicy?alt=com.azure.security.keyvault.certificates.models.CertificatePolicy&text=CertificatePolicy\" data-throw-if-not-resolved=\"False\" />"
@@ -76,16 +76,16 @@ methods:
   parameters:
   - description: "The name of the certificate to be created."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The policy of the certificate to be created."
     name: "policy"
     type: "<xref href=\"com.azure.security.keyvault.certificates.models.CertificatePolicy?alt=com.azure.security.keyvault.certificates.models.CertificatePolicy&text=CertificatePolicy\" data-throw-if-not-resolved=\"False\" />"
   - description: "The enabled status of the certificate."
     name: "isEnabled"
-    type: "<xref href=\"java.lang.Boolean?alt=java.lang.Boolean&text=Boolean\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html\">Boolean</a>"
   - description: "The application specific metadata to set."
     name: "tags"
-    type: "<xref href=\"java.util.Map?alt=java.util.Map&text=Map\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />,<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/Map.html\">Map</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>,<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
   syntax: "public SyncPoller<CertificateOperation,KeyVaultCertificateWithPolicy> beginCreateCertificate(String certificateName, CertificatePolicy policy, Boolean isEnabled, Map<String,String> tags)"
   desc: "Creates a new certificate. If this is the first version, the certificate resource is created. This operation requires the certificates/create permission.\n\nCreate certificate is a long running operation. It indefinitely waits for the create certificate operation to complete on service side.\n\n**Code Samples**\n\nCreate certificate is a long running operation. The createCertificate indefinitely waits for the operation to complete and returns its last status. The details of the last certificate operation status are printed when a response is received\n\n```java\nCertificatePolicy certificatePolicyPkcsSelf = new CertificatePolicy(\"Self\",\n     \"CN=SelfSignedJavaPkcs12\");\n SyncPoller<CertificateOperation, KeyVaultCertificateWithPolicy> certificateSyncPoller = certificateClient\n     .beginCreateCertificate(\"certificateName\", certificatePolicyPkcsSelf, true, new HashMap<>());\n certificateSyncPoller.waitUntil(LongRunningOperationStatus.SUCCESSFULLY_COMPLETED);\n KeyVaultCertificate createdCertificate = certificateSyncPoller.getFinalResult();\n System.out.printf(\"Certificate created with name %s%n\", createdCertificate.getName());\n```"
   returns:
@@ -99,12 +99,12 @@ methods:
   parameters:
   - description: "The name of the certificate to be deleted."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public SyncPoller<DeletedCertificate,Void> beginDeleteCertificate(String certificateName)"
   desc: "Deletes a certificate from a specified key vault. All the versions of the certificate along with its associated policy get deleted. If soft-delete is enabled on the key vault then the certificate is placed in the deleted state and requires to be purged for permanent deletion else the certificate is permanently deleted. The delete operation applies to any certificate stored in Azure Key Vault but it cannot be applied to an individual version of a certificate. This operation requires the certificates/delete permission.\n\n**Code Samples**\n\nDeletes the certificate in the Azure Key Vault. Prints out the deleted certificate details when a response has been received.\n\n```java\nSyncPoller<DeletedCertificate, Void> deleteCertPoller =\n     certificateClient.beginDeleteCertificate(\"certificateName\");\n // Deleted Certificate is accessible as soon as polling beings.\n PollResponse<DeletedCertificate> deleteCertPollResponse = deleteCertPoller.poll();\n System.out.printf(\"Deleted certificate with name %s and recovery id %s%n\",\n     deleteCertPollResponse.getValue().getName(), deleteCertPollResponse.getValue().getRecoveryId());\n deleteCertPoller.waitForCompletion();\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.util.polling.SyncPoller\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SyncPoller\"></xref> to poll on and retrieve <xref uid=\"com.azure.security.keyvault.certificates.models.DeletedCertificate\" data-throw-if-not-resolved=\"false\" data-raw-source=\"deleted certificate\"></xref>."
-    type: "<xref href=\"com.azure.core.util.polling.SyncPoller?alt=com.azure.core.util.polling.SyncPoller&text=SyncPoller\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.certificates.models.DeletedCertificate?alt=com.azure.security.keyvault.certificates.models.DeletedCertificate&text=DeletedCertificate\" data-throw-if-not-resolved=\"False\" />,<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<xref href=\"com.azure.core.util.polling.SyncPoller?alt=com.azure.core.util.polling.SyncPoller&text=SyncPoller\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.certificates.models.DeletedCertificate?alt=com.azure.security.keyvault.certificates.models.DeletedCertificate&text=DeletedCertificate\" data-throw-if-not-resolved=\"False\" />,<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
 - uid: "com.azure.security.keyvault.certificates.CertificateClient.beginRecoverDeletedCertificate(java.lang.String)"
   fullName: "com.azure.security.keyvault.certificates.CertificateClient.beginRecoverDeletedCertificate(String certificateName)"
   name: "beginRecoverDeletedCertificate(String certificateName)"
@@ -113,12 +113,12 @@ methods:
   parameters:
   - description: "The name of the deleted certificate to be recovered."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public SyncPoller<KeyVaultCertificateWithPolicy,Void> beginRecoverDeletedCertificate(String certificateName)"
   desc: "Recovers the deleted certificate back to its current version under /certificates and can only be performed on a soft-delete enabled vault. The RecoverDeletedCertificate operation performs the reversal of the Delete operation and must be issued during the retention interval (available in the deleted certificate's attributes). This operation requires the certificates/recover permission.\n\n**Code Samples**\n\nRecovers the deleted certificate from the key vault enabled for soft-delete. Prints out the recovered certificate details when a response has been received.\n\n```java\nSyncPoller<KeyVaultCertificateWithPolicy, Void> recoverDeletedCertPoller = certificateClient\n     .beginRecoverDeletedCertificate(\"deletedCertificateName\");\n // Recovered certificate is accessible as soon as polling beings\n PollResponse<KeyVaultCertificateWithPolicy> recoverDeletedCertPollResponse = recoverDeletedCertPoller.poll();\n System.out.printf(\" Recovered Deleted certificate with name %s and id %s%n\",\n     recoverDeletedCertPollResponse.getValue().getProperties().getName(),\n     recoverDeletedCertPollResponse.getValue().getProperties().getId());\n recoverDeletedCertPoller.waitForCompletion();\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.util.polling.SyncPoller\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SyncPoller\"></xref> to poll on and retrieve <xref uid=\"com.azure.security.keyvault.certificates.models.KeyVaultCertificateWithPolicy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"recovered certificate\"></xref>."
-    type: "<xref href=\"com.azure.core.util.polling.SyncPoller?alt=com.azure.core.util.polling.SyncPoller&text=SyncPoller\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.certificates.models.KeyVaultCertificateWithPolicy?alt=com.azure.security.keyvault.certificates.models.KeyVaultCertificateWithPolicy&text=KeyVaultCertificateWithPolicy\" data-throw-if-not-resolved=\"False\" />,<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<xref href=\"com.azure.core.util.polling.SyncPoller?alt=com.azure.core.util.polling.SyncPoller&text=SyncPoller\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.certificates.models.KeyVaultCertificateWithPolicy?alt=com.azure.security.keyvault.certificates.models.KeyVaultCertificateWithPolicy&text=KeyVaultCertificateWithPolicy\" data-throw-if-not-resolved=\"False\" />,<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
 - uid: "com.azure.security.keyvault.certificates.CertificateClient.cancelCertificateOperation(java.lang.String)"
   fullName: "com.azure.security.keyvault.certificates.CertificateClient.cancelCertificateOperation(String certificateName)"
   name: "cancelCertificateOperation(String certificateName)"
@@ -127,7 +127,7 @@ methods:
   parameters:
   - description: "The name of the certificate which is in the process of being created."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public CertificateOperation cancelCertificateOperation(String certificateName)"
   desc: "Cancels a certificate creation operation that is already in progress. This operation requires the `certificates/update` permission.\n\n**Code Samples**\n\nTriggers certificate creation and then cancels the certificate creation operation in the Azure Key Vault. Subscribes to the call and prints out the updated certificate operation details when a response has been received.\n\n```java\nCertificateOperation certificateOperation = certificateClient\n     .cancelCertificateOperation(\"certificateName\");\n System.out.printf(\"Certificate Operation status %s%n\", certificateOperation.getStatus());\n```"
   returns:
@@ -141,7 +141,7 @@ methods:
   parameters:
   - description: "The name of the certificate which is in the process of being created."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -189,7 +189,7 @@ methods:
   parameters:
   - description: "The name of the certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public CertificateOperation deleteCertificateOperation(String certificateName)"
   desc: "Deletes the creation operation for the specified certificate that is in the process of being created. The certificate is no longer created. This operation requires the `certificates/update permission`.\n\n**Code Samples**\n\nTriggers certificate creation and then deletes the certificate creation operation in the Azure Key Vault. Subscribes to the call and prints out the deleted certificate operation details when a response has been received.\n\n```java\nResponse<CertificateOperation> deletedCertificateOperationWithResponse = certificateClient\n     .deleteCertificateOperationWithResponse(\"certificateName\", new Context(key1, value1));\n System.out.printf(\"Deleted Certificate Operation's last status %s%n\",\n     deletedCertificateOperationWithResponse.getValue().getStatus());\n```"
   returns:
@@ -203,7 +203,7 @@ methods:
   parameters:
   - description: "The name of the certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -244,7 +244,7 @@ methods:
   parameters:
   - description: "The name of the certificate issuer to be deleted."
     name: "issuerName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public CertificateIssuer deleteIssuer(String issuerName)"
   desc: "Deletes the specified certificate issuer. The DeleteCertificateIssuer operation permanently removes the specified certificate issuer from the key vault. This operation requires the `certificates/manageissuers/deleteissuers permission`.\n\n**Code Samples**\n\nDeletes the certificate issuer in the Azure Key Vault. Prints out the deleted certificate details when a response has been received.\n\n```java\nResponse<CertificateIssuer> deletedIssuerWithResponse = certificateClient.\n     deleteIssuerWithResponse(\"certificateName\", new Context(key1, value1));\n System.out.printf(\"Deleted certificate issuer with name %s and provider id %s%n\",\n     deletedIssuerWithResponse.getValue().getName(),\n     deletedIssuerWithResponse.getValue().getProvider());\n```"
   returns:
@@ -258,7 +258,7 @@ methods:
   parameters:
   - description: "The name of the certificate issuer to be deleted."
     name: "issuerName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -275,7 +275,7 @@ methods:
   parameters:
   - description: "The name of the certificate to retrieve, cannot be null"
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public KeyVaultCertificateWithPolicy getCertificate(String certificateName)"
   desc: "Gets information about the latest version of the specified certificate. This operation requires the certificates/get permission.\n\n**Code Samples**\n\nGets a specific version of the certificate in the key vault. Prints out the returned certificate details when a response has been received.\n\n```java\nKeyVaultCertificateWithPolicy certificate = certificateClient.getCertificate(\"certificateName\");\n System.out.printf(\"Received certificate with name %s and version %s and secret id %s%n\",\n     certificate.getProperties().getName(),\n     certificate.getProperties().getVersion(), certificate.getSecretId());\n```"
   returns:
@@ -289,7 +289,7 @@ methods:
   parameters:
   - description: "The name of the certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public SyncPoller<CertificateOperation,KeyVaultCertificateWithPolicy> getCertificateOperation(String certificateName)"
   desc: "Gets a pending <xref uid=\"com.azure.security.keyvault.certificates.models.CertificateOperation\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CertificateOperation\"></xref> from the key vault. This operation requires the certificates/get permission.\n\n**Code Samples**\n\nGeta a pending certificate operation. The <xref uid=\"com.azure.core.util.polling.SyncPoller\" data-throw-if-not-resolved=\"false\" data-raw-source=\"poller\"></xref> allows users to automatically poll on the certificate operation status.\n\n```java\nSyncPoller<CertificateOperation, KeyVaultCertificateWithPolicy> getCertPoller = certificateClient\n     .getCertificateOperation(\"certificateName\");\n getCertPoller.waitUntil(LongRunningOperationStatus.SUCCESSFULLY_COMPLETED);\n KeyVaultCertificate cert = getCertPoller.getFinalResult();\n System.out.printf(\"Certificate created with name %s%n\", cert.getName());\n```"
   returns:
@@ -303,7 +303,7 @@ methods:
   parameters:
   - description: "The name of the certificate whose policy is to be retrieved, cannot be null"
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public CertificatePolicy getCertificatePolicy(String certificateName)"
   desc: "Retrieves the policy of the specified certificate in the key vault. This operation requires the `certificates/get` permission.\n\n**Code Samples**\n\nGets the policy of a certirifcate in the key vault. Prints out the returned certificate policy details when a response has been received.\n\n```java\nCertificatePolicy policy = certificateClient.getCertificatePolicy(\"certificateName\");\n System.out.printf(\"Received policy with subject name %s%n\", policy.getSubject());\n```"
   returns:
@@ -317,7 +317,7 @@ methods:
   parameters:
   - description: "The name of the certificate whose policy is to be retrieved, cannot be null"
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -334,10 +334,10 @@ methods:
   parameters:
   - description: "The name of the certificate to retrieve, cannot be null"
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The version of the certificate to retrieve. If this is an empty String or null then latest version of the certificate is retrieved."
     name: "version"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public KeyVaultCertificate getCertificateVersion(String certificateName, String version)"
   desc: "Gets information about the specified version of the specified certificate. This operation requires the certificates/get permission.\n\n**Code Samples**\n\nGets a specific version of the certificate in the key vault. Prints out the returned certificate details when a response has been received.\n\n```java\nKeyVaultCertificate returnedCertificate = certificateClient.getCertificateVersion(\"certificateName\",\n     \"certificateVersion\");\n System.out.printf(\"Received certificate with name %s and version %s and secret id %s%n\",\n     returnedCertificate.getProperties().getName(), returnedCertificate.getProperties().getVersion(),\n     returnedCertificate.getSecretId());\n```"
   returns:
@@ -351,10 +351,10 @@ methods:
   parameters:
   - description: "The name of the certificate to retrieve, cannot be null"
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The version of the certificate to retrieve. If this is an empty String or null then latest version of the certificate is retrieved."
     name: "version"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -371,7 +371,7 @@ methods:
   parameters:
   - description: "The name of the certificate to retrieve, cannot be null"
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -388,7 +388,7 @@ methods:
   parameters:
   - description: "The name of the deleted certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public DeletedCertificate getDeletedCertificate(String certificateName)"
   desc: "Retrieves information about the specified deleted certificate. The GetDeletedCertificate operation is applicable for soft-delete enabled vaults and additionally retrieves deleted certificate's attributes, such as retention interval, scheduled permanent deletion and the current deletion recovery level. This operation requires the certificates/get permission.\n\n**Code Samples**\n\nGets the deleted certificate from the key vault enabled for soft-delete. Prints out the deleted certificate details when a response has been received.\n\n```java\nDeletedCertificate deletedCertificate = certificateClient.getDeletedCertificate(\"certificateName\");\n System.out.printf(\"Deleted certificate with name %s and recovery id %s%n\", deletedCertificate.getName(),\n     deletedCertificate.getRecoveryId());\n```"
   returns:
@@ -402,7 +402,7 @@ methods:
   parameters:
   - description: "The name of the deleted certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -419,7 +419,7 @@ methods:
   parameters:
   - description: "The name of the certificate issuer to retrieve, cannot be null"
     name: "issuerName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public CertificateIssuer getIssuer(String issuerName)"
   desc: "Retrieves the specified certificate issuer from the key vault. This operation requires the certificates/manageissuers/getissuers permission.\n\n**Code Samples**\n\nGets the specified certificate issuer in the key vault. Prints out the returned certificate issuer details when a response has been received.\n\n```java\nCertificateIssuer returnedIssuer = certificateClient.getIssuer(\"issuerName\");\n System.out.printf(\"Retrieved issuer with name %s and provider %s%n\", returnedIssuer.getName(),\n     returnedIssuer.getProvider());\n```"
   returns:
@@ -433,7 +433,7 @@ methods:
   parameters:
   - description: "The name of the certificate issuer to retrieve, cannot be null"
     name: "issuerName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -451,7 +451,7 @@ methods:
   desc: "Get the vault endpoint url to which service requests are sent to."
   returns:
     description: "the vault endpoint url"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
 - uid: "com.azure.security.keyvault.certificates.CertificateClient.importCertificate(com.azure.security.keyvault.certificates.models.ImportCertificateOptions)"
   fullName: "com.azure.security.keyvault.certificates.CertificateClient.importCertificate(ImportCertificateOptions importCertificateOptions)"
   name: "importCertificate(ImportCertificateOptions importCertificateOptions)"
@@ -542,7 +542,7 @@ methods:
   parameters:
   - description: "The name of the certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public PagedIterable<CertificateProperties> listPropertiesOfCertificateVersions(String certificateName)"
   desc: "List all versions of the specified certificate. The individual certificate response in the iterable is represented by <xref uid=\"com.azure.security.keyvault.certificates.models.CertificateProperties\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CertificateProperties\"></xref> as only the certificate identifier, thumbprint, attributes and tags are provided in the response. The policy is not listed in the response. This operation requires the certificates/list permission.\n\nIt is possible to get the certificates with properties excluding the policy for all the versions from this information. Loop over the <xref uid=\"com.azure.security.keyvault.certificates.models.CertificateProperties\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CertificateProperties\"></xref> and call <xref uid=\"com.azure.security.keyvault.certificates.CertificateClient.getCertificateVersion(java.lang.String,java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CertificateClient#getCertificateVersion(String, String)\"></xref>. This will return the <xref uid=\"com.azure.security.keyvault.certificates.models.KeyVaultCertificate\" data-throw-if-not-resolved=\"false\" data-raw-source=\"certificate\"></xref> with all its properties excluding the policy.\n\n```java\nfor (CertificateProperties certificateProperties : certificateClient\n     .listPropertiesOfCertificateVersions(\"certificateName\")) {\n     KeyVaultCertificate certificateWithAllProperties = certificateClient\n         .getCertificateVersion(certificateProperties.getName(), certificateProperties.getVersion());\n     System.out.printf(\"Received certificate's version with name %s, version %s and secret id %s%n\",\n         certificateWithAllProperties.getProperties().getName(),\n         certificateWithAllProperties.getProperties().getVersion(), certificateWithAllProperties.getSecretId());\n }\n```"
   returns:
@@ -556,7 +556,7 @@ methods:
   parameters:
   - description: "The name of the certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -655,7 +655,7 @@ methods:
   parameters:
   - description: "The name of the deleted certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public void purgeDeletedCertificate(String certificateName)"
   desc: "Permanently deletes the specified deleted certificate without possibility for recovery. The Purge Deleted Certificate operation is applicable for soft-delete enabled vaults and is not available if the recovery level does not specify 'Purgeable'. This operation requires the certificate/purge permission.\n\n**Code Samples**\n\nPurges the deleted certificate from the key vault enabled for soft-delete. Prints out the status code from the server response when a response has been received.\n\n```java\ncertificateClient.purgeDeletedCertificate(\"certificateName\");\n```"
 - uid: "com.azure.security.keyvault.certificates.CertificateClient.purgeDeletedCertificateWithResponse(java.lang.String,com.azure.core.util.Context)"
@@ -666,7 +666,7 @@ methods:
   parameters:
   - description: "The name of the deleted certificate."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -674,7 +674,7 @@ methods:
   desc: "Permanently deletes the specified deleted certificate without possibility for recovery. The Purge Deleted Certificate operation is applicable for soft-delete enabled vaults and is not available if the recovery level does not specify 'Purgeable'. This operation requires the certificate/purge permission.\n\n**Code Samples**\n\nPurges the deleted certificate from the key vault enabled for soft-delete. Prints out the status code from the server response when a response has been received.\n\n```java\nResponse<Void> purgeResponse = certificateClient.purgeDeletedCertificateWithResponse(\"certificateName\",\n     new Context(key1, value1));\n System.out.printf(\"Purged Deleted certificate with status %d%n\", purgeResponse.getStatusCode());\n```"
   returns:
     description: "A response containing status code and HTTP headers."
-    type: "<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.lang.Void?alt=java.lang.Void&text=Void\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
 - uid: "com.azure.security.keyvault.certificates.CertificateClient.restoreCertificateBackup(byte[])"
   fullName: "com.azure.security.keyvault.certificates.CertificateClient.restoreCertificateBackup(byte[] backup)"
   name: "restoreCertificateBackup(byte[] backup)"
@@ -714,7 +714,7 @@ methods:
   parameters:
   - description: "The list of contacts to set on the vault."
     name: "contacts"
-    type: "<xref href=\"java.util.List?alt=java.util.List&text=List\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.certificates.models.CertificateContact?alt=com.azure.security.keyvault.certificates.models.CertificateContact&text=CertificateContact\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/List.html\">List</a>&lt;<xref href=\"com.azure.security.keyvault.certificates.models.CertificateContact?alt=com.azure.security.keyvault.certificates.models.CertificateContact&text=CertificateContact\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public PagedIterable<CertificateContact> setContacts(List<CertificateContact> contacts)"
   desc: "Sets the certificate contacts on the key vault. This operation requires the `certificates/managecontacts` permission.\n\nThe <xref uid=\"com.azure.security.keyvault.certificates.models.LifetimeAction\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LifetimeAction\"></xref> of type <xref uid=\"com.azure.security.keyvault.certificates.models.CertificatePolicyAction.EMAIL_CONTACTS\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CertificatePolicyAction#EMAIL_CONTACTS\"></xref> set on a <xref uid=\"com.azure.security.keyvault.certificates.models.CertificatePolicy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CertificatePolicy\"></xref> emails the contacts set on the vault when triggered.\n\n**Code Samples**\n\nSets the certificate contacts in the Azure Key Vault. Prints out the returned contacts details.\n\n```java\nCertificateContact contactToAdd = new CertificateContact().setName(\"user\").setEmail(\"useremail@example.com\");\n for (CertificateContact contact : certificateClient.setContacts(Collections.singletonList(contactToAdd))) {\n     System.out.printf(\"Added contact with name %s and email %s to key vault%n\", contact.getName(),\n         contact.getEmail());\n }\n```"
   returns:
@@ -728,7 +728,7 @@ methods:
   parameters:
   - description: "The list of contacts to set on the vault."
     name: "contacts"
-    type: "<xref href=\"java.util.List?alt=java.util.List&text=List\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.security.keyvault.certificates.models.CertificateContact?alt=com.azure.security.keyvault.certificates.models.CertificateContact&text=CertificateContact\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/List.html\">List</a>&lt;<xref href=\"com.azure.security.keyvault.certificates.models.CertificateContact?alt=com.azure.security.keyvault.certificates.models.CertificateContact&text=CertificateContact\" data-throw-if-not-resolved=\"False\" />&gt;"
   - description: "Additional context that is passed through the Http pipeline during the service call."
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
@@ -745,7 +745,7 @@ methods:
   parameters:
   - description: "The name of the certificate whose policy is to be updated."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The certificate policy to be updated."
     name: "policy"
     type: "<xref href=\"com.azure.security.keyvault.certificates.models.CertificatePolicy?alt=com.azure.security.keyvault.certificates.models.CertificatePolicy&text=CertificatePolicy\" data-throw-if-not-resolved=\"False\" />"
@@ -762,7 +762,7 @@ methods:
   parameters:
   - description: "The certificateName of the certificate whose policy is to be updated."
     name: "certificateName"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "The certificate policy to be updated."
     name: "policy"
     type: "<xref href=\"com.azure.security.keyvault.certificates.models.CertificatePolicy?alt=com.azure.security.keyvault.certificates.models.CertificatePolicy&text=CertificatePolicy\" data-throw-if-not-resolved=\"False\" />"
