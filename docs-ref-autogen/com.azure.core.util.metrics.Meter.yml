@@ -23,7 +23,7 @@ methods:
   parameters:
   - description: "map of key value pairs to cache."
     name: "attributeMap"
-    type: "<xref href=\"java.util.Map?alt=java.util.Map&text=Map\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />,<xref href=\"java.lang.Object?alt=java.lang.Object&text=Object\" data-throw-if-not-resolved=\"False\" />&gt;"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/Map.html\">Map</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>,<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html\">Object</a>&gt;"
   syntax: "public abstract TelemetryAttributes createAttributes(Map<String,Object> attributeMap)"
   desc: "Creates and returns attribute collection implementation specific to the meter implementation. Attribute collections differ in how they support different types of attributes and internal data structures they use. For the best performance, client libraries should create and cache attribute collections for the client lifetime and pass cached instance when recoding new measurements.\n\n```java\n// Create attributes for possible error codes. Can be done lazily once specific error code is received.\n TelemetryAttributes successAttributes = defaultMeter.createAttributes(new HashMap<String, Object>() {{\n         put(\"endpoint\", \"http://service-endpoint.azure.com\");\n         put(\"error\", true);\n     }});\n\n TelemetryAttributes errorAttributes =  defaultMeter.createAttributes(new HashMap<String, Object>() {{\n         put(\"endpoint\", \"http://service-endpoint.azure.com\");\n         put(\"error\", false);\n     }});\n\n LongCounter httpConnections = defaultMeter.createLongCounter(\"az.core.http.connections\",\n     \"Number of created HTTP connections\", null);\n\n boolean success = false;\n try {\n     success = doThings();\n } finally {\n     httpConnections.add(1, success ? successAttributes : errorAttributes, currentContext);\n }\n```"
   returns:
@@ -39,13 +39,13 @@ methods:
   parameters:
   - description: "short histogram name following https://opentelemetry.io/docs/reference/specification/metrics/api/#instrument-naming-rule"
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "free-form text describing the instrument"
     name: "description"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "optional unit of measurement."
     name: "unit"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public abstract DoubleHistogram createDoubleHistogram(String name, String description, String unit)"
   desc: "Creates histogram instrument allowing to record long values. Histograms should be used for latency or other measurements where distribution of values is important and values are statistically bounded. See https://opentelemetry.io/docs/reference/specification/metrics/api/\\#histogram for more details.\n\n```java\n// Meter and instruments should be created along with service client instance and retained for the client\n // lifetime for optimal performance\n Meter meter = meterProvider\n     .createMeter(\"azure-core\", \"1.0.0\", new MetricsOptions());\n\n DoubleHistogram amqpLinkDuration = meter\n     .createDoubleHistogram(\"az.core.amqp.link.duration\", \"AMQP link response time.\", \"ms\");\n\n TelemetryAttributes attributes = defaultMeter.createAttributes(\n     Collections.singletonMap(\"endpoint\", \"http://service-endpoint.azure.com\"));\n\n // when measured operation starts, record the measurement\n Instant start = Instant.now();\n\n doThings();\n\n // optionally check if meter is operational for the best performance\n if (amqpLinkDuration.isEnabled()) {\n     amqpLinkDuration.record(Instant.now().toEpochMilli() - start.toEpochMilli(), attributes, currentContext);\n }\n```"
   returns:
@@ -61,13 +61,13 @@ methods:
   parameters:
   - description: "short counter  name following https://opentelemetry.io/docs/reference/specification/metrics/api/#instrument-naming-rule"
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "free-form text describing the counter"
     name: "description"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "optional unit of measurement."
     name: "unit"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public abstract LongCounter createLongCounter(String name, String description, String unit)"
   desc: "Creates Counter instrument that is used to record incrementing values, such as number of sent messages or created connections. Use <xref uid=\"com.azure.core.util.metrics.Meter.createLongUpDownCounter(java.lang.String,java.lang.String,java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Meter#createLongUpDownCounter(String, String, String)\"></xref> for counters that can go down, such as number of active connections or queue size. See https://opentelemetry.io/docs/reference/specification/metrics/api/\\#counter for more details.\n\n```java\nTelemetryAttributes attributes = defaultMeter.createAttributes(new HashMap<String, Object>() {{\n         put(\"endpoint\", \"http://service-endpoint.azure.com\");\n         put(\"status\", \"ok\");\n     }});\n\n LongCounter createdHttpConnections = defaultMeter.createLongCounter(\"az.core.http.connections\",\n     \"Number of created HTTP connections\", null);\n\n createdHttpConnections.add(1, attributes, currentContext);\n```"
   returns:
@@ -83,13 +83,13 @@ methods:
   parameters:
   - description: "short counter  name following https://opentelemetry.io/docs/reference/specification/metrics/api/#instrument-naming-rule"
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "free-form text describing the counter"
     name: "description"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "optional unit of measurement."
     name: "unit"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public default LongGauge createLongGauge(String name, String description, String unit)"
   desc: "Creates <xref uid=\"com.azure.core.util.metrics.LongGauge\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongGauge\"></xref> instrument that is used to asynchronously record current value of metric. See https://opentelemetry.io/docs/reference/specification/metrics/api/\\#asynchronous-gauge for more details.\n\n```java\nTelemetryAttributes attributes = defaultMeter.createAttributes(new HashMap<String, Object>() {{\n         put(\"endpoint\", \"http://service-endpoint.azure.com\");\n         put(\"container\", \"my-container\");\n     }});\n\n LongGauge latestSequenceNumber = defaultMeter.createLongGauge(\"az.eventhubs.consumer.sequence_number\",\n     \"Sequence number of the latest event received from the broker.\", null);\n\n AutoCloseable subscription = latestSequenceNumber.registerCallback(sequenceNumber::get, attributes);\n\n // update value when event is received\n sequenceNumber.set(getSequenceNumber());\n\n try {\n     subscription.close();\n } catch (Exception e) {\n     e.printStackTrace();\n }\n```"
   returns:
@@ -105,13 +105,13 @@ methods:
   parameters:
   - description: "short counter name following https://opentelemetry.io/docs/reference/specification/metrics/api/#instrument-naming-rule"
     name: "name"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "free-form text describing the counter"
     name: "description"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "optional unit of measurement."
     name: "unit"
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public abstract LongCounter createLongUpDownCounter(String name, String description, String unit)"
   desc: "Creates UpDownCounter instrument that is used to record values that can go up or down, such as number of active connections or queue size. See https://opentelemetry.io/docs/reference/specification/metrics/api/\\#updowncounter for more details.\n\n```java\nTelemetryAttributes attributes = defaultMeter.createAttributes(new HashMap<String, Object>() {{\n         put(\"endpoint\", \"http://service-endpoint.azure.com\");\n         put(\"status\", \"ok\");\n     }});\n\n LongCounter activeHttpConnections = defaultMeter.createLongUpDownCounter(\"az.core.http.active.connections\",\n     \"Number of active HTTP connections\", null);\n\n // on connection initialized:\n activeHttpConnections.add(1, attributes, currentContext);\n\n // on connection closed:\n activeHttpConnections.add(-1, attributes, currentContext);\n```"
   returns:
@@ -132,7 +132,7 @@ methods:
 type: "interface"
 desc: "Meter is generally associated with Azure Service Client instance and allows creating instruments that represent individual metrics such as number of active connections or HTTP call latency. Choose instrument kind based on OpenTelemetry guidelines: https://opentelemetry.io/docs/reference/specification/metrics/api/\\#counter-creation This class is intended to be used by Azure client libraries and provides abstraction over different metrics implementations. Application developers should use metrics implementations such as OpenTelemetry or Micrometer directly.\n\n```java\n// Meter and instruments should be created along with service client instance and retained for the client\n // lifetime for optimal performance\n Meter meter = meterProvider\n     .createMeter(\"azure-core\", \"1.0.0\", new MetricsOptions());\n\n DoubleHistogram amqpLinkDuration = meter\n     .createDoubleHistogram(\"az.core.amqp.link.duration\", \"AMQP link response time.\", \"ms\");\n\n TelemetryAttributes attributes = defaultMeter.createAttributes(\n     Collections.singletonMap(\"endpoint\", \"http://service-endpoint.azure.com\"));\n\n // when measured operation starts, record the measurement\n Instant start = Instant.now();\n\n doThings();\n\n // optionally check if meter is operational for the best performance\n if (amqpLinkDuration.isEnabled()) {\n     amqpLinkDuration.record(Instant.now().toEpochMilli() - start.toEpochMilli(), attributes, currentContext);\n }\n```"
 implements:
-- "<xref href=\"java.lang.AutoCloseable?alt=java.lang.AutoCloseable&text=AutoCloseable\" data-throw-if-not-resolved=\"False\" />"
+- "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html\">AutoCloseable</a>"
 metadata: {}
 package: "com.azure.core.util.metrics"
 artifact: com.azure:azure-core:1.32.0
