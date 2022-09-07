@@ -1,12 +1,12 @@
 ---
-ms.author: shpaster
-description: Reference for Azure Batch AI SDK for Java
-ms.devlang: java
-ms.data: 09/06/2022
-author: gingi
 title: Azure Batch AI SDK for Java
 ms.topic: reference
+description: Reference for Azure Batch AI SDK for Java
 ms.service: batchai
+ms.author: shpaster
+author: gingi
+ms.devlang: java
+ms.data: 09/07/2022
 ms.date: 07/08/2022
 ---
 # Azure Batch AI libraries for Java
