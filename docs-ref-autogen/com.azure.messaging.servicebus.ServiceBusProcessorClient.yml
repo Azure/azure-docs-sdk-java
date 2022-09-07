@@ -38,7 +38,7 @@ methods:
   desc: "Returns the queue name associated with this instance of <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref>."
   returns:
     description: "the queue name associated with this instance of <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref> or <code>null</code> if\n the processor instance is for a topic and subscription."
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
 - uid: "com.azure.messaging.servicebus.ServiceBusProcessorClient.getSubscriptionName()"
   fullName: "com.azure.messaging.servicebus.ServiceBusProcessorClient.getSubscriptionName()"
   name: "getSubscriptionName()"
@@ -48,7 +48,7 @@ methods:
   desc: "Returns the subscription name associated with this instance of <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref>."
   returns:
     description: "the subscription name associated with this instance of <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref> or <code>null</code>\n if the processor instance is for a queue."
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
 - uid: "com.azure.messaging.servicebus.ServiceBusProcessorClient.getTopicName()"
   fullName: "com.azure.messaging.servicebus.ServiceBusProcessorClient.getTopicName()"
   name: "getTopicName()"
@@ -58,7 +58,7 @@ methods:
   desc: "Returns the topic name associated with this instance of <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref>."
   returns:
     description: "the topic name associated with this instance of <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref> or <code>null</code> if\n the processor instance is for a queue."
-    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
 - uid: "com.azure.messaging.servicebus.ServiceBusProcessorClient.isRunning()"
   fullName: "com.azure.messaging.servicebus.ServiceBusProcessorClient.isRunning()"
   name: "isRunning()"
@@ -92,7 +92,7 @@ methods:
 type: "class"
 desc: "The processor client for processing Service Bus messages. <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref> provides a push-based mechanism that invokes the message processing callback when a message is received or the error handler when an error occurs when receiving messages. A <xref uid=\"com.azure.messaging.servicebus.ServiceBusProcessorClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ServiceBusProcessorClient\"></xref> can be created to process messages for a session-enabled or non session-enabled Service Bus entity. It supports auto-settlement of messages by default.\n\n**Create and run a processor**\n\n```java\nConsumer<ServiceBusReceivedMessageContext> onMessage = context -> {\n     ServiceBusReceivedMessage message = context.getMessage();\n     System.out.printf(\"Processing message. Sequence #: %s. Contents: %s%n\",\n         message.getSequenceNumber(), message.getBody());\n };\n\n Consumer<ServiceBusErrorContext> onError = context -> {\n     System.out.printf(\"Error when receiving messages from namespace: '%s'. Entity: '%s'%n\",\n         context.getFullyQualifiedNamespace(), context.getEntityPath());\n\n     if (context.getException() instanceof ServiceBusException) {\n         ServiceBusException exception = (ServiceBusException) context.getException();\n         System.out.printf(\"Error source: %s, reason %s%n\", context.getErrorSource(),\n             exception.getReason());\n     } else {\n         System.out.printf(\"Error occurred: %s%n\", context.getException());\n     }\n };\n\n // Retrieve 'connectionString/queueName' from your configuration.\n\n ServiceBusProcessorClient processor = new ServiceBusClientBuilder()\n     .connectionString(connectionString)\n     .processor()\n     .queueName(queueName)\n     .processMessage(onMessage)\n     .processError(onError)\n     .buildProcessorClient();\n\n // Start the processor in the background\n processor.start();\n```\n\n**Create and run a session-enabled processor**\n\n```java\nConsumer<ServiceBusReceivedMessageContext> onMessage = context -> {\n     ServiceBusReceivedMessage message = context.getMessage();\n     System.out.printf(\"Processing message. Session: %s, Sequence #: %s. Contents: %s%n\",\n         message.getSessionId(), message.getSequenceNumber(), message.getBody());\n };\n\n Consumer<ServiceBusErrorContext> onError = context -> {\n     System.out.printf(\"Error when receiving messages from namespace: '%s'. Entity: '%s'%n\",\n         context.getFullyQualifiedNamespace(), context.getEntityPath());\n\n     if (context.getException() instanceof ServiceBusException) {\n         ServiceBusException exception = (ServiceBusException) context.getException();\n         System.out.printf(\"Error source: %s, reason %s%n\", context.getErrorSource(),\n             exception.getReason());\n     } else {\n         System.out.printf(\"Error occurred: %s%n\", context.getException());\n     }\n };\n\n // Retrieve 'connectionString/queueName' from your configuration.\n\n ServiceBusProcessorClient sessionProcessor = new ServiceBusClientBuilder()\n     .connectionString(connectionString)\n     .sessionProcessor()\n     .queueName(queueName)\n     .maxConcurrentSessions(2)\n     .processMessage(onMessage)\n     .processError(onError)\n     .buildProcessorClient();\n\n // Start the processor in the background\n sessionProcessor.start();\n```"
 implements:
-- "<xref href=\"java.lang.AutoCloseable?alt=java.lang.AutoCloseable&text=AutoCloseable\" data-throw-if-not-resolved=\"False\" />"
+- "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html\">AutoCloseable</a>"
 metadata: {}
 package: "com.azure.messaging.servicebus"
 artifact: com.azure:azure-messaging-servicebus:7.8.0
