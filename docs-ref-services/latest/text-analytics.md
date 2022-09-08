@@ -1,12 +1,12 @@
 ---
-title: Azure Text Analytics SDK for Java
-ms.topic: reference
-description: Reference for Azure Text Analytics SDK for Java
-ms.service: textanalytics
 ms.author: savaity
 author: samvaity
+ms.data: 09/08/2022
+ms.topic: reference
+description: Reference for Azure Text Analytics SDK for Java
 ms.devlang: java
-ms.data: 09/07/2022
+title: Azure Text Analytics SDK for Java
+ms.service: textanalytics
 ---
 # Azure Text Analytics SDK for Java - latest
 
