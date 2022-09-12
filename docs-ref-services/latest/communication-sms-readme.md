@@ -3,12 +3,12 @@ title: Azure Communications SMS Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-sms, communication
 author: JianpingChen
 ms.author: jiach
-ms.date: 08/11/2022
+ms.date: 09/12/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communications SMS Service client library for Java - version 1.1.5 
+# Azure Communications SMS Service client library for Java - version 1.1.6 
 
 
 Azure Communication SMS is used to send simple text messages.
@@ -29,7 +29,7 @@ Azure Communication SMS is used to send simple text messages.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-sms_1.1.5/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-sms_1.1.6/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -64,7 +64,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-communication-sms</artifactId>
-  <version>1.1.5</version>
+  <version>1.1.6</version>
 </dependency>
 ```
 
@@ -199,7 +199,7 @@ try {
 [product_docs]: /azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-sms
 [api_documentation]: https://aka.ms/java-docs
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.1.5/sdk/communication/azure-communication-sms/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.1.6/sdk/communication/azure-communication-sms/src
 [handle_sms_events]: /azure/communication-services/quickstarts/telephony-sms/handle-sms-events
 [next_steps]:/azure/communication-services/quickstarts/telephony-sms/send?pivots=programming-language-java
 
