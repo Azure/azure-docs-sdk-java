@@ -1,15 +1,15 @@
 ---
-ms.author: conniey
-author: conniey
-ms.data: 09/08/2022
+ms.service: event-hubs
 ms.topic: reference
-description: Reference for Azure Event Hubs SDK for Java
-ms.devlang: java
 title: Azure Event Hubs SDK for Java
-ms.service: eventhubs
-manager: douge
-ms.date: 06/21/2017
+ms.devlang: java
+author: conniey
+ms.data: 09/15/2022
+description: Reference for Azure Event Hubs SDK for Java
+ms.author: conniey
 keywords: Azure, Java, SDK, API, event hub, IoT, stream processing
+ms.date: 06/21/2017
+manager: douge
 ---
 # Azure Event Hub libraries for Java
 
