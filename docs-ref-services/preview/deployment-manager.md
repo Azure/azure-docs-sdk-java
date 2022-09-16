@@ -1,12 +1,12 @@
 ---
 description: Reference for Azure Deployment Manager SDK for Java
-ms.data: 09/16/2022
-ms.author: jfree
-ms.topic: reference
 ms.devlang: java
-title: Azure Deployment Manager SDK for Java
-author: joshfree
 ms.service: deploymentmanager
+ms.topic: reference
+ms.author: jfree
+author: joshfree
+ms.data: 09/16/2022
+title: Azure Deployment Manager SDK for Java
 ---
 # Azure Deployment Manager SDK for Java - preview
 

@@ -1,12 +1,12 @@
 ---
 description: Reference for Azure Health Bot SDK for Java
-ms.data: 09/16/2022
-ms.author: jfree
-ms.topic: reference
 ms.devlang: java
-title: Azure Health Bot SDK for Java
-author: joshfree
 ms.service: healthbot
+ms.topic: reference
+ms.author: jfree
+author: joshfree
+ms.data: 09/16/2022
+title: Azure Health Bot SDK for Java
 ---
 # Azure Health Bot SDK for Java - preview
 

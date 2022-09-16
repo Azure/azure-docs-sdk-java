@@ -1,12 +1,12 @@
 ---
 description: Reference for Azure Consumption SDK for Java
-ms.data: 09/16/2022
-ms.author: jfree
-ms.topic: reference
 ms.devlang: java
-title: Azure Consumption SDK for Java
-author: joshfree
 ms.service: consumption
+ms.topic: reference
+ms.author: jfree
+author: joshfree
+ms.data: 09/16/2022
+title: Azure Consumption SDK for Java
 ---
 # Azure Consumption SDK for Java - preview
 
