@@ -1,12 +1,12 @@
 ---
-description: Reference for Azure VMware Solution by CloudSimple SDK for Java
-ms.devlang: java
-ms.service: vmwaresolutionbycloudsimple
-ms.topic: reference
-ms.author: jfree
+ms.data: 09/19/2022
 author: joshfree
-ms.data: 09/16/2022
+ms.devlang: java
 title: Azure VMware Solution by CloudSimple SDK for Java
+description: Reference for Azure VMware Solution by CloudSimple SDK for Java
+ms.topic: reference
+ms.service: vmwaresolutionbycloudsimple
+ms.author: jfree
 ---
 # Azure VMware Solution by CloudSimple SDK for Java - preview
 
