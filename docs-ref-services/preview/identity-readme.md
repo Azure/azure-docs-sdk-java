@@ -3,12 +3,12 @@ title: Azure Identity client library for Java
 keywords: Azure, java, SDK, API, azure-identity, identity
 author: g2vinay
 ms.author: vigera
-ms.date: 08/12/2022
+ms.date: 09/21/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: identity
 ---
-# Azure Identity client library for Java - version 1.6.0-beta.1 
+# Azure Identity client library for Java - version 1.7.0-beta.1 
 
 The Azure Identity library provides [Azure Active Directory (AAD)](/azure/active-directory/fundamentals/active-directory-whatis) token authentication support across the Azure SDK. It provides a set of TokenCredential implementations which can be used to construct Azure SDK clients which support AAD token authentication.
 
@@ -20,7 +20,7 @@ The Azure Identity library provides [Azure Active Directory (AAD)](/azure/active
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.6.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.7.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -58,7 +58,7 @@ Maven dependency for Azure Secret Client library. Add it to your project's pom f
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.5.4</version>
+    <version>1.6.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -511,7 +511,7 @@ describes why authentication failed. When this exception is raised by `ChainedTo
 When credentials cannot execute authentication due to one of the underlying resources required by the credential being unavailable on the machine, the`CredentialUnavailableException` is raised and it has a `message` attribute which
 describes why the credential is unavailable for authentication execution . When this exception is raised by `ChainedTokenCredential`, the message collects error messages from each credential in the chain.
 
-See the [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.6.0-beta.1/sdk/identity/azure-identity/TROUBLESHOOTING.md) for details on how to diagnose various failure scenarios.
+See the [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.7.0-beta.1/sdk/identity/azure-identity/TROUBLESHOOTING.md) for details on how to diagnose various failure scenarios.
 ### Enable client logging
 
 Azure SDK for Java offers a consistent logging story to help aid in troubleshooting application errors and expedite
@@ -534,14 +534,14 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 <!-- LINKS -->
 [azure_cli]: /cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.6.0-beta.1/sdk/identity/azure-identity
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.7.0-beta.1/sdk/identity/azure-identity
 [aad_doc]: /azure/active-directory/
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
-[keys_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.6.0-beta.1/sdk/keyvault/azure-security-keyvault-keys
+[keys_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.7.0-beta.1/sdk/keyvault/azure-security-keyvault-keys
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-[secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.6.0-beta.1/sdk/keyvault/azure-security-keyvault-secrets
-[eventhubs_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.6.0-beta.1/sdk/eventhubs/azure-messaging-eventhubs
-[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.6.0-beta.1/sdk/core
+[secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.7.0-beta.1/sdk/keyvault/azure-security-keyvault-secrets
+[eventhubs_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.7.0-beta.1/sdk/eventhubs/azure-messaging-eventhubs
+[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.7.0-beta.1/sdk/core
 [javadoc]: https://azure.github.io/azure-sdk-for-java
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [chaining_credentials]: https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Examples#chaining-credentials
