@@ -1,12 +1,12 @@
 ---
-ms.data: 09/19/2022
-author: joshfree
-ms.devlang: java
+ms.data: 09/21/2022
 title: Azure Container Apps SDK for Java
+ms.author: jfree
+ms.devlang: java
+ms.service: containerapps
 description: Reference for Azure Container Apps SDK for Java
 ms.topic: reference
-ms.service: containerapps
-ms.author: jfree
+author: joshfree
 ---
 # Azure Container Apps SDK for Java - preview
 

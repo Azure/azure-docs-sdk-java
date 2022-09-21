@@ -1,12 +1,12 @@
 ---
-ms.data: 09/19/2022
-author: joshfree
-ms.devlang: java
+ms.data: 09/20/2022
 title: Azure Web PubSub SDK for Java
+ms.author: jfree
+ms.devlang: java
+ms.service: webpubsub
 description: Reference for Azure Web PubSub SDK for Java
 ms.topic: reference
-ms.service: webpubsub
-ms.author: jfree
+author: joshfree
 ---
 # Azure Web PubSub SDK for Java - latest
 

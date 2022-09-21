@@ -1,12 +1,12 @@
 ---
-ms.data: 09/19/2022
-author: joshfree
-ms.devlang: java
+ms.data: 09/20/2022
 title: Azure Azure Stack SDK for Java
+ms.author: jfree
+ms.devlang: java
+ms.service: azure-resource-manager
 description: Reference for Azure Azure Stack SDK for Java
 ms.topic: reference
-ms.service: azure-resource-manager
-ms.author: jfree
+author: joshfree
 ---
 # Azure Azure Stack SDK for Java - preview
 

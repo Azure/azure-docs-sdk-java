@@ -1,12 +1,12 @@
 ---
-ms.data: 09/19/2022
-author: conniey
-ms.devlang: java
+ms.data: 09/20/2022
 title: Azure Schema Registry SDK for Java
+ms.author: conniey
+ms.devlang: java
+ms.service: schemaregistry
 description: Reference for Azure Schema Registry SDK for Java
 ms.topic: reference
-ms.service: schemaregistry
-ms.author: conniey
+author: conniey
 ---
 # Azure Schema Registry SDK for Java - latest
 

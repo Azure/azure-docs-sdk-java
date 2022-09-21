@@ -1,12 +1,12 @@
 ---
-ms.data: 09/19/2022
-author: joshfree
-ms.devlang: java
+ms.data: 09/21/2022
 title: Azure Image Builder SDK for Java
+ms.author: jfree
+ms.devlang: java
+ms.service: imagebuilder
 description: Reference for Azure Image Builder SDK for Java
 ms.topic: reference
-ms.service: imagebuilder
-ms.author: jfree
+author: joshfree
 ---
 # Azure Image Builder SDK for Java - preview
 

@@ -1,12 +1,12 @@
 ---
-ms.data: 09/19/2022
-author: JianpingChen
-ms.devlang: java
+ms.data: 09/20/2022
 title: Azure Communication SDK for Java
+ms.author: jiach
+ms.devlang: java
+ms.service: communication
 description: Reference for Azure Communication SDK for Java
 ms.topic: reference
-ms.service: communication
-ms.author: jiach
+author: JianpingChen
 ---
 # Azure Communication SDK for Java - preview
 

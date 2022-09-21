@@ -1,12 +1,12 @@
 ---
-ms.data: 09/19/2022
-author: joshfree
-ms.devlang: java
+ms.data: 09/20/2022
 title: Azure Compute SDK for Java
+ms.author: jfree
+ms.devlang: java
+ms.service: big-compute
 description: Reference for Azure Compute SDK for Java
 ms.topic: reference
-ms.service: big-compute
-ms.author: jfree
+author: joshfree
 ---
 # Azure Compute SDK for Java - latest
 

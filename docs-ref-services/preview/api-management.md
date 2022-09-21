@@ -1,12 +1,12 @@
 ---
-ms.data: 09/19/2022
-author: joshfree
-ms.devlang: java
+ms.data: 09/21/2022
 title: Azure Api Management SDK for Java
+ms.author: jfree
+ms.devlang: java
+ms.service: apimanagement
 description: Reference for Azure Api Management SDK for Java
 ms.topic: reference
-ms.service: apimanagement
-ms.author: jfree
+author: joshfree
 ---
 # Azure Api Management SDK for Java - preview
 
