@@ -1,12 +1,11 @@
 ---
 title: Azure Storage Queue client library for Java
+description: Learn how to store large numbers of messages that can be accessed from anywhere in the world via authenticated calls using HTTP or HTTPS.
 keywords: Azure, java, SDK, API, azure-storage-queue, storage
-author: ramya-rao-a
-ms.author: ramyar
+author: amishra-dev
+ms.author: amishra
 ms.date: 11/11/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
