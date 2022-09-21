@@ -1,12 +1,12 @@
 ---
-ms.data: 09/20/2022
-title: Azure Anomaly Detector SDK for Java
-ms.author: conhua
-ms.devlang: java
+ms.data: 09/21/2022
 ms.service: anomalydetector
 description: Reference for Azure Anomaly Detector SDK for Java
-ms.topic: reference
+ms.author: conhua
 author: conhua
+ms.devlang: java
+title: Azure Anomaly Detector SDK for Java
+ms.topic: reference
 ---
 # Azure Anomaly Detector SDK for Java - preview
 

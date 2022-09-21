@@ -1,12 +1,12 @@
 ---
 ms.data: 09/21/2022
-title: Azure Workloads SDK for Java
-ms.author: jfree
-ms.devlang: java
 ms.service: workloads
 description: Reference for Azure Workloads SDK for Java
-ms.topic: reference
+ms.author: jfree
 author: joshfree
+ms.devlang: java
+title: Azure Workloads SDK for Java
+ms.topic: reference
 ---
 # Azure Workloads SDK for Java - preview
 
