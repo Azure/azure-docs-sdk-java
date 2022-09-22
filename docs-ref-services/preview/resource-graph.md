@@ -1,12 +1,12 @@
 ---
-ms.data: 09/20/2022
-title: Azure Resource Graph SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.data: 09/21/2022
 ms.service: resourcegraph
 description: Reference for Azure Resource Graph SDK for Java
-ms.topic: reference
+ms.author: jfree
 author: joshfree
+ms.devlang: java
+title: Azure Resource Graph SDK for Java
+ms.topic: reference
 ---
 # Azure Resource Graph SDK for Java - preview
 

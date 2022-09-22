@@ -1,12 +1,12 @@
 ---
-ms.data: 09/20/2022
-title: Azure Data Protection SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.data: 09/21/2022
 ms.service: dataprotection
 description: Reference for Azure Data Protection SDK for Java
-ms.topic: reference
+ms.author: jfree
 author: joshfree
+ms.devlang: java
+title: Azure Data Protection SDK for Java
+ms.topic: reference
 ---
 # Azure Data Protection SDK for Java - preview
 

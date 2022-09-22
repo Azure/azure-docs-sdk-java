@@ -1,12 +1,12 @@
 ---
-ms.data: 09/20/2022
-title: Azure Data Lake Storage Gen2 SDK for Java
-ms.author: jfree
-ms.devlang: java
+ms.data: 09/21/2022
 ms.service: datalakestoragegen2
 description: Reference for Azure Data Lake Storage Gen2 SDK for Java
-ms.topic: reference
+ms.author: jfree
 author: joshfree
+ms.devlang: java
+title: Azure Data Lake Storage Gen2 SDK for Java
+ms.topic: reference
 ---
 # Azure Data Lake Storage Gen2 SDK for Java - latest
 
