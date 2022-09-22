@@ -1,12 +1,12 @@
 ---
-ms.data: 09/21/2022
-ms.service: advisor
-description: Reference for Azure Advisor SDK for Java
-ms.author: jfree
 author: joshfree
 ms.devlang: java
-title: Azure Advisor SDK for Java
+description: Reference for Azure Advisor SDK for Java
+ms.service: advisor
 ms.topic: reference
+ms.author: jfree
+title: Azure Advisor SDK for Java
+ms.data: 09/22/2022
 ---
 # Azure Advisor SDK for Java - preview
 

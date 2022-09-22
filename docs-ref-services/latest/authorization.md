@@ -1,12 +1,12 @@
 ---
-ms.data: 09/21/2022
-ms.service: azure-resource-manager
-description: Reference for Azure Authorization SDK for Java
-ms.author: jfree
 author: joshfree
 ms.devlang: java
-title: Azure Authorization SDK for Java
+description: Reference for Azure Authorization SDK for Java
+ms.service: azure-resource-manager
 ms.topic: reference
+ms.author: jfree
+title: Azure Authorization SDK for Java
+ms.data: 09/22/2022
 ---
 # Azure Authorization SDK for Java - latest
 

@@ -1,12 +1,12 @@
 ---
-ms.data: 09/21/2022
-ms.service: mixedreality
-description: Reference for Azure Mixed Reality SDK for Java
-ms.author: jfree
 author: joshfree
 ms.devlang: java
-title: Azure Mixed Reality SDK for Java
+description: Reference for Azure Mixed Reality SDK for Java
+ms.service: mixedreality
 ms.topic: reference
+ms.author: jfree
+title: Azure Mixed Reality SDK for Java
+ms.data: 09/22/2022
 ---
 # Azure Mixed Reality SDK for Java - latest
 

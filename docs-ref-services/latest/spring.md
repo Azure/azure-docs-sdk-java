@@ -1,12 +1,12 @@
 ---
-ms.data: 09/21/2022
-ms.service: spring
-description: Reference for Azure Spring SDK for Java
-ms.author: zhihaoguo
 author: backwind1233
 ms.devlang: java
-title: Azure Spring SDK for Java
+description: Reference for Azure Spring SDK for Java
+ms.service: spring
 ms.topic: reference
+ms.author: zhihaoguo
+title: Azure Spring SDK for Java
+ms.data: 09/22/2022
 ---
 # Azure Spring SDK for Java - latest
 
