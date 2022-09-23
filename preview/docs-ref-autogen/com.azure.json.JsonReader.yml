@@ -1,0 +1,409 @@
+### YamlMime:JavaType
+uid: "com.azure.json.JsonReader"
+fullName: "com.azure.json.JsonReader"
+name: "JsonReader"
+nameWithType: "JsonReader"
+summary: "Reads a JSON encoded value as a stream of tokens."
+inheritances:
+- "<xref href=\"java.lang.Object?displayProperty=fullName\" data-throw-if-not-resolved=\"False\" />"
+inheritedMembers:
+- "java.lang.Object.clone()"
+- "java.lang.Object.equals(java.lang.Object)"
+- "java.lang.Object.finalize()"
+- "java.lang.Object.getClass()"
+- "java.lang.Object.hashCode()"
+- "java.lang.Object.notify()"
+- "java.lang.Object.notifyAll()"
+- "java.lang.Object.toString()"
+- "java.lang.Object.wait()"
+- "java.lang.Object.wait(long)"
+- "java.lang.Object.wait(long,int)"
+syntax: "public abstract class JsonReader implements Closeable"
+constructors:
+- uid: "com.azure.json.JsonReader.JsonReader()"
+  fullName: "com.azure.json.JsonReader.JsonReader()"
+  name: "JsonReader()"
+  nameWithType: "JsonReader.JsonReader()"
+  syntax: "public JsonReader()"
+methods:
+- uid: "com.azure.json.JsonReader.<T>getNullable(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)"
+  fullName: "com.azure.json.JsonReader.<T>getNullable(ReadValueCallback<JsonReader,T> nonNullGetter)"
+  name: "<T>getNullable(ReadValueCallback<JsonReader,T> nonNullGetter)"
+  nameWithType: "JsonReader.<T>getNullable(ReadValueCallback<JsonReader,T> nonNullGetter)"
+  summary: "Convenience method to read a nullable type."
+  modifiers:
+  - "final"
+  parameters:
+  - description: "Function that reads the non-null JSON value."
+    name: "nonNullGetter"
+    type: "<xref href=\"com.azure.json.ReadValueCallback?alt=com.azure.json.ReadValueCallback&text=ReadValueCallback\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.json.JsonReader?alt=com.azure.json.JsonReader&text=JsonReader\" data-throw-if-not-resolved=\"False\" />,<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
+  syntax: "public final T <T>getNullable(ReadValueCallback<JsonReader,T> nonNullGetter)"
+  exceptions:
+  - description: "If the next value cannot be read as a nullable."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Convenience method to read a nullable type.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref> null will be returned, otherwise this <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> will be passed into the `nonNullGetter` function to get the value. Effectively, this is the generic form of the get\\*NullableValue methods."
+  returns:
+    description: "null if the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref> or the value returned by\n <code>nonNullGetter</code>."
+    type: "<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.<T>readArray(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)"
+  fullName: "com.azure.json.JsonReader.<T>readArray(ReadValueCallback<JsonReader,T> elementReaderFunc)"
+  name: "<T>readArray(ReadValueCallback<JsonReader,T> elementReaderFunc)"
+  nameWithType: "JsonReader.<T>readArray(ReadValueCallback<JsonReader,T> elementReaderFunc)"
+  summary: "Reads a JSON array."
+  modifiers:
+  - "final"
+  parameters:
+  - description: "Function that reads each element of the array."
+    name: "elementReaderFunc"
+    type: "<xref href=\"com.azure.json.ReadValueCallback?alt=com.azure.json.ReadValueCallback&text=ReadValueCallback\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.json.JsonReader?alt=com.azure.json.JsonReader&text=JsonReader\" data-throw-if-not-resolved=\"False\" />,<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
+  syntax: "public final List<T> <T>readArray(ReadValueCallback<JsonReader,T> elementReaderFunc)"
+  exceptions:
+  - description: "If the token isn't <xref uid=\"JsonToken#START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref>, <xref uid=\"JsonToken#NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>, or null."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Reads a JSON array.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is null this will <xref uid=\"com.azure.json.JsonReader.nextToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"read the next token\"></xref>. If the starting token is still null or <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref> null will be returned. If the token is anything other than <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown.\n\nOnce the JSON stream is prepared for element reading this will get the element token and pass this <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> into the `elementReaderFunc` to handle reading the element of the array. If the array has no elements an empty list will be returned.\n\nIf a JSON object should be read use <xref uid=\"com.azure.json.JsonReader.<T>readObject(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#readObject(ReadValueCallback)\"></xref> or if a JSON map should be read use <xref uid=\"com.azure.json.JsonReader.<T>readMap(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#readMap(ReadValueCallback)\"></xref>."
+  returns:
+    description: "The read JSON array, or null if the <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> is null or <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/List.html\">List</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.json.JsonReader.<T>readMap(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)"
+  fullName: "com.azure.json.JsonReader.<T>readMap(ReadValueCallback<JsonReader,T> valueReaderFunc)"
+  name: "<T>readMap(ReadValueCallback<JsonReader,T> valueReaderFunc)"
+  nameWithType: "JsonReader.<T>readMap(ReadValueCallback<JsonReader,T> valueReaderFunc)"
+  summary: "Reads a JSON map."
+  modifiers:
+  - "final"
+  parameters:
+  - description: "Function that reads each value of the key-value pair."
+    name: "valueReaderFunc"
+    type: "<xref href=\"com.azure.json.ReadValueCallback?alt=com.azure.json.ReadValueCallback&text=ReadValueCallback\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.json.JsonReader?alt=com.azure.json.JsonReader&text=JsonReader\" data-throw-if-not-resolved=\"False\" />,<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
+  syntax: "public final Map<String,T> <T>readMap(ReadValueCallback<JsonReader,T> valueReaderFunc)"
+  exceptions:
+  - description: "If the token isn't <xref uid=\"JsonToken#START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>, <xref uid=\"JsonToken#NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>, or\n null."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Reads a JSON map.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is null this will <xref uid=\"com.azure.json.JsonReader.nextToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"read the next token\"></xref>. If the starting token is still null or <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref> null will be returned. If the token is anything other than <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown.\n\nOnce the JSON stream is prepared for key-value reading this will get the next token and read the field name as the key then get the next token after that and pass this <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> into the `valueReaderFunc` to handle reading the value of the key-value pair. If the object has no elements an empty map will be returned.\n\nIf a JSON object should be read use <xref uid=\"com.azure.json.JsonReader.<T>readObject(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#readObject(ReadValueCallback)\"></xref> or if a JSON array should be read use <xref uid=\"com.azure.json.JsonReader.<T>readArray(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#readArray(ReadValueCallback)\"></xref>."
+  returns:
+    description: "The read JSON map, or null if the <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> is null or <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/Map.html\">Map</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>,<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.json.JsonReader.<T>readObject(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)"
+  fullName: "com.azure.json.JsonReader.<T>readObject(ReadValueCallback<JsonReader,T> objectReaderFunc)"
+  name: "<T>readObject(ReadValueCallback<JsonReader,T> objectReaderFunc)"
+  nameWithType: "JsonReader.<T>readObject(ReadValueCallback<JsonReader,T> objectReaderFunc)"
+  summary: "Reads a JSON object."
+  modifiers:
+  - "final"
+  parameters:
+  - description: "Function that reads each value of the key-value pair."
+    name: "objectReaderFunc"
+    type: "<xref href=\"com.azure.json.ReadValueCallback?alt=com.azure.json.ReadValueCallback&text=ReadValueCallback\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.json.JsonReader?alt=com.azure.json.JsonReader&text=JsonReader\" data-throw-if-not-resolved=\"False\" />,<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
+  syntax: "public final T <T>readObject(ReadValueCallback<JsonReader,T> objectReaderFunc)"
+  exceptions:
+  - description: "If the token isn't <xref uid=\"JsonToken#START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>, <xref uid=\"JsonToken#NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>, or\n null."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Reads a JSON object.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is null this will <xref uid=\"com.azure.json.JsonReader.nextToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"read the next token\"></xref>. If the starting token is still null or <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref> null will be returned. If the token is anything other than <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown.\n\nOnce the JSON stream is prepared for object reading this will get the next token and pass this <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> into the `objectReaderFunc` to handle reading the object.\n\nIf a JSON array should be read use <xref uid=\"com.azure.json.JsonReader.<T>readArray(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#readArray(ReadValueCallback)\"></xref> or if a JSON map should be read use <xref uid=\"com.azure.json.JsonReader.<T>readMap(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#readMap(ReadValueCallback)\"></xref>."
+  returns:
+    description: "The read JSON map, or null if the <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> is null or <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>."
+    type: "<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.bufferObject()"
+  fullName: "com.azure.json.JsonReader.bufferObject()"
+  name: "bufferObject()"
+  nameWithType: "JsonReader.bufferObject()"
+  summary: "Reads and returns the current JSON object the <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> is pointing to."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract JsonReader bufferObject()"
+  exceptions:
+  - description: "If the <xref uid=\"#currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> isn't <xref uid=\"JsonToken#START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> or\n <xref uid=\"JsonToken#FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> followed by <xref uid=\"JsonToken#START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Reads and returns the current JSON object the <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> is pointing to. This will mutate the current location of this <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref>.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> isn't <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> or <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> followed by <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown.\n\nThe returned <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> is able to be <xref uid=\"com.azure.json.JsonReader.reset()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#reset()\"></xref> to replay the underlying JSON stream."
+  returns:
+    description: "The buffered JSON object the <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> was pointing to."
+    type: "<xref href=\"com.azure.json.JsonReader?alt=com.azure.json.JsonReader&text=JsonReader\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.close()"
+  fullName: "com.azure.json.JsonReader.close()"
+  name: "close()"
+  nameWithType: "JsonReader.close()"
+  summary: "Closes the JSON stream."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract void close()"
+  exceptions:
+  - description: "If the underlying content store fails to close."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Closes the JSON stream."
+- uid: "com.azure.json.JsonReader.currentToken()"
+  fullName: "com.azure.json.JsonReader.currentToken()"
+  name: "currentToken()"
+  nameWithType: "JsonReader.currentToken()"
+  summary: "Gets the <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> that the reader currently points."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract JsonToken currentToken()"
+  desc: "Gets the <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> that the reader currently points.\n\nReturns null if the reader isn't pointing to a token. This happens if the reader hasn't begun to read the JSON value or if reading of the JSON value has completed."
+  returns:
+    description: "The <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> that the reader currently points, or null if the reader isn't pointing to a token."
+    type: "<xref href=\"com.azure.json.JsonToken?alt=com.azure.json.JsonToken&text=JsonToken\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.getBinary()"
+  fullName: "com.azure.json.JsonReader.getBinary()"
+  name: "getBinary()"
+  nameWithType: "JsonReader.getBinary()"
+  summary: "Gets the binary value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> token."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract byte[] getBinary()"
+  exceptions:
+  - description: "If the reader isn't pointing to either <xref uid=\"JsonToken#STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> or\n <xref uid=\"JsonToken#NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Gets the binary value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> token.\n\nThis returns the equivalent of <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Base64#getDecoder()\"></xref> <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Base64.Decoder#decode(String)\"></xref>.\n\nIf the reader is pointing to a <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref> null will be returned. If the reader is pointing to any other token type an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown."
+  returns:
+    description: "The binary value based on whether the current token is <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> or\n <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>."
+    type: "<xref href=\"byte?alt=byte&text=byte\" data-throw-if-not-resolved=\"False\" />[]"
+- uid: "com.azure.json.JsonReader.getBoolean()"
+  fullName: "com.azure.json.JsonReader.getBoolean()"
+  name: "getBoolean()"
+  nameWithType: "JsonReader.getBoolean()"
+  summary: "Gets the boolean value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref> token."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract boolean getBoolean()"
+  exceptions:
+  - description: "If the reader isn't pointing to <xref uid=\"JsonToken#BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref>."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Gets the boolean value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref> token.\n\nIf the reader is pointing to any other token type an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown.\n\nIf <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Boolean\"></xref> should be read use <xref uid=\"com.azure.json.JsonReader.<T>getNullable(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getNullable(ReadValueCallback)\"></xref>."
+  returns:
+    description: "The boolean value based on the <xref uid=\"com.azure.json.JsonToken.BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref>."
+    type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.getDouble()"
+  fullName: "com.azure.json.JsonReader.getDouble()"
+  name: "getDouble()"
+  nameWithType: "JsonReader.getDouble()"
+  summary: "Gets the double value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract double getDouble()"
+  exceptions:
+  - description: "If the current token is a <xref uid=\"JsonToken#STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> and cannot be converted to a\n double."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Gets the double value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>.\n\n<xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> will throw a <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"NumberFormatException\"></xref> if the underlying string value cannot be converted to a double.\n\nAll other <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> types will throw an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref>.\n\nIf <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Double\"></xref> should be read use <xref uid=\"com.azure.json.JsonReader.<T>getNullable(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getNullable(ReadValueCallback)\"></xref>."
+  returns:
+    description: "The double value based on the current token."
+    type: "<xref href=\"double?alt=double&text=double\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.getFieldName()"
+  fullName: "com.azure.json.JsonReader.getFieldName()"
+  name: "getFieldName()"
+  nameWithType: "JsonReader.getFieldName()"
+  summary: "Gets the field name if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref>."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract String getFieldName()"
+  exceptions:
+  - description: "If the current token isn't a <xref uid=\"JsonToken#FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref>."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Gets the field name if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref>.\n\nAll other <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> types will throw an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref>."
+  returns:
+    description: "The field name based on the current token."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+- uid: "com.azure.json.JsonReader.getFloat()"
+  fullName: "com.azure.json.JsonReader.getFloat()"
+  name: "getFloat()"
+  nameWithType: "JsonReader.getFloat()"
+  summary: "Gets the float value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract float getFloat()"
+  exceptions:
+  - description: "If the current token is a <xref uid=\"JsonToken#STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> and cannot be converted to a\n float."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Gets the float value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>.\n\n<xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> will throw a <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"NumberFormatException\"></xref> if the underlying string value cannot be converted to a float.\n\nAll other <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> types will throw an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref>.\n\nIf <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Float\"></xref> should be read use <xref uid=\"com.azure.json.JsonReader.<T>getNullable(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getNullable(ReadValueCallback)\"></xref>."
+  returns:
+    description: "The float value based on the current token."
+    type: "<xref href=\"float?alt=float&text=float\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.getInt()"
+  fullName: "com.azure.json.JsonReader.getInt()"
+  name: "getInt()"
+  nameWithType: "JsonReader.getInt()"
+  summary: "Gets the int value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract int getInt()"
+  exceptions:
+  - description: "If the current token is a <xref uid=\"JsonToken#STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> and cannot be converted to an\n int."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Gets the int value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>.\n\n<xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> will throw a <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"NumberFormatException\"></xref> if the underlying string value cannot be converted to an int.\n\nAll other <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> types will throw an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref>.\n\nIf <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Integer\"></xref> should be read use <xref uid=\"com.azure.json.JsonReader.<T>getNullable(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getNullable(ReadValueCallback)\"></xref>."
+  returns:
+    description: "The int value based on the current token."
+    type: "<xref href=\"int?alt=int&text=int\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.getLong()"
+  fullName: "com.azure.json.JsonReader.getLong()"
+  name: "getLong()"
+  nameWithType: "JsonReader.getLong()"
+  summary: "Gets the long value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract long getLong()"
+  exceptions:
+  - description: "If the current token is a <xref uid=\"JsonToken#STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> and cannot be converted to a\n long."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Gets the long value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>.\n\n<xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> will throw a <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"NumberFormatException\"></xref> if the underlying string value cannot be converted to a long.\n\nAll other <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> types will throw an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref>.\n\nIf <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Long\"></xref> should be read use <xref uid=\"com.azure.json.JsonReader.<T>getNullable(com.azure.json.ReadValueCallback<com.azure.json.JsonReader,T>)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getNullable(ReadValueCallback)\"></xref>."
+  returns:
+    description: "The long value based on the current token."
+    type: "<xref href=\"long?alt=long&text=long\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.getString()"
+  fullName: "com.azure.json.JsonReader.getString()"
+  name: "getString()"
+  nameWithType: "JsonReader.getString()"
+  summary: "Gets the String value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref>, <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>, <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref>, or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract String getString()"
+  exceptions:
+  - description: "If the current token isn't a <xref uid=\"JsonToken#BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref>, <xref uid=\"JsonToken#NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>,\n <xref uid=\"JsonToken#NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref>, or <xref uid=\"JsonToken#STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Gets the String value if the reader is currently pointing to a <xref uid=\"com.azure.json.JsonToken.BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref>, <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>, <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref>, or <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref>.\n\nIf the current token is a <xref uid=\"com.azure.json.JsonToken.BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref>, or <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> the String representation of the value will be returned. If the current token is <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref> null will be returned.\n\nAll other <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> types will throw an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref>."
+  returns:
+    description: "The String value based on the current token."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+- uid: "com.azure.json.JsonReader.getText()"
+  fullName: "com.azure.json.JsonReader.getText()"
+  name: "getText()"
+  nameWithType: "JsonReader.getText()"
+  summary: "Gets the text value for the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref>."
+  modifiers:
+  - "final"
+  syntax: "public final String getText()"
+  exceptions:
+  - description: "If the current token is null."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Gets the text value for the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref>.\n\nThe following is how each <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> type is handled:\n\n *  <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> \\-> \\{\n *  <xref uid=\"com.azure.json.JsonToken.END_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_OBJECT\"></xref> \\-> \\}\n *  <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> \\-> \\[\n *  <xref uid=\"com.azure.json.JsonToken.END_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_ARRAY\"></xref> \\-> \\]\n *  <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> \\-> <xref uid=\"com.azure.json.JsonReader.getFieldName()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getFieldName()\"></xref>\n *  <xref uid=\"com.azure.json.JsonToken.BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref> \\-> String.valueOf <xref uid=\"com.azure.json.JsonReader.getBoolean()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getBoolean()\"></xref>\n *  <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref> \\-> \"null\"\n *  <xref uid=\"com.azure.json.JsonToken.STRING\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#STRING\"></xref> \\-> <xref uid=\"com.azure.json.JsonReader.getString()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getString()\"></xref>\n *  <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref> \\-> String.valueOf <xref uid=\"com.azure.json.JsonReader.getString()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getString()\"></xref>\n\nIf the current token is null an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown."
+  returns:
+    description: "The text value for the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref>."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+- uid: "com.azure.json.JsonReader.isEndArrayOrObject()"
+  fullName: "com.azure.json.JsonReader.isEndArrayOrObject()"
+  name: "isEndArrayOrObject()"
+  nameWithType: "JsonReader.isEndArrayOrObject()"
+  summary: "Whether the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.END_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.END_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_OBJECT\"></xref>."
+  modifiers:
+  - "final"
+  syntax: "public final boolean isEndArrayOrObject()"
+  desc: "Whether the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.END_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.END_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_OBJECT\"></xref>."
+  returns:
+    description: "Whether the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.END_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.END_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_OBJECT\"></xref>."
+    type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.isStartArrayOrObject()"
+  fullName: "com.azure.json.JsonReader.isStartArrayOrObject()"
+  name: "isStartArrayOrObject()"
+  nameWithType: "JsonReader.isStartArrayOrObject()"
+  summary: "Whether the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>."
+  modifiers:
+  - "final"
+  syntax: "public final boolean isStartArrayOrObject()"
+  desc: "Whether the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>."
+  returns:
+    description: "Whether the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>."
+    type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.nextToken()"
+  fullName: "com.azure.json.JsonReader.nextToken()"
+  name: "nextToken()"
+  nameWithType: "JsonReader.nextToken()"
+  summary: "Iterates to and returns the next <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> in the JSON encoded value."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract JsonToken nextToken()"
+  exceptions:
+  - description: "If the next token cannot be determined."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Iterates to and returns the next <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> in the JSON encoded value.\n\nReturns null if iterating to the next token completes reading of the JSON encoded value."
+  returns:
+    description: "The next <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> in the JSON encoded value, or null if reading completes."
+    type: "<xref href=\"com.azure.json.JsonToken?alt=com.azure.json.JsonToken&text=JsonToken\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.readChildren()"
+  fullName: "com.azure.json.JsonReader.readChildren()"
+  name: "readChildren()"
+  nameWithType: "JsonReader.readChildren()"
+  summary: "Recursively reads the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>."
+  modifiers:
+  - "final"
+  syntax: "public final String readChildren()"
+  exceptions:
+  - description: "If the children cannot be read."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Recursively reads the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>.\n\nIf the current token isn't the beginning of an array or object this method is a no-op."
+  returns:
+    description: "The raw textual value of the JSON token sub-stream."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+- uid: "com.azure.json.JsonReader.readChildren(java.lang.StringBuilder)"
+  fullName: "com.azure.json.JsonReader.readChildren(StringBuilder buffer)"
+  name: "readChildren(StringBuilder buffer)"
+  nameWithType: "JsonReader.readChildren(StringBuilder buffer)"
+  summary: "Recursively reads the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> into the passed <xref uid=\"java.lang.StringBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"StringBuilder\"></xref>."
+  modifiers:
+  - "final"
+  parameters:
+  - description: "The <xref uid=\"java.lang.StringBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"StringBuilder\"></xref> where the read sub-stream will be written."
+    name: "buffer"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html\">StringBuilder</a>"
+  syntax: "public final void readChildren(StringBuilder buffer)"
+  exceptions:
+  - description: "If the children cannot be read."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Recursively reads the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> into the passed <xref uid=\"java.lang.StringBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"StringBuilder\"></xref>.\n\nIf the current token isn't the beginning of an array or object this method is a no-op."
+- uid: "com.azure.json.JsonReader.readUntyped()"
+  fullName: "com.azure.json.JsonReader.readUntyped()"
+  name: "readUntyped()"
+  nameWithType: "JsonReader.readUntyped()"
+  summary: "Reads an untyped object."
+  modifiers:
+  - "final"
+  syntax: "public final Object readUntyped()"
+  exceptions:
+  - description: "If the starting point of the object is <xref uid=\"JsonToken#END_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_ARRAY\"></xref>,\n <xref uid=\"JsonToken#END_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_OBJECT\"></xref>, or <xref uid=\"JsonToken#FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> or if the untyped object is deeply nested."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Reads an untyped object.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is null this will <xref uid=\"com.azure.json.JsonReader.nextToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"read the next token\"></xref>.\n\nIf the starting token is <xref uid=\"com.azure.json.JsonToken.END_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_ARRAY\"></xref>, <xref uid=\"com.azure.json.JsonToken.END_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#END_OBJECT\"></xref>, or <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown as these are invalid starting points for reading an unknown type. If the untyped object is deeply nested an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will also be thrown to prevent a stack overflow exception.\n\nThe returned object will be one of the following:\n\n *  null if the starting token is null or <xref uid=\"com.azure.json.JsonToken.NULL\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NULL\"></xref>\n *  true or false if the starting token is <xref uid=\"com.azure.json.JsonToken.BOOLEAN\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#BOOLEAN\"></xref>\n *  One of int, long, float, or double is the starting token is <xref uid=\"com.azure.json.JsonToken.NUMBER\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#NUMBER\"></xref>, the smallest containing value will be used if the number is an integer\n *  An array of untyped elements if the starting point is <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref>\n *  A map of String-untyped value if the starting point is <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>"
+  returns:
+    description: "The untyped value based on the outlined return types above."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html\">Object</a>"
+- uid: "com.azure.json.JsonReader.reset()"
+  fullName: "com.azure.json.JsonReader.reset()"
+  name: "reset()"
+  nameWithType: "JsonReader.reset()"
+  summary: "Creates a new <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> reset to the beginning of the JSON stream."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract JsonReader reset()"
+  exceptions:
+  - description: "If resetting isn't supported by the current JsonReader."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Creates a new <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> reset to the beginning of the JSON stream.\n\nUse <xref uid=\"com.azure.json.JsonReader.resetSupported()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#resetSupported()\"></xref> to determine whether the <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> can be reset. If resetting is called and it isn't supported an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown."
+  returns:
+    description: "A new <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> reset to the beginning of the JSON stream."
+    type: "<xref href=\"com.azure.json.JsonReader?alt=com.azure.json.JsonReader&text=JsonReader\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.resetSupported()"
+  fullName: "com.azure.json.JsonReader.resetSupported()"
+  name: "resetSupported()"
+  nameWithType: "JsonReader.resetSupported()"
+  summary: "Indicates whether the <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> supports <xref uid=\"com.azure.json.JsonReader.reset()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"resetting\"></xref>."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract boolean resetSupported()"
+  desc: "Indicates whether the <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> supports <xref uid=\"com.azure.json.JsonReader.reset()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"resetting\"></xref>."
+  returns:
+    description: "Whether <xref uid=\"com.azure.json.JsonReader.reset()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#reset()\"></xref> is supported."
+    type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonReader.skipChildren()"
+  fullName: "com.azure.json.JsonReader.skipChildren()"
+  name: "skipChildren()"
+  nameWithType: "JsonReader.skipChildren()"
+  summary: "Recursively skips the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>."
+  modifiers:
+  - "abstract"
+  syntax: "public abstract void skipChildren()"
+  exceptions:
+  - description: "If the children cannot be skipped."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Recursively skips the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>.\n\nIf the current token isn't the beginning of an array or object this method is a no-op."
+type: "class"
+desc: "Reads a JSON encoded value as a stream of tokens."
+implements:
+- "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html\">Closeable</a>"
+metadata: {}
+package: "com.azure.json"
+artifact: com.azure:azure-json:1.0.0-beta.1

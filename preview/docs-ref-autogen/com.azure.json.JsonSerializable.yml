@@ -1,0 +1,54 @@
+### YamlMime:JavaType
+uid: "com.azure.json.JsonSerializable"
+fullName: "com.azure.json.JsonSerializable<T>"
+name: "JsonSerializable<T>"
+nameWithType: "JsonSerializable<T>"
+summary: "Indicates that the implementing class can be serialized to and deserialized from JSON."
+syntax: "public interface JsonSerializable<T>"
+methods:
+- uid: "com.azure.json.JsonSerializable.<T>fromJson(com.azure.json.JsonReader)"
+  fullName: "com.azure.json.JsonSerializable<T>.<T>fromJson(JsonReader jsonReader)"
+  name: "<T>fromJson(JsonReader jsonReader)"
+  nameWithType: "JsonSerializable<T>.<T>fromJson(JsonReader jsonReader)"
+  summary: "Reads a JSON stream into an object."
+  modifiers:
+  - "static"
+  parameters:
+  - description: "The <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> being read."
+    name: "jsonReader"
+    type: "<xref href=\"com.azure.json.JsonReader?alt=com.azure.json.JsonReader&text=JsonReader\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public static T <T>fromJson(JsonReader jsonReader)"
+  exceptions:
+  - description: "If an object fails to be read from the <code>jsonReader</code>."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Reads a JSON stream into an object.\n\nImplementations of <xref uid=\"com.azure.json.JsonSerializable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonSerializable\"></xref> must define this method, otherwise an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"UnsupportedOperationException\"></xref> will be thrown."
+  returns:
+    description: "The object that the JSON stream represented, may return null."
+    type: "<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.json.JsonSerializable.toJson(com.azure.json.JsonWriter)"
+  fullName: "com.azure.json.JsonSerializable<T>.toJson(JsonWriter jsonWriter)"
+  name: "toJson(JsonWriter jsonWriter)"
+  nameWithType: "JsonSerializable<T>.toJson(JsonWriter jsonWriter)"
+  summary: "Writes the object to the passed <xref uid=\"com.azure.json.JsonWriter\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonWriter\"></xref>."
+  modifiers:
+  - "abstract"
+  parameters:
+  - description: "Where the object's JSON will be written."
+    name: "jsonWriter"
+    type: "<xref href=\"com.azure.json.JsonWriter?alt=com.azure.json.JsonWriter&text=JsonWriter\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public abstract JsonWriter toJson(JsonWriter jsonWriter)"
+  exceptions:
+  - description: "If the object fails to be written to the <code>jsonWriter</code>."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Writes the object to the passed <xref uid=\"com.azure.json.JsonWriter\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonWriter\"></xref>.\n\nThe contract for writing JSON to <xref uid=\"com.azure.json.JsonWriter\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonWriter\"></xref> is that the object being written will handle opening and closing its own JSON object. So, for objects calling out to other <xref uid=\"com.azure.json.JsonSerializable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonSerializable\"></xref> objects for serialization, they'll write the field name only then pass the <xref uid=\"com.azure.json.JsonWriter\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonWriter\"></xref> to the other <xref uid=\"com.azure.json.JsonSerializable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonSerializable\"></xref> object. This way objects writing JSON will be self-encapsulated for writing properly formatted JSON."
+  returns:
+    description: "The <xref uid=\"com.azure.json.JsonWriter\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonWriter\"></xref> where the JSON was written."
+    type: "<xref href=\"com.azure.json.JsonWriter?alt=com.azure.json.JsonWriter&text=JsonWriter\" data-throw-if-not-resolved=\"False\" />"
+type: "interface"
+typeParameters:
+- description: "The type of the object that is JSON serializable."
+  name: "T"
+desc: "Indicates that the implementing class can be serialized to and deserialized from JSON.\n\nSince deserialization needs to work without an instance of the class, implementing this interface it's assumed the class has a static method `fromJson(JsonReader)` that deserializes an instance of that class. The contract for reading JSON from <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> is that the initial state of the reader on call will either be a null <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> or be the <xref uid=\"com.azure.json.JsonToken\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken\"></xref> after the <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> for the object. So, for objects calling out to other <xref uid=\"com.azure.json.JsonSerializable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonSerializable\"></xref> objects for deserialization, they'll pass the reader pointing to the token after the <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref>. This way objects reading JSON will be self-encapsulated for reading properly formatted JSON. And, if an error occurs during deserialization an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> should be thrown."
+metadata: {}
+package: "com.azure.json"
+artifact: com.azure:azure-json:1.0.0-beta.1
