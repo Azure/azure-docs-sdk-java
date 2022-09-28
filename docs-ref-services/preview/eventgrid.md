@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
+title: Azure eventgrid SDK for Java
+description: Reference for Azure eventgrid SDK for Java
 author: mssfang
 ms.service: eventgrid
-description: Reference for Azure eventgrid SDK for Java
-title: Azure eventgrid SDK for Java
+ms.data: 09/28/2022
 ms.author: shafang
 ms.devlang: java
-ms.data: 09/28/2022
+ms.topic: reference
 ---
 # Azure eventgrid SDK for Java - preview
 
