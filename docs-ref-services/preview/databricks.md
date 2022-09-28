@@ -1,12 +1,12 @@
 ---
-author: joshfree
-ms.devlang: java
-description: Reference for Azure Databricks SDK for Java
-ms.service: databricks
 ms.topic: reference
-ms.author: jfree
+author: joshfree
+ms.service: databricks
+description: Reference for Azure Databricks SDK for Java
 title: Azure Databricks SDK for Java
-ms.data: 09/22/2022
+ms.author: jfree
+ms.devlang: java
+ms.data: 09/28/2022
 ---
 # Azure Databricks SDK for Java - preview
 
