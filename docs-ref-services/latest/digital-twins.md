@@ -1,12 +1,12 @@
 ---
 ms.devlang: java
-title: Azure Digital Twins SDK for Java
 description: Reference for Azure Digital Twins SDK for Java
+ms.data: 09/30/2022
 author: johngallardo
+ms.topic: reference
+title: Azure Digital Twins SDK for Java
 ms.service: digitaltwins
 ms.author: jgalla
-ms.data: 09/29/2022
-ms.topic: reference
 ---
 # Azure Digital Twins SDK for Java - latest
 

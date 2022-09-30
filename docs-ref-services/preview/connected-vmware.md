@@ -1,12 +1,12 @@
 ---
 ms.devlang: java
-title: Azure Connected VMWare SDK for Java
 description: Reference for Azure Connected VMWare SDK for Java
+ms.data: 09/30/2022
 author: joshfree
+ms.topic: reference
+title: Azure Connected VMWare SDK for Java
 ms.service: connectedvmware
 ms.author: jfree
-ms.data: 09/29/2022
-ms.topic: reference
 ---
 # Azure Connected VMWare SDK for Java - preview
 

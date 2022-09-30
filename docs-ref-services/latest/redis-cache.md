@@ -1,12 +1,12 @@
 ---
 ms.devlang: java
-title: Azure Redis Cache SDK for Java
 description: Reference for Azure Redis Cache SDK for Java
+ms.data: 09/30/2022
 author: joshfree
-ms.service: redis-cache
-ms.author: jfree
-ms.data: 09/29/2022
 ms.topic: reference
+title: Azure Redis Cache SDK for Java
+ms.service: rediscache
+ms.author: jfree
 ms.date: 07/08/2022
 ---
 # Redis Cache libraries for Java
