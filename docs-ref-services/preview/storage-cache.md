@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
-description: Reference for Azure Storage Cache SDK for Java
-ms.data: 09/30/2022
-author: rickle-msft
-ms.topic: reference
-title: Azure Storage Cache SDK for Java
 ms.service: storagecache
 ms.author: rickle-msft
+description: Reference for Azure Storage Cache SDK for Java
+ms.topic: reference
+author: rickle-msft
+ms.data: 10/03/2022
+title: Azure Storage Cache SDK for Java
+ms.devlang: java
 ---
 # Azure Storage Cache SDK for Java - preview
 

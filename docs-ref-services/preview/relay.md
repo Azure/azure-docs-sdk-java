@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
-description: Reference for Azure Relay SDK for Java
-ms.data: 09/30/2022
-author: joshfree
-ms.topic: reference
-title: Azure Relay SDK for Java
 ms.service: relay
 ms.author: jfree
+description: Reference for Azure Relay SDK for Java
+ms.topic: reference
+author: joshfree
+ms.data: 10/03/2022
+title: Azure Relay SDK for Java
+ms.devlang: java
 ---
 # Azure Relay SDK for Java - preview
 

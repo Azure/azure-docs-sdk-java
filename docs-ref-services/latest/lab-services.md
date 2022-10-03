@@ -1,12 +1,12 @@
 ---
-ms.devlang: java
-description: Reference for Azure Lab Services SDK for Java
-ms.data: 09/30/2022
-author: joshfree
-ms.topic: reference
-title: Azure Lab Services SDK for Java
 ms.service: labservices
 ms.author: jfree
+description: Reference for Azure Lab Services SDK for Java
+ms.topic: reference
+author: joshfree
+ms.data: 10/03/2022
+title: Azure Lab Services SDK for Java
+ms.devlang: java
 ---
 # Azure Lab Services SDK for Java - latest
 
