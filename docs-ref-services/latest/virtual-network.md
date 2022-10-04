@@ -1,12 +1,12 @@
 ---
-title: Azure Virtual Network SDK for Java
-description: Reference for Azure Virtual Network SDK for Java
-author: joshfree
-ms.service: network-access
-ms.data: 09/28/2022
+ms.service: virtualnetwork
 ms.author: jfree
-ms.devlang: java
+description: Reference for Azure Virtual Network SDK for Java
 ms.topic: reference
+author: joshfree
+ms.data: 10/03/2022
+title: Azure Virtual Network SDK for Java
+ms.devlang: java
 ---
 # Azure Virtual Network SDK for Java - latest
 

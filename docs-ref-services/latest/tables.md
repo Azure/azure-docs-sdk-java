@@ -1,12 +1,12 @@
 ---
-title: Azure Tables SDK for Java
-description: Reference for Azure Tables SDK for Java
-author: vcolin7
 ms.service: tables
-ms.data: 09/28/2022
 ms.author: vicolina
-ms.devlang: java
+description: Reference for Azure Tables SDK for Java
 ms.topic: reference
+author: vcolin7
+ms.data: 10/03/2022
+title: Azure Tables SDK for Java
+ms.devlang: java
 ---
 # Azure Tables SDK for Java - latest
 
