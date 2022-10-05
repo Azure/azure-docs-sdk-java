@@ -1,12 +1,12 @@
 ---
-ms.service: nginx
+description: Reference for Azure Nginx SDK for Java
 author: joshfree
 title: Azure Nginx SDK for Java
-ms.author: jfree
-ms.data: 10/04/2022
-ms.devlang: java
-description: Reference for Azure Nginx SDK for Java
 ms.topic: reference
+ms.devlang: java
+ms.service: nginx
+ms.author: jfree
+ms.data: 10/05/2022
 ---
 # Azure Nginx SDK for Java - preview
 
