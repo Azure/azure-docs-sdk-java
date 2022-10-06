@@ -1,12 +1,12 @@
 ---
-description: Reference for Azure SQL SDK for Java
-author: joshfree
-title: Azure SQL SDK for Java
 ms.topic: reference
 ms.devlang: java
 ms.service: sql
+author: joshfree
+description: Reference for Azure SQL SDK for Java
+title: Azure SQL SDK for Java
+ms.data: 10/06/2022
 ms.author: jfree
-ms.data: 10/05/2022
 ms.date: 07/08/2022
 ---
 # Azure SQL Database libraries for Java
