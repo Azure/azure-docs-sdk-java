@@ -116,12 +116,33 @@ Older versions of the Azure Storage SDK for Java (v12) have one or more critical
 
 | Client library | Versions affected | Critical issues fixed in version | Recommended action
 | --- | --- | --- | --- |
-| Azure Storage Blob | 12.0 to 12.10.0 | 12.18.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob)
-| Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake)
-| Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share)
-| Azure Storage Queue | 12.0 to 12.6.0 | 12.7.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-queue)
+| Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
+| Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
+| Azure Storage Queue | 12.0 to 12.6.0 | 12.7.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-queue) |
+| Azure Storage Tables | None | N/A | None |
+| Azure Blob Storage Cryptography | 12.0 to 12.16.1 | 12.17.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob-cryptography) |
 
-### Buffer overwrite issue with `BlobOutputStream`
+If you have questions or need additional help, please [create a support ticket](https://aka.ms/JavaSDKv12Issue) using the following options:
+
+- Issue type: Technical
+- Service type: Blob Storage
+- Summary: #JavaSDKv12
+- Problem type: Development
+- Problem subtype: Client library or SDK
+
+### Issues
+
+- [1 - Buffer overwrite issue with `BlobOutputStream`](#1---buffer-overwrite-issue-with-bloboutputstream)
+- [2 - Invalid data uploaded during retries](#2---invalid-data-uploaded-during-retries)
+- [3 - Upload incorrectly returning as successful when `IOException` occurs](#3---upload-incorrectly-returning-as-successful-when-ioexception-occurs)
+- [4 - Incorrect data being downloaded with `downloadToFile`](#4---incorrect-data-being-downloaded-with-downloadtofile)
+- [5 - Overwrite parameter not honored while uploading large file, resulting in incorrect overwrite](#5---overwrite-parameter-not-honored-while-uploading-large-file-resulting-in-incorrect-overwrite)
+- [6 - Overwrite operation reversed for overwrite parameter, resulting in incorrect overwrite](#6---overwrite-operation-reversed-for-overwrite-parameter-resulting-in-incorrect-overwrite)
+- [7 - Message content incorrectly erased when only visibility timeout set](#7---message-content-incorrectly-erased-when-only-visibility-timeout-set)
+- [8 - Client-side encryption updated to use AES-GCM due to security vulnerabilities in CBC mode](#8---client-side-encryption-updated-to-use-aes-gcm-due-to-security-vulnerabilities-in-cbc-mode)
+
+### 1 - Buffer overwrite issue with `BlobOutputStream`
 
 #### Issue description
 
@@ -131,13 +152,13 @@ Uploading a file larger than the value of `MaxSingleUploadSize` using the `write
 
 After the input data size crosses the `MaxSingleUploadSize`, the `write()` method of BlobOutputStream returns before making a deep copy of the input data. If the invoking application overwrites the input data byte array with other data before the deep copy takes place, invalid data may be written to the blob.
 
-Link to GitHub issue
+[GitHub issue](https://github.com/Azure/azure-sdk-for-java/pull/18598)
 
 #### Issue details
 
 | Client library | Versions affected | Issue fixed in version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version or minimum 12.18.0](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -153,19 +174,19 @@ Additionally, you can identify any potentially affected blobs due to this issue 
 
 Following these steps will indicate blobs that are potentially impacted by the critical issue and may be invalid. Inspect these blobs to determine which ones may be invalid.
 
-### Invalid data uploaded during retries
+### 2 - Invalid data uploaded during retries
 
 #### Issue description
 
 The client libraries listed below have a bug that can upload incorrect data during retries following a failed service request (for example, a retry caused by an HTTP 500 response).
 
-Link to GitHub issue
+[GitHub issue](https://github.com/Azure/azure-sdk-for-java/pull/11677)
 
 #### Issue details
 
 | Client library | Versions affected | Issue fixed in version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.6.1 | 12.7.0 | [Update to latest version or minimum 12.18.0](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 to 12.6.1 | 12.7.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 Azure File Data Lake | 12.0 to 12.1.2 | 12.2.0 | [Update to latest version or minimum 12.8.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
 Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version or minimum 12.5.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
 
@@ -198,68 +219,68 @@ Please review the list of services and features that AzBlobChecker supports:
 | Storage account in Community Clouds (US Gov/DoD, China, etc.)  | Yes - requires modification of deployment script, not all features supported
 | Versioning | Yes – only the current version will be checked  |
 | Snapshots | Yes – only the current snapshot will be checked |
-| Soft delete  | Yes - only non-deleted files will be checked
+| Soft delete  | Yes - only non-deleted files will be checked |
 
-### Upload incorrectly returning as successful when `IOException` occurs
+### 3 - Upload incorrectly returning as successful when `IOException` occurs
 
 #### Issue description
 
 All overloads of `void BlobClient.upload()` and `void BlobClient.uploadWithResponse()` silently catch error responses from the storage service. The method should either return or throw as its success/error indicator. The exception, which should have been logged and propagated would instead be directly written to standard error and then swallowed, despite throwing being the only failure indicator for the API. The method therefore successfully returns, making the caller think the operation completed. This results in the blob not having been written to storage, despite the library indicating success.
 
-Link to GitHub issue
+[GitHub issue](https://github.com/Azure/azure-sdk-for-java/pull/8826)
 
 #### Issue details
 
 | Client library | Versions affected | Issue fixed in version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.4.0 | 12.5.0 | [Update to latest version or minimum 12.18.0](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 to 12.4.0 | 12.5.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
 Update client library versions according to the table above.
 
-### Incorrect data being downloaded with `downloadToFile`
+### 4 - Incorrect data being downloaded with `downloadToFile`
 
 #### Issue description
 
 Asynchronous buffer writing has a race condition where the buffer between the network stream and the file stream could be reused for incoming data before being flushed to file. This results in the downloaded file being corrupted, where some data immediately repeats, overwriting the valid data in its place. The object in Storage is still correct.
 
-Link to GitHub issue
+[GitHub issue](https://github.com/Azure/azure-sdk-for-java/pull/7403)
 
 #### Issue details
 
 | Client library | Versions affected | Issue fixed in version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.2.0 | 12.3.0 | [Update to latest version or minimum 12.18.0](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 to 12.2.0 | 12.3.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
 Update client library versions according to the table above.
 
-### Overwrite parameter not honored while uploading large file, resulting in incorrect overwrite
+### 5 - Overwrite parameter not honored while uploading large file, resulting in incorrect overwrite
 
 #### Issue description
 
 The overwrite flag isn't being honored in cases where there's another parallel upload job in progress. This results in not overwriting an object in Storage when intended.
 
-Issue in GitHub: link here
+[GitHub issue](https://github.com/Azure/azure-sdk-for-java/pull/6354)
 
 #### Issue details
 | Client library | Versions affected | Issue fixed in version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 | 12.1.0 | [Update to latest version or minimum 12.18.0](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 | 12.1.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
 Update client library versions according to the table above.
 
-### Overwrite operation reversed for overwrite parameter, resulting in incorrect overwrite
+### 6 - Overwrite operation reversed for overwrite parameter, resulting in incorrect overwrite
 
 #### Issue description
 
-The overwrite flag parameter and overwrite operation are reversed in `DataLakeFileClient.flush(long)` and `DataLakeFileClient.flush(long, bool)` functions. No other behaviors of the library call into these methods. This results in overwriting an object in Storage when the user didn't intend to, and failing to overwrite when intended.
+The overwrite parameter and overwrite operation are reversed in `DataLakeFileClient.flush(long)` and `DataLakeFileClient.flush(long, bool)` functions. No other behaviors of the library call into these methods. This results in overwriting an object in Storage when the user didn't intend to, and failing to overwrite when intended.
 
-Issue in GitHub: link here
+[GitHub issue](https://github.com/Azure/azure-sdk-for-java/pull/25556)
 
 #### Issue details
 | Client library | Versions affected | Issue fixed in version | Recommended action |
@@ -270,13 +291,13 @@ Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version or mi
 
 Update client library versions according to the table above.
 
-### Message content incorrectly erased when only visibility timeout set
+### 7 - Message content incorrectly erased when only visibility timeout set
 
 #### Issue description
 
 Queue message contents are erased in error when only the visibility timeout was set or updated.
 
-Link to GitHub issue
+[GitHub issue](https://github.com/Azure/azure-sdk-for-java/pull/14151)
 
 #### Issue details
 
@@ -288,19 +309,17 @@ Azure Storage Queue | 12.0 to 12.6.0 | 12.7.0 | [Update to latest version or min
 
 Update client library versions according to the table above.
 
-### Client-side encryption updated to use AES-GCM instead of CBC mode due to security vulnerabilities in CBC mode
+### 8 - Client-side encryption updated to use AES-GCM due to security vulnerabilities in CBC mode
 
 #### Issue description
 
-To mitigate a security vulnerability found in CBC mode, the Java v12 SDK has released new version of client-side encryption called **v2**, which uses AES-GCM for client-side encryption instead of CBC mode. The updated SDKs are backward compatible and provide the ability for you to read and write data encrypted with the **v1** version. For complete details, please read [Azure Storage updating client-side encryption in SDK to address security vulnerability](https://techcommunity.microsoft.com/t5/azure-storage-blog/ga-azure-storage-updating-client-side-encryption-in-sdk-to/ba-p/3563013). Section 2 of the blog post outlines the action steps to see if this issue affects you.
-
-Link to GitHub issue
+To mitigate a security vulnerability found in CBC mode, the Java v12 SDK has released new version of client-side encryption called **v2**, which uses AES-GCM for client-side encryption instead of CBC mode. The updated SDKs are backward compatible and provide the ability for you to read and write data encrypted with the **v1** version. For complete details, please read [Azure Storage updating client-side encryption in SDK to address security vulnerability](https://techcommunity.microsoft.com/t5/azure-storage-blog/ga-azure-storage-updating-client-side-encryption-in-sdk-to/ba-p/3563013). Section 2 of the blog post outlines steps to take to see if this issue affects you.
 
 #### Issue details
 
 | Client library | Versions affected | Issue fixed in version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Queue | 12.0 to 12.13.0 | 12.18.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-queue) |
+Azure Blob Storage Cryptography | 12.0 to 12.16.1 | 12.17.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob-cryptography) |
 
 #### Recommended steps
 
