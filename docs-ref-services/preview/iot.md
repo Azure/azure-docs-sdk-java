@@ -1,11 +1,11 @@
 ---
 ms.topic: reference
-ms.devlang: java
-ms.service: digital-twins
+ms.data: 10/08/2022
 author: joshfree
 description: Reference for Azure IoT SDK for Java
 title: Azure IoT SDK for Java
-ms.data: 10/06/2022
+ms.devlang: java
+ms.service: digital-twins
 ms.author: jfree
 ms.date: 07/08/2022
 ---

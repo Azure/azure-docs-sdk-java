@@ -1,11 +1,11 @@
 ---
 ms.topic: reference
-ms.devlang: java
-ms.service: hanaonazure
+ms.data: 10/08/2022
 author: joshfree
 description: Reference for Azure HANA on Azure SDK for Java
 title: Azure HANA on Azure SDK for Java
-ms.data: 10/06/2022
+ms.devlang: java
+ms.service: hanaonazure
 ms.author: jfree
 ---
 # Azure HANA on Azure SDK for Java - preview
