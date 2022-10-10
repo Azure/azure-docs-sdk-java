@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
-ms.data: 10/08/2022
-author: joshfree
-description: Reference for Azure App Service SDK for Java
 title: Azure App Service SDK for Java
-ms.devlang: java
-ms.service: app-service
+description: Reference for Azure App Service SDK for Java
 ms.author: jfree
+author: joshfree
+ms.service: app-service
+ms.devlang: java
+ms.topic: reference
+ms.data: 10/10/2022
 ms.date: 07/08/2022
 ---
 # Azure App Service libraries for Java

@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
-ms.data: 10/08/2022
-author: joshfree
-description: Reference for Azure Commerce SDK for Java
 title: Azure Commerce SDK for Java
-ms.devlang: java
-ms.service: commerce
+description: Reference for Azure Commerce SDK for Java
 ms.author: jfree
+author: joshfree
+ms.service: commerce
+ms.devlang: java
+ms.topic: reference
+ms.data: 10/10/2022
 ---
 # Azure Commerce SDK for Java - preview
 

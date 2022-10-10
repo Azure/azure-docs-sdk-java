@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
-ms.data: 10/08/2022
-author: alzimmermsft
-description: Reference for Azure Search SDK for Java
 title: Azure Search SDK for Java
-ms.devlang: java
-ms.service: search
+description: Reference for Azure Search SDK for Java
 ms.author: alzimmer
+author: alzimmermsft
+ms.service: search
+ms.devlang: java
+ms.topic: reference
+ms.data: 10/10/2022
 ---
 # Azure Search SDK for Java - preview
 

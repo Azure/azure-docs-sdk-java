@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
-ms.data: 10/08/2022
-author: vcolin7
-description: Reference for Azure Key Vault SDK for Java
 title: Azure Key Vault SDK for Java
-ms.devlang: java
-ms.service: keyvault
+description: Reference for Azure Key Vault SDK for Java
 ms.author: vicolina
+author: vcolin7
+ms.service: keyvault
+ms.devlang: java
+ms.topic: reference
+ms.data: 10/10/2022
 ms.date: 07/08/2022
 ---
 # Azure Key Vault libraries for Java
