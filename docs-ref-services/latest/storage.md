@@ -112,9 +112,9 @@ for (StorageAccountKey key : storageAccountKeys) {
 
 ## Known issues
 
-Older versions of the Azure Storage SDK for Java (v12) have one or more critical known issues, which are detailed below. These issues can impact your writing or reading data from Azure Storage. If you're using an older version of a client library and believe you're impacted, we recommend that you update to the latest version.
+Older versions of the Azure Storage SDK for Java (v12) have one or more known critical issues, which are detailed below. These issues may impact the writing or reading of data from your Azure Storage account. If you are using an older version of a client library, we recommend that you update to the latest version.
 
-| Client library | Versions affected | Critical issues fixed in version | Recommended action
+| Client library | Versions impacted | Minimum safe version | Recommended action
 | --- | --- | --- | --- |
 | Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 | Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
@@ -153,7 +153,7 @@ After the input data size crosses the `MaxSingleUploadSize`, the `write()` metho
 
 #### Issue details
 
-| Client library | Versions affected | Issue fixed in version | Recommended action |
+| Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
 Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
@@ -181,7 +181,7 @@ The client libraries listed below have a bug that can upload incorrect data duri
 
 #### Issue details
 
-| Client library | Versions affected | Issue fixed in version | Recommended action |
+| Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
 Azure Storage Blob | 12.0 to 12.6.1 | 12.7.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 Azure File Data Lake | 12.0 to 12.1.2 | 12.2.0 | [Update to latest version or minimum 12.8.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
@@ -228,7 +228,7 @@ All overloads of `void BlobClient.upload()` and `void BlobClient.uploadWithRespo
 
 #### Issue details
 
-| Client library | Versions affected | Issue fixed in version | Recommended action |
+| Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
 Azure Storage Blob | 12.0 to 12.4.0 | 12.5.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
@@ -246,7 +246,7 @@ Asynchronous buffer writing has a race condition where the buffer between the ne
 
 #### Issue details
 
-| Client library | Versions affected | Issue fixed in version | Recommended action |
+| Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
 Azure Storage Blob | 12.0 to 12.2.0 | 12.3.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
@@ -263,7 +263,7 @@ Update client library versions according to the table above.
 The overwrite flag isn't being honored in cases where there's another parallel upload job in progress. This results in not overwriting an object in Storage when intended.
 
 #### Issue details
-| Client library | Versions affected | Issue fixed in version | Recommended action |
+| Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
 Azure Storage Blob | 12.0 | 12.1.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
@@ -280,7 +280,7 @@ Update client library versions according to the table above.
 The overwrite parameter and overwrite operation are reversed in `DataLakeFileClient.flush(long)` and `DataLakeFileClient.flush(long, bool)` functions. No other behaviors of the library call into these methods. This results in overwriting an object in Storage when the user didn't intend to, and failing to overwrite when intended.
 
 #### Issue details
-| Client library | Versions affected | Issue fixed in version | Recommended action |
+| Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
 Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version or minimum 12.8.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
 
@@ -298,7 +298,7 @@ Queue message contents are erased in error when only the visibility timeout was 
 
 #### Issue details
 
-| Client library | Versions affected | Issue fixed in version | Recommended action |
+| Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
 Azure Storage Queue | 12.0 to 12.6.0 | 12.7.0 | [Update to latest version or minimum 12.7.0](https://mvnrepository.com/artifact/com.azure/azure-storage-queue) |
 
@@ -316,7 +316,7 @@ To mitigate a security vulnerability found in CBC mode, the Java v12 SDK has rel
 
 #### Issue details
 
-| Client library | Versions affected | Issue fixed in version | Recommended action |
+| Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
 Azure Blob Storage Cryptography | 12.0 to 12.16.1 | 12.17.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob-cryptography) |
 
