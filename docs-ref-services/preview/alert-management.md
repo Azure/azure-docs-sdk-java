@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
-ms.devlang: java
-ms.service: alertmanagement
-author: joshfree
-description: Reference for Azure Alert Management SDK for Java
 title: Azure Alert Management SDK for Java
-ms.data: 10/06/2022
+description: Reference for Azure Alert Management SDK for Java
 ms.author: jfree
+author: joshfree
+ms.service: alertmanagement
+ms.devlang: java
+ms.topic: reference
+ms.data: 10/10/2022
 ---
 # Azure Alert Management SDK for Java - preview
 

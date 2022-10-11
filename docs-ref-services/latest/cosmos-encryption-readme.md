@@ -3,7 +3,7 @@ title:
 keywords: Azure, java, SDK, API, azure-cosmos-encryption, cosmos
 author: kushagraThapar
 ms.author: kuthapar
-ms.date: 09/30/2022
+ms.date: 10/08/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: cosmos
@@ -22,7 +22,7 @@ The Azure Cosmos Encryption Plugin is used for encrypting data with a user-provi
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos-encryption</artifactId>
-  <version>1.7.0</version>
+  <version>1.7.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -217,7 +217,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[encryption_source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos-encryption_1.7.0/sdk/cosmos/azure-cosmos-encryption/src
+[encryption_source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos-encryption_1.7.1/sdk/cosmos/azure-cosmos-encryption/src
 [cosmos_introduction]: /azure/cosmos-db/
 [api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [encryption_api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos-encryption/latest/index.html
@@ -233,7 +233,7 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [troubleshooting]: /azure/cosmos-db/troubleshoot-java-sdk-v4-sql
 [perf_guide]: /azure/cosmos-db/performance-tips-java-sdk-v4-sql?tabs=api-async
 [sql_api_query]: /azure/cosmos-db/sql-api-sql-query
-[getting_started_encryption]: https://github.com/Azure/azure-sdk-for-java/tree/azure-cosmos-encryption_1.7.0/sdk/cosmos/azure-cosmos-encryption/src/samples/java/com/azure/cosmos/encryption/
+[getting_started_encryption]: https://github.com/Azure/azure-sdk-for-java/tree/azure-cosmos-encryption_1.7.1/sdk/cosmos/azure-cosmos-encryption/src/samples/java/com/azure/cosmos/encryption/
 [quickstart]: /azure/cosmos-db/create-sql-api-java?tabs=sync
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcosmos%2Fazure-cosmos-encryption%2FREADME.png)

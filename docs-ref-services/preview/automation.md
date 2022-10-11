@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
-ms.devlang: java
-ms.service: azure-resource-manager
-author: joshfree
-description: Reference for Azure Automation SDK for Java
 title: Azure Automation SDK for Java
-ms.data: 10/06/2022
+description: Reference for Azure Automation SDK for Java
 ms.author: jfree
+author: joshfree
+ms.service: azure-resource-manager
+ms.devlang: java
+ms.topic: reference
+ms.data: 10/10/2022
 ---
 # Azure Automation SDK for Java - preview
 
