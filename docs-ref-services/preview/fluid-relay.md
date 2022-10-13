@@ -1,12 +1,12 @@
 ---
-ms.author: jfree
-ms.data: 10/11/2022
 ms.topic: reference
+description: Reference for Azure Fluid Relay SDK for Java
 ms.devlang: java
+ms.author: jfree
+ms.data: 10/13/2022
+ms.service: fluidrelay
 author: joshfree
 title: Azure Fluid Relay SDK for Java
-description: Reference for Azure Fluid Relay SDK for Java
-ms.service: fluidrelay
 ---
 # Azure Fluid Relay SDK for Java - preview
 
