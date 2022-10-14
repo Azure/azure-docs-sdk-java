@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
-description: Reference for Azure Service Bus SDK for Java
-ms.devlang: java
-ms.author: anuchan
-ms.data: 10/13/2022
-ms.service: servicebus
 author: anuchandy
+ms.topic: reference
+ms.author: anuchan
+description: Reference for Azure Service Bus SDK for Java
+ms.service: service-bus
+ms.data: 10/14/2022
 title: Azure Service Bus SDK for Java
+ms.devlang: java
 ms.date: 07/08/2022
 ---
 # Service Bus libraries for Java

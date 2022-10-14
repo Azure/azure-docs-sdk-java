@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
-description: Reference for Azure IoT Central SDK for Java
-ms.devlang: java
-ms.author: jfree
-ms.data: 10/13/2022
-ms.service: iotcentral
 author: joshfree
+ms.topic: reference
+ms.author: jfree
+description: Reference for Azure IoT Central SDK for Java
+ms.service: iotcentral
+ms.data: 10/13/2022
 title: Azure IoT Central SDK for Java
+ms.devlang: java
 ---
 # Azure IoT Central SDK for Java - latest
 

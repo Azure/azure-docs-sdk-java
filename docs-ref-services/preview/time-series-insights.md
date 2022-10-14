@@ -1,12 +1,12 @@
 ---
-ms.topic: reference
-description: Reference for Azure Time Series Insights SDK for Java
-ms.devlang: java
-ms.author: jfree
-ms.data: 10/13/2022
-ms.service: timeseriesinsights
 author: joshfree
+ms.topic: reference
+ms.author: jfree
+description: Reference for Azure Time Series Insights SDK for Java
+ms.service: timeseriesinsights
+ms.data: 10/14/2022
 title: Azure Time Series Insights SDK for Java
+ms.devlang: java
 ---
 # Azure Time Series Insights SDK for Java - preview
 
