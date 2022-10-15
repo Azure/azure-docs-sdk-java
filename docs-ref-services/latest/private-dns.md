@@ -1,12 +1,12 @@
 ---
-author: joshfree
-ms.topic: reference
 ms.author: jfree
-description: Reference for Azure Private DNS SDK for Java
-ms.service: privatedns
-ms.data: 10/13/2022
+ms.service: dns
+ms.topic: reference
 title: Azure Private DNS SDK for Java
 ms.devlang: java
+ms.data: 10/15/2022
+description: Reference for Azure Private DNS SDK for Java
+author: joshfree
 ---
 # Azure Private DNS SDK for Java - latest
 
