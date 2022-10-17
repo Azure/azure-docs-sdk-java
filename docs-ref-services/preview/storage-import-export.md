@@ -1,12 +1,12 @@
 ---
+ms.data: 10/17/2022
+ms.topic: reference
+author: rickle-msft
 ms.author: rickle-msft
 ms.service: storageimport-export
-ms.topic: reference
+description: Reference for Azure Storage Import/Export SDK for Java
 title: Azure Storage Import/Export SDK for Java
 ms.devlang: java
-ms.data: 10/15/2022
-description: Reference for Azure Storage Import/Export SDK for Java
-author: rickle-msft
 ---
 # Azure Storage Import/Export SDK for Java - preview
 
