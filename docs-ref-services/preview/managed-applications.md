@@ -1,11 +1,11 @@
 ---
-ms.data: 10/17/2022
-ms.topic: reference
-author: joshfree
-ms.author: jfree
 ms.service: managedapplications
 description: Reference for Azure Managed Applications SDK for Java
+ms.topic: reference
+ms.author: jfree
 title: Azure Managed Applications SDK for Java
+ms.data: 10/18/2022
+author: joshfree
 ms.devlang: java
 ---
 # Azure Managed Applications SDK for Java - preview
