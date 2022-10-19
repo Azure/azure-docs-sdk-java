@@ -32,7 +32,7 @@ methods:
     name: "searchId"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public PollerFlux<PhoneNumberOperation,PurchasePhoneNumbersResult> beginPurchasePhoneNumbers(String searchId)"
-  desc: "Starts the purchase of the phone number(s) in the search result associated with a given id."
+  desc: "Starts the purchase of the phone number(s) in the search result associated with a given id.\n\n**Code Samples**\n\n```java\nAsyncPollResponse<PhoneNumberOperation, PurchasePhoneNumbersResult> purchaseResponse =\n     phoneNumberAsyncClient.beginPurchasePhoneNumbers(searchId).blockFirst();\n System.out.println(\"Purchase phone numbers is complete: \" + purchaseResponse.getStatus());\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.util.polling.PollerFlux\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollerFlux\"></xref> object."
     type: "<xref href=\"com.azure.core.util.polling.PollerFlux?alt=com.azure.core.util.polling.PollerFlux&text=PollerFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberOperation?alt=com.azure.communication.phonenumbers.models.PhoneNumberOperation&text=PhoneNumberOperation\" data-throw-if-not-resolved=\"False\" />,<xref href=\"com.azure.communication.phonenumbers.models.PurchasePhoneNumbersResult?alt=com.azure.communication.phonenumbers.models.PurchasePhoneNumbersResult&text=PurchasePhoneNumbersResult\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -46,7 +46,7 @@ methods:
     name: "phoneNumber"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public PollerFlux<PhoneNumberOperation,ReleasePhoneNumberResult> beginReleasePhoneNumber(String phoneNumber)"
-  desc: "Begins release of a purchased phone number. This function returns a Long Running Operation poller that allows you to wait indefinitely until the operation is complete."
+  desc: "Begins release of a purchased phone number. This function returns a Long Running Operation poller that allows you to wait indefinitely until the operation is complete.\n\n**Code Samples**\n\n```java\nAsyncPollResponse<PhoneNumberOperation, ReleasePhoneNumberResult> releaseResponse =\n     phoneNumberAsyncClient.beginReleasePhoneNumber(\"+18001234567\").blockFirst();\n System.out.println(\"Release phone number is complete: \" + releaseResponse.getStatus());\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.util.polling.PollerFlux\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollerFlux\"></xref> object."
     type: "<xref href=\"com.azure.core.util.polling.PollerFlux?alt=com.azure.core.util.polling.PollerFlux&text=PollerFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberOperation?alt=com.azure.communication.phonenumbers.models.PhoneNumberOperation&text=PhoneNumberOperation\" data-throw-if-not-resolved=\"False\" />,<xref href=\"com.azure.communication.phonenumbers.models.ReleasePhoneNumberResult?alt=com.azure.communication.phonenumbers.models.ReleasePhoneNumberResult&text=ReleasePhoneNumberResult\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -69,7 +69,7 @@ methods:
     name: "capabilities"
     type: "<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberCapabilities?alt=com.azure.communication.phonenumbers.models.PhoneNumberCapabilities&text=PhoneNumberCapabilities\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public PollerFlux<PhoneNumberOperation,PhoneNumberSearchResult> beginSearchAvailablePhoneNumbers(String countryCode, PhoneNumberType phoneNumberType, PhoneNumberAssignmentType assignmentType, PhoneNumberCapabilities capabilities)"
-  desc: "Starts the search for available phone numbers to purchase."
+  desc: "Starts the search for available phone numbers to purchase.\n\n**Code Samples**\n\n```java\nPhoneNumberCapabilities capabilities = new PhoneNumberCapabilities()\n     .setCalling(PhoneNumberCapabilityType.INBOUND)\n     .setSms(PhoneNumberCapabilityType.INBOUND_OUTBOUND);\n\n PollerFlux<PhoneNumberOperation, PhoneNumberSearchResult> poller = phoneNumberAsyncClient\n     .beginSearchAvailablePhoneNumbers(\"US\", PhoneNumberType.TOLL_FREE,\n         PhoneNumberAssignmentType.APPLICATION, capabilities);\n AsyncPollResponse<PhoneNumberOperation, PhoneNumberSearchResult> response = poller.blockFirst();\n String searchId = \"\";\n\n if (LongRunningOperationStatus.SUCCESSFULLY_COMPLETED == response.getStatus()) {\n     PhoneNumberSearchResult searchResult = response.getFinalResult().block();\n     searchId = searchResult.getSearchId();\n     System.out.println(\"Searched phone numbers: \" + searchResult.getPhoneNumbers());\n     System.out.println(\"Search expires by: \" + searchResult.getSearchExpiresBy());\n     System.out.println(\"Phone number costs:\" + searchResult.getCost().getAmount());\n }\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.util.polling.PollerFlux\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollerFlux\"></xref> object with the reservation result."
     type: "<xref href=\"com.azure.core.util.polling.PollerFlux?alt=com.azure.core.util.polling.PollerFlux&text=PollerFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberOperation?alt=com.azure.communication.phonenumbers.models.PhoneNumberOperation&text=PhoneNumberOperation\" data-throw-if-not-resolved=\"False\" />,<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberSearchResult?alt=com.azure.communication.phonenumbers.models.PhoneNumberSearchResult&text=PhoneNumberSearchResult\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -95,7 +95,7 @@ methods:
     name: "searchOptions"
     type: "<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberSearchOptions?alt=com.azure.communication.phonenumbers.models.PhoneNumberSearchOptions&text=PhoneNumberSearchOptions\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public PollerFlux<PhoneNumberOperation,PhoneNumberSearchResult> beginSearchAvailablePhoneNumbers(String countryCode, PhoneNumberType phoneNumberType, PhoneNumberAssignmentType assignmentType, PhoneNumberCapabilities capabilities, PhoneNumberSearchOptions searchOptions)"
-  desc: "Starts the search for available phone numbers to purchase."
+  desc: "Starts the search for available phone numbers to purchase.\n\n**Code Samples**\n\n```java\nPhoneNumberCapabilities capabilities = new PhoneNumberCapabilities()\n     .setCalling(PhoneNumberCapabilityType.INBOUND)\n     .setSms(PhoneNumberCapabilityType.INBOUND_OUTBOUND);\n PhoneNumberSearchOptions searchOptions = new PhoneNumberSearchOptions().setAreaCode(\"800\").setQuantity(1);\n\n PollerFlux<PhoneNumberOperation, PhoneNumberSearchResult> poller = phoneNumberAsyncClient\n     .beginSearchAvailablePhoneNumbers(\"US\", PhoneNumberType.TOLL_FREE,\n         PhoneNumberAssignmentType.APPLICATION, capabilities, searchOptions);\n AsyncPollResponse<PhoneNumberOperation, PhoneNumberSearchResult> response = poller.blockFirst();\n\n if (LongRunningOperationStatus.SUCCESSFULLY_COMPLETED == response.getStatus()) {\n     PhoneNumberSearchResult searchResult = response.getFinalResult().block();\n     String searchId = searchResult.getSearchId();\n     System.out.println(\"Searched phone numbers: \" + searchResult.getPhoneNumbers());\n     System.out.println(\"Search expires by: \" + searchResult.getSearchExpiresBy());\n     System.out.println(\"Phone number costs:\" + searchResult.getCost().getAmount());\n }\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.util.polling.PollerFlux\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollerFlux\"></xref> object with the reservation result."
     type: "<xref href=\"com.azure.core.util.polling.PollerFlux?alt=com.azure.core.util.polling.PollerFlux&text=PollerFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberOperation?alt=com.azure.communication.phonenumbers.models.PhoneNumberOperation&text=PhoneNumberOperation\" data-throw-if-not-resolved=\"False\" />,<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberSearchResult?alt=com.azure.communication.phonenumbers.models.PhoneNumberSearchResult&text=PhoneNumberSearchResult\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -112,7 +112,7 @@ methods:
     name: "capabilities"
     type: "<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberCapabilities?alt=com.azure.communication.phonenumbers.models.PhoneNumberCapabilities&text=PhoneNumberCapabilities\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public PollerFlux<PhoneNumberOperation,PurchasedPhoneNumber> beginUpdatePhoneNumberCapabilities(String phoneNumber, PhoneNumberCapabilities capabilities)"
-  desc: "Update capabilities of a purchased phone number."
+  desc: "Update capabilities of a purchased phone number.\n\n**Code Samples**\n\n```java\nPhoneNumberCapabilities capabilities = new PhoneNumberCapabilities();\n capabilities\n     .setCalling(PhoneNumberCapabilityType.INBOUND)\n     .setSms(PhoneNumberCapabilityType.INBOUND_OUTBOUND);\n\n PollerFlux<PhoneNumberOperation, PurchasedPhoneNumber> poller =\n     phoneNumberAsyncClient.beginUpdatePhoneNumberCapabilities(\"+18001234567\", capabilities);\n AsyncPollResponse<PhoneNumberOperation, PurchasedPhoneNumber> response = poller.blockFirst();\n\n if (LongRunningOperationStatus.SUCCESSFULLY_COMPLETED == response.getStatus()) {\n     PurchasedPhoneNumber phoneNumber = response.getFinalResult().block();\n     System.out.println(\"Phone Number Calling capabilities: \" + phoneNumber.getCapabilities().getCalling());\n     System.out.println(\"Phone Number SMS capabilities: \" + phoneNumber.getCapabilities().getSms());\n }\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.util.polling.PollerFlux\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollerFlux\"></xref> object."
     type: "<xref href=\"com.azure.core.util.polling.PollerFlux?alt=com.azure.core.util.polling.PollerFlux&text=PollerFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.communication.phonenumbers.models.PhoneNumberOperation?alt=com.azure.communication.phonenumbers.models.PhoneNumberOperation&text=PhoneNumberOperation\" data-throw-if-not-resolved=\"False\" />,<xref href=\"com.azure.communication.phonenumbers.models.PurchasedPhoneNumber?alt=com.azure.communication.phonenumbers.models.PurchasedPhoneNumber&text=PurchasedPhoneNumber\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -126,7 +126,7 @@ methods:
     name: "phoneNumber"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<PurchasedPhoneNumber> getPurchasedPhoneNumber(String phoneNumber)"
-  desc: "Gets information about a purchased phone number."
+  desc: "Gets information about a purchased phone number.\n\n**Code Samples**\n\n```java\nPurchasedPhoneNumber phoneNumber = phoneNumberAsyncClient.getPurchasedPhoneNumber(\"+18001234567\").block();\n System.out.println(\"Phone Number Value: \" + phoneNumber.getPhoneNumber());\n System.out.println(\"Phone Number Country Code: \" + phoneNumber.getCountryCode());\n```"
   returns:
     description: "<xref uid=\"com.azure.communication.phonenumbers.models.PurchasedPhoneNumber\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PurchasedPhoneNumber\"></xref> representing the purchased telephone number."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.communication.phonenumbers.models.PurchasedPhoneNumber?alt=com.azure.communication.phonenumbers.models.PurchasedPhoneNumber&text=PurchasedPhoneNumber\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -140,7 +140,7 @@ methods:
     name: "phoneNumber"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Response<PurchasedPhoneNumber>> getPurchasedPhoneNumberWithResponse(String phoneNumber)"
-  desc: "Gets information about a purchased phone number with response."
+  desc: "Gets information about a purchased phone number with response.\n\n**Code Samples**\n\n```java\nResponse<PurchasedPhoneNumber> response = phoneNumberAsyncClient\n     .getPurchasedPhoneNumberWithResponse(\"+18001234567\").block();\n PurchasedPhoneNumber phoneNumber = response.getValue();\n System.out.println(\"Phone Number Value: \" + phoneNumber.getPhoneNumber());\n System.out.println(\"Phone Number Country Code: \" + phoneNumber.getCountryCode());\n```"
   returns:
     description: "<xref uid=\"com.azure.communication.phonenumbers.models.PurchasedPhoneNumber\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PurchasedPhoneNumber\"></xref> representing the purchased telephone number."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.communication.phonenumbers.models.PurchasedPhoneNumber?alt=com.azure.communication.phonenumbers.models.PurchasedPhoneNumber&text=PurchasedPhoneNumber\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -150,12 +150,12 @@ methods:
   nameWithType: "PhoneNumbersAsyncClient.listPurchasedPhoneNumbers()"
   summary: "Gets the list of the purchased phone numbers."
   syntax: "public PagedFlux<PurchasedPhoneNumber> listPurchasedPhoneNumbers()"
-  desc: "Gets the list of the purchased phone numbers."
+  desc: "Gets the list of the purchased phone numbers.\n\n**Code Samples**\n\n```java\nPagedFlux<PurchasedPhoneNumber> phoneNumbers = phoneNumberAsyncClient.listPurchasedPhoneNumbers();\n PurchasedPhoneNumber phoneNumber = phoneNumbers.blockFirst();\n System.out.println(\"Phone Number Value: \" + phoneNumber.getPhoneNumber());\n System.out.println(\"Phone Number Country Code: \" + phoneNumber.getCountryCode());\n```"
   returns:
     description: "A <xref uid=\"com.azure.core.http.rest.PagedFlux\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PagedFlux\"></xref> of <xref uid=\"com.azure.communication.phonenumbers.models.PurchasedPhoneNumber\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PurchasedPhoneNumber\"></xref> instances representing a purchased telephone numbers."
     type: "<xref href=\"com.azure.core.http.rest.PagedFlux?alt=com.azure.core.http.rest.PagedFlux&text=PagedFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.communication.phonenumbers.models.PurchasedPhoneNumber?alt=com.azure.communication.phonenumbers.models.PurchasedPhoneNumber&text=PurchasedPhoneNumber\" data-throw-if-not-resolved=\"False\" />&gt;"
 type: "class"
-desc: "Asynchronous client for Communication service phone number operations."
+desc: "Asynchronous client for Communication service phone number operations.\n\n**Instantiating an asynchronous Phone Numbers Client**\n\n```java\nPhoneNumbersAsyncClient phoneNumberAsyncClient = new PhoneNumbersClientBuilder()\n     .endpoint(endpoint)\n     .credential(keyCredential)\n     .httpClient(httpClient)\n     .buildAsyncClient();\n```"
 metadata: {}
 package: "com.azure.communication.phonenumbers"
-artifact: com.azure:azure-communication-phonenumbers:1.1.0-beta.10
+artifact: com.azure:azure-communication-phonenumbers:1.1.0-beta.11
