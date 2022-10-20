@@ -1,12 +1,12 @@
 ---
-ms.service: orbital
-description: Reference for Azure Orbital SDK for Java
-ms.topic: reference
-ms.author: jfree
 title: Azure Orbital SDK for Java
-ms.data: 10/18/2022
-author: joshfree
+description: Reference for Azure Orbital SDK for Java
+ms.author: jfree
+ms.topic: reference
+ms.service: orbital
 ms.devlang: java
+author: joshfree
+ms.data: 10/19/2022
 ---
 # Azure Orbital SDK for Java - preview
 

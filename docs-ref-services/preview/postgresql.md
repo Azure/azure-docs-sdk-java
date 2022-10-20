@@ -1,12 +1,12 @@
 ---
-ms.service: postgresql
-description: Reference for Azure PostgreSQL SDK for Java
-ms.topic: reference
-ms.author: jfree
 title: Azure PostgreSQL SDK for Java
-ms.data: 10/18/2022
-author: joshfree
+description: Reference for Azure PostgreSQL SDK for Java
+ms.author: jfree
+ms.topic: reference
+ms.service: postgresql
 ms.devlang: java
+author: joshfree
+ms.data: 10/19/2022
 ms.date: 07/08/2022
 ---
 # Azure Database for PostgreSQL libraries for Java

@@ -1,12 +1,12 @@
 ---
-ms.service: marketplaceagreements
-description: Reference for Azure Marketplace Agreements SDK for Java
-ms.topic: reference
-ms.author: jfree
 title: Azure Marketplace Agreements SDK for Java
-ms.data: 10/18/2022
-author: joshfree
+description: Reference for Azure Marketplace Agreements SDK for Java
+ms.author: jfree
+ms.topic: reference
+ms.service: marketplaceagreements
 ms.devlang: java
+author: joshfree
+ms.data: 10/19/2022
 ---
 # Azure Marketplace Agreements SDK for Java - preview
 

@@ -1,12 +1,12 @@
 ---
-ms.service: iothub
-description: Reference for Azure IoT Hub SDK for Java
-ms.topic: reference
-ms.author: jfree
 title: Azure IoT Hub SDK for Java
-ms.data: 10/18/2022
-author: joshfree
+description: Reference for Azure IoT Hub SDK for Java
+ms.author: jfree
+ms.topic: reference
+ms.service: iothub
 ms.devlang: java
+author: joshfree
+ms.data: 10/19/2022
 ---
 # Azure IoT Hub SDK for Java - preview
 
