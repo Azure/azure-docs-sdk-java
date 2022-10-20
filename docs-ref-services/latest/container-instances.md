@@ -1,12 +1,12 @@
 ---
 title: Azure Container Instances SDK for Java
 description: Reference for Azure Container Instances SDK for Java
-ms.author: jfree
 ms.topic: reference
-ms.service: container-instances
 ms.devlang: java
+ms.data: 10/20/2022
+ms.service: container-instances
+ms.author: jfree
 author: joshfree
-ms.data: 10/19/2022
 ---
 # Azure Container Instances SDK for Java - latest
 

@@ -1,12 +1,12 @@
 ---
 title: Azure Machine Learning Services SDK for Java
 description: Reference for Azure Machine Learning Services SDK for Java
-ms.author: jfree
 ms.topic: reference
-ms.service: machinelearningservices
 ms.devlang: java
+ms.data: 10/20/2022
+ms.service: machinelearningservices
+ms.author: jfree
 author: joshfree
-ms.data: 10/19/2022
 ---
 # Azure Machine Learning Services SDK for Java - preview
 

@@ -1,12 +1,12 @@
 ---
 title: Azure MySQL SDK for Java
 description: Reference for Azure MySQL SDK for Java
-ms.author: jfree
 ms.topic: reference
-ms.service: mysql
 ms.devlang: java
+ms.data: 10/20/2022
+ms.service: mysql
+ms.author: jfree
 author: joshfree
-ms.data: 10/19/2022
 ms.date: 07/08/2022
 ---
 # Azure Database for MySQL libraries for Java

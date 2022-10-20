@@ -1,12 +1,12 @@
 ---
 title: Azure Hybrid Network SDK for Java
 description: Reference for Azure Hybrid Network SDK for Java
-ms.author: jfree
 ms.topic: reference
-ms.service: hybridnetwork
 ms.devlang: java
+ms.data: 10/20/2022
+ms.service: hybridnetwork
+ms.author: jfree
 author: joshfree
-ms.data: 10/19/2022
 ---
 # Azure Hybrid Network SDK for Java - preview
 

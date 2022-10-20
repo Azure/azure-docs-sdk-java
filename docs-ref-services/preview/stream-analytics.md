@@ -1,12 +1,12 @@
 ---
 title: Azure Stream Analytics SDK for Java
 description: Reference for Azure Stream Analytics SDK for Java
-ms.author: jfree
 ms.topic: reference
-ms.service: streamanalytics
 ms.devlang: java
+ms.data: 10/20/2022
+ms.service: streamanalytics
+ms.author: jfree
 author: joshfree
-ms.data: 10/19/2022
 ---
 # Azure Stream Analytics SDK for Java - preview
 
