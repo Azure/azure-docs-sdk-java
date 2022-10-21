@@ -1,12 +1,12 @@
 ---
 title: Azure API for FHIR SDK for Java
 description: Reference for Azure API for FHIR SDK for Java
-ms.topic: reference
-ms.devlang: java
-ms.data: 10/20/2022
-ms.service: apiforfhir
 ms.author: jfree
+ms.data: 10/21/2022
 author: joshfree
+ms.topic: reference
+ms.service: apiforfhir
+ms.devlang: java
 ---
 # Azure API for FHIR SDK for Java - preview
 
