@@ -1,12 +1,12 @@
 ---
-title: Azure Cosmos DB SDK for Java
-description: Reference for Azure Cosmos DB SDK for Java
-author: kushagraThapar
 ms.author: kuthapar
-ms.service: cosmosdb
-ms.data: 11/01/2022
 ms.topic: reference
 ms.devlang: java
+ms.data: 11/01/2022
+ms.service: cosmosdb
+description: Reference for Azure Cosmos DB SDK for Java
+title: Azure Cosmos DB SDK for Java
+author: kushagraThapar
 ---
 # Azure Cosmos DB SDK for Java - preview
 
