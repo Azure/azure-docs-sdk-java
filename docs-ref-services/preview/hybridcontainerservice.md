@@ -1,11 +1,11 @@
 ---
-ms.topic: reference
-ms.author: jfree
-author: joshfree
+title: Azure Hybridcontainerservice SDK for Java
 description: Reference for Azure Hybridcontainerservice SDK for Java
+author: joshfree
+ms.author: jfree
 ms.service: hybridcontainerservice
 ms.data: 11/01/2022
-title: Azure Hybridcontainerservice SDK for Java
+ms.topic: reference
 ms.devlang: java
 ---
 # Azure Hybridcontainerservice SDK for Java - preview

@@ -1,11 +1,11 @@
 ---
-ms.topic: reference
-ms.author: jfree
-author: joshfree
+title: Azure Purview SDK for Java
 description: Reference for Azure Purview SDK for Java
+author: joshfree
+ms.author: jfree
 ms.service: purview
 ms.data: 11/01/2022
-title: Azure Purview SDK for Java
+ms.topic: reference
 ms.devlang: java
 ---
 # Azure Purview SDK for Java - preview

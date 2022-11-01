@@ -1,11 +1,11 @@
 ---
-ms.topic: reference
-ms.author: jfree
-author: joshfree
+title: Azure HDInsight SDK for Java
 description: Reference for Azure HDInsight SDK for Java
+author: joshfree
+ms.author: jfree
 ms.service: hdinsight
 ms.data: 11/01/2022
-title: Azure HDInsight SDK for Java
+ms.topic: reference
 ms.devlang: java
 ms.date: 07/08/2022
 ---
