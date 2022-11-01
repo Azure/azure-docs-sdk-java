@@ -1,12 +1,12 @@
 ---
-ms.data: 10/25/2022
-ms.devlang: java
-author: joshfree
-ms.service: confluent
-ms.author: jfree
 ms.topic: reference
-title: Azure Confluent SDK for Java
+ms.author: jfree
+author: joshfree
 description: Reference for Azure Confluent SDK for Java
+ms.service: confluent
+ms.data: 11/01/2022
+title: Azure Confluent SDK for Java
+ms.devlang: java
 ---
 # Azure Confluent SDK for Java - preview
 

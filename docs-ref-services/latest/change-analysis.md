@@ -1,12 +1,12 @@
 ---
-ms.data: 10/25/2022
-ms.devlang: java
-author: joshfree
-ms.service: changeanalysis
-ms.author: jfree
 ms.topic: reference
-title: Azure Change Analysis SDK for Java
+ms.author: jfree
+author: joshfree
 description: Reference for Azure Change Analysis SDK for Java
+ms.service: changeanalysis
+ms.data: 11/01/2022
+title: Azure Change Analysis SDK for Java
+ms.devlang: java
 ---
 # Azure Change Analysis SDK for Java - latest
 
