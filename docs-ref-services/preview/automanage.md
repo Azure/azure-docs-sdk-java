@@ -1,12 +1,12 @@
 ---
 author: joshfree
-description: Reference for Azure Automanage SDK for Java
-ms.topic: reference
 ms.service: automanage
-ms.data: 11/02/2022
 ms.devlang: java
-title: Azure Automanage SDK for Java
+ms.data: 11/03/2022
+ms.topic: reference
 ms.author: jfree
+title: Azure Automanage SDK for Java
+description: Reference for Azure Automanage SDK for Java
 ---
 # Azure Automanage SDK for Java - preview
 

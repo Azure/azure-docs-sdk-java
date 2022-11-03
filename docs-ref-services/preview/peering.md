@@ -1,12 +1,12 @@
 ---
 author: joshfree
-description: Reference for Azure Peering SDK for Java
-ms.topic: reference
 ms.service: peering
-ms.data: 11/02/2022
 ms.devlang: java
-title: Azure Peering SDK for Java
+ms.data: 11/03/2022
+ms.topic: reference
 ms.author: jfree
+title: Azure Peering SDK for Java
+description: Reference for Azure Peering SDK for Java
 ---
 # Azure Peering SDK for Java - preview
 
