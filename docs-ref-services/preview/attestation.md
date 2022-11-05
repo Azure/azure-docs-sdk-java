@@ -1,12 +1,12 @@
 ---
-author: azure-sdk-write-attestation
-ms.service: azure-resource-manager
-ms.devlang: java
-ms.data: 11/03/2022
 ms.topic: reference
-ms.author: azure-sdk-write-attestation
-title: Azure Attestation SDK for Java
+ms.devlang: java
 description: Reference for Azure Attestation SDK for Java
+ms.service: azure-resource-manager
+ms.data: 11/05/2022
+title: Azure Attestation SDK for Java
+author: azure-sdk-write-attestation
+ms.author: azure-sdk-write-attestation
 ---
 # Azure Attestation SDK for Java - preview
 

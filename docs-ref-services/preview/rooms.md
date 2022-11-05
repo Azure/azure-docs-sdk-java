@@ -1,12 +1,12 @@
 ---
-author: joshfree
-ms.service: rooms
-ms.devlang: java
-ms.data: 11/03/2022
 ms.topic: reference
-ms.author: jfree
-title: Azure Rooms SDK for Java
+ms.devlang: java
 description: Reference for Azure Rooms SDK for Java
+ms.service: rooms
+ms.data: 11/05/2022
+title: Azure Rooms SDK for Java
+author: joshfree
+ms.author: jfree
 ---
 # Azure Rooms SDK for Java - preview
 

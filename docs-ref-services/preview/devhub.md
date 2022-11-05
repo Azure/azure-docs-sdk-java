@@ -1,12 +1,12 @@
 ---
-author: joshfree
-ms.service: devhub
-ms.devlang: java
-ms.data: 11/03/2022
 ms.topic: reference
-ms.author: jfree
-title: Azure Devhub SDK for Java
+ms.devlang: java
 description: Reference for Azure Devhub SDK for Java
+ms.service: devhub
+ms.data: 11/05/2022
+title: Azure Devhub SDK for Java
+author: joshfree
+ms.author: jfree
 ---
 # Azure Devhub SDK for Java - preview
 
