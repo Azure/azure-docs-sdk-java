@@ -1,11 +1,11 @@
 ---
-ms.service: storage
-ms.topic: reference
-ms.data: 11/07/2022
 title: Azure Storage SDK for Java
-author: rickle-msft
-ms.author: rickle-msft
+ms.service: storage
 ms.devlang: java
+ms.topic: reference
+ms.data: 11/08/2022
+ms.author: rickle-msft
+author: rickle-msft
 description: Reference for Azure Storage SDK for Java
 ms.date: 07/08/2022
 ---
