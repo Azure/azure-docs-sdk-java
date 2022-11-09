@@ -1,12 +1,12 @@
 ---
-title: Azure Open Energy Platform SDK for Java
-ms.service: openenergyplatform
 ms.devlang: java
 ms.topic: reference
-ms.data: 11/08/2022
-ms.author: jfree
-author: joshfree
+ms.service: openenergyplatform
 description: Reference for Azure Open Energy Platform SDK for Java
+author: joshfree
+ms.data: 11/09/2022
+ms.author: jfree
+title: Azure Open Energy Platform SDK for Java
 ---
 # Azure Open Energy Platform SDK for Java - preview
 

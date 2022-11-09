@@ -1,12 +1,12 @@
 ---
-title: Azure Connected Cluster SDK for Java
-ms.service: connectedcluster
 ms.devlang: java
 ms.topic: reference
-ms.data: 11/08/2022
-ms.author: jfree
-author: joshfree
+ms.service: connectedcluster
 description: Reference for Azure Connected Cluster SDK for Java
+author: joshfree
+ms.data: 11/09/2022
+ms.author: jfree
+title: Azure Connected Cluster SDK for Java
 ---
 # Azure Connected Cluster SDK for Java - preview
 
