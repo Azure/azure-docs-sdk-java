@@ -1,0 +1,3 @@
+| Reference | Package | Source |
+|---|---|---|
+|[Resource Management - IoT Hub](resourcemanager-iothub-readme.md)|[azure-resourcemanager-iothub](https://repo1.maven.org/maven2/com/azure/resourcemanager/azure-resourcemanager-iothub)|[Github](https://github.com/Azure/azure-sdk-for-java)|
