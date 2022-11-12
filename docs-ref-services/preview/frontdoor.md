@@ -1,12 +1,12 @@
 ---
 author: joshfree
 title: Azure Frontdoor SDK for Java
-ms.service: frontdoor
-ms.devlang: java
+ms.data: 11/12/2022
 ms.author: jfree
-description: Reference for Azure Frontdoor SDK for Java
-ms.data: 11/10/2022
 ms.topic: reference
+ms.service: frontdoor
+description: Reference for Azure Frontdoor SDK for Java
+ms.devlang: java
 ---
 # Azure Frontdoor SDK for Java - preview
 

@@ -1,12 +1,12 @@
 ---
 author: joshfree
 title: Azure Security Insights SDK for Java
-ms.service: securityinsights
-ms.devlang: java
+ms.data: 11/12/2022
 ms.author: jfree
-description: Reference for Azure Security Insights SDK for Java
-ms.data: 11/10/2022
 ms.topic: reference
+ms.service: securityinsights
+description: Reference for Azure Security Insights SDK for Java
+ms.devlang: java
 ---
 # Azure Security Insights SDK for Java - preview
 
