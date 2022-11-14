@@ -1,12 +1,12 @@
 ---
+ms.topic: reference
+ms.devlang: java
+ms.service: sqlvirtualmachine
+ms.author: jfree
+description: Reference for Azure SQL Virtual Machine SDK for Java
 author: joshfree
 title: Azure SQL Virtual Machine SDK for Java
-ms.data: 11/12/2022
-ms.author: jfree
-ms.topic: reference
-ms.service: sqlvirtualmachine
-description: Reference for Azure SQL Virtual Machine SDK for Java
-ms.devlang: java
+ms.data: 11/14/2022
 ---
 # Azure SQL Virtual Machine SDK for Java - preview
 
