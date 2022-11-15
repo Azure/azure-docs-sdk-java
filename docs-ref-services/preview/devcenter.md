@@ -1,12 +1,12 @@
 ---
+title: Azure DevCenter SDK for Java
+description: Reference for Azure DevCenter SDK for Java
+author: sebrenna
+ms.author: sebrenna
+ms.data: 11/15/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: devcenter
-ms.author: sebrenna
-description: Reference for Azure DevCenter SDK for Java
-author: sebrenna
-title: Azure DevCenter SDK for Java
-ms.data: 11/14/2022
 ---
 # Azure DevCenter SDK for Java - preview
 
