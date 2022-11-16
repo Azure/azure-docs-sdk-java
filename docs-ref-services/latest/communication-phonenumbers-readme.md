@@ -1,14 +1,14 @@
 ---
 title: Azure Communication Phone Numbers client library for Java
 keywords: Azure, java, SDK, API, azure-communication-phonenumbers, communication
-author: JianpingChen
-ms.author: jiach
-ms.date: 10/19/2022
+author: miguhern
+ms.author: miguelher
+ms.date: 11/16/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Phone Numbers client library for Java - version 1.0.16 
+# Azure Communication Phone Numbers client library for Java - version 1.0.17 
 
 
 The phone numbers package provides capabilities for phone number management.
@@ -30,7 +30,7 @@ Purchased phone numbers can come with many capabilities, depending on the countr
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-phonenumbers_1.0.16/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-phonenumbers_1.0.17/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -232,7 +232,7 @@ Check out other client libraries for Azure communication service
 [product_docs]: /azure/communication-services/
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-phonenumbers
 [api_documentation]: https://aka.ms/java-docs
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-phonenumbers_1.0.16/sdk/communication/azure-communication-phonenumbers/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-phonenumbers_1.0.17/sdk/communication/azure-communication-phonenumbers/src
 
 
 
