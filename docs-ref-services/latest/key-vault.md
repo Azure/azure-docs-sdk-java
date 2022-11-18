@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 11/18/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: key-vault
+ms.service: keyvault
 ms.date: 07/08/2022
 ---
 # Azure Key Vault libraries for Java
