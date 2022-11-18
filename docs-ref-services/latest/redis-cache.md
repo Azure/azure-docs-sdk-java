@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 11/17/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: rediscache
+ms.service: redis-cache
 ms.date: 07/08/2022
 ---
 # Redis Cache libraries for Java

@@ -3,10 +3,10 @@ title: Azure Monitor SDK for Java
 description: Reference for Azure Monitor SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 11/17/2022
+ms.data: 11/18/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-resource-manager
+ms.service: monitor
 ---
 # Azure Monitor SDK for Java - preview
 ## Packages - preview

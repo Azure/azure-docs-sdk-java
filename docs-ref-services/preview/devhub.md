@@ -1,9 +1,9 @@
 ---
-title: Azure Devhub SDK for Java
-description: Reference for Azure Devhub SDK for Java
+title: Azure DevHub SDK for Java
+description: Reference for Azure DevHub SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 11/17/2022
+ms.data: 11/18/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: devhub
