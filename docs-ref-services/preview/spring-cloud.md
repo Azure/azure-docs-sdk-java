@@ -6,7 +6,7 @@ ms.author: zhihaoguo
 ms.data: 11/29/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: springcloud
+ms.service: spring-cloud
 ---
 # Azure Spring Cloud SDK for Java - preview
 ## Packages - preview

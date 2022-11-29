@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 11/29/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: containerregistry
+ms.service: container-registry
 ---
 # Azure Container Registry SDK for Java - latest
 ## Packages - latest
