@@ -9,3 +9,4 @@
 |Video Search|[azure-cognitiveservices-videosearch](https://repo1.maven.org/maven2/com/microsoft/azure/cognitiveservices/azure-cognitiveservices-videosearch)|[Github](https://github.com/Azure/azure-sdk-for-java)|
 |Visual Search|[azure-cognitiveservices-visualsearch](https://repo1.maven.org/maven2/com/microsoft/azure/cognitiveservices/azure-cognitiveservices-visualsearch)|[Github](https://github.com/Azure/azure-sdk-for-java)|
 |Web Search|[azure-cognitiveservices-websearch](https://repo1.maven.org/maven2/com/microsoft/azure/cognitiveservices/azure-cognitiveservices-websearch)|[Github](https://github.com/Azure/azure-sdk-for-java)|
+|Cognitive Services Speech|[client-sdk](https://repo1.maven.org/maven2/com/microsoft/cognitiveservices/speech/client-sdk)|[Github](https://github.com/Azure/azure-sdk-for-java)|
