@@ -3,7 +3,7 @@ title: Azure System Center Virtual Machine Manager SDK for Java
 description: Reference for Azure System Center Virtual Machine Manager SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 12/07/2022
+ms.data: 12/08/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: systemcentervirtualmachinemanager
