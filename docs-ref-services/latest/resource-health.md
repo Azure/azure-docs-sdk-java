@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: resourcehealth
 ---
-# Azure Resource Health SDK for Java - preview
-## Packages - preview
+# Azure Resource Health SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](resource-health-index.md)]
