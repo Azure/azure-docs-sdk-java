@@ -1,6 +1,6 @@
 ---
-title: Azure Maps SDK for Java
-description: Reference for Azure Maps SDK for Java
+title: Azure maps SDK for Java
+description: Reference for Azure maps SDK for Java
 author: joshfree
 ms.author: jfree
 ms.data: 12/12/2022

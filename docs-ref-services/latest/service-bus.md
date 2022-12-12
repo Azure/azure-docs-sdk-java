@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 12/12/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: servicebus
+ms.service: service-bus
 ms.date: 07/08/2022
 ---
 # Service Bus libraries for Java

@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 12/12/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: containerinstances
+ms.service: container-instances
 ---
 # Azure Container Instances SDK for Java - latest
 ## Packages - latest

@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 12/12/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: dns
+ms.service: privatedns
 ---
 # Azure Private DNS SDK for Java - latest
 ## Packages - latest

@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 12/12/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: mysql
+ms.service: sql
 ms.date: 07/08/2022
 ---
 # Azure SQL Database libraries for Java
