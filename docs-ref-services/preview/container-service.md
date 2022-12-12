@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 12/12/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: containerservice
+ms.service: container-service
 ---
 # Azure Container Service SDK for Java - preview
 ## Packages - preview
