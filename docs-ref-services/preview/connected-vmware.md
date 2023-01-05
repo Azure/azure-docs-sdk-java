@@ -3,7 +3,7 @@ title: Azure Connected VMWare SDK for Java
 description: Reference for Azure Connected VMWare SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 01/04/2023
+ms.data: 01/05/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: connectedvmware
