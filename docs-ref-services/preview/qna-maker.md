@@ -3,7 +3,7 @@ title: Azure QnA Maker SDK for Java
 description: Reference for Azure QnA Maker SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 01/05/2023
+ms.data: 01/07/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: qnamaker
