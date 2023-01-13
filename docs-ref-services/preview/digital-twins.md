@@ -3,10 +3,10 @@ title: Azure Digital Twins SDK for Java
 description: Reference for Azure Digital Twins SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 01/12/2023
+ms.data: 01/13/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: digitaltwins
+ms.service: digital-twins
 ---
 # Azure Digital Twins SDK for Java - preview
 ## Packages - preview
