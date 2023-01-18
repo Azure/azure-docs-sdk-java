@@ -3,7 +3,7 @@ title: Azure Video Search SDK for Java
 description: Reference for Azure Video Search SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 01/17/2023
+ms.data: 01/18/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: videosearch
