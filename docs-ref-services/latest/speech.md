@@ -3,7 +3,7 @@ title: Azure Speech SDK for Java
 description: Reference for Azure Speech SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 01/18/2023
+ms.data: 01/19/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: speech
