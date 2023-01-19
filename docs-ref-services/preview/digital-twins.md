@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 01/19/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: digitaltwins
+ms.service: digital-twins
 ---
 # Azure Digital Twins SDK for Java - preview
 ## Packages - preview
