@@ -3,7 +3,7 @@ title: Azure Storage libraries for Java
 description: The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself.
 author: tamram
 ms.author: tamram
-ms.date: 02/13/2020
+ms.date: 01/26/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
@@ -11,7 +11,7 @@ ms.service: storage
 
 # Azure Storage libraries for Java
 
-The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself. For more information about Azure Storage, see [Introduction to Azure Storage](/azure/storage/storage-introduction).
+The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself. For more information about Azure Storage, see [Introduction to Azure Storage](/azure/storage/common/storage-introduction).
 
 ## Client library for data access
 
@@ -93,7 +93,7 @@ Refer to the [Azure SDK Releases page](https://azure.github.io/azure-sdk/) for d
 
 Use the Azure Storage resource provider to manage storage accounts, account keys, access tiers, and more. To use the resource provider library, [add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file. The latest version of the resource provider library is available on [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-mgmt-storage).  
 
-For more information about the resource provider library, see the [Management](/java/api/overview/azure/storage/management) reference. The source code for the resource provider library is available in the [Azure Java SDK repository](https://github.com/Azure/azure-sdk-for-java/tree/master/storage/resource-manager).
+For more information about the resource provider library, see the [Management](/java/api/overview/azure/storage/management) reference.
 
 The following example creates a new storage account in your subscription and retrieves its access keys.
 
