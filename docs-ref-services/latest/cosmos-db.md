@@ -6,7 +6,7 @@ ms.author: kuthapar
 ms.data: 01/31/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.date: 07/08/2022
 ---
 # Azure Cosmos DB libraries for Java

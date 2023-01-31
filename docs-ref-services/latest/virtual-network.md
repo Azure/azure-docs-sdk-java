@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 01/31/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: virtualnetwork
+ms.service: network-access
 ---
 # Azure Virtual Network SDK for Java - latest
 ## Packages - latest

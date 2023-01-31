@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 01/31/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-load-testing
+ms.service: loadtesting
 ---
 # Azure Load Testing SDK for Java - preview
 
