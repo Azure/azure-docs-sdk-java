@@ -2,8 +2,8 @@
 title: Azure NetApp Files SDK for Java
 description: Reference for Azure NetApp Files SDK for Java
 author: joshfree
-ms.author: joshfree
-ms.data: 01/27/2023
+ms.author: jfree
+ms.data: 01/31/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: netappfiles
