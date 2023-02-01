@@ -8,7 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: loadtesting
 ---
-# Azure Load Testing SDK for Java - preview
-
-## Client packages - preview
-[!INCLUDE [client-packages](load-testing-client-index.md)]
+# Azure Load Testing SDK for Java - latest
+## Packages - latest
+[!INCLUDE [packages](load-testing-index.md)]
