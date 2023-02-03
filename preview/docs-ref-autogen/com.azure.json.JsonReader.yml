@@ -115,7 +115,7 @@ methods:
   exceptions:
   - description: "If the <xref uid=\"#currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> isn't <xref uid=\"JsonToken#START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> or\n <xref uid=\"JsonToken#FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> followed by <xref uid=\"JsonToken#START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
-  desc: "Reads and returns the current JSON object the <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> is pointing to. This will mutate the current location of this <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref>.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> isn't <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> or <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> followed by <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown.\n\nThe returned <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> is able to be <xref uid=\"com.azure.json.JsonReader.reset()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#reset()\"></xref> to replay the underlying JSON stream."
+  desc: "Reads and returns the current JSON object the <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> is pointing to. This will mutate the current location of this <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref>.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> isn't <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> or <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalStateException\"></xref> will be thrown.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> this will create a JSON object where the first JSON field is the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> field, meaning this can be called from the middle of a JSON object to create a new JSON object with only a subset of fields (those remaining from when the method is called).\n\nThe returned <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> is able to be <xref uid=\"com.azure.json.JsonReader.reset()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#reset()\"></xref> to replay the underlying JSON stream."
   returns:
     description: "The buffered JSON object the <xref uid=\"com.azure.json.JsonReader\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonReader\"></xref> was pointing to."
     type: "<xref href=\"com.azure.json.JsonReader?alt=com.azure.json.JsonReader&text=JsonReader\" data-throw-if-not-resolved=\"False\" />"
@@ -328,7 +328,7 @@ methods:
   exceptions:
   - description: "If the children cannot be read."
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
-  desc: "Recursively reads the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>.\n\nIf the current token isn't the beginning of an array or object this method is a no-op."
+  desc: "Recursively reads the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref>.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> isn't <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> nothing will be read."
   returns:
     description: "The raw textual value of the JSON token sub-stream."
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
@@ -345,9 +345,40 @@ methods:
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html\">StringBuilder</a>"
   syntax: "public final void readChildren(StringBuilder buffer)"
   exceptions:
-  - description: "If the children cannot be read."
+  - description: "If <code>buffer</code> is null."
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
-  desc: "Recursively reads the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> into the passed <xref uid=\"java.lang.StringBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"StringBuilder\"></xref>.\n\nIf the current token isn't the beginning of an array or object this method is a no-op."
+  desc: "Recursively reads the JSON token sub-stream if the current token is either <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> into the passed <xref uid=\"java.lang.StringBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"StringBuilder\"></xref>.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> isn't <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> or <xref uid=\"com.azure.json.JsonToken.START_ARRAY\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_ARRAY\"></xref> nothing will be read."
+- uid: "com.azure.json.JsonReader.readRemainingFieldsAsJsonObject()"
+  fullName: "com.azure.json.JsonReader.readRemainingFieldsAsJsonObject()"
+  name: "readRemainingFieldsAsJsonObject()"
+  nameWithType: "JsonReader.readRemainingFieldsAsJsonObject()"
+  summary: "Reads the remaining fields in the current JSON object as a JSON object."
+  modifiers:
+  - "final"
+  syntax: "public final String readRemainingFieldsAsJsonObject()"
+  exceptions:
+  - description: "If the remaining JSON fields cannot be read."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Reads the remaining fields in the current JSON object as a JSON object.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> this functions the same as <xref uid=\"com.azure.json.JsonReader.readChildren()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#readChildren()\"></xref>. If the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> this creates a JSON object where the first field is the current field and reads the remaining fields in the JSON object.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> isn't <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> or <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> nothing will be read."
+  returns:
+    description: "The raw textual value of the remaining JSON fields."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+- uid: "com.azure.json.JsonReader.readRemainingFieldsAsJsonObject(java.lang.StringBuilder)"
+  fullName: "com.azure.json.JsonReader.readRemainingFieldsAsJsonObject(StringBuilder buffer)"
+  name: "readRemainingFieldsAsJsonObject(StringBuilder buffer)"
+  nameWithType: "JsonReader.readRemainingFieldsAsJsonObject(StringBuilder buffer)"
+  summary: "Reads the remaining fields in the current JSON object as a JSON object."
+  modifiers:
+  - "final"
+  parameters:
+  - description: "The <xref uid=\"java.lang.StringBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"StringBuilder\"></xref> where the remaining JSON fields will be written."
+    name: "buffer"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html\">StringBuilder</a>"
+  syntax: "public final void readRemainingFieldsAsJsonObject(StringBuilder buffer)"
+  exceptions:
+  - description: "If <code>buffer</code> is null."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Reads the remaining fields in the current JSON object as a JSON object.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> this functions the same as <xref uid=\"com.azure.json.JsonReader.readChildren(java.lang.StringBuilder)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#readChildren(StringBuilder)\"></xref>. If the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> is <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> this creates a JSON object where the first field is the current field and reads the remaining fields in the JSON object.\n\nIf the <xref uid=\"com.azure.json.JsonReader.currentToken()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#currentToken()\"></xref> isn't <xref uid=\"com.azure.json.JsonToken.START_OBJECT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#START_OBJECT\"></xref> or <xref uid=\"com.azure.json.JsonToken.FIELD_NAME\" data-throw-if-not-resolved=\"false\" data-raw-source=\"JsonToken#FIELD_NAME\"></xref> nothing will be read."
 - uid: "com.azure.json.JsonReader.readUntyped()"
   fullName: "com.azure.json.JsonReader.readUntyped()"
   name: "readUntyped()"
@@ -408,4 +439,4 @@ implements:
 - "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html\">Closeable</a>"
 metadata: {}
 package: "com.azure.json"
-artifact: com.azure:azure-json:1.0.0-beta.1
+artifact: com.azure:azure-json:1.0.0-beta.2
