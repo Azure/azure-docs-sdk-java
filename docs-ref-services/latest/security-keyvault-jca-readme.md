@@ -1,14 +1,14 @@
 ---
 title: Azure Key Vault JCA client library for Java
 keywords: Azure, java, SDK, API, azure-security-keyvault-jca, keyvault
-author: backwind1233
-ms.author: zhihaoguo
-ms.date: 05/25/2022
+author: vcolin7
+ms.author: vicolina
+ms.date: 03/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: keyvault
 ---
-# Azure Key Vault JCA client library for Java - version 2.7.0 
+# Azure Key Vault JCA client library for Java - version 2.7.1 
 
 The JCA Provider for Azure Key Vault is a Java Cryptography Architecture provider for certificates in
 Azure Key Vault. It is built on four principles:
@@ -26,7 +26,7 @@ Azure Key Vault. It is built on four principles:
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.0/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.1/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -251,15 +251,15 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_code_of_conduct]. For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[Source code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.0/sdk/keyvault/azure-security-keyvault-jca/src
+[Source code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.1/sdk/keyvault/azure-security-keyvault-jca/src
 [API reference documentation]: https://azure.github.io/azure-sdk-for-java/keyvault.html#azure-security-keyvault-jca
 [Product documentation]: /azure/key-vault/
-[Samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.0/sdk/keyvault/azure-security-keyvault-jca/src/samples/java/com/azure/security/keyvault/jca
+[Samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.1/sdk/keyvault/azure-security-keyvault-jca/src/samples/java/com/azure/security/keyvault/jca
 [azure_subscription]: https://azure.microsoft.com/
 [azure_keyvault]: /azure/key-vault/keys/quick-create-portal
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [azure_cloud_shell]: https://shell.azure.com/bash
-[spring_boot_starter]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.0/sdk/spring/spring-cloud-azure-starter-keyvault-certificates
+[spring_boot_starter]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-jca_2.7.1/sdk/spring/spring-cloud-azure-starter-keyvault-certificates
 [jca_reference_guide]: https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html
 [microsoft_code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [non-exportable]: /azure/key-vault/certificates/about-certificates#exportable-or-non-exportable-key
