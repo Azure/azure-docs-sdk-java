@@ -7,7 +7,7 @@ ms.date: 11/25/2020
 ms.topic: reference
 ms.technology: azure
 ms.devlang: java
-ms.service: azure-resourcemanager
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager network client library for Java - version 2.1.0 

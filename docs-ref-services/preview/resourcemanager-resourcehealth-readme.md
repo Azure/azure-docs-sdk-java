@@ -7,7 +7,7 @@ ms.date: 03/29/2022
 ms.topic: reference
 ms.technology: azure
 ms.devlang: java
-ms.service: resource-health
+ms.service: azure-resource-manager
 ---
 # Azure Resource Manager ResourceHealth client library for Java - version 1.0.0-beta.2 
 
