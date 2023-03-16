@@ -5,10 +5,9 @@ author: kushagraThapar
 ms.author: kuthapar
 ms.date: 03/11/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: cosmosdb
+ms.service: cosmos-db
 ---
 # Encryption plugin library for Azure Cosmos DB Java SDK for Java
 The Azure Cosmos Encryption Plugin is used for encrypting data with user provided key before saving into CosmosDB and decrypting it when reading back from the database.

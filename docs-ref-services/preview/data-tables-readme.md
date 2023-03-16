@@ -5,10 +5,10 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 05/14/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: tables
+ms.service: storage
+ms.subservice: tables
 ---
 
 # Azure Tables client library for Java - version 12.0.0-beta.7 

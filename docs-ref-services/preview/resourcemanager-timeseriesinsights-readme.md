@@ -6,7 +6,7 @@ ms.author: jfree
 ms.date: 02/27/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: timeseriesinsights
+ms.service: time-series-insights
 ---
 # Azure Resource Manager TimeSeriesInsights client library for Java - version 1.0.0-beta.2 
 

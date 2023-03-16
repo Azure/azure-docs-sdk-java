@@ -5,10 +5,9 @@ author: maggiepint
 ms.author: magpint
 ms.date: 11/11/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: webpubsub
+ms.service: azure-web-pubsub
 ---
 
 # Azure Web PubSub service client library for Java - version 1.0.0-beta.6 

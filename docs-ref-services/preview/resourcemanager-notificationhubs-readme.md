@@ -5,10 +5,9 @@ author: joshfree
 ms.author: joshfree
 ms.date: 01/04/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: notificationhubs
+ms.service: notification-hubs
 ---
 # Azure Resource Manager NotificationHubs client library for Java - version 1.0.0-beta.3 
 

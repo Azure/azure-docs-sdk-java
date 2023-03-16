@@ -6,7 +6,7 @@ ms.author: jfree
 ms.date: 02/23/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: agrifood
+ms.service: azure-farmbeats
 ---
 # Azure FarmBeats client library for Java - version 1.0.0-beta.3 
 

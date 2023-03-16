@@ -7,10 +7,9 @@ ms.author: ramyar
 manager: douge
 ms.date: 07/09/2017
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: appservice
+ms.service: app-service
 ---
 
 # Azure App Service libraries for Java

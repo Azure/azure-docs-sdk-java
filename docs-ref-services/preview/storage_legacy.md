@@ -7,7 +7,6 @@ ms.author: seguler
 manager: dineshm
 ms.date: 10/29/2018
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: storage

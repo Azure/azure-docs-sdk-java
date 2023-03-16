@@ -5,10 +5,9 @@ author: weidongxu-microsoft
 ms.author: weidxu
 ms.date: 03/11/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: containerservice
+ms.service: container-service
 ---
 # Azure Resource Manager Containerservice client library for Java - version 2.13.0-beta.1 
 

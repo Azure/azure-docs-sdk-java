@@ -6,7 +6,7 @@ ms.author: jfree
 ms.date: 03/13/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: redisenterprise
+ms.service: cache
 ---
 # Azure Resource Manager RedisEnterprise client library for Java - version 1.1.0-beta.2 
 

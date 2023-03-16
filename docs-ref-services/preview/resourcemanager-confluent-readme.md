@@ -5,10 +5,10 @@ author: maggiepint
 ms.author: magpint
 ms.date: 11/11/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: confluent
+ms.service: partner-services
+ms.subservice: confluent
 ---
 
 # Azure Resource Manager Confluent client library for Java - version 1.0.0-beta.3 

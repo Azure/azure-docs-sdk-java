@@ -7,7 +7,6 @@ ms.data: 03/14/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: batch
-ms.prod: azure
 manager: douge
 ms.technology: azure
 ms.date: 06/21/2017

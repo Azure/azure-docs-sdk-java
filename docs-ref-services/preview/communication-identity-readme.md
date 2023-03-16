@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 10/29/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: communication
+ms.service: azure-communication-services
 ---
 
 # Azure Communication Identity client library for Java - version 1.2.0-beta.1 

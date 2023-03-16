@@ -8,6 +8,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: container-registry
 ---
+
 # Azure Resource Manager Containerregistry client library for Java - version 2.24.0-beta.1 
 
 

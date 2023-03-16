@@ -6,7 +6,7 @@ ms.author: jfree
 ms.date: 02/21/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: mysqlflexibleserver
+ms.service: mysql
 ---
 # Azure Resource Manager MySql client library for Java - version 1.0.0-beta.3 
 

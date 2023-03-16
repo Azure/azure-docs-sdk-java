@@ -5,10 +5,9 @@ author: JianpingChen
 ms.author: jiach
 ms.date: 04/14/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: communication
+ms.service: azure-communication-services
 ---
 # Azure Communication Network Traversal Package client library for Java - version 1.1.0-beta.2 
 

@@ -5,7 +5,6 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 10/19/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: sql

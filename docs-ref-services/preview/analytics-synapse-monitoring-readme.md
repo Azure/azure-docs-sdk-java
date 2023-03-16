@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 04/07/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: synapseanalytics
+ms.service: synapse-analytics
 ---
 
 # Azure Synapse Monitoring client library for Java - version 1.0.0-beta.3 

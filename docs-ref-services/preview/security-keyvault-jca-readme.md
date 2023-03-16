@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 05/24/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: keyvault
+ms.service: key-vault
 ---
 
 # Azure Key Vault JCA client library for Java - version 1.0.0-beta.7 

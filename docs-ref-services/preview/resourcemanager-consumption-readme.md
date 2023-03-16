@@ -5,10 +5,9 @@ author: joshfree
 ms.author: joshfree
 ms.date: 12/14/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: consumption
+ms.service: azure-resource-manager
 ---
 # Azure Resource Manager Consumption client library for Java - version 1.0.0-beta.3 
 

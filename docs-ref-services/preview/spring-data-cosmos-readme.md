@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 09/02/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: cosmosdb
+ms.service: cosmos-db
 ---
 
 # Azure Spring Data Cosmos client library for Java - version 3.11.0-beta.1 

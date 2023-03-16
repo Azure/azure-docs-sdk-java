@@ -5,10 +5,9 @@ author: joshfree
 ms.author: jfree
 ms.date: 04/25/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: aot
+ms.service: azure-java
 ---
 # Azure GraalVM Support client library for Java - version 1.0.0-beta.2 
 

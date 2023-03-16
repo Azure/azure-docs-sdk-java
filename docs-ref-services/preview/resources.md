@@ -7,7 +7,6 @@ ms.author: ramyar
 manager: douge
 ms.date: 06/21/2017
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: data-lake-store

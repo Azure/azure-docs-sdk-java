@@ -5,10 +5,9 @@ author: joshfree
 ms.author: joshfree
 ms.date: 01/06/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: streamanalytics
+ms.service: stream-analytics
 ---
 # Azure Resource Manager StreamAnalytics client library for Java - version 1.0.0-beta.2 
 

@@ -7,10 +7,9 @@ ms.author: ramyar
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: cdn
+ms.service: azure-cdn
 ---
 
 # Azure CDN libraries for Java

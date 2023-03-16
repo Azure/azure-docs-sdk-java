@@ -5,10 +5,9 @@ author: srnagar
 ms.author: srnagar
 ms.date: 01/24/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: eventgrid
+ms.service: event-grid
 ---
 # Azure Cloud Native Cloud Event client library for Java - version 1.0.0-beta.1 
 

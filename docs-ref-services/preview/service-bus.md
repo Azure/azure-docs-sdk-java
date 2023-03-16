@@ -6,8 +6,7 @@ ms.author: jfree
 ms.data: 03/14/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: servicebus
-ms.prod: azure
+ms.service: service-bus
 manager: douge
 ms.technology: azure
 ms.date: 07/11/2017

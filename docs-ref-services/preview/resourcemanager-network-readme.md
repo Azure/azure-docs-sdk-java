@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 09/03/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: network
+ms.service: virtual-network
 ---
 
 # Azure Resource Manager network client library for Java - version 2.0.0-beta.4 
