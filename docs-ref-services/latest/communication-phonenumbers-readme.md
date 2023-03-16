@@ -7,7 +7,7 @@ ms.author: nostojic
 ms.date: 03/16/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: communication
+ms.service:
 ---
 # Azure Communication Phone Numbers client library for Java - version 1.2.0
 
@@ -26,12 +26,13 @@ Purchased phone numbers can come with many capabilities, depending on the countr
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 - [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
-- A deployed Communication Services resource. You can use the [Azure Portal](/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](/powershell/module/az.communication/new-azcommunicationservice) to set it up.
+- A deployed Communication Services resource. You can use the [Azure portal](/azure/communication-services/quickstarts/create-communication-resource?tabs=windows&pivots=platform-azp) or the [Azure PowerShell](/powershell/module/az.communication/new-azcommunicationservice) to set it up.
 
 ### Include the package
+
 #### Include the BOM file
 
-Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
+Include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
 To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-phonenumbers_1.0.19/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
@@ -59,11 +60,12 @@ and then include the direct dependency in the dependencies section without the v
 ```
 
 #### Include direct dependency
+
 If you want to take dependency on a particular version of the library that is not present in the BOM,
 add the direct dependency to your project as follows.
 
-
 [//]: # ({x-version-update-start;com.azure:azure-communication-phonenumbers;current})
+
 ```xml
 <dependency>
   <groupId>com.azure</groupId>
@@ -108,7 +110,7 @@ When call is made, system tries to match the destination number with regex numbe
 
 ### Initializing Client
 
-The PhoneNumberClientBuilder and SipRoutingClientBuilder is enabled to use Azure Active Directory Authentication
+The PhoneNumberClientBuilder and SipRoutingClientBuilder are enabled to use Azure Active Directory Authentication
 
 ```java readme-sample-createPhoneNumberClientWithAAD
 // You can find your endpoint and access key from your resource in the Azure Portal
@@ -197,11 +199,11 @@ SipRoutingClient
 
 ## Long Running Operations
 
-The Phone Number Client supports a variety of long-running operations that allow indefinite polling time to the functions listed down below.
+The Phone Number Client supports various long-running operations that allow indefinite polling time to the functions listed down below.
 
 ### Search for Available Phone Numbers
 
-Search for available phone numbers by providing the area code, assignment type, phone number capabilities, phone number type, and quantity. The result of the search can then be used to purchase the numbers. Note that for the toll-free phone number type, providing the area code is optional.
+Search for available phone numbers by providing the area code, assignment type, phone number capabilities, phone number type, and quantity. The result of the search can then be used to purchase the numbers. For the toll-free phone number type, providing the area code is optional.
 
 ```java readme-sample-searchAvailablePhoneNumbers
 PhoneNumbersClient phoneNumberClient = createPhoneNumberClient();
@@ -358,7 +360,7 @@ This project welcomes contributions and suggestions. Most contributions require 
 
 When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 
-This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
+This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information, see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 Check out other client libraries for Azure communication service
 
