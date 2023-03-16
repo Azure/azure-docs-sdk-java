@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 08/30/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: iothub
+ms.service: iot-hub
 ---
 
 # Azure Resource Manager IotHub client library for Java - version 1.1.0 

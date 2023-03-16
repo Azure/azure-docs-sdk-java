@@ -5,10 +5,9 @@ author: gingi
 ms.author: shpaster
 ms.date: 03/22/2022
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: batch
+ms.service: azure-resource-manager
 ---
 # Azure Resource Manager Batch client library for Java - version 1.0.0 
 

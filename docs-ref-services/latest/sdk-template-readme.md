@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 07/29/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: batch
 ---
 
 # README.md template

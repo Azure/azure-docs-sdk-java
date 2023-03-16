@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 04/08/2021
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: communication
+ms.service: azure-resource-manager
 ---
 
 # Azure Resource Manager Communication client library for Java - version 1.0.0 

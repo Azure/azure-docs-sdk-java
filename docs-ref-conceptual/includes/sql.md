@@ -2,6 +2,7 @@
 title: sql
 ms.prod: azure
 description: sql resources
+ms.service: sql
 ---
 
 # Azure SQL resources

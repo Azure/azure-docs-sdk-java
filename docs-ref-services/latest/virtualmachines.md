@@ -7,10 +7,9 @@ ms.author: douge
 manager: douge
 ms.date: 05/17/2017
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: compute
+ms.service: big-compute
 ---
 
 # Azure virtual machine libraries
