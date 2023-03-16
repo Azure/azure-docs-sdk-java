@@ -7,9 +7,9 @@ ms.data: 03/16/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: eventhubs
-ms.date: 06/21/2017
-manager: douge
 keywords: Azure, Java, SDK, API, event hub, IoT, stream processing
+manager: douge
+ms.date: 06/21/2017
 ---
 # Azure Event Hub libraries for Java
 

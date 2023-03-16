@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 03/16/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: resources
+ms.service: azure-resource-manager
 ms.date: 07/08/2022
 ---
 # Azure Resource Manager libraries for Java

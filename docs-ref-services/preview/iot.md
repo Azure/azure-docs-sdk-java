@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 03/16/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: iot
+ms.service: digital-twins
 ms.date: 07/08/2022
 ---
 # Azure IoT libraries for Java
