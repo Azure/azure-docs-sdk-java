@@ -5,10 +5,10 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 11/12/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: formrecognizer
+ms.service: applied-ai-services
+ms.subservice: forms-recognizer
 ---
 
 # Azure Form Recognizer client library for Java - version 3.0.3 

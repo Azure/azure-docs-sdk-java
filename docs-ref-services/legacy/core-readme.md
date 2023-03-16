@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 11/26/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: corecore
+ms.service: azure-java
 ---
 
 # Azure Core shared library for Java - version 1.11.0 

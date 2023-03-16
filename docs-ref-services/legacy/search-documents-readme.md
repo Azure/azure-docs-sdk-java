@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 11/10/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: search
+ms.service: cognitive-search
 ---
 
 # Azure Cognitive Search client library for Java - version 11.1.2 

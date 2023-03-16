@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 10/30/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: core
+ms.service: azure-java
 ---
 
 # Azure Core Gson JSON Serializer plugin library for Java - version 1.0.3 

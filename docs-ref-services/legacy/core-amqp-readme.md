@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 12/01/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: core
+ms.service: azure-java
 ---
 
 # Azure Core AMQP shared library for Java - version 2.0.0 

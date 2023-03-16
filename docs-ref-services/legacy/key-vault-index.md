@@ -7,7 +7,6 @@ ms.author: ramyar
 manager: douge
 ms.date: 11/21/2019
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: key-vault

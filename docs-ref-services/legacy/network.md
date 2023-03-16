@@ -7,10 +7,9 @@ ms.author: ramyar
 manager: douge
 ms.date: 07/20/2017
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: networking
+ms.service: virtual-network
 ---
 
 # Azure Network libraries for Java

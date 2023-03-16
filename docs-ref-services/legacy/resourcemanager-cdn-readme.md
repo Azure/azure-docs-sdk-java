@@ -5,10 +5,9 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 11/25/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: cdn
+ms.service: azure-cdn
 ---
 
 # Azure Resource Manager CDN client library for Java - version 2.1.0 

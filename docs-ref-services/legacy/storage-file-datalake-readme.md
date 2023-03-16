@@ -5,10 +5,10 @@ author: ramya-rao-a
 ms.author: ramyar
 ms.date: 11/11/2020
 ms.topic: reference
-ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: storage
+ms.subservice: data-lake-storage-gen2
 ---
 
 # Azure File Data Lake client library for Java - version 12.3.0 
