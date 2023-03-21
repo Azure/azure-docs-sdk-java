@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 03/21/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: redis-cache
+ms.service: redis
 ---
 # Azure Redis SDK for Java - latest
 ## Packages - latest

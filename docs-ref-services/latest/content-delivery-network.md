@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 03/21/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-cdn
+ms.service: contentdeliverynetwork
 ms.date: 07/08/2022
 ---
 # Azure CDN libraries for Java
