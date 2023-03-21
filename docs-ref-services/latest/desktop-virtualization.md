@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: desktopvirtualization
 ---
-# Azure Desktop Virtualization SDK for Java - preview
-## Packages - preview
+# Azure Desktop Virtualization SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](desktop-virtualization-index.md)]
