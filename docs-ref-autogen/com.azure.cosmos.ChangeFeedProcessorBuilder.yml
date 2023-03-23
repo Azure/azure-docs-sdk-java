@@ -78,7 +78,21 @@ methods:
     name: "consumer"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html\">Consumer</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/List.html\">List</a>&lt;<xref href=\"com.fasterxml.jackson.databind.JsonNode?alt=com.fasterxml.jackson.databind.JsonNode&text=JsonNode\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
   syntax: "public ChangeFeedProcessorBuilder handleChanges(Consumer<List<JsonNode>> consumer)"
-  desc: "Sets a consumer function which will be called to process changes for LatestVersion change feed mode.\n\n```java\n.handleChanges(docs -> {\n     for (JsonNode item : docs) {\n         // Implementation for handling and processing of each JsonNode item goes here\n     }\n })\n```"
+  desc: "Sets a consumer function which will be called to process changes for LatestVersion change feed mode. Attention! This API is not merge proof, please use <xref uid=\"com.azure.cosmos.ChangeFeedProcessorBuilder.handleLatestVersionChanges*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#handleLatestVersionChanges(Consumer)\"></xref> instead.\n\n```java\n.handleChanges(docs -> {\n     for (JsonNode item : docs) {\n         // Implementation for handling and processing of each JsonNode item goes here\n     }\n })\n```"
+  returns:
+    description: "current Builder."
+    type: "<xref href=\"com.azure.cosmos.ChangeFeedProcessorBuilder?alt=com.azure.cosmos.ChangeFeedProcessorBuilder&text=ChangeFeedProcessorBuilder\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.cosmos.ChangeFeedProcessorBuilder.handleLatestVersionChanges(java.util.function.Consumer<java.util.List<com.azure.cosmos.models.ChangeFeedProcessorItem>>)"
+  fullName: "com.azure.cosmos.ChangeFeedProcessorBuilder.handleLatestVersionChanges(Consumer<List<ChangeFeedProcessorItem>> consumer)"
+  name: "handleLatestVersionChanges(Consumer<List<ChangeFeedProcessorItem>> consumer)"
+  nameWithType: "ChangeFeedProcessorBuilder.handleLatestVersionChanges(Consumer<List<ChangeFeedProcessorItem>> consumer)"
+  summary: "Sets a consumer function which will be called to process changes for Latest<wbr>Version change feed mode."
+  parameters:
+  - description: "the <xref uid=\"java.util.function.Consumer\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Consumer\"></xref> to call for handling the feeds."
+    name: "consumer"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html\">Consumer</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/List.html\">List</a>&lt;<xref href=\"com.azure.cosmos.models.ChangeFeedProcessorItem?alt=com.azure.cosmos.models.ChangeFeedProcessorItem&text=ChangeFeedProcessorItem\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
+  syntax: "public ChangeFeedProcessorBuilder handleLatestVersionChanges(Consumer<List<ChangeFeedProcessorItem>> consumer)"
+  desc: "Sets a consumer function which will be called to process changes for LatestVersion change feed mode.\n\n```java\n.handleLatestVersionChanges(changeFeedProcessorItems -> {\n     for (ChangeFeedProcessorItem item : changeFeedProcessorItems) {\n         // Implementation for handling and processing of each change feed item goes here\n     }\n })\n```"
   returns:
     description: "current Builder."
     type: "<xref href=\"com.azure.cosmos.ChangeFeedProcessorBuilder?alt=com.azure.cosmos.ChangeFeedProcessorBuilder&text=ChangeFeedProcessorBuilder\" data-throw-if-not-resolved=\"False\" />"
@@ -128,4 +142,4 @@ type: "class"
 desc: "Helper class to build a <xref uid=\"com.azure.cosmos.ChangeFeedProcessor\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ChangeFeedProcessor\"></xref> instance. Below is an example of building ChangeFeedProcessor for LatestVersion mode.\n\n```java\nChangeFeedProcessor changeFeedProcessor = new ChangeFeedProcessorBuilder()\n     .hostName(hostName)\n     .feedContainer(feedContainer)\n     .leaseContainer(leaseContainer)\n     .handleChanges(docs -> {\n         for (JsonNode item : docs) {\n             // Implementation for handling and processing of each JsonNode item goes here\n         }\n     })\n     .buildChangeFeedProcessor();\n```\n\nBelow is an example of building ChangeFeedProcessor for AllVersionsAndDeletes mode.\n\n```java\nChangeFeedProcessor changeFeedProcessor = new ChangeFeedProcessorBuilder()\n     .hostName(hostName)\n     .feedContainer(feedContainer)\n     .leaseContainer(leaseContainer)\n     .handleAllVersionsAndDeletesChanges(docs -> {\n         for (ChangeFeedProcessorItem item : docs) {\n             // Implementation for handling and processing of each ChangeFeedProcessorItem item goes here\n         }\n     })\n     .buildChangeFeedProcessor();\n```"
 metadata: {}
 package: "com.azure.cosmos"
-artifact: com.azure:azure-cosmos:4.40.0
+artifact: com.azure:azure-cosmos:4.42.0
