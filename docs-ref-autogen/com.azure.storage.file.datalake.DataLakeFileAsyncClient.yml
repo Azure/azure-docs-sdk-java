@@ -247,12 +247,14 @@ methods:
   name: "flush(long position)"
   nameWithType: "DataLakeFileAsyncClient.flush(long position)"
   summary: "Flushes (writes) data previously appended to the file through a call to append."
+  deprecatedTag: "See <xref uid=\"com.azure.storage.file.datalake.DataLakeFileAsyncClient.flush(long,boolean)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#flush(long, boolean)\"></xref> instead."
   parameters:
   - description: "The length of the file after all data has been written."
     name: "position"
     type: "<xref href=\"long?alt=long&text=long\" data-throw-if-not-resolved=\"False\" />"
-  syntax: "public Mono<PathInfo> flush(long position)"
+  syntax: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html\">@Deprecated</a></br>public Mono<PathInfo> flush(long position)"
   desc: "Flushes (writes) data previously appended to the file through a call to append. The previously uploaded data must be contiguous.\n\nBy default this method will not overwrite existing data.\n\n**Code Samples**\n\n```java\nclient.flush(position).subscribe(response ->\n     System.out.println(\"Flush data completed\"));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/datalakestoragegen2/path/update"
+  hasDeprecatedTag: true
   returns:
     description: "A reactive response containing the information of the created resource."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.storage.file.datalake.models.PathInfo?alt=com.azure.storage.file.datalake.models.PathInfo&text=PathInfo\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -296,6 +298,23 @@ methods:
     type: "<xref href=\"com.azure.storage.file.datalake.models.DataLakeRequestConditions?alt=com.azure.storage.file.datalake.models.DataLakeRequestConditions&text=DataLakeRequestConditions\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<PathInfo>> flushWithResponse(long position, boolean retainUncommittedData, boolean close, PathHttpHeaders httpHeaders, DataLakeRequestConditions requestConditions)"
   desc: "Flushes (writes) data previously appended to the file through a call to append. The previously uploaded data must be contiguous.\n\n**Code Samples**\n\n```java\nFileRange range = new FileRange(1024, 2048L);\n DownloadRetryOptions options = new DownloadRetryOptions().setMaxRetryRequests(5);\n byte[] contentMd5 = new byte[0]; // Replace with valid md5\n boolean retainUncommittedData = false;\n boolean close = false;\n PathHttpHeaders httpHeaders = new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n\n client.flushWithResponse(position, retainUncommittedData, close, httpHeaders,\n     requestConditions).subscribe(response ->\n     System.out.printf(\"Flush data completed with status %d%n\", response.getStatusCode()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/datalakestoragegen2/path/update"
+  returns:
+    description: "A reactive response containing the information of the created resource."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.file.datalake.models.PathInfo?alt=com.azure.storage.file.datalake.models.PathInfo&text=PathInfo\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
+- uid: "com.azure.storage.file.datalake.DataLakeFileAsyncClient.flushWithResponse(long,com.azure.storage.file.datalake.options.DataLakeFileFlushOptions)"
+  fullName: "com.azure.storage.file.datalake.DataLakeFileAsyncClient.flushWithResponse(long position, DataLakeFileFlushOptions flushOptions)"
+  name: "flushWithResponse(long position, DataLakeFileFlushOptions flushOptions)"
+  nameWithType: "DataLakeFileAsyncClient.flushWithResponse(long position, DataLakeFileFlushOptions flushOptions)"
+  summary: "Flushes (writes) data previously appended to the file through a call to append."
+  parameters:
+  - description: "The length of the file after all data has been written."
+    name: "position"
+    type: "<xref href=\"long?alt=long&text=long\" data-throw-if-not-resolved=\"False\" />"
+  - description: "<xref uid=\"com.azure.storage.file.datalake.options.DataLakeFileFlushOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"DataLakeFileFlushOptions\"></xref>"
+    name: "flushOptions"
+    type: "<xref href=\"com.azure.storage.file.datalake.options.DataLakeFileFlushOptions?alt=com.azure.storage.file.datalake.options.DataLakeFileFlushOptions&text=DataLakeFileFlushOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Response<PathInfo>> flushWithResponse(long position, DataLakeFileFlushOptions flushOptions)"
+  desc: "Flushes (writes) data previously appended to the file through a call to append. The previously uploaded data must be contiguous.\n\n**Code Samples**\n\n```java\nFileRange range = new FileRange(1024, 2048L);\n DownloadRetryOptions options = new DownloadRetryOptions().setMaxRetryRequests(5);\n byte[] contentMd5 = new byte[0]; // Replace with valid md5\n boolean retainUncommittedData = false;\n boolean close = false;\n PathHttpHeaders httpHeaders = new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n Integer leaseDuration = 15;\n\n DataLakeFileFlushOptions flushOptions = new DataLakeFileFlushOptions()\n     .setUncommittedDataRetained(retainUncommittedData)\n     .setClose(close)\n     .setPathHttpHeaders(httpHeaders)\n     .setRequestConditions(requestConditions)\n     .setLeaseAction(LeaseAction.ACQUIRE)\n     .setLeaseDuration(leaseDuration)\n     .setProposedLeaseId(leaseId);\n\n client.flushWithResponse(position, flushOptions).subscribe(response ->\n     System.out.printf(\"Flush data completed with status %d%n\", response.getStatusCode()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/datalakestoragegen2/path/update"
   returns:
     description: "A reactive response containing the information of the created resource."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.file.datalake.models.PathInfo?alt=com.azure.storage.file.datalake.models.PathInfo&text=PathInfo\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -737,4 +756,4 @@ type: "class"
 desc: "This class provides a client that contains file operations for Azure Storage Data Lake. Operations provided by this client include creating a file, deleting a file, renaming a file, setting metadata and http headers, setting and retrieving access control, getting properties, reading a file, and appending and flushing data to write to a file.\n\nThis client is instantiated through <xref uid=\"com.azure.storage.file.datalake.DataLakePathClientBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"DataLakePathClientBuilder\"></xref> or retrieved via <xref uid=\"com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient.getFileAsyncClient(java.lang.String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"DataLakeFileSystemAsyncClient#getFileAsyncClient(String)\"></xref>.\n\nPlease refer to the [Azure Docs][] for more information.\n\n\n[Azure Docs]: https://docs.microsoft.com/azure/storage/blobs/data-lake-storage-introduction"
 metadata: {}
 package: "com.azure.storage.file.datalake"
-artifact: com.azure:azure-storage-file-datalake:12.13.2
+artifact: com.azure:azure-storage-file-datalake:12.14.1
