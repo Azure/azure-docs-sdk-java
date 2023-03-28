@@ -3,12 +3,12 @@ title: Azure Json Reflect shared library for Java
 keywords: Azure, java, SDK, API, azure-json-reflect, core
 author: alzimmermsft
 ms.author: alzimmer
-ms.date: 02/01/2023
+ms.date: 03/03/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Json Reflect shared library for Java - version 1.0.0-beta.1 
+# Azure Json Reflect shared library for Java - version 1.0.0-beta.2 
 
 
 Azure Json Reflect provides implementations of `azure-json` using reflection.
@@ -56,7 +56,7 @@ or checkout [StackOverflow for Azure Java SDK](https://stackoverflow.com/questio
 
 ## Contributing
 
-For details on contributing to this repository, see the <a href="https://github.com/Azure/azure-sdk-for-java/blob/azure-json-reflect_1.0.0-beta.1/CONTRIBUTING.md"> contributing guide</a>.
+For details on contributing to this repository, see the <a href="https://github.com/Azure/azure-sdk-for-java/blob/azure-json-reflect_1.0.0-beta.2/CONTRIBUTING.md"> contributing guide</a>.
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some features`)

@@ -260,11 +260,11 @@ methods:
   fullName: "com.azure.core.util.tracing.Tracer.end(String errorMessage, Throwable throwable, Context context)"
   name: "end(String errorMessage, Throwable throwable, Context context)"
   nameWithType: "Tracer.end(String errorMessage, Throwable throwable, Context context)"
-  summary: "Completes the current tracing span for AMQP calls."
+  summary: "Completes span on the context."
   modifiers:
   - "abstract"
   parameters:
-  - description: "The error message that occurred during the call, or <code>null</code> if no error\n occurred."
+  - description: "The error message that occurred during the call, or <code>null</code> if no error.\n   occurred. Any other non-null string indicates an error with description provided in <code>errorMessage</code>."
     name: "errorMessage"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   - description: "<xref uid=\"java.lang.Throwable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Throwable\"></xref> that happened during the span or <code>null</code> if no exception occurred."
@@ -274,7 +274,7 @@ methods:
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public abstract void end(String errorMessage, Throwable throwable, Context context)"
-  desc: "Completes the current tracing span for AMQP calls.\n\n**Code samples**\n\nCompletes the tracing span with unset status\n\n```java\nContext messageSpan = tracer.start(\"ServiceBus.message\", new StartSpanOptions(SpanKind.PRODUCER), Context.NONE);\n tracer.end(null, null, messageSpan);\n```\n\nCompletes the tracing span with provided error message\n\n```java\nContext span = tracer.start(\"ServiceBus.send\", new StartSpanOptions(SpanKind.CLIENT), Context.NONE);\n tracer.end(\"amqp:not-found\", null, span);\n```\n\nCompletes the tracing span with provided exception\n\n```java\nContext sendSpan = tracer.start(\"ServiceBus.send\", new StartSpanOptions(SpanKind.CLIENT), Context.NONE);\n try (AutoCloseable scope = tracer.makeSpanCurrent(sendSpan)) {\n     doWork();\n } catch (Throwable ex) {\n     throwable = ex;\n } finally {\n     tracer.end(null, throwable, sendSpan);\n }\n```"
+  desc: "Completes span on the context.\n\n**Code samples**\n\nCompletes the tracing span with unset status\n\n```java\nContext messageSpan = tracer.start(\"ServiceBus.message\", new StartSpanOptions(SpanKind.PRODUCER), Context.NONE);\n tracer.end(null, null, messageSpan);\n```\n\nCompletes the tracing span with provided error message\n\n```java\nContext span = tracer.start(\"ServiceBus.send\", new StartSpanOptions(SpanKind.CLIENT), Context.NONE);\n tracer.end(\"amqp:not-found\", null, span);\n```\n\nCompletes the tracing span with provided exception\n\n```java\nContext sendSpan = tracer.start(\"ServiceBus.send\", new StartSpanOptions(SpanKind.CLIENT), Context.NONE);\n try (AutoCloseable scope = tracer.makeSpanCurrent(sendSpan)) {\n     doWork();\n } catch (Throwable ex) {\n     throwable = ex;\n } finally {\n     tracer.end(null, throwable, sendSpan);\n }\n```"
 - uid: "com.azure.core.util.tracing.Tracer.extractContext(java.lang.String,com.azure.core.util.Context)"
   fullName: "com.azure.core.util.tracing.Tracer.extractContext(String diagnosticId, Context context)"
   name: "extractContext(String diagnosticId, Context context)"
@@ -505,4 +505,4 @@ type: "interface"
 desc: "Contract that all tracers must implement to be pluggable into the SDK."
 metadata: {}
 package: "com.azure.core.util.tracing"
-artifact: com.azure:azure-core:1.36.0
+artifact: com.azure:azure-core:1.37.0
