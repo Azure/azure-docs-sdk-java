@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 12/12/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: functions
+ms.service: azure-functions
 ---
 # Azure Functions SDK for Java - preview
 ## Packages - preview

@@ -6,7 +6,7 @@ ms.author: weidxu
 ms.date: 09/08/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: spring-cloud
+ms.service: spring-apps
 ---
 # Azure Resource Manager App Platform client library for Java - version 2.19.0-beta.1 
 

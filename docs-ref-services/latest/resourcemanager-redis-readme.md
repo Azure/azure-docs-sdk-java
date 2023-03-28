@@ -6,7 +6,7 @@ ms.author: weidxu
 ms.date: 02/17/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: redis-cache
+ms.service: cache
 ---
 # Azure Resource Manager redis cache client library for Java - version 2.24.0 
 
