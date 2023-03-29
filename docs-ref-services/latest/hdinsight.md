@@ -3,7 +3,7 @@ title: Azure HDInsight SDK for Java
 description: Reference for Azure HDInsight SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 03/27/2023
+ms.data: 03/28/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: hdinsight

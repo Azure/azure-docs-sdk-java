@@ -6,7 +6,7 @@ ms.author: weidxu
 ms.date: 02/17/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: big-compute
+ms.service: azure-java
 ---
 # Azure Resource Manager Compute client library for Java - version 2.24.0 
 
