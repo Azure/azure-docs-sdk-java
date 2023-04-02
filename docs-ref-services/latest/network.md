@@ -1,15 +1,15 @@
 ---
-title: Azure Network libraries for Java
-description: Reference documentation for the Java Azure Network management libraries 
-keywords: Azure, Java, SDK, API, networking, load balancing, vnet , subnet
-author: ramya-rao-a
-ms.author: ramyar
-manager: douge
-ms.date: 07/20/2017
+title: Azure Network SDK for Java
+description: Reference for Azure Network SDK for Java
+author: joshfree
+ms.author: jfree
+ms.data: 04/02/2023
 ms.topic: reference
 ms.technology: azure
 ms.devlang: java
 ms.service: virtual-network
+keywords: Azure, Java, SDK, API, networking, load balancing, vnet , subnet
+manager: douge
 ---
 
 # Azure Network libraries for Java
