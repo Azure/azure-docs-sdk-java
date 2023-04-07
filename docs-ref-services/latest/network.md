@@ -7,8 +7,9 @@ ms.topic: reference
 ms.technology: azure
 ms.devlang: java
 ms.service: virtual-network
-ms.date: 04/05/2023
+ms.date: 04/07/2023
 manager: douge
+ms.technology: azure
 keywords: Azure, Java, SDK, API, networking, load balancing, vnet , subnet
 ---
 
