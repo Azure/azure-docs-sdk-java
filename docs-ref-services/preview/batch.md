@@ -8,8 +8,8 @@ ms.topic: reference
 ms.devlang: java
 ms.service: batch
 keywords: Azure, Java, SDK, API, Batch, processing, scheduling, long-running
-ms.technology: azure
 ms.prod: azure
+ms.technology: azure
 ms.date: 06/21/2017
 manager: douge
 ---
