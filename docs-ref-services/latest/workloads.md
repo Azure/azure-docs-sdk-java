@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: workloads
 ---
-# Azure Workloads SDK for Java - preview
-## Packages - preview
+# Azure Workloads SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](workloads-index.md)]
