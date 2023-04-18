@@ -2,8 +2,8 @@
 title: Azure Support SDK for Java
 description: Reference for Azure Support SDK for Java
 author: joshfree
-ms.author: jfree
-ms.data: 04/17/2023
+ms.author: joshfree
+ms.data: 04/18/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: support
