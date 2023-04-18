@@ -10,6 +10,7 @@ ms.devlang: java
 ms.service: virtual-network
 keywords: Azure, Java, SDK, API, networking, load balancing, vnet , subnet
 ms.technology: azure
+ms.prod: azure
 manager: douge
 ---
 
