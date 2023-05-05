@@ -3,10 +3,10 @@ title: Azure Content Delivery Network SDK for Java
 description: Reference for Azure Content Delivery Network SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 05/04/2023
+ms.data: 05/05/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-cdn
+ms.service: contentdeliverynetwork
 ---
 # Azure Content Delivery Network SDK for Java - latest
 ## Packages - latest
