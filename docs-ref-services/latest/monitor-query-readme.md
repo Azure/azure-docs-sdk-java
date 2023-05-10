@@ -3,18 +3,18 @@ title: Azure Monitor Query client library for Java
 keywords: Azure, java, SDK, API, azure-monitor-query, monitor
 author: joshfree
 ms.author: jfree
-ms.date: 04/25/2023
+ms.date: 05/10/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: monitor
 ---
-# Azure Monitor Query client library for Java - version 1.1.3 
+# Azure Monitor Query client library for Java - version 1.2.0 
 
 
 The Azure Monitor Query client library is used to execute read-only queries against [Azure Monitor][azure_monitor_overview]'s two data platforms:
 
-- [Logs](/azure/azure-monitor/logs/data-platform-logs) - Collects and organizes log and performance data from monitored resources. Data from different sources such as platform logs from Azure services, log and performance data from virtual machines agents, and usage and performance data from apps can be consolidated into a single [Azure Log Analytics workspace](/azure/azure-monitor/logs/data-platform-logs#log-analytics-and-workspaces). The various data types can be analyzed together using the [Kusto Query Language][kusto_query_language].
-- [Metrics](/azure/azure-monitor/essentials/data-platform-metrics) - Collects numeric data from monitored resources into a time series database. Metrics are numerical values that are collected at regular intervals and describe some aspect of a system at a particular time. Metrics are lightweight and capable of supporting near real-time scenarios, making them particularly useful for alerting and fast detection of issues.
+- [Logs](https://learn.microsoft.com/azure/azure-monitor/logs/data-platform-logs) - Collects and organizes log and performance data from monitored resources. Data from different sources such as platform logs from Azure services, log and performance data from virtual machines agents, and usage and performance data from apps can be consolidated into a single [Azure Log Analytics workspace](https://learn.microsoft.com/azure/azure-monitor/logs/data-platform-logs#log-analytics-and-workspaces). The various data types can be analyzed together using the [Kusto Query Language][kusto_query_language].
+- [Metrics](https://learn.microsoft.com/azure/azure-monitor/essentials/data-platform-metrics) - Collects numeric data from monitored resources into a time series database. Metrics are numerical values that are collected at regular intervals and describe some aspect of a system at a particular time. Metrics are lightweight and capable of supporting near real-time scenarios, making them particularly useful for alerting and fast detection of issues.
 
 **Resources:**
 
@@ -31,8 +31,8 @@ The Azure Monitor Query client library is used to execute read-only queries agai
 
 - A [Java Development Kit (JDK)][jdk_link], version 8 or later
 - An [Azure subscription][azure_subscription]
-- A [TokenCredential](/java/api/com.azure.core.credential.tokencredential?view=azure-java-stable) implementation, such as an [Azure Identity library credential type](/java/api/overview/azure/identity-readme?view=azure-java-stable#credential-classes).
-- To query Logs, you need an [Azure Log Analytics workspace][azure_monitor_create_using_portal].
+- A [TokenCredential](https://learn.microsoft.com/java/api/com.azure.core.credential.tokencredential?view=azure-java-stable) implementation, such as an [Azure Identity library credential type](https://learn.microsoft.com/java/api/overview/azure/identity-readme?view=azure-java-stable#credential-classes).
+- To query Logs, you need an [Azure Log Analytics workspace][azure_monitor_create_using_portal] or an Azure resource of any kind (Storage Account, Key Vault, Cosmos DB, etc.).
 - To query Metrics, you need an Azure resource of any kind (Storage Account, Key Vault, Cosmos DB, etc.).
 
 ### Include the package
@@ -40,7 +40,7 @@ The Azure Monitor Query client library is used to execute read-only queries agai
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.1.3/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.2.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -77,7 +77,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-monitor-query</artifactId>
-    <version>1.1.3</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -85,7 +85,7 @@ add the direct dependency to your project as follows.
 
 ### Create the client
 
-An authenticated client is required to query Logs or Metrics. The library includes both synchronous and asynchronous forms of the clients. To authenticate, the following examples use `DefaultAzureCredentialBuilder` from the [com.azure:azure-identity](https://search.maven.org/artifact/com.azure/azure-identity) package.
+An authenticated client is required to query Logs or Metrics. The library includes both synchronous and asynchronous forms of the clients. To authenticate, the following examples use `DefaultAzureCredentialBuilder` from the [azure-identity](https://central.sonatype.com/artifact/com.azure/azure-identity/1.8.1) package.
 
 ### Authenticating using Azure Active Directory
 
@@ -98,7 +98,7 @@ To use the [DefaultAzureCredential][DefaultAzureCredential] provider shown below
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.8.0</version>
+    <version>1.9.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -141,7 +141,7 @@ For examples of Logs and Metrics queries, see the [Examples](#examples) section.
 
 ### Logs query rate limits and throttling
 
-The Log Analytics service applies throttling when the request rate is too high. Limits, such as the maximum number of rows returned, are also applied on the Kusto queries. For more information, see [Query API](/azure/azure-monitor/service-limits#la-query-api).
+The Log Analytics service applies throttling when the request rate is too high. Limits, such as the maximum number of rows returned, are also applied on the Kusto queries. For more information, see [Query API](https://learn.microsoft.com/azure/azure-monitor/service-limits#la-query-api).
 
 ### Metrics data structure
 
@@ -159,6 +159,7 @@ Each set of metric values is a time series with the following characteristics:
 - [Logs query](#logs-query)
   - [Map logs query results to a model](#map-logs-query-results-to-a-model)
   - [Handle logs query response](#handle-logs-query-response)
+  - [Query logs by resource id](#query-logs-by-resource-id)
 - [Batch logs query](#batch-logs-query)
 - [Advanced logs query scenarios](#advanced-logs-query-scenarios)
   - [Set logs query timeout](#set-logs-query-timeout)
@@ -233,6 +234,23 @@ LogsQueryResult / LogsBatchQueryResult
     |---columns (list of `LogsTableColumn` objects)
         |---name
         |---type
+```
+
+#### Query logs by resource ID
+The `LogsQueryClient` supports querying logs using a workspace id (`queryWorkspace` methods) or a resource ID (`queryResource` methods).
+An example of querying logs using a resource ID is shown below. Similar changes can be applied to all other samples.
+
+```java readme-sample-logsquerybyresourceid
+LogsQueryClient logsQueryClient = new LogsQueryClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .buildClient();
+
+LogsQueryResult queryResults = logsQueryClient.queryResource("{resource-id}", "{kusto-query}",
+    new QueryTimeInterval(Duration.ofDays(2)));
+
+for (LogsTableRow row : queryResults.getTable().getRows()) {
+    System.out.println(row.getColumnValue("OperationName") + " " + row.getColumnValue("ResourceGroup"));
+}
 ```
 
 ### Batch logs query
@@ -345,7 +363,7 @@ raw JSON response. The statistics are found within the `query` property of the J
 ```
 
 #### Include visualization
-To get visualization data for logs queries using the [render operator](/azure/data-explorer/kusto/query/renderoperator?pivots=azuremonitor):
+To get visualization data for logs queries using the [render operator](https://learn.microsoft.com/azure/data-explorer/kusto/query/renderoperator?pivots=azuremonitor):
 
 1. Use `LogsQueryOptions` to request for visualization data in the response by setting `setIncludeVisualization()` to `true`.
 2. Invoke the `getVisualization` method on the `LogsQueryResult` object.
@@ -481,7 +499,7 @@ for (MetricResult metric : metricsQueryResult.getMetrics()) {
 
 ## Troubleshooting
 
-See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.1.3/sdk/monitor/azure-monitor-query/TROUBLESHOOTING.md)
+See our [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.2.0/sdk/monitor/azure-monitor-query/TROUBLESHOOTING.md)
 for details on how to diagnose various failure scenarios.
 
 ## Next steps
@@ -502,18 +520,20 @@ comments.
 
 <!-- LINKS -->
 
-[azure_monitor_create_using_portal]: /azure/azure-monitor/logs/quick-create-workspace
-[azure_monitor_overview]: /azure/azure-monitor/overview
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.2.0/sdk/identity/azure-identity/README.md
+[azure_monitor_create_using_portal]: https://learn.microsoft.com/azure/azure-monitor/logs/quick-create-workspace
+[azure_monitor_overview]: https://learn.microsoft.com/azure/azure-monitor/overview
 [azure_subscription]: https://azure.microsoft.com/free/java
-[changelog]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.1.3/sdk/monitor/azure-monitor-query/CHANGELOG.md
-[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.1.3/sdk/identity/azure-identity/README.md#defaultazurecredential
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
-[kusto_query_language]: /azure/data-explorer/kusto/query/
-[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.1.3/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
-[msdocs_apiref]: /java/api/com.azure.monitor.query?view=azure-java-stable
+[changelog]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.2.0/sdk/monitor/azure-monitor-query/CHANGELOG.md
+[custom_subdomain]: https://learn.microsoft.com/azure/cognitive-services/authentication?tabs=powershell#create-a-resource-with-a-custom-subdomain
+[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.2.0/sdk/identity/azure-identity/README.md#defaultazurecredential
+[jdk_link]: https://learn.microsoft.com/java/azure/jdk/?view=azure-java-stable
+[kusto_query_language]: https://learn.microsoft.com/azure/data-explorer/kusto/query/
+[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.2.0/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[msdocs_apiref]: https://learn.microsoft.com/java/api/com.azure.monitor.query?view=azure-java-stable
 [package]: https://search.maven.org/artifact/com.azure/azure-monitor-query
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.1.3/sdk/monitor/azure-monitor-query/src/samples/java/README.md
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.1.3/sdk/monitor/azure-monitor-query/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-query_1.2.0/sdk/monitor/azure-monitor-query/src/samples/java/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-monitor-query_1.2.0/sdk/monitor/azure-monitor-query/src
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 [cla]: https://cla.microsoft.com
