@@ -6,10 +6,10 @@ ms.author: jfree
 ms.data: 05/12/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: eventhubs
-keywords: Azure, Java, SDK, API, event hub, IoT, stream processing
+ms.service: event-hubs
 ms.date: 06/21/2017
 manager: douge
+keywords: Azure, Java, SDK, API, event hub, IoT, stream processing
 ---
 # Azure Event Hub libraries for Java
 

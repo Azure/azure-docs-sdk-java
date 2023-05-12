@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 05/12/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: schema-registry
+ms.service: schemaregistry
 ---
 # Azure Schema Registry SDK for Java - preview
 ## Packages - preview
