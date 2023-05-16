@@ -331,7 +331,7 @@ Update client library versions according to the table above. Please read [Azure 
 
 #### Issue description
 
-Incorrect data could be written to a file with the `downloadToFile()` method if the underlying Storage REST requests experienced a network error during a response. This bug was originally introduced in the summer of 2022 as part of a performance optimization and was [patched in May 2023](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/storage/azure-storage-blob/CHANGELOG.md#bugs-fixed-1) by returning to the previous behavior.
+The Azure SDK for Java Storage library had a bug where incorrect data could be written to a file with the `downloadToFile()` method when some of the underlying Storage REST requests experienced network failure midway through. This bug was originally introduced in the summer of 2022 and was patched in May 2023 by returning to the previous behavior. The impacted versions are 12.19.0 through 12.22.0. The patch is in 12.22.1.
 
 #### Issue details
 | Client library | Versions impacted | Minimum safe version | Recommended action |
@@ -341,3 +341,5 @@ Azure Storage Blob | 12.19.0 to 12.22.0 | 12.22.1 | [Update to latest version or
 #### Recommended steps
 
 Update client library versions according to the table above.
+
+[Back to list of known issues](#list-of-known-issues)
