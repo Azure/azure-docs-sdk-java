@@ -116,7 +116,7 @@ Older versions of the Azure Storage SDK for Java (v12) have one or more known cr
 
 | Client library | Versions impacted | Minimum safe version | Recommended action
 | --- | --- | --- | --- |
-| Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure Storage Blob | 12.0 to 12.10.0, 12.19.0 to 12.22.0 | 12.22.1 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 | Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
 | Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
 | Azure Storage Queue | 12.0 to 12.6.0 | 12.7.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-queue) |
@@ -140,6 +140,7 @@ If you have questions or need additional help, please [create a support ticket](
 1. [Overwrite operation reversed for overwrite parameter, resulting in incorrect overwrite](#6-overwrite-operation-reversed-for-overwrite-parameter-resulting-in-incorrect-overwrite)
 1. [Message content incorrectly erased when only visibility timeout set](#7-message-content-incorrectly-erased-when-only-visibility-timeout-set)
 1. [Client-side encryption updated to use AES-GCM due to security vulnerabilities in CBC mode](#8-client-side-encryption-updated-to-use-aes-gcm-due-to-security-vulnerabilities-in-cbc-mode)
+1. [Incorrect data being downloaded with downloadToFile() when underlying REST requests are retried](#9-incorrect-data-being-downloaded-with-downloadtofile-when-underlying-rest-requests-are-retried)
 
 ### 1. Buffer overwrite issue with `BlobOutputStream`
 
@@ -155,7 +156,7 @@ After the input data size crosses the `MaxSingleUploadSize`, the `write()` metho
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -164,7 +165,7 @@ Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version or mi
 
 Additionally, you can identify any potentially affected blobs due to this issue in your Azure Storage account. Follow steps below to identify potentially affected blobs:
 
-1. Check whether your application is using `BlobOutputStream` to upload blobs (obtained via `BlockBlobClient.getBlobOutputStream()`). If not, then this issue doesn't affect your application. However, we still recommend that you upgrade your application to use version 12.10.1 or later.
+1. Check whether your application is using `BlobOutputStream` to upload blobs (obtained via `BlockBlobClient.getBlobOutputStream()`). If not, then this issue doesn't affect your application. However, we still recommend that you upgrade your application to use version 12.22.1 or later.
 1. Get the `MaxSingleUploadSize` value for your application (256 MiB by default). Scan your code for `setMaxSingleUploadSizeLong()` method of the `ParallelTransferOptions` class and get value you provided for this property.
 1. Identify the time window when your application used client library version with this issue (12.0 to 12.10.0)
 1. Identify all the blobs uploaded in this time window. You can get a list of blobs by calling the `List Blobs` operation with PowerShell [PowerShell](/azure/storage/blobs/blob-powershell#list-blobs), [Azure CLI](/azure/storage/blobs/blob-cli#list-blobs), or another tool. You can also leverage the [blob inventory feature](/azure/storage/blobs/blob-inventory).
@@ -183,7 +184,7 @@ The client libraries listed below have a bug that can upload incorrect data duri
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.6.1 | 12.7.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 to 12.6.1 | 12.7.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 Azure File Data Lake | 12.0 to 12.1.2 | 12.2.0 | [Update to latest version or minimum 12.8.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
 Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version or minimum 12.5.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
 
@@ -230,7 +231,7 @@ All overloads of `void BlobClient.upload()` and `void BlobClient.uploadWithRespo
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.4.0 | 12.5.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 to 12.4.0 | 12.5.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -248,7 +249,7 @@ Asynchronous buffer writing has a race condition where the buffer between the ne
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.2.0 | 12.3.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 to 12.2.0 | 12.3.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -265,7 +266,7 @@ The overwrite flag isn't being honored in cases where there's another parallel u
 #### Issue details
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 | 12.1.0 | [Update to latest version or minimum 12.10.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+Azure Storage Blob | 12.0 | 12.1.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -325,3 +326,18 @@ Azure Blob Storage Cryptography | 12.0 to 12.16.1 | 12.17.0 | [Update to latest 
 Update client library versions according to the table above. Please read [Azure Storage updating client-side encryption in SDK to address security vulnerability](https://techcommunity.microsoft.com/t5/azure-storage-blog/ga-azure-storage-updating-client-side-encryption-in-sdk-to/ba-p/3563013) for recommended action.
 
 [Back to list of known issues](#list-of-known-issues)
+
+### 9. Incorrect data being downloaded with downloadToFile() when underlying REST requests are retried
+
+#### Issue description
+
+Incorrect data could be written to a file with the `downloadToFile()` method if the underlying Storage REST requests experienced network failure during a response. This bug was originally introduced in the summer of 2022 as part of a performance optimization and was patched in May 2023 by returning to the previous behavior.
+
+#### Issue details
+| Client library | Versions impacted | Minimum safe version | Recommended action |
+| --- | --- | --- | --- |
+Azure Storage Blob | 12.19.0 to 12.22.0 | 12.22.1 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+
+#### Recommended steps
+
+Update client library versions according to the table above.
