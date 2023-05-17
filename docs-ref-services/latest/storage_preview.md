@@ -1,14 +1,11 @@
 ---
-title: Azure Storage libraries for Java
-description: 
+title: Azure Storage libraries for Java (preview)
+description: Reference for Azure Storage SDK for Java (preview)
 keywords: Azure, Java, SDK, API, Storage
-author: douge
-ms.author: douge
-manager: douge
+author: pauljewellmsft
+ms.author: pauljewell
 ms.date: 10/19/2018
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
 ---
@@ -17,7 +14,7 @@ ms.service: storage
 
 ## Overview
 
-Read and write blob (object) data, files, and messages from your Java applications with [Azure Storage](/azure/storage/storage-introduction).
+Read and write blob (object) data, files, and messages from your Java applications with [Azure Storage](/azure/storage/common/storage-introduction).
 
 To get started with Azure Storage, see [How to use Blob storage from Java](/azure/storage/blobs/storage-quickstart-blobs-java-v10).
 
