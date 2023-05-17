@@ -9,7 +9,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage libraries for Java (legacy)
+# Azure Storage libraries for Java
 
 The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself. For more information about Azure Storage, see [Introduction to Azure Storage](/azure/storage/storage-introduction).
 
