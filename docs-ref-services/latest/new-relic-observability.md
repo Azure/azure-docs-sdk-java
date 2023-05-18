@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: newrelicobservability
 ---
-# Azure New Relic Observability SDK for Java - preview
-## Packages - preview
+# Azure New Relic Observability SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](new-relic-observability-index.md)]
