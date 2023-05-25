@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: qumulo
 ---
-# Azure Qumulo SDK for Java - preview
-## Packages - preview
+# Azure Qumulo SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](qumulo-index.md)]
