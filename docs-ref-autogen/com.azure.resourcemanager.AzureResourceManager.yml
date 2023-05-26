@@ -117,7 +117,7 @@ methods:
     name: "profile"
     type: "<xref href=\"com.azure.core.management.profile.AzureProfile?alt=com.azure.core.management.profile.AzureProfile&text=AzureProfile\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public static AzureResourceManager.Authenticated authenticate(TokenCredential credential, AzureProfile profile)"
-  desc: "Authenticate to Azure using an Azure credential object."
+  desc: "Authenticate to Azure using an Azure credential object.\n\n**Code Samples**\n\n```java\nAzureProfile profile = new AzureProfile(tenantId, subscriptionId, AzureEnvironment.AZURE);\n TokenCredential credential = new DefaultAzureCredentialBuilder()\n     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())\n     .build();\n AzureResourceManager azure = AzureResourceManager\n     .authenticate(credential, profile)\n     .withDefaultSubscription();\n```"
   returns:
     description: "the authenticated Azure client"
     type: "<xref href=\"com.azure.resourcemanager.AzureResourceManager.Authenticated?alt=com.azure.resourcemanager.AzureResourceManager.Authenticated&text=Authenticated\" data-throw-if-not-resolved=\"False\" />"
@@ -184,9 +184,11 @@ methods:
   fullName: "com.azure.resourcemanager.AzureResourceManager.configure()"
   name: "configure()"
   nameWithType: "AzureResourceManager.configure()"
+  summary: "Configures the Azure client."
   modifiers:
   - "static"
   syntax: "public static AzureResourceManager.Configurable configure()"
+  desc: "Configures the Azure client.\n\n**Code Samples**\n\n```java\nAzureResourceManager azure = AzureResourceManager\n     .configure()\n     .withLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS)\n     .withPolicy(customPolicy)\n     .withRetryPolicy(customRetryPolicy)\n     .withHttpClient(httpClient)\n     //...\n```"
   returns:
     description: "an interface allow configurations on the client."
     type: "<xref href=\"com.azure.resourcemanager.AzureResourceManager.Configurable?alt=com.azure.resourcemanager.AzureResourceManager.Configurable&text=Configurable\" data-throw-if-not-resolved=\"False\" />"
@@ -330,7 +332,9 @@ methods:
   fullName: "com.azure.resourcemanager.AzureResourceManager.functionApps()"
   name: "functionApps()"
   nameWithType: "AzureResourceManager.functionApps()"
+  summary: "Entry point to managing function apps."
   syntax: "public FunctionApps functionApps()"
+  desc: "Entry point to managing function apps.\n\n**Code Samples**\n\nCreate an Azure Function App\n\n```java\nCreatable<StorageAccount> creatableStorageAccount = azure.storageAccounts()\n     .define(\"<storage-account-name>\")\n     .withRegion(Region.US_EAST)\n     .withExistingResourceGroup(resourceGroupName)\n     .withGeneralPurposeAccountKindV2()\n     .withSku(StorageAccountSkuType.STANDARD_LRS);\n Creatable<AppServicePlan> creatableAppServicePlan = azure.appServicePlans()\n     .define(\"<app-service-plan-name>\")\n     .withRegion(Region.US_EAST)\n     .withExistingResourceGroup(resourceGroupName)\n     .withPricingTier(PricingTier.STANDARD_S1)\n     .withOperatingSystem(OperatingSystem.LINUX);\n FunctionApp linuxFunctionApp = azure.functionApps().define(\"<function-app-name>\")\n     .withRegion(Region.US_EAST)\n     .withExistingResourceGroup(resourceGroupName)\n     .withNewLinuxAppServicePlan(creatableAppServicePlan)\n     .withBuiltInImage(FunctionRuntimeStack.JAVA_8)\n     .withNewStorageAccount(creatableStorageAccount)\n     .withHttpsOnly(true)\n     .withAppSetting(\"WEBSITE_RUN_FROM_PACKAGE\", \"<function-app-package-url>\")\n     .create();\n```"
   returns:
     description: "entry point to managing function apps."
     type: "<xref href=\"com.azure.resourcemanager.appservice.models.FunctionApps?alt=com.azure.resourcemanager.appservice.models.FunctionApps&text=FunctionApps\" data-throw-if-not-resolved=\"False\" />"
@@ -610,7 +614,9 @@ methods:
   fullName: "com.azure.resourcemanager.AzureResourceManager.storageAccounts()"
   name: "storageAccounts()"
   nameWithType: "AzureResourceManager.storageAccounts()"
+  summary: "Entry point to managing storage accounts"
   syntax: "public StorageAccounts storageAccounts()"
+  desc: "Entry point to managing storage accounts\n\n**Code Samples**\n\nCreate an Azure Storage Account\n\n```java\nazure.storageAccounts().define(\"<storage-account-name>\")\n     .withRegion(Region.US_EAST)\n     .withNewResourceGroup(resourceGroupName)\n     .withSku(StorageAccountSkuType.STANDARD_LRS)\n     .withGeneralPurposeAccountKindV2()\n     .withOnlyHttpsTraffic()\n     //...\n     .create();\n```"
   returns:
     description: "entry point to managing storage accounts"
     type: "<xref href=\"com.azure.resourcemanager.storage.models.StorageAccounts?alt=com.azure.resourcemanager.storage.models.StorageAccounts&text=StorageAccounts\" data-throw-if-not-resolved=\"False\" />"
@@ -618,7 +624,9 @@ methods:
   fullName: "com.azure.resourcemanager.AzureResourceManager.storageBlobContainers()"
   name: "storageBlobContainers()"
   nameWithType: "AzureResourceManager.storageBlobContainers()"
+  summary: "Entry point to blob container management API."
   syntax: "public BlobContainers storageBlobContainers()"
+  desc: "Entry point to blob container management API.\n\n**Code Samples**\n\nCreate a Blob Container\n\n```java\nazure.storageBlobContainers()\n     .defineContainer(\"container\")\n     .withExistingStorageAccount(storageAccount)\n     .withPublicAccess(PublicAccess.NONE)\n     //...\n     .create();\n```"
   returns:
     description: "the blob container management API entry point"
     type: "<xref href=\"com.azure.resourcemanager.storage.models.BlobContainers?alt=com.azure.resourcemanager.storage.models.BlobContainers&text=BlobContainers\" data-throw-if-not-resolved=\"False\" />"
@@ -738,7 +746,9 @@ methods:
   fullName: "com.azure.resourcemanager.AzureResourceManager.virtualMachines()"
   name: "virtualMachines()"
   nameWithType: "AzureResourceManager.virtualMachines()"
+  summary: "Entry point to managing virtual machines."
   syntax: "public VirtualMachines virtualMachines()"
+  desc: "Entry point to managing virtual machines.\n\n**Code Samples**\n\nCreate a Virtual Machine instance.\n\n```java\nVirtualMachine linuxVM = azure.virtualMachines()\n     .define(linuxVMName)\n     .withRegion(region)\n     .withNewResourceGroup(resourceGroupName)\n     .withNewPrimaryNetwork(\"10.0.0.0/28\")\n     .withPrimaryPrivateIPAddressDynamic()\n     .withoutPrimaryPublicIPAddress()\n     .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_20_04_LTS_GEN2)\n     .withRootUsername(userName)\n     .withSsh(sshPublicKey)\n     .withNewDataDisk(10)\n     .withExistingDataDisk(dataDisk)\n     .withSize(VirtualMachineSizeTypes.STANDARD_DS1_V2)\n     .create();\n```\n\nRestart Virtual Machine instance.\n\n```java\nazure.virtualMachines().listByResourceGroupAsync(resourceGroupName)\n     .flatMap(VirtualMachine::restartAsync)\n     //...\n```"
   returns:
     description: "entry point to managing virtual machines"
     type: "<xref href=\"com.azure.resourcemanager.compute.models.VirtualMachines?alt=com.azure.resourcemanager.compute.models.VirtualMachines&text=VirtualMachines\" data-throw-if-not-resolved=\"False\" />"
@@ -759,7 +769,7 @@ methods:
     description: "entry point to managing web apps."
     type: "<xref href=\"com.azure.resourcemanager.appservice.models.WebApps?alt=com.azure.resourcemanager.appservice.models.WebApps&text=WebApps\" data-throw-if-not-resolved=\"False\" />"
 type: "class"
-desc: "The entry point for accessing resource management APIs in Azure."
+desc: "The entry point for accessing resource management APIs in Azure.\n\n**Instantiating an Azure Client**\n\n```java\nAzureProfile profile = new AzureProfile(tenantId, subscriptionId, AzureEnvironment.AZURE);\n TokenCredential credential = new DefaultAzureCredentialBuilder()\n     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())\n     .build();\n AzureResourceManager azure = AzureResourceManager\n     .authenticate(credential, profile)\n     .withDefaultSubscription();\n```"
 metadata: {}
 package: "com.azure.resourcemanager"
-artifact: com.azure.resourcemanager:azure-resourcemanager:2.26.0
+artifact: com.azure.resourcemanager:azure-resourcemanager:2.27.0
