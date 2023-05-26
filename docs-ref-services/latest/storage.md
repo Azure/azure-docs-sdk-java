@@ -141,6 +141,7 @@ If you have questions or need additional help, please [create a support ticket](
 1. [Message content incorrectly erased when only visibility timeout set](#7-message-content-incorrectly-erased-when-only-visibility-timeout-set)
 1. [Client-side encryption updated to use AES-GCM due to security vulnerabilities in CBC mode](#8-client-side-encryption-updated-to-use-aes-gcm-due-to-security-vulnerabilities-in-cbc-mode)
 1. [Incorrect data being downloaded with downloadToFile() when underlying REST requests are retried](#9-incorrect-data-being-downloaded-with-downloadtofile-when-underlying-rest-requests-are-retried)
+1. [InvalidHeaderValue error message when using beta version of SDK](#10-invalidheadervalue-error-message-when-using-beta-version-of-sdk)
 
 ### 1. Buffer overwrite issue with `BlobOutputStream`
 
@@ -341,5 +342,26 @@ Azure Storage Blob | 12.19.0 to 12.22.0 | 12.22.1 | [Update to latest version or
 #### Recommended steps
 
 Update client library versions according to the table above.
+
+[Back to list of known issues](#list-of-known-issues)
+
+### 10. InvalidHeaderValue error message when using beta version of SDK
+
+In rare scenarios, applications that have upgraded to a beta version of the SDK can receive an `InvalidHeaderValue` error message. This issue can occur when using any of the Storage libraries. The error message looks similar to the following sample:
+
+```console
+HTTP/1.1 400 The value for one of the HTTP headers is not in the correct format.
+Content-Length: 328
+Content-Type: application/xml
+Server: Microsoft-HTTPAPI/2.0
+x-ms-request-id: <REMOVED>
+Date: Fri, 19 May 2023 17:10:33 GMT
+ 
+<?xml version="1.0" encoding="utf-8"?><Error><Code>InvalidHeaderValue</Code><Message>The value for one of the HTTP headers is not in the correct format.
+RequestId:<REMOVED>
+Time:2023-05-19T17:10:34.2972651Z</Message><HeaderName>x-ms-version</HeaderName><HeaderValue>yyyy-mm-dd</HeaderValue></Error> 
+```
+
+If you've upgraded to a beta version of the SDK and you experience this error, it's recommended that you downgrade to a supported, generally available version of the SDK to see if the issue resolves. If the issue persists, or if the recommendation is not feasible, [open a support ticket](https://ms.portal.azure.com/#create/Microsoft.Support) to explore further options.
 
 [Back to list of known issues](#list-of-known-issues)
