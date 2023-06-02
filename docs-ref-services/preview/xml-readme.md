@@ -3,12 +3,12 @@ title: Azure XML shared library for Java
 keywords: Azure, java, SDK, API, azure-xml, core
 author: alzimmermsft
 ms.author: alzimmer
-ms.date: 09/22/2022
+ms.date: 06/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure XML shared library for Java - version 1.0.0-beta.1 
+# Azure XML shared library for Java - version 1.0.0-beta.2 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -33,7 +33,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-xml</artifactId>
-  <version>1.0.0-beta.1</version>
+  <version>1.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -99,7 +99,16 @@ public class XmlSerializableExample implements XmlSerializable<XmlSerializableEx
 
     @Override
     public XmlWriter toXml(XmlWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement("example");
+        return toXml(xmlWriter, null);
+    }
+
+    public XmlWriter toXml(XmlWriter xmlWriter, String rootElementName) throws XMLStreamException {
+        // If the passed root element name is null or empty use the default root element name.
+        // This allows for scenarios where the model is defined with one XML root element name but other models use
+        // it with a separate XML element name.
+        rootElementName = (rootElementName == null || rootElementName.isEmpty()) ? "example" : rootElementName;
+
+        xmlWriter.writeStartElement(rootElementName);
 
         // Writing attributes must happen first so that they are written to the object start element.
         xmlWriter.writeBooleanAttribute("aBooleanAttribute", aBooleanAttribute);
@@ -112,13 +121,19 @@ public class XmlSerializableExample implements XmlSerializable<XmlSerializableEx
     }
 
     public XmlSerializableExample fromXml(XmlReader xmlReader) throws XMLStreamException {
+        return fromXml(xmlReader, null);
+    }
+
+    public XmlSerializableExample fromXml(XmlReader xmlReader, String rootElementName) throws XMLStreamException {
+        rootElementName = (rootElementName == null || rootElementName.isEmpty()) ? "example" : rootElementName;
+
         // readObject is a convenience method on XmlReader which prepares the XML for being read as an object.
         // If the current token isn't an XmlToken.START_ELEMENT the next token element will be iterated to, if it's
         // still not an XmlToken.START_ELEMENT after iterating to the next element an exception will be thrown. If
         // the next element is an XmlToken.START_ELEMENT it will validate that the XML element matches the name
         // expected, if the name doesn't match an exception will be thrown. If the element name matches the reader
         // function will be called.
-        return xmlReader.readObject("example", reader -> {
+        return xmlReader.readObject(rootElementName, reader -> {
             // Since this class has no constructor reading to fields can be done inline.
             // If the class had a constructor with arguments the recommendation is using local variables to track
             // all field values.
@@ -165,7 +180,7 @@ or checkout [StackOverflow for Azure Java SDK](https://stackoverflow.com/questio
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-xml_1.0.0-beta.1/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-xml_1.0.0-beta.2/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
