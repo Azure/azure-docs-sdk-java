@@ -3,12 +3,12 @@ title: Azure Identity client library for Java
 keywords: Azure, java, SDK, API, azure-identity, identity
 author: g2vinay
 ms.author: vigera
-ms.date: 05/08/2023
+ms.date: 06/06/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: identity
 ---
-# Azure Identity client library for Java - version 1.9.0 
+# Azure Identity client library for Java - version 1.9.1 
 
 
 The Azure Identity library provides [Azure Active Directory (Azure AD)](https://learn.microsoft.com/azure/active-directory/fundamentals/active-directory-whatis) token authentication support across the Azure SDK. It provides a set of [TokenCredential](https://learn.microsoft.com/java/api/com.azure.core.credential.tokencredential?view=azure-java-stable) implementations that can be used to construct Azure SDK clients that support Azure AD token authentication.
@@ -21,7 +21,7 @@ The Azure Identity library provides [Azure Active Directory (Azure AD)](https://
 
 #### Include the BOM file
 
-Include the `azure-sdk-bom` in your project to take a dependency on the stable version of the library. In the following snippet, replace the `{bom_version_to_target}` placeholder with the version number. To learn more about the BOM, see the [Azure SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.9.0/sdk/boms/azure-sdk-bom/README.md).
+Include the `azure-sdk-bom` in your project to take a dependency on the stable version of the library. In the following snippet, replace the `{bom_version_to_target}` placeholder with the version number. To learn more about the BOM, see the [Azure SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.9.1/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -202,7 +202,7 @@ The [Managed identity authentication](https://learn.microsoft.com/azure/active-d
 - [Azure Virtual Machines](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-token)
 - [Azure Virtual Machines Scale Sets](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/qs-configure-powershell-windows-vmss)
 
-**Note:** Use `azure-identity` version `1.7.0` or later to utilize [token caching](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.9.0/sdk/identity/azure-identity/TOKEN_CACHING.md) support for managed identity authentication.
+**Note:** Use `azure-identity` version `1.7.0` or later to utilize [token caching](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.9.1/sdk/identity/azure-identity/TOKEN_CACHING.md) support for managed identity authentication.
 
 ### Examples
 
@@ -313,6 +313,11 @@ Not all credentials require this configuration. Credentials that authenticate th
       <td>authenticates the managed identity of an Azure resource</td>
       <td><a href="https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Examples#authenticating-in-azure-with-managed-identity">example</a></td>
     </tr>
+    <tr>
+      <td><code><a href="https://learn.microsoft.com/java/api/com.azure.identity.workloadidentitycredential?view=azure-java-stable">WorkloadIdentityCredential</a></code></td>
+      <td>supports <a href="https://learn.microsoft.com/azure/aks/workload-identity-overview">Azure AD workload identity</a> on Kubernetes</td>
+      <td><a href="https://learn.microsoft.com/java/api/com.azure.identity.workloadidentitycredential?view=azure-java-stable">example</a></td>
+    </tr>
   </tbody>
 </table>
 
@@ -410,17 +415,16 @@ Not all credentials require this configuration. Credentials that authenticate th
   </thead>
   <tbody>
     <tr>
-      <td><code>AzureDeveloperCliCredential</code></td>
-      <td>Authenticate in a development environment with the enabled user or service principal in Azure Developer CLI</td>
-      <!-- Example and Reference for azd is WIP -->
-      <td></td>  
-      <td><a href="https://learn.microsoft.com/azure/developer/azure-developer-cli/reference">Azure Developer CLI Reference</a></td>
-    </tr>
-    <tr>
       <td><code><a href="https://learn.microsoft.com/java/api/com.azure.identity.azureclicredential?view=azure-java-stable">AzureCliCredential</a></code></td>
       <td>Authenticate in a development environment with the enabled user or service principal in Azure CLI</td>
       <td><a href="https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Examples#authenticating-a-user-account-with-azure-cli">example</a></td>
       <td><a href="https://learn.microsoft.com/cli/azure/authenticate-azure-cli">Azure CLI authentication</a></td>
+    </tr>
+    <tr>
+      <td><code><a href="https://learn.microsoft.com/java/api/com.azure.identity.azuredeveloperclicredential?view=azure-java-stable">AzureDeveloperCliCredential</a></code></td>
+      <td>Authenticate in a development environment with the enabled user or service principal in Azure Developer CLI</td>
+      <td></td>  
+      <td><a href="https://learn.microsoft.com/azure/developer/azure-developer-cli/reference">Azure Developer CLI Reference</a></td>
     </tr>
     <tr>
       <td><code><a href="https://learn.microsoft.com/java/api/com.azure.identity.azurepowershellcredential?view=azure-java-stable">AzurePowerShellCredential </a></code></td>
@@ -442,8 +446,6 @@ Not all credentials require this configuration. Credentials that authenticate th
     </tr>
   </tbody>
 </table>
-
-> __Note:__ `AzureDeveloperCliCredential` is in beta and its name may change before the stable release.
 
 > __Note:__ All credential implementations in the Azure Identity library are threadsafe, and a single credential instance can be used to create multiple service clients.
 
@@ -547,7 +549,7 @@ Token caching is a feature provided by the Azure Identity library that allows ap
 - Improve resilience and performance.
 - Reduce the number of requests made to Azure AD to obtain access tokens.
 
-The Azure Identity library offers both in-memory and persistent disk caching. For more details, see the [token caching documentation](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.9.0/sdk/identity/azure-identity/TOKEN_CACHING.md).
+The Azure Identity library offers both in-memory and persistent disk caching. For more details, see the [token caching documentation](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.9.1/sdk/identity/azure-identity/TOKEN_CACHING.md).
 
 ## Troubleshooting
 
@@ -555,7 +557,7 @@ Credentials raise exceptions when they fail to authenticate or can't execute aut
 
 When credentials can't execute authentication due to one of the underlying resources required by the credential being unavailable on the machine, the`CredentialUnavailableException` is raised. The exception has a `message` attribute that describes why the credential is unavailable for authentication execution. When this exception is raised by `ChainedTokenCredential`, the message collects error messages from each credential in the chain.
 
-See the [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.9.0/sdk/identity/azure-identity/TROUBLESHOOTING.md) for details on how to diagnose various failure scenarios.
+See the [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity_1.9.1/sdk/identity/azure-identity/TROUBLESHOOTING.md) for details on how to diagnose various failure scenarios.
 
 ## Next steps
 
@@ -572,15 +574,15 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][code_of_conduct]. For more information see the Code of Conduct FAQ or contact opencode@microsoft.com with any additional questions or comments.
 
 <!-- LINKS -->
-[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.9.0/sdk/core
+[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.9.1/sdk/core
 [azure_sub]: https://azure.microsoft.com/free/
 [azuread_doc]: https://learn.microsoft.com/azure/active-directory/
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
-[javadoc]: https://azure.github.io/azure-sdk-for-java
+[javadoc]: https://learn.microsoft.com/java/api/com.azure.identity?view=azure-java-stable
 [jdk_link]: https://learn.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-[secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.9.0/sdk/keyvault/azure-security-keyvault-secrets
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.9.0/sdk/identity/azure-identity
+[secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.9.1/sdk/keyvault/azure-security-keyvault-secrets
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.9.1/sdk/identity/azure-identity
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fidentity%2Fazure-identity%2FREADME.png)
 
