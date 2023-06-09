@@ -193,8 +193,6 @@ Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version or minimu
 #### Recommended steps
 
 1. Update client library versions according to the table above.
-1. Use AzBlobChecker to help identify if any of your stored objects have been impacted. The tool identifies objects by searching for a known signature. Once complete, you'll receive a list of potentially impacted objects in your storage account. Not all identified objects will necessarily contain incorrect data. Further manual verification is recommended. AzBlobChecker is designed to work with the largest possible number of storage accounts. This tool can be run by you directly within your existing Azure environment in a self-service deployment.
-1. If you need to request additional documentation and deployment instructions for a self-service scan with AzBlobChecker, open a [support request](https://ms.portal.azure.com/#create/Microsoft.Support). Please use **#JavaSDKv12** and **#AzBlobChecker** in the title of your support request.
 
 Note: Azure doesn't have the ability to recover incorrectly written objects. As any potential impact occurs before upload, Azure doesn't have a valid copy of any affected object. If you have the original file, it can be reuploaded to your storage account.
 
