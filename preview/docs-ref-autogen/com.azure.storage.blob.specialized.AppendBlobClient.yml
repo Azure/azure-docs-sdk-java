@@ -109,27 +109,31 @@ fields:
   name: "MAX_APPEND_BLOCK_BYTES"
   nameWithType: "AppendBlobClient.MAX_APPEND_BLOCK_BYTES"
   summary: "Indicates the maximum number of bytes that can be sent in a call to append<wbr>Block."
+  deprecatedTag: "use <xref uid=\"com.azure.storage.blob.specialized.AppendBlobClient.getMaxAppendBlockBytes()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"AppendBlobClient#getMaxAppendBlockBytes()\"></xref>."
   modifiers:
   - "static"
   - "final"
   field:
     value: "4194304"
     type: "<xref href=\"int?alt=int&text=int\" data-throw-if-not-resolved=\"False\" />"
-  syntax: "public static final int MAX_APPEND_BLOCK_BYTES"
+  syntax: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html\">@Deprecated</a></br>public static final int MAX_APPEND_BLOCK_BYTES"
   desc: "Indicates the maximum number of bytes that can be sent in a call to appendBlock."
+  hasDeprecatedTag: true
 - uid: "com.azure.storage.blob.specialized.AppendBlobClient.MAX_BLOCKS"
   fullName: "com.azure.storage.blob.specialized.AppendBlobClient.MAX_BLOCKS"
   name: "MAX_BLOCKS"
   nameWithType: "AppendBlobClient.MAX_BLOCKS"
   summary: "Indicates the maximum number of blocks allowed in an append blob."
+  deprecatedTag: "use <xref uid=\"com.azure.storage.blob.specialized.AppendBlobClient.getMaxBlocks()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"AppendBlobClient#getMaxBlocks()\"></xref>."
   modifiers:
   - "static"
   - "final"
   field:
     value: "50000"
     type: "<xref href=\"int?alt=int&text=int\" data-throw-if-not-resolved=\"False\" />"
-  syntax: "public static final int MAX_BLOCKS"
+  syntax: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html\">@Deprecated</a></br>public static final int MAX_BLOCKS"
   desc: "Indicates the maximum number of blocks allowed in an append blob."
+  hasDeprecatedTag: true
 methods:
 - uid: "com.azure.storage.blob.specialized.AppendBlobClient.appendBlock(java.io.InputStream,long)"
   fullName: "com.azure.storage.blob.specialized.AppendBlobClient.appendBlock(InputStream data, long length)"
@@ -144,7 +148,7 @@ methods:
     name: "length"
     type: "<xref href=\"long?alt=long&text=long\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public AppendBlobItem appendBlock(InputStream data, long length)"
-  desc: "Commits a new block of data to the end of the existing append blob.\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"AppendBlob has %d committed blocks%n\",\n     client.appendBlock(data, length).getBlobCommittedBlockCount());\n```"
+  desc: "Commits a new block of data to the end of the existing append blob.\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to. For service versions 2022-11-02 and later, the max block size is 100 MB. For previous versions, the max block size is 4 MB. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"AppendBlob has %d committed blocks%n\",\n     client.appendBlock(data, length).getBlobCommittedBlockCount());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/append-block"
   returns:
     description: "The information of the append blob operation."
     type: "<xref href=\"com.azure.storage.blob.models.AppendBlobItem?alt=com.azure.storage.blob.models.AppendBlobItem&text=AppendBlobItem\" data-throw-if-not-resolved=\"False\" />"
@@ -242,7 +246,7 @@ methods:
     name: "context"
     type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Response<AppendBlobItem> appendBlockWithResponse(InputStream data, long length, byte[] contentMd5, AppendBlobRequestConditions appendBlobRequestConditions, Duration timeout, Context context)"
-  desc: "Commits a new block of data to the end of the existing append blob.\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n```java\nbyte[] md5 = MessageDigest.getInstance(\"MD5\").digest(\"data\".getBytes(StandardCharsets.UTF_8));\n AppendBlobRequestConditions requestConditions = new AppendBlobRequestConditions()\n     .setAppendPosition(POSITION)\n     .setMaxSize(maxSize);\n Context context = new Context(\"key\", \"value\");\n\n System.out.printf(\"AppendBlob has %d committed blocks%n\",\n     client.appendBlockWithResponse(data, length, md5, requestConditions, timeout, context)\n         .getValue().getBlobCommittedBlockCount());\n```"
+  desc: "Commits a new block of data to the end of the existing append blob.\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to. For service versions 2022-11-02 and later, the max block size is 100 MB. For previous versions, the max block size is 4 MB. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nbyte[] md5 = MessageDigest.getInstance(\"MD5\").digest(\"data\".getBytes(StandardCharsets.UTF_8));\n AppendBlobRequestConditions requestConditions = new AppendBlobRequestConditions()\n     .setAppendPosition(POSITION)\n     .setMaxSize(maxSize);\n Context context = new Context(\"key\", \"value\");\n\n System.out.printf(\"AppendBlob has %d committed blocks%n\",\n     client.appendBlockWithResponse(data, length, md5, requestConditions, timeout, context)\n         .getValue().getBlobCommittedBlockCount());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/append-block"
   returns:
     description: "A <xref uid=\"com.azure.core.http.rest.Response\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Response\"></xref> whose <xref uid=\"com.azure.core.http.rest.Response.getValue*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"value\"></xref> contains the append blob operation."
     type: "<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.blob.models.AppendBlobItem?alt=com.azure.storage.blob.models.AppendBlobItem&text=AppendBlobItem\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -414,6 +418,26 @@ methods:
   returns:
     description: "a <xref uid=\"com.azure.storage.blob.specialized.AppendBlobClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"AppendBlobClient\"></xref> with the specified <code>encryptionScope</code>."
     type: "<xref href=\"com.azure.storage.blob.specialized.AppendBlobClient?alt=com.azure.storage.blob.specialized.AppendBlobClient&text=AppendBlobClient\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.storage.blob.specialized.AppendBlobClient.getMaxAppendBlockBytes()"
+  fullName: "com.azure.storage.blob.specialized.AppendBlobClient.getMaxAppendBlockBytes()"
+  name: "getMaxAppendBlockBytes()"
+  nameWithType: "AppendBlobClient.getMaxAppendBlockBytes()"
+  summary: "Get the max number of append block bytes based on service version being used."
+  syntax: "public int getMaxAppendBlockBytes()"
+  desc: "Get the max number of append block bytes based on service version being used. Service versions 2022-11-02 and above support uploading block bytes up to 100MB, all older service versions support up to 4MB."
+  returns:
+    description: "the max number of block bytes that can be uploaded based on service version."
+    type: "<xref href=\"int?alt=int&text=int\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.storage.blob.specialized.AppendBlobClient.getMaxBlocks()"
+  fullName: "com.azure.storage.blob.specialized.AppendBlobClient.getMaxBlocks()"
+  name: "getMaxBlocks()"
+  nameWithType: "AppendBlobClient.getMaxBlocks()"
+  summary: "Get the maximum number of blocks allowed in an append blob."
+  syntax: "public int getMaxBlocks()"
+  desc: "Get the maximum number of blocks allowed in an append blob."
+  returns:
+    description: "the max number of blocks that can be uploaded in an append blob."
+    type: "<xref href=\"int?alt=int&text=int\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.storage.blob.specialized.AppendBlobClient.seal()"
   fullName: "com.azure.storage.blob.specialized.AppendBlobClient.seal()"
   name: "seal()"
@@ -445,4 +469,4 @@ type: "class"
 desc: "Client to an append blob. It may only be instantiated through a <xref uid=\"com.azure.storage.blob.specialized.SpecializedBlobClientBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SpecializedBlobClientBuilder\"></xref> or via the method <xref uid=\"com.azure.storage.blob.BlobClient.getAppendBlobClient()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BlobClient#getAppendBlobClient()\"></xref>. This class does not hold any state about a particular blob, but is instead a convenient way of sending appropriate requests to the resource on the service.\n\nThis client contains operations on a blob. Operations on a container are available on <xref uid=\"com.azure.storage.blob.BlobContainerClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BlobContainerClient\"></xref>, and operations on the service are available on <xref uid=\"com.azure.storage.blob.BlobServiceClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BlobServiceClient\"></xref>.\n\nPlease refer to the [Azure Docs][] for more information.\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs"
 metadata: {}
 package: "com.azure.storage.blob.specialized"
-artifact: com.azure:azure-storage-blob:12.22.0-beta.1
+artifact: com.azure:azure-storage-blob:12.23.0-beta.1
