@@ -1,14 +1,14 @@
 ---
-title: Azure CosmosDB Client Library for Java
+title: Azure Cosmos DB Client Library for Java
 keywords: Azure, java, SDK, API, azure-cosmos, cosmos
 author: kushagraThapar
 ms.author: kuthapar
-ms.date: 05/19/2023
+ms.date: 06/10/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: cosmos
 ---
-# Azure CosmosDB Client Library for Java - version 4.45.1 
+# Azure Cosmos DB Client Library for Java - version 4.46.0 
 
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.
@@ -22,7 +22,7 @@ This project provides SDK library in Java for interacting with [SQL API][sql_api
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on GA version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.45.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.46.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -56,7 +56,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos</artifactId>
-  <version>4.45.1</version>
+  <version>4.46.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -79,7 +79,7 @@ The SDK provides Reactor Core based async APIs. You can read more about Reactor 
 
 ### Authenticate the client
 
-In order to interact with the Azure CosmosDB service you'll need to create an instance of the Cosmos Client class. To make this possible you will need an url and key of the Azure CosmosDB service.
+In order to interact with the Azure Cosmos DB service you'll need to create an instance of the Cosmos Client class. To make this possible you will need an url and key of the Azure Cosmos DB service.
 
 The SDK provides two clients.
 1. `CosmosAsyncClient` for operations using asynchronous APIs.
@@ -134,7 +134,7 @@ You may learn more about partitioning [here](/azure/cosmos-db/partitioning-overv
 
 ## Examples
 
-The following section provides several code snippets covering some of the most common CosmosDB SQL API tasks, including:
+The following section provides several code snippets covering some of the most common Cosmos DB SQL API tasks, including:
 * [Create Cosmos Client](#create-cosmos-client "Create Cosmos Client")
 * [Create Database](#create-database "Create Database")
 * [Create Container](#create-container "Create Container")
@@ -280,8 +280,8 @@ log4j.appender.A1.layout.ConversionPattern=%d %5X{pid} [%t] %-5p %c - %m%n
 ## Next Steps
 
 - Samples are explained in detail [here][samples_readme]
-- Go through [quickstart][quickstart] - Building a java app to manage CosmosDB SQL API data
-- [Read more about Azure CosmosDB Service][cosmos_docs]
+- Go through [quickstart][quickstart] - Building a java app to manage Cosmos DB SQL API data
+- [Read more about Azure Cosmos DB Service][cosmos_docs]
 
 ## Contributing
 
@@ -297,7 +297,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.45.1/sdk/cosmos/azure-cosmos/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.46.0/sdk/cosmos/azure-cosmos/src
 [cosmos_introduction]: /azure/cosmos-db/
 [api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [cosmos_docs]: /azure/cosmos-db/introduction
