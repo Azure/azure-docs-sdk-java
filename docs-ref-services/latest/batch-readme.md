@@ -1,9 +1,9 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, azure-batch, batch
-author: gingi
-ms.author: shpaster
-ms.date: 11/17/2022
+author: jingjlii
+ms.author: jingjli
+ms.date: 06/13/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: batch
@@ -90,7 +90,7 @@ If you encounter any bugs with these libraries, please file issues via [Issues](
 
 # Contribute Code
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-batch_10.1.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-batch_11.0.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
