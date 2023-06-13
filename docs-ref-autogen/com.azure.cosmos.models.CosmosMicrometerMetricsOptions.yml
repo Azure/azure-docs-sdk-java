@@ -11,6 +11,7 @@ inheritedClassMethods:
 - classRef: "<xref href=\"com.azure.core.util.MetricsOptions?alt=com.azure.core.util.MetricsOptions&text=MetricsOptions\" data-throw-if-not-resolved=\"False\" />"
   methodsRef:
   - "<xref href=\"com.azure.core.util.MetricsOptions.fromConfiguration(com.azure.core.util.Configuration)?alt=com.azure.core.util.MetricsOptions.fromConfiguration&text=fromConfiguration\" data-throw-if-not-resolved=\"False\" />"
+  - "<xref href=\"com.azure.core.util.MetricsOptions.getMeterProvider()?alt=com.azure.core.util.MetricsOptions.getMeterProvider&text=getMeterProvider\" data-throw-if-not-resolved=\"False\" />"
   - "<xref href=\"com.azure.core.util.MetricsOptions.isEnabled()?alt=com.azure.core.util.MetricsOptions.isEnabled&text=isEnabled\" data-throw-if-not-resolved=\"False\" />"
   - "<xref href=\"com.azure.core.util.MetricsOptions.setEnabled(boolean)?alt=com.azure.core.util.MetricsOptions.setEnabled&text=setEnabled\" data-throw-if-not-resolved=\"False\" />"
 - classRef: "java.lang.<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html\">Object</a>"
@@ -47,6 +48,20 @@ methods:
     type: "<xref href=\"com.azure.cosmos.models.CosmosMetricCategory?alt=com.azure.cosmos.models.CosmosMetricCategory&text=CosmosMetricCategory\" data-throw-if-not-resolved=\"False\" />[]"
   syntax: "public CosmosMicrometerMetricsOptions addMetricCategories(CosmosMetricCategory[] categories)"
   desc: "Adds categories of metrics that should be emitted. By default the following categories will be enabled: OperationSummary (required), RequestSummary, DirectChannels, DirectRequests, System (required) (the System and OperationSummary metrics are always collected and can't be disabled when enabling Cosmos metrics) An overview of the different metric categories can be found here: https://aka.ms/azure-cosmos-metrics NOTE: metric categories are mutable. You can safely modify the categories on the CosmosClientTelemetryConfig instance passed into the CosmosClientBuilder after the CosmosClient was created - and changes to the config instance will be reflected at runtime by the client."
+  returns:
+    description: "current CosmosMicrometerMetricsOptions instance"
+    type: "<xref href=\"com.azure.cosmos.models.CosmosMicrometerMetricsOptions?alt=com.azure.cosmos.models.CosmosMicrometerMetricsOptions&text=CosmosMicrometerMetricsOptions\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.cosmos.models.CosmosMicrometerMetricsOptions.applyDiagnosticThresholdsForTransportLevelMeters(boolean)"
+  fullName: "com.azure.cosmos.models.CosmosMicrometerMetricsOptions.applyDiagnosticThresholdsForTransportLevelMeters(boolean isEnabled)"
+  name: "applyDiagnosticThresholdsForTransportLevelMeters(boolean isEnabled)"
+  nameWithType: "CosmosMicrometerMetricsOptions.applyDiagnosticThresholdsForTransportLevelMeters(boolean isEnabled)"
+  summary: "Sets a flag indicating whether for transport level (rntbd) meters should only be emitted when diagnostic thresholds are violated."
+  parameters:
+  - description: "-  a flag indicating whether for transport level (rntbd) meters should only be emitted when\n diagnostic thresholds are violated. (when they are applicable to a specific meter and there is no\n override in <xref uid=\"com.azure.cosmos.models.CosmosMicrometerMeterOptions.applyDiagnosticThresholds(boolean)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosMicrometerMeterOptions#applyDiagnosticThresholds(boolean)\"></xref> for that meter."
+    name: "isEnabled"
+    type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public CosmosMicrometerMetricsOptions applyDiagnosticThresholdsForTransportLevelMeters(boolean isEnabled)"
+  desc: "Sets a flag indicating whether for transport level (rntbd) meters should only be emitted when diagnostic thresholds are violated. This can be enabled to reduce the cardinality of dimensions (and the number of time series being stored) especially when the partition/replica-level dimensions are enabled and the workload is dealing with containers having a high number of physical partitions. Request-level metrics usually are used to capture metrics per backend endpoint/replica - a high cardinality dimension. Filtering by diagnostic thresholds reduces the overhead - but also means request-level metrics can only be used for debugging purposes - not for monitoring purposes. So, it is important to use the unfiltered operation-level metrics for health monitoring in this case. By default, no filtering happens and diagnostic thresholds are not applied."
   returns:
     description: "current CosmosMicrometerMetricsOptions instance"
     type: "<xref href=\"com.azure.cosmos.models.CosmosMicrometerMetricsOptions?alt=com.azure.cosmos.models.CosmosMicrometerMetricsOptions&text=CosmosMicrometerMetricsOptions\" data-throw-if-not-resolved=\"False\" />"
@@ -166,4 +181,4 @@ type: "class"
 desc: "Micrometer-specific Azure Cosmos DB SDK metrics options"
 metadata: {}
 package: "com.azure.cosmos.models"
-artifact: com.azure:azure-cosmos:4.45.1
+artifact: com.azure:azure-cosmos:4.46.0

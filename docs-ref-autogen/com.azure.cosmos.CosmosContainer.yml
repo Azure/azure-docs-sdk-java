@@ -245,14 +245,14 @@ methods:
   - description: "the partition key."
     name: "partitionKey"
     type: "<xref href=\"com.azure.cosmos.models.PartitionKey?alt=com.azure.cosmos.models.PartitionKey&text=PartitionKey\" data-throw-if-not-resolved=\"False\" />"
-  - description: "the options."
+  - description: "the options (Optional)."
     name: "options"
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
   - description: "the class type of item."
     name: "itemType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public CosmosItemResponse<T> <T>readItem(String itemId, PartitionKey partitionKey, CosmosItemRequestOptions options, Class<T> itemType)"
-  desc: "Reads an item in the current container while specifying additional options."
+  desc: "Reads an item in the current container while specifying additional options.\nThis operation is used to retrieve a single item from a container based on its unique identifier (ID) and partition key. The readItem operation provides direct access to a specific item using its unique identifier, which consists of the item's ID and the partition key value. This operation is efficient for retrieving a known item by its ID and partition key without the need for complex querying."
   returns:
     description: "the Cosmos item response."
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemResponse?alt=com.azure.cosmos.models.CosmosItemResponse&text=CosmosItemResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -272,7 +272,7 @@ methods:
     name: "itemType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public CosmosItemResponse<T> <T>readItem(String itemId, PartitionKey partitionKey, Class<T> itemType)"
-  desc: "Reads an item in the current container."
+  desc: "Reads an item in the current container.\nThis operation is used to retrieve a single item from a container based on its unique identifier (ID) and partition key. The readItem operation provides direct access to a specific item using its unique identifier, which consists of the item's ID and the partition key value. This operation is efficient for retrieving a known item by its ID and partition key without the need for complex querying.\n\n```java\n// Read an item\n try {\n     CosmosItemResponse<Passenger> response = cosmosContainer.readItem(\n         passenger.getId(),\n         new PartitionKey(passenger.getId()),\n         Passenger.class\n     );\n     Passenger passengerItem = response.getItem();\n } catch (NotFoundException e) {\n     // catch exception if item not found\n     System.out.printf(\"Passenger with item id %s not found\\n\",\n         passenger.getId());\n } catch (Exception e) {\n     System.out.println(e.getMessage());\n }\n\n // ...\n```"
   returns:
     description: "the Cosmos item response."
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemResponse?alt=com.azure.cosmos.models.CosmosItemResponse&text=CosmosItemResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -475,7 +475,7 @@ methods:
     name: "options"
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public CosmosItemResponse<Object> deleteItem(String itemId, PartitionKey partitionKey, CosmosItemRequestOptions options)"
-  desc: "Deletes an item in the current container."
+  desc: "Deletes an item in the current container.\n\n```java\ntry {\n     CosmosItemRequestOptions options = new CosmosItemRequestOptions();\n     CosmosItemResponse<Object> deleteItemResponse = cosmosContainer.deleteItem(\n         passenger.getId(),\n         new PartitionKey(passenger.getId()),\n         options\n     );\n     System.out.println(deleteItemResponse);\n } catch (NotFoundException e) {\n     // catch exception if item not found\n     System.out.printf(\"Passenger with item id %s not found\\n\",\n         passenger.getId());\n } catch (Exception e) {\n     System.out.println(e.getMessage());\n }\n```"
   returns:
     description: "the Cosmos item response."
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemResponse?alt=com.azure.cosmos.models.CosmosItemResponse&text=CosmosItemResponse\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html\">Object</a>&gt;"
@@ -541,7 +541,7 @@ methods:
   nameWithType: "CosmosContainer.getFeedRanges()"
   summary: "Obtains a list of <xref uid=\"com.azure.cosmos.models.FeedRange\" data-throw-if-not-resolved=\"false\" data-raw-source=\"FeedRange\"></xref> that can be used to parallelize Feed operations."
   syntax: "public List<FeedRange> getFeedRanges()"
-  desc: "Obtains a list of <xref uid=\"com.azure.cosmos.models.FeedRange\" data-throw-if-not-resolved=\"false\" data-raw-source=\"FeedRange\"></xref> that can be used to parallelize Feed operations."
+  desc: "Obtains a list of <xref uid=\"com.azure.cosmos.models.FeedRange\" data-throw-if-not-resolved=\"false\" data-raw-source=\"FeedRange\"></xref> that can be used to parallelize Feed operations.\n\n```java\nList<FeedRange> feedRanges = cosmosContainer.getFeedRanges();\n for (FeedRange feedRange : feedRanges) {\n     System.out.println(\"Feed range: \" + feedRange);\n }\n```"
   returns:
     description: "An unmodifiable list of <xref uid=\"com.azure.cosmos.models.FeedRange\" data-throw-if-not-resolved=\"false\" data-raw-source=\"FeedRange\"></xref>"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/List.html\">List</a>&lt;<xref href=\"com.azure.cosmos.models.FeedRange?alt=com.azure.cosmos.models.FeedRange&text=FeedRange\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -617,7 +617,7 @@ methods:
   nameWithType: "CosmosContainer.readThroughput()"
   summary: "Gets the throughput for the current container."
   syntax: "public ThroughputResponse readThroughput()"
-  desc: "Gets the throughput for the current container."
+  desc: "Gets the throughput for the current container.\n\n```java\ntry {\n     ThroughputResponse throughputResponse = cosmosContainer.readThroughput();\n     System.out.println(throughputResponse);\n } catch (CosmosException ce) {\n     ce.printStackTrace();\n } catch (Exception e) {\n     e.printStackTrace();\n }\n```"
   returns:
     description: "the throughput response."
     type: "<xref href=\"com.azure.cosmos.models.ThroughputResponse?alt=com.azure.cosmos.models.ThroughputResponse&text=ThroughputResponse\" data-throw-if-not-resolved=\"False\" />"
@@ -658,11 +658,11 @@ methods:
   nameWithType: "CosmosContainer.replaceThroughput(ThroughputProperties throughputProperties)"
   summary: "Sets the throughput for the current container."
   parameters:
-  - description: "the throughput properties."
+  - description: "the throughput properties (Optional)."
     name: "throughputProperties"
     type: "<xref href=\"com.azure.cosmos.models.ThroughputProperties?alt=com.azure.cosmos.models.ThroughputProperties&text=ThroughputProperties\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public ThroughputResponse replaceThroughput(ThroughputProperties throughputProperties)"
-  desc: "Sets the throughput for the current container."
+  desc: "Sets the throughput for the current container.\n\n```java\nThroughputProperties throughputProperties =\n     ThroughputProperties.createAutoscaledThroughput(1000);\n try {\n     ThroughputResponse throughputResponse =\n         cosmosContainer.replaceThroughput(throughputProperties);\n     System.out.println(throughputResponse);\n } catch (CosmosException ce) {\n     ce.printStackTrace();\n } catch (Exception e) {\n     e.printStackTrace();\n }\n```"
   returns:
     description: "the throughput response."
     type: "<xref href=\"com.azure.cosmos.models.ThroughputResponse?alt=com.azure.cosmos.models.ThroughputResponse&text=ThroughputResponse\" data-throw-if-not-resolved=\"False\" />"
@@ -670,4 +670,4 @@ type: "class"
 desc: "Provides synchronous methods for reading, deleting, and replacing existing Containers Provides methods for interacting with child resources (Items, Scripts, Conflicts)"
 metadata: {}
 package: "com.azure.cosmos"
-artifact: com.azure:azure-cosmos:4.45.1
+artifact: com.azure:azure-cosmos:4.46.0
