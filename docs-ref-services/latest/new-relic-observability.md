@@ -3,7 +3,7 @@ title: Azure New Relic Observability SDK for Java
 description: Reference for Azure New Relic Observability SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 06/13/2023
+ms.data: 06/14/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: newrelicobservability
