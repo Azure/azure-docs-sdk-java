@@ -1,0 +1,3 @@
+| Reference | Package | Source |
+|---|---|---|
+|[Resource Management - Managementgroups](resourcemanager-managementgroups-readme.md)|[azure-resourcemanager-managementgroups](https://repo1.maven.org/maven2/com/azure/resourcemanager/azure-resourcemanager-managementgroups)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/managementgroups/azure-resourcemanager-managementgroups)|
