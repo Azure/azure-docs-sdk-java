@@ -9,6 +9,7 @@ ms.devlang: java
 ms.service: storage
 ms.date: 11/17/2022
 ---
+
 # Azure Storage libraries for Java
 
 The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself. For more information about Azure Storage, see [Introduction to Azure Storage](/azure/storage/common/storage-introduction).
@@ -192,33 +193,8 @@ Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version or minimu
 #### Recommended steps
 
 1. Update client library versions according to the table above.
-1. Use AzBlobChecker to help identify if any of your stored objects have been impacted. The tool identifies objects by searching for a known signature. Once complete, you'll receive a list of potentially impacted objects in your storage account. Not all identified objects will necessarily contain incorrect data. Further manual verification is recommended. AzBlobChecker is designed to work with the largest possible number of storage accounts. This tool can be run by you directly within your existing Azure environment in a self-service deployment.
-1. If you need to request additional documentation and deployment instructions for a self-service scan with AzBlobChecker, open a [support request](https://ms.portal.azure.com/#create/Microsoft.Support). Please use **#JavaSDKv12** and **#AzBlobChecker** in the title of your support request.
 
 Note: Azure doesn't have the ability to recover incorrectly written objects. As any potential impact occurs before upload, Azure doesn't have a valid copy of any affected object. If you have the original file, it can be reuploaded to your storage account.
-
-Please review the list of services and features that AzBlobChecker supports:
-
-| Account feature | Self-scan supported |
-| --- | --- |
-| Blob (hot tier) | Yes |
-| Blob (cool tier) | Yes |
-| Blob (archive tier) | No - archive objects will be listed, but not checked |
-| Blob encrypted with Microsoft Managed Key | Yes |
-| Blob encrypted with Customer Managed Key | Yes |
-| Blob encrypted with Customer Provided Key | No |
-| Storage account has SAS Enabled | Yes |
-| Storage account has Shared Key Disabled | No |
-| Storage account requires Managed Identity | No |
-| Storage account requires Service Principal Identity | No |
-| Storage account in VNet | Yes |
-| Classic (v1) storage accounts | Yes |
-| Storage accounts GPv2 | Yes |
-| Storage account in Public Cloud | Yes |
-| Storage account in Community Clouds (US Gov/DoD, China, etc.)  | Yes - requires modification of deployment script, not all features supported
-| Versioning | Yes – only the current version will be checked  |
-| Snapshots | Yes – only the current snapshot will be checked |
-| Soft delete  | Yes - only non-deleted files will be checked |
 
 [Back to list of known issues](#list-of-known-issues)
 
