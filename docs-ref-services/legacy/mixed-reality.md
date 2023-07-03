@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: mixedreality
 ---
-# Azure Mixed Reality SDK for Java - latest
-## Packages - latest
+# Azure Mixed Reality SDK for Java - legacy
+## Packages - legacy
 [!INCLUDE [packages](mixed-reality-index.md)]

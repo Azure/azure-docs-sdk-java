@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: appconfiguration
 ---
-# Azure App Configuration SDK for Java - latest
-## Packages - latest
+# Azure App Configuration SDK for Java - legacy
+## Packages - legacy
 [!INCLUDE [packages](app-configuration-index.md)]

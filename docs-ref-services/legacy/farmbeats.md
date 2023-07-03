@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: farmbeats
 ---
-# Azure FarmBeats SDK for Java - preview
-## Packages - preview
+# Azure FarmBeats SDK for Java - legacy
+## Packages - legacy
 [!INCLUDE [packages](farmbeats-index.md)]
