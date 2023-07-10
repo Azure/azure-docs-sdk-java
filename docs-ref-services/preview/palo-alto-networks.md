@@ -3,7 +3,7 @@ title: Azure Palo Alto Networks SDK for Java
 description: Reference for Azure Palo Alto Networks SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 07/07/2023
+ms.data: 07/10/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: paloaltonetworks
