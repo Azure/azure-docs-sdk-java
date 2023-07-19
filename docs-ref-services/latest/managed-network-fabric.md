@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: managednetworkfabric
 ---
-# Azure Managed Network Fabric SDK for Java - preview
-## Packages - preview
+# Azure Managed Network Fabric SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](managed-network-fabric-index.md)]

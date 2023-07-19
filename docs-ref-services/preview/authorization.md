@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
 ---
-# Azure Authorization SDK for Java - latest
-## Packages - latest
+# Azure Authorization SDK for Java - preview
+## Packages - preview
 [!INCLUDE [packages](authorization-index.md)]
