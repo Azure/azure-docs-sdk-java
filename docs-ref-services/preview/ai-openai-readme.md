@@ -3,12 +3,12 @@ title: Azure OpenAI client library for Java
 keywords: Azure, java, SDK, API, azure-ai-openai, openai
 author: joshfree
 ms.author: jfree
-ms.date: 06/13/2023
+ms.date: 07/19/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: openai
 ---
-# Azure OpenAI client library for Java - version 1.0.0-beta.2 
+# Azure OpenAI client library for Java - version 1.0.0-beta.3 
 
 
 Azure OpenAI is a managed service that allows developers to deploy, tune, and generate content from OpenAI models on 
@@ -29,6 +29,7 @@ For concrete examples you can have a look at the following links. Some of the mo
 * [Chat completions sample](#chat-completions "Chat completions")
 * [Streaming chat completions sample](#streaming-chat-completions "Streaming chat completions")
 * [Embeddings sample](#text-embeddings "Text Embeddings")
+* [Image Generation sample](#image-generation "Image Generation")
 
 If you want to see the full code for these snippets check out our [samples folder][samples_folder].
 
@@ -57,7 +58,7 @@ If you want to see the full code for these snippets check out our [samples folde
 
 ### Authentication
 
-In order to interact with the Azure OpenAI service you'll need to create an instance of client class,
+In order to interact with the Azure OpenAI Service you'll need to create an instance of client class,
 [OpenAIAsyncClient][openai_client_async] or [OpenAIClient][openai_client_sync] by using 
 [OpenAIClientBuilder][openai_client_builder]. To configure a client for use with 
 Azure OpenAI, provide a valid endpoint URI to an Azure OpenAI resource along with a corresponding key credential,
@@ -159,6 +160,7 @@ The following sections provide several code snippets covering some of the most c
 * [Chat completions sample](#chat-completions "Chat completions")
 * [Streaming chat completions sample](#streaming-chat-completions "Streaming chat completions")
 * [Embeddings sample](#text-embeddings "Text Embeddings")
+* [Image Generation sample](#image-generation "Image Generation")
 
 ### Text completions
 
@@ -168,11 +170,13 @@ prompt.add("Say this is a test");
 
 Completions completions = client.getCompletions("{deploymentOrModelId}", new CompletionsOptions(prompt));
 
-System.out.printf("Model ID=%s is created at %d.%n", completions.getId(), completions.getCreated());
+System.out.printf("Model ID=%s is created at %s.%n", completions.getId(), completions.getCreatedAt());
 for (Choice choice : completions.getChoices()) {
     System.out.printf("Index: %d, Text: %s.%n", choice.getIndex(), choice.getText());
 }
 ```
+
+For a complete sample example, see sample [Text Completions][sample_get_completions].
 
 ### Streaming text completions
 
@@ -184,26 +188,28 @@ IterableStream<Completions> completionsStream = client
     .getCompletionsStream("{deploymentOrModelId}", new CompletionsOptions(prompt));
 
 completionsStream.forEach(completions -> {
-    System.out.printf("Model ID=%s is created at %d.%n", completions.getId(), completions.getCreated());
+    System.out.printf("Model ID=%s is created at %s.%n", completions.getId(), completions.getCreatedAt());
     for (Choice choice : completions.getChoices()) {
         System.out.printf("Index: %d, Text: %s.%n", choice.getIndex(), choice.getText());
     }
 });
 ```
 
+For a complete sample example, see sample [Streaming Text Completions][sample_get_completions_streaming].
+
 ### Chat completions
 
 ``` java readme-sample-getChatCompletions
 List<ChatMessage> chatMessages = new ArrayList<>();
-chatMessages.add(new ChatMessage(ChatRole.SYSTEM).setContent("You are a helpful assistant. You will talk like a pirate."));
-chatMessages.add(new ChatMessage(ChatRole.USER).setContent("Can you help me?"));
-chatMessages.add(new ChatMessage(ChatRole.ASSISTANT).setContent("Of course, me hearty! What can I do for ye?"));
-chatMessages.add(new ChatMessage(ChatRole.USER).setContent("What's the best way to train a parrot?"));
+chatMessages.add(new ChatMessage(ChatRole.SYSTEM, "You are a helpful assistant. You will talk like a pirate."));
+chatMessages.add(new ChatMessage(ChatRole.USER, "Can you help me?"));
+chatMessages.add(new ChatMessage(ChatRole.ASSISTANT, "Of course, me hearty! What can I do for ye?"));
+chatMessages.add(new ChatMessage(ChatRole.USER, "What's the best way to train a parrot?"));
 
 ChatCompletions chatCompletions = client.getChatCompletions("{deploymentOrModelId}",
     new ChatCompletionsOptions(chatMessages));
 
-System.out.printf("Model ID=%s is created at %d.%n", chatCompletions.getId(), chatCompletions.getCreated());
+System.out.printf("Model ID=%s is created at %s.%n", chatCompletions.getId(), chatCompletions.getCreatedAt());
 for (ChatChoice choice : chatCompletions.getChoices()) {
     ChatMessage message = choice.getMessage();
     System.out.printf("Index: %d, Chat Role: %s.%n", choice.getIndex(), message.getRole());
@@ -211,22 +217,26 @@ for (ChatChoice choice : chatCompletions.getChoices()) {
     System.out.println(message.getContent());
 }
 ```
+For a complete sample example, see sample [Chat Completions][sample_get_chat_completions].
+
+For `function call` sample, see sample [function call][sample_chat_completion_function_call].
+
 Please refer to the service documentation for a conceptual discussion of [text completion][microsoft_docs_openai_completion].
 
 ### Streaming chat completions
 
 ```java readme-sample-getChatCompletionsStream
 List<ChatMessage> chatMessages = new ArrayList<>();
-chatMessages.add(new ChatMessage(ChatRole.SYSTEM).setContent("You are a helpful assistant. You will talk like a pirate."));
-chatMessages.add(new ChatMessage(ChatRole.USER).setContent("Can you help me?"));
-chatMessages.add(new ChatMessage(ChatRole.ASSISTANT).setContent("Of course, me hearty! What can I do for ye?"));
-chatMessages.add(new ChatMessage(ChatRole.USER).setContent("What's the best way to train a parrot?"));
+chatMessages.add(new ChatMessage(ChatRole.SYSTEM, "You are a helpful assistant. You will talk like a pirate."));
+chatMessages.add(new ChatMessage(ChatRole.USER, "Can you help me?"));
+chatMessages.add(new ChatMessage(ChatRole.ASSISTANT, "Of course, me hearty! What can I do for ye?"));
+chatMessages.add(new ChatMessage(ChatRole.USER, "What's the best way to train a parrot?"));
 
 IterableStream<ChatCompletions> chatCompletionsStream = client.getChatCompletionsStream("{deploymentOrModelId}",
     new ChatCompletionsOptions(chatMessages));
 
 chatCompletionsStream.forEach(chatCompletions -> {
-    System.out.printf("Model ID=%s is created at %d.%n", chatCompletions.getId(), chatCompletions.getCreated());
+    System.out.printf("Model ID=%s is created at %s.%n", chatCompletions.getId(), chatCompletions.getCreatedAt());
     for (ChatChoice choice : chatCompletions.getChoices()) {
         ChatMessage message = choice.getDelta();
         if (message != null) {
@@ -244,6 +254,7 @@ chatCompletionsStream.forEach(chatCompletions -> {
     }
 });
 ```
+For a complete sample example, see sample [Streaming Chat Completions][sample_get_chat_completions_streaming].
 
 ### Text embeddings
 
@@ -254,13 +265,37 @@ EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions(
 Embeddings embeddings = client.getEmbeddings("{deploymentOrModelId}", embeddingsOptions);
 
 for (EmbeddingItem item : embeddings.getData()) {
-    System.out.printf("Index: %d.%n", item.getIndex());
+    System.out.printf("Index: %d.%n", item.getPromptIndex());
     for (Double embedding : item.getEmbedding()) {
         System.out.printf("%f;", embedding);
     }
 }
 ```
+For a complete sample example, see sample [Embedding][sample_get_embedding].
+
 Please refer to the service documentation for a conceptual discussion of [openAI embedding][microsoft_docs_openai_embedding].
+
+### Image Generation
+
+```java readme-sample-imageGeneration
+ImageGenerationOptions imageGenerationOptions = new ImageGenerationOptions(
+    "A drawing of the Seattle skyline in the style of Van Gogh");
+ImageResponse images = client.getImages(imageGenerationOptions);
+
+for (ImageLocation imageLocation : images.getData()) {
+    ResponseError error = imageLocation.getError();
+    if (error != null) {
+        System.out.printf("Image generation operation failed. Error code: %s, error message: %s.%n",
+            error.getCode(), error.getMessage());
+    } else {
+        System.out.printf(
+            "Image location URL that provides temporary access to download the generated image is %s.%n",
+            imageLocation.getUrl());
+    }
+}
+```
+
+For a complete sample example, see sample [Image Generation][sample_image_generation].
 
 ## Troubleshooting
 ### Enable client logging
@@ -284,7 +319,7 @@ reduce the dependency size, refer to the [performance tuning][performance_tuning
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.2/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -294,25 +329,32 @@ For details on contributing to this repository, see the [contributing guide](htt
 
 <!-- LINKS -->
 [aad_authorization]: /azure/cognitive-services/authentication#authenticate-with-azure-active-directory
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.2/sdk/identity/azure-identity
-[azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai_1.0.0-beta.2/sdk/identity/azure-identity#credentials
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/sdk/identity/azure-identity
+[azure_identity_credential_type]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai_1.0.0-beta.3/sdk/identity/azure-identity#credentials
 [azure_openai_access]: https://learn.microsoft.com/azure/cognitive-services/openai/overview#how-do-i-get-access-to-azure-openai
 [azure_subscription]: https://azure.microsoft.com/free/
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: /java/azure/jdk/
-[logLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.2/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[logLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [microsoft_docs_openai_completion]: https://learn.microsoft.com/azure/cognitive-services/openai/how-to/completions
 [microsoft_docs_openai_embedding]: https://learn.microsoft.com/azure/cognitive-services/openai/concepts/understand-embeddings
 [non_azure_openai_authentication]: https://platform.openai.com/docs/api-reference/authentication
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [product_documentation]: https://azure.microsoft.com/services/
 [quickstart]: https://learn.microsoft.com/azure/cognitive-services/openai/quickstart
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai_1.0.0-beta.2/sdk/openai/azure-ai-openai/src
-[samples_folder]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai_1.0.0-beta.2/sdk/openai/azure-ai-openai/src/samples/java/com/azure/ai/openai
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai_1.0.0-beta.2/sdk/openai/azure-ai-openai/src/samples
-[openai_client_async]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.2/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIAsyncClient.java
-[openai_client_builder]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.2/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClientBuilder.java
-[openai_client_sync]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.2/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClient.java
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src
+[samples_folder]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/samples/java/com/azure/ai/openai
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/samples
+[sample_chat_completion_function_call]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/samples/java/com/azure/ai/openai/FunctionCallSample.java
+[sample_get_chat_completions]: https://Dgithub.com/Azure/azure-sdk-for-java/blob/main/sdk/openai/azure-ai-openai/src/samples/java/com/azure/ai/openai/usage/GetChatCompletionsSample.java
+[sample_get_chat_completions_streaming]: https://Dgithub.com/Azure/azure-sdk-for-java/blob/main/sdk/openai/azure-ai-openai/src/samples/java/com/azure/ai/openai/usage/GetChatCompletionsStreamSample.java
+[sample_get_completions]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/samples/java/com/azure/ai/openai/usage/GetCompletionsSample.java
+[sample_get_completions_streaming]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/samples/java/com/azure/ai/openai/usage/GetCompletionsStreamSample.java
+[sample_get_embedding]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/samples/java/com/azure/ai/openai/usage/GetEmbeddingsSample.java
+[sample_image_generation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/samples/java/com/azure/ai/openai/usage/GetImagesSample.java
+[openai_client_async]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIAsyncClient.java
+[openai_client_builder]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClientBuilder.java
+[openai_client_sync]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.3/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClient.java
 [wiki_identity]: https://github.com/Azure/azure-sdk-for-java/wiki/Identity-and-Authentication
 
 
