@@ -94,7 +94,7 @@ methods:
   fullName: "com.azure.cosmos.CosmosContainer.patchItem(String itemId, PartitionKey partitionKey, CosmosPatchOperations cosmosPatchOperations, CosmosPatchItemRequestOptions options, Class<T> itemType)"
   name: "patchItem(String itemId, PartitionKey partitionKey, CosmosPatchOperations cosmosPatchOperations, CosmosPatchItemRequestOptions options, Class<T> itemType)"
   nameWithType: "CosmosContainer.patchItem(String itemId, PartitionKey partitionKey, CosmosPatchOperations cosmosPatchOperations, CosmosPatchItemRequestOptions options, Class<T> itemType)"
-  summary: "Run patch operations on an Item."
+  summary: "Run partial update that modifies specific properties or fields of the item without replacing the entire item."
   parameters:
   - description: "the item id."
     name: "itemId"
@@ -112,7 +112,7 @@ methods:
     name: "itemType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public CosmosItemResponse<T> <T>patchItem(String itemId, PartitionKey partitionKey, CosmosPatchOperations cosmosPatchOperations, CosmosPatchItemRequestOptions options, Class<T> itemType)"
-  desc: "Run patch operations on an Item."
+  desc: "Run partial update that modifies specific properties or fields of the item without replacing the entire item.\n\n```java\nCosmosPatchOperations cosmosPatchOperations = CosmosPatchOperations.create();\n\n cosmosPatchOperations\n     .add(\"/departure\", \"SEA\")\n     .increment(\"/trips\", 1);\n\n CosmosItemResponse<Passenger> response = cosmosContainer.patchItem(\n     passenger.getId(),\n     new PartitionKey(passenger.getId()),\n     cosmosPatchOperations,\n     Passenger.class);\n```"
   returns:
     description: "the Cosmos item resource response with the patched item or an exception."
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemResponse?alt=com.azure.cosmos.models.CosmosItemResponse&text=CosmosItemResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -120,7 +120,7 @@ methods:
   fullName: "com.azure.cosmos.CosmosContainer.patchItem(String itemId, PartitionKey partitionKey, CosmosPatchOperations cosmosPatchOperations, Class<T> itemType)"
   name: "patchItem(String itemId, PartitionKey partitionKey, CosmosPatchOperations cosmosPatchOperations, Class<T> itemType)"
   nameWithType: "CosmosContainer.patchItem(String itemId, PartitionKey partitionKey, CosmosPatchOperations cosmosPatchOperations, Class<T> itemType)"
-  summary: "Run patch operations on an Item."
+  summary: "Run partial update that modifies specific properties or fields of the item without replacing the entire item."
   parameters:
   - description: "the item id."
     name: "itemId"
@@ -135,7 +135,7 @@ methods:
     name: "itemType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public CosmosItemResponse<T> <T>patchItem(String itemId, PartitionKey partitionKey, CosmosPatchOperations cosmosPatchOperations, Class<T> itemType)"
-  desc: "Run patch operations on an Item."
+  desc: "Run partial update that modifies specific properties or fields of the item without replacing the entire item.\n\n```java\nCosmosPatchOperations cosmosPatchOperations = CosmosPatchOperations.create();\n\n cosmosPatchOperations\n     .add(\"/departure\", \"SEA\")\n     .increment(\"/trips\", 1);\n\n CosmosItemResponse<Passenger> response = cosmosContainer.patchItem(\n     passenger.getId(),\n     new PartitionKey(passenger.getId()),\n     cosmosPatchOperations,\n     Passenger.class);\n```"
   returns:
     description: "the Cosmos item resource response with the patched item or an exception."
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemResponse?alt=com.azure.cosmos.models.CosmosItemResponse&text=CosmosItemResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -152,7 +152,7 @@ methods:
     name: "classType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public CosmosPagedIterable<T> <T>queryChangeFeed(CosmosChangeFeedRequestOptions options, Class<T> classType)"
-  desc: "Query for items in the change feed of the current container using the <xref uid=\"com.azure.cosmos.models.CosmosChangeFeedRequestOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosChangeFeedRequestOptions\"></xref>.\n\nThe next page can be retrieved by calling queryChangeFeed again with a new instance of <xref uid=\"com.azure.cosmos.models.CosmosChangeFeedRequestOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosChangeFeedRequestOptions\"></xref> created from the continuation token of the previously returned <xref uid=\"com.azure.cosmos.models.FeedResponse\" data-throw-if-not-resolved=\"false\" data-raw-source=\"FeedResponse\"></xref> instance."
+  desc: "Query for items in the change feed of the current container using the <xref uid=\"com.azure.cosmos.models.CosmosChangeFeedRequestOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosChangeFeedRequestOptions\"></xref>.\n\n```java\nCosmosChangeFeedRequestOptions options = CosmosChangeFeedRequestOptions\n     .createForProcessingFromNow(FeedRange.forFullRange())\n     .allVersionsAndDeletes();\n\n Iterable<FeedResponse<Passenger>> feedResponses = cosmosContainer.queryChangeFeed(options, Passenger.class)\n     .iterableByPage();\n for (FeedResponse<Passenger> feedResponse : feedResponses) {\n     List<Passenger> results = feedResponse.getResults();\n     System.out.println(results);\n }\n```\n\nThe next page can be retrieved by calling queryChangeFeed again with a new instance of <xref uid=\"com.azure.cosmos.models.CosmosChangeFeedRequestOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosChangeFeedRequestOptions\"></xref> created from the continuation token of the previously returned <xref uid=\"com.azure.cosmos.models.FeedResponse\" data-throw-if-not-resolved=\"false\" data-raw-source=\"FeedResponse\"></xref> instance."
   returns:
     description: "a <xref uid=\"com.azure.cosmos.util.CosmosPagedFlux\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedFlux\"></xref> containing one feed response page"
     type: "<xref href=\"com.azure.cosmos.util.CosmosPagedIterable?alt=com.azure.cosmos.util.CosmosPagedIterable&text=CosmosPagedIterable\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -172,7 +172,7 @@ methods:
     name: "classType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public CosmosPagedIterable<T> <T>queryItems(SqlQuerySpec querySpec, CosmosQueryRequestOptions options, Class<T> classType)"
-  desc: "Query items in the current container returning the results as <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>."
+  desc: "Query items in the current container returning the results as <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>.\n\n```java\nCosmosQueryRequestOptions options = new CosmosQueryRequestOptions();\n String query = \"SELECT * FROM Passenger p WHERE (p.departure = @departure)\";\n List<SqlParameter> parameters = Collections.singletonList(new SqlParameter(\"@departure\", \"SEA\"));\n SqlQuerySpec sqlQuerySpec = new SqlQuerySpec(query, parameters);\n\n Iterable<FeedResponse<Passenger>> queryResponses = cosmosContainer.queryItems(sqlQuerySpec, options, Passenger.class)\n     .iterableByPage();\n\n for (FeedResponse<Passenger> feedResponse : queryResponses) {\n     List<Passenger> results = feedResponse.getResults();\n     System.out.println(results);\n }\n```"
   returns:
     description: "the <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>."
     type: "<xref href=\"com.azure.cosmos.util.CosmosPagedIterable?alt=com.azure.cosmos.util.CosmosPagedIterable&text=CosmosPagedIterable\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -192,7 +192,7 @@ methods:
     name: "classType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public CosmosPagedIterable<T> <T>queryItems(String query, CosmosQueryRequestOptions options, Class<T> classType)"
-  desc: "Query items in the current container returning the results as <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>."
+  desc: "Query items in the current container returning the results as <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>.\n\n```java\nCosmosQueryRequestOptions options = new CosmosQueryRequestOptions();\n String query = \"SELECT * FROM Passenger WHERE Passenger.departure IN ('SEA', 'IND')\";\n Iterable<FeedResponse<Passenger>> queryResponses = cosmosContainer.queryItems(query, options, Passenger.class)\n     .iterableByPage();\n\n for (FeedResponse<Passenger> feedResponse : queryResponses) {\n     List<Passenger> results = feedResponse.getResults();\n     System.out.println(results);\n }\n```"
   returns:
     description: "the <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>."
     type: "<xref href=\"com.azure.cosmos.util.CosmosPagedIterable?alt=com.azure.cosmos.util.CosmosPagedIterable&text=CosmosPagedIterable\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -212,7 +212,7 @@ methods:
     name: "classType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public CosmosPagedIterable<T> <T>readAllItems(PartitionKey partitionKey, CosmosQueryRequestOptions options, Class<T> classType)"
-  desc: "Reads all the items of a logical partition returning the results as <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>."
+  desc: "Reads all the items of a logical partition returning the results as <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>.\n\n```java\nCosmosPagedIterable<Passenger> passengers = cosmosContainer\n     .readAllItems(new PartitionKey(partitionKey), Passenger.class);\n\n passengers.forEach(passenger -> {\n     System.out.println(passenger);\n });\n```"
   returns:
     description: "the <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>."
     type: "<xref href=\"com.azure.cosmos.util.CosmosPagedIterable?alt=com.azure.cosmos.util.CosmosPagedIterable&text=CosmosPagedIterable\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -229,7 +229,7 @@ methods:
     name: "classType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public CosmosPagedIterable<T> <T>readAllItems(PartitionKey partitionKey, Class<T> classType)"
-  desc: "Reads all the items of a logical partition returning the results as <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>."
+  desc: "Reads all the items of a logical partition returning the results as <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>.\n\n```java\nCosmosPagedIterable<Passenger> passengers = cosmosContainer\n     .readAllItems(new PartitionKey(partitionKey), Passenger.class);\n\n passengers.forEach(passenger -> {\n     System.out.println(passenger);\n });\n```"
   returns:
     description: "the <xref uid=\"com.azure.cosmos.util.CosmosPagedIterable\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosPagedIterable\"></xref>."
     type: "<xref href=\"com.azure.cosmos.util.CosmosPagedIterable?alt=com.azure.cosmos.util.CosmosPagedIterable&text=CosmosPagedIterable\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -289,7 +289,7 @@ methods:
     name: "classType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public FeedResponse<T> <T>readMany(List<CosmosItemIdentity> itemIdentityList, Class<T> classType)"
-  desc: "Reads many documents."
+  desc: "Reads many documents. Useful for reading many documents with a particular id and partition key in a single request. If any document from the list is missing, no exception will be thrown.\n\n```java\nList<CosmosItemIdentity> itemIdentityList = new ArrayList<>();\n itemIdentityList.add(new CosmosItemIdentity(new PartitionKey(passenger1Id), passenger1Id));\n itemIdentityList.add(new CosmosItemIdentity(new PartitionKey(passenger2Id), passenger2Id));\n\n FeedResponse<Passenger> passengerFeedResponse = cosmosContainer.readMany(itemIdentityList, Passenger.class);\n for (Passenger passenger : passengerFeedResponse.getResults()) {\n     System.out.println(passenger);\n }\n```"
   returns:
     description: "a Mono with feed response of cosmos items"
     type: "<xref href=\"com.azure.cosmos.models.FeedResponse?alt=com.azure.cosmos.models.FeedResponse&text=FeedResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -309,7 +309,7 @@ methods:
     name: "classType"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public FeedResponse<T> <T>readMany(List<CosmosItemIdentity> itemIdentityList, String sessionToken, Class<T> classType)"
-  desc: "Reads many documents."
+  desc: "Reads many documents. Useful for reading many documents with a particular id and partition key in a single request. If any document from the list is missing, no exception will be thrown.\n\n```java\nList<CosmosItemIdentity> itemIdentityList = new ArrayList<>();\n itemIdentityList.add(new CosmosItemIdentity(new PartitionKey(passenger1Id), passenger1Id));\n itemIdentityList.add(new CosmosItemIdentity(new PartitionKey(passenger2Id), passenger2Id));\n\n FeedResponse<Passenger> passengerFeedResponse = cosmosContainer.readMany(itemIdentityList, Passenger.class);\n for (Passenger passenger : passengerFeedResponse.getResults()) {\n     System.out.println(passenger);\n }\n```"
   returns:
     description: "a Mono with feed response of cosmos items"
     type: "<xref href=\"com.azure.cosmos.models.FeedResponse?alt=com.azure.cosmos.models.FeedResponse&text=FeedResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -317,7 +317,7 @@ methods:
   fullName: "com.azure.cosmos.CosmosContainer.replaceItem(T item, String itemId, PartitionKey partitionKey, CosmosItemRequestOptions options)"
   name: "replaceItem(T item, String itemId, PartitionKey partitionKey, CosmosItemRequestOptions options)"
   nameWithType: "CosmosContainer.replaceItem(T item, String itemId, PartitionKey partitionKey, CosmosItemRequestOptions options)"
-  summary: "Replaces an item in the current container."
+  summary: "Replaces an existing item in a container with a new item."
   parameters:
   - description: "the item."
     name: "item"
@@ -332,7 +332,7 @@ methods:
     name: "options"
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public CosmosItemResponse<T> <T>replaceItem(T item, String itemId, PartitionKey partitionKey, CosmosItemRequestOptions options)"
-  desc: "Replaces an item in the current container."
+  desc: "Replaces an existing item in a container with a new item. It performs a complete replacement of the item, replacing all its properties with the properties of the new item\n\n```java\nCosmosItemResponse<Passenger> response = cosmosContainer.replaceItem(\n     newPassenger,\n     oldPassenger.getId(),\n     new PartitionKey(oldPassenger.getId()),\n     new CosmosItemRequestOptions());\n```"
   returns:
     description: "the Cosmos item response."
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemResponse?alt=com.azure.cosmos.models.CosmosItemResponse&text=CosmosItemResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -371,7 +371,7 @@ methods:
   fullName: "com.azure.cosmos.CosmosContainer.upsertItem(T item, PartitionKey partitionKey, CosmosItemRequestOptions options)"
   name: "upsertItem(T item, PartitionKey partitionKey, CosmosItemRequestOptions options)"
   nameWithType: "CosmosContainer.upsertItem(T item, PartitionKey partitionKey, CosmosItemRequestOptions options)"
-  summary: "Upserts a item Cosmos sync item while specifying additional options."
+  summary: "Upserts an item Cosmos sync item while specifying additional options."
   parameters:
   - description: "the item."
     name: "item"
@@ -383,7 +383,7 @@ methods:
     name: "options"
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public CosmosItemResponse<T> <T>upsertItem(T item, PartitionKey partitionKey, CosmosItemRequestOptions options)"
-  desc: "Upserts a item Cosmos sync item while specifying additional options."
+  desc: "Upserts an item Cosmos sync item while specifying additional options."
   returns:
     description: "the Cosmos item response."
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemResponse?alt=com.azure.cosmos.models.CosmosItemResponse&text=CosmosItemResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -670,4 +670,4 @@ type: "class"
 desc: "Provides synchronous methods for reading, deleting, and replacing existing Containers Provides methods for interacting with child resources (Items, Scripts, Conflicts)"
 metadata: {}
 package: "com.azure.cosmos"
-artifact: com.azure:azure-cosmos:4.47.0
+artifact: com.azure:azure-cosmos:4.48.0
