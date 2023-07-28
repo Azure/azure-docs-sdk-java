@@ -11,7 +11,7 @@ ms.service: storage
 # Azure File Data Lake client library for Java - version 12.16.0 
 
 
-Azure Data Lake Storage is Microsoft's optimized storage solution for for big
+Azure Data Lake Storage is Microsoft's optimized storage solution for big
 data analytics workloads. A fundamental part of Data Lake Storage Gen2 is the
 addition of a hierarchical namespace to Blob storage. The hierarchical
 namespace organizes objects/files into a hierarchy of directories for
