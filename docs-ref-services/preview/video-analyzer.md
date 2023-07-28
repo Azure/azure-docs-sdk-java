@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 07/28/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: videoanalyzer
+ms.service: azure-resource-manager
 ---
 # Azure Video Analyzer SDK for Java - preview
 ## Packages - preview

@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 07/28/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: managedserviceidentity
+ms.service: azure-resource-manager
 ---
 # Azure Managed Service Identity SDK for Java - latest
 ## Packages - latest
