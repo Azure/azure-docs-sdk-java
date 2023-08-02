@@ -3,7 +3,7 @@ title: Azure Visual Search SDK for Java
 description: Reference for Azure Visual Search SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 08/01/2023
+ms.data: 08/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: visualsearch
