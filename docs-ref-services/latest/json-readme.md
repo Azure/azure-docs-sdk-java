@@ -3,12 +3,12 @@ title: Azure JSON shared library for Java
 keywords: Azure, java, SDK, API, azure-json, core
 author: alzimmermsft
 ms.author: alzimmer
-ms.date: 05/04/2023
+ms.date: 08/05/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure JSON shared library for Java - version 1.0.1 
+# Azure JSON shared library for Java - version 1.1.0 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -28,7 +28,7 @@ Azure JSON provides shared primitives, abstractions, and helpers for JSON.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-json</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -137,7 +137,7 @@ Get started with Azure libraries that are [built using Azure Core](https://azure
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-json_1.0.1/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-json_1.1.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
