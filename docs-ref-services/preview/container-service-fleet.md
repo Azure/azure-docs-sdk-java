@@ -3,7 +3,7 @@ title: Azure Container Service Fleet SDK for Java
 description: Reference for Azure Container Service Fleet SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 08/04/2023
+ms.data: 08/07/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: containerservicefleet
