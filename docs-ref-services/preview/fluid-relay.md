@@ -3,7 +3,7 @@ title: Azure Fluid Relay SDK for Java
 description: Reference for Azure Fluid Relay SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 08/11/2023
+ms.data: 08/14/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: fluidrelay
