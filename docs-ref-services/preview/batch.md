@@ -7,10 +7,10 @@ ms.data: 08/23/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: batch
-manager: douge
-ms.technology: azure
 ms.date: 06/21/2017
 ms.prod: azure
+ms.technology: azure
+manager: douge
 keywords: Azure, Java, SDK, API, Batch, processing, scheduling, long-running
 ---
 # Azure Batch libraries for Java
