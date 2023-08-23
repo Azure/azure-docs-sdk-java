@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: maps
 ---
-# Azure Maps SDK for Java - preview
-## Packages - preview
+# Azure Maps SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](maps-index.md)]

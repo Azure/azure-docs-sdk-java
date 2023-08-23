@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: maintenance
 ---
-# Azure Maintenance SDK for Java - preview
-## Packages - preview
+# Azure Maintenance SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](maintenance-index.md)]
