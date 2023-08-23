@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: resourceconnector
 ---
-# Azure Resource Connector SDK for Java - preview
-## Packages - preview
+# Azure Resource Connector SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](resource-connector-index.md)]
