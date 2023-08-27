@@ -1,14 +1,13 @@
 ---
 title: Azure Communication Chat client library for Java
+description: Describes the Azure Communication Chat client and provides prerequisites, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-communication-chat, communication
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 08/12/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: communication
+ms.service: azure
 ---
 
 # Azure Communication Chat client library for Java - version 1.1.0-beta.2 
