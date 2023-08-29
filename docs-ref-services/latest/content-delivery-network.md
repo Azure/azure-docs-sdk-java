@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 08/29/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: contentdeliverynetwork
+ms.service: azure-cdn
 ---
 # Azure Content Delivery Network SDK for Java - latest
 ## Packages - latest
