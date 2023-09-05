@@ -1,14 +1,13 @@
 ---
 title: Azure Tables client library for Java
+description: Describes the Azure Tables client library and provides sections on how to get started, prerequisites, key concepts, and examples.
 keywords: Azure, java, SDK, API, azure-data-tables, tables
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: sizhu
 ms.date: 05/14/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: tables
+ms.service: azure
 ---
 
 # Azure Tables client library for Java - version 12.0.0-beta.7 
@@ -17,7 +16,7 @@ Azure Storage Tables client library is a service that stores structured NoSQL da
 key/attribute store with a schemaless design. Tables storage gives developers flexibility and scalability with all the
 best parts of Azure cloud.
 
-[Source code][source_code] | [Package (Maven)][package] | [API reference documentation][api_documentation]
+[Source code][source_code] | [Package (Maven)][package] | [API reference documentation][api_documentation] 
 | [Product documentation][product_documentation] | [Samples][samples]
 
 ## Getting started
