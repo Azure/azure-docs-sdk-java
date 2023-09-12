@@ -3,7 +3,7 @@ title: Azure BareMetal Infrastructure SDK for Java
 description: Reference for Azure BareMetal Infrastructure SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 09/08/2023
+ms.data: 09/12/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: baremetalinfrastructure

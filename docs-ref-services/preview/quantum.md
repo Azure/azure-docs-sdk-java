@@ -3,7 +3,7 @@ title: Azure Quantum SDK for Java
 description: Reference for Azure Quantum SDK for Java
 author: vxfield
 ms.author: victorxfield
-ms.data: 09/08/2023
+ms.data: 09/12/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: quantum

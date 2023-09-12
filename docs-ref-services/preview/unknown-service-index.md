@@ -1,4 +1,5 @@
 | Reference | Package | Source |
 |---|---|---|
-|[Unknown Display Name](analytics-purview-sharing-readme.md)|[azure-analytics-purview-sharing](https://repo1.maven.org/maven2/com/azure/azure-analytics-purview-sharing)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/purview/azure-analytics-purview-sharing)|
-|[Unknown Display Name](core-http-jdk-httpclient-readme.md)|[azure-core-http-jdk-httpclient](https://repo1.maven.org/maven2/com/azure/azure-core-http-jdk-httpclient)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/core/azure-core-http-jdk-httpclient)|
+|Unknown Display Name|[azure-ai-vision-common](https://repo1.maven.org/maven2/com/azure/azure-ai-vision-common)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
+|Unknown Display Name|[azure-ai-vision-common-internal](https://repo1.maven.org/maven2/com/azure/azure-ai-vision-common-internal)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
+|Unknown Display Name|[azure-ai-vision-imageanalysis](https://repo1.maven.org/maven2/com/azure/azure-ai-vision-imageanalysis)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|

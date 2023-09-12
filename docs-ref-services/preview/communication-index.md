@@ -1,7 +1,7 @@
 | Reference | Package | Source |
 |---|---|---|
-|[azure-communication-administration](communication-administration-readme.md)|[azure-communication-administration](https://repo1.maven.org/maven2/com/azure/azure-communication-administration)|[GitHub](https://github.com/Azure/azure-sdk-for-java)|
-|[azure-communication-callingserver](communication-callingserver-readme.md)|[azure-communication-callingserver](https://repo1.maven.org/maven2/com/azure/azure-communication-callingserver)|[GitHub](https://github.com/Azure/azure-sdk-for-java)|
+|[azure-communication-administration](communication-administration-readme.md)|[azure-communication-administration](https://repo1.maven.org/maven2/com/azure/azure-communication-administration)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
+|[azure-communication-callingserver](communication-callingserver-readme.md)|[azure-communication-callingserver](https://repo1.maven.org/maven2/com/azure/azure-communication-callingserver)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
 |[Communication Call Automation](communication-callautomation-readme.md)|[azure-communication-callautomation](https://repo1.maven.org/maven2/com/azure/azure-communication-callautomation)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-callautomation)|
 |[Communication Common](communication-common-readme.md)|[azure-communication-common](https://repo1.maven.org/maven2/com/azure/azure-communication-common)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-common)|
 |[Communication Email](communication-email-readme.md)|[azure-communication-email](https://repo1.maven.org/maven2/com/azure/azure-communication-email)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-email)|
