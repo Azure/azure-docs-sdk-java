@@ -1,14 +1,13 @@
 ---
 title: Azure Storage Blobs Batch client library for Java
+description: Describes Azure Blob storage for the 12.7.0 version of Java and provides examples of storage accounts.
 keywords: Azure, java, SDK, API, azure-storage-blob-batch, storage
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: scbedd
 ms.date: 11/11/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
+ms.service: azure
 ms.devlang: java
-ms.service: storage
 ---
 
 # Azure Storage Blobs Batch client library for Java - version 12.7.0 
@@ -199,4 +198,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-blob-batch%2FREADME.png)
-

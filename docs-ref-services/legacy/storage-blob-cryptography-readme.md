@@ -1,14 +1,13 @@
 ---
 title: Azure Storage Blobs Cryptography client library for Java
+description: Describes Azure Storage Blobs Cryptography client information for Java version 12.9.0, including how to create a storage account.
 keywords: Azure, java, SDK, API, azure-storage-blob-cryptography, storage
 author: ramya-rao-a
-ms.author: ramyar
+ms.author: scbedd
 ms.date: 11/11/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
+ms.service: azure
 ms.devlang: java
-ms.service: storage
 ---
 
 # Azure Storage Blobs Cryptography client library for Java - version 12.9.0 
