@@ -1,18 +1,18 @@
 ---
-title: Azure CDN libraries for Java
-description: Reference documentation for the Java CDN management libraries 
-keywords: Azure, Java, SDK, API, content, distribution, network, CDN
-author: ramya-rao-a
-ms.author: ramyar
-manager: douge
-ms.date: 07/11/2017
+title: Azure Content Delivery Network SDK for Java
+description: Reference for Azure Content Delivery Network SDK for Java
+author: joshfree
+ms.author: jfree
+ms.data: 09/13/2023
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: azure-cdn
+ms.service: contentdeliverynetwork
+ms.date: 07/11/2017
+ms.technology: azure
+keywords: Azure, Java, SDK, API, content, distribution, network, CDN
+ms.prod: azure
+manager: douge
 ---
-
 # Azure CDN libraries for Java
 
 ## Overview
