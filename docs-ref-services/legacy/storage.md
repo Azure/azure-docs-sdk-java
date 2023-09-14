@@ -11,7 +11,7 @@ ms.date: 02/13/2020
 ---
 # Azure Storage libraries for Java
 
-The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself. For more information about Azure Storage, see [Introduction to Azure Storage](/azure/storage/storage-introduction).
+The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself. For more information about Azure Storage, see [Introduction to Azure Storage](/azure/storage/common/storage-introduction).
 
 ## Client library for data access
 
@@ -85,7 +85,7 @@ For more examples, review the [Client Library README](https://github.com/Azure/a
 | Library version | Supported services | Maven | Reference / Javadoc | Source, Readme, Examples |
 |----------------------|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Version 12 | Blob, Queue, File, and Data Lake | [Blob](https://search.maven.org/artifact/com.azure/azure-storage-blob/)<br />[Queue](https://search.maven.org/artifact/com.azure/azure-storage-queue/)<br />[File](https://search.maven.org/artifact/com.azure/azure-storage-file-share/)<br />[Data Lake](https://search.maven.org/artifact/com.azure/azure-storage-file-datalake/) | [Blob](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-blob/12.4.0/index.html)<br/>[Queue](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-queue/12.3.0/index.html)<br />[File](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-file-share/12.2.0/index.html)<br />[Data Lake](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-file-datalake/12.0.0-preview.6/index.html)  | [Blob](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob_12.4.0/sdk/storage/azure-storage-blob) ([Quickstart](/azure/storage/blobs/storage-quickstart-blobs-java))<br />[Queue](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob_12.3.0/sdk/storage/azure-storage-queue)<br />[File](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-file-share_12.2.0/sdk/storage/azure-storage-queue)<br />[Data Lake](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob_12.0.0/sdk/storage/azure-storage-file-datalake) |
-| Version 8 | Blob, Queue, File, and Table | [All services](https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage) | [Version 8 reference](https://docs.microsoft.com/java/api/overview/azure/storage/client?view=azure-java-stable) | [All services](https://github.com/azure/azure-storage-java/tree/legacy-master) ([Quickstart](/azure/storage/blobs/storage-quickstart-blobs-java-legacy)) |
+| Version 8 | Blob, Queue, File, and Table | [All services](https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage) | [Version 8 reference](/java/api/overview/azure/storage/client?view=azure-java-legacy&preserve-view=true) | [All services](https://github.com/azure/azure-storage-java/tree/legacy-master) ([Quickstart](/azure/storage/blobs/storage-quickstart-blobs-java-legacy)) |
 
 Refer to the [Azure SDK Releases page](https://azure.github.io/azure-sdk/) for details on how to install and use the preview packages.
 
@@ -93,7 +93,7 @@ Refer to the [Azure SDK Releases page](https://azure.github.io/azure-sdk/) for d
 
 Use the Azure Storage resource provider to manage storage accounts, account keys, access tiers, and more. To use the resource provider library, [add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file. The latest version of the resource provider library is available on [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-mgmt-storage).  
 
-For more information about the resource provider library, see the [Management](/java/api/overview/azure/storage/management) reference. The source code for the resource provider library is available in the [Azure Java SDK repository](https://github.com/Azure/azure-sdk-for-java/tree/master/storage/resource-manager).
+For more information about the resource provider library, see the [Management](/java/api/overview/azure/storage/management) reference. The source code for the resource provider library is available in the [Azure Java SDK repository](https://github.com/Azure/azure-libraries-for-java/tree/master/azure-mgmt-storage).
 
 The following example creates a new storage account in your subscription and retrieves its access keys.
 
