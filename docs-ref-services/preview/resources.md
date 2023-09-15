@@ -8,10 +8,10 @@ ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
 manager: douge
-ms.prod: azure
-ms.date: 06/21/2017
 ms.technology: azure
+ms.date: 06/21/2017
 keywords: Azure, Java, SDK, API, resource groups, arm, resource manager
+ms.prod: azure
 ---
 # Azure Resource Manager libraries for Java
 

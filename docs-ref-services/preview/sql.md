@@ -8,10 +8,10 @@ ms.topic: reference
 ms.devlang: java
 ms.service: mysql
 manager: douge
-ms.prod: azure
-ms.date: 07/05/2017
 ms.technology: azure
+ms.date: 07/05/2017
 keywords: Azure, Java, SDK, API, SQL, database , JDBC
+ms.prod: azure
 ---
 # Azure SQL Database libraries for Java (Preview)
 
