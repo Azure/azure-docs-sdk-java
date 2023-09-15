@@ -3,10 +3,10 @@ title: Azure Event Hubs SDK for Java
 description: Reference for Azure Event Hubs SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 09/14/2023
+ms.data: 09/15/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: eventhubs
+ms.service: event-hubs
 ms.date: 07/08/2022
 ---
 # Azure Event Hub libraries for Java

@@ -3,10 +3,10 @@ title: Azure Azure Stack HCI SDK for Java
 description: Reference for Azure Azure Stack HCI SDK for Java
 author: joshfree
 ms.author: jfree
-ms.data: 09/14/2023
+ms.data: 09/15/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-resource-manager
+ms.service: azurestackhci
 ---
 # Azure Azure Stack HCI SDK for Java - legacy
 ## Packages - legacy
