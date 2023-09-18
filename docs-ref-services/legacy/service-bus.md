@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 09/15/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: service-bus
+ms.service: servicebus
 ---
 # Azure Service Bus SDK for Java - legacy
 ## Packages - legacy
