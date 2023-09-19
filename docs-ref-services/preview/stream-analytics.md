@@ -6,7 +6,7 @@ ms.author: jfree
 ms.data: 09/19/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: streamanalytics
+ms.service: stream-analytics
 ---
 # Azure Stream Analytics SDK for Java - preview
 ## Packages - preview
