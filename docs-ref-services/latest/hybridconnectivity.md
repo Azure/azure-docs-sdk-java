@@ -8,6 +8,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: hybridconnectivity
 ---
-# Azure Hybridconnectivity SDK for Java - preview
-## Packages - preview
+# Azure Hybridconnectivity SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](hybridconnectivity-index.md)]
