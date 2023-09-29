@@ -3,7 +3,7 @@ title: Azure Batch SDK for Java
 description: Reference for Azure Batch SDK for Java
 author: jingjlii
 ms.author: jingjli
-ms.data: 09/28/2023
+ms.data: 09/29/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: batch
