@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Workloads client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-workloads, workloads
-author: joshfree
-ms.author: jfree
 ms.date: 04/17/2023
 ms.topic: reference
 ms.devlang: java

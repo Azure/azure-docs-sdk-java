@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager ProviderHub client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-providerhub, providerhub
-author: joshfree
-ms.author: jfree
 ms.date: 02/20/2023
 ms.topic: reference
 ms.devlang: java

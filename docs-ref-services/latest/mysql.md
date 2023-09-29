@@ -1,13 +1,10 @@
 ---
 title: Azure MySQL SDK for Java
 description: Reference for Azure MySQL SDK for Java
-author: joshfree
-ms.author: jfree
-ms.data: 09/28/2023
+ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: mysql
-ms.date: 07/08/2022
 ---
 # Azure Database for MySQL libraries for Java
 
@@ -51,3 +48,4 @@ try {
 [Design a MySQL database using the Azure CLI](/azure/mysql/tutorial-design-database-using-cli)   
 
 Explore more [sample Java code for Azure Database for MySQL](https://azure.microsoft.com/resources/samples/?platform=java&term=mysql) you can use in your apps.
+

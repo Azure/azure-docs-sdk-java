@@ -1,14 +1,12 @@
 ---
 title: Azure Cloud Native Cloud Event client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid-cloudnative-cloudevents, eventgrid
-author: srnagar
-ms.author: srnagar
 ms.date: 01/24/2022
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: eventgrid
+ms.technology: azure
+ms.prod: azure
 ---
 # Azure Cloud Native Cloud Event client library for Java - version 1.0.0-beta.1 
 

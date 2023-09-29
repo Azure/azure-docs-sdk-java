@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager PostgreSql client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-postgresqlflexibleserver, postgresqlflexibleserver
-author: joshfree
-ms.author: jfree
 ms.date: 06/27/2023
 ms.topic: reference
 ms.devlang: java

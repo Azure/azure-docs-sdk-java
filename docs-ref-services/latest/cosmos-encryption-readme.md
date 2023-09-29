@@ -1,8 +1,6 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, azure-cosmos-encryption, cosmos
-author: kushagraThapar
-ms.author: kuthapar
 ms.date: 09/26/2023
 ms.topic: reference
 ms.devlang: java

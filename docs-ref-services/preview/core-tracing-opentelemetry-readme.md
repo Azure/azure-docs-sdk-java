@@ -1,8 +1,6 @@
 ---
 title: Azure OpenTelemetry Tracing plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-tracing-opentelemetry, core
-author: alzimmermsft
-ms.author: alzimmer
 ms.date: 08/05/2023
 ms.topic: reference
 ms.devlang: java

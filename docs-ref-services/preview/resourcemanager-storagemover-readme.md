@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager StorageMover client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-storagemover, storagemover
-author: ibrahimrabab
-ms.author: ibrahimr
 ms.date: 02/07/2023
 ms.topic: reference
 ms.devlang: java

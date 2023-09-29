@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager LoadTest client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-loadtesting, loadtesting
-author: Harshan01
-ms.author: harshanb
 ms.date: 02/01/2023
 ms.topic: reference
 ms.devlang: java

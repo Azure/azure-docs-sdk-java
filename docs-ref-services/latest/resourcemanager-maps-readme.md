@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager AzureMaps client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-maps, maps
-author: joshfree
-ms.author: jfree
 ms.date: 08/22/2023
 ms.topic: reference
 ms.devlang: java

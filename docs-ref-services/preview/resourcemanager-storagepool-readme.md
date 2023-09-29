@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager StoragePool client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-storagepool, storagepool
-author: ibrahimrabab
-ms.author: ibrahimr
 ms.date: 01/19/2023
 ms.topic: reference
 ms.devlang: java

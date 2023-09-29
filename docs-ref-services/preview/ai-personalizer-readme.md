@@ -1,8 +1,6 @@
 ---
 title: Azure Personalizer client library for Java
 keywords: Azure, java, SDK, API, azure-ai-personalizer, personalizer
-author: sharathmalladi
-ms.author: sharathm
 ms.date: 09/08/2022
 ms.topic: reference
 ms.devlang: java

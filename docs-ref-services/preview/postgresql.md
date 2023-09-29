@@ -1,13 +1,10 @@
 ---
 title: Azure PostgreSQL SDK for Java
 description: Reference for Azure PostgreSQL SDK for Java
-author: joshfree
-ms.author: jfree
-ms.data: 09/28/2023
+ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: postgresql
-ms.date: 07/08/2022
 ---
 # Azure Database for PostgreSQL libraries for Java
 
@@ -51,3 +48,4 @@ try {
 [Design a PostgreSQL database using the Azure CLI](https://docs.microsoft.com/azure/postgresql/tutorial-design-database-using-azure-cli) 
 
 Explore more [sample Java code for Azure Database for PostgreSQL](https://azure.microsoft.com/resources/samples/?platform=java&term=postgres) you can use in your apps.
+

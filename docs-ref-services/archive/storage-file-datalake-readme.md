@@ -1,16 +1,13 @@
 ---
 title: Azure File Data Lake client library for Java
 keywords: Azure, java, SDK, API, azure-storage-file-datalake, storage
-author: ramya-rao-a
-ms.author: ramyar
 ms.date: 11/11/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: storage
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure File Data Lake client library for Java - version 12.3.0 
 
 

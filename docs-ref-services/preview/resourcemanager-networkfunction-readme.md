@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager AzureTrafficCollector client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-networkfunction, networkfunction
-author: joshfree
-ms.author: jfree
 ms.date: 11/24/2022
 ms.topic: reference
 ms.devlang: java

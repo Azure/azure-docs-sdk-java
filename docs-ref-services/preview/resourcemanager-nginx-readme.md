@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Nginx client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-nginx, nginx
-author: joshfree
-ms.author: jfree
 ms.date: 10/13/2022
 ms.topic: reference
 ms.devlang: java

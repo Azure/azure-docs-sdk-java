@@ -1,15 +1,12 @@
 ---
-title: Face API 
-author: PatrickFarley
-ms.author: pafarley
+title: Face API
 ms.date: 10/15/2021
 ms.topic: article
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: face-api
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure Face API
 
 > [!IMPORTANT]
@@ -31,3 +28,4 @@ pip install --upgrade azure-cognitiveservices-vision-face
 ## Next Steps
 
 Go to the Face service [Overview](https://docs.microsoft.com/azure/cognitive-services/face/overview) or follow a [quickstart](https://docs.microsoft.com/azure/cognitive-services/face/quickstarts/client-libraries) to get started.
+

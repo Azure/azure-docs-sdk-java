@@ -2,17 +2,14 @@
 title: Azure App Service libraries for Java
 description: Automat deployment of web apps on Azure App Service using the Azure management APIs.
 keywords: Azure, Java, SDK, API, web apps , mobile , App Service
-author: ramya-rao-a
-ms.author: ramyar
-manager: douge
 ms.date: 07/09/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: appservice
+manager: douge
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure App Service libraries for Java
 
 ## Overview
@@ -65,3 +62,4 @@ Explore more [sample Java code for Azure App Service](https://azure.microsoft.co
 [2]: https://azure.microsoft.com/resources/samples/app-service-java-manage-staging-and-production-slots-for-web-apps/
 [3]: https://azure.microsoft.com/resources/samples/app-service-java-manage-web-apps-with-custom-domains/
 [4]: https://azure.microsoft.com/resources/samples/app-service-java-scale-web-apps-on-linux/
+

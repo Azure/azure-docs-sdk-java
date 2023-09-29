@@ -1,8 +1,6 @@
 ---
 title: Azure DevCenter client library for Java
 keywords: Azure, java, SDK, API, azure-developer-devcenter, devcenter
-author: sebrenna
-ms.author: sebrenna
 ms.date: 02/08/2023
 ms.topic: reference
 ms.devlang: java

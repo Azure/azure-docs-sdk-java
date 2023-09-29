@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager ServiceLinker client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-servicelinker, servicelinker
-author: joshfree
-ms.author: jfree
 ms.date: 05/19/2022
 ms.topic: reference
 ms.devlang: java

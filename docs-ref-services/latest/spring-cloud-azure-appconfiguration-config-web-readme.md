@@ -1,8 +1,6 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, spring-cloud-azure-appconfiguration-config-web, spring
-author: backwind1233
-ms.author: zhihaoguo
 ms.date: 04/28/2023
 ms.topic: reference
 ms.devlang: java

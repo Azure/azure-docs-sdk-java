@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager ContainerAppsApi client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-appcontainers, appcontainers
-author: joshfree
-ms.author: jfree
 ms.date: 08/21/2023
 ms.topic: reference
 ms.devlang: java

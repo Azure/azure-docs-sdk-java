@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Attestation client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-attestation, azure-resource-manager
-author: azure-sdk-write-attestation
-ms.author: azure-sdk-write-attestation
 ms.date: 01/11/2023
 ms.topic: reference
 ms.devlang: java

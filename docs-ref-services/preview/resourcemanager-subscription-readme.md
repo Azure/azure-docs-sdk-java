@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Subscription client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-subscription, subscription
-author: joshfree
-ms.author: jfree
 ms.date: 01/19/2023
 ms.topic: reference
 ms.devlang: java

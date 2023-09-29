@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager BillingBenefits client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-billingbenefits, billingbenefits
-author: joshfree
-ms.author: jfree
 ms.date: 01/12/2023
 ms.topic: reference
 ms.devlang: java

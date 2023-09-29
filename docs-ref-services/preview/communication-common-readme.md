@@ -1,8 +1,6 @@
 ---
 title: Azure Communication Service Common client library for Java
 keywords: Azure, java, SDK, API, azure-communication-common, communication
-author: joshfree
-ms.author: jfree
 ms.date: 03/27/2023
 ms.topic: reference
 ms.devlang: java

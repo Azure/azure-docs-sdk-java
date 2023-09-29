@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager HybridContainerService client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-hybridcontainerservice, hybridcontainerservice
-author: joshfree
-ms.author: jfree
 ms.date: 03/15/2023
 ms.topic: reference
 ms.devlang: java

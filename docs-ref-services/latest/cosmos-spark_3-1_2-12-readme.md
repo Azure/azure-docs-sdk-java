@@ -1,8 +1,6 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, azure-cosmos-spark_3-1_2-12, cosmos
-author: kushagraThapar
-ms.author: kuthapar
 ms.date: 06/16/2022
 ms.topic: reference
 ms.devlang: java
@@ -134,6 +132,4 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [azure_cosmos_db_partition]: /azure/cosmos-db/partition-data
 [sql_queries_in_cosmos]: /azure/cosmos-db/tutorial-query-sql-api
 [sql_queries_getting_started]: /azure/cosmos-db/sql-query-getting-started
-
-
 

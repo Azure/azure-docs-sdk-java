@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager SqlVirtualMachine client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-sqlvirtualmachine, sqlvirtualmachine
-author: joshfree
-ms.author: jfree
 ms.date: 06/13/2023
 ms.topic: reference
 ms.devlang: java

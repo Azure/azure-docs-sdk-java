@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Hardware Security Modules client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-hardwaresecuritymodules, hardwaresecuritymodules
-author: joshfree
-ms.author: jfree
 ms.date: 05/09/2022
 ms.topic: reference
 ms.devlang: java

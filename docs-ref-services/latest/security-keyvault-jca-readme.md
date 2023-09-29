@@ -1,8 +1,6 @@
 ---
 title: Azure Key Vault JCA client library for Java
 keywords: Azure, java, SDK, API, azure-security-keyvault-jca, keyvault
-author: vcolin7
-ms.author: vicolina
 ms.date: 03/02/2023
 ms.topic: reference
 ms.devlang: java

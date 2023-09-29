@@ -1,8 +1,6 @@
 ---
 title: Azure identity JDBC MySQL plugin library for Java
 keywords: Azure, java, SDK, API, azure-identity-providers-jdbc-mysql, jdbc
-author: joshfree
-ms.author: jfree
 ms.date: 09/23/2022
 ms.topic: reference
 ms.devlang: java

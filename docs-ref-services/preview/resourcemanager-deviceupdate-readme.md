@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager DeviceUpdate client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-deviceupdate, deviceupdate
-author: dpokluda
-ms.author: dpokluda
 ms.date: 08/19/2022
 ms.topic: reference
 ms.devlang: java

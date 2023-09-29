@@ -1,17 +1,14 @@
 ---
 title: Azure Batch SDK for Java
 description: Reference for Azure Batch SDK for Java
-author: jingjlii
-ms.author: jingjli
-ms.data: 09/15/2023
+keywords: Azure, Java, SDK, API, Batch, processing, scheduling, long-running
+ms.date: 06/21/2017
 ms.topic: reference
 ms.devlang: java
 ms.service: batch
-manager: douge
-ms.prod: azure
-ms.date: 06/21/2017
 ms.technology: azure
-keywords: Azure, Java, SDK, API, Batch, processing, scheduling, long-running
+ms.prod: azure
+manager: douge
 ---
 # Azure Batch libraries for Java
 
@@ -95,3 +92,4 @@ BatchAccount batchAccount = azure.batchAccounts().define("newBatchAcct")
 Explore more [sample Java code for Azure Batch](https://azure.microsoft.com/resources/samples/?platform=java&term=batch) you can use in your apps.
 
 [1]: https://github.com/Azure-Samples/batch-java-manage-batch-accounts
+

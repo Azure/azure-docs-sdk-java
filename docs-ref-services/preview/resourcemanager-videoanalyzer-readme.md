@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Video Analyzer client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-videoanalyzer, azure-resource-manager
-author: joshfree
-ms.author: jfree
 ms.date: 05/13/2022
 ms.topic: reference
 ms.devlang: java

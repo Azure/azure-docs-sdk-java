@@ -1,8 +1,6 @@
 ---
 title: Azure ContentSafety client library for Java
 keywords: Azure, java, SDK, API, azure-ai-contentsafety, contentsafety
-author: joshfree
-ms.author: jfree
 ms.date: 09/22/2023
 ms.topic: reference
 ms.devlang: java

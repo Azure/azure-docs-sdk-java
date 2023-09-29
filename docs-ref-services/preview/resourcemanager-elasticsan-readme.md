@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager ElasticSan client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-elasticsan, elasticsan
-author: joshfree
-ms.author: jfree
 ms.date: 10/21/2022
 ms.topic: reference
 ms.devlang: java

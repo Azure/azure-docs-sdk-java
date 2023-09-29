@@ -1,8 +1,6 @@
 ---
 title: Azure Identity client library for Java
 keywords: Azure, java, SDK, API, azure-identity, identity
-author: g2vinay
-ms.author: vigera
 ms.date: 09/11/2023
 ms.topic: reference
 ms.devlang: java

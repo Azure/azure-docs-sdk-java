@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Dashboard client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-dashboard, dashboard
-author: joshfree
-ms.author: jfree
 ms.date: 08/19/2022
 ms.topic: reference
 ms.devlang: java

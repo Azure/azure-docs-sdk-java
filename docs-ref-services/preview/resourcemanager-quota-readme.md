@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager quota client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-quota, quota
-author: joshfree
-ms.author: jfree
 ms.date: 04/17/2023
 ms.topic: reference
 ms.devlang: java

@@ -1,16 +1,13 @@
 ---
 title: Azure Resource Manager ServiceBus client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-servicebus, servicebus
-author: ramya-rao-a
-ms.author: ramyar
 ms.date: 11/25/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: servicebus
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure Resource Manager ServiceBus client library for Java - version 2.1.0 
 
 

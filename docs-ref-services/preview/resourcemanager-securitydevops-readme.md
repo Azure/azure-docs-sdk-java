@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Security Dev Ops client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-securitydevops, securitydevops
-author: joshfree
-ms.author: jfree
 ms.date: 10/13/2022
 ms.topic: reference
 ms.devlang: java

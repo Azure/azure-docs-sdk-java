@@ -1,13 +1,10 @@
 ---
 title: Azure Data Lake Analytics SDK for Java
 description: Reference for Azure Data Lake Analytics SDK for Java
-author: joshfree
-ms.author: jfree
-ms.data: 09/28/2023
+ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: datalakeanalytics
-ms.date: 07/08/2022
 ---
 # Azure Data Lake Analytics libraries for Java
 
@@ -65,3 +62,4 @@ JobInformation jobInfo = adlaJobClient.getJobOperations().create(accountName, jo
 [1]: https://docs.microsoft.com/azure/data-lake-analytics/data-lake-analytics-get-started-java-sdk
 
 View the [complete list](https://azure.microsoft.com/resources/samples/?platform=java&term=analytics) of Azure Data Lake Analytics samples.
+

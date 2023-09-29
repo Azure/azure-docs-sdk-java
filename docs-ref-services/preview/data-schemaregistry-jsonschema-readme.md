@@ -1,8 +1,6 @@
 ---
 title: Azure Schema Registry Json Schema Serializer client library for Java
 keywords: Azure, java, SDK, API, azure-data-schemaregistry-jsonschema, schemaregistry
-author: conniey
-ms.author: conniey
 ms.date: 09/21/2023
 ms.topic: reference
 ms.devlang: java

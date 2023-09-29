@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager LogAnalytics client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-loganalytics, loganalytics
-author: joshfree
-ms.author: jfree
 ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java

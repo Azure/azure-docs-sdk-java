@@ -1,8 +1,6 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, azure-spring-cloud-feature-management, appconfiguration
-author: mssfang
-ms.author: shafang
 ms.date: 01/18/2023
 ms.topic: reference
 ms.devlang: java

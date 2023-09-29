@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager reservations client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-reservations, reservations
-author: joshfree
-ms.author: jfree
 ms.date: 03/20/2023
 ms.topic: reference
 ms.devlang: java
