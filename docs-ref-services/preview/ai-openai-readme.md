@@ -1,8 +1,6 @@
 ---
 title: Azure OpenAI client library for Java
 keywords: Azure, java, SDK, API, azure-ai-openai, openai
-author: joshfree
-ms.author: jfree
 ms.date: 09/22/2023
 ms.topic: reference
 ms.devlang: java
@@ -402,5 +400,4 @@ For details on contributing to this repository, see the [contributing guide](htt
 [openai_client_builder]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.5/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClientBuilder.java
 [openai_client_sync]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.5/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClient.java
 [wiki_identity]: https://github.com/Azure/azure-sdk-for-java/wiki/Identity-and-Authentication
-
 

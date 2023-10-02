@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager DevCenter client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-devcenter, devcenter
-author: sebrenna
-ms.author: sebrenna
 ms.date: 05/17/2023
 ms.topic: reference
 ms.devlang: java

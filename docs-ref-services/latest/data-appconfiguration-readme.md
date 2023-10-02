@@ -1,8 +1,6 @@
 ---
 title: Azure App Configuration client library for Java
 keywords: Azure, java, SDK, API, azure-data-appconfiguration, appconfiguration
-author: mssfang
-ms.author: shafang
 ms.date: 09/23/2023
 ms.topic: reference
 ms.devlang: java

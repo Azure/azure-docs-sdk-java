@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager HybridKubernetes client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-hybridkubernetes, hybridkubernetes
-author: joshfree
-ms.author: jfree
 ms.date: 01/12/2023
 ms.topic: reference
 ms.devlang: java

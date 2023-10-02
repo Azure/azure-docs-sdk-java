@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager ResourceHealth client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-resourcehealth, resourcehealth
-author: joshfree
-ms.author: jfree
 ms.date: 12/09/2022
 ms.topic: reference
 ms.devlang: java

@@ -1,18 +1,15 @@
 ---
 title: Azure Data Lake Store libraries for Java
-description: Reference documentation for the Java Data Lake Store libraries 
+description: Reference documentation for the Java Data Lake Store libraries
 keywords: Azure, Java, SDK, API, big data, data lake
-author: ramya-rao-a
-ms.author: ramyar
-manager: douge
 ms.date: 06/21/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: data-lake-store
+ms.technology: azure
+ms.prod: azure
+manager: douge
 ---
-
 # Azure Data Lake Store libraries for Java
 
 ## Overview
@@ -87,3 +84,4 @@ Use the management API to manage Data Lake Store accounts, firewall rules, and t
 [1]: https://github.com/Azure-Samples/data-lake-store-java-upload-download-get-started
 
 Explore more [sample Java code for Azure Data Lake Store](https://azure.microsoft.com/resources/samples/?platform=java&term=lake) you can use in your apps.
+

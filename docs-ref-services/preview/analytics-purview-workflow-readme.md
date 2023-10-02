@@ -1,8 +1,6 @@
 ---
 title: Azure Purview Workflow client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-purview-workflow, purview
-author: joshfree
-ms.author: jfree
 ms.date: 02/28/2023
 ms.topic: reference
 ms.devlang: java
@@ -123,5 +121,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [app_registration]:https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app
 [username_password_credential]: https://learn.microsoft.com/java/api/com.azure.identity.usernamepasswordcredential?source=recommendations&view=azure-java-stable
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fpurview%2Fazure-analytics-purview-workflow%2FREADME.png)
-
 

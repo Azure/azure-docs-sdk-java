@@ -1,8 +1,6 @@
 ---
 title: Azure Schema Registry Apache Avro Serializer client library for Java
 keywords: Azure, java, SDK, API, azure-data-schemaregistry-apacheavro, schemaregistry
-author: conniey
-ms.author: conniey
 ms.date: 09/21/2023
 ms.topic: reference
 ms.devlang: java

@@ -1,8 +1,6 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, azure-servicebus, servicebus
-author: shankarsama
-ms.author: shsama
 ms.date: 11/14/2022
 ms.topic: reference
 ms.devlang: java

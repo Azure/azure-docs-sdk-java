@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Easm client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-defendereasm, defendereasm
-author: joshfree
-ms.author: jfree
 ms.date: 08/17/2023
 ms.topic: reference
 ms.devlang: java

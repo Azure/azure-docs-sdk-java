@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager LabServices client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-labservices, labservices
-author: joshfree
-ms.author: jfree
 ms.date: 08/25/2022
 ms.topic: reference
 ms.devlang: java

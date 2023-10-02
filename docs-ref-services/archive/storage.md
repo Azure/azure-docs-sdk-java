@@ -1,13 +1,10 @@
 ---
 title: Azure Storage SDK for Java
 description: Reference for Azure Storage SDK for Java
-author: ibrahimrabab
-ms.author: ibrahimr
-ms.data: 09/15/2023
+ms.date: 02/13/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
-ms.date: 02/13/2020
 ---
 # Azure Storage libraries for Java
 
@@ -109,3 +106,4 @@ for(StorageAccountKey key : storageAccountKeys)    {
     System.out.println("Key name: " + key.keyName() + " with value "+ key.value());
 }
 ```
+

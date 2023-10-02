@@ -1,16 +1,13 @@
 ---
 title: Azure Resource Manager CDN client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-cdn, 
-author: ramya-rao-a
-ms.author: ramyar
+keywords: Azure, java, SDK, API, azure-resourcemanager-cdn,
 ms.date: 10/19/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: 
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure Resource Manager CDN client library for Java - version 2.0.0-beta.5 
 
 

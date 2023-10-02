@@ -1,8 +1,6 @@
 ---
 title: Azure Container Registry client library for Java
 keywords: Azure, java, SDK, API, azure-containers-containerregistry, containerregistry
-author: lmolkova
-ms.author: limolkova
 ms.date: 09/23/2023
 ms.topic: reference
 ms.devlang: java

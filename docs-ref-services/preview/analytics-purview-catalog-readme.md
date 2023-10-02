@@ -1,8 +1,6 @@
 ---
 title: Azure Purview Catalog client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-purview-catalog, purview
-author: joshfree
-ms.author: jfree
 ms.date: 06/15/2022
 ms.topic: reference
 ms.devlang: java

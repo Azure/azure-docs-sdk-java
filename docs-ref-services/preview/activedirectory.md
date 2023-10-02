@@ -2,16 +2,13 @@
 title: Azure Active Directory libraries for Java
 description: Reference documentation for the Java client and management libraries Azure Active Directory
 keywords: Azure, Java, SDK, API, SQL, authentication, AAD, Active Directory , Graph, OAuth 2.0
-author: ramya-rao-a
-ms.author: ramyar
-manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
+ms.technology: azure
+ms.prod: azure
+manager: douge
 ---
-
 # Azure Active Directory libraries for Java
 
 ## Overview
@@ -92,3 +89,4 @@ RoleAssignment roleAssignment2 = authenticated.roleAssignments()
 [Call the Active AD Graph API from your Java web app](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect)  
 
 Explore more [sample Java code for Azure AD](https://azure.microsoft.com/en-us/resources/samples/?term=active+directory&platform=java) you can use in your apps.
+

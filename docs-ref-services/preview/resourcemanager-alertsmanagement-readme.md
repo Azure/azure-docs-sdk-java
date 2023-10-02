@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager AlertsManagement client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-alertsmanagement, alertsmanagement
-author: joshfree
-ms.author: jfree
 ms.date: 08/24/2022
 ms.topic: reference
 ms.devlang: java

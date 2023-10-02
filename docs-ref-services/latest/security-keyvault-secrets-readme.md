@@ -1,8 +1,6 @@
 ---
 title: Azure Key Vault Secret client library for Java
 keywords: Azure, java, SDK, API, azure-security-keyvault-secrets, keyvault
-author: vcolin7
-ms.author: vicolina
 ms.date: 09/26/2023
 ms.topic: reference
 ms.devlang: java

@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Healthbot client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-healthbot, healthbot
-author: joshfree
-ms.author: jfree
 ms.date: 07/19/2022
 ms.topic: reference
 ms.devlang: java

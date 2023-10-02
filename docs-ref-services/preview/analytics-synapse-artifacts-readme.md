@@ -1,8 +1,6 @@
 ---
 title: Azure Synapse Artifacts client library for Java
 keywords: Azure, java, SDK, API, azure-analytics-synapse-artifacts, synapse
-author: joshfree
-ms.author: jfree
 ms.date: 01/12/2023
 ms.topic: reference
 ms.devlang: java
@@ -240,5 +238,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_synapse_cli_full]: /cli/azure/synapse?view=azure-cli-latest
 [artifacts_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-analytics-synapse-artifacts_1.0.0-beta.12/sdk/synapse/azure-analytics-synapse-artifacts/src/samples/java/com/azure/analytics/synapse/artifacts
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-
 

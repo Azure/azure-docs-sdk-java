@@ -1,8 +1,6 @@
 ---
 title: Azure Cognitive Services Health Insights Cancer Profiling client library for Java
 keywords: Azure, java, SDK, API, azure-health-insights-cancerprofiling, healthinsights
-author: joshfree
-ms.author: jfree
 ms.date: 04/12/2023
 ms.topic: reference
 ms.devlang: java

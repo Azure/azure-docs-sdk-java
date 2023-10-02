@@ -1,8 +1,6 @@
 ---
 title: Azure Communication Email client library for Java
 keywords: Azure, java, SDK, API, azure-communication-email, communication
-author: joshfree
-ms.author: jfree
 ms.date: 09/23/2023
 ms.topic: reference
 ms.devlang: java

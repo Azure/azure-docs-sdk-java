@@ -1,8 +1,6 @@
 ---
 title: Azure Json Reflect shared library for Java
 keywords: Azure, java, SDK, API, azure-json-reflect, core
-author: alzimmermsft
-ms.author: alzimmer
 ms.date: 03/03/2023
 ms.topic: reference
 ms.devlang: java

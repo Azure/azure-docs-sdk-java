@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager App Platform client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-appplatform, spring-cloud
-author: weidongxu-microsoft
-ms.author: weidxu
 ms.date: 09/28/2023
 ms.topic: reference
 ms.devlang: java

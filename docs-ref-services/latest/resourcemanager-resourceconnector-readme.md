@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Resource Connector client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-resourceconnector, resourceconnector
-author: joshfree
-ms.author: jfree
 ms.date: 08/23/2023
 ms.topic: reference
 ms.devlang: java

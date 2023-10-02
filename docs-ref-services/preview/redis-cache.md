@@ -2,15 +2,12 @@
 title: Redis Cache libraries for Java
 description: Reference documentation for the Java client and management libraries for Redis Cache
 keywords: Azure, Java, SDK, API, cache, redis, web cache, key-value, in-memory
-author: ramya-rao-a
-ms.author: ramyar
-manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
 ms.devlang: java
 ms.service: cache
+manager: douge
 ---
-
 # Redis Cache libraries for Java
 
 ## Overview
@@ -76,3 +73,4 @@ RedisCache cache = azure.redisCaches().define(redisCacheName1)
 [Manage Azure Redis Cache](https://github.com/Azure-Samples/redis-java-manage-cache)   
 
 Explore more [sample Java code for Azure Redis Cache](https://azure.microsoft.com/resources/samples/?platform=java&term=redis) you can use in your apps.
+

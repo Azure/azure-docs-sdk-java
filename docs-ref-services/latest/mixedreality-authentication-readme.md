@@ -1,8 +1,6 @@
 ---
 title: Azure Mixed Reality client library for Java
 keywords: Azure, java, SDK, API, azure-mixedreality-authentication, mixedreality
-author: joshfree
-ms.author: jfree
 ms.date: 09/23/2023
 ms.topic: reference
 ms.devlang: java

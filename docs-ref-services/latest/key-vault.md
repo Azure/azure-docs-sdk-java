@@ -1,13 +1,10 @@
 ---
 title: Azure Key Vault SDK for Java
 description: Reference for Azure Key Vault SDK for Java
-author: joshfree
-ms.author: jfree
-ms.data: 09/29/2023
+ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: keyvault
-ms.date: 07/08/2022
 ---
 # Azure Key Vault libraries for Java
 
@@ -52,3 +49,4 @@ Use the following library to work with the Azure Key Vault resource provider:
 |    Library    |    Reference    |    Package    |    Source    |
 |------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
 |    azure-mgmt-keyvault    |    [Reference](/java/api/com.microsoft.azure.management.keyvault)    |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-mgmt-keyvault)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/mgmt)    |
+

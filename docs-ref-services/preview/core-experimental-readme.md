@@ -1,8 +1,6 @@
 ---
 title: Azure Core Experimental shared library for Java
 keywords: Azure, java, SDK, API, azure-core-experimental, core
-author: alzimmermsft
-ms.author: alzimmer
 ms.date: 08/05/2023
 ms.topic: reference
 ms.devlang: java

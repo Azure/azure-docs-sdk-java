@@ -2,14 +2,11 @@
 title: Azure Storage libraries for Java (legacy)
 description: Reference for Azure Storage SDK for Java (legacy)
 keywords: Azure, Java, SDK, API, Storage
-author: pauljewellmsft
-ms.author: pauljewell
 ms.date: 10/29/2018
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
 ---
-
 # Azure Storage libraries for Java (legacy)
 
 ## Overview
@@ -91,4 +88,5 @@ for(StorageAccountKey key : storageAccountKeys)    {
 
 [Azure Storage SDK for Java](https://github.com/azure/azure-storage-java)
 [Read and write objects to blob storage](https://github.com/Azure-Samples/storage-blobs-java-v10-quickstart)   
-[Read and write messages with queues](https://github.com/Azure-Samples/storage-queue-java-getting-started)   
+[Read and write messages with queues](https://github.com/Azure-Samples/storage-queue-java-getting-started)
+

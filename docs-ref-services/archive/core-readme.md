@@ -1,16 +1,13 @@
 ---
 title: Azure Core shared library for Java
 keywords: Azure, java, SDK, API, azure-core, corecore
-author: ramya-rao-a
-ms.author: ramyar
 ms.date: 11/26/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: corecore
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure Core shared library for Java - version 1.11.0 
 
 

@@ -1,8 +1,6 @@
 ---
 title: Azure Load Testing client library for Java
 keywords: Azure, java, SDK, API, azure-developer-loadtesting, load-testing
-author: Harshan01
-ms.author: harshanb
 ms.date: 09/23/2023
 ms.topic: reference
 ms.devlang: java

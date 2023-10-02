@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Qumulo client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-qumulo, qumulo
-author: joshfree
-ms.author: jfree
 ms.date: 05/25/2023
 ms.topic: reference
 ms.devlang: java

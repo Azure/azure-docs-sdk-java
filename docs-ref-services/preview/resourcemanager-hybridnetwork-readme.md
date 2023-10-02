@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager HybridNetwork client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-hybridnetwork, hybridnetwork
-author: joshfree
-ms.author: jfree
 ms.date: 09/30/2022
 ms.topic: reference
 ms.devlang: java

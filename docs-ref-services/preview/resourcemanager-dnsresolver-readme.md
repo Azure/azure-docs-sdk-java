@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager DnsResolver client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-dnsresolver, dnsresolver
-author: joshfree
-ms.author: jfree
 ms.date: 09/15/2022
 ms.topic: reference
 ms.devlang: java

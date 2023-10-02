@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager HybridConnectivity client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-hybridconnectivity, hybridconnectivity
-author: joshfree
-ms.author: jfree
 ms.date: 08/30/2023
 ms.topic: reference
 ms.devlang: java

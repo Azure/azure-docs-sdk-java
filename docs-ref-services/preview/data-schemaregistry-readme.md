@@ -1,8 +1,6 @@
 ---
 title: Azure Schema Registry client library for Java
 keywords: Azure, java, SDK, API, azure-data-schemaregistry, schema-registry
-author: conniey
-ms.author: conniey
 ms.date: 02/13/2023
 ms.topic: reference
 ms.devlang: java

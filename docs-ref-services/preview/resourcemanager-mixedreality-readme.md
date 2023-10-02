@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager MixedReality client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-mixedreality, mixedreality
-author: joshfree
-ms.author: jfree
 ms.date: 01/18/2023
 ms.topic: reference
 ms.devlang: java

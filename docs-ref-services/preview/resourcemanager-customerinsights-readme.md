@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager CustomerInsights client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-customerinsights, customerinsights
-author: joshfree
-ms.author: jfree
 ms.date: 01/13/2023
 ms.topic: reference
 ms.devlang: java
