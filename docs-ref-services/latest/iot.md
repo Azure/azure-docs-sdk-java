@@ -1,7 +1,7 @@
 ---
 title: Azure IoT SDK for Java
 description: Reference for Azure IoT SDK for Java
-ms.date: 07/08/2022
+ms.date: 10/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: iot
@@ -73,4 +73,3 @@ catch (ExecutionException e) {
 [IoT Service samples](https://github.com/Azure/azure-iot-sdk-java/tree/master/service/iot-service-samples)
 
 Explore more [sample Java code for Azure IoT](https://azure.microsoft.com/resources/samples/?platform=java&term=iot) you can use in your apps.
-

@@ -1,6 +1,7 @@
 ---
 title: Azure Resource Graph SDK for Java
 description: Reference for Azure Resource Graph SDK for Java
+ms.date: 10/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: resourcegraph
@@ -8,4 +9,3 @@ ms.service: resourcegraph
 # Azure Resource Graph SDK for Java - latest
 ## Packages - latest
 [!INCLUDE [packages](resource-graph-index.md)]
-

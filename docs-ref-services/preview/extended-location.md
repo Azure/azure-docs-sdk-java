@@ -1,6 +1,7 @@
 ---
 title: Azure Extended Location SDK for Java
 description: Reference for Azure Extended Location SDK for Java
+ms.date: 10/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: extendedlocation
@@ -8,4 +9,3 @@ ms.service: extendedlocation
 # Azure Extended Location SDK for Java - preview
 ## Packages - preview
 [!INCLUDE [packages](extended-location-index.md)]
-

@@ -1,7 +1,7 @@
 ---
 title: Azure Storage SDK for Java
 description: Reference for Azure Storage SDK for Java
-ms.date: 11/17/2022
+ms.date: 10/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
@@ -337,4 +337,3 @@ Time:2023-05-19T17:10:34.2972651Z</Message><HeaderName>x-ms-version</HeaderName>
 If you've upgraded to the latest beta or generally available version of the SDK and you experience this error, it's recommended that you downgrade to the previous generally available version of the SDK to see if the issue resolves. If the issue persists, or if the recommendation is not feasible, [open a support ticket](https://ms.portal.azure.com/#create/Microsoft.Support) to explore further options.
 
 [Back to list of known issues](#list-of-known-issues)
-

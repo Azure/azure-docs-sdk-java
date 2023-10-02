@@ -1,6 +1,7 @@
 ---
 title: Azure Confidential Ledger SDK for Java
 description: Reference for Azure Confidential Ledger SDK for Java
+ms.date: 10/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: confidentialledger
@@ -9,4 +10,3 @@ ms.service: confidentialledger
 
 ## Client packages - latest
 [!INCLUDE [client-packages](confidential-ledger-client-index.md)]
-

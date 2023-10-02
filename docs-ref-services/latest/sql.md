@@ -1,7 +1,7 @@
 ---
 title: Azure SQL SDK for Java
 description: Reference for Azure SQL SDK for Java
-ms.date: 07/08/2022
+ms.date: 10/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: mysql
@@ -82,4 +82,3 @@ SqlServer server = azureResourceManager.sqlServers().define(sqlDbName)
 [!INCLUDE [java-sql-samples](../../docs-ref-conceptual/includes/sql.md)]
 
 Explore more [sample Java code for Azure SQL Database](https://azure.microsoft.com/resources/samples/?platform=java&term=SQL) you can use in your apps.
-

@@ -1,6 +1,7 @@
 ---
 title: Azure Bot Service SDK for Java
 description: Reference for Azure Bot Service SDK for Java
+ms.date: 10/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: botservice
@@ -8,4 +9,3 @@ ms.service: botservice
 # Azure Bot Service SDK for Java - preview
 ## Packages - preview
 [!INCLUDE [packages](bot-service-index.md)]
-
