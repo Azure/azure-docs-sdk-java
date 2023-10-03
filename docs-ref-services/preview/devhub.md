@@ -1,6 +1,7 @@
 ---
 title: Azure DevHub SDK for Java
 description: Reference for Azure DevHub SDK for Java
+ms.date: 10/03/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: devhub
@@ -9,4 +10,3 @@ ms.service: devhub
 
 ## Management packages - preview
 [!INCLUDE [mgmt-packages](devhub-mgmt-index.md)]
-

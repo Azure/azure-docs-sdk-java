@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus SDK for Java
 description: Reference for Azure Service Bus SDK for Java
-ms.date: 07/08/2022
+ms.date: 10/03/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: service-bus-messaging
@@ -83,4 +83,3 @@ Add dependency in your `pom.xml`.
 ```
 
 Explore more [sample Java code for Azure Service Bus](https://azure.microsoft.com/resources/samples/?platform=java&term=bus) you can use in your apps.
-

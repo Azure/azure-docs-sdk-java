@@ -1,7 +1,7 @@
 ---
 title: Azure Resources SDK for Java
 description: Reference for Azure Resources SDK for Java
-ms.date: 07/08/2022
+ms.date: 10/03/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
@@ -49,4 +49,3 @@ ResourceGroup resourceGroup = azure.resourceGroups().define("myResourceGroup")
 [2]: https://github.com/Azure-Samples/resources-java-deploy-using-arm-template
 
 View the [complete list](https://azure.microsoft.com/resources/samples/?platform=java&term=resource) of Azure Resource Manager samples.
-

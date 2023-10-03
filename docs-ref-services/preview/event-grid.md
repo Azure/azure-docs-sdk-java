@@ -1,7 +1,7 @@
 ---
 title: Azure Event Grid SDK for Java
 description: Reference for Azure Event Grid SDK for Java
-ms.date: 07/08/2022
+ms.date: 10/03/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: event-grid
@@ -96,4 +96,3 @@ EventSubscription eventSubscription = eventGridManager.eventSubscriptions().defi
 
 > [!div class="nextstepaction"]
 > [Explore the management APIs](/java/api/overview/azure/eventgrid/management)
-

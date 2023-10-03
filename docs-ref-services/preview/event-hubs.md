@@ -1,12 +1,12 @@
 ---
 title: Azure Event Hubs SDK for Java
 description: Reference for Azure Event Hubs SDK for Java
-keywords: Azure, Java, SDK, API, event hub, IoT, stream processing
-ms.date: 06/21/2017
+ms.date: 10/03/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: event-hubs
 manager: douge
+keywords: Azure, Java, SDK, API, event hub, IoT, stream processing
 ---
 # Azure Event Hub libraries for Java
 
@@ -61,4 +61,3 @@ ehClient.sendSync(sendEvent);
 [3]: https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub
 
 Explore more [sample Java code for Azure Event Hubs](https://azure.microsoft.com/resources/samples/?platform=java&term=event) you can use in your apps.
-

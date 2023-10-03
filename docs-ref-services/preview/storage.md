@@ -1,7 +1,7 @@
 ---
 title: Azure Storage SDK for Java
 description: Reference for Azure Storage SDK for Java
-ms.date: 07/08/2022
+ms.date: 10/03/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
@@ -106,4 +106,3 @@ for(StorageAccountKey key : storageAccountKeys)    {
     System.out.println("Key name: " + key.keyName() + " with value "+ key.value());
 }
 ```
-
