@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager RecoveryServicesBackup client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-recoveryservicesbackup, recoveryservicesbackup
-author: joshfree
-ms.author: jfree
 ms.date: 03/16/2023
 ms.topic: reference
 ms.devlang: java

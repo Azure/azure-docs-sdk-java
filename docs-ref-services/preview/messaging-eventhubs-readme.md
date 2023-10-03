@@ -1,8 +1,6 @@
 ---
 title: Azure Event Hubs client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventhubs, event-hubs
-author: conniey
-ms.author: conniey
 ms.date: 02/01/2023
 ms.topic: reference
 ms.devlang: java

@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager ResourceGraph client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-resourcegraph, resourcegraph
-author: joshfree
-ms.author: jfree
 ms.date: 11/02/2022
 ms.topic: reference
 ms.devlang: java

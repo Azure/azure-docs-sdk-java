@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager MediaServices client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-mediaservices, mediaservices
-author: joshfree
-ms.author: jfree
 ms.date: 01/17/2023
 ms.topic: reference
 ms.devlang: java

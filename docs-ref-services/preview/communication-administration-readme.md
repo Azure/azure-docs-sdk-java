@@ -1,16 +1,13 @@
 ---
 title: Azure Communication Administration client library for Java
 keywords: Azure, java, SDK, API, azure-communication-administration, communication
-author: ramya-rao-a
-ms.author: ramyar
 ms.date: 11/17/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: communication
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure Communication Administration client library for Java - version 1.0.0-beta.3 
 
 

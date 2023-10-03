@@ -1,8 +1,6 @@
 ---
 title: Azure Anomaly Detector client library for Java
 keywords: Azure, java, SDK, API, azure-ai-anomalydetector, anomalydetector
-author: conhua
-ms.author: conhua
 ms.date: 12/09/2022
 ms.topic: reference
 ms.devlang: java

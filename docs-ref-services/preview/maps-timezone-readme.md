@@ -1,8 +1,6 @@
 ---
 title: Azure Maps SDK Timezone client library for Java
 keywords: Azure, java, SDK, API, azure-maps-timezone, maps
-author: joshfree
-ms.author: jfree
 ms.date: 10/14/2022
 ms.topic: reference
 ms.devlang: java

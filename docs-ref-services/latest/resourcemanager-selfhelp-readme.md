@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Self Help client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-selfhelp, selfhelp
-author: joshfree
-ms.author: jfree
 ms.date: 06/22/2023
 ms.topic: reference
 ms.devlang: java

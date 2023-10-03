@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager AzureArcData client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-azurearcdata, azure-resource-manager
-author: joshfree
-ms.author: jfree
 ms.date: 01/11/2023
 ms.topic: reference
 ms.devlang: java

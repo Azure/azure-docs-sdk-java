@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Voice Services client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-voiceservices, voiceservices
-author: joshfree
-ms.author: jfree
 ms.date: 04/25/2023
 ms.topic: reference
 ms.devlang: java

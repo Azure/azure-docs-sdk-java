@@ -1,8 +1,6 @@
 ---
 title: Azure Maps SDK Elevation client library for Java
 keywords: Azure, java, SDK, API, azure-maps-elevation, maps
-author: joshfree
-ms.author: jfree
 ms.date: 05/10/2023
 ms.topic: reference
 ms.devlang: java

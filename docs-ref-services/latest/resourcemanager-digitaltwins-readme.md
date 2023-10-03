@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager AzureDigitalTwins client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-digitaltwins, digitaltwins
-author: johngallardo
-ms.author: jgalla
 ms.date: 12/22/2022
 ms.topic: reference
 ms.devlang: java

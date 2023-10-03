@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager AppComplianceAutomation client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-appcomplianceautomation, appcomplianceautomation
-author: joshfree
-ms.author: jfree
 ms.date: 11/15/2022
 ms.topic: reference
 ms.devlang: java

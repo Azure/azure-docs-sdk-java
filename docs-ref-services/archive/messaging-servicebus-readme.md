@@ -1,16 +1,13 @@
 ---
 title: Azure Service Bus client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-servicebus, servicebus
-author: ramya-rao-a
-ms.author: ramyar
 ms.date: 12/01/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: servicebus
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure Service Bus client library for Java - version 7.0.0 
 
 

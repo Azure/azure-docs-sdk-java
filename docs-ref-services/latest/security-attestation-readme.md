@@ -1,8 +1,6 @@
 ---
 title: Azure Attestation client library for Java
 keywords: Azure, java, SDK, API, azure-security-attestation, attestation
-author: azure-sdk-write-attestation
-ms.author: azure-sdk-write-attestation
 ms.date: 09/23/2023
 ms.topic: reference
 ms.devlang: java

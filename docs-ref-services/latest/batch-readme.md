@@ -1,8 +1,6 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, azure-batch, batch
-author: jingjlii
-ms.author: jingjli
 ms.date: 06/13/2023
 ms.topic: reference
 ms.devlang: java

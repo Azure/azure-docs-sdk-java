@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager NetworkCloud client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-networkcloud, networkcloud
-author: joshfree
-ms.author: jfree
 ms.date: 08/25/2023
 ms.topic: reference
 ms.devlang: java

@@ -1,8 +1,6 @@
 ---
 title: Azure Storage Queue client library for Java
 keywords: Azure, java, SDK, API, azure-storage-queue, storage
-author: ibrahimrabab
-ms.author: ibrahimr
 ms.date: 09/13/2023
 ms.topic: reference
 ms.devlang: java

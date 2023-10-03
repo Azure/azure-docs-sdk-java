@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager ConfidentialLedger client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-confidentialledger, confidentialledger
-author: joshfree
-ms.author: jfree
 ms.date: 04/20/2023
 ms.topic: reference
 ms.devlang: java

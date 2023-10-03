@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager ManagementGroups client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-managementgroups, managementgroups
-author: joshfree
-ms.author: jfree
 ms.date: 06/19/2023
 ms.topic: reference
 ms.devlang: java

@@ -1,8 +1,6 @@
 ---
 title: Azure Event Hubs Checkpoint Store client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventhubs-checkpointstore-blob, eventhubs
-author: conniey
-ms.author: conniey
 ms.date: 02/01/2023
 ms.topic: reference
 ms.devlang: java

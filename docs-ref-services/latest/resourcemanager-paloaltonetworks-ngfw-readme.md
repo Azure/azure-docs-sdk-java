@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager PaloAlto Networks Ngfw client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-paloaltonetworks-ngfw, paloaltonetworks
-author: joshfree
-ms.author: jfree
 ms.date: 07/14/2023
 ms.topic: reference
 ms.devlang: java

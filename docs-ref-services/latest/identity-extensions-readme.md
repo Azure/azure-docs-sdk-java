@@ -1,8 +1,6 @@
 ---
 title: Azure identity authentication extensions plugin library for Java
 keywords: Azure, java, SDK, API, azure-identity-extensions, identity
-author: g2vinay
-ms.author: vigera
 ms.date: 09/23/2023
 ms.topic: reference
 ms.devlang: java

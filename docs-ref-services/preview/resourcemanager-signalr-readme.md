@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager SignalR client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-signalr, signalr
-author: joshfree
-ms.author: jfree
 ms.date: 09/15/2023
 ms.topic: reference
 ms.devlang: java

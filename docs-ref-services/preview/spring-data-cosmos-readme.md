@@ -1,8 +1,6 @@
 ---
 title: Azure Spring Data Cosmos client library for Java
 keywords: Azure, java, SDK, API, azure-spring-data-cosmos, spring
-author: backwind1233
-ms.author: zhihaoguo
 ms.date: 06/28/2023
 ms.topic: reference
 ms.devlang: java

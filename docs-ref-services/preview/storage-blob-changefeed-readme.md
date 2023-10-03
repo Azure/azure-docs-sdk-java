@@ -1,8 +1,6 @@
 ---
 title: Azure Blob Storage change feed client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob-changefeed, storage
-author: rickle-msft
-ms.author: frley
 ms.date: 05/06/2022
 ms.topic: reference
 ms.devlang: java

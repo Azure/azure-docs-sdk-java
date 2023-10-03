@@ -1,16 +1,13 @@
 ---
 title: Azure Resource Manager BatchAI client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-batchai, 
-author: ramya-rao-a
-ms.author: ramyar
+keywords: Azure, java, SDK, API, azure-resourcemanager-batchai,
 ms.date: 04/14/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: 
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure Resource Manager BatchAI client library for Java - version 1.0.0-beta.1 
 
 

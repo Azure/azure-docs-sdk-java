@@ -1,17 +1,14 @@
 ---
 title: Azure SQL SDK for Java
 description: Reference for Azure SQL SDK for Java
-author: joshfree
-ms.author: jfree
-ms.data: 09/15/2023
+keywords: Azure, Java, SDK, API, SQL, database , JDBC
+ms.date: 07/05/2017
 ms.topic: reference
 ms.devlang: java
 ms.service: sql
 manager: douge
-ms.prod: azure
-ms.date: 07/05/2017
 ms.technology: azure
-keywords: Azure, Java, SDK, API, SQL, database , JDBC
+ms.prod: azure
 ---
 # Azure SQL Database libraries for Java (Legacy)
 
@@ -86,3 +83,4 @@ SqlServer sqlServer = azure.sqlServers().define(sqlDbName)
 [!INCLUDE [java-sql-samples](../../docs-ref-conceptual/includes/sql.md)]
 
 Explore more [sample Java code for Azure SQL Database](https://azure.microsoft.com/resources/samples/?platform=java&term=SQL) you can use in your apps.
+

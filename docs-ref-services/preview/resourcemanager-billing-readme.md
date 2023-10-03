@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Billing client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-billing, billing
-author: joshfree
-ms.author: jfree
 ms.date: 01/12/2023
 ms.topic: reference
 ms.devlang: java

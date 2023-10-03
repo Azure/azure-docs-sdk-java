@@ -1,8 +1,6 @@
 ---
 title: Azure Event Grid client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid, eventgrid
-author: mssfang
-ms.author: shafang
 ms.date: 09/13/2023
 ms.topic: reference
 ms.devlang: java

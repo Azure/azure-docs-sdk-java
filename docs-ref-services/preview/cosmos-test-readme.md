@@ -1,8 +1,6 @@
 ---
 title: Azure Cosmos Test client library for Java
 keywords: Azure, java, SDK, API, azure-cosmos-test, cosmos
-author: kushagraThapar
-ms.author: kuthapar
 ms.date: 08/21/2023
 ms.topic: reference
 ms.devlang: java

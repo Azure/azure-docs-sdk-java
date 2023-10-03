@@ -1,16 +1,13 @@
 ---
 title: Azure Resource Manager AzureChangeAnalysis client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-changeanalysis, 
-author: ramya-rao-a
-ms.author: ramyar
+keywords: Azure, java, SDK, API, azure-resourcemanager-changeanalysis,
 ms.date: 03/26/2021
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: 
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure Resource Manager AzureChangeAnalysis client library for Java - version 1.0.0-beta.1 
 
 

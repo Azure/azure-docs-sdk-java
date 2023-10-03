@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Scvmm client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-scvmm, scvmm
-author: joshfree
-ms.author: jfree
 ms.date: 05/10/2022
 ms.topic: reference
 ms.devlang: java

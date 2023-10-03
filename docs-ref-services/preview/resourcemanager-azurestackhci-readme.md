@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager AzureStackHci client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-azurestackhci, azure-resource-manager
-author: joshfree
-ms.author: jfree
 ms.date: 05/25/2022
 ms.topic: reference
 ms.devlang: java

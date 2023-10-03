@@ -1,8 +1,6 @@
 ---
 title: Azure Communications Rooms Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-rooms, communication
-author: joshfree
-ms.author: jfree
 ms.date: 09/23/2023
 ms.topic: reference
 ms.devlang: java
@@ -235,5 +233,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [api_documentation]: https://aka.ms/java-docs
 [next_steps]: https://learn.microsoft.com/azure/communication-services/concepts/rooms/room-concept
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fappconfiguration%2Fazure-data-appconfiguration%2FREADME.png)
-
 

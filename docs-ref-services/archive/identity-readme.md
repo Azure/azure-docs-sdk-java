@@ -1,16 +1,13 @@
 ---
 title: Azure Identity client library for Java
 keywords: Azure, java, SDK, API, azure-identity, identity
-author: ramya-rao-a
-ms.author: ramyar
 ms.date: 11/10/2020
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: identity
+ms.technology: azure
+ms.prod: azure
 ---
-
 # Azure Identity client library for Java - version 1.2.0 
 
 The Azure Identity library provides Azure Active Directory token authentication support across the Azure SDK. It provides a set of TokenCredential implementations which can be used to construct Azure SDK clients which support AAD token authentication.

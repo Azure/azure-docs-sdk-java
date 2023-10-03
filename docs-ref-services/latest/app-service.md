@@ -1,13 +1,10 @@
 ---
 title: Azure App Service SDK for Java
 description: Reference for Azure App Service SDK for Java
-author: joshfree
-ms.author: jfree
-ms.data: 09/29/2023
+ms.date: 07/08/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: app-service
-ms.date: 07/08/2022
 ---
 # Azure App Service libraries for Java
 
@@ -53,3 +50,4 @@ WebApp app = azure.webApps().define("newLinuxWebApp")
 ## Samples
 
 Explore more [sample Java code for Azure App Service](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/resourcemanager/docs/SAMPLE.md#application-services) you can use in your apps.
+

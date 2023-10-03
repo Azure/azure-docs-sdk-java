@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Hana client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-hanaonazure, hanaonazure
-author: joshfree
-ms.author: jfree
 ms.date: 01/16/2023
 ms.topic: reference
 ms.devlang: java

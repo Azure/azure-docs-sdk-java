@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager DataBox client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-databox, databox
-author: joshfree
-ms.author: jfree
 ms.date: 05/23/2023
 ms.topic: reference
 ms.devlang: java

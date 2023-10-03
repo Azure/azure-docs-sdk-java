@@ -1,8 +1,6 @@
 ---
 title: Azure Metrics Advisor client library for Java
 keywords: Azure, java, SDK, API, azure-ai-metricsadvisor, metricsadvisor
-author: samvaity
-ms.author: savaity
 ms.date: 09/23/2023
 ms.topic: reference
 ms.devlang: java

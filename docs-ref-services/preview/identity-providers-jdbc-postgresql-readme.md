@@ -1,8 +1,6 @@
 ---
 title: Azure identity JDBC PostgreSQL plugin library for Java
 keywords: Azure, java, SDK, API, azure-identity-providers-jdbc-postgresql, jdbc
-author: joshfree
-ms.author: jfree
 ms.date: 09/23/2022
 ms.topic: reference
 ms.devlang: java
@@ -60,5 +58,4 @@ For details on contributing to this repository, see the [contributing guide](htt
 
 <!-- LINKS -->
 [jdk]: /java/azure/jdk/
-
 

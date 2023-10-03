@@ -1,8 +1,6 @@
 ---
 title: Azure Document Intelligence client library for Java
 keywords: Azure, java, SDK, API, azure-ai-formrecognizer, formrecognizer
-author: samvaity
-ms.author: savaity
 ms.date: 09/15/2023
 ms.topic: reference
 ms.devlang: java

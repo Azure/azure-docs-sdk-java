@@ -1,8 +1,6 @@
 ---
 title: Azure Resource Manager Managed Network Fabric client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-managednetworkfabric, managednetworkfabric
-author: joshfree
-ms.author: jfree
 ms.date: 07/19/2023
 ms.topic: reference
 ms.devlang: java
