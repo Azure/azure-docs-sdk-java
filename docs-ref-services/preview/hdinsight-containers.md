@@ -1,7 +1,7 @@
 ---
 title: Azure HDInsight Containers SDK for Java
 description: Reference for Azure HDInsight Containers SDK for Java
-ms.date: 10/03/2023
+ms.date: 10/04/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: hdinsightcontainers

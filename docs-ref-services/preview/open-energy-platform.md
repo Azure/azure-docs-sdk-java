@@ -1,7 +1,7 @@
 ---
 title: Azure Open Energy Platform SDK for Java
 description: Reference for Azure Open Energy Platform SDK for Java
-ms.date: 10/03/2023
+ms.date: 10/04/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: openenergyplatform
