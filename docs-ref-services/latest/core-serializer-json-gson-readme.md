@@ -1,12 +1,12 @@
 ---
 title: Azure Core Gson JSON Serializer plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-serializer-json-gson, core
-ms.date: 08/05/2023
+ms.date: 10/06/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Gson JSON Serializer plugin library for Java - version 1.2.3 
+# Azure Core Gson JSON Serializer plugin library for Java - version 1.2.5 
 
 
 Azure Core Gson JSON Serializer is a plugin for the `azure-core` `JsonSerializer` API.
@@ -21,7 +21,7 @@ Azure Core Gson JSON Serializer is a plugin for the `azure-core` `JsonSerializer
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-serializer-json-gson_1.2.3/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-serializer-json-gson_1.2.5/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -56,7 +56,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-serializer-json-gson</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.5</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -82,7 +82,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-serializer-json-gson_1.2.3/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-serializer-json-gson_1.2.5/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
