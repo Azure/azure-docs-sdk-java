@@ -1,17 +1,17 @@
 ---
 title: Azure Resource Manager DesktopVirtualization client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-desktopvirtualization, desktopvirtualization
-ms.date: 03/20/2023
+ms.date: 10/17/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: desktopvirtualization
 ---
-# Azure Resource Manager DesktopVirtualization client library for Java - version 1.0.0 
+# Azure Resource Manager DesktopVirtualization client library for Java - version 1.1.0 
 
 
 Azure Resource Manager DesktopVirtualization client library for Java.
 
-This package contains Microsoft Azure SDK for DesktopVirtualization Management SDK.  Package tag package-2022-09. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for DesktopVirtualization Management SDK.  Package tag package-2023-09. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -41,7 +41,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-desktopvirtualization</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -83,7 +83,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
-[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.0.0/sdk/desktopvirtualization/azure-resourcemanager-desktopvirtualization/SAMPLE.md)
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.1.0/sdk/desktopvirtualization/azure-resourcemanager-desktopvirtualization/SAMPLE.md)
 
 
 ## Troubleshooting
@@ -105,11 +105,13 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: /java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.0.0/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.0.0/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.0.0/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.0.0/sdk/resourcemanager/docs/DESIGN.md
-[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.0.0/CONTRIBUTING.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.1.0/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.1.0/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.1.0/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.1.0/sdk/resourcemanager/docs/DESIGN.md
+[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-desktopvirtualization_1.1.0/CONTRIBUTING.md
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
+
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fdesktopvirtualization%2Fazure-resourcemanager-desktopvirtualization%2FREADME.png)
 
