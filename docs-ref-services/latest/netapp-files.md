@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: netappfiles
 ---
-# Azure NetApp Files SDK for Java - preview
-## Packages - preview
+# Azure NetApp Files SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](netapp-files-index.md)]
