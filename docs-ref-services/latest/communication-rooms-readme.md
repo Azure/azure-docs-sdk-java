@@ -1,12 +1,12 @@
 ---
 title: Azure Communications Rooms Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-rooms, communication
-ms.date: 09/23/2023
+ms.date: 10/21/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communications Rooms Service client library for Java - version 1.0.4 
+# Azure Communications Rooms Service client library for Java - version 1.0.5 
 
 
 Azure Communication Rooms is used to operate on rooms.
@@ -34,7 +34,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-communication-rooms</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -223,7 +223,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-rooms_1.0.4/sdk/communication/azure-communication-rooms/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-rooms_1.0.5/sdk/communication/azure-communication-rooms/src
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-rooms
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
@@ -233,4 +233,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [api_documentation]: https://aka.ms/java-docs
 [next_steps]: https://learn.microsoft.com/azure/communication-services/concepts/rooms/room-concept
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fappconfiguration%2Fazure-data-appconfiguration%2FREADME.png)
+
 
