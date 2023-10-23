@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: datadog
 ---
-# Azure Datadog SDK for Java - preview
-## Packages - preview
+# Azure Datadog SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](datadog-index.md)]
