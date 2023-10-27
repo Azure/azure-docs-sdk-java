@@ -1,12 +1,12 @@
 ---
 title: Azure Resource Manager keyvault client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-keyvault, key-vault
-ms.date: 09/28/2023
+ms.date: 10/27/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: key-vault
 ---
-# Azure Resource Manager keyvault client library for Java - version 2.31.0 
+# Azure Resource Manager keyvault client library for Java - version 2.32.0 
 
 
 Azure Resource Manager keyvault client library for Java
@@ -27,7 +27,7 @@ For documentation on how to use this package, please see [Azure Management Libra
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-keyvault</artifactId>
-    <version>2.31.0</version>
+    <version>2.32.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -40,7 +40,7 @@ Azure Management Libraries require a `TokenCredential` implementation for authen
 
 ### Authentication
 
-By default, Azure Active Directory token authentication depends on correct configure of following environment variables.
+By default, Microsoft Entra ID token authentication depends on correct configure of following environment variables.
 
 - `AZURE_CLIENT_ID` for Azure client ID.
 - `AZURE_TENANT_ID` for Azure tenant ID.
@@ -77,7 +77,7 @@ See [Samples][sample] for code snippets and samples.
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.31.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.32.0/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -86,11 +86,11 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- LINKS -->
-[jdk]: /java/azure/jdk/
+[jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.31.0/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.31.0/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.31.0/sdk/resourcemanager/docs/AUTH.md
-[sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.31.0/sdk/resourcemanager/docs/SAMPLE.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.31.0/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.32.0/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.32.0/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.32.0/sdk/resourcemanager/docs/AUTH.md
+[sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.32.0/sdk/resourcemanager/docs/SAMPLE.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-keyvault_2.32.0/sdk/resourcemanager/docs/DESIGN.md
 
