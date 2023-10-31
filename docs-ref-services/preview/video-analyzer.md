@@ -1,10 +1,10 @@
 ---
 title: Azure Video Analyzer SDK for Java
 description: Reference for Azure Video Analyzer SDK for Java
-ms.date: 10/30/2023
+ms.date: 10/31/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: videoanalyzer
+ms.service: azure-resource-manager
 ---
 # Azure Video Analyzer SDK for Java - preview
 ## Packages - preview
