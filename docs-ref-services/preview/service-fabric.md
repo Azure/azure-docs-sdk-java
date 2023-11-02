@@ -1,7 +1,7 @@
 ---
 title: Azure Service Fabric SDK for Java
 description: Reference for Azure Service Fabric SDK for Java
-ms.date: 11/01/2023
+ms.date: 11/02/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: servicefabric
