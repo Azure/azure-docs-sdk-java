@@ -1,7 +1,7 @@
 ---
 title: Azure Core HTTP SDK for Java
 description: Reference for Azure Core HTTP SDK for Java
-ms.date: 11/03/2023
+ms.date: 11/06/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: corehttp
