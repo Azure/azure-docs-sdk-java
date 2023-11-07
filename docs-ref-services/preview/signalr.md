@@ -1,7 +1,7 @@
 ---
 title: Azure SignalR SDK for Java
 description: Reference for Azure SignalR SDK for Java
-ms.date: 11/06/2023
+ms.date: 11/07/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: signalr
