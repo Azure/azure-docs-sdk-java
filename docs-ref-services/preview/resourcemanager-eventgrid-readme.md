@@ -1,10 +1,11 @@
 ---
 title: Azure Resource Manager EventGrid client library for Java
+description: Azure Resource Manager EventGrid client library for Java - Version 1.2.0-beta.1
 keywords: Azure, java, SDK, API, azure-resourcemanager-eventgrid, eventgrid
 ms.date: 07/06/2022
 ms.topic: reference
 ms.devlang: java
-ms.service: eventgrid
+ms.service: azure
 ---
 # Azure Resource Manager EventGrid client library for Java - version 1.2.0-beta.3 
 
