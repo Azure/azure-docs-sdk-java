@@ -1,13 +1,13 @@
 ---
 title: Azure Network SDK for Java
 description: Reference for Azure Network SDK for Java
-ms.date: 11/14/2023
+ms.date: 11/15/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: network-access
-ms.technology: azure
 keywords: Azure, Java, SDK, API, networking, load balancing, vnet , subnet
 ms.prod: azure
+ms.technology: azure
 manager: douge
 ---
 # Azure Network libraries for Java
