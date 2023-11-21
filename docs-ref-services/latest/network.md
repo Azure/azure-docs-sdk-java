@@ -5,10 +5,10 @@ ms.date: 11/21/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: network-access
-ms.prod: azure
-keywords: Azure, Java, SDK, API, networking, load balancing, vnet , subnet
 ms.technology: azure
+ms.prod: azure
 manager: douge
+keywords: Azure, Java, SDK, API, networking, load balancing, vnet , subnet
 ---
 # Azure Network libraries for Java
 
