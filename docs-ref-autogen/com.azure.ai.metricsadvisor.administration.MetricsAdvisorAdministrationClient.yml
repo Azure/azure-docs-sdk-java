@@ -3,7 +3,7 @@ uid: "com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationCli
 fullName: "com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient"
 name: "MetricsAdvisorAdministrationClient"
 nameWithType: "MetricsAdvisorAdministrationClient"
-summary: "This class provides an asynchronous client that contains all the operations that apply to Azure Metrics Advisor."
+summary: "This class provides a synchronous client to connect to the Metrics Advisor Azure Cognitive Service."
 inheritances:
 - "<xref href=\"java.lang.Object?displayProperty=fullName\" data-throw-if-not-resolved=\"False\" />"
 inheritedClassMethods:
@@ -710,7 +710,7 @@ methods:
   - description: "The start point of the period."
     name: "startTime"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html\">OffsetDateTime</a>"
-  - description: "The end point of of the period."
+  - description: "The end point of the period."
     name: "endTime"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html\">OffsetDateTime</a>"
   syntax: "public void refreshDataFeedIngestion(String dataFeedId, OffsetDateTime startTime, OffsetDateTime endTime)"
@@ -727,7 +727,7 @@ methods:
   - description: "The start point of the period."
     name: "startTime"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html\">OffsetDateTime</a>"
-  - description: "The end point of of the period."
+  - description: "The end point of the period."
     name: "endTime"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html\">OffsetDateTime</a>"
   - description: "Additional context that is passed through the Http pipeline during the service call."
@@ -779,7 +779,7 @@ methods:
     name: "dataFeed"
     type: "<xref href=\"com.azure.ai.metricsadvisor.administration.models.DataFeed?alt=com.azure.ai.metricsadvisor.administration.models.DataFeed&text=DataFeed\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public DataFeed updateDataFeed(DataFeed dataFeed)"
-  desc: "Update a data feed.\n\n**Code sample**\n\n```java\nDataFeed existingDataFeed = new DataFeed();\n final DataFeed updatedDataFeed = metricsAdvisorAdminClient.updateDataFeed(\n     existingDataFeed.setOptions(new DataFeedOptions().setDescription(\"set updated description\")));\n\n System.out.printf(\"Data feed Id: %s%n\", updatedDataFeed.getId());\n System.out.printf(\"Data feed updated description: %s%n\", updatedDataFeed.getOptions().getDescription());\n```"
+  desc: "Update a data feed.\n\n**Code sample**\n\n```java\nfinal String dataFeedId = \"r47053f1-9080-09lo-bacf-8dccf2e86f\";\n DataFeed existingDataFeed = metricsAdvisorAdminClient.getDataFeed(dataFeedId);\n final DataFeed updatedDataFeed = metricsAdvisorAdminClient.updateDataFeed(\n     existingDataFeed.setOptions(new DataFeedOptions().setDescription(\"set updated description\")));\n\n System.out.printf(\"Data feed Id: %s%n\", updatedDataFeed.getId());\n System.out.printf(\"Data feed updated description: %s%n\", updatedDataFeed.getOptions().getDescription());\n```"
   returns:
     description: "the updated data feed."
     type: "<xref href=\"com.azure.ai.metricsadvisor.administration.models.DataFeed?alt=com.azure.ai.metricsadvisor.administration.models.DataFeed&text=DataFeed\" data-throw-if-not-resolved=\"False\" />"
@@ -894,7 +894,7 @@ methods:
     description: "A <xref uid=\"com.azure.core.http.rest.Response\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Response\"></xref> containing the updated <xref uid=\"com.azure.ai.metricsadvisor.administration.models.NotificationHook\" data-throw-if-not-resolved=\"false\" data-raw-source=\"NotificationHook\"></xref>."
     type: "<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.ai.metricsadvisor.administration.models.NotificationHook?alt=com.azure.ai.metricsadvisor.administration.models.NotificationHook&text=NotificationHook\" data-throw-if-not-resolved=\"False\" />&gt;"
 type: "class"
-desc: "This class provides an asynchronous client that contains all the operations that apply to Azure Metrics Advisor.\n\n**Instantiating a synchronous Metrics Advisor Administration Client**\n\n```java\nMetricsAdvisorAdministrationClient metricsAdvisorAdminClient =\n     new MetricsAdvisorAdministrationClientBuilder()\n         .credential(new MetricsAdvisorKeyCredential(\"{subscription_key}\", \"{api_key}\"))\n         .endpoint(\"{endpoint}\")\n         .buildClient();\n```"
+desc: "This class provides a synchronous client to connect to the Metrics Advisor Azure Cognitive Service.\n\nThis client provides synchronous methods to perform:\n\n1.  Connect to a variety of data sources, Metrics Advisor can connect to, and ingest multi-dimensional metric data from many data stores, including: SQL Server, Azure Blob Storage, and MongoDB. Use <xref uid=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient.createDataFeed(com.azure.ai.metricsadvisor.administration.models.DataFeed)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient#createDataFeed(DataFeed)\"></xref> method to add your respective data source.\n2.  Customize anomaly detection configuration to detect anomalies for your needs using the <xref uid=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient.createDetectionConfig*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient#createDetectionConfig(String, AnomalyDetectionConfiguration)\"></xref> method.\n3.  Add real-time notification through multiple channels. Configure hooks for multiple alerting and detection configuration using the <xref uid=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient.createHook(com.azure.ai.metricsadvisor.administration.models.NotificationHook)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient#createHook(NotificationHook)\"></xref> method./li>\n\nService clients are the point of interaction for developers to use Azure Metrics Advisor. <xref uid=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient\"></xref> is the synchronous service client and <xref uid=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationAsyncClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationAsyncClient\"></xref> is the asynchronous service client. The examples shown in this document use a credential object named DefaultAzureCredential for authentication, which is appropriate for most scenarios, including local development and production environments. Additionally, we recommend using [managed identity][] for authentication in production environments. You can find more information on different ways of authenticating and their corresponding credential types in the [Azure Identity documentation\"][Azure Identity documentation].\n\n**Sample: Construct a MetricsAdvisorAdministrationClient with DefaultAzureCredential**\n\nThe following code sample demonstrates the creation of a <xref uid=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"com.azure.ai.metricsadvisor.administration.MetricsAdvisorAdministrationClient\"></xref>, using the \\`DefaultAzureCredentialBuilder\\` to configure it.\n\n```java\nMetricsAdvisorAdministrationClient metricsAdvisorAdminClient =\n     new MetricsAdvisorAdministrationClientBuilder()\n         .credential(new DefaultAzureCredentialBuilder().build())\n         .endpoint(\"{endpoint}\")\n         .buildClient();\n```\n\nFurther, see the code sample below to use <xref uid=\"com.azure.ai.metricsadvisor.models.MetricsAdvisorKeyCredential\" data-throw-if-not-resolved=\"false\" data-raw-source=\"MetricsAdvisorKeyCredential\"></xref> for client creation.\n\n```java\nMetricsAdvisorAdministrationClient metricsAdvisorAdminClient =\n     new MetricsAdvisorAdministrationClientBuilder()\n         .credential(new MetricsAdvisorKeyCredential(\"{subscription_key}\", \"{api_key}\"))\n         .endpoint(\"{endpoint}\")\n         .buildClient();\n```\n\n\n[managed identity]: https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/\n[Azure Identity documentation]: https://learn.microsoft.com/java/api/overview/azure/identity-readme"
 metadata: {}
 package: "com.azure.ai.metricsadvisor.administration"
-artifact: com.azure:azure-ai-metricsadvisor:1.1.19
+artifact: com.azure:azure-ai-metricsadvisor:1.1.20
