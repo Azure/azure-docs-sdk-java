@@ -1,7 +1,7 @@
 ---
 title: Azure Policy Insights SDK for Java
 description: Reference for Azure Policy Insights SDK for Java
-ms.date: 11/21/2023
+ms.date: 11/22/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: policyinsights
