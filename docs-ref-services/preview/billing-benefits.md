@@ -1,7 +1,7 @@
 ---
 title: Azure Billing Benefits SDK for Java
 description: Reference for Azure Billing Benefits SDK for Java
-ms.date: 11/23/2023
+ms.date: 11/24/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: billingbenefits
