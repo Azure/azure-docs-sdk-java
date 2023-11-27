@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: servicenetworking
 ---
-# Azure Service Networking SDK for Java - preview
-## Packages - preview
+# Azure Service Networking SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](service-networking-index.md)]
