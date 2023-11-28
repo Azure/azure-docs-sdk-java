@@ -1,7 +1,7 @@
 ---
 title: Azure Cognitive Services SDK for Java
 description: Reference for Azure Cognitive Services SDK for Java
-ms.date: 11/27/2023
+ms.date: 11/28/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: cognitiveservices
