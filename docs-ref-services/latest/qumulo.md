@@ -1,7 +1,7 @@
 ---
 title: Azure Qumulo SDK for Java
 description: Reference for Azure Qumulo SDK for Java
-ms.date: 11/28/2023
+ms.date: 11/29/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: qumulo
