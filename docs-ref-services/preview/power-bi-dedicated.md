@@ -1,7 +1,7 @@
 ---
 title: Azure Power BI Dedicated SDK for Java
 description: Reference for Azure Power BI Dedicated SDK for Java
-ms.date: 11/29/2023
+ms.date: 11/30/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: powerbidedicated
