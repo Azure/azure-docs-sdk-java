@@ -1,7 +1,7 @@
 ---
 title: Azure Machine Learning SDK for Java
 description: Reference for Azure Machine Learning SDK for Java
-ms.date: 12/05/2023
+ms.date: 12/06/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: machinelearning
