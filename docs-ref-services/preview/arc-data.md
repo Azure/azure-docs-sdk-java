@@ -1,7 +1,7 @@
 ---
 title: Azure Arc Data SDK for Java
 description: Reference for Azure Arc Data SDK for Java
-ms.date: 12/06/2023
+ms.date: 12/07/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
