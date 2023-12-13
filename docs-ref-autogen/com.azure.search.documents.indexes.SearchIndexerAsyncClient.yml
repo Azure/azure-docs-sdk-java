@@ -32,7 +32,7 @@ methods:
     name: "dataSource"
     type: "<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<SearchIndexerDataSourceConnection> createDataSourceConnection(SearchIndexerDataSourceConnection dataSource)"
-  desc: "Creates a new Azure Cognitive Search data source\n\n**Code Sample**\n\nCreate search indexer data source connection named \"dataSource\".\n\n```java\nSearchIndexerDataSourceConnection dataSource = searchIndexerClient.getDataSourceConnection(\"dataSource\");\n dataSource.setContainer(new SearchIndexerDataContainer(\"updatecontainer\"));\n\n SearchIndexerDataSourceConnection updateDataSource = searchIndexerClient.createOrUpdateDataSourceConnection(dataSource);\n System.out.printf(\"The dataSource name is %s. The container name of dataSource is %s.%n\",\n     updateDataSource.getName(), updateDataSource.getContainer().getName());\n```"
+  desc: "Creates a new Azure Cognitive Search data source\n\n**Code Sample**\n\nCreate search indexer data source connection named \"dataSource\".\n\n```java\nSearchIndexerDataSourceConnection dataSource = new SearchIndexerDataSourceConnection(\"dataSource\",\n     com.azure.search.documents.indexes.models.SearchIndexerDataSourceType.AZURE_BLOB, \"{connectionString}\",\n     new com.azure.search.documents.indexes.models.SearchIndexerDataContainer(\"container\"));\n SEARCH_INDEXER_ASYNC_CLIENT.createDataSourceConnection(dataSource)\n     .subscribe(dataSourceFromService ->\n         System.out.printf(\"The data source name is %s. The ETag of data source is %s.%n\",\n             dataSourceFromService.getName(), dataSourceFromService.getETag()));\n```"
   returns:
     description: "a Mono which performs the network request upon subscription."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -46,7 +46,7 @@ methods:
     name: "dataSource"
     type: "<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<SearchIndexerDataSourceConnection>> createDataSourceConnectionWithResponse(SearchIndexerDataSourceConnection dataSource)"
-  desc: "Creates a new Azure Cognitive Search data source\n\n**Code Sample**\n\nCreate search indexer data source connection named \"dataSource\".\n\n```java\nSearchIndexerDataSourceConnection dataSource = new SearchIndexerDataSourceConnection(\"dataSource\",\n     SearchIndexerDataSourceType.AZURE_BLOB, \"{connectionString}\",\n     new SearchIndexerDataContainer(\"container\"));\n searchIndexerAsyncClient.createDataSourceConnectionWithResponse(dataSource)\n     .subscribe(dataSourceFromService ->\n         System.out.printf(\"The status code of the response is %s. The data source name is %s.%n\",\n         dataSourceFromService.getStatusCode(), dataSourceFromService.getValue().getName()));\n```"
+  desc: "Creates a new Azure Cognitive Search data source\n\n**Code Sample**\n\nCreate search indexer data source connection named \"dataSource\".\n\n```java\nSearchIndexerDataSourceConnection dataSource = new SearchIndexerDataSourceConnection(\"dataSource\",\n     SearchIndexerDataSourceType.AZURE_BLOB, \"{connectionString}\",\n     new SearchIndexerDataContainer(\"container\"));\n SEARCH_INDEXER_ASYNC_CLIENT.createDataSourceConnectionWithResponse(dataSource)\n     .subscribe(dataSourceFromService ->\n         System.out.printf(\"The status code of the response is %s. The data source name is %s.%n\",\n         dataSourceFromService.getStatusCode(), dataSourceFromService.getValue().getName()));\n```"
   returns:
     description: "a Mono which performs the network request upon subscription."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -60,7 +60,7 @@ methods:
     name: "indexer"
     type: "<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<SearchIndexer> createIndexer(SearchIndexer indexer)"
-  desc: "Creates a new Azure Cognitive Search indexer.\n\n**Code Sample**\n\nCreate search indexer named \"searchIndexer\".\n\n```java\nSearchIndexer searchIndexer = new SearchIndexer(\"searchIndexer\", \"dataSource\",\n     \"searchIndex\");\n searchIndexerAsyncClient.createIndexer(searchIndexer)\n     .subscribe(indexerFromService ->\n         System.out.printf(\"The indexer name is %s. The etag of indexer is %s.%n\", indexerFromService.getName(),\n         indexerFromService.getETag()));\n```"
+  desc: "Creates a new Azure Cognitive Search indexer.\n\n**Code Sample**\n\nCreate search indexer named \"searchIndexer\".\n\n```java\nSearchIndexer searchIndexer = new SearchIndexer(\"searchIndexer\", \"dataSource\",\n     \"searchIndex\");\n SEARCH_INDEXER_ASYNC_CLIENT.createIndexer(searchIndexer)\n     .subscribe(indexerFromService ->\n         System.out.printf(\"The indexer name is %s. The ETag of indexer is %s.%n\", indexerFromService.getName(),\n         indexerFromService.getETag()));\n```"
   returns:
     description: "the created Indexer."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -74,7 +74,7 @@ methods:
     name: "indexer"
     type: "<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<SearchIndexer>> createIndexerWithResponse(SearchIndexer indexer)"
-  desc: "Creates a new Azure Cognitive Search indexer.\n\n**Code Sample**\n\nCreate search indexer named \"searchIndexer\".\n\n```java\nSearchIndexer searchIndexer = new SearchIndexer(\"searchIndexer\", \"dataSource\",\n     \"searchIndex\");\n searchIndexerAsyncClient.createIndexerWithResponse(searchIndexer)\n     .subscribe(indexerFromServiceResponse ->\n         System.out.printf(\"The status code of the response is %s. The indexer name is %s.%n\",\n             indexerFromServiceResponse.getStatusCode(), indexerFromServiceResponse.getValue().getName()));\n```"
+  desc: "Creates a new Azure Cognitive Search indexer.\n\n**Code Sample**\n\nCreate search indexer named \"searchIndexer\".\n\n```java\nSearchIndexer searchIndexer = new SearchIndexer(\"searchIndexer\", \"dataSource\",\n     \"searchIndex\");\n SEARCH_INDEXER_ASYNC_CLIENT.createIndexerWithResponse(searchIndexer)\n     .subscribe(indexerFromServiceResponse ->\n         System.out.printf(\"The status code of the response is %s. The indexer name is %s.%n\",\n             indexerFromServiceResponse.getStatusCode(), indexerFromServiceResponse.getValue().getName()));\n```"
   returns:
     description: "a response containing the created Indexer."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -88,7 +88,7 @@ methods:
     name: "dataSource"
     type: "<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<SearchIndexerDataSourceConnection> createOrUpdateDataSourceConnection(SearchIndexerDataSourceConnection dataSource)"
-  desc: "Creates a new Azure Cognitive Search data source or updates a data source if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer data source connection named \"dataSource\".\n\n```java\nSearchIndexerDataSourceConnection dataSource = searchIndexerClient.getDataSourceConnection(\"dataSource\");\n dataSource.setContainer(new SearchIndexerDataContainer(\"updatecontainer\"));\n\n SearchIndexerDataSourceConnection updateDataSource = searchIndexerClient.createOrUpdateDataSourceConnection(dataSource);\n System.out.printf(\"The dataSource name is %s. The container name of dataSource is %s.%n\",\n     updateDataSource.getName(), updateDataSource.getContainer().getName());\n```"
+  desc: "Creates a new Azure Cognitive Search data source or updates a data source if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer data source connection named \"dataSource\".\n\n```java\nSearchIndexerDataSourceConnection dataSource = SEARCH_INDEXER_CLIENT.getDataSourceConnection(\"dataSource\");\n dataSource.setContainer(new SearchIndexerDataContainer(\"updatecontainer\"));\n\n SearchIndexerDataSourceConnection updateDataSource = SEARCH_INDEXER_CLIENT\n     .createOrUpdateDataSourceConnection(dataSource);\n System.out.printf(\"The dataSource name is %s. The container name of dataSource is %s.%n\",\n     updateDataSource.getName(), updateDataSource.getContainer().getName());\n```"
   returns:
     description: "the data source that was created or updated."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -105,7 +105,7 @@ methods:
     name: "onlyIfUnchanged"
     type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<SearchIndexerDataSourceConnection>> createOrUpdateDataSourceConnectionWithResponse(SearchIndexerDataSourceConnection dataSource, boolean onlyIfUnchanged)"
-  desc: "Creates a new Azure Cognitive Search data source or updates a data source if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer data source connection named \"dataSource\".\n\n```java\nsearchIndexerAsyncClient.getDataSourceConnection(\"dataSource\")\n     .flatMap(dataSource -> {\n         dataSource.setContainer(new SearchIndexerDataContainer(\"updatecontainer\"));\n         return searchIndexerAsyncClient.createOrUpdateDataSourceConnectionWithResponse(dataSource, true);\n     })\n     .subscribe(updateDataSource ->\n         System.out.printf(\"The status code of the response is %s.%nThe dataSource name is %s. \"\n             + \"The container name of dataSource is %s.%n\", updateDataSource.getStatusCode(),\n         updateDataSource.getValue().getName(), updateDataSource.getValue().getContainer().getName()));\n```"
+  desc: "Creates a new Azure Cognitive Search data source or updates a data source if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer data source connection named \"dataSource\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getDataSourceConnection(\"dataSource\")\n     .flatMap(dataSource -> {\n         dataSource.setContainer(new SearchIndexerDataContainer(\"updatecontainer\"));\n         return SEARCH_INDEXER_ASYNC_CLIENT.createOrUpdateDataSourceConnectionWithResponse(dataSource, true);\n     })\n     .subscribe(updateDataSource ->\n         System.out.printf(\"The status code of the response is %s.%nThe dataSource name is %s. \"\n             + \"The container name of dataSource is %s.%n\", updateDataSource.getStatusCode(),\n         updateDataSource.getValue().getName(), updateDataSource.getValue().getContainer().getName()));\n```"
   returns:
     description: "a data source response."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -119,7 +119,7 @@ methods:
     name: "indexer"
     type: "<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<SearchIndexer> createOrUpdateIndexer(SearchIndexer indexer)"
-  desc: "Creates a new Azure Cognitive Search indexer or updates an indexer if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer named \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.getIndexer(\"searchIndexer\")\n     .flatMap(searchIndexerFromService -> {\n         searchIndexerFromService.setFieldMappings(Collections.singletonList(\n             new FieldMapping(\"hotelName\").setTargetFieldName(\"HotelName\")));\n         return searchIndexerAsyncClient.createOrUpdateIndexer(searchIndexerFromService);\n     })\n     .subscribe(updatedIndexer ->\n         System.out.printf(\"The indexer name is %s. The target field name of indexer is %s.%n\",\n         updatedIndexer.getName(), updatedIndexer.getFieldMappings().get(0).getTargetFieldName()));\n```"
+  desc: "Creates a new Azure Cognitive Search indexer or updates an indexer if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer named \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getIndexer(\"searchIndexer\")\n     .flatMap(searchIndexerFromService -> {\n         searchIndexerFromService.setFieldMappings(Collections.singletonList(\n             new FieldMapping(\"hotelName\").setTargetFieldName(\"HotelName\")));\n         return SEARCH_INDEXER_ASYNC_CLIENT.createOrUpdateIndexer(searchIndexerFromService);\n     })\n     .subscribe(updatedIndexer ->\n         System.out.printf(\"The indexer name is %s. The target field name of indexer is %s.%n\",\n         updatedIndexer.getName(), updatedIndexer.getFieldMappings().get(0).getTargetFieldName()));\n```"
   returns:
     description: "a response containing the created Indexer."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -136,7 +136,7 @@ methods:
     name: "onlyIfUnchanged"
     type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<SearchIndexer>> createOrUpdateIndexerWithResponse(SearchIndexer indexer, boolean onlyIfUnchanged)"
-  desc: "Creates a new Azure Cognitive Search indexer or updates an indexer if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer named \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.getIndexer(\"searchIndexer\")\n     .flatMap(searchIndexerFromService -> {\n         searchIndexerFromService.setFieldMappings(Collections.singletonList(\n             new FieldMapping(\"hotelName\").setTargetFieldName(\"HotelName\")));\n         return searchIndexerAsyncClient.createOrUpdateIndexerWithResponse(searchIndexerFromService, true);\n     })\n     .subscribe(indexerFromService ->\n         System.out.printf(\"The status code of the response is %s.%nThe indexer name is %s. \"\n             + \"The target field name of indexer is %s.%n\", indexerFromService.getStatusCode(),\n         indexerFromService.getValue().getName(),\n         indexerFromService.getValue().getFieldMappings().get(0).getTargetFieldName()));\n```"
+  desc: "Creates a new Azure Cognitive Search indexer or updates an indexer if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer named \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getIndexer(\"searchIndexer\")\n     .flatMap(searchIndexerFromService -> {\n         searchIndexerFromService.setFieldMappings(Collections.singletonList(\n             new FieldMapping(\"hotelName\").setTargetFieldName(\"HotelName\")));\n         return SEARCH_INDEXER_ASYNC_CLIENT.createOrUpdateIndexerWithResponse(searchIndexerFromService, true);\n     })\n     .subscribe(indexerFromService ->\n         System.out.printf(\"The status code of the response is %s.%nThe indexer name is %s. \"\n             + \"The target field name of indexer is %s.%n\", indexerFromService.getStatusCode(),\n         indexerFromService.getValue().getName(),\n         indexerFromService.getValue().getFieldMappings().get(0).getTargetFieldName()));\n```"
   returns:
     description: "a response containing the created Indexer."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -150,7 +150,7 @@ methods:
     name: "skillset"
     type: "<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<SearchIndexerSkillset> createOrUpdateSkillset(SearchIndexerSkillset skillset)"
-  desc: "Creates a new Azure Cognitive Search skillset or updates a skillset if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer skillset \"searchIndexerSkillset\".\n\n```java\nsearchIndexerAsyncClient.getSkillset(\"searchIndexerSkilset\")\n     .flatMap(indexerSkillset -> {\n         indexerSkillset.setDescription(\"This is new description!\");\n         return searchIndexerAsyncClient.createOrUpdateSkillset(indexerSkillset);\n     }).subscribe(updateSkillset ->\n         System.out.printf(\"The indexer skillset name is %s. The description of indexer skillset is %s.%n\",\n         updateSkillset.getName(), updateSkillset.getDescription()));\n```"
+  desc: "Creates a new Azure Cognitive Search skillset or updates a skillset if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer skillset \"searchIndexerSkillset\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getSkillset(\"searchIndexerSkillset\")\n     .flatMap(indexerSkillset -> {\n         indexerSkillset.setDescription(\"This is new description!\");\n         return SEARCH_INDEXER_ASYNC_CLIENT.createOrUpdateSkillset(indexerSkillset);\n     }).subscribe(updateSkillset ->\n         System.out.printf(\"The indexer skillset name is %s. The description of indexer skillset is %s.%n\",\n         updateSkillset.getName(), updateSkillset.getDescription()));\n```"
   returns:
     description: "the skillset that was created or updated."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -167,7 +167,7 @@ methods:
     name: "onlyIfUnchanged"
     type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<SearchIndexerSkillset>> createOrUpdateSkillsetWithResponse(SearchIndexerSkillset skillset, boolean onlyIfUnchanged)"
-  desc: "Creates a new Azure Cognitive Search skillset or updates a skillset if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer skillset \"searchIndexerSkillset\".\n\n```java\nsearchIndexerAsyncClient.getSkillset(\"searchIndexerSkilset\")\n     .flatMap(indexerSkillset -> {\n         indexerSkillset.setDescription(\"This is new description!\");\n         return searchIndexerAsyncClient.createOrUpdateSkillsetWithResponse(indexerSkillset, true);\n     })\n     .subscribe(updateSkillsetResponse ->\n         System.out.printf(\"The status code of the response is %s.%nThe indexer skillset name is %s. \"\n             + \"The description of indexer skilset is %s.%n\", updateSkillsetResponse.getStatusCode(),\n         updateSkillsetResponse.getValue().getName(),\n         updateSkillsetResponse.getValue().getDescription()));\n```"
+  desc: "Creates a new Azure Cognitive Search skillset or updates a skillset if it already exists.\n\n**Code Sample**\n\nCreate or update search indexer skillset \"searchIndexerSkillset\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getSkillset(\"searchIndexerSkillset\")\n     .flatMap(indexerSkillset -> {\n         indexerSkillset.setDescription(\"This is new description!\");\n         return SEARCH_INDEXER_ASYNC_CLIENT.createOrUpdateSkillsetWithResponse(indexerSkillset, true);\n     })\n     .subscribe(updateSkillsetResponse ->\n         System.out.printf(\"The status code of the response is %s.%nThe indexer skillset name is %s. \"\n             + \"The description of indexer skillset is %s.%n\", updateSkillsetResponse.getStatusCode(),\n         updateSkillsetResponse.getValue().getName(),\n         updateSkillsetResponse.getValue().getDescription()));\n```"
   returns:
     description: "a response containing the skillset that was created or updated."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -181,7 +181,7 @@ methods:
     name: "skillset"
     type: "<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<SearchIndexerSkillset> createSkillset(SearchIndexerSkillset skillset)"
-  desc: "Creates a new skillset in an Azure Cognitive Search service.\n\n**Code Sample**\n\nCreate search indexer skillset \"searchIndexerSkillset\".\n\n```java\nList<InputFieldMappingEntry> inputs = Collections.singletonList(\n     new InputFieldMappingEntry(\"image\")\n         .setSource(\"/document/normalized_images/*\")\n );\n\n List<OutputFieldMappingEntry> outputs = Arrays.asList(\n     new OutputFieldMappingEntry(\"text\")\n         .setTargetName(\"mytext\"),\n     new OutputFieldMappingEntry(\"layoutText\")\n         .setTargetName(\"myLayoutText\")\n );\n SearchIndexerSkillset searchIndexerSkillset = new SearchIndexerSkillset(\"searchIndexerSkillset\",\n     Collections.singletonList(new OcrSkill(inputs, outputs)\n         .setShouldDetectOrientation(true)\n         .setDefaultLanguageCode(null)\n         .setName(\"myocr\")\n         .setDescription(\"Extracts text (plain and structured) from image.\")\n         .setContext(\"/document/normalized_images/*\")));\n searchIndexerAsyncClient.createSkillset(searchIndexerSkillset)\n     .subscribe(skillset ->\n         System.out.printf(\"The indexer skillset name is %s. The etag of indexer skillset is %s.%n\",\n         skillset.getName(), skillset.getETag()));\n```"
+  desc: "Creates a new skillset in an Azure Cognitive Search service.\n\n**Code Sample**\n\nCreate search indexer skillset \"searchIndexerSkillset\".\n\n```java\nList<InputFieldMappingEntry> inputs = Collections.singletonList(\n     new InputFieldMappingEntry(\"image\")\n         .setSource(\"/document/normalized_images/*\")\n );\n\n List<OutputFieldMappingEntry> outputs = Arrays.asList(\n     new OutputFieldMappingEntry(\"text\")\n         .setTargetName(\"mytext\"),\n     new OutputFieldMappingEntry(\"layoutText\")\n         .setTargetName(\"myLayoutText\")\n );\n SearchIndexerSkillset searchIndexerSkillset = new SearchIndexerSkillset(\"searchIndexerSkillset\",\n     Collections.singletonList(new OcrSkill(inputs, outputs)\n         .setShouldDetectOrientation(true)\n         .setDefaultLanguageCode(null)\n         .setName(\"myocr\")\n         .setDescription(\"Extracts text (plain and structured) from image.\")\n         .setContext(\"/document/normalized_images/*\")));\n SEARCH_INDEXER_ASYNC_CLIENT.createSkillset(searchIndexerSkillset)\n     .subscribe(skillset ->\n         System.out.printf(\"The indexer skillset name is %s. The ETag of indexer skillset is %s.%n\",\n         skillset.getName(), skillset.getETag()));\n```"
   returns:
     description: "the created Skillset."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -195,7 +195,7 @@ methods:
     name: "skillset"
     type: "<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<SearchIndexerSkillset>> createSkillsetWithResponse(SearchIndexerSkillset skillset)"
-  desc: "Creates a new skillset in an Azure Cognitive Search service.\n\n**Code Sample**\n\nCreate search indexer skillset \"searchIndexerSkillset\".\n\n```java\nList<InputFieldMappingEntry> inputs = Collections.singletonList(\n     new InputFieldMappingEntry(\"image\")\n         .setSource(\"/document/normalized_images/*\")\n );\n\n List<OutputFieldMappingEntry> outputs = Arrays.asList(\n     new OutputFieldMappingEntry(\"text\")\n         .setTargetName(\"mytext\"),\n     new OutputFieldMappingEntry(\"layoutText\")\n         .setTargetName(\"myLayoutText\")\n );\n SearchIndexerSkillset searchIndexerSkillset = new SearchIndexerSkillset(\"searchIndexerSkillset\",\n     Collections.singletonList(new OcrSkill(inputs, outputs)\n         .setShouldDetectOrientation(true)\n         .setDefaultLanguageCode(null)\n         .setName(\"myocr\")\n         .setDescription(\"Extracts text (plain and structured) from image.\")\n         .setContext(\"/document/normalized_images/*\")));\n searchIndexerAsyncClient.createSkillsetWithResponse(searchIndexerSkillset)\n     .subscribe(skillsetWithResponse ->\n         System.out.printf(\"The status code of the response is %s. The indexer skillset name is %s.%n\",\n         skillsetWithResponse.getStatusCode(), skillsetWithResponse.getValue().getName()));\n```"
+  desc: "Creates a new skillset in an Azure Cognitive Search service.\n\n**Code Sample**\n\nCreate search indexer skillset \"searchIndexerSkillset\".\n\n```java\nList<InputFieldMappingEntry> inputs = Collections.singletonList(\n     new InputFieldMappingEntry(\"image\")\n         .setSource(\"/document/normalized_images/*\")\n );\n\n List<OutputFieldMappingEntry> outputs = Arrays.asList(\n     new OutputFieldMappingEntry(\"text\")\n         .setTargetName(\"mytext\"),\n     new OutputFieldMappingEntry(\"layoutText\")\n         .setTargetName(\"myLayoutText\")\n );\n SearchIndexerSkillset searchIndexerSkillset = new SearchIndexerSkillset(\"searchIndexerSkillset\",\n     Collections.singletonList(new OcrSkill(inputs, outputs)\n         .setShouldDetectOrientation(true)\n         .setDefaultLanguageCode(null)\n         .setName(\"myocr\")\n         .setDescription(\"Extracts text (plain and structured) from image.\")\n         .setContext(\"/document/normalized_images/*\")));\n SEARCH_INDEXER_ASYNC_CLIENT.createSkillsetWithResponse(searchIndexerSkillset)\n     .subscribe(skillsetWithResponse ->\n         System.out.printf(\"The status code of the response is %s. The indexer skillset name is %s.%n\",\n         skillsetWithResponse.getStatusCode(), skillsetWithResponse.getValue().getName()));\n```"
   returns:
     description: "a response containing the created Skillset."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -209,7 +209,7 @@ methods:
     name: "dataSourceName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Void> deleteDataSourceConnection(String dataSourceName)"
-  desc: "Delete a DataSource\n\n**Code Sample**\n\nDelete the search indexer data source connection named \"dataSource\".\n\n```java\nsearchIndexerAsyncClient.deleteDataSourceConnection(\"dataSource\")\n     .subscribe();\n```"
+  desc: "Delete a DataSource\n\n**Code Sample**\n\nDelete the search indexer data source connection named \"dataSource\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.deleteDataSourceConnection(\"dataSource\")\n     .subscribe();\n```"
   returns:
     description: "a void Mono"
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
@@ -226,7 +226,7 @@ methods:
     name: "onlyIfUnchanged"
     type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<Void>> deleteDataSourceConnectionWithResponse(SearchIndexerDataSourceConnection dataSource, boolean onlyIfUnchanged)"
-  desc: "Deletes an Azure Cognitive Search data source.\n\n**Code Sample**\n\nDelete the search indexer data source connection named \"dataSource\".\n\n```java\nsearchIndexerAsyncClient.getDataSourceConnection(\"dataSource\")\n     .flatMap(dataSource -> searchIndexerAsyncClient.deleteDataSourceConnectionWithResponse(dataSource, true))\n     .subscribe(deleteResponse ->\n         System.out.printf(\"The status code of the response is %d.%n\", deleteResponse.getStatusCode()));\n```"
+  desc: "Deletes an Azure Cognitive Search data source.\n\n**Code Sample**\n\nDelete the search indexer data source connection named \"dataSource\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getDataSourceConnection(\"dataSource\")\n     .flatMap(dataSource -> SEARCH_INDEXER_ASYNC_CLIENT.deleteDataSourceConnectionWithResponse(dataSource, true))\n     .subscribe(deleteResponse ->\n         System.out.printf(\"The status code of the response is %d.%n\", deleteResponse.getStatusCode()));\n```"
   returns:
     description: "a mono response"
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;&gt;"
@@ -240,7 +240,7 @@ methods:
     name: "indexerName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Void> deleteIndexer(String indexerName)"
-  desc: "Deletes an Azure Cognitive Search indexer.\n\n**Code Sample**\n\nDelete search indexer named \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.deleteIndexer(\"searchIndexer\")\n     .subscribe();\n```"
+  desc: "Deletes an Azure Cognitive Search indexer.\n\n**Code Sample**\n\nDelete search indexer named \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.deleteIndexer(\"searchIndexer\")\n     .subscribe();\n```"
   returns:
     description: "a response signalling completion."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
@@ -257,7 +257,7 @@ methods:
     name: "onlyIfUnchanged"
     type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<Void>> deleteIndexerWithResponse(SearchIndexer indexer, boolean onlyIfUnchanged)"
-  desc: "Deletes an Azure Cognitive Search indexer.\n\n**Code Sample**\n\nDelete search indexer named \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.getIndexer(\"searchIndexer\")\n     .flatMap(searchIndexer ->\n         searchIndexerAsyncClient.deleteIndexerWithResponse(searchIndexer, true))\n     .subscribe(deleteResponse ->\n         System.out.printf(\"The status code of the response is %d.%n\", deleteResponse.getStatusCode()));\n```"
+  desc: "Deletes an Azure Cognitive Search indexer.\n\n**Code Sample**\n\nDelete search indexer named \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getIndexer(\"searchIndexer\")\n     .flatMap(searchIndexer ->\n         SEARCH_INDEXER_ASYNC_CLIENT.deleteIndexerWithResponse(searchIndexer, true))\n     .subscribe(deleteResponse ->\n         System.out.printf(\"The status code of the response is %d.%n\", deleteResponse.getStatusCode()));\n```"
   returns:
     description: "a response signalling completion."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;&gt;"
@@ -271,7 +271,7 @@ methods:
     name: "skillsetName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Void> deleteSkillset(String skillsetName)"
-  desc: "Deletes a cognitive skillset in an Azure Cognitive Search service.\n\n**Code Sample**\n\nDelete search indexer skillset \"searchIndexerSkillset\".\n\n```java\nsearchIndexerAsyncClient.deleteSkillset(\"searchIndexerSkillset\")\n     .subscribe();\n```"
+  desc: "Deletes a cognitive skillset in an Azure Cognitive Search service.\n\n**Code Sample**\n\nDelete search indexer skillset \"searchIndexerSkillset\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.deleteSkillset(\"searchIndexerSkillset\")\n     .subscribe();\n```"
   returns:
     description: "a response signalling completion."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
@@ -288,7 +288,7 @@ methods:
     name: "onlyIfUnchanged"
     type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<Void>> deleteSkillsetWithResponse(SearchIndexerSkillset skillset, boolean onlyIfUnchanged)"
-  desc: "Deletes a cognitive skillset in an Azure Cognitive Search service.\n\n**Code Sample**\n\nDelete search indexer skillset \"searchIndexerSkillset\".\n\n```java\nsearchIndexerAsyncClient.getSkillset(\"searchIndexerSkilset\")\n     .flatMap(searchIndexerSkilset ->\n         searchIndexerAsyncClient.deleteSkillsetWithResponse(searchIndexerSkilset, true))\n     .subscribe(deleteResponse ->\n         System.out.printf(\"The status code of the response is %d.%n\", deleteResponse.getStatusCode()));\n```"
+  desc: "Deletes a cognitive skillset in an Azure Cognitive Search service.\n\n**Code Sample**\n\nDelete search indexer skillset \"searchIndexerSkillset\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getSkillset(\"searchIndexerSkillset\")\n     .flatMap(searchIndexerSkillset ->\n         SEARCH_INDEXER_ASYNC_CLIENT.deleteSkillsetWithResponse(searchIndexerSkillset, true))\n     .subscribe(deleteResponse ->\n         System.out.printf(\"The status code of the response is %d.%n\", deleteResponse.getStatusCode()));\n```"
   returns:
     description: "a response signalling completion."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;&gt;"
@@ -302,7 +302,7 @@ methods:
     name: "dataSourceName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<SearchIndexerDataSourceConnection> getDataSourceConnection(String dataSourceName)"
-  desc: "Retrieves a DataSource from an Azure Cognitive Search service.\n\n**Code Sample**\n\nGet search indexer data source connection named \"dataSource\".\n\n```java\nsearchIndexerAsyncClient.getDataSourceConnection(\"dataSource\")\n     .subscribe(dataSource ->\n         System.out.printf(\"The dataSource name is %s. The etag of dataSource is %s.%n\", dataSource.getName(),\n         dataSource.getETag()));\n```"
+  desc: "Retrieves a DataSource from an Azure Cognitive Search service.\n\n**Code Sample**\n\nGet search indexer data source connection named \"dataSource\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getDataSourceConnection(\"dataSource\")\n     .subscribe(dataSource ->\n         System.out.printf(\"The dataSource name is %s. The ETag of dataSource is %s.%n\", dataSource.getName(),\n         dataSource.getETag()));\n```"
   returns:
     description: "the DataSource."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -316,7 +316,7 @@ methods:
     name: "dataSourceName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Response<SearchIndexerDataSourceConnection>> getDataSourceConnectionWithResponse(String dataSourceName)"
-  desc: "Retrieves a DataSource from an Azure Cognitive Search service.\n\n**Code Sample**\n\nGet search indexer data source connection named \"dataSource\".\n\n```java\nsearchIndexerAsyncClient.getDataSourceConnectionWithResponse(\"dataSource\")\n     .subscribe(dataSource ->\n         System.out.printf(\"The status code of the response is %s. The data source name is %s.%n\",\n         dataSource.getStatusCode(), dataSource.getValue().getName()));\n```"
+  desc: "Retrieves a DataSource from an Azure Cognitive Search service.\n\n**Code Sample**\n\nGet search indexer data source connection named \"dataSource\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getDataSourceConnectionWithResponse(\"dataSource\")\n     .subscribe(dataSource ->\n         System.out.printf(\"The status code of the response is %s. The data source name is %s.%n\",\n         dataSource.getStatusCode(), dataSource.getValue().getName()));\n```"
   returns:
     description: "a response containing the DataSource."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -340,7 +340,7 @@ methods:
     name: "indexerName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<SearchIndexer> getIndexer(String indexerName)"
-  desc: "Retrieves an indexer definition.\n\n**Code Sample**\n\nGet search indexer with name \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.getIndexer(\"searchIndexer\")\n     .subscribe(indexerFromService ->\n         System.out.printf(\"The indexer name is %s. The etag of indexer is %s.%n\", indexerFromService.getName(),\n             indexerFromService.getETag()));\n```"
+  desc: "Retrieves an indexer definition.\n\n**Code Sample**\n\nGet search indexer with name \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getIndexer(\"searchIndexer\")\n     .subscribe(indexerFromService ->\n         System.out.printf(\"The indexer name is %s. The ETag of indexer is %s.%n\", indexerFromService.getName(),\n             indexerFromService.getETag()));\n```"
   returns:
     description: "the indexer."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -354,7 +354,7 @@ methods:
     name: "indexerName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<SearchIndexerStatus> getIndexerStatus(String indexerName)"
-  desc: "Returns the current status and execution history of an indexer.\n\n**Code Sample**\n\nGet status for search indexer \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.getIndexerStatus(\"searchIndexer\")\n     .subscribe(indexerStatus ->\n         System.out.printf(\"The indexer status is %s.%n\", indexerStatus.getStatus()));\n```"
+  desc: "Returns the current status and execution history of an indexer.\n\n**Code Sample**\n\nGet status for search indexer \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getIndexerStatus(\"searchIndexer\")\n     .subscribe(indexerStatus ->\n         System.out.printf(\"The indexer status is %s.%n\", indexerStatus.getStatus()));\n```"
   returns:
     description: "the indexer execution info."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerStatus?alt=com.azure.search.documents.indexes.models.SearchIndexerStatus&text=SearchIndexerStatus\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -368,7 +368,7 @@ methods:
     name: "indexerName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Response<SearchIndexerStatus>> getIndexerStatusWithResponse(String indexerName)"
-  desc: "Returns the current status and execution history of an indexer.\n\n**Code Sample**\n\nGet search indexer status.\n\n```java\nsearchIndexerAsyncClient.getIndexerStatusWithResponse(\"searchIndexer\")\n     .subscribe(response ->\n         System.out.printf(\"The status code of the response is %s.%nThe indexer status is %s.%n\",\n         response.getStatusCode(), response.getValue().getStatus()));\n```"
+  desc: "Returns the current status and execution history of an indexer.\n\n**Code Sample**\n\nGet search indexer status.\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getIndexerStatusWithResponse(\"searchIndexer\")\n     .subscribe(response ->\n         System.out.printf(\"The status code of the response is %s.%nThe indexer status is %s.%n\",\n         response.getStatusCode(), response.getValue().getStatus()));\n```"
   returns:
     description: "a response with the indexer execution info."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerStatus?alt=com.azure.search.documents.indexes.models.SearchIndexerStatus&text=SearchIndexerStatus\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -382,7 +382,7 @@ methods:
     name: "indexerName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Response<SearchIndexer>> getIndexerWithResponse(String indexerName)"
-  desc: "Retrieves an indexer definition.\n\n**Code Sample**\n\nGet search indexer with name \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.getIndexerWithResponse(\"searchIndexer\")\n     .subscribe(indexerFromServiceResponse ->\n         System.out.printf(\"The status code of the response is %s. The indexer name is %s.%n\",\n         indexerFromServiceResponse.getStatusCode(), indexerFromServiceResponse.getValue().getName()));\n```"
+  desc: "Retrieves an indexer definition.\n\n**Code Sample**\n\nGet search indexer with name \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getIndexerWithResponse(\"searchIndexer\")\n     .subscribe(indexerFromServiceResponse ->\n         System.out.printf(\"The status code of the response is %s. The indexer name is %s.%n\",\n         indexerFromServiceResponse.getStatusCode(), indexerFromServiceResponse.getValue().getName()));\n```"
   returns:
     description: "a response containing the indexer."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -396,7 +396,7 @@ methods:
     name: "skillsetName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<SearchIndexerSkillset> getSkillset(String skillsetName)"
-  desc: "Retrieves a skillset definition.\n\n**Code Sample**\n\nGet search indexer skillset \"searchIndexerSkillset\".\n\n```java\nsearchIndexerAsyncClient.getSkillset(\"searchIndexerSkillset\")\n     .subscribe(indexerSkillset ->\n         System.out.printf(\"The indexer skillset name is %s. The etag of indexer skillset is %s.%n\",\n         indexerSkillset.getName(), indexerSkillset.getETag()));\n```"
+  desc: "Retrieves a skillset definition.\n\n**Code Sample**\n\nGet search indexer skillset \"searchIndexerSkillset\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getSkillset(\"searchIndexerSkillset\")\n     .subscribe(indexerSkillset ->\n         System.out.printf(\"The indexer skillset name is %s. The ETag of indexer skillset is %s.%n\",\n         indexerSkillset.getName(), indexerSkillset.getETag()));\n```"
   returns:
     description: "the Skillset."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -410,7 +410,7 @@ methods:
     name: "skillsetName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Response<SearchIndexerSkillset>> getSkillsetWithResponse(String skillsetName)"
-  desc: "Retrieves a skillset definition.\n\n**Code Sample**\n\nGet search indexer skillset \"searchIndexerSkillset\".\n\n```java\nsearchIndexerAsyncClient.getSkillsetWithResponse(\"searchIndexerSkillset\")\n     .subscribe(skillsetWithResponse ->\n         System.out.printf(\"The status code of the response is %s. The indexer skillset name is %s.%n\",\n         skillsetWithResponse.getStatusCode(), skillsetWithResponse.getValue().getName()));\n```"
+  desc: "Retrieves a skillset definition.\n\n**Code Sample**\n\nGet search indexer skillset \"searchIndexerSkillset\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.getSkillsetWithResponse(\"searchIndexerSkillset\")\n     .subscribe(skillsetWithResponse ->\n         System.out.printf(\"The status code of the response is %s. The indexer skillset name is %s.%n\",\n         skillsetWithResponse.getStatusCode(), skillsetWithResponse.getValue().getName()));\n```"
   returns:
     description: "a response containing the Skillset."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -420,7 +420,7 @@ methods:
   nameWithType: "SearchIndexerAsyncClient.listDataSourceConnectionNames()"
   summary: "List all Data<wbr>Source names from an Azure Cognitive Search service."
   syntax: "public PagedFlux<String> listDataSourceConnectionNames()"
-  desc: "List all DataSource names from an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer data source connection names.\n\n```java\nsearchIndexerAsyncClient.listDataSourceConnectionNames()\n     .subscribe(dataSourceName -> System.out.printf(\"The dataSource name is %s.%n\", dataSourceName));\n```"
+  desc: "List all DataSource names from an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer data source connection names.\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.listDataSourceConnectionNames()\n     .subscribe(dataSourceName -> System.out.printf(\"The dataSource name is %s.%n\", dataSourceName));\n```"
   returns:
     description: "a list of DataSource names"
     type: "<xref href=\"com.azure.core.http.rest.PagedFlux?alt=com.azure.core.http.rest.PagedFlux&text=PagedFlux\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
@@ -430,7 +430,7 @@ methods:
   nameWithType: "SearchIndexerAsyncClient.listDataSourceConnections()"
   summary: "List all Data<wbr>Sources from an Azure Cognitive Search service."
   syntax: "public PagedFlux<SearchIndexerDataSourceConnection> listDataSourceConnections()"
-  desc: "List all DataSources from an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer data source connections.\n\n```java\nsearchIndexerAsyncClient.listDataSourceConnections()\n     .subscribe(dataSource ->\n         System.out.printf(\"The dataSource name is %s. The etag of dataSource is %s.%n\",\n             dataSource.getName(), dataSource.getETag())\n     );\n```"
+  desc: "List all DataSources from an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer data source connections.\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.listDataSourceConnections()\n     .subscribe(dataSource ->\n         System.out.printf(\"The dataSource name is %s. The ETag of dataSource is %s.%n\",\n             dataSource.getName(), dataSource.getETag())\n     );\n```"
   returns:
     description: "a list of DataSources"
     type: "<xref href=\"com.azure.core.http.rest.PagedFlux?alt=com.azure.core.http.rest.PagedFlux&text=PagedFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection?alt=com.azure.search.documents.indexes.models.SearchIndexerDataSourceConnection&text=SearchIndexerDataSourceConnection\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -440,7 +440,7 @@ methods:
   nameWithType: "SearchIndexerAsyncClient.listIndexerNames()"
   summary: "Lists all indexers available for an Azure Cognitive Search service."
   syntax: "public PagedFlux<String> listIndexerNames()"
-  desc: "Lists all indexers available for an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer names.\n\n```java\nsearchIndexerAsyncClient.listIndexerNames()\n     .subscribe(indexerName -> System.out.printf(\"The indexer name is %s.%n\", indexerName));\n```"
+  desc: "Lists all indexers available for an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer names.\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.listIndexerNames()\n     .subscribe(indexerName -> System.out.printf(\"The indexer name is %s.%n\", indexerName));\n```"
   returns:
     description: "a response containing all Indexers from the Search service."
     type: "<xref href=\"com.azure.core.http.rest.PagedFlux?alt=com.azure.core.http.rest.PagedFlux&text=PagedFlux\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
@@ -450,7 +450,7 @@ methods:
   nameWithType: "SearchIndexerAsyncClient.listIndexers()"
   summary: "Lists all indexers available for an Azure Cognitive Search service."
   syntax: "public PagedFlux<SearchIndexer> listIndexers()"
-  desc: "Lists all indexers available for an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexers.\n\n```java\nsearchIndexerAsyncClient.listIndexers()\n     .subscribe(indexer ->\n         System.out.printf(\"The indexer name is %s. The etag of indexer is %s.%n\", indexer.getName(),\n         indexer.getETag()));\n```"
+  desc: "Lists all indexers available for an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexers.\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.listIndexers()\n     .subscribe(indexer ->\n         System.out.printf(\"The indexer name is %s. The ETag of indexer is %s.%n\", indexer.getName(),\n         indexer.getETag()));\n```"
   returns:
     description: "a response containing all Indexers from the Search service."
     type: "<xref href=\"com.azure.core.http.rest.PagedFlux?alt=com.azure.core.http.rest.PagedFlux&text=PagedFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexer?alt=com.azure.search.documents.indexes.models.SearchIndexer&text=SearchIndexer\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -460,7 +460,7 @@ methods:
   nameWithType: "SearchIndexerAsyncClient.listSkillsetNames()"
   summary: "Lists all skillset names for an Azure Cognitive Search service."
   syntax: "public PagedFlux<String> listSkillsetNames()"
-  desc: "Lists all skillset names for an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer skillset names.\n\n```java\nsearchIndexerAsyncClient.listSkillsetNames()\n     .subscribe(skillsetName -> System.out.printf(\"The indexer skillset name is %s.%n\", skillsetName));\n```"
+  desc: "Lists all skillset names for an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer skillset names.\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.listSkillsetNames()\n     .subscribe(skillsetName -> System.out.printf(\"The indexer skillset name is %s.%n\", skillsetName));\n```"
   returns:
     description: "a reactive response emitting the list of skillset names."
     type: "<xref href=\"com.azure.core.http.rest.PagedFlux?alt=com.azure.core.http.rest.PagedFlux&text=PagedFlux\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
@@ -470,7 +470,7 @@ methods:
   nameWithType: "SearchIndexerAsyncClient.listSkillsets()"
   summary: "Lists all skillsets available for an Azure Cognitive Search service."
   syntax: "public PagedFlux<SearchIndexerSkillset> listSkillsets()"
-  desc: "Lists all skillsets available for an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer skillsets.\n\n```java\nsearchIndexerAsyncClient.listSkillsets()\n     .subscribe(skillset ->\n         System.out.printf(\"The skillset name is %s. The etag of skillset is %s.%n\", skillset.getName(),\n         skillset.getETag()));\n```"
+  desc: "Lists all skillsets available for an Azure Cognitive Search service.\n\n**Code Sample**\n\nList all search indexer skillsets.\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.listSkillsets()\n     .subscribe(skillset ->\n         System.out.printf(\"The skillset name is %s. The ETag of skillset is %s.%n\", skillset.getName(),\n         skillset.getETag()));\n```"
   returns:
     description: "a reactive response emitting the list of skillsets."
     type: "<xref href=\"com.azure.core.http.rest.PagedFlux?alt=com.azure.core.http.rest.PagedFlux&text=PagedFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.search.documents.indexes.models.SearchIndexerSkillset?alt=com.azure.search.documents.indexes.models.SearchIndexerSkillset&text=SearchIndexerSkillset\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -484,7 +484,7 @@ methods:
     name: "indexerName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Void> resetIndexer(String indexerName)"
-  desc: "Resets the change tracking state associated with an indexer.\n\n**Code Sample**\n\nReset search indexer named \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.resetIndexer(\"searchIndexer\")\n     .subscribe();\n```"
+  desc: "Resets the change tracking state associated with an indexer.\n\n**Code Sample**\n\nReset search indexer named \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.resetIndexer(\"searchIndexer\")\n     .subscribe();\n```"
   returns:
     description: "a response signalling completion."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
@@ -498,7 +498,7 @@ methods:
     name: "indexerName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Response<Void>> resetIndexerWithResponse(String indexerName)"
-  desc: "Resets the change tracking state associated with an indexer.\n\n**Code Sample**\n\nReset search indexer named \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.resetIndexerWithResponse(\"searchIndexer\")\n     .subscribe(response ->\n         System.out.println(\"The status code of the response is \" + response.getStatusCode()));\n```"
+  desc: "Resets the change tracking state associated with an indexer.\n\n**Code Sample**\n\nReset search indexer named \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.resetIndexerWithResponse(\"searchIndexer\")\n     .subscribe(response ->\n         System.out.println(\"The status code of the response is \" + response.getStatusCode()));\n```"
   returns:
     description: "a response signalling completion."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;&gt;"
@@ -512,7 +512,7 @@ methods:
     name: "indexerName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Void> runIndexer(String indexerName)"
-  desc: "Runs an indexer on-demand.\n\n**Code Sample**\n\nRun search indexer named \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.runIndexer(\"searchIndexer\")\n     .subscribe();\n```"
+  desc: "Runs an indexer on-demand.\n\n**Code Sample**\n\nRun search indexer named \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.runIndexer(\"searchIndexer\")\n     .subscribe();\n```"
   returns:
     description: "a response signalling completion."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
@@ -526,7 +526,7 @@ methods:
     name: "indexerName"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Response<Void>> runIndexerWithResponse(String indexerName)"
-  desc: "Runs an indexer on-demand.\n\n**Code Sample**\n\nRun search indexer named \"searchIndexer\".\n\n```java\nsearchIndexerAsyncClient.runIndexerWithResponse(\"searchIndexer\")\n     .subscribe(response ->\n         System.out.println(\"The status code of the response is \" + response.getStatusCode()));\n```"
+  desc: "Runs an indexer on-demand.\n\n**Code Sample**\n\nRun search indexer named \"searchIndexer\".\n\n```java\nSEARCH_INDEXER_ASYNC_CLIENT.runIndexerWithResponse(\"searchIndexer\")\n     .subscribe(response ->\n         System.out.println(\"The status code of the response is \" + response.getStatusCode()));\n```"
   returns:
     description: "a response signalling completion."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;&gt;"
@@ -534,4 +534,4 @@ type: "class"
 desc: "This class provides a client that contains the operations for creating, getting, listing, updating, or deleting data source connections, indexers, or skillsets and running or resetting indexers in an Azure Cognitive Search service."
 metadata: {}
 package: "com.azure.search.documents.indexes"
-artifact: com.azure:azure-search-documents:11.5.12
+artifact: com.azure:azure-search-documents:11.6.0

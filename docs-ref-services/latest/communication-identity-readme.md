@@ -1,12 +1,12 @@
 ---
 title: Azure Communication Identity client library for Java
 keywords: Azure, java, SDK, API, azure-communication-identity, communication
-ms.date: 10/21/2023
+ms.date: 12/05/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Identity client library for Java - version 1.4.11 
+# Azure Communication Identity client library for Java - version 1.5.1 
 
 
 The identity package is used for managing users and tokens for Azure Communication Services.
@@ -28,7 +28,7 @@ The identity package is used for managing users and tokens for Azure Communicati
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-identity_1.4.11/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-identity_1.5.1/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -64,7 +64,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-communication-identity</artifactId>
-  <version>1.4.11</version>
+  <version>1.5.1</version>
 </dependency>
 ```
 
@@ -133,8 +133,11 @@ System.out.println("User id: " + user.getId());
 ### Getting a token for an existing user
 Use the `getToken` function to get a token for an existing user. The function
 also takes in a list of `CommunicationTokenScope`. Scope options include:
-- `chat` (Chat)
-- `voip` (Voice over IP)
+- `CHAT` (Use this for full access to Chat APIs)
+- `VOIP` (Use this for full access to Calling APIs)
+- `CHAT_JOIN` (Access to Chat APIs but without the authorization to create, delete or update chat threads)
+- `CHAT_JOIN_LIMITED` (A more limited version of CHAT_JOIN that doesn't allow to add or remove participants)
+- `VOIP_JOIN` (Access to Calling APIs but without the authorization to start new calls)
 
 ```java readme-sample-issueUserToken
  // Define a list of communication token scopes
@@ -240,10 +243,10 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 [product_docs]: /azure/communication-services/
-[package]: https://search.maven.org/artifact/com.azure/azure-communication-identity
+[package]: https://central.sonatype.com/artifact/com.azure/azure-communication-identity
 [api_documentation]: https://aka.ms/java-docs
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-identity_1.4.11/sdk/communication/azure-communication-identity/src/samples/java/com/azure/communication/identity/ReadmeSamples.java
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-identity_1.4.11/sdk/communication/azure-communication-identity/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-identity_1.5.1/sdk/communication/azure-communication-identity/src/samples/java/com/azure/communication/identity/ReadmeSamples.java
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-identity_1.5.1/sdk/communication/azure-communication-identity/src
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcommunication%2Fazure-communication-identity%2FREADME.png)
 
