@@ -1,7 +1,7 @@
 ---
 title: Azure Azure VMware Solution SDK for Java
 description: Reference for Azure Azure VMware Solution SDK for Java
-ms.date: 12/15/2023
+ms.date: 12/18/2023
 ms.topic: reference
 ms.devlang: java
 ms.service: azurevmwaresolution
