@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: healthcareapis
 ---
-# Azure Healthcare APIs SDK for Java - preview
-## Packages - preview
+# Azure Healthcare APIs SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](healthcare-apis-index.md)]
