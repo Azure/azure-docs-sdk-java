@@ -8,8 +8,11 @@ ms.service: cognitive-search
 ---
 # Azure Resource Manager Azure AI Search client library for Java - version 2.34.0 
 
+Azure AI Search (formerly known as "Azure Cognitive Search") is an AI-powered information retrieval platform that helps developers build rich search experiences and generative AI apps that combine large language models with enterprise data.
 
-Azure Resource Manager Azure AI Search client library for Java
+This library supports managing Microsoft Azure AI Search resources using the Azure SDK for Java.
+
+Although Azure AI Search is renamed, many API descriptions continue to use the former name, "Azure Cognitive Search". API string descriptions will get updated over time.
 
 For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
