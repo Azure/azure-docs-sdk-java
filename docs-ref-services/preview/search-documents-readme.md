@@ -258,10 +258,11 @@ the form of JSON documents. _(If you're new to search, you can make a very rough
 tables.)_ The `azure-search-documents` client library exposes operations on these resources through two main client types.
 
 * `SearchClient` helps with:
-  * [Searching](/azure/search/search-lucene-query-architecture)
-    your indexed documents using
-    [rich queries](/azure/search/search-query-overview)
-    and [powerful data shaping](/azure/search/search-filters)
+  * Searching your indexed documents using [vector queries](https://learn.microsoft.com/azure/search/vector-search-how-to-query),
+    [keyword queries](https://learn.microsoft.com/azure/search/search-query-create)
+    and [hybrid queries](https://learn.microsoft.com/azure/search/hybrid-search-how-to-query)
+  * [Vector query filters](https://learn.microsoft.com/azure/search/vector-search-filters) and [Text query filters](https://learn.microsoft.com/azure/search/search-filters)
+  * [Semantic ranking](https://learn.microsoft.com/azure/search/semantic-how-to-query-request) and [scoring profiles](https://learn.microsoft.com/azure/search/index-add-scoring-profiles) for boosting relevance
   * [Autocompleting](/rest/api/searchservice/autocomplete)
     partially typed search terms based on documents in the index
   * [Suggesting](/rest/api/searchservice/suggestions)

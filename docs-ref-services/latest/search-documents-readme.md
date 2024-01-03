@@ -262,6 +262,12 @@ tables.)_ The `azure-search-documents` client library exposes operations on thes
     and [hybrid queries](https://learn.microsoft.com/azure/search/hybrid-search-how-to-query)
   * [Vector query filters](https://learn.microsoft.com/azure/search/vector-search-filters) and [Text query filters](https://learn.microsoft.com/azure/search/search-filters)
   * [Semantic ranking](https://learn.microsoft.com/azure/search/semantic-how-to-query-request) and [scoring profiles](https://learn.microsoft.com/azure/search/index-add-scoring-profiles) for boosting relevance
+  * [Autocompleting](/rest/api/searchservice/autocomplete)
+    partially typed search terms based on documents in the index
+  * [Suggesting](/rest/api/searchservice/suggestions)
+    the most likely matching text in documents as a user types
+  * [Adding, Updating or Deleting Documents](/rest/api/searchservice/addupdate-or-delete-documents)
+    documents from an index
 
 * `SearchIndexClient` allows you to:
   * [Create, delete, update, or configure a search index](/rest/api/searchservice/index-operations)
