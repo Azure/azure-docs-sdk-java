@@ -1,12 +1,12 @@
 ---
 title: Azure Communication Job Router client library for Java
 keywords: Azure, java, SDK, API, azure-communication-jobrouter, communication
-ms.date: 12/04/2023
+ms.date: 01/04/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Job Router client library for Java - version 1.0.0 
+# Azure Communication Job Router client library for Java - version 1.1.0 
 
 
 Azure Communication Job Router contains the APIs used in job router applications for Azure Communication Services.
@@ -25,7 +25,7 @@ Azure Communication Job Router contains the APIs used in job router applications
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-jobrouter_1.0.0/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-jobrouter_1.1.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -139,13 +139,20 @@ An exception policy controls the behavior of a Job based on a trigger and execut
 ## Examples
 
 ### Client Initialization
-To initialize the JobRouter Client, the connection string can be used to instantiate.
-Alternatively, you can also use Active Directory authentication using DefaultAzureCredential.
+JobRouter has two clients, JobRouterAdministrationClient and JobRouterClient. Both of them
+can be initialized using the endpoint and access key.
 
 ```java 
-JobRouterClient jobRouterClient = new JobRouterClientBuilder()
-            .connectionString(connectionString)
-            .buildClient();
+String endpoint = <endpoint>;
+String accessKey = <accessKey>;
+JobRouterAdministrationClient routerAdminClient = new JobRouterAdministrationClientBuilder()
+        .endpoint(endpoint)
+        .addPolicy(new HmacAuthenticationPolicy(new AzureKeyCredential(accessKey)))
+        .buildClient();
+JobRouterClient routerClient = new JobRouterClientBuilder()
+        .endpoint(endpoint)
+        .addPolicy(new HmacAuthenticationPolicy(new AzureKeyCredential(accessKey)))
+        .buildClient();
 ```
 
 Using `JobRouterClient` created from builder, create Job Router entities as described below.
@@ -160,14 +167,14 @@ CreateDistributionPolicyOptions createDistributionPolicyOptions = new CreateDist
         .setMinConcurrentOffers(1)
         .setMaxConcurrentOffers(10)
 );
-DistributionPolicy distributionPolicy = jobRouterClient.createDistributionPolicy(createDistributionPolicyOptions);
+DistributionPolicy distributionPolicy = routerAdminClient.createDistributionPolicy(createDistributionPolicyOptions);
 ```
 
 ### Create a Queue
 
 ```java 
 CreateQueueOptions createQueueOptions = new CreateQueueOptions("queue-id", distributionPolicy.getId());
-RouterQueue jobQueue = jobRouterClient.createQueue(createQueueOptions);
+RouterQueue jobQueue = routerAdminClient.createQueue(createQueueOptions);
 ```
 
 ### Create a Job
@@ -184,7 +191,7 @@ CreateJobOptions createJobOptions = new CreateJobOptions("job-id", "chat-channel
                         .setValue(new LabelValue(10));
                 }}
             );
-RouterJob routerJob = jobRouterClient.createJob(createJobOptions);
+RouterJob routerJob = routerClient.createJob(createJobOptions);
 ```
 
 ### Create a Worker
@@ -223,7 +230,7 @@ CreateWorkerOptions createWorkerOptions = new CreateWorkerOptions(workerId, 10)
     .setChannels(channels)
     .setQueues(queues);
 
-RouterWorker routerWorker = jobRouterClient.createWorker(createWorkerOptions);
+RouterWorker routerWorker = routerClient.createWorker(createWorkerOptions);
 ```
 
 ## Troubleshooting
@@ -246,7 +253,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-jobrouter_1.0.0/sdk/communication/azure-communication-jobrouter/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-jobrouter_1.1.0/sdk/communication/azure-communication-jobrouter/src
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-jobrouter
 [api_documentation]: https://aka.ms/java-docs
