@@ -1,7 +1,7 @@
 ---
 title: Azure App Service SDK for Java
 description: Reference for Azure App Service SDK for Java
-ms.date: 01/10/2024
+ms.date: 01/11/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: app-service
