@@ -1,10 +1,10 @@
 ---
 title: Azure Purview SDK for Java
 description: Reference for Azure Purview SDK for Java
-ms.date: 01/15/2024
+ms.date: 01/16/2024
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-monitor
+ms.service: purview
 ---
 # Azure Purview SDK for Java - preview
 ## Packages - preview
