@@ -4,7 +4,7 @@ keywords: Azure, java, SDK, API, azure-resourcemanager-redis, redis-cache
 ms.date: 12/22/2023
 ms.topic: reference
 ms.devlang: java
-ms.service: redis-cache
+ms.service: cache
 ---
 # Azure Resource Manager redis cache client library for Java - version 2.34.0 
 
@@ -93,4 +93,3 @@ For details on contributing to this repository, see the [contributing guide](htt
 [authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-redis_2.34.0/sdk/resourcemanager/docs/AUTH.md
 [sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-redis_2.34.0/sdk/resourcemanager/docs/SAMPLE.md
 [design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-redis_2.34.0/sdk/resourcemanager/docs/DESIGN.md
-
