@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: networkanalytics
 ---
-# Azure Networkanalytics SDK for Java - preview
-## Packages - preview
+# Azure Networkanalytics SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](networkanalytics-index.md)]
