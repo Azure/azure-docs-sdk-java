@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: elasticsan
 ---
-# Azure Elastic SAN SDK for Java - preview
-## Packages - preview
+# Azure Elastic SAN SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](elastic-san-index.md)]
