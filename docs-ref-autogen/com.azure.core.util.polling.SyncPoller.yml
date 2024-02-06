@@ -48,7 +48,7 @@ methods:
   - description: "the activation operation to activate (start) the long-running operation. This operation\n will be invoked at most once across all subscriptions. This parameter is required. If there is no specific\n activation work to be done then invocation should return null, this operation will be called with a new\n <xref uid=\"com.azure.core.util.polling.PollingContext\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollingContext\"></xref>."
     name: "initialOperation"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html\">Supplier</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;?&gt;&gt;"
-  - description: "a known syncrhonous strategy for polling a long-running operation in Azure"
+  - description: "a known synchronous strategy for polling a long-running operation in Azure"
     name: "strategy"
     type: "<xref href=\"com.azure.core.util.polling.SyncPollingStrategy?alt=com.azure.core.util.polling.SyncPollingStrategy&text=SyncPollingStrategy\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />,<xref href=\"U?alt=U&text=U\" data-throw-if-not-resolved=\"False\" />&gt;"
   - description: "the <xref uid=\"com.azure.core.util.serializer.TypeReference\" data-throw-if-not-resolved=\"false\" data-raw-source=\"TypeReference\"></xref> of the response type from a polling call, or BinaryData if raw\n response body should be kept. This should match the generic parameter <xref uid=\"U\" data-throw-if-not-resolved=\"false\" data-raw-source=\"U\"></xref>."
@@ -58,7 +58,7 @@ methods:
     name: "resultType"
     type: "<xref href=\"com.azure.core.util.serializer.TypeReference?alt=com.azure.core.util.serializer.TypeReference&text=TypeReference\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"U?alt=U&text=U\" data-throw-if-not-resolved=\"False\" />&gt;"
   syntax: "public static SyncPoller<T,U> <T,U>createPoller(Duration pollInterval, Supplier<Response<?>> initialOperation, SyncPollingStrategy<T,U> strategy, TypeReference<T> pollResponseType, TypeReference<U> resultType)"
-  desc: "Creates PollerFlux.\n\nThis create method uses a <xref uid=\"com.azure.core.util.polling.SyncPollingStrategy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SyncPollingStrategy\"></xref> to poll the status of a long-running operation after the activation operation is invoked. See <xref uid=\"com.azure.core.util.polling.SyncPollingStrategy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SyncPollingStrategy\"></xref> for more details of known polling strategies and how to create a custom strategy."
+  desc: "Creates PollerFlux.\n\nThis method uses a <xref uid=\"com.azure.core.util.polling.SyncPollingStrategy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SyncPollingStrategy\"></xref> to poll the status of a long-running operation after the activation operation is invoked. See <xref uid=\"com.azure.core.util.polling.SyncPollingStrategy\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SyncPollingStrategy\"></xref> for more details of known polling strategies and how to create a custom strategy."
   returns:
     description: "new <xref uid=\"com.azure.core.util.polling.SyncPoller\" data-throw-if-not-resolved=\"false\" data-raw-source=\"SyncPoller\"></xref> instance."
     type: "<xref href=\"com.azure.core.util.polling.SyncPoller?alt=com.azure.core.util.polling.SyncPoller&text=SyncPoller\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />,<xref href=\"U?alt=U&text=U\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -66,11 +66,11 @@ methods:
   fullName: "com.azure.core.util.polling.SyncPoller<T,U>.cancelOperation()"
   name: "cancelOperation()"
   nameWithType: "SyncPoller<T,U>.cancelOperation()"
-  summary: "cancels the remote long-running operation if cancellation is supported by the service."
+  summary: "Cancels the remote long-running operation if cancellation is supported by the service."
   modifiers:
   - "abstract"
   syntax: "public abstract void cancelOperation()"
-  desc: "cancels the remote long-running operation if cancellation is supported by the service."
+  desc: "Cancels the remote long-running operation if cancellation is supported by the service.\n\nIf cancellation isn't supported by the service this will throw an exception."
 - uid: "com.azure.core.util.polling.SyncPoller.getFinalResult()"
   fullName: "com.azure.core.util.polling.SyncPoller<T,U>.getFinalResult()"
   name: "getFinalResult()"
@@ -79,7 +79,23 @@ methods:
   modifiers:
   - "abstract"
   syntax: "public abstract U getFinalResult()"
-  desc: "Retrieve the final result of the long-running operation."
+  desc: "Retrieve the final result of the long-running operation.\n\nIf polling hasn't completed this will wait indefinitely until polling completes."
+  returns:
+    description: "the final result of the long-running operation if there is one."
+    type: "<xref href=\"U?alt=U&text=U\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.core.util.polling.SyncPoller.getFinalResult(java.time.Duration)"
+  fullName: "com.azure.core.util.polling.SyncPoller<T,U>.getFinalResult(Duration timeout)"
+  name: "getFinalResult(Duration timeout)"
+  nameWithType: "SyncPoller<T,U>.getFinalResult(Duration timeout)"
+  summary: "Retrieve the final result of the long-running operation."
+  modifiers:
+  - "default"
+  parameters:
+  - description: "the duration to wait for polling completion."
+    name: "timeout"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html\">Duration</a>"
+  syntax: "public default U getFinalResult(Duration timeout)"
+  desc: "Retrieve the final result of the long-running operation.\n\nIf polling hasn't completed this will wait for the `timeout` for polling to complete. In this case this API is effectively equivalent to <xref uid=\"com.azure.core.util.polling.SyncPoller.waitForCompletion(java.time.Duration)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#waitForCompletion(Duration)\"></xref> \\+ <xref uid=\"com.azure.core.util.polling.SyncPoller.getFinalResult()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getFinalResult()\"></xref>.\n\nPolling will continue until a completed <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> is received or the timeout expires.\n\nThe `timeout` is applied in two ways, first it's used during each poll operation to time it out if the polling operation takes too long. Second, it's used to determine when the wait for should stop. If polling doesn't reach a completion state before the `timeout` elapses a <xref uid=\"java.lang.RuntimeException\" data-throw-if-not-resolved=\"false\" data-raw-source=\"RuntimeException\"></xref> wrapping a <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"TimeoutException\"></xref> will be thrown.\n\nIf this method isn't overridden by the implementation then this method is effectively equivalent to calling <xref uid=\"com.azure.core.util.polling.SyncPoller.waitForCompletion(java.time.Duration)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#waitForCompletion(Duration)\"></xref> then <xref uid=\"com.azure.core.util.polling.SyncPoller.getFinalResult()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getFinalResult()\"></xref>."
   returns:
     description: "the final result of the long-running operation if there is one."
     type: "<xref href=\"U?alt=U&text=U\" data-throw-if-not-resolved=\"False\" />"
@@ -119,7 +135,7 @@ methods:
   modifiers:
   - "abstract"
   syntax: "public abstract PollResponse<T> waitForCompletion()"
-  desc: "Wait for polling to complete. The polling is considered complete based on status defined in <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref>."
+  desc: "Wait for polling to complete. The polling is considered complete based on status defined in <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref>.\n\nThis operation will wait indefinitely until a completed <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> is received."
   returns:
     description: "the final poll response"
     type: "<xref href=\"com.azure.core.util.polling.PollResponse?alt=com.azure.core.util.polling.PollResponse&text=PollResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -131,11 +147,11 @@ methods:
   modifiers:
   - "abstract"
   parameters:
-  - description: "the duration to waits for polling completion."
+  - description: "the duration to wait for polling completion."
     name: "timeout"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html\">Duration</a>"
   syntax: "public abstract PollResponse<T> waitForCompletion(Duration timeout)"
-  desc: "Wait for polling to complete with a timeout. The polling is considered complete based on status defined in <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref>."
+  desc: "Wait for polling to complete with a timeout. The polling is considered complete based on status defined in <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> or if the timeout expires.\n\nPolling will continue until a completed <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> is received or the timeout expires.\n\nThe `timeout` is applied in two ways, first it's used during each poll operation to time it out if the polling operation takes too long. Second, it's used to determine when the wait for should stop. If polling doesn't reach a completion state before the `timeout` elapses a <xref uid=\"java.lang.RuntimeException\" data-throw-if-not-resolved=\"false\" data-raw-source=\"RuntimeException\"></xref> wrapping a <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"TimeoutException\"></xref> will be thrown."
   returns:
     description: "the final poll response."
     type: "<xref href=\"com.azure.core.util.polling.PollResponse?alt=com.azure.core.util.polling.PollResponse&text=PollResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -151,28 +167,28 @@ methods:
     name: "statusToWaitFor"
     type: "<xref href=\"com.azure.core.util.polling.LongRunningOperationStatus?alt=com.azure.core.util.polling.LongRunningOperationStatus&text=LongRunningOperationStatus\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public abstract PollResponse<T> waitUntil(LongRunningOperationStatus statusToWaitFor)"
-  desc: "Wait for the given <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> to receive."
+  desc: "Wait for the given <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> to receive.\n\nThis operation will wait indefinitely until the `statusToWaitFor` is received or a <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus.isComplete()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus#isComplete()\"></xref> state is reached."
   returns:
-    description: "<xref uid=\"com.azure.core.util.polling.PollResponse\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollResponse\"></xref> whose <xref uid=\"com.azure.core.util.polling.PollResponse.getStatus()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollResponse#getStatus()\"></xref> matches <code>statusToWaitFor</code>."
+    description: "<xref uid=\"com.azure.core.util.polling.PollResponse\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollResponse\"></xref> whose <xref uid=\"com.azure.core.util.polling.PollResponse.getStatus()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollResponse#getStatus()\"></xref> matches <code>statusToWaitFor</code> or is\n <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus.isComplete()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus#isComplete()\"></xref>."
     type: "<xref href=\"com.azure.core.util.polling.PollResponse?alt=com.azure.core.util.polling.PollResponse&text=PollResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
 - uid: "com.azure.core.util.polling.SyncPoller.waitUntil(java.time.Duration,com.azure.core.util.polling.LongRunningOperationStatus)"
   fullName: "com.azure.core.util.polling.SyncPoller<T,U>.waitUntil(Duration timeout, LongRunningOperationStatus statusToWaitFor)"
   name: "waitUntil(Duration timeout, LongRunningOperationStatus statusToWaitFor)"
   nameWithType: "SyncPoller<T,U>.waitUntil(Duration timeout, LongRunningOperationStatus statusToWaitFor)"
-  summary: "Wait for the given <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref>."
+  summary: "Wait for the given <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> with a timeout."
   modifiers:
   - "abstract"
   parameters:
-  - description: "the duration to waits for the polling."
+  - description: "the duration to wait for the polling."
     name: "timeout"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html\">Duration</a>"
   - description: "the desired <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> to block for."
     name: "statusToWaitFor"
     type: "<xref href=\"com.azure.core.util.polling.LongRunningOperationStatus?alt=com.azure.core.util.polling.LongRunningOperationStatus&text=LongRunningOperationStatus\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public abstract PollResponse<T> waitUntil(Duration timeout, LongRunningOperationStatus statusToWaitFor)"
-  desc: "Wait for the given <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref>."
+  desc: "Wait for the given <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> with a timeout.\n\nPolling will continue until a response is returned with a <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus\"></xref> matching `statusToWaitFor`, a <xref uid=\"com.azure.core.util.polling.LongRunningOperationStatus.isComplete()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"LongRunningOperationStatus#isComplete()\"></xref> state is reached, or the timeout expires.\n\nUnlike <xref uid=\"com.azure.core.util.polling.SyncPoller.waitForCompletion(java.time.Duration)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#waitForCompletion(Duration)\"></xref> or <xref uid=\"com.azure.core.util.polling.SyncPoller.getFinalResult(java.time.Duration)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"#getFinalResult(Duration)\"></xref>, when the timeout elapses a <xref uid=\"java.lang.RuntimeException\" data-throw-if-not-resolved=\"false\" data-raw-source=\"RuntimeException\"></xref> wrapping a <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"TimeoutException\"></xref> will not be thrown. Instead, the last poll response will be returned. This is because unlike a completion state, a wait for state may be skipped if the state is reached and completed before a poll operation is executed. For example, if a long-running operation has the flow `A -> B -> C -> D` and the `statusToWaitFor` is `B` and the first poll request returns state `A` but in the time between polls state `B` completes, then the next poll request will return state `C` and the `statusToWaitFor` will never be returned.\n\nThis may return null if no poll operation completes within the timeout."
   returns:
-    description: "<xref uid=\"com.azure.core.util.polling.PollResponse\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollResponse\"></xref> whose <xref uid=\"com.azure.core.util.polling.PollResponse.getStatus()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollResponse#getStatus()\"></xref> matches <code>statusToWaitFor</code>."
+    description: "<xref uid=\"com.azure.core.util.polling.PollResponse\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollResponse\"></xref> whose <xref uid=\"com.azure.core.util.polling.PollResponse.getStatus()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PollResponse#getStatus()\"></xref> matches <code>statusToWaitFor</code>, or null if\n no response was returned within the timeout."
     type: "<xref href=\"com.azure.core.util.polling.PollResponse?alt=com.azure.core.util.polling.PollResponse&text=PollResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
 type: "interface"
 typeParameters:
@@ -183,4 +199,4 @@ typeParameters:
 desc: "A type that offers API that simplifies the task of executing long-running operations against an Azure service.\n\nIt provides the following functionality:\n\n *  Querying the current state of the long-running operation.\n *  Requesting cancellation of long-running operation, if supported by the service.\n *  Fetching final result of long-running operation, if supported by the service.\n *  Wait for long-running operation to complete, with optional timeout.\n *  Wait for long-running operation to reach a specific state."
 metadata: {}
 package: "com.azure.core.util.polling"
-artifact: com.azure:azure-core:1.45.1
+artifact: com.azure:azure-core:1.46.0
