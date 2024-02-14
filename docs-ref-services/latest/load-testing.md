@@ -1,7 +1,7 @@
 ---
 title: Azure Load Testing SDK for Java
 description: Reference for Azure Load Testing SDK for Java
-ms.date: 02/13/2024
+ms.date: 02/14/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: load-testing
