@@ -1,7 +1,7 @@
 ---
 title: Azure Redis SDK for Java
 description: Reference for Azure Redis SDK for Java
-ms.date: 02/19/2024
+ms.date: 02/20/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: redis-cache
