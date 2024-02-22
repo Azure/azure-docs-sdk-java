@@ -1,7 +1,7 @@
 ---
 title: Azure Computer Vision SDK for Java
 description: Reference for Azure Computer Vision SDK for Java
-ms.date: 02/21/2024
+ms.date: 02/22/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: computervision
