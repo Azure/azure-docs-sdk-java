@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: apicenter
 ---
-# Azure API Center SDK for Java - preview
-## Packages - preview
+# Azure API Center SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](api-center-index.md)]
