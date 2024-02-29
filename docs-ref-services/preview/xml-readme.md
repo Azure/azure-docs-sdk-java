@@ -1,12 +1,12 @@
 ---
 title: Azure XML shared library for Java
-keywords: Azure, java, SDK, API, azure-xml, core
-ms.date: 06/02/2023
+keywords: Azure, java, SDK, API, azure-xml, serialization
+ms.date: 02/29/2024
 ms.topic: reference
 ms.devlang: java
-ms.service: core
+ms.service: serialization
 ---
-# Azure XML shared library for Java - version 1.0.0-beta.2 
+# Azure XML shared library for Java - version 1.0.0-beta.3 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -31,7 +31,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-xml</artifactId>
-  <version>1.0.0-beta.2</version>
+  <version>1.0.0-beta.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -178,7 +178,7 @@ or checkout [StackOverflow for Azure Java SDK](https://stackoverflow.com/questio
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-xml_1.0.0-beta.2/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-xml_1.0.0-beta.3/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -189,5 +189,5 @@ For details on contributing to this repository, see the [contributing guide](htt
 <!-- links -->
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-xml%2FREADME.png)
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fserialization%2Fazure-xml%2FREADME.png)
 
