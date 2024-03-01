@@ -1,12 +1,12 @@
 ---
 title: Azure Core Test shared library for Java
 keywords: Azure, java, SDK, API, azure-core-test, core
-ms.date: 02/02/2024
+ms.date: 03/01/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Test shared library for Java - version 1.23.0 
+# Azure Core Test shared library for Java - version 1.24.0 
 
 
 This library contains core classes used to test Azure SDK client libraries.
@@ -44,7 +44,7 @@ To use this package, add the following to your _pom.xml_.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-core-test</artifactId>
-  <version>1.23.0</version>
+  <version>1.24.0</version>
 </dependency>
 ```
 
@@ -68,7 +68,7 @@ To use this package, add the following to your _pom.xml_.
   test session.
 * [InterceptorManager][InterceptorManager.java]: A class that keeps track of network calls by either reading the data
   from an existing test session record or recording the network calls in memory. Test session records are saved or read
-  from "<i>.assets/{library-level}/src/test/resources/session-records/TestFileName.testName}.json</i>".
+  from "<i>.assets/{library-level}/src/test/resources/session-records/{TestFileName.testName}.json</i>".
 * [TestProxyRecordPolicy][TestProxyRecordPolicy.java]: Pipeline policy that records network calls using
   the [`test-proxy`][test-proxy-readme].
 * [TestProxyPlaybackClient][TestProxyPlaybackClient.java]: HTTP client that plays back responses from the recorded data
@@ -275,11 +275,10 @@ There are two primary ways to keep secrets from being written into recordings:
 
 1. [Default sanitizers][default_sanitizers], similar to the use of the RecordingRedactor are already registered in the
    TestProxyUtils for default redactions.
-2. Custom sanitizers can be added
-   using `[TestProxySanitizer]`[test_proxy_sanitizer] & `interceptorManager.addSanitizers()` method for addressing
-   specific service sanitization needs.
+2. Custom sanitizers can be added using [`TestProxySanitizer`][test_proxy_sanitizer] and 
+   `interceptorManager.addSanitizers()` method for addressing specific service sanitization needs.
    For example, registering a custom sanitizer for redacting the value of json key modelId from the response body looks
-   like the following:.
+   like the following:
    ```java readme-sample-add-sanitizer-matcher
 
    List<TestProxySanitizer> customSanitizer = new ArrayList<>();
@@ -326,12 +325,12 @@ If you encounter any bugs with these SDKs, please file issues via
 
 Other useful packages are:
 
-* [azure-core](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/core/azure-core): Contains core classes and
+* [azure-core](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/core/azure-core): Contains core classes and
   functionality used by all client libraries.
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide][cg].
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/CONTRIBUTING.md).
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit <https://cla.microsoft.com>.
 
@@ -341,7 +340,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 
 [azure_portal]: https://portal.azure.com/
 [azure_cli_service_principal]: /cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac
-[default_sanitizers]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/utils/TestProxyUtils.java#L259
+[default_sanitizers]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/utils/TestProxyUtils.java#L259
 [git_setup]: https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 [git_token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 [powershell]: https://learn.microsoft.com/powershell/scripting/install/installing-powershell?view=powershell-latest
@@ -349,17 +348,19 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [sanitize-secrets]: https://github.com/Azure/azure-sdk-tools/blob/main/tools/test-proxy/Azure.Sdk.Tools.TestProxy/README.md#session-and-test-level-transforms-sanitizers-and-matchers
 [test-proxy-readme]: https://github.com/Azure/azure-sdk-tools/blob/main/tools/test-proxy/Azure.Sdk.Tools.TestProxy/README.md
 [test-proxy-migration-guide]: https://github.com/Azure/azure-sdk-for-java/blob/64de460d8080127a1e0c58fbfc7ab9e95f70a2c7/sdk/core/azure-core-test/TestProxyMigrationGuide.md
-[InterceptorManager.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/InterceptorManager.java
-[TestProxyPlaybackClient.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/http/TestProxyPlaybackClient.java
-[TestProxyRecordPolicy.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/policy/TestProxyRecordPolicy.java
-[TestBase.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/TestProxyTestBase.java
-[TestProxyTestBase.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/TestProxyTestBase.java
-[TableClientTestBase]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/tables/azure-data-tables/src/test/java/com/azure/data/tables/TableClientTestBase.java#L61
-[tables-test-resources]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/tables/test-resources.json
-[tables-test-resources-resources]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/tables/test-resources.json#L42
-[tables-test-resources-outputs]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/tables/test-resources.json#L115
-[test-resources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-core-test_1.23.0/eng/common/TestResources#readme
-[test_proxy_sanitizer]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.23.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/models/TestProxySanitizer.java
+[InterceptorManager.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/InterceptorManager.java
+[TestProxyPlaybackClient.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/http/TestProxyPlaybackClient.java
+[TestProxyRecordPolicy.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/policy/TestProxyRecordPolicy.java
+[TestBase.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/TestProxyTestBase.java
+[TestProxyTestBase.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/TestProxyTestBase.java
+[TableClientTestBase]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/tables/azure-data-tables/src/test/java/com/azure/data/tables/TableClientTestBase.java#L61
+[tables-test-resources]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/tables/test-resources.json
+[tables-test-resources-resources]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/tables/test-resources.json#L42
+[tables-test-resources-outputs]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/tables/test-resources.json#L115
+[test-resources]: https://github.com/Azure/azure-sdk-for-java/tree/azure-core-test_1.24.0/eng/common/TestResources#readme
+[test_proxy_sanitizer]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.24.0/sdk/core/azure-core-test/src/main/java/com/azure/core/test/models/TestProxySanitizer.java
+[coc]: https://opensource.microsoft.com/codeofconduct/
+[coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-test%2FREADME.png)
 
