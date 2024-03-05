@@ -1,7 +1,6 @@
 | Reference | Package | Source |
 |---|---|---|
 |[Communication Call Automation](communication-callautomation-readme.md)|[azure-communication-callautomation](https://repo1.maven.org/maven2/com/azure/azure-communication-callautomation)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-callautomation)|
-|[Communication Calling Android](communication-calling-readme.md)|[azure-communication-calling](https://repo1.maven.org/maven2/com/azure/android/azure-communication-calling)|[GitHub](https://github.com/Azure/Communication)|
 |[Communication Chat](communication-chat-readme.md)|[azure-communication-chat](https://repo1.maven.org/maven2/com/azure/azure-communication-chat)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-chat)|
 |[Communication Common](communication-common-readme.md)|[azure-communication-common](https://repo1.maven.org/maven2/com/azure/azure-communication-common)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-common)|
 |[Communication Email](communication-email-readme.md)|[azure-communication-email](https://repo1.maven.org/maven2/com/azure/azure-communication-email)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/communication/azure-communication-email)|
