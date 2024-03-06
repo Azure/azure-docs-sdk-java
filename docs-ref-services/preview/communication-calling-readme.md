@@ -1,10 +1,12 @@
 ---
 title: Azure Communication Services Calling SDK for Android
 keywords: Azure, java, SDK, API, azure-communication-calling, communication
+description: Azure Communication Calling SDK for Android overview
 ms.date: 03/04/2024
 ms.topic: reference
 ms.devlang: java
-ms.service: communication
+ms.service: azure-communication-services
+ms.subservice: calling
 ---
 
 # Azure Communication Calling SDK for Android overview
@@ -25,4 +27,4 @@ You can check the release notes the Azure Communication Services Calling SDK for
 - **Android Auto** and **IoT devices running Android** are currently not supported.
 
 
-For more information, check [Calling SDK Overview](https://learn.microsoft.com/en-us/azure/communication-services/concepts/voice-video-calling/calling-sdk-features).
+For more information, check [Calling SDK Overview](/azure/communication-services/concepts/voice-video-calling/calling-sdk-features).
