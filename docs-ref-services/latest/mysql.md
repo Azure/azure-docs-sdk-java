@@ -33,9 +33,9 @@ Connect to Azure Database for MySQL from your applications using the open-source
 Connect to Azure Database for MySQL using JDBC and select all records in the sales table. You can get the JDBC connection string for the database from the Azure Portal.
 
 ```java
-String url = String.format("jdbc:mysql://fabrikamysql.mysql.database.azure.com:3306/fabrikamdb?verifyServerCertificate=true&useSSL=true&requireSSL=false");
+String url = String.format("jdbc:mysql://[your-database-hostname].mysql.database.azure.com:3306/[your-database-name]?verifyServerCertificate=true&useSSL=true&requireSSL=[true|false]&user=[your-username]&password=[your-password]");
 try {
-    Connection conn = DriverManager.getConnection(url, "frank@fabrikamysql", "aBcDeFgHiJkL");
+    Connection conn = DriverManager.getConnection(url, "USERNAME", "PASSWORD");
     String selectSql = "SELECT * FROM SALES";
     Statement statement = conn.createStatement();
     ResultSet resultSet = statement.executeQuery(selectSql);
