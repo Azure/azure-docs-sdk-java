@@ -1,7 +1,7 @@
 ---
 title: Azure Dev Center SDK for Java
 description: Reference for Azure Dev Center SDK for Java
-ms.date: 03/13/2024
+ms.date: 03/14/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: devcenter
