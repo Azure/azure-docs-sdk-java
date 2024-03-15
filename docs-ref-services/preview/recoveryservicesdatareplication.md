@@ -1,7 +1,7 @@
 ---
 title: Azure Recoveryservicesdatareplication SDK for Java
 description: Reference for Azure Recoveryservicesdatareplication SDK for Java
-ms.date: 03/14/2024
+ms.date: 03/15/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: recoveryservicesdatareplication
