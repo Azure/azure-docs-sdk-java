@@ -1,7 +1,7 @@
 ---
 title: Azure Cosmos DB for PostgreSQL SDK for Java
 description: Reference for Azure Cosmos DB for PostgreSQL SDK for Java
-ms.date: 03/19/2024
+ms.date: 03/20/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: cosmosdbforpostgresql
