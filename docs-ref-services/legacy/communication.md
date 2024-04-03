@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication SDK for Java - latest
-## Packages - latest
+# Azure Communication SDK for Java - legacy
+## Packages - legacy
 [!INCLUDE [packages](communication-index.md)]
