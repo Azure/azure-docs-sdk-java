@@ -1,12 +1,12 @@
 ---
 title: Azure Core OkHttp HTTP plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-http-okhttp, core
-ms.date: 03/01/2024
+ms.date: 04/05/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core OkHttp HTTP plugin library for Java - version 1.11.19 
+# Azure Core OkHttp HTTP plugin library for Java - version 1.11.20 
 
 
 Azure Core OkHttp HTTP client is a plugin for the `azure-core` HTTP client API.
@@ -21,7 +21,7 @@ Azure Core OkHttp HTTP client is a plugin for the `azure-core` HTTP client API.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-okhttp_1.11.19/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-okhttp_1.11.20/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -56,7 +56,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-http-okhttp</artifactId>
-    <version>1.11.19</version>
+    <version>1.11.20</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -128,7 +128,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-okhttp_1.11.19/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-okhttp_1.11.20/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
