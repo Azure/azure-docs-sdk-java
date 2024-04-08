@@ -1,14 +1,14 @@
 ---
 title: Azure SQL SDK for Java
 description: Reference for Azure SQL SDK for Java
-ms.date: 04/05/2024
+ms.date: 04/08/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: mysql
 ms.technology: azure
 manager: douge
-ms.prod: azure
 keywords: Azure, Java, SDK, API, SQL, database , JDBC
+ms.prod: azure
 ---
 # Azure SQL Database libraries for Java (Preview)
 
