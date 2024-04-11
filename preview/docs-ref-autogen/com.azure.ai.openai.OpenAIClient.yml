@@ -286,7 +286,7 @@ methods:
   fullName: "com.azure.ai.openai.OpenAIClient.getChatCompletionsStream(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions)"
   name: "getChatCompletionsStream(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions)"
   nameWithType: "OpenAIClient.getChatCompletionsStream(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions)"
-  summary: "Gets chat completions for the provided chat messages."
+  summary: "Gets chat completions for the provided chat messages in streaming mode."
   parameters:
   - description: "Specifies either the model deployment name (when using Azure OpenAI) or model name\n (when using non-Azure OpenAI) to use for this request."
     name: "deploymentOrModelName"
@@ -295,10 +295,30 @@ methods:
     name: "chatCompletionsOptions"
     type: "<xref href=\"com.azure.ai.openai.models.ChatCompletionsOptions?alt=com.azure.ai.openai.models.ChatCompletionsOptions&text=ChatCompletionsOptions\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public IterableStream<ChatCompletions> getChatCompletionsStream(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions)"
-  desc: "Gets chat completions for the provided chat messages. Chat completions support a wide variety of tasks and generate text that continues from or \"completes\" provided prompt data."
+  desc: "Gets chat completions for the provided chat messages in streaming mode. Chat completions support a wide variety of tasks and generate text that continues from or \"completes\" provided prompt data.\n\n**Code Samples**\n\n```java\nopenAIClient.getChatCompletionsStream(deploymentOrModelId, new ChatCompletionsOptions(chatMessages))\n         .forEach(chatCompletions -> {\n             if (CoreUtils.isNullOrEmpty(chatCompletions.getChoices())) {\n                 return;\n             }\n             ChatResponseMessage delta = chatCompletions.getChoices().get(0).getDelta();\n             if (delta.getRole() != null) {\n                 System.out.println(\"Role = \" + delta.getRole());\n             }\n             if (delta.getContent() != null) {\n                 String content = delta.getContent();\n                 System.out.print(content);\n             }\n         });\n```"
   returns:
     description: "chat completions stream for the provided chat messages. Completions support a wide variety of tasks and\n generate text that continues from or \"completes\" provided prompt data."
     type: "<xref href=\"com.azure.core.util.IterableStream?alt=com.azure.core.util.IterableStream&text=IterableStream\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.ai.openai.models.ChatCompletions?alt=com.azure.ai.openai.models.ChatCompletions&text=ChatCompletions\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.ai.openai.OpenAIClient.getChatCompletionsStreamWithResponse(java.lang.String,com.azure.ai.openai.models.ChatCompletionsOptions,com.azure.core.http.rest.RequestOptions)"
+  fullName: "com.azure.ai.openai.OpenAIClient.getChatCompletionsStreamWithResponse(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions, RequestOptions requestOptions)"
+  name: "getChatCompletionsStreamWithResponse(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions, RequestOptions requestOptions)"
+  nameWithType: "OpenAIClient.getChatCompletionsStreamWithResponse(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions, RequestOptions requestOptions)"
+  summary: "Gets chat completions for the provided chat messages in streaming mode."
+  parameters:
+  - description: "Specifies either the model deployment name (when using Azure OpenAI) or model name\n (when using non-Azure OpenAI) to use for this request."
+    name: "deploymentOrModelName"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+  - description: "The configuration information for a chat completions request. Completions support a\n wide variety of tasks and generate text that continues from or \"completes\" provided prompt data."
+    name: "chatCompletionsOptions"
+    type: "<xref href=\"com.azure.ai.openai.models.ChatCompletionsOptions?alt=com.azure.ai.openai.models.ChatCompletionsOptions&text=ChatCompletionsOptions\" data-throw-if-not-resolved=\"False\" />"
+  - description: "The options to configure the HTTP request before HTTP client sends it."
+    name: "requestOptions"
+    type: "<xref href=\"com.azure.core.http.rest.RequestOptions?alt=com.azure.core.http.rest.RequestOptions&text=RequestOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Response<IterableStream<ChatCompletions>> getChatCompletionsStreamWithResponse(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions, RequestOptions requestOptions)"
+  desc: "Gets chat completions for the provided chat messages in streaming mode. Chat completions support a wide variety of tasks and generate text that continues from or \"completes\" provided prompt data.\n\n**Code Samples**\n\n```java\nopenAIClient.getChatCompletionsStreamWithResponse(deploymentOrModelId, new ChatCompletionsOptions(chatMessages),\n                 new RequestOptions().setHeader(\"my-header\", \"my-header-value\"))\n         .getValue()\n         .forEach(chatCompletions -> {\n             if (CoreUtils.isNullOrEmpty(chatCompletions.getChoices())) {\n                 return;\n             }\n             ChatResponseMessage delta = chatCompletions.getChoices().get(0).getDelta();\n             if (delta.getRole() != null) {\n                 System.out.println(\"Role = \" + delta.getRole());\n             }\n             if (delta.getContent() != null) {\n                 String content = delta.getContent();\n                 System.out.print(content);\n             }\n         });\n```"
+  returns:
+    description: "chat completions stream for the provided chat messages. Completions support a wide variety of tasks and\n generate text that continues from or \"completes\" provided prompt data."
+    type: "<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.core.util.IterableStream?alt=com.azure.core.util.IterableStream&text=IterableStream\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.ai.openai.models.ChatCompletions?alt=com.azure.ai.openai.models.ChatCompletions&text=ChatCompletions\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
 - uid: "com.azure.ai.openai.OpenAIClient.getChatCompletionsWithResponse(java.lang.String,com.azure.ai.openai.models.ChatCompletionsOptions,com.azure.core.http.rest.RequestOptions)"
   fullName: "com.azure.ai.openai.OpenAIClient.getChatCompletionsWithResponse(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions, RequestOptions requestOptions)"
   name: "getChatCompletionsWithResponse(String deploymentOrModelName, ChatCompletionsOptions chatCompletionsOptions, RequestOptions requestOptions)"
@@ -508,4 +528,4 @@ type: "class"
 desc: "Initializes a new instance of the synchronous OpenAIClient type."
 metadata: {}
 package: "com.azure.ai.openai"
-artifact: com.azure:azure-ai-openai:1.0.0-beta.7
+artifact: com.azure:azure-ai-openai:1.0.0-beta.8
