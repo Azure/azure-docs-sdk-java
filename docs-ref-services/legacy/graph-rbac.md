@@ -1,7 +1,7 @@
 ---
 title: Azure Graph RBAC SDK for Java
 description: Reference for Azure Graph RBAC SDK for Java
-ms.date: 04/10/2024
+ms.date: 04/11/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: graphrbac
