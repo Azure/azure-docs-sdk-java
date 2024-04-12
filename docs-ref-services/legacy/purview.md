@@ -4,8 +4,8 @@ description: Reference for Azure Purview SDK for Java
 ms.date: 04/12/2024
 ms.topic: reference
 ms.devlang: java
-ms.service: purview
+ms.service: azure-monitor
 ---
-# Azure Purview SDK for Java - preview
-## Packages - preview
+# Azure Purview SDK for Java - legacy
+## Packages - legacy
 [!INCLUDE [packages](purview-index.md)]
