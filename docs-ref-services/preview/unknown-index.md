@@ -7,4 +7,3 @@
 |[unknown](iot-modelsrepository-readme.md)|[azure-iot-modelsrepository](https://repo1.maven.org/maven2/com/azure/azure-iot-modelsrepository)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
 |[unknown](quantum-jobs-readme.md)|[azure-quantum-jobs](https://repo1.maven.org/maven2/com/azure/azure-quantum-jobs)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
 |[unknown](xml-readme.md)|[azure-xml](https://repo1.maven.org/maven2/com/azure/azure-xml)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/serialization/azure-xml)|
-|[unknown](resourcemanager-migrationdiscoverysap-readme.md)|[azure-resourcemanager-migrationdiscoverysap](https://repo1.maven.org/maven2/com/azure/resourcemanager/azure-resourcemanager-migrationdiscoverysap)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/migrationdiscoverysap/azure-resourcemanager-migrationdiscoverysap)|
