@@ -80,7 +80,7 @@ methods:
     name: "options"
     type: "<xref href=\"com.azure.storage.file.datalake.options.DataLakePathCreateOptions?alt=com.azure.storage.file.datalake.options.DataLakePathCreateOptions&text=DataLakePathCreateOptions\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public Mono<Response<PathInfo>> createWithResponse(DataLakePathCreateOptions options)"
-  desc: "Creates a resource.\n\n**Code Samples**\n\n```java\nPathHttpHeaders httpHeaders = new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n Map<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n String permissions = \"permissions\";\n String umask = \"umask\";\n String owner = \"rwx\";\n String group = \"r--\";\n String leaseId = UUID.randomUUID().toString();\n Integer duration = 15;\n DataLakePathCreateOptions options = new DataLakePathCreateOptions()\n     .setPermissions(permissions)\n     .setUmask(umask)\n     .setOwner(owner)\n     .setGroup(group)\n     .setPathHttpHeaders(httpHeaders)\n     .setRequestConditions(requestConditions)\n     .setMetadata(metadata)\n     .setProposedLeaseId(leaseId)\n     .setLeaseDuration(duration);\n\n client.createWithResponse(options).subscribe(response ->\n     System.out.printf(\"Last Modified Time:%s\", response.getValue().getLastModified()));\n```\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/datalakestoragegen2/path/create"
+  desc: "Creates a resource.\n\n**Code Samples**\n\n```java\nPathHttpHeaders httpHeaders = new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n Map<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n String permissions = \"permissions\";\n String umask = \"umask\";\n String owner = \"rwx\";\n String group = \"r--\";\n String leaseId = CoreUtils.randomUuid().toString();\n Integer duration = 15;\n DataLakePathCreateOptions options = new DataLakePathCreateOptions()\n     .setPermissions(permissions)\n     .setUmask(umask)\n     .setOwner(owner)\n     .setGroup(group)\n     .setPathHttpHeaders(httpHeaders)\n     .setRequestConditions(requestConditions)\n     .setMetadata(metadata)\n     .setProposedLeaseId(leaseId)\n     .setLeaseDuration(duration);\n\n client.createWithResponse(options).subscribe(response ->\n     System.out.printf(\"Last Modified Time:%s\", response.getValue().getLastModified()));\n```\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/datalakestoragegen2/path/create"
   returns:
     description: "A <xref uid=\"reactor.core.publisher.Mono\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Mono\"></xref> containing a <xref uid=\"com.azure.core.http.rest.Response\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Response\"></xref> whose <xref uid=\"com.azure.core.http.rest.Response.getValue*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"value\"></xref> contains a <xref uid=\"com.azure.storage.file.datalake.models.PathItem\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PathItem\"></xref>."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.file.datalake.models.PathInfo?alt=com.azure.storage.file.datalake.models.PathInfo&text=PathInfo\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -313,6 +313,20 @@ methods:
   summary: "Returns the resource's metadata and properties."
   syntax: "public Mono<PathProperties> getProperties()"
   desc: "Returns the resource's metadata and properties.\n\n**Code Samples**\n\n```java\nclient.getProperties().subscribe(response ->\n     System.out.printf(\"Creation Time: %s, Size: %d%n\", response.getCreationTime(), response.getFileSize()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-blob-properties"
+  returns:
+    description: "A reactive response containing the resource's properties and metadata."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.storage.file.datalake.models.PathProperties?alt=com.azure.storage.file.datalake.models.PathProperties&text=PathProperties\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.storage.file.datalake.DataLakePathAsyncClient.getProperties(com.azure.storage.file.datalake.options.PathGetPropertiesOptions)"
+  fullName: "com.azure.storage.file.datalake.DataLakePathAsyncClient.getProperties(PathGetPropertiesOptions options)"
+  name: "getProperties(PathGetPropertiesOptions options)"
+  nameWithType: "DataLakePathAsyncClient.getProperties(PathGetPropertiesOptions options)"
+  summary: "Returns the resource's metadata and properties."
+  parameters:
+  - description: "<xref uid=\"com.azure.storage.file.datalake.options.PathGetPropertiesOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PathGetPropertiesOptions\"></xref>"
+    name: "options"
+    type: "<xref href=\"com.azure.storage.file.datalake.options.PathGetPropertiesOptions?alt=com.azure.storage.file.datalake.options.PathGetPropertiesOptions&text=PathGetPropertiesOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<PathProperties> getProperties(PathGetPropertiesOptions options)"
+  desc: "Returns the resource's metadata and properties.\n\n**Code Samples**\n\n```java\nPathGetPropertiesOptions options = new PathGetPropertiesOptions().setUserPrincipalName(true);\n\n client.getProperties(options).subscribe(response ->\n     System.out.printf(\"Creation Time: %s, Size: %d%n\", response.getCreationTime(), response.getFileSize()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-blob-properties"
   returns:
     description: "A reactive response containing the resource's properties and metadata."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.storage.file.datalake.models.PathProperties?alt=com.azure.storage.file.datalake.models.PathProperties&text=PathProperties\" data-throw-if-not-resolved=\"False\" />&gt;"
@@ -576,4 +590,4 @@ type: "class"
 desc: "This class provides a client that contains all operations that apply to any path object."
 metadata: {}
 package: "com.azure.storage.file.datalake"
-artifact: com.azure:azure-storage-file-datalake:12.18.0-beta.1
+artifact: com.azure:azure-storage-file-datalake:12.19.0-beta.1
