@@ -1,7 +1,7 @@
 ---
 title: Azure Graph Services SDK for Java
 description: Reference for Azure Graph Services SDK for Java
-ms.date: 04/26/2024
+ms.date: 04/29/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: graphservices
