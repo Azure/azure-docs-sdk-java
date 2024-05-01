@@ -6,7 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: devcenter
 ---
-# Azure Dev Center SDK for Java - preview
-
-## Management packages - preview
-[!INCLUDE [mgmt-packages](dev-center-mgmt-index.md)]
+# Azure Dev Center SDK for Java - latest
+## Packages - latest
+[!INCLUDE [packages](dev-center-index.md)]
