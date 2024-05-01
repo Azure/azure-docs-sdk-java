@@ -162,6 +162,20 @@ methods:
   returns:
     description: "the updated CosmosClientBuilder"
     type: "<xref href=\"com.azure.cosmos.CosmosClientBuilder?alt=com.azure.cosmos.CosmosClientBuilder&text=CosmosClientBuilder\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.cosmos.CosmosClientBuilder.customItemSerializer(com.azure.cosmos.CosmosItemSerializer)"
+  fullName: "com.azure.cosmos.CosmosClientBuilder.customItemSerializer(CosmosItemSerializer customItemSerializer)"
+  name: "customItemSerializer(CosmosItemSerializer customItemSerializer)"
+  nameWithType: "CosmosClientBuilder.customItemSerializer(CosmosItemSerializer customItemSerializer)"
+  summary: "Sets a custom serializer that should be used for conversion between POJOs and Json payload stored in the Cosmos DB service."
+  parameters:
+  - description: "the custom serializer to be used for item payload transformations"
+    name: "customItemSerializer"
+    type: "<xref href=\"com.azure.cosmos.CosmosItemSerializer?alt=com.azure.cosmos.CosmosItemSerializer&text=CosmosItemSerializer\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public CosmosClientBuilder customItemSerializer(CosmosItemSerializer customItemSerializer)"
+  desc: "Sets a custom serializer that should be used for conversion between POJOs and Json payload stored in the Cosmos DB service. The custom serializer can also be specified in request options. If defined here and in request options the serializer defined in request options will be used."
+  returns:
+    description: "current CosmosClientBuilder"
+    type: "<xref href=\"com.azure.cosmos.CosmosClientBuilder?alt=com.azure.cosmos.CosmosClientBuilder&text=CosmosClientBuilder\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.cosmos.CosmosClientBuilder.directMode()"
   fullName: "com.azure.cosmos.CosmosClientBuilder.directMode()"
   name: "directMode()"
@@ -311,6 +325,20 @@ methods:
   returns:
     description: "current CosmosClientBuilder"
     type: "<xref href=\"com.azure.cosmos.CosmosClientBuilder?alt=com.azure.cosmos.CosmosClientBuilder&text=CosmosClientBuilder\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.cosmos.CosmosClientBuilder.nonIdempotentWriteRetryOptions(com.azure.cosmos.NonIdempotentWriteRetryOptions)"
+  fullName: "com.azure.cosmos.CosmosClientBuilder.nonIdempotentWriteRetryOptions(NonIdempotentWriteRetryOptions options)"
+  name: "nonIdempotentWriteRetryOptions(NonIdempotentWriteRetryOptions options)"
+  nameWithType: "CosmosClientBuilder.nonIdempotentWriteRetryOptions(NonIdempotentWriteRetryOptions options)"
+  summary: "Enables automatic retries for write operations even when the SDK can't guarantee that they are idempotent."
+  parameters:
+  - description: "the options controlling whether non-idempotent write operations should be retried and whether\n trackingIds can be used."
+    name: "options"
+    type: "<xref href=\"com.azure.cosmos.NonIdempotentWriteRetryOptions?alt=com.azure.cosmos.NonIdempotentWriteRetryOptions&text=NonIdempotentWriteRetryOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public CosmosClientBuilder nonIdempotentWriteRetryOptions(NonIdempotentWriteRetryOptions options)"
+  desc: "Enables automatic retries for write operations even when the SDK can't guarantee that they are idempotent. This is the default behavior for the entire Cosmos client - the policy can be overridden for individual operations in the request options.\n> NOTE: the setting on the CosmosClientBuilder will determine the default behavior for Create, Replace, Upsert and Delete operations. It can be overridden on per-request base in the request options. For patch operations by default (unless overridden in the request options) retries are always disabled by default.\n\\- Create: retries can result in surfacing (more) 409-Conflict requests to the application when a retry tries to create a document that the initial attempt successfully created. When enabling useTrackingIdPropertyForCreateAndReplace this can be avoided for 409-Conflict caused by retries.\n\\- Replace: retries can result in surfacing (more) 412-Precondition failure requests to the application when a replace operations are using a pre-condition check (etag) and a retry tries to update a document that the initial attempt successfully updated (causing the etag to change). When enabling useTrackingIdPropertyForCreateAndReplace this can be avoided for 412-Precondition failures caused by retries.\n\\- Delete: retries can result in surfacing (more) 404-NotFound requests when a delete operation is retried and the initial attempt succeeded. Ideally, write retries should only be enabled when applications can gracefully handle 404 - Not Found.\n\\- Upsert: retries can result in surfacing a 200 - looking like the document was updated when actually the document has been created by the initial attempt - so logically within the same operation. This will only impact applications who have special casing for 201 vs. 200 for upsert operations.\nPatch: retries for patch can but will not always be idempotent - it completely depends on the patch operations being executed and the precondition filters being used. Before enabling write retries for patch this needs to be carefully reviewed and tests - which is wht retries for patch can only be enabled on request options - any CosmosClient wide configuration will be ignored.\nBulk/Delete by PK/Transactional Batch/Stored Procedure execution: No automatic retries are supported."
+  returns:
+    description: "the CosmosItemRequestOptions"
+    type: "<xref href=\"com.azure.cosmos.CosmosClientBuilder?alt=com.azure.cosmos.CosmosClientBuilder&text=CosmosClientBuilder\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.cosmos.CosmosClientBuilder.openConnectionsAndInitCaches(com.azure.cosmos.CosmosContainerProactiveInitConfig)"
   fullName: "com.azure.cosmos.CosmosClientBuilder.openConnectionsAndInitCaches(CosmosContainerProactiveInitConfig proactiveContainerInitConfig)"
   name: "openConnectionsAndInitCaches(CosmosContainerProactiveInitConfig proactiveContainerInitConfig)"
@@ -445,4 +473,4 @@ implements:
 - "<xref href=\"com.azure.core.client.traits.TokenCredentialTrait?alt=com.azure.core.client.traits.TokenCredentialTrait&text=TokenCredentialTrait\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.cosmos.CosmosClientBuilder?alt=com.azure.cosmos.CosmosClientBuilder&text=CosmosClientBuilder\" data-throw-if-not-resolved=\"False\" />&gt;"
 metadata: {}
 package: "com.azure.cosmos"
-artifact: com.azure:azure-cosmos:4.58.0
+artifact: com.azure:azure-cosmos:4.59.0

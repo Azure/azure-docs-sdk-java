@@ -40,6 +40,16 @@ methods:
   returns:
     description: "the consistency level."
     type: "<xref href=\"com.azure.cosmos.ConsistencyLevel?alt=com.azure.cosmos.ConsistencyLevel&text=ConsistencyLevel\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.cosmos.models.CosmosItemRequestOptions.getCustomItemSerializer()"
+  fullName: "com.azure.cosmos.models.CosmosItemRequestOptions.getCustomItemSerializer()"
+  name: "getCustomItemSerializer()"
+  nameWithType: "CosmosItemRequestOptions.getCustomItemSerializer()"
+  summary: "Gets the custom item serializer defined for this instance of request options"
+  syntax: "public CosmosItemSerializer getCustomItemSerializer()"
+  desc: "Gets the custom item serializer defined for this instance of request options"
+  returns:
+    description: "the custom item serializer"
+    type: "<xref href=\"com.azure.cosmos.CosmosItemSerializer?alt=com.azure.cosmos.CosmosItemSerializer&text=CosmosItemSerializer\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.cosmos.models.CosmosItemRequestOptions.getDedicatedGatewayRequestOptions()"
   fullName: "com.azure.cosmos.models.CosmosItemRequestOptions.getDedicatedGatewayRequestOptions()"
   name: "getDedicatedGatewayRequestOptions()"
@@ -202,6 +212,20 @@ methods:
   returns:
     description: "<xref uid=\"com.azure.cosmos.models.CosmosItemRequestOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosItemRequestOptions\"></xref>"
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.cosmos.models.CosmosItemRequestOptions.setCustomItemSerializer(com.azure.cosmos.CosmosItemSerializer)"
+  fullName: "com.azure.cosmos.models.CosmosItemRequestOptions.setCustomItemSerializer(CosmosItemSerializer customItemSerializer)"
+  name: "setCustomItemSerializer(CosmosItemSerializer customItemSerializer)"
+  nameWithType: "CosmosItemRequestOptions.setCustomItemSerializer(CosmosItemSerializer customItemSerializer)"
+  summary: "Allows specifying a custom item serializer to be used for this operation."
+  parameters:
+  - description: "the custom item serializer for this operation"
+    name: "customItemSerializer"
+    type: "<xref href=\"com.azure.cosmos.CosmosItemSerializer?alt=com.azure.cosmos.CosmosItemSerializer&text=CosmosItemSerializer\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public CosmosItemRequestOptions setCustomItemSerializer(CosmosItemSerializer customItemSerializer)"
+  desc: "Allows specifying a custom item serializer to be used for this operation. If the serializer on the request options is null, the serializer on CosmosClientBuilder is used. If both serializers are null (the default), an internal Jackson ObjectMapper is ued for serialization/deserialization."
+  returns:
+    description: "the CosmosItemRequestOptions."
+    type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.cosmos.models.CosmosItemRequestOptions.setDedicatedGatewayRequestOptions(com.azure.cosmos.models.DedicatedGatewayRequestOptions)"
   fullName: "com.azure.cosmos.models.CosmosItemRequestOptions.setDedicatedGatewayRequestOptions(DedicatedGatewayRequestOptions dedicatedGatewayRequestOptions)"
   name: "setDedicatedGatewayRequestOptions(DedicatedGatewayRequestOptions dedicatedGatewayRequestOptions)"
@@ -299,7 +323,7 @@ methods:
     name: "useTrackingIdPropertyForCreateAndReplace"
     type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
   syntax: "public CosmosItemRequestOptions setNonIdempotentWriteRetryPolicy(boolean nonIdempotentWriteRetriesEnabled, boolean useTrackingIdPropertyForCreateAndReplace)"
-  desc: "Enables automatic retries for write operations even when the SDK can't guarantee that they are idempotent. This is an override of the <xref uid=\"com.azure.cosmos.CosmosClientBuilder.setNonIdempotentWriteRetryPolicy*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosClientBuilder#setNonIdempotentWriteRetryPolicy(boolean, boolean)\"></xref> behavior for a specific request/operation.\nNOTE: the setting on the CosmosClientBuilder will determine the default behavior for Create, Replace, Upsert and Delete operations. It can be overridden on per-request base in the request options. For patch operations by default (unless overridden in the request options) retries are always disabled by default.\n\\- Create: retries can result in surfacing (more) 409-Conflict requests to the application when a retry tries to create a document that the initial attempt successfully created. When enabling useTrackingIdPropertyForCreateAndReplace this can be avoided for 409-Conflict caused by retries.\n\\- Replace: retries can result in surfacing (more) 412-Precondition failure requests to the application when a replace operations are using a pre-condition check (etag) and a retry tries to update a document that the initial attempt successfully updated (causing the etag to change). When enabling useTrackingIdPropertyForCreateAndReplace this can be avoided for 412-Precondition failures caused by retries.\n\\- Delete: retries can result in surfacing (more) 404-NotFound requests when a delete operation is retried and the initial attempt succeeded. Ideally, write retries should only be enabled when applications can gracefully handle 404 - Not Found.\n\\- Upsert: retries can result in surfacing a 200 - looking like the document was updated when actually the document has been created by the initial attempt - so logically within the same operation. This will only impact applications who have special casing for 201 vs. 200 for upsert operations.\nPatch: retries for patch can but will not always be idempotent - it completely depends on the patch operations being executed and the precondition filters being used. Before enabling write retries for patch this needs to be carefully reviewed and tests - which is wht retries for patch can only be enabled on request options - any CosmosClient wide configuration will be ignored.\nBulk/Delete by PK/Transactional Batch/Stroed Procedure execution: No automatic retries are supported."
+  desc: "Enables automatic retries for write operations even when the SDK can't guarantee that they are idempotent. This is an override of the <xref uid=\"com.azure.cosmos.CosmosClientBuilder.nonIdempotentWriteRetryOptions(com.azure.cosmos.NonIdempotentWriteRetryOptions)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosClientBuilder#nonIdempotentWriteRetryOptions(com.azure.cosmos.NonIdempotentWriteRetryOptions)\"></xref> behavior for a specific request/operation.\nNOTE: the setting on the CosmosClientBuilder will determine the default behavior for Create, Replace, Upsert and Delete operations. It can be overridden on per-request base in the request options. For patch operations by default (unless overridden in the request options) retries are always disabled by default.\n\\- Create: retries can result in surfacing (more) 409-Conflict requests to the application when a retry tries to create a document that the initial attempt successfully created. When enabling useTrackingIdPropertyForCreateAndReplace this can be avoided for 409-Conflict caused by retries.\n\\- Replace: retries can result in surfacing (more) 412-Precondition failure requests to the application when a replace operations are using a pre-condition check (etag) and a retry tries to update a document that the initial attempt successfully updated (causing the etag to change). When enabling useTrackingIdPropertyForCreateAndReplace this can be avoided for 412-Precondition failures caused by retries.\n\\- Delete: retries can result in surfacing (more) 404-NotFound requests when a delete operation is retried and the initial attempt succeeded. Ideally, write retries should only be enabled when applications can gracefully handle 404 - Not Found.\n\\- Upsert: retries can result in surfacing a 200 - looking like the document was updated when actually the document has been created by the initial attempt - so logically within the same operation. This will only impact applications who have special casing for 201 vs. 200 for upsert operations.\nPatch: retries for patch can but will not always be idempotent - it completely depends on the patch operations being executed and the precondition filters being used. Before enabling write retries for patch this needs to be carefully reviewed and tests - which is wht retries for patch can only be enabled on request options - any CosmosClient wide configuration will be ignored.\nBulk/Delete by PK/Transactional Batch/Stroed Procedure execution: No automatic retries are supported."
   returns:
     description: "the CosmosItemRequestOptions"
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
@@ -374,4 +398,4 @@ type: "class"
 desc: "Encapsulates options that can be specified for a request issued to cosmos Item."
 metadata: {}
 package: "com.azure.cosmos.models"
-artifact: com.azure:azure-cosmos:4.58.0
+artifact: com.azure:azure-cosmos:4.59.0
