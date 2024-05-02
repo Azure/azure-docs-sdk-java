@@ -1,7 +1,7 @@
 ---
 title: Azure Azure Analytics SDK for Java
 description: Reference for Azure Azure Analytics SDK for Java
-ms.date: 05/01/2024
+ms.date: 05/02/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: azureanalytics
