@@ -1,7 +1,7 @@
 ---
 title: Azure Front Door SDK for Java
 description: Reference for Azure Front Door SDK for Java
-ms.date: 05/09/2024
+ms.date: 05/10/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: frontdoor
