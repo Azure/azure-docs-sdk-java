@@ -1,7 +1,7 @@
 ---
 title: Azure AgriFood SDK for Java
 description: Reference for Azure AgriFood SDK for Java
-ms.date: 05/10/2024
+ms.date: 05/13/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: agrifood

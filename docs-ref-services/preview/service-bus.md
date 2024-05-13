@@ -1,13 +1,13 @@
 ---
 title: Azure Service Bus SDK for Java
 description: Reference for Azure Service Bus SDK for Java
-ms.date: 05/10/2024
+ms.date: 05/13/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: service-bus-messaging
 ms.prod: azure
-keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, message broker
 ms.technology: azure
+keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, message broker
 manager: douge
 ---
 # Service Bus libraries for Java
