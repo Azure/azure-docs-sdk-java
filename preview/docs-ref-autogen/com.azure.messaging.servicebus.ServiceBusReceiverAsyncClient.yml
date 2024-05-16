@@ -177,6 +177,37 @@ methods:
   returns:
     description: "A <xref uid=\"reactor.core.publisher.Mono\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Mono\"></xref> that completes when the defer operation finishes."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html\">Void</a>&gt;"
+- uid: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.deleteMessages(int)"
+  fullName: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.deleteMessages(int messageCount)"
+  name: "deleteMessages(int messageCount)"
+  nameWithType: "ServiceBusReceiverAsyncClient.deleteMessages(int messageCount)"
+  summary: "Deletes up to `messageCount` messages from the entity enqueued before <xref uid=\"java.time.OffsetDateTime.now*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"OffsetDateTime#now()\"></xref>."
+  parameters:
+  - description: "the desired number of messages to delete."
+    name: "messageCount"
+    type: "<xref href=\"int?alt=int&text=int\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Integer> deleteMessages(int messageCount)"
+  desc: "Deletes up to `messageCount` messages from the entity enqueued before <xref uid=\"java.time.OffsetDateTime.now*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"OffsetDateTime#now()\"></xref>. The actual number of deleted messages may be less if there are fewer eligible messages in the entity.\n\nIf the lock for a message is held by a receiver, it will be respected and the message will not be deleted."
+  returns:
+    description: "a <xref uid=\"reactor.core.publisher.Mono\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Mono\"></xref> indicating the number of messages deleted."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html\">Integer</a>&gt;"
+- uid: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.deleteMessages(int,com.azure.messaging.servicebus.models.DeleteMessagesOptions)"
+  fullName: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.deleteMessages(int messageCount, DeleteMessagesOptions options)"
+  name: "deleteMessages(int messageCount, DeleteMessagesOptions options)"
+  nameWithType: "ServiceBusReceiverAsyncClient.deleteMessages(int messageCount, DeleteMessagesOptions options)"
+  summary: "Deletes up to `messageCount` messages from the entity."
+  parameters:
+  - description: "the desired number of messages to delete."
+    name: "messageCount"
+    type: "<xref href=\"int?alt=int&text=int\" data-throw-if-not-resolved=\"False\" />"
+  - description: "options used to delete the messages."
+    name: "options"
+    type: "<xref href=\"com.azure.messaging.servicebus.models.DeleteMessagesOptions?alt=com.azure.messaging.servicebus.models.DeleteMessagesOptions&text=DeleteMessagesOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Integer> deleteMessages(int messageCount, DeleteMessagesOptions options)"
+  desc: "Deletes up to `messageCount` messages from the entity. The actual number of deleted messages may be less if there are fewer eligible messages in the entity.\n\nIf the lock for a message is held by a receiver, it will be respected and the message will not be deleted."
+  returns:
+    description: "a <xref uid=\"reactor.core.publisher.Mono\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Mono\"></xref> indicating the number of messages deleted."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html\">Integer</a>&gt;"
 - uid: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.getEntityPath()"
   fullName: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.getEntityPath()"
   name: "getEntityPath()"
@@ -282,6 +313,20 @@ methods:
   returns:
     description: "A <xref uid=\"reactor.core.publisher.Flux\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Flux\"></xref> of <xref uid=\"com.azure.messaging.servicebus.ServiceBusReceivedMessage\" data-throw-if-not-resolved=\"false\" data-raw-source=\"messages\"></xref> peeked."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html\">Flux</a>&lt;<xref href=\"com.azure.messaging.servicebus.ServiceBusReceivedMessage?alt=com.azure.messaging.servicebus.ServiceBusReceivedMessage&text=ServiceBusReceivedMessage\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.purgeMessages(com.azure.messaging.servicebus.models.PurgeMessagesOptions)"
+  fullName: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.purgeMessages(PurgeMessagesOptions options)"
+  name: "purgeMessages(PurgeMessagesOptions options)"
+  nameWithType: "ServiceBusReceiverAsyncClient.purgeMessages(PurgeMessagesOptions options)"
+  summary: "Attempts to purge all messages from an entity."
+  parameters:
+  - description: "options used to purge the messages."
+    name: "options"
+    type: "<xref href=\"com.azure.messaging.servicebus.models.PurgeMessagesOptions?alt=com.azure.messaging.servicebus.models.PurgeMessagesOptions&text=PurgeMessagesOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Integer> purgeMessages(PurgeMessagesOptions options)"
+  desc: "Attempts to purge all messages from an entity. Locked messages are not eligible for removal and will remain in the entity.\n\nIf the lock for a message is held by a receiver, it will be respected and the message will not be deleted.\n\nThis method may invoke multiple service requests to delete all messages. Because multiple service requests may be made, the possibility of partial success exists. In this scenario, the method will stop attempting to delete additional messages and throw the exception that was encountered."
+  returns:
+    description: "a <xref uid=\"reactor.core.publisher.Mono\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Mono\"></xref> indicating the number of messages deleted."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html\">Integer</a>&gt;"
 - uid: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.receiveDeferredMessage(long)"
   fullName: "com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.receiveDeferredMessage(long sequenceNumber)"
   name: "receiveDeferredMessage(long sequenceNumber)"
@@ -409,4 +454,4 @@ implements:
 - "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html\">AutoCloseable</a>"
 metadata: {}
 package: "com.azure.messaging.servicebus"
-artifact: com.azure:azure-messaging-servicebus:7.16.0-beta.1
+artifact: com.azure:azure-messaging-servicebus:7.18.0-beta.1
