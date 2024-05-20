@@ -1,7 +1,7 @@
 ---
 title: Azure Data Lake Store SDK for Java
 description: Reference for Azure Data Lake Store SDK for Java
-ms.date: 05/17/2024
+ms.date: 05/20/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: datalakestore
