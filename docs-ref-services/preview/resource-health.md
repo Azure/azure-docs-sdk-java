@@ -1,7 +1,7 @@
 ---
 title: Azure Resource Health SDK for Java
 description: Reference for Azure Resource Health SDK for Java
-ms.date: 05/20/2024
+ms.date: 05/21/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: resourcehealth

@@ -1,7 +1,7 @@
 ---
 title: Azure Application Insights SDK for Java
 description: Reference for Azure Application Insights SDK for Java
-ms.date: 05/20/2024
+ms.date: 05/21/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
