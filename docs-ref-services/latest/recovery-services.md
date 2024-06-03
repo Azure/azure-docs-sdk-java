@@ -1,7 +1,7 @@
 ---
 title: Azure Recovery Services SDK for Java
 description: Reference for Azure Recovery Services SDK for Java
-ms.date: 05/31/2024
+ms.date: 06/03/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: recoveryservices
