@@ -1,12 +1,12 @@
 ---
 title: Azure OpenAI: OpenAI Assistants client library for Java
 keywords: Azure, java, SDK, API, azure-ai-openai-assistants, openai
-ms.date: 02/14/2024
+ms.date: 06/06/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: openai
 ---
-# Azure OpenAI: OpenAI Assistants client library for Java - version 1.0.0-beta.2 
+# Azure OpenAI: OpenAI Assistants client library for Java - version 1.0.0-beta.3 
 
 
 The Azure OpenAI Assistants client library for Java is an adaptation of OpenAI's REST APIs that provides an idiomatic interface
@@ -34,7 +34,7 @@ Use this library to:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-openai-assistants</artifactId>
-    <version>1.0.0-beta.2</version>
+    <version>1.0.0-beta.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -112,7 +112,7 @@ String threadId = thread.getId();
 With a thread created, a message can be created on it:
 ```java readme-sample-createMessage
 String userMessage = "I need to solve the equation `3x + 11 = 14`. Can you help me?";
-ThreadMessage threadMessage = client.createMessage(threadId, MessageRole.USER, userMessage);
+ThreadMessage threadMessage = client.createMessage(threadId, new ThreadMessageOptions(MessageRole.USER, userMessage));
 ```
 
 As we have a thread and message, we can create a run:
@@ -124,7 +124,7 @@ There is also a convenience method to create a thread and message, and then run 
 ```java readme-sample-createThreadAndRun
 CreateAndRunThreadOptions createAndRunThreadOptions = new CreateAndRunThreadOptions(assistantId)
         .setThread(new AssistantThreadCreationOptions()
-                .setMessages(Arrays.asList(new ThreadInitializationMessage(MessageRole.USER,
+                .setMessages(Arrays.asList(new ThreadMessageOptions(MessageRole.USER,
                         "I need to solve the equation `3x + 11 = 14`. Can you help me?"))));
 run = client.createThreadAndRun(createAndRunThreadOptions);
 ```
@@ -163,7 +163,7 @@ purpose of 'assistants' to make a file ID available:
 ```java readme-sample-uploadFile
 Path filePath = Paths.get("src", "samples", "resources", fileName);
 BinaryData fileData = BinaryData.fromFile(filePath);
-FileDetails fileDetails = new FileDetails(fileData).setFilename(fileName);
+FileDetails fileDetails = new FileDetails(fileData, fileName);
 
 OpenAIFile openAIFile = client.uploadFile(fileDetails, FilePurpose.ASSISTANTS);
 ```
@@ -172,12 +172,19 @@ Once uploaded, the file ID can then be provided to an assistant upon creation. N
 an appropriate tool like Code Interpreter or Retrieval is enabled.
 
 ```java readme-sample-createRetrievalAssistant
+// Create Tool Resources. This is how we pass files to the Assistant.
+CreateToolResourcesOptions createToolResourcesOptions = new CreateToolResourcesOptions();
+createToolResourcesOptions.setFileSearch(
+    new CreateFileSearchToolResourceOptions(
+        new CreateFileSearchToolResourceVectorStoreOptionsList(
+            Arrays.asList(new CreateFileSearchToolResourceVectorStoreOptions(Arrays.asList(openAIFile.getId()))))));
+
 Assistant assistant = client.createAssistant(
     new AssistantCreationOptions(deploymentOrModelId)
         .setName("Java SDK Retrieval Sample")
         .setInstructions("You are a helpful assistant that can help fetch data from files you know about.")
-        .setTools(Arrays.asList(new RetrievalToolDefinition()))
-        .setFileIds(Arrays.asList(openAIFile.getId()))
+        .setTools(Arrays.asList(new FileSearchToolDefinition()))
+        .setToolResources(createToolResourcesOptions)
 );
 ```
 
@@ -202,13 +209,24 @@ For the full sample, please follow this [link][function_tool_call_full_sample].
 ```java readme-sample-functionDefinition
 private FunctionToolDefinition getUserFavoriteCityToolDefinition() {
 
-    class UserFavoriteCityParameters {
+    class UserFavoriteCityParameters implements JsonSerializable<UserFavoriteCityParameters> {
 
-        @JsonProperty("type")
         private String type = "object";
 
-        @JsonProperty("properties")
-        private Map<String, Object> properties = new HashMap<>();
+        private Map<String, JsonSerializable<?>> properties = new HashMap<>();
+
+        @Override
+        public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+            jsonWriter.writeStartObject();
+            jsonWriter.writeStringField("type", this.type);
+            jsonWriter.writeStartObject("properties");
+            for (Map.Entry<String, JsonSerializable<?>> entry : this.properties.entrySet()) {
+                jsonWriter.writeFieldName(entry.getKey());
+                entry.getValue().toJson(jsonWriter);
+            }
+            jsonWriter.writeEndObject();
+            return jsonWriter.writeEndObject();
+        }
     }
 
     return new FunctionToolDefinition(
@@ -281,7 +299,7 @@ run via the `SubmitRunToolOutputs` method so that the run can continue:
 
 ```java readme-sample-functionHandlingRunPolling
 do {
-    Thread.sleep(500);
+    Thread.sleep(1000);
     run = client.getRun(thread.getId(), run.getId());
 
     if (run.getStatus() == RunStatus.REQUIRES_ACTION
@@ -325,7 +343,7 @@ reduce the dependency size, refer to the [performance tuning][performance_tuning
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai-assistants_1.0.0-beta.2/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai-assistants_1.0.0-beta.3/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -335,14 +353,14 @@ For details on contributing to this repository, see the [contributing guide](htt
 
 <!-- LINKS -->
 [jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
-[logLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai-assistants_1.0.0-beta.2/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[logLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai-assistants_1.0.0-beta.3/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [non_azure_openai_authentication]: https://platform.openai.com/docs/api-reference/authentication
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai-assistants_1.0.0-beta.2/sdk/openai/azure-ai-openai-assistants/src/samples
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-openai-assistants_1.0.0-beta.3/sdk/openai/azure-ai-openai-assistants/src/samples
 
 [azure_openai_access]: https://learn.microsoft.com/azure/cognitive-services/openai/overview#how-do-i-get-access-to-azure-openai
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai-assistants_1.0.0-beta.2/sdk/identity/azure-identity
-[function_tool_call_full_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai-assistants_1.0.0-beta.2/sdk/openai/azure-ai-openai-assistants/src/samples/java/com/azure/ai/openai/assistants/FunctionToolCallSample.java
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai-assistants_1.0.0-beta.3/sdk/identity/azure-identity
+[function_tool_call_full_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai-assistants_1.0.0-beta.3/sdk/openai/azure-ai-openai-assistants/src/samples/java/com/azure/ai/openai/assistants/FunctionToolCallSample.java
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fopenai%2Fassistants%2Fazure-ai-openai-assistants%2FREADME.png)
 
