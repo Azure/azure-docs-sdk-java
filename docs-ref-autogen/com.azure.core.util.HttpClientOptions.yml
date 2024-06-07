@@ -57,7 +57,7 @@ methods:
   nameWithType: "HttpClientOptions.getConnectTimeout()"
   summary: "Gets the connection timeout for a request to be sent."
   syntax: "public Duration getConnectTimeout()"
-  desc: "Gets the connection timeout for a request to be sent.\n\nThe default connection timeout is 10 seconds."
+  desc: "Gets the connection timeout for a request to be sent.\n\nThe connection timeout begins once the request attempts to connect to the remote host and finishes when the connection is resolved.\n\nIf `connectTimeout` is null either <xref uid=\"com.azure.core.util.Configuration.PROPERTY_AZURE_REQUEST_CONNECT_TIMEOUT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Configuration#PROPERTY_AZURE_REQUEST_CONNECT_TIMEOUT\"></xref> or a 10-second timeout will be used, if it is a <xref uid=\"java.time.Duration\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Duration\"></xref> less than or equal to zero then no timeout will be applied. When applying the timeout the greatest of one millisecond and the value of `connectTimeout` will be used.\n\nThe default connection timeout is 10 seconds."
   returns:
     description: "The connection timeout of a request to be sent."
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html\">Duration</a>"
@@ -117,7 +117,7 @@ methods:
   nameWithType: "HttpClientOptions.getResponseTimeout()"
   summary: "Gets the response timeout duration used when waiting for a server to reply."
   syntax: "public Duration getResponseTimeout()"
-  desc: "Gets the response timeout duration used when waiting for a server to reply.\n\nThe default response timeout is 60 seconds."
+  desc: "Gets the response timeout duration used when waiting for a server to reply.\n\nThe response timeout begins once the request write completes and finishes once the first response read is triggered when the server response is received.\n\nIf `responseTimeout` is null either <xref uid=\"com.azure.core.util.Configuration.PROPERTY_AZURE_REQUEST_RESPONSE_TIMEOUT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Configuration#PROPERTY_AZURE_REQUEST_RESPONSE_TIMEOUT\"></xref> or a 60-second timeout will be used, if it is a <xref uid=\"java.time.Duration\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Duration\"></xref> less than or equal to zero then no timeout will be applied to the response. When applying the timeout the greatest of one millisecond and the value of `responseTimeout` will be used.\n\nThe default response timeout is 60 seconds."
   returns:
     description: "The response timeout duration."
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html\">Duration</a>"
@@ -127,7 +127,7 @@ methods:
   nameWithType: "HttpClientOptions.getWriteTimeout()"
   summary: "Gets the writing timeout for a request to be sent."
   syntax: "public Duration getWriteTimeout()"
-  desc: "Gets the writing timeout for a request to be sent.\n\nThe default writing timeout is 60 seconds."
+  desc: "Gets the writing timeout for a request to be sent.\n\nThe writing timeout does not apply to the entire request but to each emission being sent over the wire. For example a request body which emits `10` `8KB` buffers will trigger `10` write operations, the outbound buffer will be periodically checked to determine if it is still draining.\n\nIf `writeTimeout` is null either <xref uid=\"com.azure.core.util.Configuration.PROPERTY_AZURE_REQUEST_WRITE_TIMEOUT\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Configuration#PROPERTY_AZURE_REQUEST_WRITE_TIMEOUT\"></xref> or a 60-second timeout will be used, if it is a <xref uid=\"java.time.Duration\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Duration\"></xref> less than or equal to zero then no write timeout will be applied. When applying the timeout the greatest of one millisecond and the value of `writeTimeout` will be used.\n\nThe default writing timeout is 60 seconds."
   returns:
     description: "The writing timeout of a request to be sent."
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html\">Duration</a>"
@@ -315,4 +315,4 @@ type: "class"
 desc: "General configuration options for <xref uid=\"com.azure.core.http.HttpClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpClients\"></xref>.\n\n<xref uid=\"com.azure.core.http.HttpClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"HttpClient\"></xref> implementations may not support all configuration options in this class."
 metadata: {}
 package: "com.azure.core.util"
-artifact: com.azure:azure-core:1.49.0
+artifact: com.azure:azure-core:1.49.1
