@@ -5,10 +5,10 @@ ms.date: 06/07/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: service-bus-messaging
-keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, message broker
-ms.technology: azure
-ms.prod: azure
 manager: douge
+keywords: Azure, Java, SDK, API, messaging, amqp, qpid, JMS, pubsub, pub-sub, message broker
+ms.prod: azure
+ms.technology: azure
 ---
 # Service Bus libraries for Java
 
