@@ -1,7 +1,7 @@
 ---
 title: Azure unknown SDK for Java
 description: Reference for Azure unknown SDK for Java
-ms.date: 06/17/2024
+ms.date: 06/18/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: unknown
