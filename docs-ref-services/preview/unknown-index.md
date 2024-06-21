@@ -1,5 +1,6 @@
 | Reference | Package | Source |
 |---|---|---|
+|[unknown](ai-translation-document-readme.md)|[azure-ai-translation-document](https://repo1.maven.org/maven2/com/azure/azure-ai-translation-document)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/translation/azure-ai-translation-document)|
 |[unknown](communication-callingserver-readme.md)|[azure-communication-callingserver](https://repo1.maven.org/maven2/com/azure/azure-communication-callingserver)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
 |[unknown](core-http-jdk-httpclient-readme.md)|[azure-core-http-jdk-httpclient](https://repo1.maven.org/maven2/com/azure/azure-core-http-jdk-httpclient)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/core/azure-core-http-jdk-httpclient)|
 |[unknown](core-http-vertx-readme.md)|[azure-core-http-vertx](https://repo1.maven.org/maven2/com/azure/azure-core-http-vertx)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/core/azure-core-http-vertx)|
