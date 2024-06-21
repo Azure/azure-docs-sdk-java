@@ -1,12 +1,12 @@
 ---
 title: Azure Resource Manager Self Help client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-selfhelp, selfhelp
-ms.date: 05/21/2024
+ms.date: 06/21/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: selfhelp
 ---
-# Azure Resource Manager Self Help client library for Java - version 1.1.0-beta.4 
+# Azure Resource Manager Self Help client library for Java - version 1.1.0-beta.5 
 
 
 Azure Resource Manager Self Help client library for Java.
@@ -41,7 +41,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-selfhelp</artifactId>
-    <version>1.1.0-beta.4</version>
+    <version>1.1.0-beta.5</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -83,7 +83,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
-[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.4/sdk/selfhelp/azure-resourcemanager-selfhelp/SAMPLE.md)
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.5/sdk/selfhelp/azure-resourcemanager-selfhelp/SAMPLE.md)
 
 
 ## Troubleshooting
@@ -105,11 +105,11 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.4/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.4/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.4/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.4/sdk/resourcemanager/docs/DESIGN.md
-[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.4/CONTRIBUTING.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.5/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.5/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.5/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.5/sdk/resourcemanager/docs/DESIGN.md
+[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-selfhelp_1.1.0-beta.5/CONTRIBUTING.md
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 
