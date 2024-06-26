@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: systemcentervirtualmachinemanager
 ---
-# Azure System Center Virtual Machine Manager SDK for Java - preview
-## Packages - preview
+# Azure System Center Virtual Machine Manager SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](system-center-virtual-machine-manager-index.md)]

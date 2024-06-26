@@ -1,7 +1,7 @@
 ---
 title: Azure Azure Stack SDK for Java
 description: Reference for Azure Azure Stack SDK for Java
-ms.date: 06/25/2024
+ms.date: 06/26/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
