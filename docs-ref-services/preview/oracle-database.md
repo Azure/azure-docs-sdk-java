@@ -1,7 +1,7 @@
 ---
 title: Azure Oracle Database SDK for Java
 description: Reference for Azure Oracle Database SDK for Java
-ms.date: 06/25/2024
+ms.date: 06/26/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: oracledatabase
