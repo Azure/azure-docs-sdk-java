@@ -1,7 +1,7 @@
 ---
 title: Azure IoT SDK for Java
 description: Reference for Azure IoT SDK for Java
-ms.date: 06/26/2024
+ms.date: 06/27/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: iot
