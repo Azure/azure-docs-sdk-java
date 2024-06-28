@@ -1,10 +1,10 @@
 ---
 title: Azure Event Grid SDK for Java
 description: Reference for Azure Event Grid SDK for Java
-ms.date: 06/27/2024
+ms.date: 06/28/2024
 ms.topic: reference
 ms.devlang: java
-ms.service: event-grid
+ms.service: eventgrid
 ---
 # Azure Event Grid libraries for Java
 
