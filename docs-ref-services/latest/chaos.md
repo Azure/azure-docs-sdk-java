@@ -1,7 +1,7 @@
 ---
 title: Azure Chaos SDK for Java
 description: Reference for Azure Chaos SDK for Java
-ms.date: 07/10/2024
+ms.date: 07/11/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: chaos
