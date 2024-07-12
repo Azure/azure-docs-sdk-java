@@ -1,7 +1,7 @@
 ---
 title: Azure Managed Applications SDK for Java
 description: Reference for Azure Managed Applications SDK for Java
-ms.date: 07/11/2024
+ms.date: 07/12/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: managedapplications
