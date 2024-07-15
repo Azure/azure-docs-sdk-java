@@ -1,12 +1,12 @@
 ---
 title: Azure Core Management client library for Java
 keywords: Azure, java, SDK, API, azure-core-management, core
-ms.date: 06/06/2024
+ms.date: 07/15/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Management client library for Java - version 1.15.0 
+# Azure Core Management client library for Java - version 1.15.1 
 
 
 Azure Core Management library is a collection of classes common to the [Azure Resource Manager (ARM)][arm] client libraries.
@@ -16,6 +16,7 @@ Azure Core Management library is a collection of classes common to the [Azure Re
 ### Prerequisites
 
 - A [Java Development Kit (JDK)][jdk_link], version 8 or later.
+  - Here are details about [Java 8 client compatibility with Azure Certificate Authority][java8_client_compatibility].
 
 ### Adding the package to your product
 
@@ -55,7 +56,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-management_1.15.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-management_1.15.1/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -67,4 +68,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 [arm]: /azure/azure-resource-manager/management/
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[java8_client_compatibility]: https://learn.microsoft.com/azure/security/fundamentals/azure-ca-details?tabs=root-and-subordinate-cas-list#client-compatibility-for-public-pkis
+
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-management%2FREADME.png)
 

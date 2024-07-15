@@ -1,12 +1,12 @@
 ---
 title: Azure Core shared library for Java
 keywords: Azure, java, SDK, API, azure-core, core
-ms.date: 06/06/2024
+ms.date: 07/15/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core shared library for Java - version 1.49.1 
+# Azure Core shared library for Java - version 1.50.0 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -27,6 +27,7 @@ APIs in one client library, you will know how to use them in other client librar
 ### Prerequisites
 
 - A [Java Development Kit (JDK)][jdk_link], version 8 or later.
+  - Here are details about [Java 8 client compatibility with Azure Certificate Authority][java8_client_compatibility].
 
 ### Include the package
 
@@ -35,7 +36,7 @@ APIs in one client library, you will know how to use them in other client librar
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the
 library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
 To learn more about the BOM, see
-the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core_1.49.1/sdk/boms/azure-sdk-bom/README.md).
+the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-core_1.50.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -258,7 +259,7 @@ logging to be enabled. The following table explains what logging is enabled for 
 ## Contributing
 
 For details on contributing to this repository, see
-the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core_1.49.1/CONTRIBUTING.md).
+the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core_1.50.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -269,8 +270,8 @@ the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-
 <!-- links -->
 
 [logging]: https://learn.microsoft.com/azure/developer/java/sdk/logging-overview
-
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[java8_client_compatibility]: https://learn.microsoft.com/azure/security/fundamentals/azure-ca-details?tabs=root-and-subordinate-cas-list#client-compatibility-for-public-pkis
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core%2FREADME.png)
 
