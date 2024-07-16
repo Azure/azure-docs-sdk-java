@@ -1,12 +1,12 @@
 ---
 title: Azure Identity Brokered Authentication client library for Java
 keywords: Azure, java, SDK, API, azure-identity-broker, identity
-ms.date: 06/10/2024
+ms.date: 07/16/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: identity
 ---
-# Azure Identity Brokered Authentication client library for Java - version 1.1.2 
+# Azure Identity Brokered Authentication client library for Java - version 1.1.3 
 
 
 The Azure Identity Brokered Authentication library extends the Azure Identity library to provide brokered authentication support. This options class can be used to create an `InteractiveBrowserCredential` capable of using the system authentication broker in lieu of the web browser when available.
@@ -19,7 +19,7 @@ The Azure Identity Brokered Authentication library extends the Azure Identity li
 
 #### Include the BOM file
 
-Include the `azure-sdk-bom` in your project to take a dependency on the stable version of the library. In the following snippet, replace the `{bom_version_to_target}` placeholder with the version number. To learn more about the BOM, see the [Azure SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity-broker_1.1.2/sdk/boms/azure-sdk-bom/README.md).
+Include the `azure-sdk-bom` in your project to take a dependency on the stable version of the library. In the following snippet, replace the `{bom_version_to_target}` placeholder with the version number. To learn more about the BOM, see the [Azure SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity-broker_1.1.3/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -55,7 +55,7 @@ To take dependency on a particular version of the library that isn't present in 
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity-broker</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -63,6 +63,7 @@ To take dependency on a particular version of the library that isn't present in 
 ### Prerequisites
 
 - A [Java Development Kit (JDK)][jdk_link], version 8 or later.
+  - Here are details about [Java 8 client compatibility with Azure Certificate Authority](https://learn.microsoft.com/azure/security/fundamentals/azure-ca-details?tabs=root-and-subordinate-cas-list#client-compatibility-for-public-pkis).
 - An [Azure subscription][azure_sub].
 - The Azure CLI can also be useful for authenticating in a development environment, creating accounts, and managing account roles.
 
@@ -135,7 +136,7 @@ Credentials raise exceptions when they fail to authenticate or can't execute aut
 
 When credentials can't execute authentication due to one of the underlying resources required by the credential being unavailable on the machine a `CredentialUnavailableException` is raised. The exception has a `message` attribute that describes why the credential is unavailable for authentication execution. When this exception is raised by `ChainedTokenCredential`, the message collects error messages from each credential in the chain.
 
-See the [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity-broker_1.1.2/sdk/identity/azure-identity/TROUBLESHOOTING.md) for details on how to diagnose various failure scenarios.
+See the [troubleshooting guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity-broker_1.1.3/sdk/identity/azure-identity/TROUBLESHOOTING.md) for details on how to diagnose various failure scenarios.
 
 ## Next steps
 
@@ -153,14 +154,14 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 
 
 <!-- LINKS -->
-[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-broker_1.1.2/sdk/core
-[azure_identity_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-broker_1.1.2/sdk/identity
+[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-broker_1.1.3/sdk/core
+[azure_identity_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-broker_1.1.3/sdk/identity
 [azure_sub]: https://azure.microsoft.com/free/java
 [entra_id_doc]: https://learn.microsoft.com/entra/identity/
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [javadoc]: https://learn.microsoft.com/java/api/com.azure.identity.broker?view=azure-java-stable
 [jdk_link]: https://learn.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-[secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-broker_1.1.2/sdk/keyvault/azure-security-keyvault-secrets
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-broker_1.1.2/sdk/identity/azure-identity-broker
+[secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-broker_1.1.3/sdk/keyvault/azure-security-keyvault-secrets
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-broker_1.1.3/sdk/identity/azure-identity-broker
 
