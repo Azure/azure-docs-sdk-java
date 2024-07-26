@@ -1,7 +1,7 @@
 ---
 title: Azure Large Instance SDK for Java
 description: Reference for Azure Large Instance SDK for Java
-ms.date: 07/25/2024
+ms.date: 07/26/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: largeinstance
