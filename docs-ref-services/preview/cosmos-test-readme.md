@@ -1,12 +1,12 @@
 ---
 title: Azure Cosmos Test client library for Java
 keywords: Azure, java, SDK, API, azure-cosmos-test, cosmos
-ms.date: 05/03/2024
+ms.date: 07/28/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: cosmos
 ---
-# Azure Cosmos Test client library for Java - version 1.0.0-beta.7 
+# Azure Cosmos Test client library for Java - version 1.0.0-beta.8 
 
 Library containing core fault injection classes used to test Azure Cosmos DB SDK libraries.
 
@@ -18,7 +18,7 @@ Library containing core fault injection classes used to test Azure Cosmos DB SDK
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos-test</artifactId>
-  <version>1.0.0-beta.7</version>
+  <version>1.0.0-beta.8</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
