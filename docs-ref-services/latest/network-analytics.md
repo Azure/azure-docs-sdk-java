@@ -1,7 +1,7 @@
 ---
 title: Azure Network Analytics SDK for Java
 description: Reference for Azure Network Analytics SDK for Java
-ms.date: 07/30/2024
+ms.date: 07/31/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: networkanalytics
