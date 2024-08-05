@@ -1,7 +1,7 @@
 ---
 title: Azure PostgreSQL SDK for Java
 description: Reference for Azure PostgreSQL SDK for Java
-ms.date: 08/02/2024
+ms.date: 08/05/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: postgresql
