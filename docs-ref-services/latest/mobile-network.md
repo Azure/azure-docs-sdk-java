@@ -1,7 +1,7 @@
 ---
 title: Azure Mobile Network SDK for Java
 description: Reference for Azure Mobile Network SDK for Java
-ms.date: 08/06/2024
+ms.date: 08/07/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: azure-monitor
