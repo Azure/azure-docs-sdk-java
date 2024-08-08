@@ -1,7 +1,7 @@
 ---
 title: Azure API Management SDK for Java
 description: Reference for Azure API Management SDK for Java
-ms.date: 08/07/2024
+ms.date: 08/08/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: apimanagement
