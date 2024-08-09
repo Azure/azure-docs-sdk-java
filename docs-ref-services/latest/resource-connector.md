@@ -1,7 +1,7 @@
 ---
 title: Azure Resource Connector SDK for Java
 description: Reference for Azure Resource Connector SDK for Java
-ms.date: 08/08/2024
+ms.date: 08/09/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: resourceconnector
