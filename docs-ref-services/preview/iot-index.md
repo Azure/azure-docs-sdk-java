@@ -1,5 +1,6 @@
 | Reference | Package | Source |
 |---|---|---|
+|[Models Repository](iot-modelsrepository-readme.md)|[azure-iot-modelsrepository](https://repo1.maven.org/maven2/com/azure/azure-iot-modelsrepository)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
 |[Resource Management - Device Provisioning Services](resourcemanager-deviceprovisioningservices-readme.md)|[azure-resourcemanager-deviceprovisioningservices](https://repo1.maven.org/maven2/com/azure/resourcemanager/azure-resourcemanager-deviceprovisioningservices)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
 |[Resource Management - Device Update](resourcemanager-deviceupdate-readme.md)|[azure-resourcemanager-deviceupdate](https://repo1.maven.org/maven2/com/azure/resourcemanager/azure-resourcemanager-deviceupdate)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/deviceupdate/azure-resourcemanager-deviceupdate)|
 |[Resource Management - IoT Central](resourcemanager-iotcentral-readme.md)|[azure-resourcemanager-iotcentral](https://repo1.maven.org/maven2/com/azure/resourcemanager/azure-resourcemanager-iotcentral)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/iotcentral/azure-resourcemanager-iotcentral)|
