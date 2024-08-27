@@ -1,7 +1,7 @@
 ---
 title: Azure Service Networking SDK for Java
 description: Reference for Azure Service Networking SDK for Java
-ms.date: 08/26/2024
+ms.date: 08/27/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: servicenetworking
