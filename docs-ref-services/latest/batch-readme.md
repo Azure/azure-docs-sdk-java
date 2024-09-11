@@ -1,7 +1,7 @@
 ---
 title: 
 keywords: Azure, java, SDK, API, azure-batch, batch
-ms.date: 06/13/2023
+ms.date: 09/11/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: batch
@@ -70,7 +70,7 @@ You can find sample code that illustrates Batch usage scenarios in https://githu
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-batch</artifactId>
-    <version>8.1.0</version>
+    <version>11.2.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -78,7 +78,7 @@ You can find sample code that illustrates Batch usage scenarios in https://githu
 # Pre-requisites
 
 - [A Java Developer Kit (JDK)](/java/azure/jdk/?view=azure-java-stable), v 1.7 or later
-- [Maven](https://search.maven.org/artifact/com.microsoft.azure/azure-batch)
+- [Maven](https://central.sonatype.com/artifact/com.microsoft.azure/azure-batch)
 - Azure Service Principal - see [how to create authentication info](/azure/batch/batch-aad-auth#use-a-service-principal).
 
 
@@ -88,7 +88,7 @@ If you encounter any bugs with these libraries, please file issues via [Issues](
 
 # Contribute Code
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-batch_11.0.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-batch_11.2.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
