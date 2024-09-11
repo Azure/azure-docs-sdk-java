@@ -1,7 +1,7 @@
 ---
 title: Azure Maps SDK for Java
 description: Reference for Azure Maps SDK for Java
-ms.date: 09/10/2024
+ms.date: 09/11/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: maps
