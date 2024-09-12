@@ -1,12 +1,12 @@
 ---
 title: Azure Core Management client library for Java
 keywords: Azure, java, SDK, API, azure-core-management, core
-ms.date: 08/02/2024
+ms.date: 09/12/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Management client library for Java - version 1.15.2 
+# Azure Core Management client library for Java - version 1.15.3 
 
 
 Azure Core Management library is a collection of classes common to the [Azure Resource Manager (ARM)][arm] client libraries.
@@ -25,7 +25,7 @@ Azure Core Management library is a collection of classes common to the [Azure Re
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-management</artifactId>
-    <version>1.15.2</version>
+    <version>1.15.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -56,7 +56,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-management_1.15.2/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-management_1.15.3/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -66,7 +66,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 
 <!-- Links -->
 [arm]: /azure/azure-resource-manager/management/
-[logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
+[logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-in-Azure-SDK
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [java8_client_compatibility]: https://learn.microsoft.com/azure/security/fundamentals/azure-ca-details?tabs=root-and-subordinate-cas-list#client-compatibility-for-public-pkis
 
