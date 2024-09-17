@@ -1,7 +1,7 @@
 ---
 title: Azure Mongo Cluster SDK for Java
 description: Reference for Azure Mongo Cluster SDK for Java
-ms.date: 09/16/2024
+ms.date: 09/17/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: mongocluster
