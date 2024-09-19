@@ -210,6 +210,20 @@ methods:
   returns:
     description: "A response containing the file info and the status of creating the file."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.storage.file.share.models.ShareFileInfo?alt=com.azure.storage.file.share.models.ShareFileInfo&text=ShareFileInfo\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.storage.file.share.ShareFileAsyncClient.createWithResponse(com.azure.storage.file.share.options.ShareFileCreateOptions)"
+  fullName: "com.azure.storage.file.share.ShareFileAsyncClient.createWithResponse(ShareFileCreateOptions options)"
+  name: "createWithResponse(ShareFileCreateOptions options)"
+  nameWithType: "ShareFileAsyncClient.createWithResponse(ShareFileCreateOptions options)"
+  summary: "Creates a file in the storage account and returns a response of Share<wbr>File<wbr>Info to interact with it."
+  parameters:
+  - description: "<xref uid=\"com.azure.storage.file.share.options.ShareFileCreateOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareFileCreateOptions\"></xref>"
+    name: "options"
+    type: "<xref href=\"com.azure.storage.file.share.options.ShareFileCreateOptions?alt=com.azure.storage.file.share.options.ShareFileCreateOptions&text=ShareFileCreateOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Response<ShareFileInfo>> createWithResponse(ShareFileCreateOptions options)"
+  desc: "Creates a file in the storage account and returns a response of ShareFileInfo to interact with it.\n\n**Code Samples**\n\nCreate the file with length of 1024 bytes, some headers, file smb properties and metadata.\n\n```java\nShareFileCreateOptions options = new ShareFileCreateOptions(1024);\n\n options.setShareFileHttpHeaders(new ShareFileHttpHeaders()\n     .setContentType(\"text/html\")\n     .setContentEncoding(\"gzip\")\n     .setContentLanguage(\"en\")\n     .setCacheControl(\"no-transform\")\n     .setContentDisposition(\"attachment\"));\n options.setSmbProperties(new FileSmbProperties()\n     .setNtfsFileAttributes(EnumSet.of(NtfsFileAttributes.READ_ONLY))\n     .setFileCreationTime(OffsetDateTime.now())\n     .setFileLastWriteTime(OffsetDateTime.now())\n     .setFilePermissionKey(\"filePermissionKey\"));\n options.setFilePermission(\"filePermission\");\n options.setFilePermissionFormat(FilePermissionFormat.BINARY);\n options.setRequestConditions(new ShareRequestConditions().setLeaseId(leaseId));\n options.setMetadata(Collections.singletonMap(\"directory\", \"metadata\"));\n\n shareFileAsyncClient.createWithResponse(options)\n     .subscribe(response -> System.out.printf(\"Creating the file completed with status code %d\",\n         response.getStatusCode()));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-file"
+  returns:
+    description: "A response containing the <xref uid=\"com.azure.storage.file.share.models.ShareFileInfo\" data-throw-if-not-resolved=\"false\" data-raw-source=\"file info\"></xref> and the status of creating the file."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.file.share.models.ShareFileInfo?alt=com.azure.storage.file.share.models.ShareFileInfo&text=ShareFileInfo\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
 - uid: "com.azure.storage.file.share.ShareFileAsyncClient.createWithResponse(long,com.azure.storage.file.share.models.ShareFileHttpHeaders,com.azure.storage.file.share.FileSmbProperties,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)"
   fullName: "com.azure.storage.file.share.ShareFileAsyncClient.createWithResponse(long maxSize, ShareFileHttpHeaders httpHeaders, FileSmbProperties smbProperties, String filePermission, Map<String,String> metadata)"
   name: "createWithResponse(long maxSize, ShareFileHttpHeaders httpHeaders, FileSmbProperties smbProperties, String filePermission, Map<String,String> metadata)"
@@ -524,6 +538,26 @@ methods:
   returns:
     description: "A <code>String</code> representing the SAS query parameters."
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+- uid: "com.azure.storage.file.share.ShareFileAsyncClient.generateSas(com.azure.storage.file.share.sas.ShareServiceSasSignatureValues,java.util.function.Consumer<java.lang.String>,com.azure.core.util.Context)"
+  fullName: "com.azure.storage.file.share.ShareFileAsyncClient.generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues, Consumer<String> stringToSignHandler, Context context)"
+  name: "generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues, Consumer<String> stringToSignHandler, Context context)"
+  nameWithType: "ShareFileAsyncClient.generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues, Consumer<String> stringToSignHandler, Context context)"
+  summary: "Generates a service SAS for the file using the specified <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareServiceSasSignatureValues\"></xref>"
+  parameters:
+  - description: "<xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareServiceSasSignatureValues\"></xref>"
+    name: "shareServiceSasSignatureValues"
+    type: "<xref href=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues?alt=com.azure.storage.file.share.sas.ShareServiceSasSignatureValues&text=ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"False\" />"
+  - description: "For debugging purposes only. Returns the string to sign that was used to generate the\n signature."
+    name: "stringToSignHandler"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html\">Consumer</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
+  - description: "Additional context that is passed through the code when generating a SAS."
+    name: "context"
+    type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public String generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues, Consumer<String> stringToSignHandler, Context context)"
+  desc: "Generates a service SAS for the file using the specified <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareServiceSasSignatureValues\"></xref>\n\nNote : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"StorageSharedKeyCredential\"></xref>\n\nSee <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareServiceSasSignatureValues\"></xref> for more information on how to construct a service SAS."
+  returns:
+    description: "A <code>String</code> representing the SAS query parameters."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
 - uid: "com.azure.storage.file.share.ShareFileAsyncClient.getAccountName()"
   fullName: "com.azure.storage.file.share.ShareFileAsyncClient.getAccountName()"
   name: "getAccountName()"
@@ -827,6 +861,20 @@ methods:
   returns:
     description: "The <xref uid=\"com.azure.storage.file.share.models.ShareFileInfo\" data-throw-if-not-resolved=\"false\" data-raw-source=\"file info\"></xref>"
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.storage.file.share.models.ShareFileInfo?alt=com.azure.storage.file.share.models.ShareFileInfo&text=ShareFileInfo\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.storage.file.share.ShareFileAsyncClient.setPropertiesWithResponse(com.azure.storage.file.share.options.ShareFileSetPropertiesOptions)"
+  fullName: "com.azure.storage.file.share.ShareFileAsyncClient.setPropertiesWithResponse(ShareFileSetPropertiesOptions options)"
+  name: "setPropertiesWithResponse(ShareFileSetPropertiesOptions options)"
+  nameWithType: "ShareFileAsyncClient.setPropertiesWithResponse(ShareFileSetPropertiesOptions options)"
+  summary: "Sets the user-defined file properties to associate to the file."
+  parameters:
+  - description: "<xref uid=\"com.azure.storage.file.share.options.ShareFileSetPropertiesOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareFileSetPropertiesOptions\"></xref>"
+    name: "options"
+    type: "<xref href=\"com.azure.storage.file.share.options.ShareFileSetPropertiesOptions?alt=com.azure.storage.file.share.options.ShareFileSetPropertiesOptions&text=ShareFileSetPropertiesOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Response<ShareFileInfo>> setPropertiesWithResponse(ShareFileSetPropertiesOptions options)"
+  desc: "Sets the user-defined file properties to associate to the file.\n\nIf `null` is passed for the httpHeaders it will clear the httpHeaders associated to the file. If `null` is passed for the filesmbproperties it will preserve the filesmbproperties associated with the file.\n\n**Code Samples**\n\nSet the httpHeaders of contentType of \"text/plain\"\n\n```java\nShareFileSetPropertiesOptions options = new ShareFileSetPropertiesOptions(1024);\n\n options.setHttpHeaders(new ShareFileHttpHeaders()\n     .setContentType(\"text/html\")\n     .setContentEncoding(\"gzip\")\n     .setContentLanguage(\"en\")\n     .setCacheControl(\"no-transform\")\n     .setContentDisposition(\"attachment\"));\n options.setSmbProperties(new FileSmbProperties()\n     .setNtfsFileAttributes(EnumSet.of(NtfsFileAttributes.READ_ONLY))\n     .setFileCreationTime(OffsetDateTime.now())\n     .setFileLastWriteTime(OffsetDateTime.now())\n     .setFilePermissionKey(\"filePermissionKey\"));\n options.setFilePermissions(new ShareFilePermission().setPermission(\"filePermission\")\n     .setPermissionFormat(FilePermissionFormat.BINARY));\n options.setRequestConditions(new ShareRequestConditions().setLeaseId(leaseId));\n\n // NOTE: filePermission and filePermissionKey should never be both set\n shareFileAsyncClient.setPropertiesWithResponse(options)\n     .subscribe(response -> System.out.printf(\"Setting the file properties completed with status code %d\",\n         response.getStatusCode()));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-file-properties"
+  returns:
+    description: "Response containing the <xref uid=\"com.azure.storage.file.share.models.ShareFileInfo\" data-throw-if-not-resolved=\"false\" data-raw-source=\"file info\"></xref> and response status code."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.file.share.models.ShareFileInfo?alt=com.azure.storage.file.share.models.ShareFileInfo&text=ShareFileInfo\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
 - uid: "com.azure.storage.file.share.ShareFileAsyncClient.setPropertiesWithResponse(long,com.azure.storage.file.share.models.ShareFileHttpHeaders,com.azure.storage.file.share.FileSmbProperties,java.lang.String)"
   fullName: "com.azure.storage.file.share.ShareFileAsyncClient.setPropertiesWithResponse(long newFileSize, ShareFileHttpHeaders httpHeaders, FileSmbProperties smbProperties, String filePermission)"
   name: "setPropertiesWithResponse(long newFileSize, ShareFileHttpHeaders httpHeaders, FileSmbProperties smbProperties, String filePermission)"
@@ -1125,4 +1173,4 @@ type: "class"
 desc: "This class provides a client that contains all the operations for interacting with file in Azure Storage File Service. Operations allowed by the client are creating, copying, uploading, downloading, deleting and listing on a file, retrieving properties, setting metadata and list or force close handles of the file.\n\n**Instantiating an Asynchronous File Client**\n\n```java\nShareFileAsyncClient client = new ShareFileClientBuilder()\n     .connectionString(\"${connectionString}\")\n     .endpoint(\"${endpoint}\")\n     .buildFileAsyncClient();\n```\n\nView <xref uid=\"com.azure.storage.file.share.ShareFileClientBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"this\"></xref> for additional ways to construct the client."
 metadata: {}
 package: "com.azure.storage.file.share"
-artifact: com.azure:azure-storage-file-share:12.23.1
+artifact: com.azure:azure-storage-file-share:12.24.0

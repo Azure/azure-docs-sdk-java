@@ -202,6 +202,20 @@ methods:
   returns:
     description: "A <xref uid=\"reactor.core.publisher.Mono\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Mono\"></xref> containing <xref uid=\"com.azure.core.http.rest.Response\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Response\"></xref> signaling completion, whose <xref uid=\"com.azure.core.http.rest.Response.getValue*\" data-throw-if-not-resolved=\"false\" data-raw-source=\"value\"></xref>\n contains a <xref uid=\"com.azure.storage.file.share.models.ShareInfo\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareInfo\"></xref> containing information about the share. If <xref uid=\"com.azure.core.http.rest.Response\" data-throw-if-not-resolved=\"false\" data-raw-source=\"Response\"></xref>'s status code is\n 201, a new share was successfully created. If status code is 409, a share already existed at this location."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.file.share.models.ShareInfo?alt=com.azure.storage.file.share.models.ShareInfo&text=ShareInfo\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
+- uid: "com.azure.storage.file.share.ShareAsyncClient.createPermission(com.azure.storage.file.share.models.ShareFilePermission)"
+  fullName: "com.azure.storage.file.share.ShareAsyncClient.createPermission(ShareFilePermission filePermission)"
+  name: "createPermission(ShareFilePermission filePermission)"
+  nameWithType: "ShareAsyncClient.createPermission(ShareFilePermission filePermission)"
+  summary: "Creates a permission at the share level."
+  parameters:
+  - description: "The file permission to get/create."
+    name: "filePermission"
+    type: "<xref href=\"com.azure.storage.file.share.models.ShareFilePermission?alt=com.azure.storage.file.share.models.ShareFilePermission&text=ShareFilePermission\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<String> createPermission(ShareFilePermission filePermission)"
+  desc: "Creates a permission at the share level. If a permission already exists, it returns the key of it, else creates a new permission and returns the key.\n\n**Code Samples**\n\n```java\nShareFilePermission permission = new ShareFilePermission().setPermission(\"filePermission\")\n     .setPermissionFormat(FilePermissionFormat.BINARY);\n shareAsyncClient.createPermission(permission).subscribe(\n     response -> System.out.printf(\"The file permission key is %s\", response));\n```"
+  returns:
+    description: "The file permission key associated with the file permission."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
 - uid: "com.azure.storage.file.share.ShareAsyncClient.createPermission(java.lang.String)"
   fullName: "com.azure.storage.file.share.ShareAsyncClient.createPermission(String filePermission)"
   name: "createPermission(String filePermission)"
@@ -216,6 +230,20 @@ methods:
   returns:
     description: "The file permission key associated with the file permission."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
+- uid: "com.azure.storage.file.share.ShareAsyncClient.createPermissionWithResponse(com.azure.storage.file.share.models.ShareFilePermission)"
+  fullName: "com.azure.storage.file.share.ShareAsyncClient.createPermissionWithResponse(ShareFilePermission filePermission)"
+  name: "createPermissionWithResponse(ShareFilePermission filePermission)"
+  nameWithType: "ShareAsyncClient.createPermissionWithResponse(ShareFilePermission filePermission)"
+  summary: "Creates a permission at the share level."
+  parameters:
+  - description: "The file permission to get/create."
+    name: "filePermission"
+    type: "<xref href=\"com.azure.storage.file.share.models.ShareFilePermission?alt=com.azure.storage.file.share.models.ShareFilePermission&text=ShareFilePermission\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Response<String>> createPermissionWithResponse(ShareFilePermission filePermission)"
+  desc: "Creates a permission at the share level. If a permission already exists, it returns the key of it, else creates a new permission and returns the key.\n\n**Code Samples**\n\n```java\nShareFilePermission permission = new ShareFilePermission().setPermission(\"filePermission\")\n     .setPermissionFormat(FilePermissionFormat.BINARY);\n shareAsyncClient.createPermissionWithResponse(permission).subscribe(\n     response -> System.out.printf(\"The file permission key is %s\", response.getValue()));\n```"
+  returns:
+    description: "A response that contains the file permission key associated with the file permission."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;&gt;"
 - uid: "com.azure.storage.file.share.ShareAsyncClient.createPermissionWithResponse(java.lang.String)"
   fullName: "com.azure.storage.file.share.ShareAsyncClient.createPermissionWithResponse(String filePermission)"
   name: "createPermissionWithResponse(String filePermission)"
@@ -277,11 +305,11 @@ methods:
   - description: "Optional metadata to associate with the share"
     name: "metadata"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/Map.html\">Map</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>,<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
-  - description: "Optional maximum size the share is allowed to grow to in GB. This must be greater than 0 and\n less than or equal to 5120. The default value is 5120."
+  - description: "Optional maximum size the share is allowed to grow to in GB.  The default value is 5120.\n Refer to the Azure Docs for updated values."
     name: "quotaInGB"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html\">Integer</a>"
   syntax: "public Mono<Response<ShareInfo>> createWithResponse(Map<String,String> metadata, Integer quotaInGB)"
-  desc: "Creates the share in the storage account with the specified metadata and quota.\n\n**Code Samples**\n\nCreate the share with metadata \"share:metadata\"\n\n```java\nshareAsyncClient.createWithResponse(Collections.singletonMap(\"share\", \"metadata\"), null).subscribe(\n     response -> System.out.printf(\"Creating the share completed with status code %d\", response.getStatusCode()),\n     error -> System.err.print(error.toString()),\n     () -> System.out.println(\"Complete creating the share!\")\n );\n```\n\nCreate the share with a quota of 10 GB\n\n```java\nshareAsyncClient.createWithResponse(null, 10).subscribe(\n     response -> System.out.printf(\"Creating the share completed with status code %d\", response.getStatusCode()),\n     error -> System.err.print(error.toString()),\n     () -> System.out.println(\"Complete creating the share!\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-share"
+  desc: "Creates the share in the storage account with the specified metadata and quota.\n\n**Code Samples**\n\nCreate the share with metadata \"share:metadata\"\n\n```java\nshareAsyncClient.createWithResponse(Collections.singletonMap(\"share\", \"metadata\"), null).subscribe(\n     response -> System.out.printf(\"Creating the share completed with status code %d\", response.getStatusCode()),\n     error -> System.err.print(error.toString()),\n     () -> System.out.println(\"Complete creating the share!\")\n );\n```\n\nCreate the share with a quota of 10 GB\n\n```java\nshareAsyncClient.createWithResponse(null, 10).subscribe(\n     response -> System.out.printf(\"Creating the share completed with status code %d\", response.getStatusCode()),\n     error -> System.err.print(error.toString()),\n     () -> System.out.println(\"Complete creating the share!\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\nFor more information on updated max file share size values, see the [Azure Docs][Azure Docs 1].\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-share\n[Azure Docs 1]: https://learn.microsoft.com/azure/storage/files/storage-files-scale-targets#azure-file-share-scale-targets"
   returns:
     description: "A response containing information about the <xref uid=\"com.azure.storage.file.share.models.ShareInfo\" data-throw-if-not-resolved=\"false\" data-raw-source=\"share\"></xref> and the status its creation."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.file.share.models.ShareInfo?alt=com.azure.storage.file.share.models.ShareInfo&text=ShareInfo\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
@@ -526,6 +554,26 @@ methods:
   returns:
     description: "A <code>String</code> representing the SAS query parameters."
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+- uid: "com.azure.storage.file.share.ShareAsyncClient.generateSas(com.azure.storage.file.share.sas.ShareServiceSasSignatureValues,java.util.function.Consumer<java.lang.String>,com.azure.core.util.Context)"
+  fullName: "com.azure.storage.file.share.ShareAsyncClient.generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues, Consumer<String> stringToSignHandler, Context context)"
+  name: "generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues, Consumer<String> stringToSignHandler, Context context)"
+  nameWithType: "ShareAsyncClient.generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues, Consumer<String> stringToSignHandler, Context context)"
+  summary: "Generates a service sas for the queue using the specified <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareServiceSasSignatureValues\"></xref>"
+  parameters:
+  - description: "<xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareServiceSasSignatureValues\"></xref>"
+    name: "shareServiceSasSignatureValues"
+    type: "<xref href=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues?alt=com.azure.storage.file.share.sas.ShareServiceSasSignatureValues&text=ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"False\" />"
+  - description: "For debugging purposes only. Returns the string to sign that was used to generate the\n signature."
+    name: "stringToSignHandler"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html\">Consumer</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
+  - description: "Additional context that is passed through the code when generating a SAS."
+    name: "context"
+    type: "<xref href=\"com.azure.core.util.Context?alt=com.azure.core.util.Context&text=Context\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public String generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues, Consumer<String> stringToSignHandler, Context context)"
+  desc: "Generates a service sas for the queue using the specified <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareServiceSasSignatureValues\"></xref>\n\nNote : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"StorageSharedKeyCredential\"></xref>\n\nSee <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareServiceSasSignatureValues\"></xref> for more information on how to construct a service SAS."
+  returns:
+    description: "A <code>String</code> representing the SAS query parameters."
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
 - uid: "com.azure.storage.file.share.ShareAsyncClient.getAccessPolicy()"
   fullName: "com.azure.storage.file.share.ShareAsyncClient.getAccessPolicy()"
   name: "getAccessPolicy()"
@@ -622,6 +670,23 @@ methods:
   returns:
     description: "The file permission associated with the file permission key."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
+- uid: "com.azure.storage.file.share.ShareAsyncClient.getPermission(java.lang.String,com.azure.storage.file.share.models.FilePermissionFormat)"
+  fullName: "com.azure.storage.file.share.ShareAsyncClient.getPermission(String filePermissionKey, FilePermissionFormat filePermissionFormat)"
+  name: "getPermission(String filePermissionKey, FilePermissionFormat filePermissionFormat)"
+  nameWithType: "ShareAsyncClient.getPermission(String filePermissionKey, FilePermissionFormat filePermissionFormat)"
+  summary: "Gets a permission for a given key."
+  parameters:
+  - description: "The file permission key."
+    name: "filePermissionKey"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+  - description: "Optional. Available for version 2024-11-04 and later. Specifies the format in which\n the permission is returned. If filePermissionFormat is unspecified or explicitly set to SDDL, the permission will\n be returned in SSDL format. If filePermissionFormat is explicity set to binary, the permission is returned as a\n base64 string representing the binary encoding of the permission in self-relative format."
+    name: "filePermissionFormat"
+    type: "<xref href=\"com.azure.storage.file.share.models.FilePermissionFormat?alt=com.azure.storage.file.share.models.FilePermissionFormat&text=FilePermissionFormat\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<String> getPermission(String filePermissionKey, FilePermissionFormat filePermissionFormat)"
+  desc: "Gets a permission for a given key.\n\n**Code Samples**\n\n```java\nFilePermissionFormat filePermissionFormat = FilePermissionFormat.BINARY;\n shareAsyncClient.getPermission(\"filePermissionKey\", filePermissionFormat).subscribe(\n     response -> System.out.printf(\"The file permission is %s\", response));\n```"
+  returns:
+    description: "The file permission associated with the file permission key."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
 - uid: "com.azure.storage.file.share.ShareAsyncClient.getPermissionWithResponse(java.lang.String)"
   fullName: "com.azure.storage.file.share.ShareAsyncClient.getPermissionWithResponse(String filePermissionKey)"
   name: "getPermissionWithResponse(String filePermissionKey)"
@@ -633,6 +698,23 @@ methods:
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
   syntax: "public Mono<Response<String>> getPermissionWithResponse(String filePermissionKey)"
   desc: "Gets a permission for a given key.\n\n**Code Samples**\n\n```java\nshareAsyncClient.getPermissionWithResponse(\"filePermissionKey\").subscribe(\n     response -> System.out.printf(\"The file permission is %s\", response.getValue()));\n```"
+  returns:
+    description: "A response that contains th file permission associated with the file permission key."
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;&gt;"
+- uid: "com.azure.storage.file.share.ShareAsyncClient.getPermissionWithResponse(java.lang.String,com.azure.storage.file.share.models.FilePermissionFormat)"
+  fullName: "com.azure.storage.file.share.ShareAsyncClient.getPermissionWithResponse(String filePermissionKey, FilePermissionFormat filePermissionFormat)"
+  name: "getPermissionWithResponse(String filePermissionKey, FilePermissionFormat filePermissionFormat)"
+  nameWithType: "ShareAsyncClient.getPermissionWithResponse(String filePermissionKey, FilePermissionFormat filePermissionFormat)"
+  summary: "Gets a permission for a given key."
+  parameters:
+  - description: "The file permission key."
+    name: "filePermissionKey"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>"
+  - description: "Optional. Available for version 2024-11-04 and later. Specifies the format in which\n the permission is returned. If filePermissionFormat is unspecified or explicitly set to SDDL, the permission will\n be returned in SSDL format. If filePermissionFormat is explicity set to binary, the permission is returned as a\n base64 string representing the binary encoding of the permission in self-relative format."
+    name: "filePermissionFormat"
+    type: "<xref href=\"com.azure.storage.file.share.models.FilePermissionFormat?alt=com.azure.storage.file.share.models.FilePermissionFormat&text=FilePermissionFormat\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Response<String>> getPermissionWithResponse(String filePermissionKey, FilePermissionFormat filePermissionFormat)"
+  desc: "Gets a permission for a given key.\n\n**Code Samples**\n\n```java\nFilePermissionFormat filePermissionFormat = FilePermissionFormat.BINARY;\n shareAsyncClient.getPermissionWithResponse(\"filePermissionKey\", filePermissionFormat).subscribe(\n     response -> System.out.printf(\"The file permission is %s\", response.getValue()));\n```"
   returns:
     description: "A response that contains th file permission associated with the file permission key."
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;&gt;"
@@ -887,11 +969,11 @@ methods:
   summary: "Sets the maximum size in GB that the share is allowed to grow."
   deprecatedTag: "Use <xref uid=\"com.azure.storage.file.share.ShareAsyncClient.setProperties(com.azure.storage.file.share.options.ShareSetPropertiesOptions)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareAsyncClient#setProperties(ShareSetPropertiesOptions)\"></xref>"
   parameters:
-  - description: "Size in GB to limit the share's growth. The quota in GB must be between 1 and 5120."
+  - description: "Size in GB to limit the share's growth. The quota in GB must be between 1 and 5120.\n Refer to the Azure Docs for updated values."
     name: "quotaInGB"
     type: "<xref href=\"int?alt=int&text=int\" data-throw-if-not-resolved=\"False\" />"
   syntax: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html\">@Deprecated</a></br>public Mono<ShareInfo> setQuota(int quotaInGB)"
-  desc: "Sets the maximum size in GB that the share is allowed to grow.\n\n**Code Samples**\n\nSet the quota to 1024 GB\n\n```java\nshareAsyncClient.setQuota(1024).doOnSuccess(response ->\n     System.out.println(\"Setting the share quota completed.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-share-properties"
+  desc: "Sets the maximum size in GB that the share is allowed to grow.\n\n**Code Samples**\n\nSet the quota to 1024 GB\n\n```java\nshareAsyncClient.setQuota(1024).doOnSuccess(response ->\n     System.out.println(\"Setting the share quota completed.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\nFor more information on updated max file share size values, see the [Azure Docs][Azure Docs 1].\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-share-properties\n[Azure Docs 1]: https://learn.microsoft.com/azure/storage/files/storage-files-scale-targets#azure-file-share-scale-targets"
   hasDeprecatedTag: true
   returns:
     description: "The <xref uid=\"com.azure.storage.file.share.models.ShareInfo\" data-throw-if-not-resolved=\"false\" data-raw-source=\"information about the share\"></xref>"
@@ -903,11 +985,11 @@ methods:
   summary: "Sets the maximum size in GB that the share is allowed to grow."
   deprecatedTag: "Use <xref uid=\"com.azure.storage.file.share.ShareAsyncClient.setPropertiesWithResponse(com.azure.storage.file.share.options.ShareSetPropertiesOptions)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ShareAsyncClient#setPropertiesWithResponse(ShareSetPropertiesOptions)\"></xref>"
   parameters:
-  - description: "Size in GB to limit the share's growth. The quota in GB must be between 1 and 5120."
+  - description: "Size in GB to limit the share's growth. The default value is 5120. Refer to the Azure Docs for updated values."
     name: "quotaInGB"
     type: "<xref href=\"int?alt=int&text=int\" data-throw-if-not-resolved=\"False\" />"
   syntax: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html\">@Deprecated</a></br>public Mono<Response<ShareInfo>> setQuotaWithResponse(int quotaInGB)"
-  desc: "Sets the maximum size in GB that the share is allowed to grow.\n\n**Code Samples**\n\nSet the quota to 1024 GB\n\n```java\nshareAsyncClient.setQuotaWithResponse(1024)\n     .subscribe(response ->\n         System.out.printf(\"Setting the share quota completed with status code %d\", response.getStatusCode())\n     );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-share-properties"
+  desc: "Sets the maximum size in GB that the share is allowed to grow.\n\n**Code Samples**\n\nSet the quota to 1024 GB\n\n```java\nshareAsyncClient.setQuotaWithResponse(1024)\n     .subscribe(response ->\n         System.out.printf(\"Setting the share quota completed with status code %d\", response.getStatusCode())\n     );\n```\n\nFor more information, see the [Azure Docs][].\n\nFor more information on updated max file share size values, see the [Azure Docs][Azure Docs 1].\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-share-properties\n[Azure Docs 1]: https://learn.microsoft.com/azure/storage/files/storage-files-scale-targets#azure-file-share-scale-targets"
   hasDeprecatedTag: true
   returns:
     description: "A response containing the <xref uid=\"com.azure.storage.file.share.models.ShareInfo\" data-throw-if-not-resolved=\"false\" data-raw-source=\"information about the share\"></xref> with headers and response status\n code"
@@ -916,4 +998,4 @@ type: "class"
 desc: "This class provides a azureFileStorageClient that contains all the operations for interacting with a share in Azure Storage Share. Operations allowed by the azureFileStorageClient are creating and deleting the share, creating snapshots for the share, creating and deleting directories in the share and retrieving and updating properties metadata and access policies of the share.\n\n**Instantiating an Asynchronous Share Client**\n\n```java\nShareAsyncClient client = new ShareClientBuilder()\n     .connectionString(\"${connectionString}\")\n     .endpoint(\"${endpoint}\")\n     .buildAsyncClient();\n```\n\nView <xref uid=\"com.azure.storage.file.share.ShareClientBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"this\"></xref> for additional ways to construct the azureFileStorageClient."
 metadata: {}
 package: "com.azure.storage.file.share"
-artifact: com.azure:azure-storage-file-share:12.23.1
+artifact: com.azure:azure-storage-file-share:12.24.0
