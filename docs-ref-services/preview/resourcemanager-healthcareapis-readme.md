@@ -5,8 +5,6 @@ ms.date: 04/11/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: healthcareapis
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Resource Manager HealthcareApis client library for Java - version 1.0.0-beta.2 
 

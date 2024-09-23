@@ -5,8 +5,6 @@ ms.date: 06/01/2021
 ms.topic: reference
 ms.devlang: java
 ms.service: 
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Resource Manager IotDps client library for Java - version 1.0.0 
 

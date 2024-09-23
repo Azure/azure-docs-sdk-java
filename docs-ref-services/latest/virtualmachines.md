@@ -6,8 +6,6 @@ ms.date: 05/17/2017
 ms.topic: reference
 ms.devlang: java
 ms.service: compute
-ms.technology: azure
-ms.prod: azure
 manager: douge
 ---
 # Azure virtual machine libraries

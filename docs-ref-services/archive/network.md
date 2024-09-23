@@ -7,8 +7,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: network-access
 manager: douge
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Network libraries for Java
 

@@ -7,8 +7,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: dns
 manager: douge
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure DNS libraries for Java
 

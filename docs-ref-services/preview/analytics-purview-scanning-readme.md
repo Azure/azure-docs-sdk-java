@@ -5,8 +5,6 @@ ms.date: 10/15/2021
 ms.topic: reference
 ms.devlang: java
 ms.service: purview
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Purview Scanning client library for Java - version 1.0.0-beta.2 
 

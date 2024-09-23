@@ -5,8 +5,6 @@ ms.date: 02/23/2021
 ms.topic: reference
 ms.devlang: java
 ms.service: 
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Mixed Reality client library for Java - version 1.0.0-beta.1 
 

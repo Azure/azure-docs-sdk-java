@@ -5,8 +5,6 @@ ms.date: 08/12/2021
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Communication Chat client library for Java - version 1.1.0-beta.2 
 

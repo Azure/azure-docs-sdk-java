@@ -5,8 +5,6 @@ ms.date: 09/24/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: core
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Core Management client library for Java - version 1.0.0 
 

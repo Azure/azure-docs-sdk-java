@@ -5,8 +5,6 @@ ms.date: 11/12/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: textanalytics
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Text Analytics client library for Java - version 5.0.1 
 

@@ -5,8 +5,6 @@ ms.date: 07/16/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: 
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Core Jackson Avro Serializer plugin library for Java - version 1.0.0-beta.1 
 

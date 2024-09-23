@@ -7,8 +7,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: contentdeliverynetwork
 manager: douge
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure CDN libraries for Java
 

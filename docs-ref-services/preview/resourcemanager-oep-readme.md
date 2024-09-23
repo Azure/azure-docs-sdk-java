@@ -5,8 +5,6 @@ ms.date: 01/25/2022
 ms.topic: reference
 ms.devlang: java
 ms.service: oep
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Resource Manager oep client library for Java - version 1.0.0-beta.1 
 

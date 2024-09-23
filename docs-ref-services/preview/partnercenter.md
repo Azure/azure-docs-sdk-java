@@ -5,8 +5,6 @@ keywords: API, CSP, Cloud Soltuion Provider, Java, Partner Center, SDK
 ms.date: 10/09/2018
 ms.topic: reference
 ms.devlang: java
-ms.technology: partnercenter
-ms.prod: partnercenter
 manager: lesliep
 ---
 # Partner Center libraries for Java

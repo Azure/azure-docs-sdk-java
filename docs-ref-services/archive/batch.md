@@ -7,8 +7,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: batch
 manager: douge
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Batch libraries for Java
 

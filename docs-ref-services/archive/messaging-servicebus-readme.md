@@ -5,8 +5,6 @@ ms.date: 12/01/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: servicebus
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Service Bus client library for Java - version 7.0.0 
 

@@ -5,8 +5,6 @@ ms.date: 12/01/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: core
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Core AMQP shared library for Java - version 2.0.0 
 

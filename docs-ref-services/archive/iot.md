@@ -6,7 +6,6 @@ ms.date: 07/20/2017
 ms.topic: reference
 ms.devlang: java
 ms.service: iot
-ms.technology: azure
 manager: douge
 ---
 # Azure IoT libraries for Java

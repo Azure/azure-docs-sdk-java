@@ -5,8 +5,6 @@ keywords: Azure, Java, SDK, API, SQL, authentication, AAD, Active Directory , Gr
 ms.date: 07/11/2017
 ms.topic: reference
 ms.devlang: java
-ms.technology: azure
-ms.prod: azure
 manager: douge
 ---
 # Azure Active Directory libraries for Java

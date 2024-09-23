@@ -5,8 +5,6 @@ ms.date: 11/11/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure File Share client library for Java - version 12.7.0 
 

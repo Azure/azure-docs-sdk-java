@@ -6,8 +6,6 @@ ms.date: 10/19/2018
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
-ms.technology: azure
-ms.prod: azure
 manager: douge
 ---
 # Azure Storage libraries for Java

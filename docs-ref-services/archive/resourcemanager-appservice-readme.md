@@ -5,8 +5,6 @@ ms.date: 11/25/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: appservice
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Resource Manager App Service client library for Java - version 2.1.0 
 

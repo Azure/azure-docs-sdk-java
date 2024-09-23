@@ -5,8 +5,6 @@ ms.date: 11/05/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: digitaltwins
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure IoT Digital Twins client library for Java - version 1.0.1 
 

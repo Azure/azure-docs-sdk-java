@@ -5,8 +5,6 @@ ms.date: 11/16/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: keyvault
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Key Vault Key client library for Java - version 4.2.3 
 
