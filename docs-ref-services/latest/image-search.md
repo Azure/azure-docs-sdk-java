@@ -1,7 +1,7 @@
 ---
 title: Azure Image Search SDK for Java
 description: Reference for Azure Image Search SDK for Java
-ms.date: 09/24/2024
+ms.date: 09/25/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: imagesearch
