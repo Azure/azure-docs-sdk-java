@@ -5,8 +5,6 @@ ms.date: 11/12/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: formrecognizer
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Form Recognizer client library for Java - version 3.0.3 
 

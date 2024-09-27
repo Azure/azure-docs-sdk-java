@@ -5,8 +5,6 @@ ms.date: 11/10/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: identity
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Identity client library for Java - version 1.2.0 
 

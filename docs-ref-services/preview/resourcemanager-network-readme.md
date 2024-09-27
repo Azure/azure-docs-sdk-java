@@ -5,8 +5,6 @@ ms.date: 09/03/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: network
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Resource Manager network client library for Java - version 2.0.0-beta.4 
 

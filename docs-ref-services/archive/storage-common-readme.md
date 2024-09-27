@@ -5,8 +5,6 @@ ms.date: 11/11/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Storage Common shared library for Java - version 12.9.0 
 

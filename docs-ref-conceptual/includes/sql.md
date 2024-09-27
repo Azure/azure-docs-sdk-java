@@ -1,6 +1,5 @@
 ---
 title: sql
-ms.prod: azure
 description: sql resources
 ---
 

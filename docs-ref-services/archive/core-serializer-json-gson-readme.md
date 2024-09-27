@@ -5,8 +5,6 @@ ms.date: 10/30/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: core
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Core Gson JSON Serializer plugin library for Java - version 1.0.3 
 

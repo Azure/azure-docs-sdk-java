@@ -6,8 +6,6 @@ ms.date: 10/29/2018
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
-ms.technology: azure
-ms.prod: azure
 manager: dineshm
 ---
 # Azure Storage libraries for Java (Legacy)

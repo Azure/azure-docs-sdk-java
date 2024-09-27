@@ -5,8 +5,6 @@ ms.date: 10/07/2021
 ms.topic: reference
 ms.devlang: java
 ms.service: 
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Communication CallingServer Service client library for Java - version 1.0.0-beta.4 
 

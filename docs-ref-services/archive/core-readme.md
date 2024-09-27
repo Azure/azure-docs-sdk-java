@@ -5,8 +5,6 @@ ms.date: 11/26/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: corecore
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Core shared library for Java - version 1.11.0 
 

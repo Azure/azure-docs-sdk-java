@@ -6,8 +6,6 @@ ms.date: 06/21/2017
 ms.topic: reference
 ms.devlang: java
 ms.service: data-lake-store
-ms.technology: azure
-ms.prod: azure
 manager: douge
 ---
 # Azure Data Lake Store libraries for Java

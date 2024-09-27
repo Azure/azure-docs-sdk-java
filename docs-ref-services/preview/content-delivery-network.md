@@ -6,8 +6,6 @@ ms.date: 07/11/2017
 ms.topic: reference
 ms.devlang: java
 ms.service: azure-cdn
-ms.technology: azure
-ms.prod: azure
 manager: douge
 ---
 # Azure CDN libraries for Java

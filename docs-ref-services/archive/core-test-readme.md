@@ -5,8 +5,6 @@ ms.date: 10/30/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: core
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Core Test shared library for Java - version 1.5.1 
 

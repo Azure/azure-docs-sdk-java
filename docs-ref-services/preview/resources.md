@@ -7,8 +7,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
 manager: douge
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Resource Manager libraries for Java
 

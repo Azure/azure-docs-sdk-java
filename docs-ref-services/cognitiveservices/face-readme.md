@@ -4,8 +4,6 @@ ms.date: 10/15/2021
 ms.topic: article
 ms.devlang: java
 ms.service: face-api
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Face API
 

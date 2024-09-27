@@ -6,8 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: batch-ai
 manager: douge
-ms.technology: azure
-ms.prod: azure
 ms.reviewer: routlaw
 ---
 # Azure Batch AI libraries for Java

@@ -5,8 +5,6 @@ ms.date: 12/17/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: 
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Resource Manager PostgreSql client library for Java - version 1.0.0-beta.1 
 

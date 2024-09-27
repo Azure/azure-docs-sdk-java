@@ -7,8 +7,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: sql
 manager: douge
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure SQL Database libraries for Java (Legacy)
 

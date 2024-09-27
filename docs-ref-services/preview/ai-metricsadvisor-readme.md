@@ -5,8 +5,6 @@ ms.date: 06/09/2021
 ms.topic: reference
 ms.devlang: java
 ms.service: metricsadvisor
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Metrics Advisor client library for Java - version 1.0.0-beta.4 
 

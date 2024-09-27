@@ -5,8 +5,6 @@ ms.date: 10/19/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: redis
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Resource Manager redis cache client library for Java - version 2.0.0-beta.5 
 

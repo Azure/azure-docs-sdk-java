@@ -5,8 +5,6 @@ ms.date: 07/29/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: 
-ms.technology: azure
-ms.prod: azure
 ---
 # README.md template
 

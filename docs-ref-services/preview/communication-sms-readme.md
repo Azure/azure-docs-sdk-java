@@ -5,8 +5,6 @@ ms.date: 03/10/2021
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure Communications SMS Service client library for Java - version 1.0.0-beta.4 
 

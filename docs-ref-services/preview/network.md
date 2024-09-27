@@ -6,8 +6,6 @@ ms.date: 07/20/2017
 ms.topic: reference
 ms.devlang: java
 ms.service: networking
-ms.technology: azure
-ms.prod: azure
 manager: douge
 ---
 # Azure Network libraries for Java

@@ -5,8 +5,6 @@ ms.date: 10/28/2020
 ms.topic: reference
 ms.devlang: java
 ms.service: cosmoscosmosdb
-ms.technology: azure
-ms.prod: azure
 ---
 # Azure CosmosDB Client Library for Java - version 4.8.0 
 

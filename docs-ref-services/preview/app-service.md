@@ -6,8 +6,6 @@ ms.date: 07/09/2017
 ms.topic: reference
 ms.devlang: java
 ms.service: appservice
-ms.technology: azure
-ms.prod: azure
 manager: douge
 ---
 # Azure App Service libraries for Java
