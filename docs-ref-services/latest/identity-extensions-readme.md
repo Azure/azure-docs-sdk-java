@@ -1,10 +1,10 @@
 ---
 title: Azure identity authentication extensions plugin library for Java
-keywords: Azure, java, SDK, API, azure-identity-extensions, identity
-ms.date: 08/25/2024
+keywords: Azure, java, SDK, API, azure-identity-extensions, entra-id
+ms.date: 09/28/2024
 ms.topic: reference
 ms.devlang: java
-ms.service: identity
+ms.service: entra-id
 ---
 - [Azure identity authentication extensions plugin library for Java](#azure-identity-authentication-extensions-plugin-library-for-java)
   - [Getting started](#getting-started)
@@ -17,7 +17,7 @@ ms.service: identity
   - [Next steps](#next-steps)
   - [Contributing](#contributing)
     
-# Azure identity authentication extensions plugin library for Java - version 1.1.19 
+# Azure identity authentication extensions plugin library for Java - version 1.1.20 
 
 
 This package contains authentication extensions to get a token from Microsoft Entra ID for Azure services, like Azure Database for MySQL.
@@ -58,10 +58,10 @@ Other useful docs are:
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity-extensions_1.1.19/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-identity-extensions_1.1.20/CONTRIBUTING.md).
 
 <!-- LINKS -->
 [jdk]: https://learn.microsoft.com/java/azure/jdk/
-[azure-identity-extensions-jdbc-mysql]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-extensions_1.1.19/sdk/identity/azure-identity-extensions/Azure-Database-for-MySQL-README.md
-[azure-identity-extensions-jdbc-postgresql]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-extensions_1.1.19/sdk/identity/azure-identity-extensions/Azure-Database-for-PostgreSQL-README.md
+[azure-identity-extensions-jdbc-mysql]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-extensions_1.1.20/sdk/identity/azure-identity-extensions/Azure-Database-for-MySQL-README.md
+[azure-identity-extensions-jdbc-postgresql]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity-extensions_1.1.20/sdk/identity/azure-identity-extensions/Azure-Database-for-PostgreSQL-README.md
 

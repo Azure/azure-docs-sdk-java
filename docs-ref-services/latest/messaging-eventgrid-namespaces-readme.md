@@ -1,12 +1,12 @@
 ---
 title: Azure EventGrid Namespaces client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-eventgrid-namespaces, eventgrid
-ms.date: 08/25/2024
+ms.date: 09/28/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: eventgrid
 ---
-# Azure EventGrid Namespaces client library for Java - version 1.0.1 
+# Azure EventGrid Namespaces client library for Java - version 1.0.2 
 
 
 Azure Event Grid  allows you to easily build applications with event-based architectures. The Event Grid service fully manages all routing of events from any source, to any destination, for any application. Azure service events and custom events can be published directly to the service, where the events can then be filtered and sent to various recipients, such as built-in handlers or custom webhooks. To learn more about Azure Event Grid: [What is Event Grid?](/azure/event-grid/overview)
@@ -36,7 +36,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-eventgrid-namespaces</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -216,7 +216,7 @@ If you encounter any bugs with these SDKs, please file issues via [Issues](https
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid-namespaces_1.0.1/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid-namespaces_1.0.2/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -231,9 +231,9 @@ For details on contributing to this repository, see the [contributing guide](htt
 [jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
 [javadocs]: https://azure.github.io/azure-sdk-for-java/eventgrid.html
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid-namespaces_1.0.1/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid-namespaces_1.0.2/sdk/identity/azure-identity
 [portal]: https://ms.portal.azure.com/
 [service_docs]: /azure/event-grid/
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid-namespaces_1.0.1/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventgrid-namespaces_1.0.2/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Feventgrid%2Fazure-messaging-eventgrid-namespaces%2FREADME.png)
 

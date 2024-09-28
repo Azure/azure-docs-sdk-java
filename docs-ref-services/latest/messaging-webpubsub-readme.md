@@ -1,12 +1,12 @@
 ---
 title: Azure Web PubSub service client library for Java
 keywords: Azure, java, SDK, API, azure-messaging-webpubsub, webpubsub
-ms.date: 08/12/2024
+ms.date: 09/28/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: webpubsub
 ---
-# Azure Web PubSub service client library for Java - version 1.3.0 
+# Azure Web PubSub service client library for Java - version 1.3.1 
 
 
 [Azure Web PubSub service](https://aka.ms/awps/doc) is an Azure-managed service that helps developers easily build web applications with real-time features and publish-subscribe pattern. Any scenario that requires real-time publish-subscribe messaging between server and clients or among clients can use Azure Web PubSub service. Traditional real-time features that often require polling from server or submitting HTTP requests can also use Azure Web PubSub service.
@@ -38,7 +38,7 @@ Details about the terms used here are described in [Key concepts](#key-concepts)
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.3.0/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.3.1/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -74,7 +74,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-webpubsub</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
@@ -182,7 +182,7 @@ be found here: [log levels][log_levels].
 ### Default HTTP Client
 All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure
 the client library to use the Netty HTTP client. Configuring or changing the HTTP client is detailed in the
-[HTTP clients wiki](https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients).
+[HTTP clients wiki](https://learn.microsoft.com/azure/developer/java/sdk/http-client-pipeline#http-clients).
 
 ### Default SSL library
 All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL
@@ -212,10 +212,10 @@ comments.
 
 [azure_subscription]: https://azure.microsoft.com/free
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.3.0/sdk/webpubsub/azure-messaging-webpubsub/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-messaging-webpubsub_1.3.1/sdk/webpubsub/azure-messaging-webpubsub/src
 [product_documentation]: https://aka.ms/awps/doc
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.3.0/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md
-[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.3.0/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.3.1/sdk/webpubsub/azure-messaging-webpubsub/src/samples/README.md
+[log_levels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-webpubsub_1.3.1/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
