@@ -1,7 +1,7 @@
 ---
 title: Azure Data Box Edge SDK for Java
 description: Reference for Azure Data Box Edge SDK for Java
-ms.date: 09/30/2024
+ms.date: 10/02/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: databoxedge
