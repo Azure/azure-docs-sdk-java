@@ -1,7 +1,7 @@
 ---
 title: Azure Operations Management SDK for Java
 description: Reference for Azure Operations Management SDK for Java
-ms.date: 10/02/2024
+ms.date: 10/03/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: operationsmanagement
