@@ -4,8 +4,8 @@ description: Reference for Azure Container Instances SDK for Java
 ms.date: 10/09/2024
 ms.topic: reference
 ms.devlang: java
-ms.service: containerinstances
+ms.service: container-instances
 ---
-# Azure Container Instances SDK for Java - legacy
-## Packages - legacy
+# Azure Container Instances SDK for Java - preview
+## Packages - preview
 [!INCLUDE [packages](container-instances-index.md)]
