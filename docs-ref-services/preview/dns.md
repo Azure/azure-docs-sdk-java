@@ -1,12 +1,12 @@
 ---
-title: Azure DNS libraries for Java
-description: Reference documentation for the Azure DNS Java management libraries
-keywords: Azure, Java, SDK, API, domains, DNS, name, service, domain name service
-ms.date: 07/11/2017
+title: Azure DNS SDK for Java
+description: Reference for Azure DNS SDK for Java
+ms.date: 10/10/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: dns
 manager: douge
+keywords: Azure, Java, SDK, API, domains, DNS, name, service, domain name service
 ---
 # Azure DNS libraries for Java
 
@@ -53,4 +53,3 @@ rootDnsZone = rootDnsZone.update()
 Explore more [sample Java code for Azure DNS](https://azure.microsoft.com/resources/samples/?platform=java&term=dns) you can use in your apps.
 
 <!---Loc Comment: Please, refer to conversation section to check the issue. Thanks.--->
-
