@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: hybridcompute
 ---
-# Azure Hybrid Compute SDK for Java - legacy
-## Packages - legacy
+# Azure Hybrid Compute SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](hybrid-compute-index.md)]
