@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: fabric
 ---
-# Azure Fabric SDK for Java - preview
-## Packages - preview
+# Azure Fabric SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](fabric-index.md)]
