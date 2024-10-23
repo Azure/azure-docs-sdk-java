@@ -1,12 +1,12 @@
 ---
 title: Azure Messages client library for Java
 keywords: Azure, java, SDK, API, azure-communication-messages, communication
-ms.date: 09/28/2024
+ms.date: 10/23/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Messages client library for Java - version 1.0.7 
+# Azure Messages client library for Java - version 1.1.0 
 
 This package contains a Java SDK for Azure Communication Messages Services.
 
@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 ### Adding the package to your product
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-messages_1.0.7/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-messages_1.1.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -67,7 +67,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-messages</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -203,12 +203,13 @@ private void sendTextMessage() {
 }
 ```
 
-```java readme-sample-sendMediaMessage
+```java readme-sample-sendImageMessage
 /*
- * This sample shows how to send simple media (image, video, document) message with below details
+ * This sample shows how to send image message with below details.
+ * Supported image - image/jpeg (.jpeg), image/png (.png)
  * Note: Business cannot initiate conversation with media message.
  * */
-public void sendMediaMessage() {
+public void sendImageMessage() {
     //Update the Media URL
     String mediaUrl = "https://wallpapercave.com/wp/wp2163723.jpg";
     List<String> recipients = new ArrayList<>();
@@ -217,7 +218,67 @@ public void sendMediaMessage() {
         .connectionString("<CONNECTION_STRING>")
         .buildClient();
     SendMessageResult result = client.send(
-        new MediaNotificationContent("<CHANNEL_ID>", recipients, mediaUrl));
+        new ImageNotificationContent("<CHANNEL_ID>", recipients, mediaUrl));
+
+    result.getReceipts().forEach(r -> System.out.println("Message sent to:" + r.getTo() + " and message id:" + r.getMessageId()));
+}
+```
+```java readme-sample-sendVideoMessage
+/*
+ * This sample shows how to send video message with below details
+ * Supported video - video/3gp (.3gp), video/mp4 (.mp4)
+ * Note: Business cannot initiate conversation with media message.
+ * */
+public void sendVideoMessage() {
+    //Update the Media URL
+    String mediaUrl = "https://sample-videos.com/video321/mp4/480/big_buck_bunny_480p_1mb.mp4";
+    List<String> recipients = new ArrayList<>();
+    recipients.add("<RECIPIENT_IDENTIFIER e.g. PhoneNumber>");
+    NotificationMessagesClient client = new NotificationMessagesClientBuilder()
+        .connectionString("<CONNECTION_STRING>")
+        .buildClient();
+    SendMessageResult result = client.send(
+        new VideoNotificationContent("<CHANNEL_ID>", recipients, mediaUrl));
+
+    result.getReceipts().forEach(r -> System.out.println("Message sent to:" + r.getTo() + " and message id:" + r.getMessageId()));
+}
+```
+```java readme-sample-sendAudioMessage
+/*
+ * This sample shows how to send audio message with below details
+ * Supported audio - audio/aac (.aac), audio/amr (.amr), audio/mpeg (.mp3), audio/a4a (.mp4), audio/ogg (.ogg )
+ * Note: Business cannot initiate conversation with media message.
+ * */
+public void sendAudioMessage() {
+    //Update the Media URL
+    String mediaUrl = "https://sample-videos.com/audio/mp3/wave.mp3";
+    List<String> recipients = new ArrayList<>();
+    recipients.add("<RECIPIENT_IDENTIFIER e.g. PhoneNumber>");
+    NotificationMessagesClient client = new NotificationMessagesClientBuilder()
+        .connectionString("<CONNECTION_STRING>")
+        .buildClient();
+    SendMessageResult result = client.send(
+        new AudioNotificationContent("<CHANNEL_ID>", recipients, mediaUrl));
+
+    result.getReceipts().forEach(r -> System.out.println("Message sent to:" + r.getTo() + " and message id:" + r.getMessageId()));
+}
+```
+```java readme-sample-sendDocumentMessage
+/*
+ * This sample shows how to send document message with below details
+ * Supported Document type - Plain Text (.txt), PDF (.pdf), Microsoft Excel, Word, PowerPoint
+ * Note: Business cannot initiate conversation with media message.
+ * */
+public void sendDocumentMessage() {
+    //Update the Media URL
+    String mediaUrl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+    List<String> recipients = new ArrayList<>();
+    recipients.add("<RECIPIENT_IDENTIFIER e.g. PhoneNumber>");
+    NotificationMessagesClient client = new NotificationMessagesClientBuilder()
+        .connectionString("<CONNECTION_STRING>")
+        .buildClient();
+    SendMessageResult result = client.send(
+        new DocumentNotificationContent("<CHANNEL_ID>", recipients, mediaUrl));
 
     result.getReceipts().forEach(r -> System.out.println("Message sent to:" + r.getTo() + " and message id:" + r.getMessageId()));
 }
@@ -272,7 +333,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [handle_advance_messaging_events]: https://learn.microsoft.com/azure/communication-services/quickstarts/advanced-messaging/whatsapp/handle-advanced-messaging-events
 [register_whatsapp_business_account]: https://learn.microsoft.com/azure/communication-services/quickstarts/advanced-messaging/whatsapp/connect-whatsapp-business-account
 [create-manage-whatsapp-template]: https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-messages_1.0.7/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-messages_1.1.0/sdk/identity/azure-identity
 [defaultazurecredential]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential
 [azure_cli]: /cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
