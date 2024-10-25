@@ -1,7 +1,7 @@
 ---
 title: Azure Containerorchestratorruntime SDK for Java
 description: Reference for Azure Containerorchestratorruntime SDK for Java
-ms.date: 10/24/2024
+ms.date: 10/25/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: containerorchestratorruntime
