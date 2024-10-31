@@ -354,3 +354,5 @@ The `BlobClient.upload(InputStream data)` method overwrites an existing blob by 
 #### Recommended steps
 
 Update client library versions according to the table above.
+
+[Back to list of known issues](#list-of-known-issues)
