@@ -1,7 +1,7 @@
 ---
 title: Azure Quota SDK for Java
 description: Reference for Azure Quota SDK for Java
-ms.date: 10/30/2024
+ms.date: 11/06/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: quota
