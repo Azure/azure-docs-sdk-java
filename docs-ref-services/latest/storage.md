@@ -349,7 +349,7 @@ The `BlobClient.upload(InputStream data)` method overwrites an existing blob by 
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-| Azure Storage Blob | 12.X.X to 12.X.X | 12.X.X | [Update to latest version or minimum 12.X.X](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure Storage Blob | 12.20.0-beta.1 to 12.29.0-beta.1 | 12.29.0-beta.2 | [Update to latest version or minimum 12.29.0-beta.2](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
