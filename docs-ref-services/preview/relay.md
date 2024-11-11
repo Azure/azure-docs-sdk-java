@@ -1,7 +1,7 @@
 ---
 title: Azure Relay SDK for Java
 description: Reference for Azure Relay SDK for Java
-ms.date: 11/08/2024
+ms.date: 11/11/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: azure-relay
