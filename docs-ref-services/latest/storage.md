@@ -4,7 +4,7 @@ description: Reference for Azure Storage SDK for Java
 ms.date: 11/11/2024
 ms.topic: reference
 ms.devlang: java
-ms.service: storage
+ms.service: azure-storage
 ---
 # Azure Storage libraries for Java
 
@@ -111,7 +111,7 @@ for (StorageAccountKey key : storageAccountKeys) {
 
 Older versions of the Azure Storage SDK for Java (v12) have one or more known critical issues, which are detailed below. These issues may impact the writing or reading of data from your Azure Storage account. If you are using an older version of a client library, we recommend that you update to the latest version.
 
-| Client library | Versions impacted | Minimum safe version | Recommended action
+| Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
 | Azure Storage Blob | 12.0 to 12.10.0, 12.19.0 to 12.22.0 | 12.22.1 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 | Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
@@ -139,6 +139,7 @@ If you have questions or need additional help, please [create a support ticket](
 1. [Client-side encryption updated to use AES-GCM due to security vulnerabilities in CBC mode](#8-client-side-encryption-updated-to-use-aes-gcm-due-to-security-vulnerabilities-in-cbc-mode)
 1. [Incorrect data being downloaded with downloadToFile() when underlying REST requests are retried](#9-incorrect-data-being-downloaded-with-downloadtofile-when-underlying-rest-requests-are-retried)
 1. [InvalidHeaderValue error message when using beta version of SDK](#10-invalidheadervalue-error-message-when-using-beta-version-of-sdk)
+1. [Uploading with `BlobClient.upload(InputStream data)` overwrites existing blob by default](#11-uploading-with-blobclientuploadinputstream-data-overwrites-existing-blob-by-default)
 
 ### 1. Buffer overwrite issue with `BlobOutputStream`
 
@@ -154,7 +155,7 @@ After the input data size crosses the `MaxSingleUploadSize`, the `write()` metho
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure Storage Blob | 12.0 to 12.10.0 | 12.10.1 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -182,9 +183,9 @@ The client libraries listed below have a bug that can upload incorrect data duri
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.6.1 | 12.7.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
-Azure File Data Lake | 12.0 to 12.1.2 | 12.2.0 | [Update to latest version or minimum 12.8.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
-Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version or minimum 12.5.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
+| Azure Storage Blob | 12.0 to 12.6.1 | 12.7.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure File Data Lake | 12.0 to 12.1.2 | 12.2.0 | [Update to latest version or minimum 12.8.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
+| Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version or minimum 12.5.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
 
 #### Recommended steps
 
@@ -204,7 +205,7 @@ All overloads of `void BlobClient.upload()` and `void BlobClient.uploadWithRespo
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.4.0 | 12.5.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure Storage Blob | 12.0 to 12.4.0 | 12.5.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -222,7 +223,7 @@ Asynchronous buffer writing has a race condition where the buffer between the ne
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 to 12.2.0 | 12.3.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure Storage Blob | 12.0 to 12.2.0 | 12.3.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -239,7 +240,7 @@ The overwrite flag isn't being honored in cases where there's another parallel u
 #### Issue details
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.0 | 12.1.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure Storage Blob | 12.0 | 12.1.0 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -256,7 +257,7 @@ The overwrite parameter and overwrite operation are reversed in `DataLakeFileCli
 #### Issue details
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version or minimum 12.8.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
+| Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version or minimum 12.8.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
 
 #### Recommended steps
 
@@ -274,7 +275,7 @@ Queue message contents are erased in error when only the visibility timeout was 
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Queue | 12.0 to 12.6.0 | 12.7.0 | [Update to latest version or minimum 12.7.0](https://mvnrepository.com/artifact/com.azure/azure-storage-queue) |
+| Azure Storage Queue | 12.0 to 12.6.0 | 12.7.0 | [Update to latest version or minimum 12.7.0](https://mvnrepository.com/artifact/com.azure/azure-storage-queue) |
 
 #### Recommended steps
 
@@ -292,7 +293,7 @@ To mitigate a security vulnerability found in CBC mode, the Java v12 SDK has rel
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Blob Storage Cryptography | 12.0 to 12.16.1 | 12.17.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob-cryptography) |
+| Azure Blob Storage Cryptography | 12.0 to 12.16.1 | 12.17.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob-cryptography) |
 
 #### Recommended steps
 
@@ -309,7 +310,7 @@ The Azure SDK for Java Storage library had a bug where incorrect data could be w
 #### Issue details
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-Azure Storage Blob | 12.19.0 to 12.22.0 | 12.22.1 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure Storage Blob | 12.19.0 to 12.22.0 | 12.22.1 | [Update to latest version or minimum 12.22.1](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -335,5 +336,23 @@ Time:2023-05-19T17:10:34.2972651Z</Message><HeaderName>x-ms-version</HeaderName>
 ```
 
 If you've upgraded to the latest beta or generally available version of the SDK and you experience this error, it's recommended that you downgrade to the previous generally available version of the SDK to see if the issue resolves. If the issue persists, or if the recommendation is not feasible, [open a support ticket](https://ms.portal.azure.com/#create/Microsoft.Support) to explore further options.
+
+[Back to list of known issues](#list-of-known-issues)
+
+### 11. Uploading with `BlobClient.upload(InputStream data)` overwrites existing blob by default
+
+#### Issue description
+
+The `BlobClient.upload(InputStream data)` method overwrites an existing blob by default. This behavior contradicts the method description. To prevent overwriting an existing blob, you can use the `BlobClient.upload(InputStream data, boolean overwrite)` method and set the `overwrite` parameter to `false`.
+
+#### Issue details
+
+| Client library | Versions impacted | Minimum safe version | Recommended action |
+| --- | --- | --- | --- |
+| Azure Storage Blob | 12.20.0-beta.1 to 12.29.0-beta.1 | 12.29.0-beta.2 | [Update to latest version or minimum 12.29.0-beta.2](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+
+#### Recommended steps
+
+Update client library versions according to the table above.
 
 [Back to list of known issues](#list-of-known-issues)
