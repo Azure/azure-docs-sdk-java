@@ -1,7 +1,7 @@
 ---
 title: Azure Resources SDK for Java
 description: Reference for Azure Resources SDK for Java
-ms.date: 11/18/2024
+ms.date: 11/19/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
