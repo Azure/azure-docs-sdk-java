@@ -1,7 +1,7 @@
 ---
 title: Azure Playwright Testing SDK for Java
 description: Reference for Azure Playwright Testing SDK for Java
-ms.date: 11/20/2024
+ms.date: 11/21/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: playwrighttesting
