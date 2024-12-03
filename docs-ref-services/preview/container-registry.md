@@ -1,7 +1,7 @@
 ---
 title: Azure Container Registry SDK for Java
 description: Reference for Azure Container Registry SDK for Java
-ms.date: 12/02/2024
+ms.date: 12/03/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: container-registry
