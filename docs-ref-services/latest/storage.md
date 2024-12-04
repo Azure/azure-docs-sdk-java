@@ -356,3 +356,21 @@ The `BlobClient.upload(InputStream data)` method overwrites an existing blob by 
 Update client library versions according to the table above.
 
 [Back to list of known issues](#list-of-known-issues)
+
+### 12. Downloading with `ShareFileClient.downloadToFile()` can write incorrect data to a file
+
+#### Issue description
+
+In the **azure-storage-file-share** package, the `ShareFileClient.downloadToFile()` method can write incorrect data to a file when more than 5 retries occur due to partial network responses while streaming data. The maximum number of retries is unintentionally higher (up to a maximum of 15), which can result in writing to incorrect positions in the file when the operation is retried more than 5 times. The data in Storage is still correct.
+
+#### Issue details
+
+| Client library | Versions impacted | Minimum safe version | Recommended action |
+| --- | --- | --- | --- |
+| Azure File Share | 12.15.0 to 12.25.0 | 12.26.0-beta.1 | [Update to latest version or minimum 12.26.0-beta.1](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
+
+#### Recommended steps
+
+Update client library versions according to the table above.
+
+[Back to list of known issues](#list-of-known-issues)
