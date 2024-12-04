@@ -4,7 +4,7 @@ description: Reference for Azure Storage SDK for Java
 ms.date: 12/03/2024
 ms.topic: reference
 ms.devlang: java
-ms.service: storage
+ms.service: azure-storage
 ---
 # Azure Storage libraries for Java
 
@@ -349,7 +349,7 @@ The `BlobClient.upload(InputStream data)` method overwrites an existing blob by 
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-| Azure Storage Blob | 12.20.0-beta.1 to 12.29.0-beta.1 | 12.29.0-beta.2 | [Update to latest version or minimum 12.29.0-beta.2](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
+| Azure Storage Blob | 12.20.0-beta.1 to 12.29.0-beta.1 | 12.29.0 | [Update to latest version or minimum 12.29.0](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
 
 #### Recommended steps
 
@@ -367,7 +367,7 @@ In the **azure-storage-file-share** package, the `ShareFileClient.downloadToFile
 
 | Client library | Versions impacted | Minimum safe version | Recommended action |
 | --- | --- | --- | --- |
-| Azure File Share | 12.15.0 to 12.25.0 | 12.26.0-beta.1 | [Update to latest version or minimum 12.26.0-beta.1](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
+| Azure File Share | 12.15.0 to 12.25.0 | 12.26.0 | [Update to latest version or minimum 12.26.0](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
 
 #### Recommended steps
 
