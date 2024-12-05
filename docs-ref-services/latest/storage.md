@@ -109,15 +109,7 @@ for (StorageAccountKey key : storageAccountKeys) {
 
 ## Known issues
 
-Older versions of the Azure Storage SDK for Java (v12) have one or more known critical issues, which are detailed below. These issues may impact the writing or reading of data from your Azure Storage account. If you are using an older version of a client library, we recommend that you update to the latest version.
-
-| Client library | Versions impacted | Minimum safe version | Recommended action |
-| --- | --- | --- | --- |
-| Azure Storage Blob | 12.0 to 12.10.0, 12.19.0 to 12.22.0 | 12.22.1 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob) |
-| Azure File Data Lake | 12.0 to 12.7.0 | 12.8.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-datalake) |
-| Azure File Share | 12.0 to 12.4.1 | 12.5.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) |
-| Azure Storage Queue | 12.0 to 12.6.0 | 12.7.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-queue) |
-| Azure Blob Storage Cryptography | 12.0 to 12.16.1 | 12.17.0 | [Update to latest version](https://mvnrepository.com/artifact/com.azure/azure-storage-blob-cryptography) |
+Older versions of the Azure Storage SDK for Java (v12) have one or more known critical issues, which are detailed below. These issues may impact the writing or reading of data from your Azure Storage account. Each known issue includes a description, the impacted versions, the minimum safe version, and the recommended action to take. If you are using an older version of a client library, we recommend that you update to the latest version.
 
 If you have questions or need additional help, please [create a support ticket](https://aka.ms/JavaSDKv12Issue) using the following options:
 
@@ -140,6 +132,7 @@ If you have questions or need additional help, please [create a support ticket](
 1. [Incorrect data being downloaded with downloadToFile() when underlying REST requests are retried](#9-incorrect-data-being-downloaded-with-downloadtofile-when-underlying-rest-requests-are-retried)
 1. [InvalidHeaderValue error message when using beta version of SDK](#10-invalidheadervalue-error-message-when-using-beta-version-of-sdk)
 1. [Uploading with `BlobClient.upload(InputStream data)` overwrites existing blob by default](#11-uploading-with-blobclientuploadinputstream-data-overwrites-existing-blob-by-default)
+1. [Downloading with `ShareFileClient.downloadToFile()` can write incorrect data to a file](#12-downloading-with-sharefileclientdownloadtofile-can-write-incorrect-data-to-a-file)
 
 ### 1. Buffer overwrite issue with `BlobOutputStream`
 
