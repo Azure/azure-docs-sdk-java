@@ -5,8 +5,8 @@ ms.date: 12/06/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: dns
-manager: douge
 keywords: Azure, Java, SDK, API, domains, DNS, name, service, domain name service
+manager: douge
 ---
 # Azure DNS libraries for Java
 
