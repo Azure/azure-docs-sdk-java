@@ -1,12 +1,12 @@
 ---
 title: Azure Resource Manager PostgreSql client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-postgresqlflexibleserver, postgresqlflexibleserver
-ms.date: 04/18/2024
+ms.date: 12/06/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: postgresqlflexibleserver
 ---
-# Azure Resource Manager PostgreSql client library for Java - version 1.1.0-beta.3 
+# Azure Resource Manager PostgreSql client library for Java - version 1.1.0-beta.4 
 
 
 Azure Resource Manager PostgreSql client library for Java.
@@ -41,7 +41,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-postgresqlflexibleserver</artifactId>
-    <version>1.1.0-beta.3</version>
+    <version>1.1.0-beta.4</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -54,15 +54,11 @@ Azure Management Libraries require a `TokenCredential` implementation for authen
 
 ### Authentication
 
-By default, Microsoft Entra ID token authentication depends on correct configuration of the following environment variables.
+Microsoft Entra ID token authentication relies on the [credential class][azure_identity_credentials] from [Azure Identity][azure_identity] package.
 
-- `AZURE_CLIENT_ID` for Azure client ID.
-- `AZURE_TENANT_ID` for Azure tenant ID.
-- `AZURE_CLIENT_SECRET` or `AZURE_CLIENT_CERTIFICATE_PATH` for client secret or client certificate.
+Azure subscription ID can be configured via `AZURE_SUBSCRIPTION_ID` environment variable.
 
-In addition, Azure subscription ID can be configured via `AZURE_SUBSCRIPTION_ID` environment variable.
-
-With above configuration, `azure` client can be authenticated using the following code:
+Assuming the use of the `DefaultAzureCredential` credential class, the client can be authenticated using the following code:
 
 ```java
 AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
@@ -91,22 +87,20 @@ server = postgreSqlManager.servers()
     .withAdministratorLogin(adminName)
     .withAdministratorLoginPassword(adminPwd)
     .withSku(new Sku().withName("Standard_D2ds_v4").withTier(SkuTier.GENERAL_PURPOSE))
-    .withAuthConfig(new AuthConfig()
-        .withActiveDirectoryAuth(ActiveDirectoryAuthEnum.DISABLED)
+    .withAuthConfig(new AuthConfig().withActiveDirectoryAuth(ActiveDirectoryAuthEnum.DISABLED)
         .withPasswordAuth(PasswordAuthEnum.ENABLED))
     .withIdentity(new UserAssignedIdentity().withType(IdentityType.NONE))
     .withDataEncryption(new DataEncryption().withType(ArmServerKeyType.SYSTEM_MANAGED))
     .withVersion(ServerVersion.ONE_FOUR)
     .withAvailabilityZone("2")
     .withStorage(new Storage().withStorageSizeGB(128))
-    .withBackup(new Backup()
-        .withGeoRedundantBackup(GeoRedundantBackupEnum.DISABLED)
-        .withBackupRetentionDays(7))
+    .withBackup(
+        new Backup().withGeoRedundantBackup(GeoRedundantBackupEnum.DISABLED).withBackupRetentionDays(7))
     .withHighAvailability(new HighAvailability().withMode(HighAvailabilityMode.DISABLED))
     .withReplicationRole(ReplicationRole.PRIMARY)
     .create();
 ```
-[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.3/sdk/postgresqlflexibleserver/azure-resourcemanager-postgresqlflexibleserver/SAMPLE.md)
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.4/sdk/postgresqlflexibleserver/azure-resourcemanager-postgresqlflexibleserver/SAMPLE.md)
 
 
 ## Troubleshooting
@@ -128,11 +122,12 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.3/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.3/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.3/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.3/sdk/resourcemanager/docs/DESIGN.md
-[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.3/CONTRIBUTING.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.4/sdk/identity/azure-identity
+[azure_identity_credentials]: https://github.com/Azure/azure-sdk-for-java/tree/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.4/sdk/identity/azure-identity#credentials
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.4/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.4/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.4/sdk/resourcemanager/docs/DESIGN.md
+[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-postgresqlflexibleserver_1.1.0-beta.4/CONTRIBUTING.md
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 
