@@ -1,7 +1,7 @@
 ---
 title: Azure Dynatrace SDK for Java
 description: Reference for Azure Dynatrace SDK for Java
-ms.date: 12/06/2024
+ms.date: 12/09/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: dynatrace
