@@ -1,12 +1,12 @@
 ---
 title: Azure Resource Manager Managed Network Fabric client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-managednetworkfabric, managednetworkfabric
-ms.date: 07/19/2023
+ms.date: 12/12/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: managednetworkfabric
 ---
-# Azure Resource Manager Managed Network Fabric client library for Java - version 1.0.0 
+# Azure Resource Manager Managed Network Fabric client library for Java - version 1.1.0 
 
 
 Azure Resource Manager Managed Network Fabric client library for Java.
@@ -41,7 +41,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-managednetworkfabric</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -54,15 +54,11 @@ Azure Management Libraries require a `TokenCredential` implementation for authen
 
 ### Authentication
 
-By default, Azure Active Directory token authentication depends on correct configuration of the following environment variables.
+Microsoft Entra ID token authentication relies on the [credential class][azure_identity_credentials] from [Azure Identity][azure_identity] package.
 
-- `AZURE_CLIENT_ID` for Azure client ID.
-- `AZURE_TENANT_ID` for Azure tenant ID.
-- `AZURE_CLIENT_SECRET` or `AZURE_CLIENT_CERTIFICATE_PATH` for client secret or client certificate.
+Azure subscription ID can be configured via `AZURE_SUBSCRIPTION_ID` environment variable.
 
-In addition, Azure subscription ID can be configured via `AZURE_SUBSCRIPTION_ID` environment variable.
-
-With above configuration, `azure` client can be authenticated using the following code:
+Assuming the use of the `DefaultAzureCredential` credential class, the client can be authenticated using the following code:
 
 ```java
 AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
@@ -83,7 +79,49 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
-[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.0.0/sdk/managednetworkfabric/azure-resourcemanager-managednetworkfabric/SAMPLE.md)
+```java
+acl = managedNetworkFabricManager.accessControlLists()
+    .define(aclName)
+    .withRegion(REGION)
+    .withExistingResourceGroup(resourceGroupName)
+    .withConfigurationType(ConfigurationType.FILE)
+    .withMatchConfigurations(Collections.singletonList(new AccessControlListMatchConfiguration()
+        .withMatchConfigurationName(matchName)
+        .withSequenceNumber(123L)
+        .withIpAddressType(IpAddressType.IPV4)
+        .withMatchConditions(Collections.singletonList(new AccessControlListMatchCondition()
+            .withProtocolTypes(Collections.singletonList("TCP"))
+            .withVlanMatchCondition(new VlanMatchCondition().withVlans(Collections.singletonList("20-30"))
+                .withInnerVlans(Collections.singletonList("30"))
+                .withVlanGroupNames(Collections.singletonList(vlgName)))
+            .withIpCondition(new IpMatchCondition().withType(SourceDestinationType.SOURCE_IP)
+                .withPrefixType(PrefixType.PREFIX)
+                .withIpPrefixValues(Collections.singletonList("10.20.20.20/12"))
+                .withIpGroupNames(Collections.singletonList(ipgName)))
+            .withEtherTypes(Collections.singletonList("0x1"))
+            .withFragments(Collections.singletonList("0xff00-0xffff"))
+            .withIpLengths(Collections.singletonList("4094-9214"))
+            .withTtlValues(Collections.singletonList("23"))
+            .withDscpMarkings(Collections.singletonList("32"))
+            .withPortCondition(new AccessControlListPortCondition().withPortType(PortType.SOURCE_PORT)
+                .withLayer4Protocol(Layer4Protocol.TCP)
+                .withPorts(Collections.singletonList("1-20"))
+                .withPortGroupNames(Collections.singletonList(pgName))
+                .withFlags(Collections.singletonList("established")))))
+        .withActions(Collections.singletonList(
+            new AccessControlListAction().withType(AclActionType.COUNT).withCounterName(counterName)))))
+    .withDynamicMatchConfigurations(Collections.singletonList(new CommonDynamicMatchConfiguration()
+        .withIpGroups(Collections.singletonList(new IpGroupProperties().withName(ipgName)
+            .withIpAddressType(IpAddressType.IPV4)
+            .withIpPrefixes(Collections.singletonList("10.20.3.1/20"))))
+        .withVlanGroups(Collections.singletonList(
+            new VlanGroupProperties().withName(vlgName).withVlans(Collections.singletonList("20-30"))))
+        .withPortGroups(Collections.singletonList(
+            new PortGroupProperties().withName(pgName).withPorts(Collections.singletonList("100-200"))))))
+    .withAnnotation("annotation")
+    .create();
+```
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.1.0/sdk/managednetworkfabric/azure-resourcemanager-managednetworkfabric/SAMPLE.md)
 
 
 ## Troubleshooting
@@ -103,13 +141,14 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 <!-- LINKS -->
 [survey]: https://microsoft.qualtrics.com/jfe/form/SV_ehN0lIk2FKEBkwd?Q_CHL=DOCS
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[jdk]: /java/azure/jdk/
+[jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.0.0/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.0.0/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.0.0/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.0.0/sdk/resourcemanager/docs/DESIGN.md
-[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.0.0/CONTRIBUTING.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.1.0/sdk/identity/azure-identity
+[azure_identity_credentials]: https://github.com/Azure/azure-sdk-for-java/tree/azure-resourcemanager-managednetworkfabric_1.1.0/sdk/identity/azure-identity#credentials
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.1.0/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.1.0/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.1.0/sdk/resourcemanager/docs/DESIGN.md
+[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-managednetworkfabric_1.1.0/CONTRIBUTING.md
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 
