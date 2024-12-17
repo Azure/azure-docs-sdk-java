@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: datafactory
 ---
-# Azure Data Factory SDK for Java - preview
-## Packages - preview
+# Azure Data Factory SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](data-factory-index.md)]
