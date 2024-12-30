@@ -1,7 +1,7 @@
 ---
 title: Azure Compute Fleet SDK for Java
 description: Reference for Azure Compute Fleet SDK for Java
-ms.date: 12/27/2024
+ms.date: 12/30/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: computefleet
