@@ -1,7 +1,7 @@
 ---
 title: Azure Maintenance SDK for Java
 description: Reference for Azure Maintenance SDK for Java
-ms.date: 12/27/2024
+ms.date: 12/31/2024
 ms.topic: reference
 ms.devlang: java
 ms.service: maintenance
