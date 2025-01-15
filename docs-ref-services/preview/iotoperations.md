@@ -1,7 +1,7 @@
 ---
 title: Azure Iotoperations SDK for Java
 description: Reference for Azure Iotoperations SDK for Java
-ms.date: 01/14/2025
+ms.date: 01/15/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: iotoperations

@@ -1,5 +1,6 @@
 | Reference | Package | Source |
 |---|---|---|
+|[Device Update](iot-deviceupdate-readme.md)|[azure-iot-deviceupdate](https://repo1.maven.org/maven2/com/azure/azure-iot-deviceupdate)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/deviceupdate/azure-iot-deviceupdate)|
 |[Models Repository](iot-modelsrepository-readme.md)|[azure-iot-modelsrepository](https://repo1.maven.org/maven2/com/azure/azure-iot-modelsrepository)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
 |[Resource Management - Device Provisioning Services](resourcemanager-deviceprovisioningservices-readme.md)|[azure-resourcemanager-deviceprovisioningservices](https://repo1.maven.org/maven2/com/azure/resourcemanager/azure-resourcemanager-deviceprovisioningservices)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/)|
 |[Resource Management - Device Registry](resourcemanager-deviceregistry-readme.md)|[azure-resourcemanager-deviceregistry](https://repo1.maven.org/maven2/com/azure/resourcemanager/azure-resourcemanager-deviceregistry)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/deviceregistry/azure-resourcemanager-deviceregistry)|
