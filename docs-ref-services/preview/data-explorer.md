@@ -1,7 +1,7 @@
 ---
 title: Azure Data Explorer SDK for Java
 description: Reference for Azure Data Explorer SDK for Java
-ms.date: 01/15/2025
+ms.date: 01/16/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: dataexplorer
