@@ -1,12 +1,12 @@
 ---
 title: Azure Batch client library for Java
 keywords: Azure, java, SDK, API, azure-compute-batch, batch
-ms.date: 10/31/2024
+ms.date: 01/16/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: batch
 ---
-# Azure Batch client library for Java - version 1.0.0-beta.3 
+# Azure Batch client library for Java - version 1.0.0-alpha.20250116.1 
 
 
 This README is based on the latest released version of the Azure Compute Batch SDK, otherwise known as the track 2 Azure Batch Data Plane SDK.
@@ -64,7 +64,7 @@ BatchSharedKeyCredentials sharedKeyCred = new BatchSharedKeyCredentials(batchEnd
 batchClientBuilder.credential(sharedKeyCred);
 ```
 
-- The other way is using Entra ID authentication to create the client. See this [document](/azure/batch/batch-aad-auth) for details on authenticating to Batch with Entra ID.
+- The other way is using Entra ID authentication to create the client. See this [document](https://learn.microsoft.com/azure/batch/batch-aad-auth) for details on authenticating to Batch with Entra ID.
 For example:
 
 ```java
@@ -190,7 +190,7 @@ Handle Transient Errors: Implement retry logic in your application to handle tra
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-compute-batch_1.0.0-beta.3/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/main/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -259,7 +259,7 @@ mvn test -DAZURE_TEST_MODE=Playback -Dtest=JobScheduleTests
 <!-- LINKS -->
 [product_documentation]: https://azure.microsoft.com/services/
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[jdk]: /java/azure/jdk/
+[jdk]: https://learn.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
 [java_building_wiki]: https://github.com/Azure/azure-sdk-for-java/wiki/Building
 
