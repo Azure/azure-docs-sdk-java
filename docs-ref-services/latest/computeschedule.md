@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: computeschedule
 ---
-# Azure Computeschedule SDK for Java - preview
-## Packages - preview
+# Azure Computeschedule SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](computeschedule-index.md)]
