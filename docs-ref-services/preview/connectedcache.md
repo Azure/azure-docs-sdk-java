@@ -1,7 +1,7 @@
 ---
 title: Azure Connectedcache SDK for Java
 description: Reference for Azure Connectedcache SDK for Java
-ms.date: 01/23/2025
+ms.date: 01/24/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: connectedcache
