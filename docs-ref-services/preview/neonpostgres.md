@@ -1,7 +1,7 @@
 ---
 title: Azure Neonpostgres SDK for Java
 description: Reference for Azure Neonpostgres SDK for Java
-ms.date: 01/28/2025
+ms.date: 01/29/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: neonpostgres
