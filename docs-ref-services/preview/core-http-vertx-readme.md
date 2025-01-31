@@ -1,12 +1,12 @@
 ---
 title: Azure Core Vert.x HTTP plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-http-vertx, core
-ms.date: 11/14/2024
+ms.date: 01/31/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Vert.x HTTP plugin library for Java - version 1.0.0-beta.24 
+# Azure Core Vert.x HTTP plugin library for Java - version 1.0.0-alpha.20250131.1 
 
 
 Azure Core Vert.x HTTP client is a plugin for the `azure-core` HTTP client API.
@@ -82,7 +82,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-vertx_1.0.0-beta.24/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/main/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -92,7 +92,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 
 <!-- Links -->
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-in-Azure-SDK
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: https://learn.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [java8_client_compatibility]: https://learn.microsoft.com/azure/security/fundamentals/azure-ca-details?tabs=root-and-subordinate-cas-list#client-compatibility-for-public-pkis
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-http-vertx%2FREADME.png)
