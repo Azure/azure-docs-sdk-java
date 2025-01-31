@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: changeanalysis
 ---
-# Azure Change Analysis SDK for Java - latest
-## Packages - latest
+# Azure Change Analysis SDK for Java - preview
+## Packages - preview
 [!INCLUDE [packages](change-analysis-index.md)]
