@@ -1,12 +1,12 @@
 ---
 title: Azure Blob Storage change feed client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob-changefeed, storage
-ms.date: 11/13/2024
+ms.date: 02/04/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: storage
 ---
-# Azure Blob Storage change feed client library for Java - version 12.0.0-beta.27 
+# Azure Blob Storage change feed client library for Java - version 12.0.0-alpha.20250204.1 
 
 
 The purpose of the change feed is to provide transaction logs of all the changes that occur to
@@ -245,18 +245,18 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 <!-- LINKS -->
 [source]: src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-changefeed_12.0.0-beta.27/sdk/storage/azure-storage-blob-changefeed/src/samples/README.md
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/storage/azure-storage-blob-changefeed/src/samples/README.md
 [docs]: http://azure.github.io/azure-sdk-for-java/
-[rest_docs]: /rest/api/storageservices/blob-service-rest-api
-[product_docs]: /azure/storage/blobs/storage-blobs-overview
-[sas_token]: /azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[jdk]: /java/azure/jdk/
+[rest_docs]: https://learn.microsoft.com/rest/api/storageservices/blob-service-rest-api
+[product_docs]: https://learn.microsoft.com/azure/storage/blobs/storage-blobs-overview
+[sas_token]: https://learn.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
+[jdk]: https://learn.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[storage_account]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[storage_account_create_cli]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
-[storage_account_create_portal]: /azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-changefeed_12.0.0-beta.27/sdk/identity/azure-identity/README.md
-[error_codes]: /rest/api/storageservices/blob-service-error-codes
+[storage_account]: https://learn.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[storage_account_create_cli]: https://learn.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
+[storage_account_create_portal]: https://learn.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity/README.md
+[error_codes]: https://learn.microsoft.com/rest/api/storageservices/blob-service-error-codes
 [samples]: src/samples
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
