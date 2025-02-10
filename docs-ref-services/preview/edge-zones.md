@@ -1,7 +1,7 @@
 ---
 title: Azure Edge Zones SDK for Java
 description: Reference for Azure Edge Zones SDK for Java
-ms.date: 02/06/2025
+ms.date: 02/10/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: edgezones
