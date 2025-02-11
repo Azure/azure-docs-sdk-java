@@ -43,24 +43,18 @@ constructors:
   desc: "Creates a new JacksonAdapter instance with Azure Core mapper settings and applies additional configuration through `configureSerialization` callback.\n\n`configureSerialization` callback provides outer and inner instances of <xref uid=\"com.fasterxml.jackson.databind.ObjectMapper\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ObjectMapper\"></xref>. Both of them are pre-configured for Azure serialization needs, but only outer mapper capable of flattening and populating additionalProperties. Outer mapper is used by `JacksonAdapter` for all serialization needs.\n\nRegister modules on the outer instance to add custom (de)serializers similar to `new JacksonAdapter((outer, inner) -> outer.registerModule(new MyModule()))` Use inner mapper for chaining serialization logic in your (de)serializers."
   hasDeprecatedTag: true
 methods:
-- uid: "com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(byte[],java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)"
-  fullName: "com.azure.core.util.serializer.JacksonAdapter.deserialize(byte[] bytes, Type type, SerializerEncoding encoding)"
-  name: "deserialize(byte[] bytes, Type type, SerializerEncoding encoding)"
-  nameWithType: "JacksonAdapter.deserialize(byte[] bytes, Type type, SerializerEncoding encoding)"
-  summary: "Deserializes a byte array into an object."
-  parameters:
-  - name: "bytes"
-    type: "<xref href=\"byte?alt=byte&text=byte\" data-throw-if-not-resolved=\"False\" />[]"
-  - name: "type"
-    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html\">Type</a>"
-  - name: "encoding"
-    type: "<xref href=\"com.azure.core.util.serializer.SerializerEncoding?alt=com.azure.core.util.serializer.SerializerEncoding&text=SerializerEncoding\" data-throw-if-not-resolved=\"False\" />"
-  syntax: "public T <T>deserialize(byte[] bytes, Type type, SerializerEncoding encoding)"
-  exceptions:
-  - type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
-  desc: "Deserializes a byte array into an object."
+- uid: "com.azure.core.util.serializer.JacksonAdapter.createDefaultSerializerAdapter()"
+  fullName: "com.azure.core.util.serializer.JacksonAdapter.createDefaultSerializerAdapter()"
+  name: "createDefaultSerializerAdapter()"
+  nameWithType: "JacksonAdapter.createDefaultSerializerAdapter()"
+  summary: "maintain singleton instance of the default serializer adapter."
+  modifiers:
+  - "static"
+  syntax: "public static SerializerAdapter createDefaultSerializerAdapter()"
+  desc: "maintain singleton instance of the default serializer adapter."
   returns:
-    type: "<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />"
+    description: "the default serializer"
+    type: "<xref href=\"com.azure.core.util.serializer.SerializerAdapter?alt=com.azure.core.util.serializer.SerializerAdapter&text=SerializerAdapter\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)"
   fullName: "com.azure.core.util.serializer.JacksonAdapter.deserialize(HttpHeaders headers, Type deserializedHeadersType)"
   name: "deserialize(HttpHeaders headers, Type deserializedHeadersType)"
@@ -113,6 +107,24 @@ methods:
   desc: "Deserializes a string into an object."
   returns:
     type: "<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(byte[],java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)"
+  fullName: "com.azure.core.util.serializer.JacksonAdapter.deserialize(byte[] bytes, Type type, SerializerEncoding encoding)"
+  name: "deserialize(byte[] bytes, Type type, SerializerEncoding encoding)"
+  nameWithType: "JacksonAdapter.deserialize(byte[] bytes, Type type, SerializerEncoding encoding)"
+  summary: "Deserializes a byte array into an object."
+  parameters:
+  - name: "bytes"
+    type: "<xref href=\"byte?alt=byte&text=byte\" data-throw-if-not-resolved=\"False\" />[]"
+  - name: "type"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html\">Type</a>"
+  - name: "encoding"
+    type: "<xref href=\"com.azure.core.util.serializer.SerializerEncoding?alt=com.azure.core.util.serializer.SerializerEncoding&text=SerializerEncoding\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public T <T>deserialize(byte[] bytes, Type type, SerializerEncoding encoding)"
+  exceptions:
+  - type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html\">IOException</a>"
+  desc: "Deserializes a byte array into an object."
+  returns:
+    type: "<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.core.util.serializer.JacksonAdapter.<T>deserializeHeader(com.azure.core.util.Header,java.lang.reflect.Type)"
   fullName: "com.azure.core.util.serializer.JacksonAdapter.deserializeHeader(Header header, Type type)"
   name: "deserializeHeader(Header header, Type type)"
@@ -129,18 +141,6 @@ methods:
   desc: "Deserializes the provided header returned from a REST API to en entity instance declared as the model of the header."
   returns:
     type: "<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />"
-- uid: "com.azure.core.util.serializer.JacksonAdapter.createDefaultSerializerAdapter()"
-  fullName: "com.azure.core.util.serializer.JacksonAdapter.createDefaultSerializerAdapter()"
-  name: "createDefaultSerializerAdapter()"
-  nameWithType: "JacksonAdapter.createDefaultSerializerAdapter()"
-  summary: "maintain singleton instance of the default serializer adapter."
-  modifiers:
-  - "static"
-  syntax: "public static SerializerAdapter createDefaultSerializerAdapter()"
-  desc: "maintain singleton instance of the default serializer adapter."
-  returns:
-    description: "the default serializer"
-    type: "<xref href=\"com.azure.core.util.serializer.SerializerAdapter?alt=com.azure.core.util.serializer.SerializerAdapter&text=SerializerAdapter\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.core.util.serializer.JacksonAdapter.serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding)"
   fullName: "com.azure.core.util.serializer.JacksonAdapter.serialize(Object object, SerializerEncoding encoding)"
   name: "serialize(Object object, SerializerEncoding encoding)"
@@ -245,4 +245,4 @@ implements:
 - "<xref href=\"com.azure.core.util.serializer.SerializerAdapter?alt=com.azure.core.util.serializer.SerializerAdapter&text=SerializerAdapter\" data-throw-if-not-resolved=\"False\" />"
 metadata: {}
 package: "com.azure.core.util.serializer"
-artifact: com.azure:azure-core:1.54.1
+artifact: com.azure:azure-core:1.55.0
