@@ -1,12 +1,12 @@
 ---
 title: Azure Core Vert.x HTTP plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-http-vertx, core
-ms.date: 02/06/2025
+ms.date: 02/12/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: core
 ---
-# Azure Core Vert.x HTTP plugin library for Java - version 1.0.0 
+# Azure Core Vert.x HTTP plugin library for Java - version 1.0.1 
 
 
 Azure Core Vert.x HTTP client is a plugin for the `azure-core` HTTP client API.
@@ -26,7 +26,7 @@ Azure Core Vert.x HTTP client is a plugin for the `azure-core` HTTP client API.
   <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-http-vertx</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </dependency>
 </dependencies>
 ```
@@ -82,7 +82,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-vertx_1.0.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-vertx_1.0.1/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
