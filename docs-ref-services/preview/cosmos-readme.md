@@ -297,7 +297,7 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 <!-- LINKS -->
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-cosmos_4.53.2-hotfix/sdk/cosmos/azure-cosmos/src
 [cosmos_introduction]: /azure/cosmos-db/
-[api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
+[api_documentation]: https://azuresdkdocs.z19.web.core.windows.net/java/azure-cosmos/latest/index.html
 [cosmos_docs]: /azure/cosmos-db/introduction
 [jdk]: /java/azure/jdk/
 [slf4j]: http://www.slf4j.org/
