@@ -1,17 +1,17 @@
 ---
 title: Azure Maps SDK Weather client library for Java
 keywords: Azure, java, SDK, API, azure-maps-weather, maps/azure-maps-weather
-ms.date: 12/31/2024
+ms.date: 02/18/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: maps/azure-maps-weather
 ---
-# Azure Maps SDK Weather client library for Java - version 1.0.0-beta.2 
+# Azure Maps SDK Weather client library for Java - version 1.0.0-beta.3 
 
 
 Azure Maps SDK Weather client library for Java.
 
-This package contains the Azure Maps SDK Weather client library which contains Azure Maps Weather APIs. For documentation on how to use this package, please see [Azure Maps Weather SDK for Java](/rest/api/maps/weather).
+This package contains the Azure Maps SDK Weather client library which contains Azure Maps Weather APIs. For documentation on how to use this package, please see [Azure Maps Weather SDK for Java](https://learn.microsoft.com/rest/api/maps/weather).
 
 [Source code][source] | [API reference documentation][docs] | [REST API documentation][rest_docs] | [Product documentation][product_docs] | [Samples][samples]
 
@@ -35,7 +35,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-maps-weather</artifactId>
-    <version>1.0.0-beta.2</version>
+    <version>1.0.0-beta.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -74,7 +74,7 @@ WeatherClient client = new WeatherClientBuilder()
 
 The sample code assumes global Azure. Please change `AzureEnvironment.AZURE` variable if otherwise.
 
-For SAS-based authentication, please refer to [AccountsListSasSamples.java][https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-weather_1.0.0-beta.2/sdk/maps/azure-resourcemanager-maps/src/samples/java/com/azure/resourcemanager/maps/generated/AccountsListSasSamples.java].
+For SAS-based authentication, please refer to [AccountsListSasSamples.java][https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-weather_1.0.0-beta.3/sdk/maps/azure-resourcemanager-maps/src/samples/java/com/azure/resourcemanager/maps/generated/AccountsListSasSamples.java].
 
 See [Authentication][authenticate] for more options.
 
@@ -101,7 +101,7 @@ client.getQuarterDayForecast(new GeoPosition(-122.138874, 47.632346), null, 1, n
 Get Current Conditions
 ```java com.azure.maps.weather.sync.get_current_conditions
 client.getCurrentConditions(new GeoPosition(-122.125679, 47.641268),
-    null, null, null, null);
+    null, true, null, null);
 ```
 
 Get Daily Forecast
@@ -143,7 +143,7 @@ Get Tropical Storm Search
 ActiveStormResult result = client.getTropicalStormActive();
 if (result.getActiveStorms().size() > 0) {
     ActiveStorm storm = result.getActiveStorms().get(0);
-    client.searchTropicalStorm(storm.getYear(), storm.getBasinId(), storm.getGovId());
+    client.searchTropicalStorm(storm.getYear(), storm.getBasinId(), storm.getGovernmentId());
 }
 ```
 
@@ -153,8 +153,8 @@ ActiveStormResult result = client.getTropicalStormActive();
 if (result.getActiveStorms().size() > 0) {
     ActiveStorm storm = result.getActiveStorms().get(0);
     TropicalStormForecastOptions forecastOptions = new TropicalStormForecastOptions(storm.getYear(),
-        storm.getBasinId(), storm.getGovId())
-        .setIncludeWindowGeometry(true);
+            storm.getBasinId(), storm.getGovernmentId())
+            .setIncludeWindowGeometry(true);
     client.getTropicalStormForecast(forecastOptions);
 }
 ```
@@ -165,7 +165,7 @@ ActiveStormResult result = client.getTropicalStormActive();
 if (result.getActiveStorms().size() > 0) {
     ActiveStorm storm = result.getActiveStorms().get(0);
     TropicalStormLocationOptions locationOptions = new TropicalStormLocationOptions(storm.getYear(),
-        storm.getBasinId(), storm.getGovId());
+            storm.getBasinId(), storm.getGovernmentId());
     client.getTropicalStormLocations(locationOptions);
 }
 ```
@@ -173,19 +173,19 @@ if (result.getActiveStorms().size() > 0) {
 Get Current Air Quality
 ```java com.azure.maps.weather.sync.get_current_air_quality
 client.getCurrentAirQuality(
-    new GeoPosition(-122.138874, 47.632346), "es", false);
+        new GeoPosition(-122.138874, 47.632346), "es", false);
 ```
 
 Get Air Quality Daily Forecasts
 ```java com.azure.maps.weather.sync.get_air_quality_daily_forecasts
-client.getAirQualityDailyForecasts(
-    new GeoPosition(-122.138874, 47.632346), "en", DailyDuration.TWO_DAYS);
+client.getDailyAirQualityForecast(
+        new GeoPosition(-122.138874, 47.632346), "en", DailyDuration.TWO_DAYS);
 ```
 
 Get Air Quality Hourly Forecasts
 ```java com.azure.maps.weather.sync.get_air_quality_daily_forecasts
-client.getAirQualityDailyForecasts(
-    new GeoPosition(-122.138874, 47.632346), "en", DailyDuration.TWO_DAYS);
+client.getDailyAirQualityForecast(
+        new GeoPosition(-122.138874, 47.632346), "en", DailyDuration.TWO_DAYS);
 ```
 
 Get Daily Historical Actuals
@@ -217,11 +217,11 @@ For example, if you search with an invalid coordinate, a error is returned, indi
 ## Next steps
 
 Several Azure Maps Weather Java SDK samples are available to you in the SDK's GitHub repository.
-[Azure Maps Weather Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-weather_1.0.0-beta.2/sdk/maps/azure-maps-weather/src/samples)
+[Azure Maps Weather Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-weather_1.0.0-beta.3/sdk/maps/azure-maps-weather/src/samples)
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.2/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.3/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -230,17 +230,17 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-weather_1.0.0-beta.2/sdk/maps/azure-maps-weather/src
-[samples]:  https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-weather_1.0.0-beta.2/sdk/maps/azure-maps-weather/src/samples
-[rest_docs]: /rest/api/maps
-[product_docs]: /azure/azure-maps/
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-weather_1.0.0-beta.3/sdk/maps/azure-maps-weather/src
+[samples]:  https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-weather_1.0.0-beta.3/sdk/maps/azure-maps-weather/src/samples
+[rest_docs]: https://learn.microsoft.com/rest/api/maps
+[product_docs]: https://learn.microsoft.com/azure/azure-maps/
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[jdk]: /java/azure/jdk/
+[jdk]: https://learn.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.2/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.2/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.2/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.2/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.3/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.3/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.3/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-weather_1.0.0-beta.3/sdk/resourcemanager/docs/DESIGN.md
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fmaps%2Fazure-maps-weather%2FREADME.png)
+
 
