@@ -1,0 +1,3 @@
+| Reference | Package | Source |
+|---|---|---|
+|[Resource Management - Impactreporting](resourcemanager-impactreporting-readme.md)|[azure-resourcemanager-impactreporting](https://repo1.maven.org/maven2/com/azure/resourcemanager/azure-resourcemanager-impactreporting)|[GitHub](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/impactreporting/azure-resourcemanager-impactreporting)|
