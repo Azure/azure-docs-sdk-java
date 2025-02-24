@@ -1,13 +1,15 @@
 ---
 title: Azure Resource Manager Network Analytics client library for Java
 keywords: Azure, java, SDK, API, azure-resourcemanager-networkanalytics, networkanalytics
-ms.date: 01/24/2024
+ms.date: 02/24/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: networkanalytics
 ---
-# Azure Resource Manager Network Analytics client library for Java - version 1.0.0 
+# Azure Resource Manager Network Analytics client library for Java - version 1.0.1 
 
+
+Please note, this package has been deprecated and will no longer be maintained after 03/14/2025. Refer to our deprecation policy (https://aka.ms/azsdk/support-policies) for more details.
 
 Azure Resource Manager Network Analytics client library for Java.
 
@@ -83,7 +85,7 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
-[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.0/sdk/networkanalytics/azure-resourcemanager-networkanalytics/SAMPLE.md)
+[Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.1/sdk/networkanalytics/azure-resourcemanager-networkanalytics/SAMPLE.md)
 
 
 ## Troubleshooting
@@ -105,13 +107,13 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.0/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.0/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.0/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.0/sdk/resourcemanager/docs/DESIGN.md
-[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.0/CONTRIBUTING.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.1/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.1/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.1/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.1/sdk/resourcemanager/docs/DESIGN.md
+[cg]: https://github.com/Azure/azure-sdk-for-java/blob/azure-resourcemanager-networkanalytics_1.0.1/CONTRIBUTING.md
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fnetworkanalytics%2Fazure-resourcemanager-networkanalytics%2FREADME.png)
+
 
