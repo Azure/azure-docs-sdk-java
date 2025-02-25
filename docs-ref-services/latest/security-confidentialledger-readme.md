@@ -137,5 +137,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_contact]: mailto:opencode@microsoft.com
 
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fconfidentialledger%2Fazure-security-confidentialledger%2FREADME.png)
+
 

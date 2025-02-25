@@ -84,5 +84,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [examples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-personalizer_1.0.0-beta.1/sdk/personalizer/azure-ai-personalizer/src/samples#examples
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fpersonalizer%2Fazure-ai-personalizer%2FREADME.png)
+
 

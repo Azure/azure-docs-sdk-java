@@ -186,5 +186,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][microsoft_c
 <!-- LINKS -->
 [style-guide-msft]: https://docs.microsoft.com/style-guide/capitalization
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fattestation%2Fazure-security-attestation%2FREADME.png)
+
 

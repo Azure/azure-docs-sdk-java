@@ -161,5 +161,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-confidentialledger_1.0.0-beta.1/sdk/confidentialledger/azure-data-confidentialledger/src/samples/README.md
 
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fconfidentialledger%2Fazure-data-confidentialledger%2FREADME.png)
+
 

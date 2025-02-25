@@ -205,5 +205,5 @@ For details on contributing to this repository, see the [contributing guide](htt
 <!-- links -->
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-json%2FREADME.png)
+
 

@@ -389,5 +389,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [recognize_entities_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.0.1/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/RecognizeEntitiesBatchDocuments.java
 [recognize_linked_entities_sample]: https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-textanalytics_5.0.1/sdk/textanalytics/azure-ai-textanalytics/src/samples/java/com/azure/ai/textanalytics/batch/RecognizeLinkedEntitiesBatchDocuments.java
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Ftextanalytics%2Fazure-ai-textanalytics%2FREADME.png)
+
 

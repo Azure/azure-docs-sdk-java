@@ -480,5 +480,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.14.0-beta.2/sdk/identity/azure-identity
 [sp]: https://learn.microsoft.com/entra/identity-platform/app-objects-and-service-principals
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fidentity%2Fazure-identity%2FREADME.png)
+
 

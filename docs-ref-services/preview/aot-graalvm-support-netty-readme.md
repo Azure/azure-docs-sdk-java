@@ -96,5 +96,5 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [azure_subscription]: https://azure.microsoft.com/free
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Faot%2Fazure-aot-graalvm-support-netty%2FREADME.png)
+
 

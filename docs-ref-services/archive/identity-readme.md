@@ -409,5 +409,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [javadoc]: https://azure.github.io/azure-sdk-for-java
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fidentity%2Fazure-identity%2FREADME.png)
+
 

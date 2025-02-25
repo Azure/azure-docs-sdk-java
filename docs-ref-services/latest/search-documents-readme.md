@@ -604,5 +604,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [status_codes]: /rest/api/searchservice/http-status-codes
 [search-get-started-portal]: /azure/search/search-get-started-portal
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fsearch%2Fazure-search-documents%2FREADME.png)
+
 

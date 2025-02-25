@@ -348,5 +348,5 @@ Check out other client libraries for Azure communication service
 
 
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcommunication%2Fazure-communication-administration%2FREADME.png)
+
 

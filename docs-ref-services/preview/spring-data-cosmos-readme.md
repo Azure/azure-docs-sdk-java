@@ -1061,5 +1061,5 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [spring_version_mapping]: https://aka.ms/spring/versions
 [spring_boot_supported_versions]: https://github.com/spring-projects/spring-boot/wiki/Supported-Versions
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcosmos%2F%2Fazure-spring-data-cosmos%2FREADME.png)
+
 

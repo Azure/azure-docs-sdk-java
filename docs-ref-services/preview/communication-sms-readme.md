@@ -182,7 +182,7 @@ Check out other client libraries for Azure Communication Services
 [api_documentation]: https://aka.ms/java-docs
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-sms_1.0.0-beta.4/sdk/communication/azure-communication-sms/src
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Feng%2Fazure-communications-sms%2FREADME.png)
+
 
 ## Contributing
 

@@ -176,5 +176,5 @@ For details on contributing to this repository, see the [contributing guide](htt
 [authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-render_2.0.0-beta.2/sdk/resourcemanager/docs/AUTH.md
 [design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-render_2.0.0-beta.2/sdk/resourcemanager/docs/DESIGN.md
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fmaps%2Fazure-maps-render%2FREADME.png)
+
 

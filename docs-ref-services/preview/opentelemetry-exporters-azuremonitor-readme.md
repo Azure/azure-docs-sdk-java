@@ -123,5 +123,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [span_data]: https://opentelemetry.lightstep.com/spans
 [sample_readme]: https://github.com/Azure/azure-sdk-for-java/blob/opentelemetry-exporters-azuremonitor_1.0.0-beta.1/sdk/monitor/opentelemetry-exporters-azuremonitor/src/samples/README.md
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%monitor%2Fopentelemetry-exporters-azuremonitor%2FREADME.png)
+
 

@@ -433,5 +433,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.1.7/sdk/appconfiguration/azure-data-appconfiguration/src/samples/README.md
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.1.7/sdk/appconfiguration/azure-data-appconfiguration/src
 [spring_quickstart]: https://docs.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fappconfiguration%2Fazure-data-appconfiguration%2FREADME.png)
+
 

@@ -248,5 +248,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-identity_1.6.2/sdk/communication/azure-communication-identity/src/samples/java/com/azure/communication/identity/ReadmeSamples.java
 [source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-identity_1.6.2/sdk/communication/azure-communication-identity/src
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcommunication%2Fazure-communication-identity%2FREADME.png)
+
 

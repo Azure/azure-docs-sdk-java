@@ -93,5 +93,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-documenttranslator
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documenttranslator_1.0.0-beta.1/sdk/translation/azure-ai-documenttranslator/src/samples/README.md
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Ftranslation%2Fazure-ai-documenttranslator%2FREADME.png)
+
 

@@ -206,5 +206,5 @@ For details on contributing to this repository, see the [contributing guide](htt
 [authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-traffic_1.0.0-beta.1/sdk/resourcemanager/docs/AUTH.md
 [design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-traffic_1.0.0-beta.1/sdk/resourcemanager/docs/DESIGN.md
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fmaps%2Fazure-maps-traffic%2FREADME.png)
+
 

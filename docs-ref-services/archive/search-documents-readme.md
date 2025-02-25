@@ -528,5 +528,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.2/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
 [status_codes]: https://docs.microsoft.com/rest/api/searchservice/http-status-codes
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fsearch%2Fazure-search-documents%2FREADME.png)
+
 

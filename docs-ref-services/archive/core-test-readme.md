@@ -144,5 +144,5 @@ If you would like to become an active contributor to this project please follow 
 [RecordNetworkCallPolicy.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.5.1/sdk/core/azure-core-test/src/main/java/com/azure/core/test/policy/RecordNetworkCallPolicy.java
 [TestBase.java]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-test_1.5.1/sdk/core/azure-core-test/src/main/java/com/azure/core/test/TestBase.java
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-test%2FREADME.png)
+
 

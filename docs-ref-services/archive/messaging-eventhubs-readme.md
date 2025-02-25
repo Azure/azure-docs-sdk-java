@@ -440,5 +440,5 @@ Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eve
 [source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs_5.3.1/sdk/eventhubs/azure-messaging-eventhubs/
 [wiki_identity]: https://github.com/Azure/azure-sdk-for-java/wiki/Identity-and-Authentication
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Feventhubs%2Fazure-messaging-eventhubs%2FREADME.png)
+
 

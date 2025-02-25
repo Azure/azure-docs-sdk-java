@@ -259,5 +259,5 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 [log_analytics_workspace]: https://learn.microsoft.com//azure/azure-monitor/logs/log-analytics-workspace-overview
 [logging]: https://learn.microsoft.com//azure/developer/java/sdk/logging-overview
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-monitor-ingestion_1.2.7/sdk/monitor/azure-monitor-ingestion/src/samples/java/com/azure/monitor/ingestion
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fmonitor%2Fazure-monitor-ingestion%2FREADME.png)
+
 

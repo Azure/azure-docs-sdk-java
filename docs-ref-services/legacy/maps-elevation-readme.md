@@ -136,5 +136,5 @@ For details on contributing to this repository, see the [contributing guide](htt
 [design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-elevation_1.0.0-beta.2/sdk/resourcemanager/docs/DESIGN.md
 [Elevation Services Retirement]: https://azure.microsoft.com/updates/azure-maps-elevation-apis-and-render-v2-dem-tiles-will-be-retired-on-5-may-2023/
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fmaps%2Fazure-maps-elevation%2FREADME.png)
+
 
