@@ -172,5 +172,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [clinical_matching_api_documentation]: https://review.learn.microsoft.com/rest/api/cognitiveservices/healthinsights/trial-matcher?branch=healthin202303
 [product_documentation]: https://review.learn.microsoft.com/azure/cognitive-services/health-decision-support/trial-matcher/?branch=main
 [samples_location]: https://github.com/Azure/azure-sdk-for-java/tree/azure-health-insights-clinicalmatching_1.0.0-beta.1/sdk/healthinsights/azure-health-insights-clinicalmatching/src/samples
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%healthinsights%2Fazure-health-insights-clinicalmatching%2FREADME.png)
+
 

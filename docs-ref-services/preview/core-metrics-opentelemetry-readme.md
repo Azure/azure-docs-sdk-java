@@ -139,5 +139,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [OpenTelemetry]: https://github.com/open-telemetry/opentelemetry-java#opentelemetry-for-java
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-core-metrics-opentelemetry_1.0.0-beta.28/sdk/core/azure-core-metrics-opentelemetry/src/samples/
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-metrics-opentelemetry%2FREADME.png)
+
 

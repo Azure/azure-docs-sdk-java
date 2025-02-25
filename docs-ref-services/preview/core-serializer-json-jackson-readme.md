@@ -57,5 +57,5 @@ Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
 <!-- Links -->
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-serializer-json-jackson%2FREADME.png)
+
 

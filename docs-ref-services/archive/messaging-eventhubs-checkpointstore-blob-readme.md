@@ -181,5 +181,5 @@ Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eve
 [source_loglevels]: .https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs-checkpointstore-blob_1.3.1/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/.https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs-checkpointstore-blob_1.3.1/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Feventhubs%2Fazure-messaging-eventhubs-checkpointstore-blob%2FREADME.png)
+
 

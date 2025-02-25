@@ -294,5 +294,5 @@ For details on contributing to this repository, see the [contributing guide](htt
 [azure_cli_endpoint_lookup]: /cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-show
 [azure_cli_key_lookup]: /cli/azure/cognitiveservices/account/keys?view=azure-cli-latest#az-cognitiveservices-account-keys-list
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcontentsafety%2Fazure-ai-contentsafety%2FREADME.png)
+
 

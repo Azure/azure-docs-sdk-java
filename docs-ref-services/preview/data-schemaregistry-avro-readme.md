@@ -176,5 +176,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [specific_record]: https://avro.apache.org/docs/1.9.2/api/java/org/apache/avro/specific/SpecificRecord.html
 [generic_record]: https://avro.apache.org/docs/1.9.2/api/java/org/apache/avro/generic/GenericRecord.html
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fschemaregistry%2Fazure-data-schemaregistry-avro%2FREADME.png)
+
 

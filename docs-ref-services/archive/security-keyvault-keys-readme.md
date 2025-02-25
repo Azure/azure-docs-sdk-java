@@ -438,5 +438,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-keys%2FREADME.png)
+
 

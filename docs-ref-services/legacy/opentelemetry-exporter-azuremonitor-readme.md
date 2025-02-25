@@ -146,5 +146,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [sampler_ref]: https://github.com/open-telemetry/opentelemetry-specification/blob/master/specification/trace/sdk.md#sampling
 [trace_concept]: https://github.com/open-telemetry/opentelemetry-specification/blob/master/specification/overview.md#trace
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%monitor%2Fazure-opentelemetry-exporter-azuremonitor%2FREADME.png)
+
 

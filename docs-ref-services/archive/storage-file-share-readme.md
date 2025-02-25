@@ -546,5 +546,5 @@ If you would like to become an active contributor to this project please follow 
 [samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-file-share_12.7.0/sdk/storage/azure-storage-file-share/src/samples
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-file-share%2FREADME.png)
+
 

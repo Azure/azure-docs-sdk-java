@@ -207,5 +207,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 [package]: https://mvnrepository.com/artifact/com.azure/azure-ai-anomalydetector
 [samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-anomalydetector_3.0.0-beta.5/sdk/anomalydetector/azure-ai-anomalydetector/src/samples/README.md
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fanomalydetector%2Fazure-ai-anomalydetector%2FREADME.png)
+
 
