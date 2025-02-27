@@ -6,7 +6,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: network-access
 ---
-# Azure Resource Manager network client library for Java - version 2.48.0-alpha.20250226.2 
+# Azure Resource Manager network client library for Java - version 2.48.0-alpha.20250226.4 
 
 
 Azure Resource Manager network client library for Java
