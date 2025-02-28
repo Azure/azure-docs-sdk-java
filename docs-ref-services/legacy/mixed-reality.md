@@ -1,7 +1,7 @@
 ---
 title: Azure Mixed Reality SDK for Java
 description: Reference for Azure Mixed Reality SDK for Java
-ms.date: 02/27/2025
+ms.date: 02/28/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: mixedreality
