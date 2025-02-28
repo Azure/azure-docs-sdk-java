@@ -1,12 +1,12 @@
 ---
 title: Azure Remote Rendering client library for Java
 keywords: Azure, java, SDK, API, azure-mixedreality-remoterendering, remoterendering
-ms.date: 12/04/2024
+ms.date: 02/28/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: remoterendering
 ---
-# Azure Remote Rendering client library for Java - version 1.1.35 
+# Azure Remote Rendering client library for Java - version 1.1.36 
 
 
 Azure Remote Rendering (ARR) is a service that enables you to render high-quality, interactive 3D content in the cloud and stream it in real time to devices, such as the HoloLens 2.
@@ -32,7 +32,7 @@ the lifetime of remote rendering sessions.
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.35/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.36/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -287,15 +287,6 @@ You can get information about your conversions using the `listConversions` metho
 This method may return conversions which have yet to start, conversions which are running and conversions which have finished.
 In this example, we just list the output URLs of successful conversions started in the last day.
 
-```java readme-sample-listConversions
-for (AssetConversion conversion : client.listConversions()) {
-    if ((conversion.getStatus() == AssetConversionStatus.SUCCEEDED)
-        && (conversion.getCreationTime().isAfter(OffsetDateTime.now().minusDays(1)))) {
-        logger.info("Output Asset URL: {}", conversion.getOutputAssetUrl());
-    }
-}
-```
-
 ### Create a rendering session
 
 We assume that a RemoteRenderingClient has been constructed as described in the [Authenticate the Client](#authenticate-the-client) section.
@@ -401,16 +392,16 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 [azure_subscription]: https://azure.microsoft.com/free
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.35/sdk/remoterendering/azure-mixedreality-remoterendering/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.36/sdk/remoterendering/azure-mixedreality-remoterendering/src
 [remote_rendering_account]: /azure/remote-rendering/how-tos/create-an-account
-[LogLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.35/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[LogLevels]: https://github.com/Azure/azure-sdk-for-java/blob/azure-mixedreality-remoterendering_1.1.36/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [product_documentation]: /azure/remote-rendering/
 [cpp_api]: /cpp/api/remote-rendering/
 [dotnet_api]: /dotnet/api/microsoft.azure.remoterendering
 [how_to_authenticate]: /azure/remote-rendering/how-tos/authentication
-[sts_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.35/sdk/mixedreality/azure-mixedreality-authentication
+[sts_sdk]: https://github.com/Azure/azure-sdk-for-java/tree/azure-mixedreality-remoterendering_1.1.36/sdk/mixedreality/azure-mixedreality-authentication
 [troubleshoot]: /azure/remote-rendering/resources/troubleshoot
 [api_reference_doc]: /rest/api/mixedreality/
 
-
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fmixedreality%2Fazure-mixedreality-remoterendering%2FREADME.png)
 
