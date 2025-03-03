@@ -1,7 +1,7 @@
 {
   "Name": "azure-core-test",
-  "Version": "1.27.0-beta.7",
-  "DevVersion": null,
+  "Version": "1.27.0-alpha.20250303.1",
+  "DevVersion": "1.27.0-alpha.20250303.1",
   "DirectoryPath": "sdk/core/azure-core-test",
   "ServiceDirectory": "core",
   "ReadMePath": "sdk/core/azure-core-test/README.md",
@@ -10,7 +10,7 @@
   "SdkType": "client",
   "IsNewSdk": true,
   "ArtifactName": "azure-core-test",
-  "ReleaseStatus": "2025-02-20",
+  "ReleaseStatus": "Unreleased",
   "IncludedForValidation": false,
   "AdditionalValidationPackages": [
     "com.azure:azure-core-tracing-opentelemetry-samples",
@@ -18,11 +18,34 @@
     "com.azure:perf-test-core"
   ],
   "ArtifactDetails": {
+    "triggeringPaths": [
+      "/sdk/core/ci.yml"
+    ],
     "groupId": "com.azure",
-    "safeName": "azurecoretest",
     "releaseInBatch": "${{ parameters.release_azurecoretest }}",
+    "safeName": "azurecoretest",
     "name": "azure-core-test"
   },
+  "CIParameters": {
+    "CIMatrixConfigs": [
+      {
+        "Path": "eng/pipelines/templates/stages/platform-matrix.json",
+        "Name": "Java_ci_test_base",
+        "Selection": "sparse",
+        "GenerateVMJobs": true,
+        "NonSparseParameters": "Agent"
+      },
+      {
+        "Path": "sdk/core/version-overrides-matrix.json",
+        "Name": "version_overrides_tests",
+        "Selection": "all",
+        "GenerateVMJobs": true
+      }
+    ]
+  },
+  "Namespaces": [
+    "com.azure.core.test"
+  ],
   "CIMatrixConfigs": [
     {
       "Path": "eng/pipelines/templates/stages/platform-matrix.json",
@@ -31,8 +54,5 @@
       "GenerateVMJobs": true,
       "Selection": "sparse"
     }
-  ],
-  "Namespaces": [
-    "com.azure.core.test"
   ]
 }
