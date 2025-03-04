@@ -1,12 +1,12 @@
 ---
 title: Azure Communications Rooms Service client library for Java
 keywords: Azure, java, SDK, API, azure-communication-rooms, communication
-ms.date: 12/04/2024
+ms.date: 03/04/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communications Rooms Service client library for Java - version 1.1.8 
+# Azure Communications Rooms Service client library for Java - version 1.1.9 
 
 
 Azure Communication Rooms is used to operate on rooms.
@@ -34,7 +34,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-communication-rooms</artifactId>
-  <version>1.1.8</version>
+  <version>1.1.9</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -225,7 +225,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-rooms_1.1.8/sdk/communication/azure-communication-rooms/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-rooms_1.1.9/sdk/communication/azure-communication-rooms/src
 [package]: https://central.sonatype.com/artifact/com.azure/azure-communication-rooms
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
@@ -234,6 +234,6 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [product_docs]: /azure/communication-services/
 [api_documentation]: https://aka.ms/java-docs
 [next_steps]: https://learn.microsoft.com/azure/communication-services/concepts/rooms/room-concept
-
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fappconfiguration%2Fazure-data-appconfiguration%2FREADME.png)
 
 

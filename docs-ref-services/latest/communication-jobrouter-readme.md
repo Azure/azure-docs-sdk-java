@@ -1,12 +1,12 @@
 ---
 title: Azure Communication Job Router client library for Java
 keywords: Azure, java, SDK, API, azure-communication-jobrouter, communication
-ms.date: 12/04/2024
+ms.date: 03/04/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Communication Job Router client library for Java - version 1.1.10 
+# Azure Communication Job Router client library for Java - version 1.1.11 
 
 
 Azure Communication Job Router contains the APIs used in job router applications for Azure Communication Services.
@@ -25,7 +25,7 @@ Azure Communication Job Router contains the APIs used in job router applications
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-jobrouter_1.1.10/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-jobrouter_1.1.11/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -60,7 +60,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-jobrouter</artifactId>
-    <version>1.1.10</version>
+    <version>1.1.11</version>
 </dependency>
 ```
 
@@ -253,7 +253,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-jobrouter_1.1.10/sdk/communication/azure-communication-jobrouter/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-communication-jobrouter_1.1.11/sdk/communication/azure-communication-jobrouter/src
 [jdk_link]: /java/azure/jdk/?view=azure-java-stable
 [package]: https://search.maven.org/artifact/com.azure/azure-communication-jobrouter
 [api_documentation]: https://aka.ms/java-docs
@@ -263,5 +263,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcommunication%2Fazure-communication-jobrouter%2FREADME.png)
 

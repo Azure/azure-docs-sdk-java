@@ -1,12 +1,12 @@
 ---
 title: Azure Messages client library for Java
 keywords: Azure, java, SDK, API, azure-communication-messages, communication
-ms.date: 12/04/2024
+ms.date: 03/04/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
 ---
-# Azure Messages client library for Java - version 1.1.1 
+# Azure Messages client library for Java - version 1.1.2 
 
 This package contains a Java SDK for Azure Communication Messages Services.
 
@@ -27,12 +27,12 @@ Various documentation is available to help you get started
 - [Apache Maven](https://maven.apache.org/download.cgi).
 - You must have an [Azure subscription][azure_sub] to use this package.
 - An existing Communication Services resource. If you need to create the resource, you can use the [Azure Portal][azure_portal], the [Azure PowerShell][azure_powershell], or the [Azure CLI][azure_cli].
-- See [how to register whatsapp business account & create a channel][register_whatsapp_business_account] for registering whatsapp channel to your Communication Services resource.
+- See [how to register whatsapp business account and create a channel][register_whatsapp_business_account] for registering whatsapp channel to your Communication Services resource.
 
 ### Adding the package to your product
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-messages_1.1.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-messages_1.1.2/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -67,7 +67,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-messages</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -333,12 +333,12 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [handle_advance_messaging_events]: https://learn.microsoft.com/azure/communication-services/quickstarts/advanced-messaging/whatsapp/handle-advanced-messaging-events
 [register_whatsapp_business_account]: https://learn.microsoft.com/azure/communication-services/quickstarts/advanced-messaging/whatsapp/connect-whatsapp-business-account
 [create-manage-whatsapp-template]: https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-messages_1.1.1/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-messages_1.1.2/sdk/identity/azure-identity
 [defaultazurecredential]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential
 [azure_cli]: /cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
 [azure_portal]: https://portal.azure.com
 [azure_powershell]: /powershell/module/az.communication/new-azcommunicationservice
 
-
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcommunication%2Fazure-communication-messages%2FREADME.png)
 
