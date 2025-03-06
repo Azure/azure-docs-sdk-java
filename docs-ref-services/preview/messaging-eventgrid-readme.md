@@ -6,7 +6,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: azure-event-grid
 ---
-# Azure Event Grid client library for Java - version 4.30.0-alpha.20250305.2 
+# Azure Event Grid client library for Java - version 4.30.0-alpha.20250306.1 
 
 
 Azure Event Grid allows you to easily build applications with event-based architectures. The Event Grid service fully 

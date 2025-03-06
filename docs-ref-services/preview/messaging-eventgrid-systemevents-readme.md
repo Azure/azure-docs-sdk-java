@@ -6,7 +6,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: eventgrid
 ---
-# Azure SystemEvents client library for Java - version 1.0.0-alpha.20250305.2 
+# Azure SystemEvents client library for Java - version 1.0.0-alpha.20250306.1 
 
 
 Azure SystemEvents client library for Java.
