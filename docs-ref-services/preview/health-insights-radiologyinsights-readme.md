@@ -6,7 +6,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: healthinsights
 ---
-# Azure Cognitive Services Health Insights Radiology Insights client library for Java - version 1.1.0-alpha.20250305.2 
+# Azure Cognitive Services Health Insights Radiology Insights client library for Java - version 1.1.0-alpha.20250306.1 
 
 
 
