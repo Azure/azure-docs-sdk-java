@@ -6,7 +6,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: ai
 ---
-# Azure AI Inference client library for Java - version 1.0.0-alpha.20250305.1 
+# Azure AI Inference client library for Java - version 1.0.0-alpha.20250306.1 
 
 
 Azure AI Inference client library for Java.
