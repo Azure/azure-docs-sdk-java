@@ -6,7 +6,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: azure-resource-manager
 ---
-# Azure Resource Manager AzureStackHci client library for Java - version 1.0.0-alpha.20250305.2 
+# Azure Resource Manager AzureStackHci client library for Java - version 1.0.0-alpha.20250306.1 
 
 
 Azure Resource Manager AzureStackHci client library for Java.
