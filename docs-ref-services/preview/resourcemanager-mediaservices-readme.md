@@ -6,7 +6,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: mediaservices
 ---
-# Azure Resource Manager MediaServices client library for Java - version 2.4.0-alpha.20250305.2 
+# Azure Resource Manager MediaServices client library for Java - version 2.4.0-alpha.20250306.1 
 
 
 Azure Resource Manager MediaServices client library for Java.
