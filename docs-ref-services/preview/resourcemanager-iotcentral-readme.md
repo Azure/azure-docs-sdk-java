@@ -6,7 +6,7 @@ ms.topic: reference
 ms.devlang: java
 ms.service: iotcentral
 ---
-# Azure Resource Manager IotCentral client library for Java - version 1.1.0-alpha.20250305.2 
+# Azure Resource Manager IotCentral client library for Java - version 1.1.0-alpha.20250306.1 
 
 
 Azure Resource Manager IotCentral client library for Java.
