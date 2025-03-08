@@ -1,12 +1,12 @@
 ---
 title: Azure JSON shared library for Java
 keywords: Azure, java, SDK, API, azure-json, serialization
-ms.date: 01/27/2025
+ms.date: 03/08/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: serialization
 ---
-# Azure JSON shared library for Java - version 1.4.0 
+# Azure JSON shared library for Java - version 1.5.0 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -26,7 +26,7 @@ Azure JSON provides shared primitives, abstractions, and helpers for JSON.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-json</artifactId>
-  <version>1.4.0</version>
+  <version>1.5.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -57,7 +57,7 @@ could be called indefinitely returning the same integer without error until `nex
 forward.
 
 `JsonReader` allows for type conversion between JSON types, such as trying to convert a JSON string to a number or vice
-versa, and for commonly used nonstandard JSON values, such as `NaN`, `INF`, `-INF`, `Infinity`, and `-Infinity`.
+versa, and for commonly used nonstandard JSON values, such as `NaN`, `Infinity`, `+Infinity`, and `-Infinity`.
 
 `JsonReader` doesn't take ownership of the JSON input source and therefore doesn't close any resources if the JSON is 
 provided using an `InputStream` or `Reader`.
@@ -74,7 +74,7 @@ and objects, APIs for writing JSON. `JsonWriter` is provided to allow for any un
 such as Jackson or GSON, as long as the implementation passes the tests provided by the package's test-jar
 (`JsonWriterContractTests`).
 
-`JsonWriter` allows for commonly used nonstandard JSON values, such as `NaN`, `INF`, `-INF`, `Infinity`, and 
+`JsonWriter` allows for commonly used nonstandard JSON values, such as `NaN`, `Infinity`, `+Infinity`, and 
 `-Infinity`, to be written using `writeNumberField` or `writeRawValue`.
 
 `JsonWriter` doesn't write null `byte[]`, `Boolean`, `Number`, or `String` values when written as a field, 
@@ -105,7 +105,7 @@ by this package if an implementation isn't found on the classpath.
 #### JsonOptions
 
 `JsonOptions` contains configurations that must be respected by all implementations of `JsonReader`s and `JsonWriter`s. 
-At this time, there's only one configuration for determining whether non-numeric numbers, `NaN`, `INF`, `-INF`, `Infinity`, 
+At this time, there's only one configuration for determining whether non-numeric numbers, `NaN`, `Infinity`, `+Infinity`, 
 and `-Infinity` are supported in JSON reading and writing with a default setting of `true`, that non-numeric numbers 
 are allowed.
 
@@ -135,7 +135,7 @@ Get started with Azure libraries that are [built using Azure Core](https://azure
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-json_1.4.0/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-json_1.5.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
