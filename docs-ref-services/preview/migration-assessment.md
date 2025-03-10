@@ -1,7 +1,7 @@
 ---
 title: Azure Migration-Assessment SDK for Java
 description: Reference for Azure Migration-Assessment SDK for Java
-ms.date: 03/07/2025
+ms.date: 03/10/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: migration-assessment

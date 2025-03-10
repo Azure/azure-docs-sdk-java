@@ -1,7 +1,7 @@
 ---
 title: Azure Desktop Virtualization SDK for Java
 description: Reference for Azure Desktop Virtualization SDK for Java
-ms.date: 03/07/2025
+ms.date: 03/10/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: desktopvirtualization
