@@ -1,7 +1,7 @@
 ---
 title: Azure Computeschedule SDK for Java
 description: Reference for Azure Computeschedule SDK for Java
-ms.date: 03/10/2025
+ms.date: 03/11/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: computeschedule
