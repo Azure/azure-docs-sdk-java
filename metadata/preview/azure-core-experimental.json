@@ -1,6 +1,6 @@
 {
   "Name": "azure-core-experimental",
-  "Version": "1.0.0-beta.59",
+  "Version": "1.0.0-beta.60",
   "DevVersion": null,
   "DirectoryPath": "sdk/core/azure-core-experimental",
   "ServiceDirectory": "core",
@@ -10,7 +10,7 @@
   "SdkType": "client",
   "IsNewSdk": true,
   "ArtifactName": "azure-core-experimental",
-  "ReleaseStatus": "2025-02-20",
+  "ReleaseStatus": "2025-03-10",
   "IncludedForValidation": false,
   "AdditionalValidationPackages": [
     "com.azure:azure-core-tracing-opentelemetry-samples",
@@ -18,11 +18,39 @@
     "com.azure:perf-test-core"
   ],
   "ArtifactDetails": {
-    "groupId": "com.azure",
     "safeName": "azurecoreexperimental",
-    "releaseInBatch": "${{ parameters.release_azurecoreexperimental }}",
-    "name": "azure-core-experimental"
+    "groupId": "com.azure",
+    "name": "azure-core-experimental",
+    "triggeringPaths": [
+      "/sdk/core/ci.yml"
+    ],
+    "releaseInBatch": "${{ parameters.release_azurecoreexperimental }}"
   },
+  "CIParameters": {
+    "CIMatrixConfigs": [
+      {
+        "Selection": "sparse",
+        "NonSparseParameters": "Agent",
+        "Name": "Java_ci_test_base",
+        "Path": "eng/pipelines/templates/stages/platform-matrix.json",
+        "GenerateVMJobs": true
+      },
+      {
+        "Selection": "all",
+        "PRBatching": false,
+        "Name": "version_overrides_tests",
+        "Path": "sdk/core/version-overrides-matrix.json",
+        "GenerateVMJobs": true
+      }
+    ]
+  },
+  "Namespaces": [
+    "com.azure.core.experimental.http",
+    "com.azure.core.experimental.models",
+    "com.azure.core.experimental.serializer",
+    "com.azure.core.experimental.util.polling",
+    "com.azure.core.experimental.util.tracing"
+  ],
   "CIMatrixConfigs": [
     {
       "Path": "eng/pipelines/templates/stages/platform-matrix.json",
@@ -31,12 +59,5 @@
       "GenerateVMJobs": true,
       "Selection": "sparse"
     }
-  ],
-  "Namespaces": [
-    "com.azure.core.experimental.http",
-    "com.azure.core.experimental.models",
-    "com.azure.core.experimental.serializer",
-    "com.azure.core.experimental.util.polling",
-    "com.azure.core.experimental.util.tracing"
   ]
 }

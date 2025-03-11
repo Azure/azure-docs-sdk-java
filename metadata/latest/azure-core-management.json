@@ -1,6 +1,6 @@
 {
   "Name": "azure-core-management",
-  "Version": "1.16.2",
+  "Version": "1.17.0",
   "DevVersion": null,
   "DirectoryPath": "sdk/core/azure-core-management",
   "ServiceDirectory": "core",
@@ -10,7 +10,7 @@
   "SdkType": "client",
   "IsNewSdk": true,
   "ArtifactName": "azure-core-management",
-  "ReleaseStatus": "2025-02-20",
+  "ReleaseStatus": "2025-03-10",
   "IncludedForValidation": false,
   "AdditionalValidationPackages": [
     "com.azure:azure-core-tracing-opentelemetry-samples",
@@ -18,20 +18,32 @@
     "com.azure:perf-test-core"
   ],
   "ArtifactDetails": {
-    "groupId": "com.azure",
     "safeName": "azurecoremanagement",
-    "releaseInBatch": "${{ parameters.release_azurecoremanagement }}",
-    "name": "azure-core-management"
+    "groupId": "com.azure",
+    "name": "azure-core-management",
+    "triggeringPaths": [
+      "/sdk/core/ci.yml"
+    ],
+    "releaseInBatch": "${{ parameters.release_azurecoremanagement }}"
   },
-  "CIMatrixConfigs": [
-    {
-      "Path": "eng/pipelines/templates/stages/platform-matrix.json",
-      "NonSparseParameters": "Agent",
-      "Name": "Java_ci_test_base",
-      "GenerateVMJobs": true,
-      "Selection": "sparse"
-    }
-  ],
+  "CIParameters": {
+    "CIMatrixConfigs": [
+      {
+        "Selection": "sparse",
+        "NonSparseParameters": "Agent",
+        "Name": "Java_ci_test_base",
+        "Path": "eng/pipelines/templates/stages/platform-matrix.json",
+        "GenerateVMJobs": true
+      },
+      {
+        "Selection": "all",
+        "PRBatching": false,
+        "Name": "version_overrides_tests",
+        "Path": "sdk/core/version-overrides-matrix.json",
+        "GenerateVMJobs": true
+      }
+    ]
+  },
   "Namespaces": [
     "com.azure.core.management",
     "com.azure.core.management.exception",
@@ -40,5 +52,14 @@
     "com.azure.core.management.profile",
     "com.azure.core.management.provider",
     "com.azure.core.management.serializer"
+  ],
+  "CIMatrixConfigs": [
+    {
+      "Path": "eng/pipelines/templates/stages/platform-matrix.json",
+      "NonSparseParameters": "Agent",
+      "Name": "Java_ci_test_base",
+      "GenerateVMJobs": true,
+      "Selection": "sparse"
+    }
   ]
 }

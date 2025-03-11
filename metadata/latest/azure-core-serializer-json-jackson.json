@@ -1,6 +1,6 @@
 {
   "Name": "azure-core-serializer-json-jackson",
-  "Version": "1.5.7",
+  "Version": "1.5.8",
   "DevVersion": null,
   "DirectoryPath": "sdk/core/azure-core-serializer-json-jackson",
   "ServiceDirectory": "core",
@@ -10,7 +10,7 @@
   "SdkType": "client",
   "IsNewSdk": true,
   "ArtifactName": "azure-core-serializer-json-jackson",
-  "ReleaseStatus": "2025-02-20",
+  "ReleaseStatus": "2025-03-10",
   "IncludedForValidation": false,
   "AdditionalValidationPackages": [
     "com.azure:azure-core-tracing-opentelemetry-samples",
@@ -18,11 +18,36 @@
     "com.azure:perf-test-core"
   ],
   "ArtifactDetails": {
-    "groupId": "com.azure",
     "safeName": "azurecoreserializerjsonjackson",
-    "releaseInBatch": "${{ parameters.release_azurecoreserializerjsonjackson }}",
-    "name": "azure-core-serializer-json-jackson"
+    "groupId": "com.azure",
+    "name": "azure-core-serializer-json-jackson",
+    "triggeringPaths": [
+      "/sdk/core/ci.yml"
+    ],
+    "releaseInBatch": "${{ parameters.release_azurecoreserializerjsonjackson }}"
   },
+  "CIParameters": {
+    "CIMatrixConfigs": [
+      {
+        "Selection": "sparse",
+        "NonSparseParameters": "Agent",
+        "Name": "Java_ci_test_base",
+        "Path": "eng/pipelines/templates/stages/platform-matrix.json",
+        "GenerateVMJobs": true
+      },
+      {
+        "Selection": "all",
+        "PRBatching": false,
+        "Name": "version_overrides_tests",
+        "Path": "sdk/core/version-overrides-matrix.json",
+        "GenerateVMJobs": true
+      }
+    ]
+  },
+  "Namespaces": [
+    "com.azure.core.serializer.json.jackson",
+    "com.azure.core.serializer.json.jackson.models"
+  ],
   "CIMatrixConfigs": [
     {
       "Path": "eng/pipelines/templates/stages/platform-matrix.json",
@@ -31,9 +56,5 @@
       "GenerateVMJobs": true,
       "Selection": "sparse"
     }
-  ],
-  "Namespaces": [
-    "com.azure.core.serializer.json.jackson",
-    "com.azure.core.serializer.json.jackson.models"
   ]
 }
