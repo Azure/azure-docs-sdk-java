@@ -1,12 +1,12 @@
 ---
 title: Azure App Configuration client library for Java
 keywords: Azure, java, SDK, API, azure-data-appconfiguration, appconfiguration
-ms.date: 12/04/2024
+ms.date: 03/12/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: appconfiguration
 ---
-# Azure App Configuration client library for Java - version 1.7.3 
+# Azure App Configuration client library for Java - version 1.8.0 
 
 Azure App Configuration is a managed service that helps developers centralize their application configurations simply and securely.
 
@@ -30,7 +30,7 @@ Use the client library for App Configuration to create and manage application co
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.7.3/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.8.0/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -65,7 +65,7 @@ add the direct dependency to your project as follows.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-data-appconfiguration</artifactId>
-  <version>1.7.3</version>
+  <version>1.8.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -89,7 +89,7 @@ az appconfig create --name <config-store-name> --resource-group <resource-group-
 ### Authenticate the client
 
 In order to interact with the App Configuration service you'll need to create an instance of the Configuration Client 
-class. To make this possible you'll need the connection string of the Configuration Store. Alternatively, use AAD token
+class. To make this possible you'll need the connection string of the Configuration Store. Alternatively, use Entra token
 to connect to the service.
 
 #### Use connection string
@@ -122,7 +122,7 @@ ConfigurationAsyncClient configurationClient = new ConfigurationClientBuilder()
     .buildAsyncClient();
 ```
 
-#### Use AAD token
+#### Use Entra token
 
 Here we demonstrate using [DefaultAzureCredential][default_cred_ref]
 to authenticate as a service principal. However, the configuration client
@@ -171,7 +171,7 @@ configuration client.
 Constructing the client also requires your configuration store's URL, which you can
 get from the Azure CLI or the Azure Portal. In the Azure Portal, the URL can be found listed as the service "Endpoint".
 
-```java readme-sample-aadAuthentication
+```java readme-sample-entraAuthentication
 DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
 ConfigurationClient configurationClient = new ConfigurationClientBuilder()
     .credential(credential)
@@ -605,28 +605,29 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.7.3/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
+[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.8.0/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
 [api_documentation]: https://aka.ms/java-docs
-[app_config_store]: /azure/azure-app-configuration/quickstart-dotnet-core-app#create-an-app-configuration-store
-[app_config_role]: /azure/azure-app-configuration/rest-api-authorization-azure-ad#roles
-[app_config_docs]: /azure/azure-app-configuration
-[azure_cli]: /cli/azure
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-appconfiguration_1.7.3/sdk/identity/azure-identity
+[app_config_store]: https://learn.microsoft.com/azure/azure-app-configuration/quickstart-dotnet-core-app#create-an-app-configuration-store
+[app_config_role]: https://learn.microsoft.com/azure/azure-app-configuration/rest-api-authorization-azure-ad#roles
+[app_config_docs]: https://learn.microsoft.com/azure/azure-app-configuration
+[azure_cli]: https://learn.microsoft.com/cli/azure
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-appconfiguration_1.8.0/sdk/identity/azure-identity
 [azure_subscription]: https://azure.microsoft.com/free
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 [default_cred_ref]: https://azuresdkdocs.z19.web.core.windows.net/java/azure-identity/latest/com/azure/identity/DefaultAzureCredential.html
-[jdk_link]: /java/azure/jdk/?view=azure-java-stable
+[jdk_link]: https://learn.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [maven]: https://maven.apache.org/
 [package]: https://central.sonatype.com/artifact/com.azure/azure-data-appconfiguration
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [rest_api]: https://github.com/Azure/AppConfiguration#rest-api-reference
-[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.7.3/sdk/appconfiguration/azure-data-appconfiguration/src/samples/java/com/azure/data/appconfiguration
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.7.3/sdk/appconfiguration/azure-data-appconfiguration/src/samples/README.md
-[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.7.3/sdk/appconfiguration/azure-data-appconfiguration/src
-[spring_quickstart]: /azure/azure-app-configuration/quickstart-java-spring-app
-[troubleshooting]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.7.3/sdk/appconfiguration/azure-data-appconfiguration/TROUBLESHOOTING.md
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.8.0/sdk/appconfiguration/azure-data-appconfiguration/src/samples/java/com/azure/data/appconfiguration
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.8.0/sdk/appconfiguration/azure-data-appconfiguration/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.8.0/sdk/appconfiguration/azure-data-appconfiguration/src
+[spring_quickstart]: https://learn.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
+[troubleshooting]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-appconfiguration_1.8.0/sdk/appconfiguration/azure-data-appconfiguration/TROUBLESHOOTING.md
+
 
 
