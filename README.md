@@ -1,4 +1,4 @@
-# ☕️ Azure SDK for Java API documentation
+# ☕️ Documentation for Java API of Azure SDK
 
 ## Microsoft Open Source Code of Conduct
 
