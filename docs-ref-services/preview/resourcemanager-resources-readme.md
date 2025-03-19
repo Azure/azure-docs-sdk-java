@@ -1,15 +1,15 @@
 ---
-title: Azure Resource Manager ServiceBus client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-servicebus, azure-service-bus
+title: Azure Resource Manager resources client library for Java
+keywords: Azure, java, SDK, API, azure-resourcemanager-resources, azure-resource-manager
 ms.date: 03/19/2025
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-service-bus
+ms.service: azure-resource-manager
 ---
-# Azure Resource Manager ServiceBus client library for Java - version 2.49.0-alpha.20250318.1 
+# Azure Resource Manager resources client library for Java - version 2.49.0-alpha.20250318.1 
 
 
-Azure Resource Manager ServiceBus client library for Java
+Azure Resource Manager resources client library for Java
 
 For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
@@ -22,11 +22,11 @@ For documentation on how to use this package, please see [Azure Management Libra
 
 ### Adding the package to your product
 
-[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-servicebus;current})
+[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-resources;current})
 ```xml
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
-    <artifactId>azure-resourcemanager-servicebus</artifactId>
+    <artifactId>azure-resourcemanager-resources</artifactId>
     <version>2.49.0-beta.1</version>
 </dependency>
 ```
@@ -52,8 +52,9 @@ AzureProfile profile = new AzureProfile(AzureCloud.AZURE_PUBLIC_CLOUD);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-ServiceBusManager manager = ServiceBusManager
-    .authenticate(credential, profile);
+ResourceManager manager = ResourceManager
+    .authenticate(credential, profile)
+    .withDefaultSubscription();
 ```
 
 The sample code assumes global Azure. Please change `AzureEnvironment.AZURE` variable if otherwise.
