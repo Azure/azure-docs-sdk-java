@@ -1,7 +1,7 @@
 ---
 title: Azure Impactreporting SDK for Java
 description: Reference for Azure Impactreporting SDK for Java
-ms.date: 03/18/2025
+ms.date: 03/19/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: impactreporting
