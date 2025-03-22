@@ -1,12 +1,12 @@
 ---
 title: Azure Deidentification client library for Java
 keywords: Azure, java, SDK, API, azure-health-deidentification, healthdataaiservices
-ms.date: 07/29/2024
+ms.date: 03/22/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: healthdataaiservices
 ---
-# Azure Deidentification client library for Java - version 1.0.0-beta.1 
+# Azure Deidentification client library for Java - version 1.0.0-alpha.20250321.1 
 
 
 Azure Deidentification client library for Java.
@@ -34,7 +34,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-health-deidentification</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -152,7 +152,7 @@ for (DocumentDetails currentFile : reports) {
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-health-deidentification_1.0.0-beta.1/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/main/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -165,7 +165,7 @@ For details on contributing to this repository, see the [contributing guide](htt
 [docs]: https://azure.github.io/azure-sdk-for-java/
 [jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-health-deidentification_1.0.0-beta.1/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity
 
 
 
