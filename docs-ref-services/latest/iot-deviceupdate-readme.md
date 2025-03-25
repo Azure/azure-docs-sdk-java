@@ -1,17 +1,17 @@
 ---
 title: Azure Device Update for IoT Hub client library for Java
 keywords: Azure, java, SDK, API, azure-iot-deviceupdate, deviceupdate
-ms.date: 12/04/2024
+ms.date: 03/25/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: deviceupdate
 ---
-# Azure Device Update for IoT Hub client library for Java - version 1.0.24 
+# Azure Device Update for IoT Hub client library for Java - version 1.0.26 
 
 
 The library provides access to the Device Update for IoT Hub service that enables customers to publish updates for their IoT devices to the cloud, and then deploy these updates to their devices (approve updates to groups of devices managed and provisioned in IoT Hub).
 
-  [Source code](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.24/sdk) | [Product documentation](/azure/iot-hub-device-update/understand-device-update)
+  [Source code](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.26/sdk) | [Product documentation](/azure/iot-hub-device-update/understand-device-update)
 
 ## Getting started
 
@@ -33,7 +33,7 @@ For the best development experience, developers should use the official Microsof
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-iot-deviceupdate</artifactId>
-  <version>1.0.24</version>
+  <version>1.0.26</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -55,7 +55,7 @@ You can learn more about Device Update for IoT Hub by visiting [Device Update fo
 
 ## Examples
 
-You can familiarize yourself with different APIs using [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.24/sdk/deviceupdate/azure-iot-deviceupdate/src/samples).
+You can familiarize yourself with different APIs using [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.26/sdk/deviceupdate/azure-iot-deviceupdate/src/samples).
 
 ## Troubleshooting
 
@@ -78,7 +78,7 @@ try {
 
 ## Next steps
 
-Get started with our [Device Update for IoT Hub samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.24/sdk/deviceupdate/azure-iot-deviceupdate/src/samples)
+Get started with our [Device Update for IoT Hub samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-iot-deviceupdate_1.0.26/sdk/deviceupdate/azure-iot-deviceupdate/src/samples)
 
 ## Contributing
 
@@ -96,5 +96,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
 
-
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fdeviceupdate%2Fazure-iot-deviceupdate%2FREADME.png)
 
