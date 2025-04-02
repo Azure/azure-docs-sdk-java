@@ -1,7 +1,7 @@
 ---
 title: Azure Communication SDK for Java
 description: Reference for Azure Communication SDK for Java
-ms.date: 04/01/2025
+ms.date: 04/02/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: communication
