@@ -1,7 +1,7 @@
 ---
 title: Azure Terraform SDK for Java
 description: Reference for Azure Terraform SDK for Java
-ms.date: 04/02/2025
+ms.date: 04/03/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: terraform
