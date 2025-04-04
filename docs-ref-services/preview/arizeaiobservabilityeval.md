@@ -1,7 +1,7 @@
 ---
 title: Azure Arizeaiobservabilityeval SDK for Java
 description: Reference for Azure Arizeaiobservabilityeval SDK for Java
-ms.date: 04/03/2025
+ms.date: 04/04/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: arizeaiobservabilityeval
