@@ -1,15 +1,15 @@
 ---
-title: Azure Resource Manager CDN client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-cdn, azure-cdn
+title: Azure Resource Manager App Platform client library for Java
+keywords: Azure, java, SDK, API, azure-resourcemanager-appplatform, spring-cloud
 ms.date: 04/05/2025
 ms.topic: reference
 ms.devlang: java
-ms.service: azure-cdn
+ms.service: spring-cloud
 ---
-# Azure Resource Manager CDN client library for Java - version 2.50.0-alpha.20250404.1 
+# Azure Resource Manager App Platform client library for Java - version 2.50.0-alpha.20250404.1 
 
 
-Azure Resource Manager CDN client library for Java
+Azure Resource Manager App Platform client library for Java
 
 For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
@@ -22,11 +22,11 @@ For documentation on how to use this package, please see [Azure Management Libra
 
 ### Adding the package to your product
 
-[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-cdn;current})
+[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-appplatform;current})
 ```xml
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
-    <artifactId>azure-resourcemanager-cdn</artifactId>
+    <artifactId>azure-resourcemanager-appplatform</artifactId>
     <version>2.49.0</version>
 </dependency>
 ```
@@ -48,11 +48,11 @@ Azure tenant ID can be configured via `AZURE_TENANT_ID` environment variable.
 Assuming the use of the `DefaultAzureCredential` credential class, the client can be authenticated using the following code:
 
 ```java readme-sample-authenticate
-AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
+AzureProfile profile = new AzureProfile(AzureCloud.AZURE_PUBLIC_CLOUD);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-CdnManager manager = CdnManager
+AppPlatformManager manager = AppPlatformManager
     .authenticate(credential, profile);
 ```
 
