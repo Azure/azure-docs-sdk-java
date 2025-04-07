@@ -311,7 +311,7 @@ Update client library versions according to the table above.
 
 [Back to list of known issues](#list-of-known-issues)
 
-### 10. InvalidHeaderValue error message when using beta version of SDK
+### 10. InvalidHeaderValue error message when using beta or generally available version of SDK
 
 In rare scenarios, applications that have upgraded to the latest beta or generally available version of the SDK can receive an `InvalidHeaderValue` error message. This issue can occur when using any of the Storage libraries. The error message looks similar to the following sample:
 
