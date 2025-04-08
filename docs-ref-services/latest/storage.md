@@ -4,7 +4,7 @@ description: Reference for Azure Storage SDK for Java
 ms.date: 04/04/2025
 ms.topic: reference
 ms.devlang: java
-ms.service: storage
+ms.service: azure-storage
 ---
 # Azure Storage libraries for Java
 
@@ -130,7 +130,7 @@ If you have questions or need additional help, please [create a support ticket](
 1. [Message content incorrectly erased when only visibility timeout set](#7-message-content-incorrectly-erased-when-only-visibility-timeout-set)
 1. [Client-side encryption updated to use AES-GCM due to security vulnerabilities in CBC mode](#8-client-side-encryption-updated-to-use-aes-gcm-due-to-security-vulnerabilities-in-cbc-mode)
 1. [Incorrect data being downloaded with downloadToFile() when underlying REST requests are retried](#9-incorrect-data-being-downloaded-with-downloadtofile-when-underlying-rest-requests-are-retried)
-1. [InvalidHeaderValue error message when using beta version of SDK](#10-invalidheadervalue-error-message-when-using-beta-version-of-sdk)
+1. [InvalidHeaderValue error message when using beta or generally available version of SDK](#10-invalidheadervalue-error-message-when-using-beta-or-generally-available-version-of-sdk)
 1. [Uploading with `BlobClient.upload(InputStream data)` overwrites existing blob by default](#11-uploading-with-blobclientuploadinputstream-data-overwrites-existing-blob-by-default)
 1. [Downloading with `ShareFileClient.downloadToFile()` can write incorrect data to a file](#12-downloading-with-sharefileclientdownloadtofile-can-write-incorrect-data-to-a-file)
 
