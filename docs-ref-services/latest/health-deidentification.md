@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: healthdeidentification
 ---
-# Azure Health Deidentification SDK for Java - preview
-## Packages - preview
+# Azure Health Deidentification SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](health-deidentification-index.md)]
