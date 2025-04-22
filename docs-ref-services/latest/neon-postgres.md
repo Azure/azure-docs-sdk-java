@@ -6,6 +6,6 @@ ms.topic: reference
 ms.devlang: java
 ms.service: neonpostgres
 ---
-# Azure Neon Postgres SDK for Java - preview
-## Packages - preview
+# Azure Neon Postgres SDK for Java - latest
+## Packages - latest
 [!INCLUDE [packages](neon-postgres-index.md)]
