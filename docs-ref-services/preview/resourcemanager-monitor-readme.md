@@ -1,15 +1,15 @@
 ---
-title: Azure Resource Manager traffic manager client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager-trafficmanager, resourcemanager
+title: Azure Resource Manager monitor client library for Java
+keywords: Azure, java, SDK, API, azure-resourcemanager-monitor, resourcemanager
 ms.date: 05/14/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: resourcemanager
 ---
-# Azure Resource Manager traffic manager client library for Java - version 2.51.0-alpha.20250513.2 
+# Azure Resource Manager monitor client library for Java - version 2.51.0-alpha.20250513.2 
 
 
-Azure Resource Manager traffic manager client library for Java
+Azure Resource Manager monitor client library for Java
 
 For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
@@ -22,11 +22,11 @@ For documentation on how to use this package, please see [Azure Management Libra
 
 ### Adding the package to your product
 
-[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-trafficmanager;current})
+[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-monitor;current})
 ```xml
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
-    <artifactId>azure-resourcemanager-trafficmanager</artifactId>
+    <artifactId>azure-resourcemanager-monitor</artifactId>
     <version>2.50.0</version>
 </dependency>
 ```
@@ -48,11 +48,11 @@ Azure tenant ID can be configured via `AZURE_TENANT_ID` environment variable.
 Assuming the use of the `DefaultAzureCredential` credential class, the client can be authenticated using the following code:
 
 ```java readme-sample-authenticate
-AzureProfile profile = new AzureProfile(AzureCloud.AZURE_PUBLIC_CLOUD);
+AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-TrafficManager manager = TrafficManager
+MonitorManager manager = MonitorManager
     .authenticate(credential, profile);
 ```
 
