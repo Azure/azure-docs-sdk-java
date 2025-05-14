@@ -1,6 +1,7 @@
 ---
 title: Azure Resource Mover SDK for Java
 description: Reference for Azure Resource Mover SDK for Java
+ms.date: 05/14/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: resourcemover
@@ -8,4 +9,3 @@ ms.service: resourcemover
 # Azure Resource Mover SDK for Java - preview
 ## Packages - preview
 [!INCLUDE [packages](resource-mover-index.md)]
-
