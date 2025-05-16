@@ -1,17 +1,17 @@
 ---
-title: Azure Agents client library for Java
-keywords: Azure, java, SDK, API, azure-ai-agents-persistent, ai
+title: Azure Projects client library for Java
+keywords: Azure, java, SDK, API, azure-ai-projects, ai
 ms.date: 05/16/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: ai
 ---
-# Azure Agents client library for Java - version 1.0.0-alpha.20250516.2 
+# Azure Projects client library for Java - version 1.0.0-alpha.20250516.2 
 
 
-Azure Agents client library for Java.
+Azure Projects client library for Java.
 
-This package contains Microsoft Azure Agents client library.
+This package contains Microsoft Azure Projects client library.
 
 ## Documentation
 
@@ -29,11 +29,11 @@ Various documentation is available to help you get started
 
 ### Adding the package to your product
 
-[//]: # ({x-version-update-start;com.azure:azure-ai-agents-persistent;current})
+[//]: # ({x-version-update-start;com.azure:azure-ai-projects;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
-    <artifactId>azure-ai-agents-persistent</artifactId>
+    <artifactId>azure-ai-projects</artifactId>
     <version>1.0.0-beta.1</version>
 </dependency>
 ```
@@ -47,7 +47,7 @@ Various documentation is available to help you get started
 
 ## Examples
 
-```java com.azure.ai.agents.persistent.readme
+```java com.azure.ai.projects.readme
 ```
 
 ### Service API versions
