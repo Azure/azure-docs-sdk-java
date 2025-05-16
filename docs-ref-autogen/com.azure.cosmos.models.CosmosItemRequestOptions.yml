@@ -140,6 +140,16 @@ methods:
   returns:
     description: "the triggers to be invoked before the operation."
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/List.html\">List</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
+- uid: "com.azure.cosmos.models.CosmosItemRequestOptions.getReadConsistencyStrategy()"
+  fullName: "com.azure.cosmos.models.CosmosItemRequestOptions.getReadConsistencyStrategy()"
+  name: "getReadConsistencyStrategy()"
+  nameWithType: "CosmosItemRequestOptions.getReadConsistencyStrategy()"
+  summary: "Gets the read consistency strategy for the request."
+  syntax: "public ReadConsistencyStrategy getReadConsistencyStrategy()"
+  desc: "Gets the read consistency strategy for the request."
+  returns:
+    description: "the read consistency strategy."
+    type: "<xref href=\"com.azure.cosmos.ReadConsistencyStrategy?alt=com.azure.cosmos.ReadConsistencyStrategy&text=ReadConsistencyStrategy\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.cosmos.models.CosmosItemRequestOptions.getSessionToken()"
   fullName: "com.azure.cosmos.models.CosmosItemRequestOptions.getSessionToken()"
   name: "getSessionToken()"
@@ -268,13 +278,13 @@ methods:
   fullName: "com.azure.cosmos.models.CosmosItemRequestOptions.setExcludedRegions(List<String> excludeRegions)"
   name: "setExcludedRegions(List<String> excludeRegions)"
   nameWithType: "CosmosItemRequestOptions.setExcludedRegions(List<String> excludeRegions)"
-  summary: "List of regions to exclude for the request/retries."
+  summary: "List of regions to be excluded for the request/retries."
   parameters:
   - description: "list of regions"
     name: "excludeRegions"
     type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/List.html\">List</a>&lt;<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\">String</a>&gt;"
   syntax: "public CosmosItemRequestOptions setExcludedRegions(List<String> excludeRegions)"
-  desc: "List of regions to exclude for the request/retries. Example \"East US\" or \"East US, West US\" These regions will be excluded from the preferred regions list"
+  desc: "List of regions to be excluded for the request/retries. Example \"East US\" or \"East US, West US\" These regions will be excluded from the preferred regions list. If all the regions are excluded, the request will be sent to the primary region for the account. The primary region is the write region in a single master account and the hub region in a multi-master account."
   returns:
     description: "the <xref uid=\"com.azure.cosmos.models.CosmosItemRequestOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"CosmosItemRequestOptions\"></xref>"
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
@@ -379,6 +389,20 @@ methods:
   returns:
     description: "the CosmosItemRequestOptions."
     type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.cosmos.models.CosmosItemRequestOptions.setReadConsistencyStrategy(com.azure.cosmos.ReadConsistencyStrategy)"
+  fullName: "com.azure.cosmos.models.CosmosItemRequestOptions.setReadConsistencyStrategy(ReadConsistencyStrategy readConsistencyStrategy)"
+  name: "setReadConsistencyStrategy(ReadConsistencyStrategy readConsistencyStrategy)"
+  nameWithType: "CosmosItemRequestOptions.setReadConsistencyStrategy(ReadConsistencyStrategy readConsistencyStrategy)"
+  summary: "Sets the read consistency strategy required for the request."
+  parameters:
+  - description: "the consistency level."
+    name: "readConsistencyStrategy"
+    type: "<xref href=\"com.azure.cosmos.ReadConsistencyStrategy?alt=com.azure.cosmos.ReadConsistencyStrategy&text=ReadConsistencyStrategy\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public CosmosItemRequestOptions setReadConsistencyStrategy(ReadConsistencyStrategy readConsistencyStrategy)"
+  desc: "Sets the read consistency strategy required for the request. This allows specifying the effective consistency strategy for read/query operations and even request stronger consistency (\\`LOCAL\\_COMMITTED\\` for example) for accounts with lower default consistency level NOTE: If the read consistency strategy set on a request level here is \\`SESSION\\` and the default consistency level specified when constructing the CosmosClient instance via CosmosClientBuilder.consistencyLevel is not SESSION then session token capturing also needs to be enabled by calling CosmosClientBuilder:sessionCapturingOverrideEnabled(true) explicitly. NOTE: The \\`setConsistencyLevel\\` value specified is ignored when \\`setReadConsistencyStrategy\\` is used unless \\`DEFAULT\\` is specified."
+  returns:
+    description: "the CosmosItemRequestOptions."
+    type: "<xref href=\"com.azure.cosmos.models.CosmosItemRequestOptions?alt=com.azure.cosmos.models.CosmosItemRequestOptions&text=CosmosItemRequestOptions\" data-throw-if-not-resolved=\"False\" />"
 - uid: "com.azure.cosmos.models.CosmosItemRequestOptions.setSessionToken(java.lang.String)"
   fullName: "com.azure.cosmos.models.CosmosItemRequestOptions.setSessionToken(String sessionToken)"
   name: "setSessionToken(String sessionToken)"
@@ -422,4 +446,4 @@ type: "class"
 desc: "Encapsulates options that can be specified for a request issued to cosmos Item."
 metadata: {}
 package: "com.azure.cosmos.models"
-artifact: com.azure:azure-cosmos:4.68.0
+artifact: com.azure:azure-cosmos:4.69.0
