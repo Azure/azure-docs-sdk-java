@@ -1,17 +1,17 @@
 ---
 title: Azure Maps SDK Route client library for Java
 keywords: Azure, java, SDK, API, azure-maps-route, maps/azure-maps-route
-ms.date: 12/27/2024
+ms.date: 05/16/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: maps/azure-maps-route
 ---
-# Azure Maps SDK Route client library for Java - version 1.0.0-beta.3 
+# Azure Maps SDK Route client library for Java - version 1.0.0-alpha.20250515.1 
 
 
 Azure Maps SDK Route client library for Java.
 
-This package contains Microsoft Azure SDK for Route Management SDK which contains Azure Maps Route REST APIs. For documentation on how to use this package, please see [Azure Management Libraries for Java](/rest/api/maps/route).
+This package contains Microsoft Azure SDK for Route Management SDK which contains Azure Maps Route REST APIs. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://learn.microsoft.com/rest/api/maps/route).
 
 [Source code][source] | [API reference documentation][docs] | [REST API documentation][rest_docs] | [Product documentation][product_docs] | [Samples][samples]
 
@@ -35,7 +35,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-maps-route</artifactId>
-    <version>1.0.0-beta.3</version>
+    <version>1.0.0-beta.4</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -77,7 +77,7 @@ MapsRouteAsyncClient client = builder.buildAsyncClient();
 
 The sample code assumes global Azure. Please change `AzureEnvironment.AZURE` variable if otherwise.
 
-For SAS-based authentication, please refer to [AccountsListSasSamples.java][https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-route_1.0.0-beta.3/sdk/maps/azure-resourcemanager-maps/src/samples/java/com/azure/resourcemanager/maps/generated/AccountsListSasSamples.java].
+For SAS-based authentication, please refer to [AccountsListSasSamples.java][https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/maps/azure-resourcemanager-maps/src/samples/java/com/azure/resourcemanager/maps/generated/AccountsListSasSamples.java].
 
 See [Authentication][authenticate] for more options.
 
@@ -207,11 +207,11 @@ For example, if you search with an invalid coordinate, a error is returned, indi
 ## Next steps
 
 Several Azure Maps Route Java SDK samples are available to you in the SDK's GitHub repository.
-[Azure Maps Route Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-route_1.0.0-beta.3/sdk/maps/azure-maps-route/src/samples)
+[Azure Maps Route Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/maps/azure-maps-route/src/samples)
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-route_1.0.0-beta.3/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/main/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
@@ -220,17 +220,17 @@ For details on contributing to this repository, see the [contributing guide](htt
 1. Create new Pull Request
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-route_1.0.0-beta.3/sdk/maps/azure-maps-route/src
-[samples]:  https://github.com/Azure/azure-sdk-for-java/tree/azure-maps-route_1.0.0-beta.3/sdk/maps/azure-maps-route/src/samples
-[rest_docs]: /rest/api/maps
-[product_docs]: /azure/azure-maps/
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/maps/azure-maps-route/src
+[samples]:  https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/maps/azure-maps-route/src/samples
+[rest_docs]: https://learn.microsoft.com/rest/api/maps
+[product_docs]: https://learn.microsoft.com/azure/azure-maps/
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[jdk]: /java/azure/jdk/
+[jdk]: https://learn.microsoft.com/java/azure/jdk/
 [azure_subscription]: https://azure.microsoft.com/free/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-route_1.0.0-beta.3/sdk/identity/azure-identity
-[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-route_1.0.0-beta.3/sdk/core/azure-core-http-netty
-[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-route_1.0.0-beta.3/sdk/resourcemanager/docs/AUTH.md
-[design]: https://github.com/Azure/azure-sdk-for-java/blob/azure-maps-route_1.0.0-beta.3/sdk/resourcemanager/docs/DESIGN.md
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity
+[azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/core/azure-core-http-netty
+[authenticate]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/resourcemanager/docs/AUTH.md
+[design]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/resourcemanager/docs/DESIGN.md
 
 
 
