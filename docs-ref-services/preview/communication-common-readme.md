@@ -1,12 +1,12 @@
 ---
 title: Azure Communication Service Common client library for Java
-keywords: Azure, java, SDK, API, azure-communication-common, communication
-ms.date: 03/27/2023
+keywords: Azure, java, SDK, API, azure-communication-common, communication/azure-communication-common
+ms.date: 05/20/2025
 ms.topic: reference
 ms.devlang: java
-ms.service: communication
+ms.service: communication/azure-communication-common
 ---
-# Azure Communication Service Common client library for Java - version 2.0.0-beta.1 
+# Azure Communication Service Common client library for Java - version 1.4.0-alpha.20250520.1 
 
 
 Azure Communication Common contains data structures commonly used for communicating with Azure Communication Services. 
@@ -17,14 +17,14 @@ It is intended to provide cross-cutting concerns, e.g. authentication.
 ### Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [Java Development Kit (JDK)](/java/azure/jdk/?view=azure-java-stable) version 8 or above.
+- [Java Development Kit (JDK)](https://learn.microsoft.com/java/azure/jdk/?view=azure-java-stable) version 8 or above.
 - [Apache Maven](https://maven.apache.org/download.cgi).
 - A deployed Communication Services resource.
 
 #### Include the BOM file
 
 Please include the azure-sdk-bom to your project to take dependency on the General Availability (GA) version of the library. In the following snippet, replace the {bom_version_to_target} placeholder with the version number.
-To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/azure-communication-common_2.0.0-beta.1/sdk/boms/azure-sdk-bom/README.md).
+To learn more about the BOM, see the [AZURE SDK BOM README](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/boms/azure-sdk-bom/README.md).
 
 ```xml
 <dependencyManagement>
@@ -60,7 +60,7 @@ add the direct dependency to your project as follows.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-common</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>1.4.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
