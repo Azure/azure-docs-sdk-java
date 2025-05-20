@@ -1,7 +1,7 @@
 ---
 title: Azure Durable Task SDK for Java
 description: Reference for Azure Durable Task SDK for Java
-ms.date: 05/16/2025
+ms.date: 05/20/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: durabletask
