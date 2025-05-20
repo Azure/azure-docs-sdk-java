@@ -21,6 +21,17 @@ inheritedClassMethods:
   - "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#wait-long-\">wait</a>"
   - "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#wait-long-int-\">wait</a>"
 syntax: "public class **CosmosAsyncContainer**"
+constructors:
+- uid: "com.azure.cosmos.CosmosAsyncContainer.CosmosAsyncContainer(com.azure.cosmos.CosmosAsyncContainer)"
+  fullName: "com.azure.cosmos.CosmosAsyncContainer.CosmosAsyncContainer(CosmosAsyncContainer toBeWrappedContainer)"
+  name: "CosmosAsyncContainer(CosmosAsyncContainer toBeWrappedContainer)"
+  nameWithType: "CosmosAsyncContainer.CosmosAsyncContainer(CosmosAsyncContainer toBeWrappedContainer)"
+  modifiers:
+  - "protected"
+  parameters:
+  - name: "toBeWrappedContainer"
+    type: "<xref href=\"com.azure.cosmos.CosmosAsyncContainer?alt=com.azure.cosmos.CosmosAsyncContainer&text=CosmosAsyncContainer\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "protected CosmosAsyncContainer(CosmosAsyncContainer toBeWrappedContainer)"
 methods:
 - uid: "com.azure.cosmos.CosmosAsyncContainer.<T>createItem(T)"
   fullName: "com.azure.cosmos.CosmosAsyncContainer.createItem(T item)"
@@ -643,6 +654,26 @@ methods:
   returns:
     description: "a Mono with feed response of cosmos items"
     type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.cosmos.models.FeedResponse?alt=com.azure.cosmos.models.FeedResponse&text=FeedResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
+- uid: "com.azure.cosmos.CosmosAsyncContainer.<T>readMany(java.util.List<com.azure.cosmos.models.CosmosItemIdentity>,com.azure.cosmos.models.CosmosReadManyRequestOptions,java.lang.Class<T>)"
+  fullName: "com.azure.cosmos.CosmosAsyncContainer.readMany(List<CosmosItemIdentity> itemIdentityList, CosmosReadManyRequestOptions requestOptions, Class<T> classType)"
+  name: "readMany(List<CosmosItemIdentity> itemIdentityList, CosmosReadManyRequestOptions requestOptions, Class<T> classType)"
+  nameWithType: "CosmosAsyncContainer.readMany(List<CosmosItemIdentity> itemIdentityList, CosmosReadManyRequestOptions requestOptions, Class<T> classType)"
+  summary: "Reads many documents."
+  parameters:
+  - description: "CosmosItem id and partition key tuple of items that that needs to be read"
+    name: "itemIdentityList"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/util/List.html\">List</a>&lt;<xref href=\"com.azure.cosmos.models.CosmosItemIdentity?alt=com.azure.cosmos.models.CosmosItemIdentity&text=CosmosItemIdentity\" data-throw-if-not-resolved=\"False\" />&gt;"
+  - description: "the optional request option"
+    name: "requestOptions"
+    type: "<xref href=\"com.azure.cosmos.models.CosmosReadManyRequestOptions?alt=com.azure.cosmos.models.CosmosReadManyRequestOptions&text=CosmosReadManyRequestOptions\" data-throw-if-not-resolved=\"False\" />"
+  - description: "class type"
+    name: "classType"
+    type: "<a href=\"https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html\">Class</a>&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;"
+  syntax: "public Mono<FeedResponse<T>> <T>readMany(List<CosmosItemIdentity> itemIdentityList, CosmosReadManyRequestOptions requestOptions, Class<T> classType)"
+  desc: "Reads many documents. Useful for reading many documents with a particular id and partition key in a single request. If any document from the list is missing, no exception will be thrown.\n\n```java\nList<CosmosItemIdentity> itemIdentityList = new ArrayList<>();\n itemIdentityList.add(new CosmosItemIdentity(new PartitionKey(passenger1Id), passenger1Id));\n itemIdentityList.add(new CosmosItemIdentity(new PartitionKey(passenger2Id), passenger2Id));\n\n cosmosAsyncContainer.readMany(itemIdentityList, Passenger.class)\n     .flatMap(passengerFeedResponse -> {\n         for (Passenger passenger : passengerFeedResponse.getResults()) {\n             System.out.println(passenger);\n         }\n         return Mono.empty();\n     })\n     .subscribe();\n```"
+  returns:
+    description: "a Mono with feed response of cosmos items or error"
+    type: "<a href=\"https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html\">Mono</a>&lt;<xref href=\"com.azure.cosmos.models.FeedResponse?alt=com.azure.cosmos.models.FeedResponse&text=FeedResponse\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"T?alt=T&text=T\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
 - uid: "com.azure.cosmos.CosmosAsyncContainer.<T>readMany(java.util.List<com.azure.cosmos.models.CosmosItemIdentity>,java.lang.String,java.lang.Class<T>)"
   fullName: "com.azure.cosmos.CosmosAsyncContainer.readMany(List<CosmosItemIdentity> itemIdentityList, String sessionToken, Class<T> classType)"
   name: "readMany(List<CosmosItemIdentity> itemIdentityList, String sessionToken, Class<T> classType)"
@@ -816,4 +847,4 @@ type: "class"
 desc: "Provides methods for reading, deleting, and replacing existing Containers. Provides methods for interacting with child resources (Items, Scripts, Conflicts)"
 metadata: {}
 package: "com.azure.cosmos"
-artifact: com.azure:azure-cosmos:4.53.2-hotfix
+artifact: com.azure:azure-cosmos:4.71.0-beta.1
