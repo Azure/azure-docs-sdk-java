@@ -1,7 +1,7 @@
 ---
 title: Azure Spring App Discovery SDK for Java
 description: Reference for Azure Spring App Discovery SDK for Java
-ms.date: 05/19/2025
+ms.date: 05/21/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: springappdiscovery
