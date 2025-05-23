@@ -1,11 +1,11 @@
 ---
-title: Azure CDN libraries for Java
-description: Reference documentation for the Java CDN management libraries
-keywords: Azure, Java, SDK, API, content, distribution, network, CDN
-ms.date: 07/11/2017
+title: Azure Content Delivery Network SDK for Java
+description: Reference for Azure Content Delivery Network SDK for Java
+ms.date: 05/23/2025
 ms.topic: reference
 ms.devlang: java
 ms.service: azure-cdn
+keywords: Azure, Java, SDK, API, content, distribution, network, CDN
 manager: douge
 ---
 # Azure CDN libraries for Java
@@ -60,4 +60,3 @@ for (CdnEndpoint endpoint : profile.endpoints().values()) {
 [Manage CDNs with Java](https://github.com/Azure-Samples/cdn-java-manage-cdn)
 
 Explore more [sample Java code for Azure CDN](https://azure.microsoft.com/resources/samples/?platform=java&term=cdn) you can use in your apps.
-
